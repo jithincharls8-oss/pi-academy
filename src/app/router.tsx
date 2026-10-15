@@ -67,6 +67,24 @@ export const FEATURE_ROUTES: RouteObject[] = [
     element: page(() => lz(import('@/features/sandbox/smt/SmtPage'), 'SmtPage')),
   },
   {
+    path: 'sandbox/vision',
+    element: page(() => lz(import('@/features/sandbox/vision/VisionPage'), 'VisionPage')),
+  },
+  {
+    path: 'sandbox/webapi',
+    element: page(() => lz(import('@/features/sandbox/webapi/WebApiPage'), 'WebApiPage')),
+  },
+  {
+    path: 'sandbox/compression',
+    element: page(() =>
+      lz(import('@/features/sandbox/compression/CompressionLabPage'), 'CompressionLabPage'),
+    ),
+  },
+  {
+    path: 'sandbox/datalink',
+    element: page(() => lz(import('@/features/sandbox/datalink/DataLinkPage'), 'DataLinkPage')),
+  },
+  {
     path: 'reference',
     element: page(() => lz(import('@/features/reference/ReferencePage'), 'ReferencePage')),
   },
@@ -114,6 +132,7 @@ export const FEATURE_ROUTES: RouteObject[] = [
     path,
     element: page(() => lz(import('@/features/industries/IndustriesPage'), 'CaseStudiesPage')),
   })),
+  { path: 'admin', element: page(() => lz(import('@/features/admin/AdminPage'), 'AdminPage')) },
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
     path: 'settings',

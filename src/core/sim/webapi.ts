@@ -53,14 +53,17 @@ function fromB64url(s: string): string | null {
 
 export function webId(marker: Marker, path: string): string {
   const owner = marker === 'Ab' ? 'E' : '';
-  return `P1${marker}${owner}${b64url(path)}`;
+  // The encoded path leaves out the leading \\ (research/int.md, int.webapi-basics).
+  return `P1${marker}${owner}${b64url(path.replace(/^\\\\/, ''))}`;
 }
 
 function decodeWebId(id: string): { marker: Marker; path: string } | null {
   const m = /^P1(DS|DP|RS|RD|Em|Ab)(E?)([A-Za-z0-9_-]+)$/.exec(id);
   if (!m) return null;
-  const path = fromB64url(m[3] ?? '');
-  return path ? { marker: m[1] as Marker, path } : null;
+  const raw = fromB64url(m[3] ?? '');
+  if (!raw) return null;
+  const path = raw.startsWith('\\\\') ? raw : `\\\\${raw}`;
+  return { marker: m[1] as Marker, path };
 }
 
 /* ---------------------------------------------------------------- objects */

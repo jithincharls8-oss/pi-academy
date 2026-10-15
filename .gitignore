@@ -1,7 +1,7 @@
 node_modules
-dist
+/dist
 dist-ssr
-coverage
+/coverage
 playwright-report
 test-results
 public/content/bundle.json

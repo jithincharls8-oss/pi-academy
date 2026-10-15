@@ -44,6 +44,11 @@ const marked = new Marked({
       if (href.startsWith('#/')) return `<a href="${escapeHtml(href)}">${text}</a>`;
       return text;
     },
+    // Raw HTML in content is shown as text, never rendered: authored content (including
+    // in-app edits) must not be able to draw its own links, overlays or diagram blocks.
+    html(token: Tokens.HTML | Tokens.Tag): string {
+      return escapeHtml(token.text);
+    },
     image(token: Tokens.Image): string {
       // No remote images in an offline app; show the alt text instead.
       return `<span class="text-fg-muted">[${escapeHtml(token.text)}]</span>`;
@@ -51,10 +56,40 @@ const marked = new Marked({
   },
 });
 
-/** Markdown to sanitised HTML. Raw HTML in the source is escaped by DOMPurify's allow-list. */
+/** Only the classes this renderer emits survive sanitising. */
+const ALLOWED_CLASS = /^(callout(-[a-z]+)?|callout-title|mermaid-block|text-fg-muted)$/;
+
+// A private DOMPurify instance so these hooks do not touch other sanitising (Mermaid SVG).
+let purifier: ReturnType<typeof DOMPurify> | null = null;
+function getPurifier(): ReturnType<typeof DOMPurify> {
+  if (purifier) return purifier;
+  const p = DOMPurify(window);
+  purifier = p;
+  p.addHook('afterSanitizeAttributes', (node) => {
+    const cls = node.getAttribute('class');
+    if (cls !== null) {
+      const kept = cls.split(/\s+/).filter((c) => ALLOWED_CLASS.test(c));
+      if (kept.length) node.setAttribute('class', kept.join(' '));
+      else node.removeAttribute('class');
+    }
+    if (node.tagName === 'A') {
+      const href = node.getAttribute('href') ?? '';
+      if (/^https?:\/\//i.test(href)) {
+        node.setAttribute('target', '_blank');
+        node.setAttribute('rel', 'noopener noreferrer');
+      } else if (!href.startsWith('#/')) {
+        node.removeAttribute('href');
+        node.removeAttribute('target');
+      }
+    }
+  });
+  return p;
+}
+
+/** Markdown to sanitised HTML. Raw HTML in the source is escaped, not rendered. */
 export function renderMarkdown(src: string): string {
   const html = marked.parse(src, { async: false });
-  return DOMPurify.sanitize(html, {
+  return getPurifier().sanitize(html, {
     ALLOWED_ATTR: ['href', 'target', 'rel', 'class', 'role', 'data-mermaid', 'data-lang', 'colspan', 'rowspan', 'align'],
     ALLOW_DATA_ATTR: false,
     FORBID_TAGS: ['style', 'script', 'iframe', 'form', 'input', 'img'],

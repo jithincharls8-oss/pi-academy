@@ -32,7 +32,13 @@ export function Mermaid({ source, label }: { source: string; label?: string }) {
       try {
         const out = await mermaid.render(`m${id}`, source);
         if (!cancelled) {
-          setSvg(DOMPurify.sanitize(out.svg, { USE_PROFILES: { svg: true, svgFilters: true } }));
+          setSvg(
+            // Links inside diagrams are dropped (their text is kept): diagrams never navigate.
+            DOMPurify.sanitize(out.svg, {
+              USE_PROFILES: { svg: true, svgFilters: true },
+              FORBID_TAGS: ['a'],
+            }),
+          );
           setError(null);
         }
       } catch (e) {
@@ -52,11 +58,14 @@ export function Mermaid({ source, label }: { source: string; label?: string }) {
       </div>
     );
   }
-  if (!svg) return <div className="h-40 animate-pulse rounded-md bg-surface-2" aria-label="Loading diagram" />;
+  if (!svg)
+    return (
+      <div className="h-40 animate-pulse rounded-md bg-surface-2" role="status" aria-label="Loading diagram" />
+    );
   return (
     <figure
       className="my-4 overflow-x-auto rounded-md border border-border bg-surface p-4 [&_svg]:mx-auto [&_svg]:h-auto [&_svg]:max-w-full"
-      role="img"
+      // No role="img": that would hide the diagram's text labels from screen readers.
       aria-label={label ?? 'Diagram'}
       dangerouslySetInnerHTML={{ __html: svg }}
     />

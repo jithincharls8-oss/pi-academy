@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowUp, CheckCircle2, Flag, XCircle } from 'lucide-react';
 import type { Question } from '@/core/schemas';
@@ -26,6 +26,20 @@ const CODE_LABELS = {
   pe: 'Performance Equation',
 } as const;
 const DIFFICULTY = { 1: 'Easy', 2: 'Medium', 3: 'Hard' } as const;
+
+/**
+ * Deterministic shuffle with no item left in its correct place, so an untouched ordering
+ * question scores nothing.
+ */
+function derange<T>(items: readonly T[], seed: string): T[] {
+  if (items.length < 2) return [...items];
+  const rand = seededRandom(seed);
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const s = shuffle(items, rand);
+    if (s.every((x, i) => x !== items[i])) return s;
+  }
+  return [...items.slice(1), items[0]!];
+}
 
 function emptyAnswer(q: Question): Answer {
   switch (q.type) {
@@ -70,6 +84,8 @@ export interface QuestionCardProps {
   /** heading prefix like "Question 3 of 10" */
   label?: string;
   onFlag?: () => void;
+  /** a saved answer to show (resuming or reviewing a session); the card starts locked */
+  initial?: { answer: Answer; result: GradeResult } | undefined;
 }
 
 export function QuestionCard({
@@ -78,11 +94,12 @@ export function QuestionCard({
   showFeedback = true,
   label,
   onFlag,
+  initial,
 }: QuestionCardProps) {
-  const [answer, setAnswer] = useState<Answer>(() => emptyAnswer(q));
-  const [result, setResult] = useState<GradeResult | null>(null);
+  const [answer, setAnswer] = useState<Answer>(() => initial?.answer ?? emptyAnswer(q));
+  const [result, setResult] = useState<GradeResult | null>(() => initial?.result ?? null);
   const shuffledItems = useMemo(
-    () => (q.type === 'ordering' ? shuffle(q.items, seededRandom(`order|${q.id}`)) : []),
+    () => (q.type === 'ordering' ? derange(q.items, `order|${q.id}`) : []),
     [q],
   );
   const rightSide = useMemo(
@@ -100,6 +117,21 @@ export function QuestionCard({
       ? answer.order
       : shuffledItems.map((i) => i.id);
   const locked = result !== null;
+  const orderList = useRef<HTMLOListElement>(null);
+  const [moved, setMoved] = useState<{ id: string; dir: -1 | 1; text: string } | null>(null);
+
+  // Keep keyboard focus on the item that was moved, and announce its new position.
+  useEffect(() => {
+    if (!moved || !orderList.current) return;
+    const btn =
+      orderList.current.querySelector<HTMLButtonElement>(
+        `button[data-move="${moved.dir}"][data-item="${CSS.escape(moved.id)}"]:not(:disabled)`,
+      ) ??
+      orderList.current.querySelector<HTMLButtonElement>(
+        `button[data-item="${CSS.escape(moved.id)}"]:not(:disabled)`,
+      );
+    btn?.focus();
+  }, [moved, order]);
 
   const submit = (): void => {
     const final: Answer = answer.type === 'ordering' ? { type: 'ordering', order } : answer;
@@ -219,57 +251,67 @@ export function QuestionCard({
         ) : null}
 
         {q.type === 'ordering' ? (
-          <ol className="space-y-2" aria-label="Items to order">
-            {order.map((id, i) => {
-              const item = q.items.find((x) => x.id === id);
-              const correctHere = locked && showFeedback && q.items[i]?.id === id;
-              const move = (dir: -1 | 1): void => {
-                const next = [...order];
-                const j = i + dir;
-                if (j < 0 || j >= next.length) return;
-                [next[i], next[j]] = [next[j]!, next[i]!];
-                setAnswer({ type: 'ordering', order: next });
-              };
-              return (
-                <li
-                  key={id}
-                  className={cn(
-                    'flex items-center gap-3 rounded-md border p-3',
-                    locked && showFeedback
-                      ? correctHere
-                        ? 'border-success bg-success-soft'
-                        : 'border-danger bg-danger-soft'
-                      : 'border-border',
-                  )}
-                >
-                  <span className="w-6 text-right font-mono text-sm text-fg-muted">{i + 1}.</span>
-                  <span className="flex-1">{item?.text}</span>
-                  {!locked ? (
-                    <span className="flex gap-1">
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => move(-1)}
-                        disabled={i === 0}
-                        aria-label={`Move "${item?.text}" up`}
-                      >
-                        <ArrowUp />
-                      </Button>
-                      <Button
-                        size="icon"
-                        variant="ghost"
-                        onClick={() => move(1)}
-                        disabled={i === order.length - 1}
-                        aria-label={`Move "${item?.text}" down`}
-                      >
-                        <ArrowDown />
-                      </Button>
-                    </span>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ol>
+          <>
+            <p className="sr-only" aria-live="polite">
+              {moved ? `${moved.text} moved to position ${order.indexOf(moved.id) + 1}` : ''}
+            </p>
+            <ol ref={orderList} className="space-y-2" aria-label="Items to order">
+              {order.map((id, i) => {
+                const item = q.items.find((x) => x.id === id);
+                const correctHere = locked && showFeedback && q.items[i]?.id === id;
+                const move = (dir: -1 | 1): void => {
+                  const next = [...order];
+                  const j = i + dir;
+                  if (j < 0 || j >= next.length) return;
+                  [next[i], next[j]] = [next[j]!, next[i]!];
+                  setAnswer({ type: 'ordering', order: next });
+                  setMoved({ id, dir, text: item?.text ?? '' });
+                };
+                return (
+                  <li
+                    key={id}
+                    className={cn(
+                      'flex items-center gap-3 rounded-md border p-3',
+                      locked && showFeedback
+                        ? correctHere
+                          ? 'border-success bg-success-soft'
+                          : 'border-danger bg-danger-soft'
+                        : 'border-border',
+                    )}
+                  >
+                    <span className="w-6 text-right font-mono text-sm text-fg-muted">{i + 1}.</span>
+                    <span className="flex-1">{item?.text}</span>
+                    {!locked ? (
+                      <span className="flex gap-1">
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          data-item={id}
+                          data-move="-1"
+                          onClick={() => move(-1)}
+                          disabled={i === 0}
+                          aria-label={`Move "${item?.text}" up`}
+                        >
+                          <ArrowUp />
+                        </Button>
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          data-item={id}
+                          data-move="1"
+                          onClick={() => move(1)}
+                          disabled={i === order.length - 1}
+                          aria-label={`Move "${item?.text}" down`}
+                        >
+                          <ArrowDown />
+                        </Button>
+                      </span>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </ol>
+          </>
         ) : null}
 
         {q.type === 'matching' && answer.type === 'matching' ? (
@@ -347,10 +389,16 @@ export function QuestionCard({
 
       {!locked ? (
         <div className="mt-4 flex justify-end">
-          <Button onClick={submit} disabled={!isAnswered(answer, q) && q.type !== 'ordering'}>
-            Check answer
+          <Button onClick={submit} disabled={!isAnswered(answer, q)}>
+            {showFeedback ? 'Check answer' : 'Save answer'}
           </Button>
         </div>
+      ) : null}
+
+      {locked && !showFeedback ? (
+        <p role="status" className="mt-4 text-sm text-fg-muted">
+          Answer saved. Results are shown when you finish.
+        </p>
       ) : null}
 
       {locked && showFeedback && result ? (

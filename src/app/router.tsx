@@ -34,6 +34,22 @@ export const FEATURE_ROUTES: RouteObject[] = [
     path: 'learn/:id',
     element: page(() => lz(import('@/features/learn/LessonPage'), 'LessonPage')),
   },
+  {
+    path: 'exam/daily',
+    element: page(() => lz(import('@/features/exam/DailyExamPage'), 'DailyExamPage')),
+  },
+  {
+    path: 'practice',
+    element: page(() => lz(import('@/features/exam/PracticePage'), 'PracticePage')),
+  },
+  {
+    path: 'practice/session/:id',
+    element: page(() => lz(import('@/features/exam/SessionPage'), 'SessionPage')),
+  },
+  {
+    path: 'practice/question/:id',
+    element: page(() => lz(import('@/features/exam/QuestionPage'), 'QuestionPage')),
+  },
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
     path: 'settings',

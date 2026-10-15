@@ -31,6 +31,11 @@ const ORDER: LessonSectionKey[] = ['plainEnglish', 'deepDive', 'workedExample', 
 
 export function LessonPage() {
   const { id = '' } = useParams();
+  // Keyed by id so drafts (such as an unsaved note) never carry over to another lesson.
+  return <LessonView key={id} id={id} />;
+}
+
+function LessonView({ id }: { id: string }) {
   const app = useApp();
   const { library, user, rev } = app;
   const lesson = library.lesson.find((l) => l.id === id);

@@ -72,6 +72,11 @@ const now = (): string => new Date().toISOString();
 export class UserRepo {
   constructor(private readonly db: AppDatabase) {}
 
+  /** Run several writes atomically. */
+  transaction<T>(fn: () => T): T {
+    return this.db.transaction(fn);
+  }
+
   /* lessons */
   lessonProgress(): LessonProgressRow[] {
     return this.db.all<LessonProgressRow>('SELECT * FROM lesson_progress');

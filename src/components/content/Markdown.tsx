@@ -1,9 +1,8 @@
-import { Fragment, useMemo } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { renderMarkdown } from './markdown';
 import { Mermaid } from './Mermaid';
 import { cn } from '@/lib/cn';
-
-const MERMAID_SPLIT = /<div class="mermaid-block" data-mermaid="([^"]*)"><\/div>/g;
 
 function decodeSource(s: string): string {
   try {
@@ -13,33 +12,30 @@ function decodeSource(s: string): string {
   }
 }
 
-/** Sanitised Markdown with GitHub-style callouts and Mermaid diagrams. */
+/**
+ * Sanitised Markdown with GitHub-style callouts and Mermaid diagrams. Diagrams are mounted
+ * into their placeholder elements, so one inside a callout or list stays where it was written.
+ */
 export function Markdown({ source, className }: { source: string; className?: string }) {
-  const parts = useMemo(() => {
-    const html = renderMarkdown(source);
-    const out: { kind: 'html' | 'mermaid'; value: string }[] = [];
-    let last = 0;
-    for (const m of html.matchAll(MERMAID_SPLIT)) {
-      if (m.index > last) out.push({ kind: 'html', value: html.slice(last, m.index) });
-      out.push({ kind: 'mermaid', value: decodeSource(m[1] ?? '') });
-      last = m.index + m[0].length;
-    }
-    if (last < html.length) out.push({ kind: 'html', value: html.slice(last) });
-    return out;
-  }, [source]);
+  const html = useMemo(() => renderMarkdown(source), [source]);
+  const ref = useRef<HTMLDivElement>(null);
+  const [slots, setSlots] = useState<{ el: HTMLElement; source: string }[]>([]);
+
+  useLayoutEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    setSlots(
+      Array.from(root.querySelectorAll<HTMLElement>('div.mermaid-block[data-mermaid]')).map(
+        (el) => ({ el, source: decodeSource(el.dataset['mermaid'] ?? '') }),
+      ),
+    );
+  }, [html]);
 
   return (
-    <div className={cn('prose-pi', className)}>
-      {parts.map((p, i) =>
-        p.kind === 'mermaid' ? (
-          <Mermaid key={i} source={p.value} />
-        ) : (
-          // Already sanitised by DOMPurify in renderMarkdown.
-          <Fragment key={i}>
-            <div dangerouslySetInnerHTML={{ __html: p.value }} />
-          </Fragment>
-        ),
-      )}
-    </div>
+    <>
+      {/* Already sanitised by DOMPurify in renderMarkdown. */}
+      <div ref={ref} className={cn('prose-pi', className)} dangerouslySetInnerHTML={{ __html: html }} />
+      {slots.map((s, i) => (s.source ? createPortal(<Mermaid source={s.source} />, s.el, i) : null))}
+    </>
   );
 }

@@ -34,6 +34,11 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
   --color-chart-6: var(--chart-6);
+  --color-heat-0: var(--heat-0);
+  --color-heat-1: var(--heat-1);
+  --color-heat-2: var(--heat-2);
+  --color-heat-3: var(--heat-3);
+  --color-heat-4: var(--heat-4);
   --color-tool-chrome: var(--tool-chrome);
   --color-tool-chrome-fg: var(--tool-chrome-fg);
   --color-tool-canvas: var(--tool-canvas);
@@ -116,17 +121,45 @@ body {
   @apply my-4 border-l-4 border-primary bg-primary-soft px-4 py-2;
 }
 
-.prose-pi .callout { @apply my-4 rounded-md border-l-4 px-4 py-3; }
-.prose-pi .callout-title { @apply mb-1 text-sm font-semibold uppercase tracking-wide; }
-.prose-pi .callout-info { @apply border-info bg-info-soft; }
-.prose-pi .callout-info .callout-title { @apply text-info; }
-.prose-pi .callout-success { @apply border-success bg-success-soft; }
-.prose-pi .callout-success .callout-title { @apply text-success; }
-.prose-pi .callout-warning { @apply border-warning bg-warning-soft; }
-.prose-pi .callout-warning .callout-title { @apply text-warning; }
-.prose-pi .callout-danger { @apply border-danger bg-danger-soft; }
-.prose-pi .callout-danger .callout-title { @apply text-danger; }
-.prose-pi .callout-primary { @apply border-primary bg-primary-soft; }
-.prose-pi .callout-primary .callout-title { @apply text-primary; }
-.prose-pi .callout p:first-of-type { @apply mt-0; }
-.prose-pi .callout p:last-child { @apply mb-0; }
+.prose-pi .callout {
+  @apply my-4 rounded-md border-l-4 px-4 py-3;
+}
+.prose-pi .callout-title {
+  @apply mb-1 text-sm font-semibold uppercase tracking-wide;
+}
+.prose-pi .callout-info {
+  @apply border-info bg-info-soft;
+}
+.prose-pi .callout-info .callout-title {
+  @apply text-info;
+}
+.prose-pi .callout-success {
+  @apply border-success bg-success-soft;
+}
+.prose-pi .callout-success .callout-title {
+  @apply text-success;
+}
+.prose-pi .callout-warning {
+  @apply border-warning bg-warning-soft;
+}
+.prose-pi .callout-warning .callout-title {
+  @apply text-warning;
+}
+.prose-pi .callout-danger {
+  @apply border-danger bg-danger-soft;
+}
+.prose-pi .callout-danger .callout-title {
+  @apply text-danger;
+}
+.prose-pi .callout-primary {
+  @apply border-primary bg-primary-soft;
+}
+.prose-pi .callout-primary .callout-title {
+  @apply text-primary;
+}
+.prose-pi .callout p:first-of-type {
+  @apply mt-0;
+}
+.prose-pi .callout p:last-child {
+  @apply mb-0;
+}

@@ -139,7 +139,13 @@ export const MatchingQuestionSchema = z.object({
   pairs: z
     .array(z.object({ left: z.string().min(1), right: z.string().min(1) }))
     .min(3)
-    .max(8),
+    .max(8)
+    .refine(
+      (pairs) =>
+        new Set(pairs.map((p) => p.left)).size === pairs.length &&
+        new Set(pairs.map((p) => p.right)).size === pairs.length,
+      'every left and every right value must be unique',
+    ),
 });
 
 export const ScenarioQuestionSchema = z.object({

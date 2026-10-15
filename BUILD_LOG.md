@@ -43,3 +43,14 @@ Running log of what was done at each step and which capability was used. Newest 
 | 3.5 | CONTENT_GUIDE.md written; pilot content for `da.exception-compression`: 1 lesson, 10 questions (6 types), 10 glossary terms, all cited, 1 verify flag | Write, content validator |
 | 3.6 | Found and fixed: DOMPurify drops attribute values containing `-->`, which silently removed every Mermaid diagram; source is now URI-encoded and the unit test checks the round trip. Root-level `htmlLabels: false` restores node labels in Mermaid 12 | Playwright e2e, screenshots |
 | 3.7 | e2e: lesson renders all sections, the diagram draws and the knowledge check grades an answer (4 e2e tests total) | Playwright |
+| 3.8 | Review of Phase 3 (subagent): 9 findings, all fixed. Raw HTML in content is escaped; links limited to https and in-app routes with rel/target forced; class allow-list; diagrams readable by screen readers and mounted in place; lesson state keyed by id; ordering items deranged, keyboard focus kept and moves announced; matching pairs must be unique; answer + SRS saved in one transaction | Agent (review), Vitest |
+
+## Phase 4: Exam engine UI (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 4.1 | Session core: answer schema for stored answers, summaries by domain, countdown, topic scores, calendar heatmap (Vitest) | Vitest (TDD) |
+| 4.2 | Session service: start, resume with re-grading, one answer per question, finish, daily log only for same-day finishes (Vitest on SQLite) | Vitest |
+| 4.3 | Exam runner: navigator, progress, timer with auto-finish, flagging, finish confirmation; immediate feedback or hidden until the end (mock) | React |
+| 4.4 | Pages: Daily Exam (streak, best, 16-week heatmap, recent scores), Practice (topic quiz, 60-question domain-weighted mock with blueprint table and time limits, SM-2 review queue, readiness, weakest topics, history), session review, single-question deep link | React, Playwright |
+| 4.5 | e2e: daily exam survives reload, mock hides answers then reviews, quiz starts (7 e2e tests total) | Playwright |

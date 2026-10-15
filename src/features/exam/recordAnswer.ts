@@ -15,29 +15,36 @@ export function recordAnswer(
   fast = false,
 ): void {
   const today = localDate();
-  app.user.recordAttempt({
-    question_id: q.id,
-    domain: q.domain,
-    mode,
-    correct: result.correct ? 1 : 0,
-    score: result.score,
-    answer: JSON.stringify(answer),
-    session_id: sessionId,
-  });
-  const prev = app.user.srsCard(q.id);
-  const next = sm2(
-    prev
-      ? { easiness: prev.easiness, intervalDays: prev.interval_days, repetitions: prev.repetitions }
-      : null,
-    qualityFromGrade(result.correct, result.score, fast),
-    today,
-  );
-  app.user.saveSrsCard({
-    question_id: q.id,
-    easiness: next.easiness,
-    interval_days: next.intervalDays,
-    repetitions: next.repetitions,
-    due_date: next.dueDate,
-    last_review: today,
+  // The attempt and its spaced-repetition card are saved together or not at all.
+  app.user.transaction(() => {
+    app.user.recordAttempt({
+      question_id: q.id,
+      domain: q.domain,
+      mode,
+      correct: result.correct ? 1 : 0,
+      score: result.score,
+      answer: JSON.stringify(answer),
+      session_id: sessionId,
+    });
+    const prev = app.user.srsCard(q.id);
+    const next = sm2(
+      prev
+        ? {
+            easiness: prev.easiness,
+            intervalDays: prev.interval_days,
+            repetitions: prev.repetitions,
+          }
+        : null,
+      qualityFromGrade(result.correct, result.score, fast),
+      today,
+    );
+    app.user.saveSrsCard({
+      question_id: q.id,
+      easiness: next.easiness,
+      interval_days: next.intervalDays,
+      repetitions: next.repetitions,
+      due_date: next.dueDate,
+      last_review: today,
+    });
   });
 }

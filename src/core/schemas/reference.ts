@@ -45,7 +45,16 @@ export type WebApiEndpoint = z.infer<typeof WebApiEndpointSchema>;
 export const CommandRefSchema = z
   .object({
     id: IdSchema,
-    tool: z.enum(['piconfig', 'piartool', 'pidiag', 'pisetupinfo', 'pilistupd', 'pigetmsg', 'pibackup', 'other']),
+    tool: z.enum([
+      'piconfig',
+      'piartool',
+      'pidiag',
+      'pisetupinfo',
+      'pilistupd',
+      'pigetmsg',
+      'pibackup',
+      'other',
+    ]),
     command: z.string().min(2),
     description: z.string().min(10),
     example: z.string().min(2),

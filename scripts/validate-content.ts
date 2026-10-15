@@ -3,7 +3,10 @@ import { countCoverage, validateBundle } from '../src/core/content/validate';
 
 const strictCoverage = process.argv.includes('--strict-coverage');
 const { content, errors: loadErrors } = loadContent();
-const counts = countCoverage(content, content.coverage.map((c) => c.id));
+const counts = countCoverage(
+  content,
+  content.coverage.map((c) => c.id),
+);
 content.coverage = content.coverage.map((c) => ({ ...c, ...(counts.get(c.id) ?? c) }));
 const report = validateBundle(content, { strictCoverage });
 const errors = [...loadErrors, ...report.errors];
@@ -21,8 +24,10 @@ console.log(
     `${content.industries.length} industry hubs, ${content.challenges.length} challenges, ` +
     `${content.sources.length} sources; ${verifyCount} items flagged verify`,
 );
-if (process.argv.includes('--verbose')) for (const w of report.warnings) console.warn(`warning: ${w}`);
-else if (report.warnings.length) console.warn(`${report.warnings.length} warnings (run with --verbose to list)`);
+if (process.argv.includes('--verbose'))
+  for (const w of report.warnings) console.warn(`warning: ${w}`);
+else if (report.warnings.length)
+  console.warn(`${report.warnings.length} warnings (run with --verbose to list)`);
 for (const e of errors) console.error(`error: ${e}`);
 if (errors.length > 0) {
   console.error(`\n${errors.length} content error(s)`);

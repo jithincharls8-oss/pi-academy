@@ -73,7 +73,9 @@ export const LessonSchema = z
     order: z.number().int().min(0).default(100),
     objectives: z.array(z.string().min(5)).min(2),
     keyTerms: z.array(IdSchema).min(1),
-    knowledgeCheck: z.array(IdSchema).length(3, 'each lesson has exactly 3 knowledge-check questions'),
+    knowledgeCheck: z
+      .array(IdSchema)
+      .length(3, 'each lesson has exactly 3 knowledge-check questions'),
     related: z.array(IdSchema).default([]),
     sections: z.object({
       plainEnglish: SectionText,
@@ -289,12 +291,20 @@ export const IndustryHubSchema = z
     id: IndustrySchema,
     title: z.string().min(3),
     summary: z.string().min(40),
-    hierarchy: z.string().refine((s) => s.includes('```mermaid'), 'hierarchy must be a mermaid block'),
+    hierarchy: z
+      .string()
+      .refine((s) => s.includes('```mermaid'), 'hierarchy must be a mermaid block'),
     tags: z
       .array(z.object({ name: z.string(), description: z.string(), uom: z.string().optional() }))
       .min(3),
     templates: z
-      .array(z.object({ name: z.string(), description: z.string(), attributes: z.array(z.string()).min(1) }))
+      .array(
+        z.object({
+          name: z.string(),
+          description: z.string(),
+          attributes: z.array(z.string()).min(1),
+        }),
+      )
       .min(1),
     calculations: z
       .array(z.object({ name: z.string(), expression: z.string(), description: z.string() }))
@@ -341,7 +351,9 @@ export const ChallengeCheckSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('af-find'), targetPath: z.string() }),
   z.object({
     kind: z.literal('display-symbols'),
-    required: z.array(z.object({ symbol: z.string(), attributePath: z.string().optional() })).min(1),
+    required: z
+      .array(z.object({ symbol: z.string(), attributePath: z.string().optional() }))
+      .min(1),
   }),
 ]);
 export type ChallengeCheck = z.infer<typeof ChallengeCheckSchema>;

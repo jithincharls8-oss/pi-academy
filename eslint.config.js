@@ -7,9 +7,20 @@ const HARD_CODED_COLOUR = '/(#[0-9a-fA-F]{3,8}\\b|\\brgba?\\(|\\bhsla?\\()/';
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'node_modules', 'src-tauri/target', 'src-tauri/gen', 'public', 'coverage', 'playwright-report', 'test-results', 'dev-dist'],
+    ignores: [
+      'dist',
+      'node_modules',
+      'src-tauri/target',
+      'src-tauri/gen',
+      'public',
+      'coverage',
+      'playwright-report',
+      'test-results',
+      'dev-dist',
+    ],
   },
   js.configs.recommended,
+  { files: ['**/*.mjs', '**/*.js'], languageOptions: { globals: { ...globals.node } } },
   ...tseslint.configs.strict,
   {
     files: ['**/*.{ts,tsx}'],
@@ -19,7 +30,10 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
     },
   },
   {
@@ -31,11 +45,13 @@ export default tseslint.config(
         'error',
         {
           selector: `Literal[value=${HARD_CODED_COLOUR}]`,
-          message: 'Use design tokens (CSS variables / Tailwind token classes) instead of hard-coded colours.',
+          message:
+            'Use design tokens (CSS variables / Tailwind token classes) instead of hard-coded colours.',
         },
         {
           selector: `TemplateElement[value.raw=${HARD_CODED_COLOUR}]`,
-          message: 'Use design tokens (CSS variables / Tailwind token classes) instead of hard-coded colours.',
+          message:
+            'Use design tokens (CSS variables / Tailwind token classes) instead of hard-coded colours.',
         },
       ],
     },

@@ -6,7 +6,10 @@ import { countCoverage, validateBundle } from '../src/core/content/validate';
 import { ContentBundleSchema, type ContentBundle } from '../src/core/schemas';
 
 const { content, errors } = loadContent();
-const counts = countCoverage(content, content.coverage.map((c) => c.id));
+const counts = countCoverage(
+  content,
+  content.coverage.map((c) => c.id),
+);
 content.coverage = content.coverage.map((c) => ({ ...c, ...(counts.get(c.id) ?? c) }));
 const report = validateBundle(content, { strictCoverage: false });
 const all = [...errors, ...report.errors];
@@ -26,4 +29,6 @@ const bundle: ContentBundle = ContentBundleSchema.parse({
 const outDir = join(ROOT, 'public', 'content');
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, 'bundle.json'), JSON.stringify(bundle));
-console.log(`wrote public/content/bundle.json (version ${version}, ${(body.length / 1024).toFixed(0)} KiB)`);
+console.log(
+  `wrote public/content/bundle.json (version ${version}, ${(body.length / 1024).toFixed(0)} KiB)`,
+);

@@ -2,7 +2,11 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadContent, ROOT } from './lib/loadContent';
 import { countCoverage } from '../src/core/content/validate';
-import { parseCoverage, rewriteCoverageCounts, summariseCoverage } from '../src/core/coverage/parse';
+import {
+  parseCoverage,
+  rewriteCoverageCounts,
+  summariseCoverage,
+} from '../src/core/coverage/parse';
 
 const path = join(ROOT, 'COVERAGE.md');
 const { content } = loadContent();

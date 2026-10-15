@@ -36,7 +36,13 @@ export const LEVELS = ['beginner', 'practitioner', 'expert'] as const;
 export const LevelSchema = z.enum(LEVELS);
 export type Level = z.infer<typeof LevelSchema>;
 
-export const ROLES = ['pi-admin', 'af-developer', 'analyst', 'ot-engineer', 'data-scientist'] as const;
+export const ROLES = [
+  'pi-admin',
+  'af-developer',
+  'analyst',
+  'ot-engineer',
+  'data-scientist',
+] as const;
 export const RoleSchema = z.enum(ROLES);
 export type Role = z.infer<typeof RoleSchema>;
 

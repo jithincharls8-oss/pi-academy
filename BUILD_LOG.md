@@ -17,3 +17,17 @@ Running log of what was done at each step and which capability was used. Newest 
 | 1.9 | Added Jithin's requests to PLAN.md §9: detailed PI tool mockups (PI Vision, PSE, SMT, Web API) and a Deployment Planner by industry and company size; new coverage item `adm.deployment-patterns` | Write |
 | 1.10 | Started 6 parallel research subagents (da, af, dcv, int, adm, ind) writing sourced fact files to `research/` per `research/BRIEF.md` | Agent (general-purpose) x6, WebSearch, WebFetch |
 | 1.11 | Gates: `tsc` (app, node, test projects) clean, ESLint clean (no-explicit-any + no hard-coded colours rule), 29 Vitest tests green | tsc, ESLint, Vitest |
+
+## Phase 2: Platform scaffold (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 2.1 | Design tokens (light/dark, chart, heat, PI-tool chrome) in `src/styles/tokens.css`; ESLint rule bans hard-coded colours in `src` | design:design-system skill, ESLint |
+| 2.2 | SQLite via sql.js: migrations, content repo (seed/override/revert), user repo, backup/restore (zod + column allow-list), reset | Vitest (TDD) |
+| 2.3 | Persistence adapters (Tauri app-data file, IndexedDB, memory) with debounced autosave and retry | Vitest + fake-indexeddb |
+| 2.4 | MiniSearch global search; app shell, routing, error boundaries, settings, dashboard | React, Tailwind, Radix |
+| 2.5 | PWA (manifest, Workbox service worker, CSP); Tauri 2 shell with least-privilege capabilities and CSP; icons rendered with Chromium | vite-plugin-pwa, Tauri CLI, Playwright |
+| 2.6 | CI (lint, format, typecheck, unit, content, build, e2e, Rust check) and release workflow (Windows/macOS/Linux installers) | GitHub Actions |
+| 2.7 | Playwright e2e smoke tests (3) and screenshots in light/dark; found and fixed a save-on-reload bug | Playwright, run |
+| 2.8 | Code review: 10 findings, 8 fixed (desktop build import, data loss on load failure, malformed restore rows, double bootstrap in dev, export errors, autosave retry, CI lockfile, search filter) | code-review skill |
+| 2.9 | Security review: no high/medium findings; renderer sanitisation noted for Phase 3 | security-review skill |

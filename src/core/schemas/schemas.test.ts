@@ -61,12 +61,22 @@ describe('QuestionSchema', () => {
   });
 
   it('requires at least one source', () => {
-    const r = QuestionSchema.safeParse({ ...base, sources: [], type: 'fill', accepted: ['CompDev'] });
+    const r = QuestionSchema.safeParse({
+      ...base,
+      sources: [],
+      type: 'fill',
+      accepted: ['CompDev'],
+    });
     expect(r.success).toBe(false);
   });
 
   it('requires a verifyNote when verify is true', () => {
-    const r = QuestionSchema.safeParse({ ...base, verify: true, type: 'fill', accepted: ['CompDev'] });
+    const r = QuestionSchema.safeParse({
+      ...base,
+      verify: true,
+      type: 'fill',
+      accepted: ['CompDev'],
+    });
     expect(r.success).toBe(false);
     const ok = QuestionSchema.safeParse({
       ...base,
@@ -117,7 +127,8 @@ describe('GlossaryTermSchema', () => {
     const t = GlossaryTermSchema.parse({
       id: 'compdev',
       term: 'CompDev',
-      definition: 'Compression deviation, in engineering units, used by the swinging door algorithm.',
+      definition:
+        'Compression deviation, in engineering units, used by the swinging door algorithm.',
       domain: 'data-archive',
       sources: ['s1'],
     });
@@ -175,7 +186,8 @@ describe('IndustryHubSchema', () => {
     };
     expect(IndustryHubSchema.safeParse(hub).success).toBe(false);
     expect(
-      IndustryHubSchema.safeParse({ ...hub, hierarchy: '```mermaid\nflowchart TD\nA-->B\n```' }).success,
+      IndustryHubSchema.safeParse({ ...hub, hierarchy: '```mermaid\nflowchart TD\nA-->B\n```' })
+        .success,
     ).toBe(true);
   });
 });
@@ -196,8 +208,10 @@ describe('ChallengeSchema', () => {
     };
     expect(ChallengeSchema.safeParse(ch).success).toBe(true);
     expect(
-      ChallengeSchema.safeParse({ ...ch, check: { kind: 'compression', scenarioId: 'x', maxStoredRatio: 2, maxError: 1 } })
-        .success,
+      ChallengeSchema.safeParse({
+        ...ch,
+        check: { kind: 'compression', scenarioId: 'x', maxStoredRatio: 2, maxError: 1 },
+      }).success,
     ).toBe(false);
   });
 });
@@ -210,7 +224,13 @@ describe('DecisionTreeSchema', () => {
       description: 'Why is a tag not updating?',
       root: 'start',
       nodes: {
-        start: { question: 'Is the interface running?', options: [{ label: 'No', next: 'fix' }, { label: 'Yes', next: 'missing' }] },
+        start: {
+          question: 'Is the interface running?',
+          options: [
+            { label: 'No', next: 'fix' },
+            { label: 'Yes', next: 'missing' },
+          ],
+        },
         fix: { result: 'Start the interface', details: 'Check the service.' },
       },
       sources: ['s1'],

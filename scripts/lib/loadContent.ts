@@ -59,7 +59,10 @@ export function loadContent(): { content: LoadedContent; errors: string[] } {
         const res = schema.safeParse(item);
         if (res.success) out.push(res.data);
         else {
-          const id = typeof item === 'object' && item && 'id' in item ? String((item as { id: unknown }).id) : `#${idx}`;
+          const id =
+            typeof item === 'object' && item && 'id' in item
+              ? String((item as { id: unknown }).id)
+              : `#${idx}`;
           errors.push(`${rel(f)} [${id}]: ${formatZod(res.error)}`);
         }
       });

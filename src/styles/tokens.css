@@ -1,0 +1,111 @@
+/*
+ * PI Academy design tokens. The ONLY place colours are defined.
+ * Components use the Tailwind utilities generated from @theme below (bg-surface, text-fg, ...)
+ * or var(--token) in inline SVG/chart props.
+ */
+:root {
+  color-scheme: light;
+  --radius: 0.5rem;
+  --font-scale: 1;
+
+  --bg: oklch(0.985 0.003 250);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.965 0.006 250);
+  --surface-3: oklch(0.93 0.01 250);
+  --fg: oklch(0.22 0.02 255);
+  --fg-muted: oklch(0.46 0.02 255);
+  --fg-subtle: oklch(0.58 0.015 255);
+  --border: oklch(0.89 0.01 250);
+  --border-strong: oklch(0.8 0.015 250);
+  --ring: oklch(0.55 0.17 255);
+
+  --primary: oklch(0.5 0.17 255);
+  --primary-fg: oklch(0.99 0 0);
+  --primary-soft: oklch(0.94 0.04 255);
+  --accent: oklch(0.6 0.13 190);
+  --accent-fg: oklch(0.99 0 0);
+  --accent-soft: oklch(0.94 0.04 190);
+
+  --success: oklch(0.52 0.13 150);
+  --success-soft: oklch(0.94 0.05 150);
+  --warning: oklch(0.6 0.14 70);
+  --warning-soft: oklch(0.95 0.06 85);
+  --danger: oklch(0.53 0.19 25);
+  --danger-soft: oklch(0.95 0.04 25);
+  --info: oklch(0.52 0.12 240);
+  --info-soft: oklch(0.95 0.03 240);
+
+  /* categorical chart palette (checked for adjacent contrast in both themes) */
+  --chart-1: oklch(0.55 0.17 255);
+  --chart-2: oklch(0.65 0.15 45);
+  --chart-3: oklch(0.58 0.13 160);
+  --chart-4: oklch(0.55 0.18 330);
+  --chart-5: oklch(0.7 0.14 95);
+  --chart-6: oklch(0.5 0.1 205);
+  --heat-0: oklch(0.95 0.01 250);
+  --heat-1: oklch(0.88 0.05 150);
+  --heat-2: oklch(0.78 0.1 150);
+  --heat-3: oklch(0.66 0.13 150);
+  --heat-4: oklch(0.52 0.13 150);
+
+  /* PI tool mockups: a neutral "desktop client" chrome distinct from the app shell */
+  --tool-chrome: oklch(0.32 0.02 250);
+  --tool-chrome-fg: oklch(0.96 0 0);
+  --tool-canvas: oklch(0.99 0 0);
+  --tool-grid: oklch(0.92 0.005 250);
+  --tool-select: oklch(0.88 0.06 255);
+  --tool-alarm-hi: oklch(0.6 0.2 25);
+  --tool-alarm-warn: oklch(0.8 0.15 85);
+  --tool-ok: oklch(0.6 0.15 150);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: oklch(0.17 0.012 255);
+  --surface: oklch(0.21 0.014 255);
+  --surface-2: oklch(0.25 0.016 255);
+  --surface-3: oklch(0.3 0.018 255);
+  --fg: oklch(0.95 0.005 255);
+  --fg-muted: oklch(0.76 0.012 255);
+  --fg-subtle: oklch(0.64 0.012 255);
+  --border: oklch(0.33 0.016 255);
+  --border-strong: oklch(0.42 0.02 255);
+  --ring: oklch(0.72 0.14 255);
+
+  --primary: oklch(0.72 0.14 255);
+  --primary-fg: oklch(0.17 0.02 255);
+  --primary-soft: oklch(0.3 0.06 255);
+  --accent: oklch(0.75 0.11 190);
+  --accent-fg: oklch(0.17 0.02 255);
+  --accent-soft: oklch(0.3 0.05 190);
+
+  --success: oklch(0.75 0.14 150);
+  --success-soft: oklch(0.3 0.05 150);
+  --warning: oklch(0.8 0.13 80);
+  --warning-soft: oklch(0.32 0.05 80);
+  --danger: oklch(0.72 0.16 25);
+  --danger-soft: oklch(0.32 0.06 25);
+  --info: oklch(0.74 0.11 240);
+  --info-soft: oklch(0.3 0.05 240);
+
+  --chart-1: oklch(0.72 0.14 255);
+  --chart-2: oklch(0.76 0.13 50);
+  --chart-3: oklch(0.74 0.12 160);
+  --chart-4: oklch(0.72 0.15 330);
+  --chart-5: oklch(0.82 0.12 95);
+  --chart-6: oklch(0.72 0.09 205);
+  --heat-0: oklch(0.26 0.012 255);
+  --heat-1: oklch(0.36 0.05 150);
+  --heat-2: oklch(0.48 0.09 150);
+  --heat-3: oklch(0.6 0.12 150);
+  --heat-4: oklch(0.74 0.14 150);
+
+  --tool-chrome: oklch(0.26 0.02 250);
+  --tool-chrome-fg: oklch(0.95 0 0);
+  --tool-canvas: oklch(0.2 0.01 255);
+  --tool-grid: oklch(0.28 0.01 255);
+  --tool-select: oklch(0.36 0.07 255);
+  --tool-alarm-hi: oklch(0.7 0.18 25);
+  --tool-alarm-warn: oklch(0.82 0.14 85);
+  --tool-ok: oklch(0.72 0.14 150);
+}

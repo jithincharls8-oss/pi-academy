@@ -50,6 +50,42 @@ export const FEATURE_ROUTES: RouteObject[] = [
     path: 'practice/question/:id',
     element: page(() => lz(import('@/features/exam/QuestionPage'), 'QuestionPage')),
   },
+  {
+    path: 'reference',
+    element: page(() => lz(import('@/features/reference/ReferencePage'), 'ReferencePage')),
+  },
+  ...['reference/glossary', 'reference/glossary/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/GlossaryPage'), 'GlossaryPage')),
+  })),
+  ...['reference/functions/:kind', 'reference/functions/:kind/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/FunctionsPage'), 'FunctionsPage')),
+  })),
+  ...['reference/web-api', 'reference/web-api/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/SimpleRefPages'), 'WebApiRefPage')),
+  })),
+  ...['reference/commands', 'reference/commands/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/SimpleRefPages'), 'CommandsPage')),
+  })),
+  ...['reference/errors', 'reference/errors/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/SimpleRefPages'), 'ErrorsPage')),
+  })),
+  ...['reference/decisions', 'reference/decisions/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/reference/DecisionTreesPage'), 'DecisionTreesPage')),
+  })),
+  {
+    path: 'reference/tag-names',
+    element: page(() => lz(import('@/features/reference/ToolsPages'), 'TagNamePage')),
+  },
+  {
+    path: 'reference/sizing',
+    element: page(() => lz(import('@/features/reference/ToolsPages'), 'SizingPage')),
+  },
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
     path: 'settings',

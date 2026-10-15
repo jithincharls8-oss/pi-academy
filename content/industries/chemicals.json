@@ -1,0 +1,90 @@
+[
+  {
+    "id": "chemicals",
+    "title": "Chemicals",
+    "summary": "Chemical and petrochemical companies use PI System for yield, energy and material balance, OEE and batch monitoring. Leading users keep AF templates and hierarchies central and let sites build local solutions on them.",
+    "hierarchy": "```mermaid\nflowchart TD\n  E[Enterprise] --> S[Site]\n  S --> P[Plant or Production Line]\n  P --> U1[Reactor]\n  P --> U2[Column]\n  P --> U3[Dryer]\n  U1 --> EQ1[Pump]\n  U2 --> EQ2[Exchanger]\n```",
+    "tags": [
+      {
+        "name": "Energy",
+        "description": "Energy consumed by a plant.",
+        "uom": "GJ"
+      },
+      {
+        "name": "Product",
+        "description": "Product made by a plant.",
+        "uom": "t"
+      },
+      {
+        "name": "CO2",
+        "description": "CO2 emitted, used for CO2 per ton of product.",
+        "uom": "t"
+      }
+    ],
+    "templates": [
+      {
+        "name": "Plant",
+        "description": "Plant element carrying energy and production attributes for specific energy calculations, rolled up to site. Illustrative.",
+        "attributes": [
+          "Energy (GJ)",
+          "Product (t)",
+          "Specific Energy (GJ/t)"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Specific energy consumption",
+        "expression": "Specific Energy = Energy / Product",
+        "description": "Energy per tonne of product, analogous to Covestro's CO2 per ton of product KPI. Calculated per plant and rolled up to site; illustrative."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Batch phase",
+        "trigger": "Start and end of a batch phase held in AF (Syensqo keeps batch phases in AF)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Yield",
+        "definition": "Product output relative to feed; MOL reported a 5% yield increase."
+      },
+      {
+        "name": "Controllable margin",
+        "definition": "Margin attributable to operational decisions."
+      },
+      {
+        "name": "OEE",
+        "definition": "Overall Equipment Effectiveness, used day to day at dsm-firmenich and rolled out by Syensqo."
+      },
+      {
+        "name": "CO2 per ton of product",
+        "definition": "Emissions intensity; Covestro reported a 39% reduction."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Copying a solution site to site fails when sites make different products; keep templates central and solutions local (Syensqo).",
+      "Overlooked notifications and unplanned shutdowns caused significant losses at Covestro before anomaly detection was added."
+    ],
+    "caseStudies": [
+      "covestro",
+      "dsm-firmenich",
+      "syensqo",
+      "nutrien",
+      "mol-downstream"
+    ],
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "sources": [
+      "ind-uc15-og-chem",
+      "ind-ss-covestro",
+      "ind-ss-syensqo",
+      "ind-pres-dsm-firmenich-2024"
+    ],
+    "verify": true,
+    "verifyNote": "The AF hierarchy and the Plant template are inferred. Chemicals-specific regulation (EPA, Seveso, process safety) was not found in a readable PI source, so none is listed."
+  }
+]

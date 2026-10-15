@@ -7,7 +7,10 @@ test('reference hub, glossary and tools work', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Reference', level: 1 })).toBeVisible();
 
   await page.getByRole('link', { name: /Glossary/ }).click();
-  await page.getByRole('link', { name: /Swinging door/i }).first().click();
+  await page
+    .getByRole('link', { name: /Swinging door/i })
+    .first()
+    .click();
   await expect(page).toHaveURL(/reference\/glossary\/swinging-door/);
   await expect(page.getByRole('heading', { name: /Swinging door/i, level: 2 })).toBeVisible();
 

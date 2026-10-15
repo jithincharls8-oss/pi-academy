@@ -1,0 +1,91 @@
+[
+  {
+    "id": "buildings",
+    "title": "Smart Buildings",
+    "summary": "Campuses and facilities use PI System to bring building management, utility meters and electrical distribution data together. Energy-use intensity (EUI) is the headline KPI, and OSIsoft grouped facilities with data centres as a growth market.",
+    "hierarchy": "```mermaid\nflowchart TD\n  C[Campus or Portfolio] --> B[Building]\n  B --> F[Floor, Zone or Room]\n  F --> S1[AHU]\n  F --> S2[VAV]\n  B --> S3[Chiller]\n  B --> S4[Boiler]\n  B --> S5[Meter]\n```",
+    "tags": [
+      {
+        "name": "Electricity",
+        "description": "Building electricity meter.",
+        "uom": "kWh"
+      },
+      {
+        "name": "Gas",
+        "description": "Building gas meter."
+      },
+      {
+        "name": "Chilled water",
+        "description": "Chilled water meter."
+      },
+      {
+        "name": "Steam or hot water",
+        "description": "Steam or hot water meter."
+      }
+    ],
+    "templates": [
+      {
+        "name": "Building",
+        "description": "Building element with utility meters and floor area, giving EUI. Illustrative.",
+        "attributes": [
+          "Electricity (kWh)",
+          "Gas",
+          "Chilled water",
+          "Steam or hot water",
+          "Floor area"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Energy-use intensity",
+        "expression": "EUI = Annual energy / Floor area",
+        "description": "Energy per unit floor area per year. UC Davis reported a 46% reduction since 2009."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Electrical outage",
+        "trigger": "Loss of supply on an electrical distribution circuit (UMD reduced outage downtime). Illustrative."
+      }
+    ],
+    "kpis": [
+      {
+        "name": "EUI",
+        "definition": "Energy-use intensity: energy per unit floor area per year."
+      },
+      {
+        "name": "HVAC energy expense",
+        "definition": "Spend on HVAC energy; UMD reported savings of 30%."
+      },
+      {
+        "name": "BMS reporting effort",
+        "definition": "Effort spent on building management reporting; Pfizer reported a 50% reduction."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Electrical distribution data spread across disparate, isolated systems limits outage response (UMD).",
+      "Mixing multi-vendor BMS without a common model makes cross-building benchmarking hard (by analogy with Toyota's plants).",
+      "City of Bremen's building story uses AVEVA InTouch and Historian, not PI System; do not cite it as a PI example."
+    ],
+    "caseStudies": [
+      "uc-davis-campus",
+      "university-of-maryland",
+      "pfizer-groton"
+    ],
+    "coverage": [
+      "ind.buildings"
+    ],
+    "sources": [
+      "ind-ss-uc-davis",
+      "ind-ss-umd",
+      "ind-ss-pfizer",
+      "ind-ss-toyota",
+      "ind-ss-bremen",
+      "ind-pres-aligned-2018"
+    ],
+    "verify": true,
+    "verifyNote": "The building AF hierarchy, Building template and outage event frame are inferred; no readable PI World deck with a building AF template was found. The BMS benchmarking pitfall is an analogy, not a building source."
+  }
+]

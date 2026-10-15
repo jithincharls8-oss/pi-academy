@@ -1,0 +1,123 @@
+[
+  {
+    "id": "water",
+    "title": "Water & Wastewater",
+    "summary": "Water utilities use PI System for water loss control, pressure management, water quality and pump efficiency. District Metered Areas (DMAs) with minimum night flow analysis are a core pattern, tied to the IWA/AWWA water balance and non-revenue water.",
+    "hierarchy": "```mermaid\nflowchart TD\n  UT[Utility] --> SY1[Water System]\n  UT --> SY2[Wastewater System]\n  SY1 --> SO[Source]\n  SY1 --> TP[Treatment Plant]\n  SY1 --> PS[Pumping Station]\n  SY1 --> RS[Reservoir]\n  SY1 --> DMA[District Metered Area]\n  PS --> PU[Pump]\n  DMA --> FM[Flow Meter]\n  TP --> CL[Chlorine Analyser]\n```",
+    "tags": [
+      {
+        "name": "Inflow",
+        "description": "Metered flow into a DMA.",
+        "uom": "m³/hr"
+      },
+      {
+        "name": "MNF",
+        "description": "Minimum night flow: the lowest DMA inflow, usually overnight. A rising MNF indicates leakage.",
+        "uom": "m³/hr"
+      },
+      {
+        "name": "Pressure",
+        "description": "Network pressure in a DMA, used for pressure management and leak finding."
+      },
+      {
+        "name": "System Input",
+        "description": "Total water put into supply.",
+        "uom": "MLD"
+      }
+    ],
+    "templates": [
+      {
+        "name": "DMA",
+        "description": "District Metered Area element with metered inflows, used for leak detection.",
+        "attributes": [
+          "Inflow (m³/hr)",
+          "MNF (m³/hr)",
+          "Pressure"
+        ]
+      },
+      {
+        "name": "Pump",
+        "description": "Pump element for efficiency and relative operating cost tracking (San Jose Water).",
+        "attributes": [
+          "Flow",
+          "Energy",
+          "Efficiency"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Minimum night flow",
+        "expression": "Daily minimum of Inflow between 02:00 and 04:00, written to the MNF attribute",
+        "description": "Notify if MNF rises above a baseline. Halifax's Mt. Edward East DMA MNF fell from 70 m³/hr (2006) to 60 m³/hr (2011). The time window is illustrative."
+      },
+      {
+        "name": "Non-revenue water",
+        "expression": "NRW = Unbilled Authorized Consumption + Apparent Losses + Real Losses",
+        "description": "IWA/AWWA water balance definition."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "MNF above baseline",
+        "trigger": "Daily MNF rises above the DMA baseline"
+      },
+      {
+        "name": "Flow monitoring event",
+        "trigger": "Flow condition used by Detroit Water & Sewerage for automated flow monitoring"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Non-revenue water",
+        "definition": "Unbilled authorised consumption plus apparent losses plus real losses."
+      },
+      {
+        "name": "DMA night flows",
+        "definition": "Minimum night flow per DMA, tracked over time."
+      },
+      {
+        "name": "Main breaks per year",
+        "definition": "Number of water main breaks; Halifax fell from 23 to 12 per year with advanced pressure management."
+      },
+      {
+        "name": "Pump efficiency",
+        "definition": "Efficiency of pumps, with energy consumption, tracked per pump station."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "IWA/AWWA water audit",
+        "summary": "A water audit compares volumes treated and pumped with volumes consumed by customers, splitting losses into apparent losses (metering errors, theft, billing errors) and real losses (physical leakage up to the customer meter)."
+      }
+    ],
+    "pitfalls": [
+      "Utilities often find they are doing worse than they thought once an IWA audit is done (Halifax).",
+      "Creating DMAs needs new instrumentation and zone reconfiguration, so PI analytics are only as good as the metering.",
+      "Former municipalities may have no SCADA able to support the programme; at Halifax, PI became the central platform."
+    ],
+    "caseStudies": [
+      "san-jose-water",
+      "ladwp",
+      "white-house-utility-district",
+      "colorado-springs-utilities",
+      "halifax-water",
+      "detroit-water-sewerage",
+      "yorkshire-water",
+      "evides-waterbedrijf",
+      "compesa"
+    ],
+    "coverage": [
+      "ind.water"
+    ],
+    "sources": [
+      "ind-awe-water-audit",
+      "ind-pres-halifax-2013",
+      "ind-pres-water-2015",
+      "ind-webinar-compesa-2020",
+      "ind-ss-sjw"
+    ],
+    "verify": true,
+    "verifyNote": "The AF hierarchy, the Pump template attributes and the MNF time window are inferred. ILI (Infrastructure Leakage Index) and CARL were not found in a readable source."
+  }
+]

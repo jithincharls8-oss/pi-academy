@@ -1,0 +1,286 @@
+[
+  {
+    "id": "newcrest-mining",
+    "company": "Newcrest Mining",
+    "title": "Real-time data analysis to cut downtime at gold mines",
+    "industry": "mining",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "At its Cadia gold mine, Newcrest uses redundant PI servers and model-driven virtual sensors to keep the crushing circuit running when physical sensors fail.",
+    "challenge": "There was no real-time data, and underground sensors are hard to reach and maintain.",
+    "solution": "A scalable, redundant PI architecture with model-driven virtual sensors.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Throughput up 650,000 tons in the first six months",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "Crushing-circuit downtime down 50%",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-ss-newcrest"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ok-tedi-mining",
+    "company": "Ok Tedi Mining",
+    "title": "Striking copper and gold: how data increased Ok Tedi's recovery rates",
+    "industry": "mining",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Papua New Guinea",
+    "year": 2025,
+    "summary": "Ok Tedi worked with integrator Mipac on a data-driven recovery strategy using PI System, AVEVA Production Management and AVEVA Plant SCADA.",
+    "challenge": "Declining ore grades, process instability and low trust in process control.",
+    "solution": "PI-based process improvement with integrator Mipac.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Copper recovery +2.4%",
+        "reportedBy": "Mipac (integrator article on a talk by Daniel Qiao)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Gold recovery +7.4%",
+        "reportedBy": "Mipac (integrator article on a talk by Daniel Qiao)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-mipac-oktedi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "hindustan-zinc",
+    "company": "Hindustan Zinc (HZL)",
+    "title": "Remote monitoring and data analytics using the PI System at HZL",
+    "industry": "mining",
+    "products": [
+      "data-archive",
+      "pi-integrator",
+      "pi-web-api",
+      "datalink",
+      "pi-vision",
+      "event-frames"
+    ],
+    "region": "India",
+    "year": 2021,
+    "summary": "Hindustan Zinc runs machine-learning soft sensors for P80 particle size and sulphide sulphur, tracks process deviations with event frames, and monitors fleet health on PI System.",
+    "challenge": "The presentation mentions \"very unique challenges\" and a dependence on lab results and online analysers.",
+    "solution": "Machine-learning soft sensors trained on historical PI data, fed with live PI data, and written back to PI and the DCS every 5 minutes.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "P80 soft sensor at about 95% accuracy, eliminating the need for 6 online particle size analysers",
+        "reportedBy": "The company (Pradeep Mahajan, HZL) in an AVEVA PI World 2021 presentation"
+      },
+      {
+        "category": "quality",
+        "text": "Sulphide sulphur soft sensor at about 90% accuracy",
+        "reportedBy": "The company (Pradeep Mahajan, HZL) in an AVEVA PI World 2021 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-pres-hzl-2021",
+      "ind-pres-hzl-2021-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "arcelormittal-mining-canada",
+    "company": "ArcelorMittal Mining Canada",
+    "title": "The PI System at the heart of a Mining Integrated Remote Operations Center",
+    "industry": "mining",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "analytics",
+      "event-frames",
+      "notifications",
+      "pi-vision",
+      "datalink"
+    ],
+    "region": "Quebec North Shore, Canada",
+    "year": 2019,
+    "summary": "ArcelorMittal Mining Canada (AMMC) uses PI as the data hub of its Integrated Remote Operations Center, with a 3-level operations management system that runs from a whole-mine view down to equipment dashboards.",
+    "challenge": "AMMC had to integrate fleet management, mine plan, DCS/PLC, rail and port data.",
+    "solution": "Two PI Servers (about 140,000 points) with AF, Analytics, Event Frames, Notifications, PI Vision, DataLink and Manual Logger, plus a 90-day optimisation sprint.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Mine plan conformity increased by an additional 5%",
+        "reportedBy": "The company (Plourde, AMMC) in a PI World 2019 presentation"
+      },
+      {
+        "category": "efficiency",
+        "text": "Concentrator slowdowns from low crusher feed \"reduced by 300%\"",
+        "reportedBy": "The company (Plourde, AMMC) in a PI World 2019 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ],
+    "verify": true,
+    "verifyNote": "The \"reduced by 300%\" figure is mathematically unclear (a reduction cannot exceed 100%). Verify with the author before teaching it."
+  },
+  {
+    "id": "barrick-goldstrike",
+    "company": "Barrick Goldstrike",
+    "title": "Improving environmental regulation compliance with better data management",
+    "industry": "mining",
+    "products": [
+      "asset-framework",
+      "analytics",
+      "data-archive",
+      "notifications",
+      "datalink",
+      "pi-vision"
+    ],
+    "region": "Nevada, USA",
+    "summary": "Barrick Goldstrike uses PI AF and Analytics to automate air-quality permit compliance reporting under three Air Quality Operating Permits.",
+    "challenge": "Three Air Quality Operating Permits, manual field logs and interdependent spreadsheets made reporting slow and error-prone.",
+    "solution": "AF and Analytics compute the maximum or minimum hourly averages needed for the permits; PI Coresight and PI DataLink present the results.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "Interim spreadsheets removed from compliance reporting (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-ss-barrick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "vale",
+    "company": "Vale",
+    "title": "Responsible mining with data",
+    "industry": "mining",
+    "products": [
+      "data-archive",
+      "pi-vision",
+      "datalink"
+    ],
+    "summary": "Vale, working with Accenture, centralised data from 35 environmental monitoring stations on PI System, with PI Vision dashboards and PI DataLink compliance reports.",
+    "challenge": "Environmental compliance reporting was slow and field trips carried risk.",
+    "solution": "PI Vision dashboards and PI DataLink compliance reports over centralised station data.",
+    "outcomes": [
+      {
+        "category": "safety",
+        "text": "Field trips cut from 600km to 200km on average per month",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "compliance",
+        "text": "Air quality reporting cut from 5h20 to two minutes",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "visibility",
+        "text": "Data updates from seven days to five minutes",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Station integration from one month to three days",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-ss-vale"
+    ],
+    "verify": false
+  },
+  {
+    "id": "alcoa",
+    "company": "Alcoa",
+    "title": "Alcoa transforms its approach to maintenance",
+    "industry": "mining",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Alcoa matches PI sensor data with Oracle eAM maintenance records to estimate the remaining useful life of equipment.",
+    "challenge": "Alcoa needed to integrate PI history with its Oracle eAM maintenance system.",
+    "solution": "Sensor data matched with maintenance history to predict remaining useful life.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "\"20% decrease in unplanned downtime\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"10% decrease in maintenance work-hours\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-ss-alcoa"
+    ],
+    "verify": false
+  },
+  {
+    "id": "rio-tinto",
+    "company": "Rio Tinto",
+    "title": "Streamlining data at every stage of the mining value chain",
+    "industry": "mining",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Rio Tinto's aluminium business layered AVEVA Production Management on its \"widely used\" PI System to track downtime and losses.",
+    "challenge": "The in-house downtime tracking system had fallen out of use.",
+    "solution": "AVEVA Production Management running on top of PI System data.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "No outcome figures are stated",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-ss-rio-tinto"
+    ],
+    "verify": true,
+    "verifyNote": "The \"100% availability / 80% utilization\" numbers on the page are illustrative quotes, not results. Do not present them as outcomes."
+  }
+]

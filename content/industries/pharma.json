@@ -1,0 +1,133 @@
+[
+  {
+    "id": "pharma",
+    "title": "Pharma & Life Sciences",
+    "summary": "Pharmaceutical and biotech companies use PI System in validated (GxP) environments for batch context, continued process verification and data integrity. 21 CFR Part 11 sets rules for audit trails and access, and PI Event Frames replaced the older PI Batch for batch data.",
+    "hierarchy": "```mermaid\nflowchart TD\n  E[Enterprise] --> S[Site]\n  S --> A[Area]\n  A --> PC[Process Cell]\n  PC --> U[Unit]\n  U --> EM[Equipment Module]\n  U -.-> B[Batch event frames]\n  B --> UP[Unit Procedure]\n  UP --> OP[Operation]\n  OP --> PH[Phase]\n```",
+    "tags": [
+      {
+        "name": "Temperature",
+        "description": "Process temperature captured on batch event frames as a minimum value.",
+        "uom": "degC"
+      },
+      {
+        "name": "Agitator",
+        "description": "Agitator measurement captured on batch event frames as a maximum value."
+      },
+      {
+        "name": "CPP",
+        "description": "Critical Process Parameter, mapped to PI tags under each CQA element (Janssen Cork)."
+      }
+    ],
+    "templates": [
+      {
+        "name": "Batch event frame",
+        "description": "Batch event frame from the OSIsoft example event (name, start, end, duration, asset, product, recipe).",
+        "attributes": [
+          "Asset (bioreactor)",
+          "Product",
+          "Recipe",
+          "Temperature Min",
+          "Agitator Max"
+        ]
+      },
+      {
+        "name": "Process (S88)",
+        "description": "Janssen Cork modelled one element per process, a sub-element per CQA and child elements for CPPs mapped to PI tags.",
+        "attributes": [
+          "CQA sub-elements",
+          "CPP child elements"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "SPC control limits",
+        "expression": "Average, standard deviation and control limits computed from reference events",
+        "description": "OSIsoft workflow: gather reference events with PI DataLink, compute limits in Excel, publish them as PI Points and virtual-unit event frames via piconfig or PI Builder."
+      },
+      {
+        "name": "Batch snapshot",
+        "expression": "Capture attribute values at batch start and end",
+        "description": "Pfizer uses an AF analysis to capture event frame snapshots at the start and end of each batch."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Batch",
+        "trigger": "Batch start and end from the batch execution system, with Procedure > Unit Procedure > Operation > Phase child events"
+      },
+      {
+        "name": "Alarm",
+        "trigger": "Process alarm, acknowledged and annotated in a GxP-compliant interface (Roche RIPIN)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "CPV",
+        "definition": "Continued Process Verification, Stage 3 of FDA's 2011 process validation guidance."
+      },
+      {
+        "name": "Golden batch deviation",
+        "definition": "How far a batch differs from a reference batch profile."
+      },
+      {
+        "name": "CQA",
+        "definition": "Critical Quality Attribute results (for example loss on drying and HPLC assays) linked to batches."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "21 CFR 11.10(e)",
+        "summary": "Requires secure, computer-generated, time-stamped audit trails that record operator entries and actions that create, modify or delete electronic records. Record changes must not obscure earlier information."
+      },
+      {
+        "name": "21 CFR 11.10 (other controls)",
+        "summary": "Also requires system validation, accurate copies of records, record protection, limited and authority-checked access, operational and device checks, trained staff, accountability policies and controlled systems documentation."
+      },
+      {
+        "name": "FDA Part 11 Scope and Application guidance (2003)",
+        "summary": "FDA interprets Part 11 narrowly and uses enforcement discretion on validation, audit trail, retention and copying requirements, with validation based on a documented risk assessment. Predicate rules still apply."
+      },
+      {
+        "name": "Data integrity (ALCOA, MHRA)",
+        "summary": "ALCOA: attributable, legible, contemporaneous, original, accurate. MHRA (2014) says data integrity is fundamental to a pharmaceutical quality system for paper and electronic records."
+      }
+    ],
+    "pitfalls": [
+      "Do not claim the PI System is \"Part 11 compliant\" on its own; compliance depends on configuration, procedures and validation by the regulated company.",
+      "PI Batch allowed only one unit batch per PI Unit at a time, forcing \"phantom PI Units\"; Event Frames support overlapping events.",
+      "Direct queries to a LIMS database can be too slow; Janssen built an intermediate SQL cache.",
+      "Site-by-site validation under local procedures is costly; J&J moved to one common lean validation approach."
+    ],
+    "caseStudies": [
+      "pfizer-groton",
+      "glaxosmithkline",
+      "dr-reddys",
+      "genentech-2016",
+      "genentech-migration",
+      "janssen-cork",
+      "roche-ripin",
+      "biogen",
+      "bristol-myers-squibb",
+      "etech-biotech"
+    ],
+    "coverage": [
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ecfr-11-10",
+      "ind-fda-part11-guidance",
+      "ind-pres-ls-2016-moree",
+      "ind-pres-janssen-cork-2013",
+      "ind-pres-batch-migration-2015",
+      "ind-pres-batch-ef-2017",
+      "ind-pres-ef-bajoll-2016",
+      "ind-ss-pfizer",
+      "ind-pres-roche-ripin-2016",
+      "ind-pres-jj-lean-validation-2014"
+    ],
+    "verify": true,
+    "verifyNote": "The procedural levels of the batch event frame hierarchy are inferred. PI Data Archive audit database settings, the PI AF audit trail and native electronic signatures in PI Vision or PI Manual Logger could not be confirmed from a readable source."
+  }
+]

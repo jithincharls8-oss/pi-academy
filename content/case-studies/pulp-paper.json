@@ -1,0 +1,122 @@
+[
+  {
+    "id": "sappi-fine-paper",
+    "company": "Sappi Fine Paper",
+    "title": "Real-time resource management improves reliability and efficiency for Sappi Fine Paper",
+    "industry": "pulp-paper",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "At its Somerset mill, Sappi Fine Paper uses PI System data to decide whether to buy more grid energy or raise steam production in its own boiler.",
+    "challenge": "There was no visibility into operations data, while regulators and shareholders pressed for better energy performance.",
+    "solution": "PI System informs the buy-versus-generate decision, balancing generated and purchased power.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Optimised grid energy purchases (no figure given)",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "\"Over 80 percent of total use comes from renewable sources\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pulp-paper"
+    ],
+    "sources": [
+      "ind-ss-sappi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "klabin",
+    "company": "Klabin",
+    "title": "AVEVA PI System gives Klabin a bird's-eye view into paper production",
+    "industry": "pulp-paper",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Brazil",
+    "summary": "Klabin, Brazil's largest paper and pulp producer and exporter, built real-time digital models of pulp production, from tree harvesting through drying, on 85,000 variables in PI.",
+    "challenge": "More than 25,000 assets, and evaluating proposed production changes took hours.",
+    "solution": "Integrated digital models in PI System, with integrator IHM.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Production up 3,400 air-dry tons per year",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "Maintenance costs cut by nearly $10 million",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pulp-paper"
+    ],
+    "sources": [
+      "ind-ss-klabin"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ence",
+    "company": "Ence",
+    "title": "More efficient operations for more sustainable outcomes",
+    "industry": "pulp-paper",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "event-frames",
+      "notifications",
+      "pi-vision",
+      "data-hub"
+    ],
+    "region": "Spain",
+    "summary": "Ence built a control-loop monitoring tool for its pulp mills from PI AF and event frames, and uses CONNECT with deep-learning models to predict river flow and plan water use.",
+    "challenge": "Process variability, and downtime in summer caused by water shortage.",
+    "solution": "AF and event frame loop diagnostics shown in PI Vision; water data contextualised in AF and published to CONNECT for river-flow prediction.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "15% emissions reduction (pulp mills)",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "1,500 MWh saved per pulp mill",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "Summer water-shortage downtime from 15 days to zero",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "€150,000 per year biomass savings",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Nearly 900 manual interventions avoided per day",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pulp-paper"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ],
+    "verify": true,
+    "verifyNote": "The energy figure is inconsistent: the outcome says 1,500 MWh per pulp mill, but the body says \"1,500 MWs per hour per year\"."
+  }
+]

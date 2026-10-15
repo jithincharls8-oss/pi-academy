@@ -1,0 +1,458 @@
+[
+  {
+    "id": "eni-oil-field",
+    "company": "Eni",
+    "title": "Eni uses AVEVA PI Vision to improve real-time oil field monitoring",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Italy (Southern District)",
+    "summary": "Eni feeds PI data into simulation models that act as a digital twin of an oil field in its Southern District.",
+    "challenge": "There was no real-time data for modelling, and data collection was slow.",
+    "solution": "PI data, shown in PI Vision, drives the oil-field digital twin.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "No Eni-specific outcome figures are stated",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-eni"
+    ],
+    "verify": true,
+    "verifyNote": "The AVEVA page also shows a DCP Midstream \"$25M\" figure that belongs to DCP, not Eni. Do not attribute it to Eni."
+  },
+  {
+    "id": "eni-global-ep",
+    "company": "Eni Global E&P",
+    "title": "Global E&P AF data object model",
+    "industry": "oil-gas",
+    "products": [
+      "asset-framework",
+      "interfaces-connectors",
+      "analytics"
+    ],
+    "region": "Global",
+    "year": 2015,
+    "summary": "Eni's global exploration and production business deployed PI AF collectives on all major production assets, with a global E&P AF data object model and template repository.",
+    "challenge": "E&P assets were diverse, there was no standardisation, and decisions were reactive.",
+    "solution": "A global E&P AF data object model \"with extensive templates\", with PI-to-PI used for data quality and security.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "Improvements in preventable lost production, lifting cost and reliability are described as estimated, with no figures",
+        "reportedBy": "OSIsoft (EMEA UC 2015 deck)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "mol-downstream",
+    "company": "MOL Downstream",
+    "title": "New Downstream Program on PI",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Central Europe (6 refineries)",
+    "year": 2015,
+    "summary": "MOL ran PI-based energy and reliability applications across 6 refineries under its New Downstream Program (NDSP).",
+    "challenge": "Low cultural alignment and few decisions based on data.",
+    "solution": "The New Downstream Program, with PI System across the fuels value chain and PI-based energy and reliability applications.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Yield increase 5%",
+        "reportedBy": "OSIsoft in a 2015 user conference deck (MOL speaker Tibor Komróczki)"
+      },
+      {
+        "category": "sustainability",
+        "text": "Energy consumption decreased 2% YOY",
+        "reportedBy": "OSIsoft in a 2015 user conference deck (MOL speaker Tibor Komróczki)"
+      },
+      {
+        "category": "efficiency",
+        "text": "HC loss -30%",
+        "reportedBy": "OSIsoft in a 2015 user conference deck (MOL speaker Tibor Komróczki)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Utilization 1.1%",
+        "reportedBy": "OSIsoft in a 2015 user conference deck (MOL speaker Tibor Komróczki)"
+      },
+      {
+        "category": "cost",
+        "text": "EBITDA improvement $500M-550M",
+        "reportedBy": "OSIsoft in a 2015 user conference deck (MOL speaker Tibor Komróczki)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ],
+    "verify": true,
+    "verifyNote": "OSIsoft's company overview gives a different figure (\"$1 billion in EBITA since 2010\"). Keep the two figures separate and never merge them. The \"utilization 1.1%\" figure has no stated direction or unit in the source."
+  },
+  {
+    "id": "yasref",
+    "company": "YASREF",
+    "title": "PI System as refinery integration infrastructure",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "year": 2015,
+    "summary": "YASREF (Yanbu Aramco Sinopec refinery), a new grassroots refinery, used PI System as the integration and application infrastructure for 23 separate applications.",
+    "challenge": "23 separate applications from multiple vendors had to be delivered on an aggressive schedule.",
+    "solution": "Standalone applications were migrated onto PI AF, and all calculations and analytics run once in the infrastructure.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Smooth startup and a \"reduction of over 50% in standard applications\"",
+        "reportedBy": "OSIsoft (EMEA UC 2015 deck citing a YASREF speaker)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "bpx-energy",
+    "company": "BPX Energy",
+    "title": "From data to dollars: the rapid integration of AVEVA PI System into BPX Energy upstream operations",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "year": 2023,
+    "summary": "BPX Energy rolled PI System out across the enterprise in 12 months, with a focus on PI AF and use cases such as electrical submersible pump (ESP) optimisation and compressor run time.",
+    "challenge": "Not stated in the presentation abstract.",
+    "solution": "A PI AF-centred rollout with ESP optimisation and compressor run-time use cases.",
+    "outcomes": [
+      {
+        "category": "other",
+        "text": "A \"shift in mindset\" and value across the organisation (no figures given)",
+        "reportedBy": "The company (John Burroughs, BPX) in an AVEVA World 2023 presentation abstract"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-pres-bpx-2023"
+    ],
+    "verify": true,
+    "verifyNote": "Source is a presentation abstract only; details were not confirmed from the full deck."
+  },
+  {
+    "id": "pertamina-2023",
+    "company": "Pertamina (PT Kilang Pertamina Internasional)",
+    "title": "Journey to operational excellence: AVEVA PI System transformative influence at Pertamina",
+    "industry": "oil-gas",
+    "products": [
+      "asset-framework",
+      "pi-vision"
+    ],
+    "region": "Indonesia",
+    "year": 2023,
+    "summary": "Pertamina's refinery business describes PI AF as the \"core pillar\" of its refinery data effort, combined with PI Vision smartphone apps, AVEVA Production Accounting and AVEVA Predictive Analytics.",
+    "challenge": "The challenge was \"translating the vast volume of data into useful insight\".",
+    "solution": "PI AF plus mobile PI Vision apps, with AVEVA Production Accounting for loss quantification.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "No outcome figures are stated in the abstract",
+        "reportedBy": "The company (PT Kilang Pertamina Internasional speakers) in an AVEVA World 2023 abstract"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-pres-pertamina-2023"
+    ],
+    "verify": true,
+    "verifyNote": "Source is a presentation abstract only; details were not confirmed from the full deck."
+  },
+  {
+    "id": "pertamina-2014",
+    "company": "Pertamina",
+    "title": "Integrated downstream dashboard",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Indonesia",
+    "year": 2014,
+    "summary": "Pertamina integrated its fuels value chain, from crude source to distribution, on a common PI infrastructure with a central operations centre.",
+    "challenge": "Conflicting data, depot stock-outs and high demurrage (charges for delayed vessel loading and unloading).",
+    "solution": "All downstream solutions migrated onto a common PI infrastructure.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "Critical depot stock-outs reduced by 60%",
+        "reportedBy": "OSIsoft (Graves) at a 2014 São Paulo regional seminar"
+      },
+      {
+        "category": "cost",
+        "text": "Demurrage reduced by 40%",
+        "reportedBy": "OSIsoft (Graves) at a 2014 São Paulo regional seminar"
+      },
+      {
+        "category": "cost",
+        "text": "Overall savings of \"10s of Millions\"",
+        "reportedBy": "OSIsoft (Graves) at a 2014 São Paulo regional seminar"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-pres-graves-2014"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pge-gas",
+    "company": "PG&E",
+    "title": "Predictive and proactive gas T&D",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "notifications"
+    ],
+    "region": "California, USA",
+    "year": 2014,
+    "summary": "PG&E's gas transmission and distribution business used PI AF for advanced alarm management, notification and condition-based monitoring of critical assets after the 9/9/2010 gas explosion.",
+    "challenge": "A mandate to implement NTSB and PHMSA 49 CFR 192 requirements, and systems that were not integrated.",
+    "solution": "PI AF for alarm management, notification, condition-based monitoring and mobility.",
+    "outcomes": [
+      {
+        "category": "safety",
+        "text": "Qualitative: safer, more reliable gas transmission and distribution (no figures given)",
+        "reportedBy": "OSIsoft (seminar deck quoting a PG&E engineer)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-pres-graves-2014"
+    ],
+    "verify": false
+  },
+  {
+    "id": "noble-energy",
+    "company": "Noble Energy",
+    "title": "Noble Energy's path to operations excellence",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "region": "Gulf of Mexico, Eastern Mediterranean, West Africa, US onshore",
+    "summary": "Noble Energy replaced its Cygnet system with PI in phases, building a PI AF structure across departments and using PI ahead of the Aseng FPSO startup.",
+    "challenge": "Noble needed to replace legacy monitoring and prove ROI for an enterprise agreement.",
+    "solution": "A PI AF structure across departments, with PI in place before the Aseng FPSO startup.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "PI during the Aseng startup helped engineers increase production by an estimated 10,000 barrels of oil per day",
+        "reportedBy": "The company (Joe Hill, Shawn Cole) in an OSIsoft seminar presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-pres-noble-2015"
+    ],
+    "verify": true,
+    "verifyNote": "The source gives the year as 2014-2015 (2014 regional seminar URL, source id says 2015), so no single year is set."
+  },
+  {
+    "id": "dcp-midstream",
+    "company": "DCP Midstream",
+    "title": "Gaining critical visibility into systems and assets with AVEVA PI System",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "year": 2017,
+    "summary": "DCP Midstream uses PI System and PI Vision so field crews can monitor sites remotely across 57,000 miles of gathering pipeline.",
+    "challenge": "Existing systems were not designed for analytics, and field rounds were long.",
+    "solution": "A single PI view of operations.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"$25M saved in fiscal year 2017 from improved plant operations\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-dcp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "petronas",
+    "company": "PETRONAS",
+    "title": "Reducing equipment downtime and saving millions with early failure detection",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Malaysia",
+    "year": 2019,
+    "summary": "PETRONAS implemented a cloud-enabled early-warning system for rotating equipment in 2019, using AVEVA Predictive Analytics on PI System data.",
+    "challenge": "Rotating equipment failures went undetected and experts were spread across many locations.",
+    "solution": "AVEVA Predictive Analytics running on PI data.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "$33 million saved from reduced unplanned downtime, based on 51 warnings including 12 high-risk ones (stated as 20x ROI)",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Asset utilisation up 0.1% per plant",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-petronas"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tc-energy",
+    "company": "TC Energy",
+    "title": "Intelligent midstream solutions digitally transform pipeline operations",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "summary": "TC Energy integrated AWS machine-learning models with PI AF and AVEVA pipeline software for linepack forecasting and gas-control dashboards.",
+    "challenge": "Scenario planning for the gas pipeline network was slow.",
+    "solution": "AWS machine-learning models integrated with PI AF.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"$8 million in demonstrated value from strategic dashboards\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-tc-energy"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cameron-lng",
+    "company": "Cameron LNG",
+    "title": "World-scale LNG facility boosts field efficiency and safety",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision"
+    ],
+    "region": "Louisiana, USA",
+    "summary": "Cameron LNG feeds mobile operator rounds and LoRaWAN wireless sensors into a PI Server of about 70,000 tags and more than 5,000 AF elements.",
+    "challenge": "Operators lost 30 to 60 minutes per day travelling to collect data.",
+    "solution": "Field data collected into PI, with DCS graphics in PI Vision.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Avoided \"millions in potential instrumentation costs\" (no exact figure)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-cameron-lng"
+    ],
+    "verify": false
+  },
+  {
+    "id": "enbridge",
+    "company": "Enbridge",
+    "title": "Using AVEVA pipeline solutions to operate one of the world's largest SCADA systems",
+    "industry": "oil-gas",
+    "products": [
+      "data-archive"
+    ],
+    "region": "North America",
+    "year": 2024,
+    "summary": "Enbridge is consolidating 37 proprietary SCADA systems onto AVEVA Enterprise SCADA, with PI Server used for calculations, analytics and reporting, including ESG metrics. The work was 50% complete in 2024.",
+    "challenge": "Aging, diverging legacy SCADA systems.",
+    "solution": "Commercial off-the-shelf SCADA plus PI Server for analytics and reporting.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "37 proprietary SCADA systems replaced with one",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "visibility",
+        "text": "More than 350,000 tags integrated",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-ss-enbridge"
+    ],
+    "verify": false
+  }
+]

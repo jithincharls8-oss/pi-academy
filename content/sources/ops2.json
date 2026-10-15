@@ -1,0 +1,514 @@
+[
+ {
+  "id": "ops2-pb-migration-workbook",
+  "title": "PI Vision: Installation and Migration from PI ProcessBook (online course workbook)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/Online%20Course%20Workbooks/PI_Vision_Migrating_PI_ProcessBook_Displays_Workbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "PI Vision prerequisites, app pools, admin URL, local groups, SQL DB permissions, Kerberos/RBCD, migration utility"
+ },
+ {
+  "id": "ops2-pisquare-vision-security-blog",
+  "title": "PI Vision Security Recommendations (PI Square blog, Lima and Miller, 14 Jun 2021)",
+  "url": "https://community.aveva.com/pi-square-community/b/aveva-blogs/posts/pi-vision-security-recommendations",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Written for PI Vision 3.x; a commenter says PI Vision 2023 docs supersede it"
+ },
+ {
+  "id": "ops2-pisquare-vision-af-delegation",
+  "title": "PI Vision cannot connect to third AF server (PI Square forum thread)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/98671/hello-all/360340",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-pisquare-vision-404",
+  "title": "PI Vision 2017 R2 Upgrade Results in 404 (PI Square forum thread)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/89599/pi-vision-2017-r2-upgrade-results-in-404",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-pisquare-vision-collective",
+  "title": "PI Vision does not connect to a collective Data Archive (PI Square forum thread)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/98469/pi-vision-does-not-connect-to-a-colective-data-archive/365959",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Not answered"
+ },
+ {
+  "id": "ops2-pisquare-webapi-custom-symbol-auth",
+  "title": "How to authenticate user in PI Vision in PI Web API automatically when using custom symbol (PI Square)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/95511/how-to-authenticate-user-in-pi-vision-in-pi-web-api-automatically-when-using-custom-symbol/345061",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc23-security-biggins",
+  "title": "Best practices for security in PI System (AVEVA World 2023 San Francisco, UC23NA 2PGK06, Biggins)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK06-AVEVA-Biggins-Best-practices-for-security-in--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "PI Vision Kerberos checklist with setspn commands; port table"
+ },
+ {
+  "id": "ops2-uc23-claims-auth-biggins",
+  "title": "Implementing claims authentication in PI System (AVEVA World 2023, UC23NA 2PGK05, Biggins)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK05-AVEVA-Biggins-Implementing-claims-authentication-in--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "TLS certificates for Data Archive/AF, pidiag -tls, AFDiag /CT, OIDC, AIM, Flex requirement"
+ },
+ {
+  "id": "ops2-uc23-pi-server-geneva",
+  "title": "PI Server and PI Data Infrastructure (AVEVA World 2023, UC23NA 1PSU02, Geneva)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-1PSU02-AVEVA-Geneva-PI-Server-and--PI-Data-Infrastructure.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc15-roadmap-hughes",
+  "title": "PI System Roadmap for the Enterprise Data Infrastructure (Users Conference 2015, Hughes)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/UsersConference2015/PDF/UsersConference2015_OSIsoft_Hughes_PISystemRoadmapfortheEnterpriseDataInfrastructure.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Slide 'Transport Security with PI Server 2015' (table hard to read in extracted text)"
+ },
+ {
+  "id": "ops2-gh-security-audit-tools",
+  "title": "PI Security Audit Tools (PowerShell; copy of OSIsoft repo, Copyright 2016 OSIsoft)",
+  "url": "https://github.com/alwayssummer/PI-Security-Audit-Tools",
+  "publisher": "GitHub (copy of OSIsoft code)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search: Invoke-PISysAudit_SPN builds serviceType/hostname and serviceType/fqdn; piserver for pinetmgr, afserver for afservice, http for Coresight/PI Vision"
+ },
+ {
+  "id": "ops2-cisa-cm0143-webapi",
+  "title": "Audit and Configure PI Web API (CISA Eviction Strategies Tool, countermeasure CM0143)",
+  "url": "https://www.cisa.gov/eviction-strategies-tool/info-countermeasures/CM0143",
+  "publisher": "CISA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc17-secure-webapi",
+  "title": "Building a Secure PI Web API Environment (UC 2017, Verhoeff and Sloves)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2017-uc-san-francisco/UC17NA03D105_OSIsoft_RVerhoeffMSloves_Building_a_Secure_PI_Web_API_Environment.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-feedback-pivision-1495",
+  "title": "Allow installer to (optionally) bypass Certificate checks (PIVISION-I-1495)",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIVISION-I-1495",
+  "publisher": "AVEVA Feedback portal",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "AVEVA admin response 19 Aug 2022 on PI Vision 2020 self-signed certificate"
+ },
+ {
+  "id": "ops2-gh-vision-ext-guide",
+  "title": "PI Vision Extensibility Guide (AVEVA-Samples-PI-System, docs/PI-Vision-Extensibility-Docs)",
+  "url": "https://raw.githubusercontent.com/AVEVA/AVEVA-Samples-PI-System/main/docs/PI-Vision-Extensibility-Docs/PI%20Vision%20Extensibility%20Guide.md",
+  "publisher": "AVEVA",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Found through GitHub code search; mentions PI Vision 2025 configOptions change"
+ },
+ {
+  "id": "ops2-us19-vision-ext-schmitz",
+  "title": "Leveraging the Power of PI Vision Extensibility (PI World SF 2019, Schmitz)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-san-francisco/US19NA-D2TT03-OSIsoft-Schmitz-Leveraging-the-Power-of-PI-Vision-Extensibility.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-gh-vision-custom-symbols",
+  "title": "PI Vision Extensibility Samples and Tutorials (course repo)",
+  "url": "https://github.com/jaison247/PI-Vision-Custom-Symbols",
+  "publisher": "GitHub (OSIsoft course material, Apache 2.0)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-gh-leniel-vision-ext",
+  "title": "Customizing PI Vision with Extensibility (final project README)",
+  "url": "https://github.com/leniel/Customizing-PI-Vision-with-Extensibility",
+  "publisher": "GitHub (community)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-osisoft-coresight-renamed",
+  "title": "Presentation page: A look at the future of PI System visualization (OSIsoft site notice 'PI Coresight was renamed PI Vision in 2017')",
+  "url": "https://1980slca7023akamai94577.osisoft.com/presentations/a-look-at-the-future-of-pi-system-visualization",
+  "publisher": "OSIsoft",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-rs2011-coresight",
+  "title": "PI Coresight (Regional Seminar 2011 EMEA, Baier and Resnick)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/RegionalSeminars/PDF/RS2011_EMEA_BRS_OSIsoft_Baier_Resnick_PI_Coresight.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc18-vision-coppock",
+  "title": "PI Vision: Enabling Real-Time Monitoring (UC EMEA 2018 Barcelona, Coppock)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2018-uc-emea-barcelona/UC18EU-D3PN04-OSIsoft-Coppock-PI-Vision-Enabling-Real-Time-Monitoring.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc22-vision-dutta",
+  "title": "AVEVA PI Vision: Leveraging the Latest Capabilities (AVEVA World Amsterdam 2022, Dutta)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2022-AVEVA-Amsterdam/UC22EU-D3PI020-AVEVA-Dutta-PI-Vision-Leveraging-the-Latest-Capabilities.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc23-vision-swartzentruber",
+  "title": "AVEVA PI Vision: Leveraging the latest capabilities (AVEVA World SF 2023, Swartzentruber)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-3PSU02-AVEVA-Swartzentruber-AVEVA-PI-Vision-Leveraging-the-latest-capabilities.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Layout flattened; per-release assignment of features unclear"
+ },
+ {
+  "id": "ops2-aw25-vision-2024",
+  "title": "Supporting expanding needs with AVEVA PI Vision (AVEVA World 2025 deck on PI Vision 2024)",
+  "url": "https://cdn.mediavalet.com/eunl/content/J08mcIizFE-ShI6XGeR-zQ/cxeC39FPREe2J8mrXMbI-g/Original/Supporting%20expanding%20needs%20with%20AVEVA%E2%84%A2%20PI%20Vision%E2%84%A2.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-docs-vision-2024-relnotes",
+  "title": "PI Vision documentation page (release notes / what's new, from search)",
+  "url": "https://docs.aveva.com/bundle/pi-vision/page/1254880.html",
+  "publisher": "AVEVA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": false
+ },
+ {
+  "id": "ops2-docs-vision-install-guide",
+  "title": "PI Vision Installation and Administration Guide (docs.aveva.com)",
+  "url": "https://docs.aveva.com/bundle/pi-vision/page/1025961.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false
+ },
+ {
+  "id": "ops2-aveva-pb-retire-blog",
+  "title": "Why we're retiring AVEVA PI System's PI ProcessBook (AVEVA blog, 20 Oct 2021)",
+  "url": "https://www.aveva.com/en/perspectives/blog/why-we-are-retiring-aveva-pi-systems-pi-processbook/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-digitalrefining-pb",
+  "title": "Reduce costs by migrating from outdated data analytics tools (Digital Refining)",
+  "url": "https://www.digitalrefining.com/article/1003283/reduce-costs-by-migrating-from-outdated-data-analytics-tools",
+  "publisher": "Digital Refining (third party)",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Vendor-authored article; ProcessBook dates"
+ },
+ {
+  "id": "ops2-aw24-pb-migration-session",
+  "title": "Migration from PI ProcessBook to PI Vision (AVEVA World 2024 session abstract)",
+  "url": "https://events.aveva.com/aw-2024/session/2396948/migration-from-pi-processbook-to-pi-vision",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-feedback-picust-192",
+  "title": "Stop advertising deprecated products (PICUST-I-192)",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PICUST-I-192",
+  "publisher": "AVEVA Feedback portal",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "User-written; lists PI ProcessBook and PI WebParts as deprecated"
+ },
+ {
+  "id": "ops2-aveva-dh-to-cds-blog",
+  "title": "AVEVA Data Hub is becoming CONNECT data services (AVEVA blog, 11 Jul 2024)",
+  "url": "https://www.aveva.com/en/perspectives/blog/aveva-data-hub-is-becoming-connect-data-services/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc22-carasso-odi",
+  "title": "Integrating Your Operational Data Infrastructure (AVEVA World Amsterdam 2022, Carasso)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2022-AVEVA-Amsterdam/UC22EU-D3WI030-AVEVA-Carasso-Integrating-Your-Operational-Data-Infrastructure.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc23-dataviews-coppock",
+  "title": "Bringing industrial operations data into your analytics platform with AVEVA Data Hub Data Views (AVEVA World 2023, Coppock)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-3ECO01-AVEVA-Coppock-Bringing-industrial-operations-data-into-your-analytics-platform-with-AVEVADataHub-Data-Views.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-gh-adh-waveform-sample",
+  "title": "sample-adh-waveform-python (AVEVA GitHub sample)",
+  "url": "https://github.com/AVEVA/sample-adh-waveform-python",
+  "publisher": "AVEVA",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-eds-datasheet",
+  "title": "AVEVA Edge Data Store product brief (Datasheet 23-01)",
+  "url": "https://aveva.com/content/dam/aveva/documents/brochures/Datasheet_AVEVA_EDSProductBrief_23-01.pdf",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-uc23-adapters-eds-lab",
+  "title": "AVEVA Adapters and AVEVA Edge Data Store IIoT (AVEVA World 2023 workshop, Greavu and Jain)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-3PGK01-AVEVA-Greavu-Jain_AVEVA-Adapters-and-AVEVA-Edge-Data-Store-IIoT.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-docs-pi-to-connect",
+  "title": "Transfer PI System data to CONNECT data services (PI to CONNECT agent docs)",
+  "url": "https://docs.aveva.com/bundle/pi-to-connect-agent/page/1509961.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Title seen in search only"
+ },
+ {
+  "id": "ops2-aveva-connect-2025-updates",
+  "title": "Maximize your impact: Eight key CONNECT updates from 2025 (AVEVA blog, 9 Dec 2025)",
+  "url": "https://www.aveva.com/en/perspectives/blog/maximize-your-impact-eight-key-connect-updates-from-2025/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-arc-connect-launch",
+  "title": "AVEVA Launches CONNECT, an Industrial Intelligence Platform (ARC Advisory Group, 23 Apr 2024)",
+  "url": "https://www.arcweb.com/node/148751",
+  "publisher": "ARC Advisory Group",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-sw-schedule-pi-2026",
+  "title": "AVEVA Software Schedule: PI System v1.5 (June 2026)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/legal/policies/AVEVA-Software-Schedule-PI-System-v1-5-June-2026.pdf",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Legal licensing schedule"
+ },
+ {
+  "id": "ops2-pidi-service-description",
+  "title": "AVEVA PI Data Infrastructure Service Description (last revised 26 Feb 2026)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/legal/service-documents/AVEVA-PI-Data-Infrastructure.pdf",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-aveva-trade-in-2022",
+  "title": "New trade-in program paves the way to industrial hybrid SaaS for users of on-premises AVEVA PI System software (press release, 10 Oct 2022)",
+  "url": "https://www.aveva.com/en/about/news/press-releases/2022/aveva-delivers-more-flexibility-to-customers-of-aveva-pi-system/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-audit-reporter-datasheet",
+  "title": "AVEVA PI Audit Reporter datasheet (2025-08)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/datasheets/Datasheet_AVEVA_PI-AuditReporter.pdf.coredownload.inline.pdf",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-techsupport-auditviewer",
+  "title": "PI AuditViewer overview (OSIsoft Tech Support product page)",
+  "url": "https://techsupport.osisoft.com/Products/System%20Management/PI-AuditViewer/Overview",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-aw25-audit-trail-session",
+  "title": "Audit trail enhancements to the AVEVA PI System (AVEVA World 2025 session abstract)",
+  "url": "https://events.aveva.com/aw-2025/session/2978647/audit-trail-enhancements-to-the-aveva™-pi-system",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-feedback-pida-452",
+  "title": "Track if auditing was turned off (PIDA-I-452)",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDA-I-452",
+  "publisher": "AVEVA Feedback portal",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-feedback-pivision-1621",
+  "title": "21 CFR Part 11 Electronic Signatures for manual data entry (PIVISION-I-1621)",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIVISION-I-1621",
+  "publisher": "AVEVA Feedback portal",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-osipi-blog-audit",
+  "title": "How to get a PI audit trail (osipi.wordpress.com, 7 Apr 2010)",
+  "url": "https://osipi.wordpress.com/tag/how-to-get-a-pi-audit-trail/",
+  "publisher": "Third-party blog",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-pisquare-af-audit-trail",
+  "title": "AF Audit Trail Viewer - Audit Trail security (PI Square forum thread)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/90933/af-audit-trail-viewer---audit-trail-security",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Thread from AF 2.6 era (SQL Server 2008 era)"
+ },
+ {
+  "id": "ops2-docs-da-audit-database",
+  "title": "Audit Database (PI Server Data Archive reference)",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-reference/page/1020268.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false
+ },
+ {
+  "id": "ops2-uc15-manual-logger",
+  "title": "Manual Data Entry with PI Manual Logger (UC EMEA 2015, Bajolle and Laurie-Dieffenbach)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/EMEA2015/PDF/UC15EU03O108_OSIsoft_BajolleandLaurieDieffenbach_ManualDataEntrywithPIManualLogger.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-rs2012-bryant-arch",
+  "title": "Recommended Architectures and Best Practices (Regional Seminar San Antonio 2012, Martin Bryant)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2013/RegionalSeminars/SanAntonio/PDFs/RS2012_SanAntonio_OSIsoft_MartinBryant_RecArch&BestPractices.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-rs2012-vining-arch",
+  "title": "Architecture Recommendations and Best Practices for PI System (Regional Seminar New Orleans 2012, Bachiega and Vining)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2012/RegionalSeminars/NewOrleans/PDF/RS2012_NewOrleans_OSIsoft_Bachiega-Vining_ArchitectureRecommendationsAndBestPracticesForPISystem.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "ops2-arch-workbook-2025",
+  "title": "PI System Architecture, Planning and Implementation course workbook (2025 edition)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemArchitecturePlanningAndImplementationWorkbook.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Extracted text stops near p.78 of 248; chapter 8 (PI Vision) only visible as headings"
+ },
+ {
+  "id": "ops2-pw19-architecting-zhimanov",
+  "title": "Architecting Your PI System to Support Scope, Scalability and Performance (PI World Gothenburg 2019, Zhimanov)",
+  "url": "https://cdn.mediavalet.com/eunl/content/5Uolax5XWEqkML821Y3Z7Q/z-7JLi97vkW560UpdoPwmQ/Original/Architecting%20Your%20PI%20System%20to%20Support%20Scope%2C%20Scalability%20and%20Performance.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "No sizing numbers"
+ }
+]

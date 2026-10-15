@@ -86,6 +86,18 @@ export const FEATURE_ROUTES: RouteObject[] = [
     path: 'reference/sizing',
     element: page(() => lz(import('@/features/reference/ToolsPages'), 'SizingPage')),
   },
+  {
+    path: 'planner',
+    element: page(() => lz(import('@/features/planner/PlannerPage'), 'PlannerPage')),
+  },
+  ...['industries', 'industries/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/industries/IndustriesPage'), 'IndustriesPage')),
+  })),
+  ...['cases', 'cases/:id'].map((path) => ({
+    path,
+    element: page(() => lz(import('@/features/industries/IndustriesPage'), 'CaseStudiesPage')),
+  })),
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
     path: 'settings',

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "food-bev",
+    "title": "Food & Beverage",
+    "summary": "Food, beverage and consumer goods makers use PI System for OEE, downtime, weight control, yield and giveaway, fermentation and Clean-In-Place. AF templates per machine let one change cascade to every line, and edge collection serves small sites.",
+    "hierarchy": "```mermaid\nflowchart TD\n  C[Company] --> S[Site or Plant]\n  S --> L[Production Line]\n  L --> M1[Filler]\n  L --> M2[FFS Packer]\n  L --> M3[Oven]\n```",
+    "tags": [
+      {
+        "name": "Bags per minute",
+        "description": "Packing rate captured on each FFS machine (Illovo).",
+        "uom": "bags/min"
+      },
+      {
+        "name": "Machine State",
+        "description": "Running or stopped state that drives downtime event frames."
+      },
+      {
+        "name": "Downtime Reason",
+        "description": "Reason code for each downtime event."
+      },
+      {
+        "name": "Weight",
+        "description": "Product weight by line, used for giveaway tracking (Tyson)."
+      }
+    ],
+    "templates": [
+      {
+        "name": "OEE Machine",
+        "description": "Machine template giving OEE broken into availability, performance and quality (Illovo).",
+        "attributes": [
+          "Availability",
+          "Performance",
+          "Quality",
+          "OEE",
+          "Rate (bags/min)",
+          "State",
+          "Downtime Reason"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "OEE",
+        "expression": "OEE = Availability x Performance x Quality",
+        "description": "Availability = Run time / Planned production time; Performance = (Ideal cycle time x Total count) / Run time; Quality = Good count / Total count. Standard formula."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Downtime",
+        "trigger": "Machine State is not Running, with a reason-code attribute"
+      },
+      {
+        "name": "Reporting period",
+        "trigger": "Predefined shift or reporting period (Illovo)"
+      },
+      {
+        "name": "CIP phase",
+        "trigger": "Clean-In-Place phases: pre-rinse, caustic main wash, final rinse, acid second wash"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "OEE",
+        "definition": "Overall Equipment Effectiveness: availability x performance x quality. Kellogg's Valls reported a best-in-class 80%."
+      },
+      {
+        "name": "Giveaway",
+        "definition": "Product overfilled beyond the declared weight."
+      },
+      {
+        "name": "MTBF",
+        "definition": "Mean time between failures."
+      },
+      {
+        "name": "Yield",
+        "definition": "Saleable output relative to input; Tyson reported a 0.1% improvement."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Relying on shift log sheets gives little reliable machine data (Illovo's starting point).",
+      "Do not cite Nestlé (Waverly) or General Mills as PI examples; those AVEVA stories use AVEVA Historian/CONNECT and System Platform, not PI System."
+    ],
+    "caseStudies": [
+      "abbott-nutrition",
+      "coop",
+      "illovo-sugar",
+      "kelloggs",
+      "tyson-foods",
+      "deschutes-brewery",
+      "cargill",
+      "uc-davis-winery"
+    ],
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-illovo",
+      "ind-ss-kelloggs",
+      "ind-ss-tyson",
+      "ind-pres-ef-bajoll-2016",
+      "ind-pres-batch-ef-2017",
+      "ind-ss-nestle",
+      "ind-ss-general-mills"
+    ],
+    "verify": true,
+    "verifyNote": "The AF hierarchy is inferred, and the OEE formula details are the standard definitions rather than from a PI source. Food-safety regulation (FSMA, HACCP CCP logging) in PI deployments was not found."
+  }
+]

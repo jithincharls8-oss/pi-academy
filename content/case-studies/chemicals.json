@@ -1,0 +1,139 @@
+[
+  {
+    "id": "covestro",
+    "company": "Covestro",
+    "title": "Covestro uses AVEVA PI System to achieve sustainable growth",
+    "industry": "chemicals",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "The Covestro Monitoring Platform on PI System unifies more than one million real-time data streams and contextualises thousands of critical assets. AI anomaly detection comes from AVEVA Predictive Analytics.",
+    "challenge": "Covestro needed to standardise and share energy and production data. Overlooked notifications and unplanned shutdowns caused significant losses.",
+    "solution": "PI System as the data platform, combined with AI anomaly detection.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "Energy consumption reduced by 30%",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "CO2 emissions reduced by 39% per ton of product, on track for a 50% reduction by 2030",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.chemicals"
+    ],
+    "sources": [
+      "ind-ss-covestro"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dsm-firmenich",
+    "company": "dsm-firmenich",
+    "title": "Driving manufacturing excellence at dsm-firmenich with AI and standardized PI Server data",
+    "industry": "chemicals",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "region": "Global",
+    "year": 2024,
+    "summary": "dsm-firmenich built a global Operations Data Layer (ODL) on PI Server and AF, uses OEE as its day-to-day KPI and added an AI copilot for troubleshooting and onboarding.",
+    "challenge": "Manual reports and contextualisation across a global network.",
+    "solution": "A standardised ODL on PI Server and AF, with PI data contextualised in Shiftconnector.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "The ODL supports 3,500 users (no other figures)",
+        "reportedBy": "The company (Jens Tuexen) in an AVEVA World 2024 abstract"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.chemicals"
+    ],
+    "sources": [
+      "ind-pres-dsm-firmenich-2024"
+    ],
+    "verify": true,
+    "verifyNote": "Source is a presentation abstract only; details were not confirmed from the full deck."
+  },
+  {
+    "id": "syensqo",
+    "company": "Syensqo",
+    "title": "Structuring manufacturing data at scale",
+    "industry": "chemicals",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision"
+    ],
+    "region": "Global (60+ sites)",
+    "year": 2016,
+    "summary": "Syensqo uses a central-to-local model: central data managers create standard AF templates and hierarchies, and local teams build solutions on them, across about 30 polymer plants. The transformation began in 2016.",
+    "challenge": "Syensqo wanted to replicate solutions between sites without removing site autonomy.",
+    "solution": "Central AF templates and hierarchies with local solutions, feeding Seeq and Ekhosoft.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Maintenance costs 25% reduction",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "OEE breakdown losses 50% reduction",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "quality",
+        "text": "Batch duration variability 60% reduction",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "OEE rollout from 26 weeks to 5 weeks; batch watcher from 11 weeks to 4 weeks",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.chemicals"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ],
+    "verify": false
+  },
+  {
+    "id": "nutrien",
+    "company": "Nutrien",
+    "title": "Digital transformation of agribusiness operations using PI System and Unified Operations Center",
+    "industry": "chemicals",
+    "products": [
+      "data-archive"
+    ],
+    "region": "North America",
+    "summary": "Nutrien combines PI System data with AVEVA Unified Operations Center in a central monitoring centre for nitrogen production.",
+    "challenge": "Nutrien needed to integrate site data so engineering and operations could collaborate.",
+    "solution": "PI data shown in AVEVA Unified Operations Center.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "Qualitative only (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.chemicals"
+    ],
+    "sources": [
+      "ind-ss-nutrien"
+    ],
+    "verify": false
+  }
+]

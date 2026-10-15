@@ -5,12 +5,10 @@ test('daily exam: start, answer, finish and see the streak', async ({ page }) =>
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/#/exam/daily');
   await page.getByRole('button', { name: "Start today's exam" }).click();
-  const card = page.getByRole('article').first();
-  await card
-    .getByRole('radio')
-    .first()
-    .check()
-    .catch(() => undefined);
+  await expect(page.getByText('Question 1 of')).toBeVisible();
+  // The first question may be any type; answer it only when it is single choice.
+  const radio = page.getByRole('article').first().getByRole('radio').first();
+  if (await radio.count()) await radio.check();
   await expect(page.getByText('Question 1 of')).toBeVisible();
   await page.getByRole('button', { name: /Finish session/ }).click();
   await page.getByRole('button', { name: 'Finish', exact: true }).click();

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "pulp-paper",
+    "title": "Pulp & Paper",
+    "summary": "Pulp and paper companies use PI System for production models, control-loop monitoring, energy buy-versus-generate decisions and water planning. Mills combine many areas, from woodyard to paper machine, in one data model.",
+    "hierarchy": "```mermaid\nflowchart TD\n  C[Company] --> M[Mill]\n  M --> A1[Woodyard]\n  M --> A2[Digester and Fibreline]\n  M --> A3[Bleaching]\n  M --> A4[Recovery Boiler]\n  M --> A5[Power and Steam Plant]\n  M --> A6[Paper Machine]\n  M --> A7[Water and Effluent]\n  A2 --> CL[Control Loop]\n```",
+    "tags": [
+      {
+        "name": "PV",
+        "description": "Process value of a control loop."
+      },
+      {
+        "name": "SP",
+        "description": "Setpoint of a control loop."
+      },
+      {
+        "name": "OP",
+        "description": "Controller output of a control loop."
+      },
+      {
+        "name": "Mode",
+        "description": "Control loop mode, such as manual or automatic."
+      },
+      {
+        "name": "Pulp production",
+        "description": "Pulp produced, in air-dry tonnes.",
+        "uom": "ADt"
+      }
+    ],
+    "templates": [
+      {
+        "name": "Control loop",
+        "description": "Control loop element for loop performance monitoring (Ence built its tool from AF and event frames).",
+        "attributes": [
+          "PV",
+          "SP",
+          "OP",
+          "Mode"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Time in manual",
+        "expression": "Time the loop Mode is manual over a period",
+        "description": "One way to find poorly performing loops in control-loop monitoring. Illustrative."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Poor loop performance",
+        "trigger": "A control loop performs poorly (for example oscillation or time in manual)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Pulp production (ADt/year)",
+        "definition": "Air-dry tonnes produced; Klabin reported +3,400 air-dry tons per year."
+      },
+      {
+        "name": "Renewable energy share",
+        "definition": "Share of total energy from renewable sources; Sappi states over 80 percent."
+      },
+      {
+        "name": "Energy saved per mill",
+        "definition": "Energy saved, in MWh; Ence reported 1,500 MWh per pulp mill."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Without integrated models, evaluating a proposed production change can take hours (Klabin).",
+      "Without visibility of energy data, buy-versus-generate decisions cannot be optimised (Sappi)."
+    ],
+    "caseStudies": [
+      "sappi-fine-paper",
+      "klabin",
+      "ence"
+    ],
+    "coverage": [
+      "ind.pulp-paper"
+    ],
+    "sources": [
+      "ind-ss-klabin",
+      "ind-ss-ence",
+      "ind-ss-sappi"
+    ],
+    "verify": true,
+    "verifyNote": "The mill AF hierarchy, control-loop attributes and the time-in-manual calculation are inferred. Paper-machine KPIs (basis weight, moisture profiles, breaks, machine efficiency) were not found in a readable source."
+  }
+]

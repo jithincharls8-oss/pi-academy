@@ -1,0 +1,285 @@
+[
+ {
+  "id": "fn-docs-pe-alpha-ref",
+  "title": "Alphabetical reference for PE functions",
+  "url": "https://docs.aveva.com/bundle/pi-server-l-da-smt/page/1021628.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "JS-rendered; zoominsoftware mirror https://osisoft-prod.zoominsoftware.io/bundle/pi-server-l-da-smt/page/1021628.html also returns only the shell. Authoritative PE signatures live here."
+ },
+ {
+  "id": "fn-docs-pe-by-type",
+  "title": "PE functions by type",
+  "url": "https://docs.aveva.com/bundle/pi-server-l-da-smt/page/1022356.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "JS-rendered; fetched, shell only."
+ },
+ {
+  "id": "fn-docs-pe-builtin",
+  "title": "Built-in performance equation functions",
+  "url": "https://docs.aveva.com/bundle/pi-server-f-da-smt/page/1022355.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false
+ },
+ {
+  "id": "fn-docs-af-expr-functions",
+  "title": "List of expression functions reference (Asset Analytics)",
+  "url": "https://docs.aveva.com/bundle/pi-server-l-af-analytics/page/1021946.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Authoritative AF expression function list; not readable."
+ },
+ {
+  "id": "fn-docs-afsdk-systemstatecode",
+  "title": "AFSystemStateCode Enumeration (AF SDK)",
+  "url": "https://docs.aveva.com/bundle/af-sdk/page/html/T_OSIsoft_AF_Asset_AFSystemStateCode.htm",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Would give system state names and codes; not readable."
+ },
+ {
+  "id": "fn-docs-pids-table",
+  "title": "Digital state table (PIDS)",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-reference/page/1019351.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false
+ },
+ {
+  "id": "fn-manualzz-rockwell-pi-server-apps",
+  "title": "Rockwell Automation PI Server Applications, PI Performance Equations Scheduler, ... User's Guide (manualzz doc 28884584)",
+  "url": "https://manualzz.com/doc/28884584",
+  "publisher": "Rockwell Automation / OSIsoft (OEM)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Only the table of contents and FAQ were readable: 'PI Performance Equations Syntax and Functions Reference' p.57, 'PI Steam Functions Reference' p.199. Full text not served."
+ },
+ {
+  "id": "fn-manualzz-datalink-ug",
+  "title": "PI DataLink User Guide (English) - Supplementary information",
+  "url": "https://manualzz.com/doc/o/offhj/pi-datalink-user-guide--english--supplementary-information",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "TOC only: PI Expressions p78, Syntax p78, Operators p79, Performance Equation Functions p80; bodies absent."
+ },
+ {
+  "id": "fn-rs2012-oceania-calcs",
+  "title": "PI System Calculations (Regional Seminar 2012 Oceania, Moffett)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2012/RegionalSeminars/Oceania/PDF/RS2012_Oceania_OSIsoft_Moffett_PISystemCalculations.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-rs2012-asia-calcs",
+  "title": "PI System Calculations (Regional Seminar 2012 Asia, Wilson)",
+  "url": "https://cdn.osisoft.com/corp/sg/media/presentation/2012/RegionalSeminars/Asia/PDF/2012_Asia_OSIsoft_Wilson_PI_System_Calculations.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-analyzing-pi-data-2018",
+  "title": "Analyzing PI System Data (course workbook, 2018)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/pdfs/AnalyzingPISystemData.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Extracted text capped at ~125k chars; Appendix B 'Performance Equation Operands and Functions' (p.218) is beyond the cap and was NOT read. Section 7.2 category table was read."
+ },
+ {
+  "id": "fn-calc-asset-analytics-2022",
+  "title": "Calculations and Asset Analytics (online course workbook)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/Online%20Course%20Workbooks/Calculations%20and%20Asset%20Analytics.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Text read through p.84 of 95."
+ },
+ {
+  "id": "fn-using-af-analyze-2019",
+  "title": "Using AF to Analyze Asset Performance (PI World 2019 lab)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/pdfs/2019%20PI%20World%20%20Using%20AF%20to%20Analyze%20Asset%20Performance.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-building-assets-workbook",
+  "title": "Building PI System Assets and Analytics with PI AF (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/BuildingPISystemAssetsWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Text capped at ~125k chars, ends in section 6.3; sections 6.5-6.7 not read."
+ },
+ {
+  "id": "fn-pisquare-af2018sp2",
+  "title": "Highlights from the new AF 2018 SP2 release",
+  "url": "https://community.aveva.com/pi-square-community/b/aveva-blogs/posts/highlights-from-the-new-af-2018-sp2-release",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-pisquare-help-with-arrays",
+  "title": "Help with Arrays? (PI Square forum)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/84045/help-with-arrays",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-pisquare-oledb-digital-state",
+  "title": "PI OLEDB Enterprise shows Value as Null when Value is a Digital State",
+  "url": "https://community.aveva.com/pi-square-community/f/developer-tools/91742/pi-oledb-enterprise-shows-value-as-null-when-value-is-a-digital-state",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-feedback-pida-855",
+  "title": "PIDA-I-855: New functions for analysis",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDA-I-855",
+  "publisher": "AVEVA Feedback",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-feedback-pida-850",
+  "title": "PIDA-I-850: More functions to support operations on arrays",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDA-I-850",
+  "publisher": "AVEVA Feedback",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-piwebapi-summary-type",
+  "title": "PI Web API 2018 SP1 Programmer Reference: Summary Type (GitHub copy)",
+  "url": "https://raw.githubusercontent.com/mustafaakgul/pi-system-data/master/Docs/PI%20Web%20API%202018%20SP1%20Programmer%20Reference/localhost/piwebapi/help/topics/summary-type.html",
+  "publisher": "OSIsoft (mirrored on GitHub by a third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-piwebapi-calc-basis",
+  "title": "PI Web API 2018 SP1 Programmer Reference: Calculation Basis (GitHub copy)",
+  "url": "https://raw.githubusercontent.com/mustafaakgul/pi-system-data/master/Docs/PI%20Web%20API%202018%20SP1%20Programmer%20Reference/localhost/piwebapi/help/topics/calculation-basis.html",
+  "publisher": "OSIsoft (mirrored on GitHub by a third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-piwebapi-boundary-type",
+  "title": "PI Web API 2018 SP1 Programmer Reference: Boundary Type (GitHub copy)",
+  "url": "https://raw.githubusercontent.com/mustafaakgul/pi-system-data/master/Docs/PI%20Web%20API%202018%20SP1%20Programmer%20Reference/localhost/piwebapi/help/topics/boundary-type.html",
+  "publisher": "OSIsoft (mirrored on GitHub by a third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-piwebapi-time-strings",
+  "title": "PI Web API 2018 SP1 Programmer Reference: Time Strings (GitHub copy)",
+  "url": "https://raw.githubusercontent.com/mustafaakgul/pi-system-data/master/Docs/PI%20Web%20API%202018%20SP1%20Programmer%20Reference/localhost/piwebapi/help/topics/time-strings.html",
+  "publisher": "OSIsoft (mirrored on GitHub by a third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-gh-piconnect-af-data",
+  "title": "PIconnect: AF SDK type stubs for OSIsoft.AF.Data enums (Data.py)",
+  "url": "https://raw.githubusercontent.com/Hugovdberg/PIconnect/master/PIconnect/_typing/AF/Data.py",
+  "publisher": "PIconnect (open source)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party typings that mirror AF SDK enum values."
+ },
+ {
+  "id": "fn-gh-afsdk-course-limitcheck",
+  "title": "AVEVA AF-SDK-Programming-Online-Course: LimitCheckDR.cs",
+  "url": "https://raw.githubusercontent.com/AVEVA/AF-SDK-Programming-Online-Course/master/Exercise4/CSharp/Limit%20Check%20DataReference/Limit%20Check%20DataReference/LimitCheckDR.cs",
+  "publisher": "AVEVA",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-gh-vitens-dbm",
+  "title": "Vitens DBM: DBMDataRef.vb",
+  "url": "https://raw.githubusercontent.com/Vitens/DBM/master/src/DBMDataRef/DBMDataRef.vb",
+  "publisher": "Vitens (open source)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-gh-pi-replay-helpers",
+  "title": "pi-replay-service: PIHelpers.cs",
+  "url": "https://raw.githubusercontent.com/pthivierge/pi-replay-service/master/AppCore/PISystemHelpers/PIHelpers.cs",
+  "publisher": "GitHub (community)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "fn-gh-picatalog",
+  "title": "Plugin-Visualization: piCompatibilityCatalog.ts (112 PE function names)",
+  "url": "https://raw.githubusercontent.com/felipe2014couto-cyber/Plugin-Visualization/main/src/calculations/piCompatibilityCatalog.ts",
+  "publisher": "GitHub (third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party catalogue that says it was audited against the PI Server Applications User's Guide (PE). Names only; corroboration only, not authoritative. Known gaps (e.g. Abs, Total)."
+ },
+ {
+  "id": "fn-gh-calculations-md",
+  "title": "Plugin-Visualization: Calculations.md (PI compatibility notes)",
+  "url": "https://github.com/felipe2014couto-cyber/Plugin-Visualization/blob/main/src/calculations/Calculations.md",
+  "publisher": "GitHub (third party)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Portuguese; cites the PI Server Applications User's Guide for MedianFilt, NoOutput and Alm* semantics."
+ },
+ {
+  "id": "fn-software-athlete-functions",
+  "title": "PI Vision Calculation Functions: Complete Reference",
+  "url": "https://www.software-athlete.com/blogs/resources/pi-vision-calculation-syntax-list-of-all-functions",
+  "publisher": "Software Athlete (third party)",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "43 functions; some signatures look wrong (e.g. TagTot). Corroboration only."
+ }
+]

@@ -54,3 +54,30 @@ Running log of what was done at each step and which capability was used. Newest 
 | 4.3 | Exam runner: navigator, progress, timer with auto-finish, flagging, finish confirmation; immediate feedback or hidden until the end (mock) | React |
 | 4.4 | Pages: Daily Exam (streak, best, 16-week heatmap, recent scores), Practice (topic quiz, 60-question domain-weighted mock with blueprint table and time limits, SM-2 review queue, readiness, weakest topics, history), session review, single-question deep link | React, Playwright |
 | 4.5 | e2e: daily exam survives reload, mock hides answers then reviews, quiz starts (7 e2e tests total) | Playwright |
+
+## Phase 5: Sandbox simulators (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 5.1 | Simulation core: PI time syntax, exception and swinging-door compression, Riverbend Plant (9 units, 35 PI points, AF hierarchy and templates), recorded/interpolated/plot/summary data, PE/AF expression evaluator, PI Web API router with PathOnly WebIDs (23 tests) | Vitest (TDD) |
+| 5.2 | Shared sandbox UI: tool frame, ARIA asset tree with drag, time range bar, trend chart | React, Recharts |
+| 5.3 | Six mockups built in parallel, each in its own folder: PI Vision (displays, symbols, multi-state, asset switching, collections, event tables, design/view modes), PI System Explorer (elements, attributes, analyses, event frames, library, check-in), PI SMT (Point Builder, archive editor, archives, message logs, statistics, tuning, security, licensing, piconfig/piartool console), PI Web API browser (request builder, Links, WebID decoder, snippets, batch, challenges), compression lab, DataLink-style sheet | Agent x4 |
+| 5.4 | Integration fixes from the workers' reports: templates build tag names with `%@Asset ID%` (element names keep the hyphen, tags do not); pump trips spread evenly (murmur3 finaliser on the hash); recorded-value cache keyed by point settings; PathOnly WebIDs leave out the leading `\\` as PI Web API does | Vitest |
+| 5.5 | e2e: hub, every tool opens without errors, Vision opens a display and switches asset | Playwright |
+
+## Phase 6: Reference, planner, industries (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 6.1 | Reference hub; glossary, PE/AF functions, Web API, commands, error codes (list + detail with sources); interactive decision-tree walker | React |
+| 6.2 | Tag-name generator and checker (forbidden characters, AF `%Element%` pattern) and archive sizing calculator from the course formulas only (7 tests) | Vitest |
+| 6.3 | Deployment Planner: industry, size, sites, edge sites, tags, assets, HA, security model, cloud. Outputs architecture diagram, servers by zone, data collection, AF hierarchy from the industry hub, archive sizes, real deployments of similar size, security, regulation (Part 11, NERC CIP, IEC 62443) and rollout. Every rule cites a source; combined rules are labelled "inferred". A test checks every cited source id exists | Vitest, Playwright |
+| 6.4 | 12 industry hubs and 83 real case studies from research/ind.md; every outcome says who reported it; 19 case studies and all hubs flagged verify where the source was inconsistent or the hierarchy is a synthesis | Agent, content validator |
+| 6.5 | e2e: reference tools, planner, industry hub and case study | Playwright |
+
+## Phase 7: Admin (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 7.1 | Content import/export core: JSON content packs validated per item, CSV export for any type, RFC 4180 CSV parser and glossary CSV import, verification queue (6 tests) | Vitest (TDD) |
+| 7.2 | Admin page: JSON editor per content type validated against the schema before saving, origin badges, revert to bundled, delete; import preview with per-item errors before anything is written; live coverage table per syllabus item; verification queue with deep links to the editor | React, Playwright |

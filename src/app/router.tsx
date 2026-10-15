@@ -29,6 +29,11 @@ export const FEATURE_ROUTES: RouteObject[] = [
     index: true,
     element: page(() => lz(import('@/features/dashboard/DashboardPage'), 'DashboardPage')),
   },
+  { path: 'learn', element: page(() => lz(import('@/features/learn/LearnPage'), 'LearnPage')) },
+  {
+    path: 'learn/:id',
+    element: page(() => lz(import('@/features/learn/LessonPage'), 'LessonPage')),
+  },
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
     path: 'settings',

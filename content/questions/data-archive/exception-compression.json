@@ -1,0 +1,187 @@
+[
+  {
+    "id": "q-exc-comp-where-exception",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 1,
+    "prompt": "Where is exception reporting applied?",
+    "options": [
+      { "id": "a", "text": "In the PI Interface, before data is sent to the Data Archive" },
+      { "id": "b", "text": "In the Snapshot Subsystem, before data is written to the archive" },
+      { "id": "c", "text": "In the Archive Subsystem write cache" },
+      { "id": "d", "text": "In PI Vision, when a trend is drawn" }
+    ],
+    "answer": "a",
+    "explanation": "Exception is a deadband filter applied only by PI Interfaces, before data reaches the snapshot, which saves network bandwidth. The Snapshot Subsystem applies compression, not exception.",
+    "lessonId": "exception-and-compression",
+    "tags": ["exception"],
+    "sources": ["da-uc23-exc-comp", "da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-exc-comp-compdev-zero",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 2,
+    "prompt": "A tag has Compressing = 1 and CompDev = 0. Its value stays at exactly 42.0 for an hour. What is archived?",
+    "options": [
+      { "id": "a", "text": "Every snapshot event, because a deviation of 0 keeps everything" },
+      { "id": "b", "text": "The repeated identical values are dropped; set Compressing = 0 to store every event" },
+      { "id": "c", "text": "Nothing at all until CompMin elapses" },
+      { "id": "d", "text": "Only the first event, and CompMax is ignored" }
+    ],
+    "answer": "b",
+    "explanation": "With compression on, CompDev = 0 still drops flat-lined (identical) values; the line between archived points reproduces them exactly. To archive every snapshot event, turn compression off with Compressing = 0. CompMax still forces an archived value after its time limit.",
+    "lessonId": "exception-and-compression",
+    "tags": ["compression", "pitfall"],
+    "sources": ["da-uc23-exc-comp", "da-ps-historize-constant-thread"]
+  },
+  {
+    "id": "q-exc-comp-rule-of-thumb",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 2,
+    "prompt": "An instrument's precision is ±0.4 in the tag's engineering units. Following AVEVA's rule of thumb, which settings are a sensible start?",
+    "options": [
+      { "id": "a", "text": "CompDev 0.4, ExcDev 0.2" },
+      { "id": "b", "text": "CompDev 0.2, ExcDev 0.4" },
+      { "id": "c", "text": "CompDev 0.8, ExcDev 0.4" },
+      { "id": "d", "text": "CompDev 0, ExcDev 0" }
+    ],
+    "answer": "a",
+    "explanation": "The rule of thumb is CompDev no larger than the instrument precision and ExcDev half of CompDev. Option b reverses them, option c makes CompDev wider than the instrument can resolve, and option d keeps noise.",
+    "lessonId": "exception-and-compression",
+    "tags": ["tuning"],
+    "sources": ["da-uc23-exc-comp", "da-ps-compdev-standard-thread"]
+  },
+  {
+    "id": "q-exc-comp-excmin",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 2,
+    "prompt": "Which statement about ExcMin is correct?",
+    "options": [
+      { "id": "a", "text": "It forces the interface to send a value at least every ExcMin seconds" },
+      { "id": "b", "text": "It blocks values that arrive sooner than ExcMin after the last reported value, and never forces a value to be sent" },
+      { "id": "c", "text": "It is the minimum deviation, in engineering units, for a value to be sent" },
+      { "id": "d", "text": "It controls how long the archive keeps a value" }
+    ],
+    "answer": "b",
+    "explanation": "ExcMin only blocks values and is typically 0. ExcMax is the time limit that forces a value through, and ExcDev is the deviation deadband.",
+    "lessonId": "exception-and-compression",
+    "tags": ["exception", "pitfall"],
+    "sources": ["da-ps-compmin-thread"]
+  },
+  {
+    "id": "q-exc-comp-defaults",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "Match each point attribute to its default value for a new point.",
+    "pairs": [
+      { "left": "ExcDevPercent", "right": "0.1" },
+      { "left": "ExcMax", "right": "600 seconds" },
+      { "left": "CompDevPercent", "right": "0.2" },
+      { "left": "CompMax", "right": "28800 seconds" }
+    ],
+    "explanation": "New points are filtered by default: ExcDevPercent 0.1, ExcMax 600 s (10 minutes), CompDevPercent 0.2 and CompMax 28800 s (8 hours).",
+    "lessonId": "exception-and-compression",
+    "tags": ["defaults"],
+    "sources": ["da-admin-workbook-2017r2", "da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-exc-comp-bypass",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 3,
+    "prompt": "Which of these bypass the compression test? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Out-of-order data" },
+      { "id": "b", "text": "Data backfilled before the current snapshot" },
+      { "id": "c", "text": "A new value that arrives after CompMax has elapsed" },
+      { "id": "d", "text": "Every value from an interface with ExcDev = 0" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "Out-of-order data and data backfilled before the snapshot go straight to the archive. A value after CompMax is still evaluated by the snapshot; it is archived because the time limit is reached. ExcDev = 0 only affects exception at the interface.",
+    "lessonId": "exception-and-compression",
+    "tags": ["compression"],
+    "sources": ["da-uc23-exc-comp", "da-ps-help-compdev-thread"]
+  },
+  {
+    "id": "q-exc-comp-data-path",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.snapshot-archive"],
+    "difficulty": 2,
+    "prompt": "Put the steps a new reading passes through in order, from the source to disk.",
+    "items": [
+      { "id": "a", "text": "Interface applies the exception test" },
+      { "id": "b", "text": "PI Buffer Subsystem forwards the event" },
+      { "id": "c", "text": "Snapshot Subsystem applies the compression test" },
+      { "id": "d", "text": "Event queue holds the event" },
+      { "id": "e", "text": "Archive Subsystem writes it to an archive file" }
+    ],
+    "explanation": "Exception runs at the interface, the buffer forwards to the server, the Snapshot Subsystem applies compression and passes archive-worthy events to the event queue, and the Archive Subsystem writes them to the archive files.",
+    "lessonId": "exception-and-compression",
+    "tags": ["data-flow"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-exc-comp-store-every-minute",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 3,
+    "scenario": "A totaliser tag often sits at the same value for hours. The reporting team needs one archived value every 60 seconds, even when nothing changes. Compression is on with default settings.",
+    "prompt": "Which change meets the requirement with the least side effect?",
+    "options": [
+      { "id": "a", "text": "Set CompDev to 0" },
+      { "id": "b", "text": "Set CompMax to 60" },
+      { "id": "c", "text": "Set ExcMin to 60" },
+      { "id": "d", "text": "Set CompMin to 60" }
+    ],
+    "answer": "b",
+    "explanation": "CompMax = 60 archives the next event once 60 seconds have passed since the last archived one, so a value is kept each minute. CompDev = 0 still drops identical values, ExcMin only blocks values, and CompMin delays archiving.",
+    "lessonId": "exception-and-compression",
+    "tags": ["compression", "scenario"],
+    "sources": ["da-ps-historize-constant-thread"]
+  },
+  {
+    "id": "q-exc-comp-disable-compression",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "difficulty": 1,
+    "prompt": "Which point attribute, set to 0, makes the Data Archive archive every snapshot event for that point?",
+    "accepted": ["Compressing", "compressing = 0", "compressing=0"],
+    "explanation": "Compressing = 0 turns compression off for the point, so every snapshot event is archived. CompDev = 0 is not the same: identical values are still dropped.",
+    "lessonId": "exception-and-compression",
+    "tags": ["compression"],
+    "sources": ["da-uc23-exc-comp", "da-ps-historize-constant-thread"]
+  },
+  {
+    "id": "q-exc-comp-below-deadband",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "difficulty": 2,
+    "scenario": "A tag has ExcDev 70 and CompDev 140 with default ExcMax and CompMax. An engineer finds archived values that differ from the previous archived value by only 5 units, roughly eight hours apart.",
+    "prompt": "What is the most likely explanation?",
+    "options": [
+      { "id": "a", "text": "Compression is broken and the archive needs reprocessing" },
+      { "id": "b", "text": "The time limits (ExcMax and CompMax) forced the values through" },
+      { "id": "c", "text": "ExcMin is set too high" },
+      { "id": "d", "text": "The interface ignores ExcDev when CompDev is set" }
+    ],
+    "answer": "b",
+    "explanation": "ExcMax (600 s by default) forces a value to be sent and CompMax (28800 s, 8 hours) forces one to be archived even when it is inside the deadband. Small changes eight hours apart are the expected signature of CompMax.",
+    "lessonId": "exception-and-compression",
+    "tags": ["troubleshooting"],
+    "sources": ["da-ps-help-compdev-thread", "da-admin-workbook-2017r2"]
+  }
+]

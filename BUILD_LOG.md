@@ -31,3 +31,15 @@ Running log of what was done at each step and which capability was used. Newest 
 | 2.7 | Playwright e2e smoke tests (3) and screenshots in light/dark; found and fixed a save-on-reload bug | Playwright, run |
 | 2.8 | Code review: 10 findings, 8 fixed (desktop build import, data loss on load failure, malformed restore rows, double bootstrap in dev, export errors, autosave retry, CI lockfile, search filter) | code-review skill |
 | 2.9 | Security review: no high/medium findings; renderer sanitisation noted for Phase 3 | security-review skill |
+
+## Phase 3: Learning engine (2026-10-15)
+
+| Step | What | Capability used |
+|---|---|---|
+| 3.1 | Research complete for all 6 groups (453 sources in `content/sources`); 3 gap agents started for functions, developer tools and PI Vision admin/ops | Agent x3, WebSearch, WebFetch |
+| 3.2 | Sanitised Markdown renderer (marked + DOMPurify allow-list, callouts, safe links, no images) and Mermaid diagrams (strict security, SVG labels, sanitised output) | Vitest |
+| 3.3 | Question card for all 7 question types with feedback, explanation, lesson link and sources; answers recorded and fed into SM-2 | React, Vitest |
+| 3.4 | Learn page (course paths by level, role paths, per-domain progress) and lesson page (objectives, six sections, key terms, knowledge check, complete, bookmark, notes, related, sources) | React |
+| 3.5 | CONTENT_GUIDE.md written; pilot content for `da.exception-compression`: 1 lesson, 10 questions (6 types), 10 glossary terms, all cited, 1 verify flag | Write, content validator |
+| 3.6 | Found and fixed: DOMPurify drops attribute values containing `-->`, which silently removed every Mermaid diagram; source is now URI-encoded and the unit test checks the round trip. Root-level `htmlLabels: false` restores node labels in Mermaid 12 | Playwright e2e, screenshots |
+| 3.7 | e2e: lesson renders all sections, the diagram draws and the knowledge check grades an answer (4 e2e tests total) | Playwright |

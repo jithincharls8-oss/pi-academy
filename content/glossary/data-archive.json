@@ -1,0 +1,104 @@
+[
+  {
+    "id": "exception-reporting",
+    "term": "Exception reporting",
+    "aliases": ["exception", "exception test"],
+    "definition": "Deadband filtering done by a PI Interface before data is sent to the Data Archive snapshot. A new value is sent only when it differs from the last sent value by more than ExcDev, or when ExcMax has elapsed.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "related": ["excdev", "excmax", "excmin", "compression"],
+    "sources": ["da-uc23-exc-comp", "da-admin-workbook-2017r2", "da-rockwell-ftme-glossary"]
+  },
+  {
+    "id": "compression",
+    "term": "Compression",
+    "aliases": ["data compression", "swinging-door compression"],
+    "definition": "Filtering done by the Snapshot Subsystem (or by the PI Buffer Subsystem as compression marking) that decides which snapshot events are written to the archive, using the swinging-door algorithm.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "related": ["swinging-door", "compdev", "compmax", "compmin", "compression-marking"],
+    "sources": ["da-uc23-exc-comp", "da-admin-workbook-2017r2", "da-rockwell-ftme-glossary"]
+  },
+  {
+    "id": "swinging-door",
+    "term": "Swinging door",
+    "aliases": ["swinging-door algorithm"],
+    "definition": "The compression algorithm used by the PI Data Archive. It keeps the events needed to reconstruct the signal as straight lines whose error stays within CompDev of every dropped value.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "related": ["compression", "compdev"],
+    "sources": ["da-rockwell-ftme-glossary", "da-ps-compression-formula-thread"]
+  },
+  {
+    "id": "excdev",
+    "term": "ExcDev",
+    "aliases": ["exception deviation", "ExcDevPercent"],
+    "definition": "Point attribute: how far, in engineering units, a new value must differ from the last sent value before the interface sends it. ExcDevPercent gives the same deadband as a percent of span (default 0.1).",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["exception-reporting", "excmax", "compdev"],
+    "sources": ["da-admin-workbook-2017r2", "da-rockwell-ftme-glossary"]
+  },
+  {
+    "id": "excmax",
+    "term": "ExcMax",
+    "aliases": ["exception maximum"],
+    "definition": "Point attribute: the longest time, in seconds, an interface can go without reporting a value. After ExcMax the next value is sent even if it is inside the ExcDev deadband. Default 600.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["exception-reporting", "excmin", "compmax"],
+    "sources": ["da-admin-workbook-2017r2", "da-ps-compmin-thread"]
+  },
+  {
+    "id": "excmin",
+    "term": "ExcMin",
+    "aliases": ["exception minimum"],
+    "definition": "Point attribute: values arriving sooner than ExcMin seconds after the last reported value are not sent. ExcMin never forces a value to be sent and is typically 0.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["exception-reporting", "excmax"],
+    "sources": ["da-ps-compmin-thread"]
+  },
+  {
+    "id": "compdev",
+    "term": "CompDev",
+    "aliases": ["compression deviation", "CompDevPercent"],
+    "definition": "Point attribute: the deviation, in engineering units, from the swinging-door line that makes an event significant enough to archive. CompDevPercent expresses it as a percent of span (default 0.2).",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["compression", "swinging-door", "excdev"],
+    "sources": ["da-admin-workbook-2017r2", "da-ps-help-compdev-thread"]
+  },
+  {
+    "id": "compmax",
+    "term": "CompMax",
+    "aliases": ["compression maximum"],
+    "definition": "Point attribute: once CompMax seconds have passed since the last archived event, the next event is archived regardless of deviation. Default 28800 (8 hours).",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["compression", "compmin", "excmax"],
+    "sources": ["da-rockwell-ftme-glossary", "da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "compmin",
+    "term": "CompMin",
+    "aliases": ["compression minimum"],
+    "definition": "Point attribute: the minimum time, in seconds, before a new value can be archived. Usually 0, especially when the interface already applies exception reporting.",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression", "da.point-attributes"],
+    "related": ["compression", "compmax"],
+    "sources": ["da-rockwell-studio5000-params", "da-ps-compmin-thread"]
+  },
+  {
+    "id": "compression-marking",
+    "term": "Compression marking",
+    "aliases": [],
+    "definition": "Compression decisions made in the PI Buffer Subsystem instead of the snapshot. Events are marked Snapshot Only (replaced when a new event arrives) or To Be Archived (stored).",
+    "domain": "data-archive",
+    "coverage": ["da.exception-compression"],
+    "related": ["compression"],
+    "sources": ["da-uc23-exc-comp", "da-admin-workbook-fr"],
+    "verify": true,
+    "verifyNote": "The minimum PI Buffer Subsystem version that supports compression marking is not confirmed in a readable source (research notes say 4.x)."
+  }
+]

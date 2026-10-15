@@ -29,10 +29,10 @@ Targets per item: at least 1 lesson, 8 questions and 4 glossary terms (more for 
 | ID | Item | Status | Lessons | Questions | Terms |
 |---|---|---|---|---|---|
 | da.points | Points and point classes | not started | 0 | 0 | 0 |
-| da.point-attributes | Point attributes (pointtype, pointsource, compressing, compdev, compmax, compmin, excdev, excmax, excmin, scan, span, zero, step, location1-5, instrumenttag, ...) | not started | 0 | 0 | 0 |
+| da.point-attributes | Point attributes (pointtype, pointsource, compressing, compdev, compmax, compmin, excdev, excmax, excmin, scan, span, zero, step, location1-5, instrumenttag, ...) | not started | 0 | 2 | 6 |
 | da.digital-sets | Digital state sets and system states | not started | 0 | 0 | 0 |
-| da.exception-compression | Exception and compression | not started | 0 | 0 | 0 |
-| da.snapshot-archive | Snapshot vs archive and the event queue | not started | 0 | 0 | 0 |
+| da.exception-compression | Exception and compression | drafted | 1 | 10 | 10 |
+| da.snapshot-archive | Snapshot vs archive and the event queue | not started | 0 | 1 | 0 |
 | da.archive-files | Archive files, shifts and management | not started | 0 | 0 | 0 |
 | da.backfill | Backfilling, out-of-order and future data | not started | 0 | 0 | 0 |
 | da.annotations | Annotations | not started | 0 | 0 | 0 |
@@ -165,5 +165,5 @@ Targets per item: at least 1 lesson, 8 questions and 4 glossary terms (more for 
 
 | ID | Item | Status | Lessons | Questions | Terms |
 |---|---|---|---|---|---|
-| glo.terms | 500+ glossary terms | not started | 0 | 0 | 0 |
+| glo.terms | 500+ glossary terms | not started | 0 | 0 | 10 |
 <!-- coverage:end -->

@@ -136,17 +136,28 @@ function smoothNoise(key: string, t: number, periodS: number): number {
  * Pump/unit state at time t: 0 Stopped, 1 Running, 2 Tripped. Each unit runs most of the time,
  * with a planned stop some days and an occasional trip that clears after 20–50 minutes.
  */
+/** murmur3 finaliser: spreads similar FNV inputs (P101 vs P102) across the whole range. */
+function mixed(key: string): number {
+  let h = hashString(key);
+  h ^= h >>> 16;
+  h = Math.imul(h, 0x85ebca6b);
+  h ^= h >>> 13;
+  h = Math.imul(h, 0xc2b2ae35);
+  h ^= h >>> 16;
+  return h >>> 0;
+}
+
 export function unitState(unit: string, t: number): 0 | 1 | 2 {
   const slot = Math.floor(t / (4 * HOUR)); // 4-hour slots
-  const h = hashString(`${unit}|slot|${slot}`) / 0xffffffff;
+  const h = mixed(`${unit}|slot|${slot}`) / 0xffffffff;
   const offset = t - slot * 4 * HOUR;
   if (h < 0.08) {
     // trip somewhere in the slot
-    const start = ((hashString(`${unit}|trip|${slot}`) % 180) + 30) * 60_000;
-    const dur = ((hashString(`${unit}|tripdur|${slot}`) % 30) + 20) * 60_000;
+    const start = ((mixed(`${unit}|trip|${slot}`) % 180) + 30) * 60_000;
+    const dur = ((mixed(`${unit}|tripdur|${slot}`) % 30) + 20) * 60_000;
     if (offset >= start && offset < start + dur) return 2;
   } else if (h < 0.14) {
-    const start = ((hashString(`${unit}|stop|${slot}`) % 120) + 20) * 60_000;
+    const start = ((mixed(`${unit}|stop|${slot}`) % 120) + 20) * 60_000;
     if (offset >= start && offset < start + 90 * 60_000) return 0;
   }
   return 1;
@@ -650,7 +661,7 @@ const SITE_POINTS: PointSpec[] = [
 
 /** AF templates, written the way PI System Explorer shows them. */
 function templates(): SimTemplate[] {
-  const pi = (suffix: string): string => `\\\\%Server%\\RB.%Element%.${suffix}`;
+  const pi = (suffix: string): string => `\\\\%Server%\\RB.%@Asset ID%.${suffix}`;
   const tpl = (
     name: string,
     description: string,
@@ -661,6 +672,15 @@ function templates(): SimTemplate[] {
     description,
     baseTemplate: 'Equipment',
     attributes: [
+      {
+        name: 'Asset ID',
+        type: 'String' as const,
+        uom: '',
+        dataReference: 'None' as const,
+        configString: '',
+        category: 'Identity',
+        description: 'Short equipment id used in PI tag names (P-101 uses RB.P101.*)',
+      },
       ...specs.map((s) => ({
         name: attributeName(s),
         type: (s.pointtype === 'Digital'
@@ -749,7 +769,18 @@ export function plant(): PlantModel {
   let n = 0;
   const unitElement = (u: UnitDef, parentPath: string): SimElement => {
     const path = `${parentPath}\\${u.name}`;
-    const attrs: SimAttribute[] = [];
+    const attrs: SimAttribute[] = [
+      {
+        name: 'Asset ID',
+        type: 'String',
+        uom: '',
+        dataReference: 'None',
+        configString: '',
+        value: u.id,
+        category: 'Identity',
+        description: 'Short equipment id used in PI tag names (P-101 uses RB.P101.*)',
+      },
+    ];
     for (const s of u.specs) {
       const p = makePoint(u.id, s, n++);
       points.push(p);

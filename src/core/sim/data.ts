@@ -55,7 +55,7 @@ const cache = new Map<string, TimedValue[]>();
 /** Archived (recorded) values in a range, after exception and compression. */
 export function recorded(tag: string | SimPoint, start: number, end: number): TimedValue[] {
   const p = point(tag);
-  const key = `${p.tag}|${start}|${end}`;
+  const key = `${p.tag}|${start}|${end}|${p.excdev}|${p.excmin}|${p.excmax}|${p.compressing}|${p.compdev}|${p.compmin}|${p.compmax}`;
   const hit = cache.get(key);
   if (hit) return hit;
   // Start a little early so the first archived event is not simply the window start.

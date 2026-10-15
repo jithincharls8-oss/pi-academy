@@ -51,6 +51,22 @@ export const FEATURE_ROUTES: RouteObject[] = [
     element: page(() => lz(import('@/features/exam/QuestionPage'), 'QuestionPage')),
   },
   {
+    path: 'sandbox',
+    element: page(() =>
+      import('@/features/sandbox/SandboxPage').then((m) => ({
+        default: () => <m.SandboxPage enabled={(to) => enabledPaths(FEATURE_ROUTES).has(to)} />,
+      })),
+    ),
+  },
+  {
+    path: 'sandbox/explorer',
+    element: page(() => lz(import('@/features/sandbox/explorer/ExplorerPage'), 'ExplorerPage')),
+  },
+  {
+    path: 'sandbox/smt',
+    element: page(() => lz(import('@/features/sandbox/smt/SmtPage'), 'SmtPage')),
+  },
+  {
     path: 'reference',
     element: page(() => lz(import('@/features/reference/ReferencePage'), 'ReferencePage')),
   },

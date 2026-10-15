@@ -1,0 +1,10 @@
+dist
+node_modules
+src-tauri/target
+src-tauri/gen
+public/content
+coverage
+playwright-report
+test-results
+*.md
+content

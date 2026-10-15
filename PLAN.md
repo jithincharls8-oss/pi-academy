@@ -133,8 +133,8 @@ Common fields on every content item: `id` (kebab), `domain` (one of 12 coverage 
 | 2 | Platform scaffold | App shell, themes, routing, DB + migrations + seeding, loader, search, backup/restore, PWA, Tauri config, CI workflows |
 | 3 | Learning engine | Paths, lesson renderer with Mermaid/callouts, progress, bookmarks, notes, global search |
 | 4 | Exam engine | Daily exam, all question types and graders, feedback, streaks, history, heatmap, SM-2 review, quizzes, mock exams, readiness |
-| 5 | Sandbox | AF tree browser, point editor, compression simulator, display builder, PE evaluator, Web API simulator, challenges |
-| 6 | Reference, industries, case studies | Glossary, Web API explorer and cheat sheet, AF/PE references, piconfig/piartool, error codes, tag-name generator, sizing calculator, decision trees, hubs, case library |
+| 5 | Sandbox | Detailed mockups (PI Vision, PI System Explorer, PI SMT, Web API browser, compression lab, DataLink-style sheet), PE evaluator, challenges |
+| 6 | Reference, industries, case studies | Glossary, Web API explorer and cheat sheet, AF/PE references, piconfig/piartool, error codes, tag-name generator, sizing calculator, decision trees, hubs, case library, Deployment Planner (small / mid / large by industry) |
 | 7 | Admin, dashboard, settings | CRUD, JSON/CSV import/export, coverage dashboard, verification workflow, settings |
 | 8 | Content fill | Parallel per-domain subagents; targets 1,000+ questions, 500+ terms, 30+ case studies; honest statuses |
 | 9 | Hardening and release | e2e, WCAG AA, performance, security, installers via CI, INSTALL.md, FINAL_REPORT.md |
@@ -147,3 +147,32 @@ Common fields on every content item: `id` (kebab), `domain` (one of 12 coverage 
 ## 8. Quality gates
 
 Typecheck (`tsc --noEmit`, strict, `noImplicitAny`, ESLint `no-explicit-any` as error), ESLint, Prettier check, Vitest (40+ tests), content validator, Playwright e2e on the PWA build, code review and security review per milestone.
+
+## 9. Additions requested by Jithin (2026-10-15)
+
+### 9.1 Detailed PI tool mockups (Phase 5, "Sandbox")
+High-fidelity, interactive look-alikes of the real clients, all running on the shared synthetic
+plant model (`src/core/sim/plant.ts`, a deterministic generator of AF elements, PI points and
+time-series data). They are labelled as simulations and do not reuse AVEVA logos or assets.
+
+| Mockup | What you can do |
+|---|---|
+| PI Vision | Display list and folders; edit mode with symbol palette (Value, Trend, Table, Bar, Gauge, XY Plot, Asset Comparison Table, Event Table, Text, Shapes, Image placeholders); drag from the asset tree onto the canvas; multi-state colouring; time bar (start/end, `*-8h` syntax, shift back/forward, now); asset swapping with an asset-relative display; collections; event (event frame) view; ad-hoc trend; save/open displays locally |
+| PI System Explorer | Navigator (Elements, Event Frames, Library, Unit of Measure, Contacts, Notification Rules), element tree, Attributes tab with data reference config, Templates, Analyses tab with expression editor and Evaluate, Event frame search, check-in/undo-check-out model |
+| PI System Management Tools | Point Builder (all point attributes, with validation), Current Values, Archive Editor, Archives list, Message Logs, Tuning Parameters, Mappings & Trusts, Identities |
+| PI Web API browser | Request builder with history, the simulated controllers, WebIDs, JSON viewer |
+| Compression lab | Raw vs exception vs archived data with live charts and the swinging-door band |
+| DataLink-style sheet | Current value / compressed / sampled / calculated data functions into a grid |
+
+### 9.2 Deployment Planner (Phase 6)
+Pick an industry (the 12 hubs) and a company profile (Small single site, Mid-size multi-site,
+Large enterprise / multi-region). The planner produces:
+- an architecture diagram (Mermaid) with zones (Level 2 control, Level 3 operations, DMZ, enterprise, cloud);
+- server roles (Data Archive, AF Server + SQL, PI Vision, PI Web API, Analysis/Notifications, Integrator, collectives/HA where justified);
+- data collection choices (interfaces, connectors, adapters, PI to PI, AVEVA CONNECT);
+- an AF hierarchy and templates from the industry hub;
+- a tag-count and storage estimate (from the sizing calculator);
+- security controls (IEC 62443 zones/conduits, NERC CIP for power, GxP for pharma);
+- a phased rollout plan and pitfalls.
+Rules: each recommendation carries either source ids or an explicit "assumption" label; sizing
+numbers come from documented formulas only, otherwise they are marked as illustrative.

@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+coverage
+playwright-report
+test-results
+public/content/bundle.json
+public/content/coverage.json
+src-tauri/target
+src-tauri/gen/schemas
+*.local
+.DS_Store

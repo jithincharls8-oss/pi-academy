@@ -1,0 +1,664 @@
+[
+ {
+  "id": "da-wiki-osisoft",
+  "title": "OSIsoft - Wikipedia",
+  "url": "https://en.wikipedia.org/wiki/OSIsoft",
+  "publisher": "Wikipedia",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-automationworld-2020",
+  "title": "Aveva to Acquire OSIsoft",
+  "url": "https://www.automationworld.com/control/article/21172734/aveva-to-acquire-osisoft",
+  "publisher": "Automation World",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Dated 25 Aug 2020"
+ },
+ {
+  "id": "da-arc-completion-2021",
+  "title": "AVEVA Completes Acquisition of OSIsoft",
+  "url": "https://www.arcweb.com/node/111366",
+  "publisher": "ARC Advisory Group",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "19 Mar 2021"
+ },
+ {
+  "id": "da-lns-2020",
+  "title": "AVEVA Acquires OSIsoft in $5 Billion Deal",
+  "url": "https://blog.lnsresearch.com/aveva-acquires-osisoft-in-5-billion-deal",
+  "publisher": "LNS Research",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-schnitger-2020",
+  "title": "AVEVA did it: reaches deal to acquire OSIsoft for $5 billion",
+  "url": "https://schnitgercorp.com/2020/08/25/aveva-did-it-reaches-deal-to-acquire-osisoft-for-5-billion/",
+  "publisher": "Schnitger Corporation",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-aveva-schneider-2023",
+  "title": "AVEVA announces the completion of its acquisition by Schneider Electric",
+  "url": "https://www.aveva.com/en/about/news/press-releases/2023/aveva-announces-the-completion-of-its-acquisition-by-schneider-electric/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "18 Jan 2023"
+ },
+ {
+  "id": "da-arc-avevaworld-2025",
+  "title": "AVEVA World 2025: Unifying Legacies and Forging Ecosystems for the Industrial AI Era",
+  "url": "https://www.arcweb.com/blog/aveva-world-2025-unifying-legacies-forging-ecosystems-industrial-ai-era",
+  "publisher": "ARC Advisory Group",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-arc-datahub-2021",
+  "title": "Cloud-Based Operational Data Sharing for Industrial Enterprises with Announcement of AVEVA Data Hub",
+  "url": "https://www.arcweb.com/blog/cloud-based-operational-data-sharing-industrial-enterprises-announcement-aveva-data-hub",
+  "publisher": "ARC Advisory Group",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "19 Oct 2021"
+ },
+ {
+  "id": "da-aveva-ocs-2021",
+  "title": "Presentation: OCS: OSIsoft Cloud Services",
+  "url": "https://www.aveva.com/en/perspectives/presentations/2021/ocs--osisoft-cloud-services/",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "States rename to AVEVA Data Hub as of 09 Feb 2022"
+ },
+ {
+  "id": "da-aveva-roadmap-2021",
+  "title": "2021 AVEVA PI World - Roadmap Update",
+  "url": "https://www.aveva.com/en/perspectives/presentations/2021/roadmap-update/",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-aveva-cds-blog-2024",
+  "title": "AVEVA Data Hub is becoming CONNECT data services",
+  "url": "https://www.aveva.com/en/perspectives/blog/aveva-data-hub-is-becoming-connect-data-services/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "July 2024 blog"
+ },
+ {
+  "id": "da-aveva-pi-system-page",
+  "title": "AVEVA PI System product page",
+  "url": "https://www.aveva.com/en/products/aveva-pi-system/",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Marketing claims"
+ },
+ {
+  "id": "da-aveva-pi-server-2022",
+  "title": "Presentation: AVEVA PI Server, now and looking forward",
+  "url": "https://www.aveva.com/en/perspectives/presentations/2022/aveva-pi-server--now-and-looking-forward/",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Landing page only"
+ },
+ {
+  "id": "da-flex-pdf",
+  "title": "AVEVA Flex: Eliminate traditional barriers to adoption with technical and commercial flexibility",
+  "url": "https://cdn.mediavalet.com/eunl/content/zJAKrNwXNUmvNddZkzQJdg/HJWovbPlpk-HcD6u6n_u2w/Original/AVEVA%20Flex%3A%20Eliminate%20traditional%20barriers%20to%20adoption%20with%20technical%20and%20commercial%20flexibility.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "PI World 2020/2021 deck"
+ },
+ {
+  "id": "da-flow-software-2025",
+  "title": "Migrating from PI AF to a Timebase and InfoHub architecture",
+  "url": "https://flow-software.com/articles/migrating-from-pi-af-to-a-timebase-and-infohub-architecture",
+  "publisher": "Flow Software",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Competitor marketing; licensing figures unofficial"
+ },
+ {
+  "id": "da-osisoft-kennedy-welcome",
+  "title": "Welcome from our CEO and founder Pat Kennedy",
+  "url": "https://1980slca7023akamai94577.osisoft.com/presentations/welcome-from-our-ceo-and-founder-pat-kennedy",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-admin-workbook-2017r2",
+  "title": "PI System Administration for IT Professionals - Version 2017 R2 (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemAdministratorForITProfessionalsWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Main source; text extract ~122k chars, partly truncated"
+ },
+ {
+  "id": "da-admin-workbook-fr",
+  "title": "Administration du PI System Version 2016 R2 (workbook, French)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemAdministratorForITProfessionalsWorkbook_French.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-arch-workbook",
+  "title": "PI System Architecture, Planning and Implementation Course (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemArchitecturePlanningAndImplementationWorkbook.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Recent edition (mentions PI Server 2023, Windows Server 2022)"
+ },
+ {
+  "id": "da-assets-workbook",
+  "title": "Building PI System Assets and Analytics with PI AF (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/BuildingPISystemAssetsWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-visualizing-workbook",
+  "title": "Visualizing PI System Data Version 2024 (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/VisualizingPISystemDataWorkbook.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-pi-programming-pdf",
+  "title": "Learn the Basics of PI Programming",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/Learn%20the%20Basics%20of%20PI%20Programming.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-pse-builder-tips-pdf",
+  "title": "Tips and Tricks with PI System Explorer and PI Builder",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/Tips%20and%20Tricks%20with%20PI%20System%20Explorer%20and%20PI%20Builder.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-pi101-2017-basics",
+  "title": "PI System Basics (UC 2017, PI System 101 Basics for Beginners)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2017-uc-san-francisco/UC17NA03P102_OSIsoft_Collins_Doherty_PISystem101-BasicsForBeginners.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-pi101-2017-academic",
+  "title": "What is the PI System? (PI 101 general introduction, 2017)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2017-uc-san-francisco/UC17NA00AS01_OSIsoft_Collins_PI-System-101--General-introduction-to-the-PI-System.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-uc23-exc-comp",
+  "title": "Exception, Compression, and their Impacts on PI System Performance (UC 2023)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-3PGK04-AVEVA_Bregenzer_Brent-Exception-Compression-and-their-Impacts-On-PI-System-Performance.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-uc23-da-performance",
+  "title": "Creating a high-performing data archive (UC 2023)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK02-AVEVA-Sick-Optimizing-data-archive-performance-for--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-uc23-security",
+  "title": "Best practices for security in AVEVA PI System (UC 2023)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK06-AVEVA-Biggins-Best-practices-for-security-in--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-vcampus-2010-tuning",
+  "title": "PI System Tuning and Optimization (vCampus Live 2010)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2010/vCampusLive2010/PDF/VL2010_D2TR2_Optimization_Lakumb_Vacher.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Archive sizing slide example appears inconsistent"
+ },
+ {
+  "id": "da-uc2011-tips-trenches",
+  "title": "Tips from the Trenches (UC 2011)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/UsersConference2011/PDF/PT1940_OSIsoft_Nye_Tips_from_the_Trenches.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-rs2011-arch-best-practices",
+  "title": "Architecture and Best Practices (Regional Seminar 2011)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/RegionalSeminars/PDF/RS2011_NC_OSIsoft_Lonsberry_Architecture-Best-Practices.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-rs2010-rome-arch",
+  "title": "Architecture and Best Practices (Regional Seminar 2010 Rome)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2010/RegionalSeminars/Rome/PDF/RS2010_Rome_Architecture_Best_Practices_Batke.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-rs2011-pisystem2010",
+  "title": "The PI System as an Infrastructure: Overview of PI System 2010",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/RegionalSeminars/PDF/RS2011_Turkey_OSIsoft_Batke_PI-System-2010.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-dell-wp-2012",
+  "title": "PI Server 2012 Smart Grid High-Speed Data Management (Dell white paper)",
+  "url": "https://cdn.osisoft.com/corp/en/docs/whitepapers/WP_HighSpeedDataManagement_Dell.pdf",
+  "publisher": "OSIsoft",
+  "kind": "whitepaper",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Nov 2012"
+ },
+ {
+  "id": "da-emea14-future-data",
+  "title": "2015: Future Data captured in the PI Data Archive and the PI System (EMEA 2014)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2014/EMEA2014/PDF/EMEA14_OSIsoft_KwanOmarShafie_2015FutureDatacapturedinthePIDataArchiveandthePISystem.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-rs2015-future-data",
+  "title": "PI Server 2015: Using Future Data for Operational Insights (RS 2015 Memphis)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/RegionalSeminars/RS2015_Memphis/PDF/RS15NA01O107_OSIsoft_Nguyen_PIServer2015UsingFutureDataforOperationalInsights.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-wwwtest-future-page",
+  "title": "2015: Future data captured in the PI Data Archive and the PI System (abstract page)",
+  "url": "https://wwwtest.osisoft.com/presentations/2015--future-data-captured-in-the-pi-data-archive-and-the-pi-system-",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-uc2015-roadmap-hughes",
+  "title": "PI System Roadmap for the Enterprise Data Infrastructure (UC 2015)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/UsersConference2015/PDF/UsersConference2015_OSIsoft_Hughes_PISystemRoadmapfortheEnterpriseDataInfrastructure.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-uc2003-system-mgmt",
+  "title": "PI System Management (UC 2003)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/uc/uc2003/325.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Old (2003)"
+ },
+ {
+  "id": "da-uc2002-251",
+  "title": "UC 2002 presentation 251 (SMT / PI-SDK tools)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/uc/uc2002/251.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Old (2002)"
+ },
+ {
+  "id": "da-ps-msglog-blog",
+  "title": "How to deal with PI Message Logs",
+  "url": "https://community.aveva.com/pi-square-community/b/aveva-blog/posts/how-to-deal-with-pi-message-logs",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "2012-era blog"
+ },
+ {
+  "id": "da-ps-piarch-thread",
+  "title": "Read a piarch-file",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/97875/read-a-piarch-file",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-pointclass-thread",
+  "title": "Changing the point class of a PI Tag",
+  "url": "https://community.aveva.com/pi-square-community/pi-system-retired-products/f/retired_products/89723/changing-the-point-class-of-a-pi-tag",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Old thread"
+ },
+ {
+  "id": "da-ps-compmin-thread",
+  "title": "PI Archive Compression Settings - Deviation And Minimum Time",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/98259/pi-archive-compression-settings---deviation-and-minimum-time",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-compdev-standard-thread",
+  "title": "CompDev and other attributes Standard",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/89547/compdev-and-other-attributes-standard",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-help-compdev-thread",
+  "title": "Help on compression & exception deviation settings",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/95284/help-on-compression-exception-deviaiton-settings",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-historize-constant-thread",
+  "title": "Historize Constant Or Not Changing Value in Historian",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/88913/historize-constant-or-not-changing-value-in-historian",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-interp-thread",
+  "title": "PI Interpolating Data Unexpectedly",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/84504/pi-interpolating-data-unexpectedly",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-step-thread",
+  "title": "Alternatives to step function - store last value before change?",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/86749/alternatives-to-step-function---store-last-value-before-change",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-string-thread",
+  "title": "String PI Point",
+  "url": "https://community.aveva.com/pi-square-community/f/data-ingress-and-export/91379/string-pi-point",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-webapi-create-thread",
+  "title": "PI Web API Create Tags",
+  "url": "https://community.aveva.com/pi-square-community/f/developer-tools/96105/pi-web-api-create-tags",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-opcua-integrity-thread",
+  "title": "PI OPC UA Data Integrity?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/92678/pi-opc-ua-data-integrity",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-pointsource-thread",
+  "title": "PI Connector modify name of Point Source",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/97759/pi-connector-modify-name-of-point-source",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-ps-compression-formula-thread",
+  "title": "osisoft pi compression and exception formula",
+  "url": "https://community.aveva.com/pi-square-community/f/general-discussion/91505/osisoft-pi-compression-and-exception-formula",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Points to KB00699"
+ },
+ {
+  "id": "da-fb-pida-1092",
+  "title": "PIDA-I-1092: Allow specifying a range of older archive files to backup in piartool",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDA-I-1092",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Feedback portal"
+ },
+ {
+  "id": "da-fb-pida-1142",
+  "title": "PIDA-I-1142: Add flag for offline archive reprocessing to honor archived digital state values",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDA-I-1142",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Completed in PI Server 2018 SP3 Patch 3"
+ },
+ {
+  "id": "da-fb-pisrv-1351",
+  "title": "PISRV-I-1351: Option to ignore the digital state set ID in historical archive record headers",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PISRV-I-1351",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-fb-pida-84",
+  "title": "PIDA-I-84: Save multiple AF Backups with custom file names",
+  "url": "https://feedback.aveva.com/ideas/PIDA-I-84",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-fb-pida-439",
+  "title": "PIDA-I-439: Use full names and supported ranges in the Point Type dropdown",
+  "url": "https://feedback.aveva.com/ideas/PIDA-I-439",
+  "publisher": "AVEVA",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Ranges stated by a guest, unofficial"
+ },
+ {
+  "id": "da-tibco-tagdef",
+  "title": "TIBCO BW Plug-in for PI: Attributes in tagDefinitionList",
+  "url": "https://docs.tibco.com/pub/bwpluginpi/6.5.0/doc/html/users-guide/attributes-in-tagdef.htm",
+  "publisher": "TIBCO",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party description of PI point attributes"
+ },
+ {
+  "id": "da-rockwell-ftse-attrs",
+  "title": "FactoryTalk Historian SE Web API: GetPointsAttributes attributes",
+  "url": "https://www.rockwellautomation.com/en-in/docs/factorytalk-historian-site-edition/12-01-00/historian-webapi-ditamap/single-service/point/getpointsattributes/attributes.html",
+  "publisher": "Rockwell Automation",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "FT Historian SE is OEM PI Data Archive; attribute names only"
+ },
+ {
+  "id": "da-rockwell-studio5000-params",
+  "title": "Historian Point Type parameters (Studio 5000 Application Code Manager)",
+  "url": "https://www.rockwellautomation.com/en-hu/docs/studio-5000-application-code-manager/5-01/application-code-manager-help-ditamap/project-development/historian-point-type-parameters.html",
+  "publisher": "Rockwell Automation",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "da-rockwell-ftme-glossary",
+  "title": "FactoryTalk Historian ME glossary terms",
+  "url": "https://www.rockwellautomation.com/en-hu/docs/factorytalk-historian-machine-edition/7-102/fthme-help-series-c-ie-ditamap/glossary/glossary-terms.html",
+  "publisher": "Rockwell Automation",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "PI-derived historian glossary"
+ },
+ {
+  "id": "da-rockwell-ftme-general",
+  "title": "FactoryTalk Historian ME: Define point attributes - General",
+  "url": "https://www.rockwellautomation.com/en-ca/docs/factorytalk-historian-machine-edition/7-102/fthme-help-series-c-ie-ditamap/manage-points/define-point-attributes/general.html",
+  "publisher": "Rockwell Automation",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "ME edition differs from PI Data Archive"
+ },
+ {
+  "id": "da-livelibrary-piconfig",
+  "title": "Options for the piconfig command (LiveLibrary Demo mirror)",
+  "url": "http://aviuxd.github.io/livelibrary/piconfigcommand.html",
+  "publisher": "github.io (unofficial mirror)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Partial command table; unofficial"
+ },
+ {
+  "id": "da-pshell-startpibackup",
+  "title": "Start-PIBackup cmdlet (PI PowerShell 3.1.1)",
+  "url": "https://docs.aveva.com/bundle/pi-powershell-3.1.1/page/html/T_OSIsoft_PowerShell_StartPIBackup.htm",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "JS-rendered; title only"
+ },
+ {
+  "id": "da-docs-piartool-backups",
+  "title": "Use the piartool utility to manage archives and backups",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-reference/page/1021477.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited; for verification"
+ },
+ {
+  "id": "da-docs-da-tables",
+  "title": "PI Data Archive tables and primary keys",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-reference/page/1020391.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited; for verification"
+ },
+ {
+  "id": "da-docs-point-creation-tips",
+  "title": "Tips and hints for PI point creation",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-admin/page/1509132.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited; for verification"
+ },
+ {
+  "id": "da-docs-base-class-attrs",
+  "title": "Base class point attributes",
+  "url": "https://osisoft-prod.zoominsoftware.io/bundle/pi-server-s-da-admin/page/1021665.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited; JS shell only"
+ }
+]

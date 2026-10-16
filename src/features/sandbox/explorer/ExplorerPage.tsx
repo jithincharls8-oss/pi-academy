@@ -198,7 +198,7 @@ export function ExplorerPage() {
   })();
 
   return (
-    <div className="mx-auto max-w-[96rem] p-4 md:p-6">
+    <div className="mx-auto max-w-[120rem]">
       <PageHeader
         title="AF Explorer sandbox"
         description="A PI System Explorer style mockup on the fictional Riverbend database. Browse elements and live attributes, re-point a PI Point data reference, write and evaluate analyses, search event frames and inspect the Library. Edits stay in this page: check them in, undo them, or reset."

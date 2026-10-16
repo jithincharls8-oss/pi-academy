@@ -2,6 +2,8 @@ import { Switch as SwitchPrimitive, Progress as ProgressPrimitive } from 'radix-
 import type { ComponentProps, ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 import { Pip, type PipMood } from './pip';
+import { Info } from 'lucide-react';
+import { useToolMode } from '@/app/toolMode';
 
 export function Switch({ className, ...p }: ComponentProps<typeof SwitchPrimitive.Root>) {
   return (
@@ -80,6 +82,28 @@ export function PageHeader({
   actions?: ReactNode;
   eyebrow?: ReactNode;
 }) {
+  const toolMode = useToolMode();
+  if (toolMode) {
+    // Full-screen tool: the tool is the page, so the explanation folds away.
+    return (
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+          <h1 className="text-[17px] font-semibold tracking-[-0.02em]">{title}</h1>
+          {description ? (
+            <details className="group text-sm">
+              <summary className="flex cursor-pointer list-none items-center gap-1 rounded-full px-2 py-0.5 text-[13px] font-medium text-primary hover:bg-primary-soft">
+                <Info className="size-3.5" aria-hidden /> About this mockup
+              </summary>
+              <p className="absolute z-20 mt-2 max-w-xl rounded-xl bg-surface p-4 leading-relaxed text-fg-muted shadow-raised ring-1 ring-border">
+                {description}
+              </p>
+            </details>
+          ) : null}
+        </div>
+        {actions ? <div className="flex flex-wrap gap-2">{actions}</div> : null}
+      </div>
+    );
+  }
   return (
     <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-0">

@@ -242,3 +242,59 @@ h3 {
 .select-chevron {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238e8e93' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 6.5 8 10l3.5-3.5'/%3E%3C/svg%3E");
 }
+
+/*
+ * PI tool mockups look like Windows desktop clients, not like the app around them: system UI
+ * font at desktop density, square controls, no pill shapes or press animation. This CSS is
+ * unlayered on purpose so it wins over the Tailwind utility layer inside the frame.
+ */
+.tool-skin {
+  font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, system-ui, sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+.tool-skin * {
+  font-size: inherit;
+  letter-spacing: inherit;
+}
+.tool-skin :is(.font-mono, code, kbd, pre, textarea.font-mono) {
+  font-family: Consolas, 'Cascadia Mono', var(--font-mono);
+}
+.tool-skin :is(h2, h3) {
+  font-size: 14px;
+  font-weight: 600;
+}
+.tool-skin :is(button, input, select, textarea, [role='tab'], [role='tablist'], summary) {
+  border-radius: 2px;
+}
+.tool-skin button {
+  font-weight: 400;
+  box-shadow: none;
+}
+.tool-skin button:active {
+  transform: none;
+}
+.tool-skin :is(input, select) {
+  height: auto;
+  min-height: 24px;
+  padding-block: 2px;
+}
+.tool-skin [role='tablist'] {
+  background: transparent;
+  padding: 0;
+  gap: 0;
+  border-bottom: 1px solid var(--tool-grid);
+}
+.tool-skin [role='tab'] {
+  font-weight: 400;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  margin-bottom: -1px;
+}
+.tool-skin [role='tab'][data-state='active'] {
+  background: var(--tool-canvas);
+  border-color: var(--tool-grid);
+  box-shadow: none;
+}

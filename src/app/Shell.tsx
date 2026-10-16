@@ -1,6 +1,15 @@
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Flame, Menu, RotateCcw, Search, Star, WifiOff } from 'lucide-react';
+import {
+  ChevronLeft,
+  FlaskConical,
+  Flame,
+  Menu,
+  RotateCcw,
+  Search,
+  Star,
+  WifiOff,
+} from 'lucide-react';
 import { NAV, NAV_GROUPS, type NavItem } from './nav';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { cn } from '@/lib/cn';
@@ -8,6 +17,7 @@ import { useOnline } from '@/lib/useOnline';
 import { Pip } from '@/components/ui/pip';
 import { Progress } from '@/components/ui/misc';
 import { useLearner } from './useLearner';
+import { ToolModeContext, isToolPath } from './toolMode';
 
 export function Shell({ enabled }: { enabled: ReadonlySet<string> }) {
   const [open, setOpen] = useState(false);
@@ -29,6 +39,32 @@ export function Shell({ enabled }: { enabled: ReadonlySet<string> }) {
 
   const items = NAV.filter((n) => enabled.has(n.to));
   const groups = Object.entries(NAV_GROUPS) as [NavItem['group'], string][];
+
+  if (isToolPath(location.pathname)) {
+    return (
+      <ToolModeContext.Provider value>
+        <div className="flex min-h-screen flex-col">
+          <header className="material sticky top-0 z-10 flex h-11 items-center gap-3 border-b border-material-border px-3">
+            <NavLink
+              to="/sandbox"
+              className="flex items-center gap-1 rounded-full py-1 pr-3 pl-1.5 text-sm font-medium text-primary hover:bg-primary-soft"
+            >
+              <ChevronLeft className="size-4" aria-hidden /> PI Academy
+            </NavLink>
+            <span className="ml-auto flex items-center gap-1.5 text-xs font-medium text-fg-muted">
+              <FlaskConical className="size-3.5" aria-hidden /> Simulation on fictional data. Not
+              the real product.
+            </span>
+          </header>
+          <main id="main" className="w-full min-w-0 flex-1 p-3 [&>*]:max-w-none">
+            <ErrorBoundary key={location.pathname}>
+              <Outlet />
+            </ErrorBoundary>
+          </main>
+        </div>
+      </ToolModeContext.Provider>
+    );
+  }
 
   return (
     <div className="flex min-h-screen">

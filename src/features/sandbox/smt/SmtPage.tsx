@@ -190,7 +190,7 @@ export function SmtPage() {
   );
 
   return (
-    <div className="mx-auto max-w-[96rem] p-4 sm:p-6">
+    <div className="mx-auto max-w-[120rem]">
       <PageHeader
         title="System Management Tools sandbox"
         description="Play with a PI Data Archive administration console on the fictional Riverbend plant: build and edit points, edit archived values, watch statistics, shift archives, tune parameters and run piconfig and piartool. Nothing here touches a real server, and every change lives only in this page until you reset or leave."

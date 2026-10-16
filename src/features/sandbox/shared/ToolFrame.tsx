@@ -25,7 +25,7 @@ export function ToolFrame({
     <section
       aria-label={`${title} (simulation)`}
       className={cn(
-        'flex min-h-[36rem] flex-col overflow-hidden rounded-lg border border-border bg-tool-canvas shadow-sm',
+        'tool-skin flex min-h-[max(36rem,calc(100vh-8rem))] flex-col overflow-hidden rounded-md border border-border-strong bg-tool-canvas shadow-raised',
         className,
       )}
     >

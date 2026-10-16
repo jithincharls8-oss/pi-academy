@@ -1,0 +1,359 @@
+[
+  {
+    "id": "q-rollups-summaries-rollup-functions",
+    "type": "multi",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 1,
+    "prompt": "Which functions can a Rollup analysis use? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sum"
+      },
+      {
+        "id": "b",
+        "text": "Average"
+      },
+      {
+        "id": "c",
+        "text": "Minimum"
+      },
+      {
+        "id": "d",
+        "text": "Maximum"
+      },
+      {
+        "id": "e",
+        "text": "Count"
+      },
+      {
+        "id": "f",
+        "text": "Median"
+      },
+      {
+        "id": "g",
+        "text": "Integral"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "explanation": "Rollup functions are Sum, Average, Minimum, Maximum, Count and Median. Integral (totalising over time) is TagTot's job, not a rollup function.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-farm",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "In the PI World 2019 lab, which rollup function is used on the Farm template for Average Production Efficiency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sum"
+      },
+      {
+        "id": "b",
+        "text": "Average"
+      },
+      {
+        "id": "c",
+        "text": "Median"
+      },
+      {
+        "id": "d",
+        "text": "Maximum"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The lab uses Sum for Expected Power Production and Net Production Delta, and Average for Average Production Efficiency, on a 5-minute frequency.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-history-off",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: you can turn off output history on a Rollup analysis and write results to an Analysis data reference.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Rollup outputs must be PI Points, and rollup analyses do not allow turning off output history.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-flags",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 3,
+    "prompt": "AFSummaryTypes is a flags enum: Total=1, Average=2, PercentGood=8192. What single value requests all three?",
+    "accepted": [
+      "8195"
+    ],
+    "caseSensitive": false,
+    "explanation": "Flags add: 1 + 2 + 8192 = 8195.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "fn-gh-piconnect-af-data"
+    ],
+    "verify": true,
+    "verifyNote": "The combined value is our arithmetic from the third-party enum values; confirm against AF SDK docs."
+  },
+  {
+    "id": "q-rollups-summaries-enum",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each AFSummaryTypes member to its value.",
+    "pairs": [
+      {
+        "left": "Total",
+        "right": "1"
+      },
+      {
+        "left": "Average",
+        "right": "2"
+      },
+      {
+        "left": "Minimum",
+        "right": "4"
+      },
+      {
+        "left": "Maximum",
+        "right": "8"
+      },
+      {
+        "left": "Count",
+        "right": "128"
+      }
+    ],
+    "explanation": "These flag values were read from AF SDK type stubs and a PI Web API reference copy.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "fn-gh-piconnect-af-data"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-count-meaning",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 3,
+    "prompt": "What does the Count summary type return for a time-weighted calculation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The number of events"
+      },
+      {
+        "id": "b",
+        "text": "The sum of event time duration"
+      },
+      {
+        "id": "c",
+        "text": "Always 1"
+      },
+      {
+        "id": "d",
+        "text": "The percent good"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Count is the sum of event count when event weighted and the sum of event time duration when time weighted.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "fn-piwebapi-summary-type"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-totalwithuom",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "How does TotalWithUOM behave when the input has no UOM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It errors"
+      },
+      {
+        "id": "b",
+        "text": "It returns the same as Total"
+      },
+      {
+        "id": "c",
+        "text": "It returns zero"
+      },
+      {
+        "id": "d",
+        "text": "It converts to kWh"
+      }
+    ],
+    "answer": "b",
+    "explanation": "TotalWithUOM returns the same as Total when the input has no UOM, and an error if no valid units can be determined.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "fn-piwebapi-summary-type"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-cascade",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the risk the team should plan for?",
+    "scenario": "A company rolls up 500 meters to 20 sites and then to one region, with automatic recalculation on. Some meters deliver data hours late.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rollups ignore late data"
+      },
+      {
+        "id": "b",
+        "text": "Late data can trigger cascades of recalculation through the dependent rollups"
+      },
+      {
+        "id": "c",
+        "text": "Rollups will switch to event-weighting"
+      },
+      {
+        "id": "d",
+        "text": "Outputs become Analysis DRs"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Rollups can cause recalculation cascades with late data. A mitigation is to disable automatic recalculation and recalculate manually at low-load times.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-ef-rollup",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "Which functions does the event frame rollup custom data reference offer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sum, Average, Mean, Minimum, Maximum, Range and Count"
+      },
+      {
+        "id": "b",
+        "text": "Only Sum"
+      },
+      {
+        "id": "c",
+        "text": "Sum and Median"
+      },
+      {
+        "id": "d",
+        "text": "Total and PercentGood"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The event frame rollup custom DR provides Sum, Average, Mean, Minimum, Maximum, Range and Count.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "af-pisquare-ef-rollup-cdr-blog"
+    ]
+  },
+  {
+    "id": "q-rollups-summaries-long-summary",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "difficulty": 2,
+    "prompt": "A dashboard needs a monthly average of a fast tag. Which approach does AVEVA's guidance prefer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "TagAvg over the month evaluated every second"
+      },
+      {
+        "id": "b",
+        "text": "Daily averages rolled up to monthly, or a less frequent schedule"
+      },
+      {
+        "id": "c",
+        "text": "An Analysis DR"
+      },
+      {
+        "id": "d",
+        "text": "PI DataLink"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Expensive summaries such as a month of TagAvg() evaluated frequently should be replaced by shorter windows, less frequent schedules or daily-to-monthly rollups.",
+    "lessonId": "rollups-and-summaries",
+    "tags": [],
+    "sources": [
+      "af-tips-managing-analytics-2020",
+      "af-pisquare-tagtot-condition"
+    ]
+  }
+]

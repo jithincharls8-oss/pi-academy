@@ -1,0 +1,213 @@
+[
+  {
+    "id": "q-vis-adv-collection-updates",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 1,
+    "scenario": "A site adds three new pumps to AF using the existing pump template. A PI Vision overview display shows one tile per pump using a collection whose Asset Type is the pump template.",
+    "prompt": "What must the display owner do so the new pumps appear?",
+    "options": [
+      { "id": "a", "text": "Nothing; a collection automatically reflects equipment added to or removed from the system" },
+      { "id": "b", "text": "Copy and paste three more tiles and rebind them" },
+      { "id": "c", "text": "Re-run the ProcessBook Migration Utility" },
+      { "id": "d", "text": "Restart the PI Vision application pool" }
+    ],
+    "answer": "a",
+    "explanation": "A collection is bound to an asset search and \"automatically reflects when equipment is added or removed from the system\", so matching new pumps appear on their own.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["collections"],
+    "sources": ["dcv-sloves-pivision-2017", "dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-adv-switch-asset-type",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "In Configure Context Switching, which option limits the Switch Asset dropdown to assets of one AF template, such as \"Generic Tank Template\"?",
+    "options": [
+      { "id": "a", "text": "Asset Type" },
+      { "id": "b", "text": "Show Assets paths" },
+      { "id": "c", "text": "Display time range" },
+      { "id": "d", "text": "Grid on/off" }
+    ],
+    "answer": "a",
+    "explanation": "Asset Type sets the template whose elements appear for switching. Show Assets paths only changes how results are shown; the others are unrelated display settings.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["asset-switching"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-adv-compare-similar",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "You right-click an event in the PI Vision Events tab and choose Compare Similar Events by Type. What do you get?",
+    "options": [
+      { "id": "a", "text": "Trends of the event's trigger attributes for that event and recent similar events" },
+      { "id": "b", "text": "A spreadsheet export of all event frames" },
+      { "id": "c", "text": "A new event frame template" },
+      { "id": "d", "text": "The display's time range set to the event" }
+    ],
+    "answer": "a",
+    "explanation": "Compare Similar Events by Type trends the trigger attributes for the event and recent similar events. Setting the display time to the event is Apply Time Range.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["events"],
+    "sources": ["dcv-analyzing-workbook-2022"]
+  },
+  {
+    "id": "q-vis-adv-collection-criteria",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "Which criteria can you set in Edit Collection Criteria? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Search Root" },
+      { "id": "b", "text": "Return All Descendants" },
+      { "id": "c", "text": "Asset Type" },
+      { "id": "d", "text": "Asset Attribute with an operator, such as > 50" },
+      { "id": "e", "text": "The SQL query used by the PI Vision database" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "Collection criteria are Search Root, Return All Descendants, Asset Type and Asset Attribute conditions. The SQL database stores displays; you do not edit its queries here.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["collections"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-adv-pinned",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "What is a pinned event in PI Vision?",
+    "options": [
+      { "id": "a", "text": "A reference event saved with the display, used for example to spot batch deviations" },
+      { "id": "b", "text": "An event that cannot be deleted from AF" },
+      { "id": "c", "text": "An event acknowledged by an operator" },
+      { "id": "d", "text": "An event shown on the home page" }
+    ],
+    "answer": "a",
+    "explanation": "Pinned Events are reference events saved with the display and used to spot deviations, such as comparing a running batch with a good one.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["events"],
+    "sources": ["dcv-sloves-pivision-2017"]
+  },
+  {
+    "id": "q-vis-adv-trend-own-time",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "True or false: every trend on a PI Vision display must use the display's time range.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. Each trend can use the display time range, its own Duration and Offset, or a custom range such as *-48h to *.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["true-false", "time"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-adv-2017-features",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 3,
+    "prompt": "Which features did OSIsoft list as introduced with PI Vision 2017? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Collections" },
+      { "id": "b", "text": "Graphics Library" },
+      { "id": "c", "text": "Asset Comparison Table" },
+      { "id": "d", "text": "User Types" },
+      { "id": "e", "text": "Claims-based authentication via OpenID Connect" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "PI Vision 2017 introduced Collections, Drill-in Navigation, the Graphics Library, the Asset Comparison Table and User Types. OpenID Connect sign-in came much later, in the 2023 era.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["history"],
+    "sources": ["dcv-thomassen-pivision-2017", "ops2-uc23-vision-swartzentruber"]
+  },
+  {
+    "id": "q-vis-adv-xy-uses",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 1,
+    "prompt": "What can the PI Vision XY Plot be used for? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Identifying correlations between attributes" },
+      { "id": "b", "text": "Comparing assets" },
+      { "id": "c", "text": "Comparing time ranges" },
+      { "id": "d", "text": "Editing AF templates" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The XY Plot identifies correlations between attributes, compares assets and compares time ranges. AF templates are edited in PI System Explorer.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["xy-plot"],
+    "sources": ["dcv-sloves-pivision-2017"]
+  },
+  {
+    "id": "q-vis-adv-widen-search",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 3,
+    "scenario": "An analyst runs Compare Similar Events by Type on one turbine's Inactivity event, but only a few recent events from the same turbine appear. She wants to see 100 Inactivity events across all turbines.",
+    "prompt": "What should she use?",
+    "options": [
+      { "id": "a", "text": "Edit Search Criteria on the comparison" },
+      { "id": "b", "text": "Apply Time Range" },
+      { "id": "c", "text": "Convert to Collection" },
+      { "id": "d", "text": "The Mode=Kiosk URL parameter" }
+    ],
+    "answer": "a",
+    "explanation": "Edit Search Criteria widens an event comparison, for example to 100 Inactivity events across all turbines. Apply Time Range only sets the display time.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["events"],
+    "sources": ["dcv-analyzing-workbook-2022"]
+  },
+  {
+    "id": "q-vis-adv-events-table-filter",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 2,
+    "prompt": "By what can the PI Vision Events Table filter events?",
+    "options": [
+      { "id": "a", "text": "Asset type, severity, hierarchy and more" },
+      { "id": "b", "text": "Only by start time" },
+      { "id": "c", "text": "Only by the PI point's PointSource" },
+      { "id": "d", "text": "Only by the display owner" }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft's 2017 session describes the Event Table filtering by asset type, severity, hierarchy and more.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["events"],
+    "sources": ["dcv-clark-pivision-2017"]
+  },
+  {
+    "id": "q-vis-adv-related-assets",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-advanced"],
+    "difficulty": 3,
+    "prompt": "What did the PI Vision 2017 R2 Related Assets feature let display authors do? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Define asset criteria for context switching" },
+      { "id": "b", "text": "Swap a single asset or an entire asset path" },
+      { "id": "c", "text": "Disable switching" },
+      { "id": "d", "text": "Create new AF elements from the display" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Related Assets let authors define criteria, swap a single asset or a whole path, or disable switching; users could filter related assets by name. Displays do not create AF elements.",
+    "lessonId": "pi-vision-collections-and-events",
+    "tags": ["asset-switching"],
+    "sources": ["dcv-sloves-pivision-2017"]
+  }
+]

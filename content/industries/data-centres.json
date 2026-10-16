@@ -1,0 +1,115 @@
+[
+  {
+    "id": "data-centres",
+    "title": "Data Centres",
+    "summary": "Data centre operators use PI System to model the power chain and cooling, calculate PUE, plan capacity and bill colocation customers. Templated AF models enforce tag consistency, and PI alerts can raise service tickets.",
+    "hierarchy": "```mermaid\nflowchart TD\n  PF[Portfolio] --> DC[Data Centre Site]\n  DC --> H[Building, Floor or Hall]\n  H --> UF[Utility Feed]\n  UF --> SG[Switchgear]\n  SG --> UPS[UPS]\n  UPS --> PDU[PDU]\n  PDU --> RPP[RPP or Busway]\n  RPP --> RK[Rack or Cabinet]\n  RK --> CC[Customer Circuit]\n  H --> CH[Chiller]\n  CH --> CR[CRAC or CRAH]\n  H --> CT[Cooling Tower]\n```",
+    "tags": [
+      {
+        "name": "Utility Total kW",
+        "description": "Total facility load (Microsoft measurement point M1).",
+        "uom": "kW"
+      },
+      {
+        "name": "IT Load kW",
+        "description": "IT asset power (Microsoft measurement point M10).",
+        "uom": "kW"
+      },
+      {
+        "name": "UPS Load",
+        "description": "UPS load, shown in kVA on Microsoft dashboards.",
+        "uom": "kVA"
+      },
+      {
+        "name": "Rack Temperature",
+        "description": "Temperature at the rack, a KPI in the Skanska BIM overlay."
+      }
+    ],
+    "templates": [
+      {
+        "name": "Rack",
+        "description": "Rack or cabinet element in the power chain.",
+        "attributes": [
+          "kW per rack",
+          "Temperature",
+          "Humidity",
+          "Capacity"
+        ]
+      },
+      {
+        "name": "Charge point",
+        "description": "Aligned Energy billing point: at busway level for shared PDUs and at PDU-output level for dedicated PDUs.",
+        "attributes": [
+          "Energy",
+          "Customer"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "PUE",
+        "expression": "PUE = TagTot('Site|Utility Total kW',...) / TagTot('Site|IT Load kW',...)",
+        "description": "Total facility energy divided by IT equipment energy over the same period. Use energy totals rather than instantaneous kW for reportable PUE. The expression shape is illustrative."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Sudden load change",
+        "trigger": "Real-time load changes suddenly on a circuit (Digital Realty alerts)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "PUE",
+        "definition": "Power Usage Effectiveness: total facility energy / IT equipment energy. 1.0 is the theoretical ideal."
+      },
+      {
+        "name": "Partial PUE",
+        "definition": "A PUE-style ratio for one subsystem, such as cooling."
+      },
+      {
+        "name": "kW per rack",
+        "definition": "Power density per rack; Aligned Energy saw 7 kW rise to 22 kW after a server refresh."
+      },
+      {
+        "name": "Circuit allocation",
+        "definition": "Customer circuit allocation used for capacity planning."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "Federal PUE targets (US)",
+        "summary": "Digital Realty cited federal targets to report PUE below 1.4 by 2018, with below 1.2 encouraged."
+      }
+    ],
+    "pitfalls": [
+      "Too many software vendors caused tag errors at Equinix; several small integration projects were easier to justify than one big IT project.",
+      "Landlord-owned facilities limit data visibility, and IT security rules and missing context data can block progress (Digital Realty).",
+      "PUE becomes complex when power crosses a boundary into or out of a system (Digital Realty).",
+      "Separating a shared PI System on divestiture means untangling tags, AF and notifications; plan namespaces for that (PayPal)."
+    ],
+    "caseStudies": [
+      "digital-realty",
+      "equinix",
+      "ebay",
+      "paypal",
+      "aligned-energy",
+      "dell-emc"
+    ],
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-greengrid-pue",
+      "ind-pres-digitalrealty-2017",
+      "ind-pres-microsoft-2009-stl",
+      "ind-pres-microsoft-2009-nyc",
+      "ind-pres-skanska-2011",
+      "ind-ss-aligned",
+      "ind-ss-paypal",
+      "ind-pres-equinix-2011"
+    ],
+    "verify": true,
+    "verifyNote": "The AF hierarchy and Rack template are inferred, and the PUE expression shape is illustrative. No source gave typical PI tag counts per MW of IT load."
+  }
+]

@@ -1,0 +1,499 @@
+[
+  {
+    "id": "q-webapi-advanced-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 1,
+    "prompt": "A developer opens a PI Web API channel with https://srv/piwebapi/streams/{webId}/channel and the connection never upgrades. Which URL scheme should be used?",
+    "options": [
+      {
+        "id": "a",
+        "text": "wss://"
+      },
+      {
+        "id": "b",
+        "text": "http://"
+      },
+      {
+        "id": "c",
+        "text": "ftp://"
+      },
+      {
+        "id": "d",
+        "text": "ws:// is required because channels cannot use TLS"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Channels use the WebSocket protocol, and secure channel URLs start with wss:// instead of https://.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "In a PI Web API batch, sub-request 2 has \"Parameters\": [\"$.1.Content.WebId\"] and a Resource containing {0}. What else must sub-request 2 contain so it reliably uses sub-request 1's result?",
+    "options": [
+      {
+        "id": "a",
+        "text": "\"ParentIds\": [\"1\"]"
+      },
+      {
+        "id": "b",
+        "text": "\"RequestTemplate\": \"1\""
+      },
+      {
+        "id": "c",
+        "text": "\"Headers\": {\"Depends-On\": \"1\"}"
+      },
+      {
+        "id": "d",
+        "text": "\"Method\": \"CHAIN\""
+      }
+    ],
+    "answer": "a",
+    "explanation": "ParentIds lists sub-requests that must complete first. Without \"ParentIds\": [\"1\"], the child may run before the parent's result exists. RequestTemplate is for repeating a request over many values; Headers and Method do not create dependencies.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-batch-call-py"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-03",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "Choosing a way to receive new values when WebSockets are blocked.",
+    "scenario": "A cloud integration must pick up new values for 300 PI points every minute. The corporate proxy blocks WebSocket upgrades, so only ordinary HTTPS requests get through. The team wants each request to return only data that changed since the previous one.\n\nWhich PI Web API feature fits best?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stream Updates: register to get a marker, then poll with the latest marker"
+      },
+      {
+        "id": "b",
+        "text": "Channels over wss://"
+      },
+      {
+        "id": "c",
+        "text": "Poll /recorded with startTime=*-1m every minute"
+      },
+      {
+        "id": "d",
+        "text": "Register a PI Web API webhook that posts to the cloud"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Stream Updates is the HTTP-only alternative to channels: register with POST /streams/{webId}/updates, get a marker, then poll GET /streams/updates/{marker}. Results are queued server-side so only new data comes back. Repeated /recorded polling re-reads overlapping data, a channel needs WebSockets, and PI Web API has no webhook feature in the controller lists examined.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-stream-api"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-04",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 1,
+    "prompt": "Put the OMF message types in the order they must be sent.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Type message"
+      },
+      {
+        "id": "b",
+        "text": "Container message"
+      },
+      {
+        "id": "c",
+        "text": "Data message"
+      }
+    ],
+    "explanation": "OMF messages are sent in order: type (the schema), then container (a stream of that type), then data (values for the container). Data sent before its type and container cannot be stored.",
+    "sources": [
+      "int-gh-omf-complexdynamic-program"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-05",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 1,
+    "prompt": "What must be running for PI Web API Indexed Search (/search/query) to return results?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The PI Web API Crawler, which builds the index"
+      },
+      {
+        "id": "b",
+        "text": "PI Vision 2020, which shares its index"
+      },
+      {
+        "id": "c",
+        "text": "The PI Analysis Service"
+      },
+      {
+        "id": "d",
+        "text": "Nothing extra; the AF Server indexes itself"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Indexed Search uses index files built by the PI Web API Crawler, a separate optional service. AFSearch query methods such as /elements/search need no crawler.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-06",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "Which statements about the PI Web API Batch controller are true? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only POST /batch is supported"
+      },
+      {
+        "id": "b",
+        "text": "The batch POST needs the X-Requested-With header"
+      },
+      {
+        "id": "c",
+        "text": "Sub-request Content is passed as a JSON string"
+      },
+      {
+        "id": "d",
+        "text": "Each sub-request comes back as a separate HTTP response"
+      },
+      {
+        "id": "e",
+        "text": "GET /batch lists previous batches"
+      },
+      {
+        "id": "f",
+        "text": "Each response entry has Status, Headers and Content"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "f"
+    ],
+    "explanation": "Batch has a single action, Execute, at POST /batch; GET is not supported. The batch POST needs X-Requested-With like any write. Sub-request Content is a JSON string. Each response entry has Status, Headers and Content, all inside one HTTP response.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-batch-call-py"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-07",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "AVEVA's OMF sample treats one HTTP status code as \"type already exists with the same ID and version\" rather than a failure. Which code?",
+    "accepted": [
+      "409"
+    ],
+    "explanation": "The sample treats 409 (Conflict) as the type already existing, and any 2xx as success.",
+    "sources": [
+      "int-gh-omf-complexdynamic-sendomf"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-08",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 1,
+    "prompt": "Which channel query parameter makes PI Web API send the current values as soon as the WebSocket opens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "includeInitialValues=true"
+      },
+      {
+        "id": "b",
+        "text": "heartbeatRate=1"
+      },
+      {
+        "id": "c",
+        "text": "maxCount=1"
+      },
+      {
+        "id": "d",
+        "text": "webIdType=Full"
+      }
+    ],
+    "answer": "a",
+    "explanation": "includeInitialValues (default false) sends the current values first. heartbeatRate sends empty periodic messages to show the connection is alive. maxCount and selectedFields are not channel parameters in the sources.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-stream-api"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-09",
+    "type": "code",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 3,
+    "prompt": "Write the AFSearch-style request that finds elements in the database with WebID {dbWebId} whose name contains b and whose template is PumpTemplate. Do not use Indexed Search.",
+    "language": "webapi",
+    "accepted": [
+      "GET https://srv/piwebapi/elements/search?databaseWebId={dbWebId}&query=Name:=*b* AND Template:=PumpTemplate"
+    ],
+    "requiredPatterns": [
+      "/elements/search",
+      "databasewebid=\\{dbwebid\\}",
+      "name:=\\*b\\*",
+      "template:=pumptemplate"
+    ],
+    "forbiddenPatterns": [
+      "/search/query"
+    ],
+    "explanation": "AFSearch query methods (PI Web API 2017 R2+) use GET /elements/search with databaseWebId and a query such as Name:=*b* AND Template:=PumpTemplate. They need no crawler, unlike /search/query.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-10",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "In which PI Web API release was the OMF endpoint added?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2019"
+      },
+      {
+        "id": "b",
+        "text": "2017 R2"
+      },
+      {
+        "id": "c",
+        "text": "2018 SP1"
+      },
+      {
+        "id": "d",
+        "text": "1.4 (2015)"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The OMF endpoint was added in the 2019 release, and the root Links include Omf. 2017 R2 brought WebID 2.0 and AFSearch queries; 2018 SP1 brought the Stream Updates CTP.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-dev-tech-overview"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-11",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each JSONPath form supported in PI Web API batch to what it does.",
+    "pairs": [
+      {
+        "left": "$",
+        "right": "The root of the results"
+      },
+      {
+        "left": "$.C.D",
+        "right": "Dot notation into nested properties"
+      },
+      {
+        "left": "$.B[0].Val",
+        "right": "One array element by index"
+      },
+      {
+        "left": "$.B[*].Val",
+        "right": "Wildcard over every array element"
+      }
+    ],
+    "explanation": "$ is the root, $.C.D uses dot notation to walk properties, $.B[0].Val takes one array element by index and $.B[*].Val takes a property from every element.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-12",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 3,
+    "prompt": "What does the PI Data Archive accept as the index property of an OMF type?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A single DateTime timestamp"
+      },
+      {
+        "id": "b",
+        "text": "Any number of string or integer indexes"
+      },
+      {
+        "id": "c",
+        "text": "A compound index of timestamp and tag name"
+      },
+      {
+        "id": "d",
+        "text": "No index; PI assigns timestamps on arrival"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI only accepts a DateTime timestamp as the OMF type's index property and supports only one index. CONNECT data services adds its own limits: Dynamic classification only and no Link data.",
+    "sources": [
+      "int-gh-aveva-samples-omf"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-13",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 3,
+    "prompt": "Streaming millions of tags to a utility's platform.",
+    "scenario": "A renewable-energy utility has about 2 million tags organised under AF elements in groups of about 50,000 attributes each. It needs continuous, pushed delivery of new values to its own platform and can open WebSockets.\n\nWhich approach matches what EDPR reported at PI World 2019?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One /streamsets/{webId}/channel per element group, spread over several PI Web API instances"
+      },
+      {
+        "id": "b",
+        "text": "One /streams/{webId}/channel per tag"
+      },
+      {
+        "id": "c",
+        "text": "POST /batch every second with 2 million sub-requests"
+      },
+      {
+        "id": "d",
+        "text": "Indexed Search queries every minute"
+      }
+    ],
+    "answer": "a",
+    "explanation": "EDPR used /piwebapi/streamsets/{webid}/channel to stream all attributes of an element group continuously, scaling to about 2 million tags across 4 PI Web API instances and 39 element groups of about 50,000 tags. One stream channel per tag would mean millions of connections, Stream Updates is polling, and batch is request/response.",
+    "sources": [
+      "int-uc19-edpr-webapi"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-14",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 2,
+    "prompt": "In Stream Updates, what does the client send in its next request to get only new data?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The LatestMarker value from the previous response"
+      },
+      {
+        "id": "b",
+        "text": "The timestamp of the last value it received as startTime"
+      },
+      {
+        "id": "c",
+        "text": "The channel's heartbeat ID"
+      },
+      {
+        "id": "d",
+        "text": "The batch sub-request name"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Each Stream Updates response includes the next marker (LatestMarker), which the client passes in the following request. The server queues results so the client receives only new data.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  },
+  {
+    "id": "q-webapi-advanced-15",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: PI Web API offers a webhook feature that makes outbound HTTP callbacks to your service when values change.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "verify": true,
+    "verifyNote": "Inferred from the absence of a webhook controller in the 2018 Swagger lists; confirm against current PI Web API documentation.",
+    "explanation": "False as far as the research found: no webhook feature appeared in the controller lists examined. Push delivery is through Channels (WebSocket) and pull delivery through Stream Updates. This is an inference from the controller lists, so it is flagged for verification.",
+    "sources": [
+      "int-jentic-piwebapi-2018sp1",
+      "int-gh-pyclient-stream-api"
+    ],
+    "lessonId": "pi-web-api-advanced"
+  }
+]

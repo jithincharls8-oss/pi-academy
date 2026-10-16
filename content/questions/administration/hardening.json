@@ -1,0 +1,446 @@
+[
+  {
+    "id": "q-hardening-auth-order",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the PI Server authentication methods from most to least preferred, per AVEVA's UC23 security deck.",
+    "items": [
+      {
+        "id": "a",
+        "text": "OIDC (PI Server 2023 and later)"
+      },
+      {
+        "id": "b",
+        "text": "Windows Integrated Security (Kerberos, then NTLM)"
+      },
+      {
+        "id": "c",
+        "text": "PI Trusts"
+      },
+      {
+        "id": "d",
+        "text": "Explicit logins (PI Users)"
+      }
+    ],
+    "explanation": "The preference order is OIDC, Windows Integrated Security (Kerberos then NTLM), PI Trusts, then explicit logins, which are disabled by default and not recommended.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "authentication"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-two-plus",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "You must keep one PI Trust for a legacy application. Which trust follows AVEVA's 2+ rule?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Application name plus the client's IP address or FQDN"
+      },
+      {
+        "id": "b",
+        "text": "Server name only"
+      },
+      {
+        "id": "c",
+        "text": "IP address only, mapped to piadmin"
+      },
+      {
+        "id": "d",
+        "text": "Any host, any application, mapped to PI World"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2+ rule pairs the application name with an IP address, host name or FQDN. A server-name-only trust is an \"open\" trust, and mapping trusts to piadmin is unsafe.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "trusts"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-spn-pair",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the most likely fix?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add the missing SPN: setspn -U -S http/pivision01.corp.example.com CORP\\svc-pivision"
+      },
+      {
+        "id": "b",
+        "text": "Enable unconstrained delegation on svc-pivision"
+      },
+      {
+        "id": "c",
+        "text": "Change the app pools to Network Service"
+      },
+      {
+        "id": "d",
+        "text": "Create a PI Trust for the PI Vision server"
+      }
+    ],
+    "scenario": "PI Vision runs as CORP\\svc-pivision on host pivision01 (FQDN pivision01.corp.example.com). Users who browse to https://pivision01/PIVision get Kerberos, but users who use the FQDN fall back to NTLM.",
+    "answer": "a",
+    "explanation": "AVEVA's checklist creates SPNs for both the short name and the FQDN; missing the FQDN SPN means only one name works with Kerberos. Unconstrained delegation and Network Service are discouraged, and a trust does not fix browser Kerberos.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "kerberos"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "ops2-uc23-security-biggins",
+      "ops2-pisquare-vision-af-delegation"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-mappings",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: PI Mappings are cumulative, so a user mapped through two AD groups gets the rights of both PI identities.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. \"Mappings are cumulative, not exclusive.\" PI Trusts, by contrast, allow only one best-fit association chosen by a scoring algorithm.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "identities",
+      "true-false"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-piadmin",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "Which actions follow AVEVA's guidance for piadmin and explicit logins? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Give piadmin a password and use the piadmins group instead"
+      },
+      {
+        "id": "b",
+        "text": "Disable explicit login, and explicit login for piadmin"
+      },
+      {
+        "id": "c",
+        "text": "Disable blank passwords, then restart the PI Base Subsystem"
+      },
+      {
+        "id": "d",
+        "text": "Map the interface trust to piadmin so it never fails"
+      },
+      {
+        "id": "e",
+        "text": "Keep PI World enabled with full write access"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "AVEVA advises using piadmins instead of piadmin, disabling explicit logins and blank passwords. Mapping trusts to piadmin is unsafe, and PI World should be disabled once proper rules exist.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "piadmin"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "adm-arch-planning-workbook-2024",
+      "adm-rs2011-wis-bryant"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-ports",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each port to its use in the UC23 firewall table.",
+    "pairs": [
+      {
+        "left": "TCP 5450",
+        "right": "Inbound to Data Archive from PI clients"
+      },
+      {
+        "left": "TCP 5457",
+        "right": "AF SDK clients to AF Server"
+      },
+      {
+        "left": "TCP 5463",
+        "right": "PI Analysis Service clients to AF Server"
+      },
+      {
+        "left": "TCP/UDP 88",
+        "right": "Data Archive to Kerberos KDC"
+      }
+    ],
+    "explanation": "5450 is the Data Archive client port; 5457 serves AF SDK clients (and MDB-to-AF sync); 5463 serves PI Analysis Service clients; 88 is Kerberos. 5459 (PI SQL for AF) and 5468 (Notifications) are the other AF ports.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "firewall"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-buffer-perms",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the minimum Data Archive permission the PI Buffer Subsystem needs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Write on DataSecurity only"
+      },
+      {
+        "id": "b",
+        "text": "Read and Write on PIPoint, DBSecurity, PtSecurity and DataSecurity"
+      },
+      {
+        "id": "c",
+        "text": "Membership of piadmins"
+      },
+      {
+        "id": "d",
+        "text": "Read on PtSecurity only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The UC23 deck says the buffer needs Write on DataSecurity only, while a PI interface needs Read on PIPoint, DBSecurity, PtSecurity and DataSecurity.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "least-privilege"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-delegation",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "Which Kerberos delegation type does the OSIsoft PI Vision workbook call \"highly recommended\"?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Resource-based constrained delegation (RBCD)"
+      },
+      {
+        "id": "b",
+        "text": "Unconstrained delegation"
+      },
+      {
+        "id": "c",
+        "text": "No delegation; use Basic authentication"
+      },
+      {
+        "id": "d",
+        "text": "NTLM pass-through"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The workbook says \"RBCD is highly recommended type of delegation\" and that constrained delegation is more secure because it limits delegation to listed services. The PI Square blog says unconstrained delegation is not recommended.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "kerberos"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook",
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-wis-upgrade",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 3,
+    "prompt": "What should they do first?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Create PI Mappings for the interface service accounts, because PI Trust authentication is disabled by default after the upgrade"
+      },
+      {
+        "id": "b",
+        "text": "Nothing; the upgrade keeps trusts working"
+      },
+      {
+        "id": "c",
+        "text": "Map the trust to piadmin"
+      },
+      {
+        "id": "d",
+        "text": "Open port 5450 to all networks"
+      }
+    ],
+    "scenario": "Interfaces on PIINT01 connect to the Data Archive through a PI Trust. The team plans to upgrade the node to PI API for WIS 2.0.1.35 tonight.",
+    "answer": "a",
+    "explanation": "After upgrading to PI API for WIS, PI Trust authentication is disabled by default, so replace trusts with mappings first or the interfaces will fail to connect.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "trusts"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-os",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "Which OS hardening does AVEVA recommend for a Data Archive on Windows Server 2016-2022?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Install on Server Core and use WDAC"
+      },
+      {
+        "id": "b",
+        "text": "Install the desktop experience and disable the firewall"
+      },
+      {
+        "id": "c",
+        "text": "Use AppLocker in enforce mode without auditing first"
+      },
+      {
+        "id": "d",
+        "text": "Exclude the whole C: drive from anti-virus"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Install on Server Core to reduce attack surface and use WDAC; use AppLocker in audit mode first on older or non-Core servers. Anti-virus exclusions should be limited to archive, queue and log folders.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "os"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-spn-class",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 2,
+    "prompt": "Which SPN service class does the Data Archive use? (as in setspn -q ____/<hostname>)",
+    "accepted": [
+      "PIServer",
+      "piserver"
+    ],
+    "caseSensitive": false,
+    "explanation": "The Data Archive SPN class is PIServer, checked with setspn -q PIServer/<hostname>. AF uses AFServer and PI Vision uses http.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "kerberos"
+    ],
+    "sources": [
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-gh-security-audit-tools"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-hardening-enableaudit",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: once EnableAudit is set, a Data Archive administrator cannot turn auditing off.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. Users on AVEVA's feedback portal confirm an admin could set EnableAudit to 0 to disable auditing, and an idea to track that change was still being evaluated in 2026.",
+    "lessonId": "hardening-and-kerberos",
+    "tags": [
+      "audit",
+      "true-false"
+    ],
+    "sources": [
+      "ops2-feedback-pida-452",
+      "ops2-osipi-blog-audit"
+    ],
+    "verify": false
+  }
+]

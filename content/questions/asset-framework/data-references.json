@@ -1,0 +1,398 @@
+[
+  {
+    "id": "q-data-references-tank-substitution",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 1,
+    "prompt": "A PI Point data reference uses the tag pattern %Element%LI.PV. On element Tank02, which tag does it resolve to?",
+    "accepted": [
+      "Tank02LI.PV"
+    ],
+    "caseSensitive": false,
+    "explanation": "%Element% is replaced by the element name, so %Element%LI.PV on Tank02 becomes Tank02LI.PV. This is the workbook's own example.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-data-references-builtin-types",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 1,
+    "prompt": "Which are built-in AF data reference types listed in AVEVA training? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Point"
+      },
+      {
+        "id": "b",
+        "text": "Formula"
+      },
+      {
+        "id": "c",
+        "text": "Table Lookup"
+      },
+      {
+        "id": "d",
+        "text": "String Builder"
+      },
+      {
+        "id": "e",
+        "text": "SQL Query"
+      },
+      {
+        "id": "f",
+        "text": "Excel Link"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The workbook lists PI Point, PI Point Array, Formula, Table Lookup, String Builder and URI Builder; <None> means a static value. SQL Query and Excel Link are not built-in DR types.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-data-references-default-naming",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the default PI Point naming rule AF uses when it creates tags for attributes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "%Element%.%Attribute%.%ID%"
+      },
+      {
+        "id": "b",
+        "text": "%Database%_%Element%"
+      },
+      {
+        "id": "c",
+        "text": "%Server%\\%Attribute%"
+      },
+      {
+        "id": "d",
+        "text": "%Template%.%Attribute%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The default naming rule for created tags is %Element%.%Attribute%.%ID%. One Analysis Service lab suggested %Database%_%Element%.%Attribute% for analysis outputs, but that is a lab setting, not the default.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-data-references-relative-paths",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each substitution to what it refers to.",
+    "pairs": [
+      {
+        "left": "%@|Transformer ID%",
+        "right": "Attribute Transformer ID on the containing element"
+      },
+      {
+        "left": "%@..\\Site ID%",
+        "right": "Attribute Site ID on the parent element"
+      },
+      {
+        "left": "%Element%",
+        "right": "The element's own name"
+      },
+      {
+        "left": "%Server%",
+        "right": "The default PI Data Archive server"
+      }
+    ],
+    "explanation": "%@...% substitutes another attribute's value; | points to an attribute on the containing element and ..\\ moves up to the parent. %Element% is the element name and %Server% the default Data Archive.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-pisquare-substitution-strings",
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-data-references-formula-perf",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 2,
+    "prompt": "Why can a Formula data reference attribute used as an analysis input cause performance problems?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It writes a PI tag on every evaluation"
+      },
+      {
+        "id": "b",
+        "text": "It is computed on demand each time it is read"
+      },
+      {
+        "id": "c",
+        "text": "It forces backfilling"
+      },
+      {
+        "id": "d",
+        "text": "It disables caching of all inputs"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Formula DR attributes are computed on demand, so feeding them into analyses adds computation each time. Formula DRs are also not time-weighted.",
+    "lessonId": "data-references",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "af-feedback-pida-825",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-data-references-where-clause",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 2,
+    "prompt": "In a Table Lookup data reference, what does the @ in MaterialID = @Product mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A SQL parameter that must be typed at run time"
+      },
+      {
+        "id": "b",
+        "text": "The value of the attribute named Product"
+      },
+      {
+        "id": "c",
+        "text": "A wildcard"
+      },
+      {
+        "id": "d",
+        "text": "The table's primary key"
+      }
+    ],
+    "answer": "b",
+    "explanation": "@ references an attribute value. The lookup returns the row whose MaterialID equals the current value of the Product attribute.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-data-references-rwm",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 3,
+    "prompt": "Which Table Lookup ConfigString option sets the replacement value returned when the query finds no rows? (Give the three-letter key.)",
+    "accepted": [
+      "RWM",
+      ";RWM",
+      "RWM="
+    ],
+    "caseSensitive": false,
+    "explanation": "Appending ;RWM=<value> sets a replacement value when no rows match, for example ;RWM=%Time% or ;RWM=@Attribute2.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tlookup-timezones"
+    ]
+  },
+  {
+    "id": "q-data-references-1970",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the most likely fix?",
+    "scenario": "A Table Lookup attribute reads from a linked table that has a Timestamp column. Every value it returns carries the timestamp 1/1/1970, so trends look wrong.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Change the attribute value type to DateTime"
+      },
+      {
+        "id": "b",
+        "text": "Enable \"Table provided time series data\" and choose the Timestamp column as the time column"
+      },
+      {
+        "id": "c",
+        "text": "Add ;RWM=%Time%"
+      },
+      {
+        "id": "d",
+        "text": "Switch the attribute to a Formula reference"
+      }
+    ],
+    "answer": "b",
+    "explanation": "In AF 2.5+, \"Table provided time series data\" with a chosen time column makes each returned value carry its row's timestamp. Without it, values came back stamped 1/1/1970.",
+    "lessonId": "data-references",
+    "tags": [
+      "troubleshooting"
+    ],
+    "sources": [
+      "af-pisquare-linked-table-timestamp"
+    ]
+  },
+  {
+    "id": "q-data-references-analysis-dr-schedule",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: an Analysis Data Reference output, trended in a client, follows the analysis's periodic schedule.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Analysis DRs are computed only when a client asks for data. A trended Analysis DR was seen to evaluate at every input event and ignore the periodic schedule; AVEVA staff called it a known issue and recommended a PI Point output.",
+    "lessonId": "data-references",
+    "tags": [
+      "pitfall",
+      "true-false"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-pisquare-analysis-dr-plotting"
+    ]
+  },
+  {
+    "id": "q-data-references-create-tags",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 1,
+    "prompt": "After configuring PI Point data references on a template, how do you create the PI tags for all elements in PSE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Run piconfig on the Data Archive"
+      },
+      {
+        "id": "b",
+        "text": "Right-click the Elements root and choose Create or Update Data Reference"
+      },
+      {
+        "id": "c",
+        "text": "Check In twice"
+      },
+      {
+        "id": "d",
+        "text": "Export to XML and import again"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Right-click the Elements root and choose \"Create or Update Data Reference\". The attributes then show \"Pt Created\". In code, AFDataReference.CreateConfig does the same in bulk.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-afsdk-pm-best-practices-2020"
+    ]
+  },
+  {
+    "id": "q-data-references-ef-capture",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 3,
+    "prompt": "Write the event frame attribute PI Point DR config that takes the average of the referenced element's Outlet Temperature over the event frame.",
+    "language": "af",
+    "accepted": [
+      ".\\Elements[.]|Outlet Temperature;TimeRangeMethod=Average"
+    ],
+    "requiredPatterns": [
+      "elements\\[\\.\\]\\|outlet temperature",
+      "timerangemethod=average"
+    ],
+    "forbiddenPatterns": [],
+    "placeholder": ".\\Elements[.]|...",
+    "explanation": "Event frame attributes reference the primary element with .\\Elements[.]|<attribute>, and ;TimeRangeMethod=Average aggregates over the frame's time range. Maximum and StartTime are other methods seen in labs.",
+    "lessonId": "data-references",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-data-references-uom-class",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AF will convert between a PI Point in psi and an attribute in bar because both are pressure units.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. AF converts between a PI Point and an attribute (or two attributes) when both units are in the same UOM class. A lab maps a psi tag (Source Units) to an attribute whose default UOM is bar.",
+    "lessonId": "data-references",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-uom-conversion-analytics",
+      "af-building-assets-workbook"
+    ]
+  }
+]

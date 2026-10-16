@@ -1,0 +1,346 @@
+[
+  {
+    "id": "q-marine-transport-bandwidth",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which approach matches CSL Group's design?",
+    "scenario": "A shipping company has 40 vessels with expensive, unreliable satellite links. Shore teams need fuel and alarm data quickly, but also want detailed machinery history for analysis.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Edge Data Store on board; send critical data in near real time and upload non-critical data later"
+      },
+      {
+        "id": "b",
+        "text": "Stream every tag at full resolution over satellite all the time"
+      },
+      {
+        "id": "c",
+        "text": "Collect data only when ships are in port"
+      },
+      {
+        "id": "d",
+        "text": "Keep all data on each ship and never send it ashore"
+      }
+    ],
+    "answer": "a",
+    "explanation": "CSL uses AVEVA Edge Data Store to capture data onboard, sends critical data by satellite in near real time and uploads non-critical data later. It reported up to 50% upload bandwidth reduction.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner",
+      "architecture"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-marine-transport-csl-figures",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which outcomes does the CSL Group success story report? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "8,233 mt CO2e avoided across 11 vessels in a year (third-party verified)"
+      },
+      {
+        "id": "b",
+        "text": "29% carbon intensity reduction"
+      },
+      {
+        "id": "c",
+        "text": "\"over 300\" anomaly detections"
+      },
+      {
+        "id": "d",
+        "text": "Up to 50% upload bandwidth reduction"
+      },
+      {
+        "id": "e",
+        "text": "About $450,000 per vessel per year from barnacle removal"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The first four are CSL figures. About $450,000 per vessel per year from timing barnacle removal is Caterpillar.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-marine-transport-store-forward",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: Cargill ships store data locally when out of network range, using Edge Data Store and an AVEVA Adapter for Modbus.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. The Cargill story says its ships store data locally when out of range, using Edge Data Store and an AVEVA Adapter for Modbus.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "beginner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-cargill"
+    ]
+  },
+  {
+    "id": "q-marine-transport-fuel-share",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "difficulty": 2,
+    "prompt": "Caterpillar notes fuel is nearly ___% of a RORO vessel's lifetime cost.",
+    "accepted": [
+      "70"
+    ],
+    "caseSensitive": false,
+    "explanation": "Caterpillar notes fuel is nearly 70% of a RORO vessel's lifetime cost, and vessels may operate for about 50 years.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-caterpillar"
+    ]
+  },
+  {
+    "id": "q-marine-transport-caterpillar",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What saving does AVEVA report for Caterpillar from timing barnacle removal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About $450,000 per vessel per year"
+      },
+      {
+        "id": "b",
+        "text": "About $10,000 per vessel per year"
+      },
+      {
+        "id": "c",
+        "text": "$25M in fiscal 2017"
+      },
+      {
+        "id": "d",
+        "text": "8,233 mt CO2e per vessel"
+      }
+    ],
+    "answer": "a",
+    "explanation": "About $450,000 per vessel per year from timing barnacle removal (hull fouling). About $10,000 is the 2018 cruise-liner cylinder temperature catch, a one-off; $25M is DCP Midstream; 8,233 mt CO2e is CSL across 11 vessels.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-caterpillar"
+    ]
+  },
+  {
+    "id": "q-marine-transport-third-party",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which marine outcome is described as third-party verified?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CSL's 8,233 mt CO2e avoided across 11 vessels"
+      },
+      {
+        "id": "b",
+        "text": "Caterpillar's $450,000 per vessel per year"
+      },
+      {
+        "id": "c",
+        "text": "Delfi's reduced training cost"
+      },
+      {
+        "id": "d",
+        "text": "CSL's over 300 anomaly detections"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Only the CSL CO2e figure is described as third-party verified. Most success-story figures are reported by the vendor and not independently audited.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "expert",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-marine-transport-terms",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each marine term to its meaning.",
+    "pairs": [
+      {
+        "left": "RORO",
+        "right": "Roll-on/roll-off cargo vessel"
+      },
+      {
+        "left": "Hull fouling",
+        "right": "Marine growth that increases drag and fuel burn"
+      },
+      {
+        "left": "Carbon intensity",
+        "right": "CO2 emitted per unit of transport work"
+      },
+      {
+        "left": "Ship-to-shore",
+        "right": "Vessel-to-onshore data transfer, often store-and-forward"
+      }
+    ],
+    "explanation": "These are the definitions used with the Caterpillar and CSL sources.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-ss-caterpillar",
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-marine-transport-biofuel",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did CSL find about biofuel energy content?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It was 12-15% lower than conventional fuel, needing more fuel per unit of performance"
+      },
+      {
+        "id": "b",
+        "text": "It was 12-15% higher than conventional fuel"
+      },
+      {
+        "id": "c",
+        "text": "It was identical to marine gas oil"
+      },
+      {
+        "id": "d",
+        "text": "It cut fuel use by 29%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "CSL found biofuel energy content 12-15% lower than conventional fuel. The 29% figure is CSL's carbon intensity reduction.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-marine-transport-pitfalls",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "difficulty": 2,
+    "prompt": "Which data problems do the marine sources name? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Limited, unreliable bandwidth"
+      },
+      {
+        "id": "b",
+        "text": "Frequent crew turnover causing inconsistent data"
+      },
+      {
+        "id": "c",
+        "text": "Onboard data silos preventing cross-fleet learning"
+      },
+      {
+        "id": "d",
+        "text": "Weather and ocean noise in the data"
+      },
+      {
+        "id": "e",
+        "text": "Too many AF elements per vessel"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "CSL names bandwidth and crew turnover; Caterpillar names onboard silos and weather/ocean noise. No source mentions too many AF elements.",
+    "lessonId": "pi-in-marine-transport",
+    "tags": [
+      "practitioner",
+      "pitfall"
+    ],
+    "sources": [
+      "ind-ss-csl",
+      "ind-ss-caterpillar"
+    ]
+  }
+]

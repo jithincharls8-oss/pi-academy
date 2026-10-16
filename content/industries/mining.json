@@ -1,0 +1,115 @@
+[
+  {
+    "id": "mining",
+    "title": "Mining & Metals",
+    "summary": "Mining and metals companies use PI System for remote operations centres, fleet and mine plan KPIs, soft sensors, maintenance and environmental compliance. Data flows from fleet management, terrain models, DCS and lab systems into an AF model of process and equipment.",
+    "hierarchy": "```mermaid\nflowchart TD\n  C[Company] --> M[Site or Mine]\n  M --> P1[Drilling]\n  M --> P2[Loading]\n  M --> P3[Hauling]\n  M --> P4[Crushing]\n  M --> P5[Grinding and Milling]\n  M --> P6[Concentration]\n  P2 --> E1[Shovel]\n  P3 --> E2[Haul Truck]\n  P4 --> E3[Crusher]\n  P5 --> E4[Mill]\n```",
+    "tags": [
+      {
+        "name": "P80",
+        "description": "Particle size that 80% of material passes; the key grinding indicator, predicted by a soft sensor at HZL every 5 minutes."
+      },
+      {
+        "name": "Sulphide sulphur",
+        "description": "Roaster soft sensor output at HZL (Random Forest model)."
+      },
+      {
+        "name": "Haul cycle time",
+        "description": "Time for a haul truck cycle, an AMMC KPI input."
+      },
+      {
+        "name": "Concentrate grade",
+        "description": "Iron content of concentrate; AMMC cited 66.2% Fe.",
+        "uom": "% Fe"
+      }
+    ],
+    "templates": [
+      {
+        "name": "Historical event",
+        "description": "AMMC used a single AF template \"for all historical events across all units\".",
+        "attributes": [
+          "Unit",
+          "Start",
+          "End"
+        ]
+      },
+      {
+        "name": "Mobile equipment",
+        "description": "Shovel, loader or haul truck element for fleet KPIs. Illustrative.",
+        "attributes": [
+          "Haul cycle time",
+          "Production by pit"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Mine plan conformity",
+        "expression": "Actual extraction / planned extraction, by material type and shovel face",
+        "description": "AMMC targets above 80%. The ratio form is illustrative."
+      },
+      {
+        "name": "Hourly average min/max",
+        "expression": "Maximum or minimum hourly average of a monitored value",
+        "description": "Barrick's AF model returns these for air-quality permit compliance reporting."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Process deviation",
+        "trigger": "A process parameter deviates from its limits (HZL tracks these with Event Frame analyses)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Mine plan conformity",
+        "definition": "Actual vs planned extraction by material and shovel face; AMMC target above 80%."
+      },
+      {
+        "name": "Match factor",
+        "definition": "Ratio used to assess truck-to-shovel fleet balance and utilisation."
+      },
+      {
+        "name": "Production by pit",
+        "definition": "Material produced from each pit."
+      },
+      {
+        "name": "Recovery",
+        "definition": "Share of metal recovered; Ok Tedi reported copper +2.4% and gold +7.4%."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "Air Quality Operating Permits",
+        "summary": "Barrick Goldstrike reports compliance under three Air Quality Operating Permits using PI AF and Analytics."
+      }
+    ],
+    "pitfalls": [
+      "Underground sensors are hard to reach and maintain; model-driven virtual sensors keep operations running through sensor failure (Newcrest).",
+      "Manual field records and interdependent spreadsheets make compliance reporting slow and error-prone (Barrick).",
+      "Check impossible figures, such as a \"300%\" reduction, with the author before teaching them."
+    ],
+    "caseStudies": [
+      "newcrest-mining",
+      "ok-tedi-mining",
+      "hindustan-zinc",
+      "arcelormittal-mining-canada",
+      "barrick-goldstrike",
+      "vale",
+      "alcoa",
+      "rio-tinto"
+    ],
+    "coverage": [
+      "ind.mining"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019",
+      "ind-pres-hzl-2021-pdf",
+      "ind-ss-newcrest",
+      "ind-ss-barrick",
+      "ind-mipac-oktedi"
+    ],
+    "verify": true,
+    "verifyNote": "The ordering of the AF hierarchy, the Mobile equipment template and the conformity ratio form are inferred. Standard downtime and time usage model (TUM) definitions for mining in PI were not found."
+  }
+]

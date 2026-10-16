@@ -1,0 +1,415 @@
+[
+  {
+    "id": "q-nerc-cip-esp",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the Electronic Security Perimeter (ESP)?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The logical border surrounding a network to which BES Cyber Systems are connected using a routable protocol"
+      },
+      {
+        "id": "b",
+        "text": "The physical fence around a substation"
+      },
+      {
+        "id": "c",
+        "text": "The PI Data Archive security table"
+      },
+      {
+        "id": "d",
+        "text": "A list of approved user accounts"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The ESP is \"the logical border surrounding a network to which BES Cyber Systems (BCS) are connected using a routable protocol.\" Physical fences are covered by other CIP standards.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "definitions"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-eap",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "Under CIP-005-5 R1.2, what must all External Routable Connectivity leaving an ESP pass through?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An identified Electronic Access Point (EAP)"
+      },
+      {
+        "id": "b",
+        "text": "A PI Vision server"
+      },
+      {
+        "id": "c",
+        "text": "A collective secondary"
+      },
+      {
+        "id": "d",
+        "text": "A VPN to the vendor"
+      }
+    ],
+    "answer": "a",
+    "explanation": "R1.2 requires all External Routable Connectivity to pass through an identified EAP; R1.3 adds that only permitted access is allowed, with all other traffic denied by default.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "cip-005"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": true,
+    "verifyNote": "Requirement numbering is from CIP-005-5 era sources; check the current CIP version."
+  },
+  {
+    "id": "q-nerc-cip-pitopi",
+    "type": "scenario",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "Which approach follows OSIsoft's recommendations?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use PI to PI across the ESP to a Data Archive outside it, with read-only access for users"
+      },
+      {
+        "id": "b",
+        "text": "Open 5450 inbound for all corporate PCs"
+      },
+      {
+        "id": "c",
+        "text": "Put PI Vision and browsing clients in the DMZ"
+      },
+      {
+        "id": "d",
+        "text": "Share the piadmin password with engineers"
+      }
+    ],
+    "scenario": "Corporate engineers want live trends from a plant Data Archive that sits inside an ESP. One proposal opens port 5450 inbound from the corporate network to the plant server.",
+    "answer": "a",
+    "explanation": "OSIsoft recommended \"PItoPI across ESP\", \"Read Only\" access where possible, and keeping web servers and browsing clients out of the DMZ.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "architecture"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-r13",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: CIP-005-5 R1.3 requires that only permitted access is allowed through an EAP, with all other traffic denied by default.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. R1.3 requires permitted access with all other traffic denied by default.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "cip-005",
+      "true-false"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": true,
+    "verifyNote": "Requirement numbering is from CIP-005-5 era sources; check the current CIP version."
+  },
+  {
+    "id": "q-nerc-cip-malicious",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 3,
+    "prompt": "How did OSIsoft's 2014 CIP deck describe the term \"malicious communication\"?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Not defined in the CIP standards or in audit worksheets"
+      },
+      {
+        "id": "b",
+        "text": "Any traffic on port 5450"
+      },
+      {
+        "id": "c",
+        "text": "Any traffic from outside North America"
+      },
+      {
+        "id": "d",
+        "text": "Defined in CIP-005 as all UDP traffic"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck notes \"malicious communication\" is \"Not defined in the CIP standards or in audit worksheets\", so utilities must define what they detect.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "ids"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-pi-limits",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "What limit of using PI Server for intrusion detection did OSIsoft point out?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Anomalies outside the application port cannot be logged by PI Server"
+      },
+      {
+        "id": "b",
+        "text": "PI cannot store text messages"
+      },
+      {
+        "id": "c",
+        "text": "PI Message Log entries are encrypted"
+      },
+      {
+        "id": "d",
+        "text": "PI can only log events once a day"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"Anomaly outside the application port cannot be logged by PI Server.\" The PI Message Log and network packets were useful inputs, but PI is not a full IDS.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "ids"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-syslog",
+    "type": "fill",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "A 2011 deck described using a Syslog PI interface to retain electronic access logs for how many days?",
+    "accepted": [
+      "90",
+      "ninety",
+      "90 days"
+    ],
+    "caseSensitive": false,
+    "explanation": "CIP-era guidance used a Syslog PI interface to monitor firewall logs and retain \"electronic access logs for 90 days.\"",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "monitoring"
+    ],
+    "sources": [
+      "adm-uc2011-digitalbond"
+    ],
+    "verify": true,
+    "verifyNote": "Requirement numbering is from CIP-005-5 era sources; check the current CIP version."
+  },
+  {
+    "id": "q-nerc-cip-recs",
+    "type": "multi",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "Which were OSIsoft's 2014 recommendations for PI and NERC CIP? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI to PI across the ESP"
+      },
+      {
+        "id": "b",
+        "text": "Read-only access where possible"
+      },
+      {
+        "id": "c",
+        "text": "Keep web servers and browsing clients out of the DMZ"
+      },
+      {
+        "id": "d",
+        "text": "Consider absolute enforcement solutions"
+      },
+      {
+        "id": "e",
+        "text": "Allow all traffic from corporate during commissioning"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "All four were in the deck. Allow-all rules contradict R1.3's deny-by-default requirement.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "architecture"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids",
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-terms",
+    "type": "matching",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each NERC CIP term to its abbreviation.",
+    "pairs": [
+      {
+        "left": "Electronic Security Perimeter",
+        "right": "ESP"
+      },
+      {
+        "left": "Electronic Access Point",
+        "right": "EAP"
+      },
+      {
+        "left": "BES Cyber System",
+        "right": "BCS"
+      },
+      {
+        "left": "External Routable Connectivity",
+        "right": "ERC"
+      }
+    ],
+    "explanation": "These are the CIP-005 terms used for perimeter protection.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "definitions"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-nerc-cip-r15",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 3,
+    "prompt": "For CIP-005-5 R1.5, what did OSIsoft's CIP v5 deck list?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Access point firewall with commercial IDS module"
+      },
+      {
+        "id": "b",
+        "text": "PI Notifications on every tag"
+      },
+      {
+        "id": "c",
+        "text": "A data diode for all traffic"
+      },
+      {
+        "id": "d",
+        "text": "Disabling the PI Message Log"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck listed \"Access point firewall with commercial IDS module\" against R1.5, which deals with detecting malicious communications.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "cip-005"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": true,
+    "verifyNote": "Requirement numbering is from CIP-005-5 era sources; check the current CIP version."
+  },
+  {
+    "id": "q-nerc-cip-monitoring",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "difficulty": 2,
+    "prompt": "According to a 2011 deck about older CIP versions, which requirement covered monitoring cyber security system events?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CIP-007 R6"
+      },
+      {
+        "id": "b",
+        "text": "CIP-005 R1.2"
+      },
+      {
+        "id": "c",
+        "text": "CIP-002 R1"
+      },
+      {
+        "id": "d",
+        "text": "CIP-014 R3"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck quotes CIP-007 R6 for monitoring cyber security system events and CIP-005 R3.2 for detecting and alerting on unauthorised access.",
+    "lessonId": "nerc-cip-for-pi",
+    "tags": [
+      "monitoring"
+    ],
+    "sources": [
+      "adm-uc2011-digitalbond"
+    ],
+    "verify": true,
+    "verifyNote": "Requirement numbering is from CIP-005-5 era sources; check the current CIP version."
+  }
+]

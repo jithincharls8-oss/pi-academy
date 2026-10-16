@@ -1,0 +1,400 @@
+[
+  {
+    "id": "q-event-frames-defined-by",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 1,
+    "prompt": "What defines an event frame? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A name"
+      },
+      {
+        "id": "b",
+        "text": "A start time"
+      },
+      {
+        "id": "c",
+        "text": "An end time"
+      },
+      {
+        "id": "d",
+        "text": "Context, such as the referenced element"
+      },
+      {
+        "id": "e",
+        "text": "A PI point source"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "An event frame is defined by a name, a start time and end time, and context. Point source is a PI point attribute, not part of an event frame.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-event-frames-active",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: an active (open) event frame has a start time but no end time yet.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. Active event frames have a start time but no end time until the end condition is met.",
+    "lessonId": "event-frames",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-sartorius-simapi-guide"
+    ]
+  },
+  {
+    "id": "q-event-frames-creators",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "Which can create event frames, according to AVEVA's 2019 event frames session? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Asset Analytics (Event Frame Generation analyses)"
+      },
+      {
+        "id": "b",
+        "text": "AF SDK applications"
+      },
+      {
+        "id": "c",
+        "text": "Batch Framework interfaces"
+      },
+      {
+        "id": "d",
+        "text": "PI Vision symbols"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Event frames can be created by Batch Framework interfaces, Asset Analytics or the AF SDK; the deck also mentions PI EFGen. PI Vision displays event frames rather than generating them.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-event-frames-root-cause",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "By default, how many minutes before the event start does the optional root-cause window cover?",
+    "accepted": [
+      "5",
+      "five",
+      "5 minutes"
+    ],
+    "caseSensitive": false,
+    "explanation": "Event Frame Generation has an optional root-cause window, five minutes before the start by default, recorded as a child event frame.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-event-frames-time-true",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "Which setting best stops these noise events?",
+    "scenario": "An Event Frame Generation analysis opens an event frame whenever vibration exceeds a limit. Spikes lasting a second or two create hundreds of tiny event frames a day.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increase the root-cause window"
+      },
+      {
+        "id": "b",
+        "text": "Set a minimum time-true period before the event frame is generated"
+      },
+      {
+        "id": "c",
+        "text": "Change the naming pattern"
+      },
+      {
+        "id": "d",
+        "text": "Disable Include descendants in searches"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Event Frame Generation supports a minimum \"time true\" period: the start trigger must stay true for that long before a frame is created, which filters out brief spikes.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-event-frames-severity-triggers",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 3,
+    "prompt": "An EF Generation analysis has three start triggers: Minor above Hi, Major above HiHi, Critical above Maximum. With this multiple-severity configuration, what does Asset Analytics create?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A separate top-level event frame for each severity at the same time"
+      },
+      {
+        "id": "b",
+        "text": "Only direct children, and a single start trigger must be true"
+      },
+      {
+        "id": "c",
+        "text": "One event frame per trigger that is true, nested three deep"
+      },
+      {
+        "id": "d",
+        "text": "Nothing; only one trigger is allowed"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA's 2019 deck says that with multiple-severity configuration Asset Analytics creates only direct children, and a single start trigger must be true.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-event-frames-naming",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "Write an event frame naming pattern that gives the template name, the element name and the start time formatted yyyy-MM-dd HH:mm:ss, separated by ' - '.",
+    "language": "af",
+    "accepted": [
+      "%TEMPLATE% - %ELEMENT% - %STARTTIME:yyyy-MM-dd HH:mm:ss%"
+    ],
+    "requiredPatterns": [
+      "%template%",
+      "%element%",
+      "%starttime:yyyy-mm-dd hh:mm:ss%"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "Naming patterns use tokens such as %TEMPLATE%, %ELEMENT% and %STARTTIME:format%. A PI World lab used OSIDemo_%TEMPLATE% - %ELEMENT% - %STARTTIME:yyyy-MM-dd HH:mm:ss%. The pattern is set on the template's General tab.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-event-frames-outputs-mapping",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 3,
+    "prompt": "You write three Outputs at Close expressions. What must you remember when mapping them?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They map automatically in the same order as the attributes"
+      },
+      {
+        "id": "b",
+        "text": "Each must be mapped to an event frame attribute, and the mapping order is not the expression order"
+      },
+      {
+        "id": "c",
+        "text": "They can only be written to PI tags"
+      },
+      {
+        "id": "d",
+        "text": "Only one output at close is allowed"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Each Output at Close must be mapped to an event frame attribute, and the mapping order does not follow the expression order. Results can be stored as event frame attributes or PI tags.",
+    "lessonId": "event-frames",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-event-frames-eventframe-tagtot",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 3,
+    "prompt": "Write an Output at Close expression that totals 'Regenerant Vapor Flow' over the event frame, using the event frame's own start and end times.",
+    "language": "af",
+    "accepted": [
+      "TagTot('Regenerant Vapor Flow', EventFrame(\"StartTime\"), EventFrame(\"EndTime\"))"
+    ],
+    "requiredPatterns": [
+      "tagtot\\(",
+      "regenerant vapor flow",
+      "eventframe\\(\\\"starttime\\\"\\)",
+      "eventframe\\(\\\"endtime\\\"\\)"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "EventFrame(\"StartTime\") and EventFrame(\"EndTime\") return the current event frame's times, so TagTot integrates over exactly the event. This is the lab's own example.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-event-frames-bulk-delete",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "Which utility does AVEVA's 2019 session name for bulk deletion of event frames?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AFDiag"
+      },
+      {
+        "id": "b",
+        "text": "piartool"
+      },
+      {
+        "id": "c",
+        "text": "pidiag"
+      },
+      {
+        "id": "d",
+        "text": "PI Builder"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Bulk event frame deletion uses the AFDiag command-line utility. piartool and pidiag are Data Archive tools.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-event-frames-ack-reason",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: AF can be configured to require a reason code or e-signature before an event frame is acknowledged.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False, per the sources. Requiring a reason code, comment or e-signature before acknowledgement is an open AVEVA Feedback idea with no status, not a product feature.",
+    "lessonId": "event-frames",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-feedback-pida-649"
+    ]
+  },
+  {
+    "id": "q-event-frames-capture",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "difficulty": 2,
+    "prompt": "AVEVA's event frames guidance says \"Capture meaningful data - not all data\". Why?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Event frames can hold only five attributes"
+      },
+      {
+        "id": "b",
+        "text": "Capturing every attribute adds cost without adding insight"
+      },
+      {
+        "id": "c",
+        "text": "Captured attributes are deleted after 30 days"
+      },
+      {
+        "id": "d",
+        "text": "PI Vision cannot display more than one attribute"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The 2019 deck warns against capturing every attribute. Choose the values that explain the event; the others can be read from the element's history.",
+    "lessonId": "event-frames",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ],
+    "verify": true,
+    "verifyNote": "The deck gives the slogan; the reasoning about cost is a paraphrase. Check the deck for its stated reason."
+  }
+]

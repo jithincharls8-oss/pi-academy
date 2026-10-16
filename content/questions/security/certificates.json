@@ -1,0 +1,429 @@
+[
+  {
+    "id": "q-certificates-tls-optional",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "In PI Server 2023, when is TLS required?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When using OIDC authentication (and AVEVA Identity Manager)"
+      },
+      {
+        "id": "b",
+        "text": "Always, for every connection"
+      },
+      {
+        "id": "c",
+        "text": "Only for PI to PI"
+      },
+      {
+        "id": "d",
+        "text": "Never; it is not supported"
+      }
+    ],
+    "answer": "a",
+    "explanation": "TLS is an \"Optional feature for PI Server; Required if using OIDC authentication\", and the security deck adds AIM. It encrypts all authentication methods when enabled.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "tls"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins",
+      "ops2-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-pidiag-register",
+    "type": "fill",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "Complete the command that registers a TLS certificate for the PI Data Archive: pidiag -tls ____ <thumbprint>",
+    "accepted": [
+      "-r",
+      "--register"
+    ],
+    "caseSensitive": false,
+    "explanation": "pidiag -tls -r <thumbprint> (or --register) changes the certificate; pidiag -tls -y (--verify) checks it.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "commands"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins",
+      "adm-pisquare-pivision-collective-tls"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-webapi-http",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: PI Web API can be configured to listen on plain HTTP instead of HTTPS.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. \"PI Web API has no HTTP option\". It listens on port 443 for HTTPS by default.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "webapi",
+      "true-false"
+    ],
+    "sources": [
+      "ops2-uc17-secure-webapi",
+      "ops2-cisa-cm0143-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-2015",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 3,
+    "prompt": "The \"Transport Security with PI Server 2015\" slide lists which encryption for Active Directory (Kerberos) connections?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AES256/SHA1"
+      },
+      {
+        "id": "b",
+        "text": "RC4/MD5"
+      },
+      {
+        "id": "c",
+        "text": "TLS 1.3 with ECDHE"
+      },
+      {
+        "id": "d",
+        "text": "No encryption"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The slide lists Kerberos with AES256/SHA1 and NTLM with RC4/MD5, another reason to prefer Kerberos. TLS came later, with PI Server 2023.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "history"
+    ],
+    "sources": [
+      "ops2-uc15-roadmap-hughes",
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": true,
+    "verifyNote": "That PI Server 2015 transport security is Windows SSPI encryption rather than TLS is inferred from the slide."
+  },
+  {
+    "id": "q-certificates-af-ct",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 3,
+    "prompt": "How do you change the TLS certificate used by the AF Server?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AFDiag /CT:<thumbprint>"
+      },
+      {
+        "id": "b",
+        "text": "pidiag -tls -r <thumbprint>"
+      },
+      {
+        "id": "c",
+        "text": "setspn -S AFServer/<host>"
+      },
+      {
+        "id": "d",
+        "text": "Edit AFSDK.config on every client"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AFDiag /CT:<thumbprint> (/CertificateThumbprint:) sets it, stored as CERTIFICATETHUMBPRINT under the AFService registry key. pidiag is for the Data Archive and setspn manages SPNs.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-748",
+    "type": "scenario",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "What should you run first on that Data Archive?",
+    "options": [
+      {
+        "id": "a",
+        "text": "pidiag -tls --verify to check certificate registration"
+      },
+      {
+        "id": "b",
+        "text": "piartool -ss"
+      },
+      {
+        "id": "c",
+        "text": "klist purge"
+      },
+      {
+        "id": "d",
+        "text": "pibufss -cfg"
+      }
+    ],
+    "scenario": "The Data Archive message log shows: \"client attempted TLS connection but PInetmgr does not have a certificate loaded. ID: 748\".",
+    "answer": "a",
+    "explanation": "Message 748 indicates a Data Archive TLS certificate problem; pidiag -tls --verify reports registration and pidiag -tls -r re-registers. The other commands check snapshots, Kerberos tickets and buffering.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "troubleshooting"
+    ],
+    "sources": [
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-pisquare-vision-collective"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-self-signed",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "A Data Archive uses a self-signed certificate. Which clients will trust it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the local machine, or clients where the certificate has been imported"
+      },
+      {
+        "id": "b",
+        "text": "Every Windows client in the domain automatically"
+      },
+      {
+        "id": "c",
+        "text": "Every browser on the internet"
+      },
+      {
+        "id": "d",
+        "text": "No client can ever trust it"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Self-signed certificates are trusted only locally or where imported. A shared certificate needs to be trusted by all clients.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "trust"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-webapi-auth",
+    "type": "multi",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "Which statements about PI Web API authentication are correct? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Bearer and Kerberos are mutually exclusive"
+      },
+      {
+        "id": "b",
+        "text": "Anonymous authentication disables all other types"
+      },
+      {
+        "id": "c",
+        "text": "AVEVA recommends against Anonymous"
+      },
+      {
+        "id": "d",
+        "text": "Basic authentication hides credentials from the network"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The CISA countermeasure page says Bearer and Kerberos are mutually exclusive and Anonymous disables all others; AVEVA recommends against Anonymous. Basic exposes credentials on the network.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "webapi"
+    ],
+    "sources": [
+      "ops2-cisa-cm0143-webapi",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-webapi-change",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "Where is the only supported place to change PI Web API's SSL certificate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The PI Web API Admin Utility"
+      },
+      {
+        "id": "b",
+        "text": "The /piwebapi/system/configuration endpoint"
+      },
+      {
+        "id": "c",
+        "text": "PI System Explorer"
+      },
+      {
+        "id": "d",
+        "text": "The Windows hosts file"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The Admin Utility is the only supported place to change the certificate, listen port and authentication option. Runtime settings live at /piwebapi/system/configuration or in PSE.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "webapi"
+    ],
+    "sources": [
+      "ops2-cisa-cm0143-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-csrf",
+    "type": "fill",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "Which HTTP header must PI Web API clients send on POST, PATCH and DELETE requests for CSRF defence?",
+    "accepted": [
+      "X-Requested-With",
+      "X-Requested-With: XMLHttpRequest"
+    ],
+    "caseSensitive": false,
+    "explanation": "Clients must send X-Requested-With: XMLHttpRequest on POST, PATCH and DELETE; GET does not need it.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "webapi"
+    ],
+    "sources": [
+      "ops2-uc17-secure-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-oidc-popup",
+    "type": "scenario",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the most likely cause?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Those laptops do not trust the server certificate, and there is no popup if the certificate is not present"
+      },
+      {
+        "id": "b",
+        "text": "OIDC does not need certificates"
+      },
+      {
+        "id": "c",
+        "text": "Port 5450 is closed for OIDC"
+      },
+      {
+        "id": "d",
+        "text": "The laptops use Kerberos instead"
+      }
+    ],
+    "scenario": "After enabling OIDC on PI Server 2023, users on some laptops simply fail to connect. They get no certificate warning or prompt.",
+    "answer": "a",
+    "explanation": "OIDC needs TLS, and the UC23 deck warns there is \"No popup if the certificate isn't present\". Deploy the issuing CA or certificate to every client.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "oidc"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-certificates-rotation",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: in 2023 AVEVA listed automatic TLS certificate rotation for PI Server as \"In development\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. The 2023 PI Server roadmap listed automatic certificate rotation as in development, so plan for manual renewal.",
+    "lessonId": "certificates-and-tls",
+    "tags": [
+      "operations",
+      "true-false"
+    ],
+    "sources": [
+      "ops2-uc23-pi-server-geneva"
+    ],
+    "verify": false
+  }
+]

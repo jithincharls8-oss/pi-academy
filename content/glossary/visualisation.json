@@ -1,0 +1,968 @@
+[
+  {
+    "id": "pi-vision",
+    "term": "PI Vision",
+    "aliases": [
+      "AVEVA PI Vision"
+    ],
+    "definition": "The PI System's browser-based display tool for viewing and building displays of PI and AF data. It was called PI Coresight until 2017.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-coresight",
+      "design-mode",
+      "pi-vision-symbol"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024",
+      "ops2-osisoft-coresight-renamed"
+    ]
+  },
+  {
+    "id": "design-mode",
+    "term": "Design mode",
+    "aliases": [],
+    "definition": "PI Vision's editing state, shown by an orange border, in which symbols, shapes, text and images are added and configured.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-vision",
+      "pi-vision-symbol"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "pi-vision-symbol",
+    "term": "Symbol (PI Vision)",
+    "aliases": [
+      "dynamic symbol"
+    ],
+    "definition": "A display element bound to data, such as a Trend, Value, Gauge, Table, Asset Comparison Table, Time Series Table, Bar Chart or XY Plot.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "design-mode",
+      "multi-state",
+      "collection"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "multi-state",
+    "term": "Multi-state",
+    "aliases": [
+      "multistate"
+    ],
+    "definition": "Symbol colouring driven by an attribute's value against up to five ranges (or the AF attribute's Limits), plus a Bad data state and an optional blink.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-vision-symbol",
+      "limit-traits"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "time-bar",
+    "term": "Time bar",
+    "aliases": [],
+    "definition": "The strip at the bottom of a PI Vision display holding start and end time, duration, shift arrows, Revert and Now. The default span is 8 hours.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "ad-hoc-display",
+    "term": "Ad hoc display",
+    "aliases": [],
+    "definition": "A temporary, unsaved PI Vision display that shows a single trend populated with specified data items.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-vision"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "kiosk-mode",
+    "term": "Kiosk mode",
+    "aliases": [
+      "Mode=Kiosk"
+    ],
+    "definition": "The Mode=Kiosk URL parameter, which opens a PI Vision display with limited, read-only interactivity, for example on a wall screen.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-vision-url-parameters"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "pi-vision-url-parameters",
+    "term": "PI Vision URL parameters",
+    "aliases": [
+      "display URL parameters"
+    ],
+    "definition": "Query-string settings on a display URL, such as StartTime, EndTime, Mode=Kiosk, HideToolbar and HideTimebar, plus options for time zone and asset swapping.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "kiosk-mode",
+      "time-bar"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "navigation-link",
+    "term": "Navigation link",
+    "aliases": [],
+    "definition": "A link added to a PI Vision symbol, shape or image that opens another display (optionally passing time and asset context) or an external web page.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "asset-context-switching"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "xy-plot",
+    "term": "XY Plot",
+    "aliases": [],
+    "definition": "A PI Vision symbol that plots one attribute against another to find correlations, compare assets or compare time ranges, with an optional regression line and correlation coefficient.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics",
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "pi-vision-symbol"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024",
+      "dcv-sloves-pivision-2017"
+    ]
+  },
+  {
+    "id": "time-series-table",
+    "term": "Time Series Table",
+    "aliases": [],
+    "definition": "A PI Vision 2024 symbol that lists sequential values with timestamps. Its default update interval is 5 seconds and administrators can set its default configuration.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics"
+    ],
+    "related": [
+      "pi-vision-symbol"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "asset-comparison-table",
+    "term": "Asset Comparison Table",
+    "aliases": [],
+    "definition": "A PI Vision table symbol, introduced in 2017, that shows the same attributes for several assets side by side and can use dynamic search criteria and multi-state.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-basics",
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "collection"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024",
+      "dcv-thomassen-pivision-2017"
+    ]
+  },
+  {
+    "id": "asset-context-switching",
+    "term": "Asset context switching",
+    "aliases": [
+      "asset switching",
+      "Switch Asset"
+    ],
+    "definition": "Changing a PI Vision display to show another asset of the same type, configured in Configure Context Switching with options such as Search Root, Return All Descendants and Asset Type.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "related-assets",
+      "collection",
+      "element-template"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024"
+    ]
+  },
+  {
+    "id": "collection",
+    "term": "Collection (PI Vision)",
+    "aliases": [
+      "symbol collection"
+    ],
+    "definition": "A group of PI Vision symbols bound to an asset search (root, template, attribute filter) that repeats for each matching asset and updates automatically as assets and values change.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "asset-context-switching",
+      "pi-vision-symbol"
+    ],
+    "sources": [
+      "dcv-visualizing-workbook-2024",
+      "dcv-sloves-pivision-2017"
+    ]
+  },
+  {
+    "id": "related-assets",
+    "term": "Related Assets",
+    "aliases": [],
+    "definition": "A PI Vision 2017 R2 enhancement to context switching that lets authors define asset criteria, swap one asset or an entire asset path, or disable switching.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "asset-context-switching"
+    ],
+    "sources": [
+      "dcv-sloves-pivision-2017"
+    ]
+  },
+  {
+    "id": "pinned-event",
+    "term": "Pinned event",
+    "aliases": [],
+    "definition": "An event frame saved with a PI Vision display as a reference for comparison, for example a known good batch.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "event-comparison",
+      "event-frame"
+    ],
+    "sources": [
+      "dcv-sloves-pivision-2017"
+    ]
+  },
+  {
+    "id": "event-comparison",
+    "term": "Event comparison",
+    "aliases": [
+      "Compare Similar Events by Type"
+    ],
+    "definition": "A PI Vision feature that trends an event's trigger attributes for that event and similar events, with Edit Search Criteria to widen the set.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "pinned-event",
+      "events-table"
+    ],
+    "sources": [
+      "dcv-analyzing-workbook-2022",
+      "dcv-kwan-roadmap-2016"
+    ]
+  },
+  {
+    "id": "events-table",
+    "term": "Events Table",
+    "aliases": [
+      "Event Table"
+    ],
+    "definition": "A PI Vision symbol, added in 2017 R2, that lists event frames and filters them by asset type, severity, hierarchy and more.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-advanced"
+    ],
+    "related": [
+      "event-comparison",
+      "event-frame"
+    ],
+    "sources": [
+      "dcv-clark-pivision-2017",
+      "dcv-sloves-pivision-2017"
+    ]
+  },
+  {
+    "id": "pi-vision-admin-site",
+    "term": "PI Vision Admin site",
+    "aliases": [
+      "/PIVision/Admin"
+    ],
+    "definition": "The PI Vision administration website at https://<WebServer>/PIVision/Admin, used to configure the SQL database, data servers, defaults and usage reports. Access is controlled by the PI Vision Admins group.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-database",
+      "pi-vision-local-groups"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook"
+    ]
+  },
+  {
+    "id": "pivision-service-app-pool",
+    "term": "PIVisionServiceAppPool",
+    "aliases": [
+      "PI Vision application pools",
+      "PIVisionAdminAppPool",
+      "PIVisionUtilityAppPool"
+    ],
+    "definition": "The IIS application pool that runs the main PI Vision website. PI Vision also installs PIVisionAdminAppPool (Admin site) and PIVisionUtilityAppPool (Display Utility).",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-admin-site",
+      "pi-vision-display-utility"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook"
+    ]
+  },
+  {
+    "id": "pi-vision-local-groups",
+    "term": "PI Vision local groups",
+    "aliases": [
+      "PI Vision Admins",
+      "PI Vision Users",
+      "PI Vision Utility Users"
+    ],
+    "definition": "Local Windows groups created by PI Vision: PI Vision Admins (Admin site), PI Vision Users (main site) and PI Vision Utility Users (Display Utility).",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-admin-site"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook"
+    ]
+  },
+  {
+    "id": "pi-vision-database",
+    "term": "PI Vision database",
+    "aliases": [
+      "PI Vision SQL database"
+    ],
+    "definition": "The SQL Server database that stores PI Vision displays and settings. It is created from the Admin site by an account with dbcreator and ALTER ANY LOGIN (securityadmin).",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-admin-site"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook"
+    ]
+  },
+  {
+    "id": "pi-vision-display-utility",
+    "term": "PI Vision Display Utility",
+    "aliases": [],
+    "definition": "A PI Vision utility, with its own application pool, used to manage displays offline and promote them across disconnected environments.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pivision-service-app-pool"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook",
+      "ops2-uc22-vision-dutta"
+    ]
+  },
+  {
+    "id": "pi-vision-publisher",
+    "term": "Publisher (PI Vision)",
+    "aliases": [
+      "Named User publisher"
+    ],
+    "definition": "A PI Vision named-user licence type with full display manipulation capabilities, including creating and saving displays.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-explorer"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026",
+      "dcv-gomatam-pivision-2017"
+    ]
+  },
+  {
+    "id": "pi-vision-explorer",
+    "term": "Explorer (PI Vision)",
+    "aliases": [
+      "Named User explorer"
+    ],
+    "definition": "A PI Vision named-user licence type that can view and interact with displays (time, asset switching, events, ad hoc displays) but cannot save displays.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "pi-vision-publisher"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026",
+      "dcv-gomatam-pivision-2017"
+    ]
+  },
+  {
+    "id": "use-app-pool-credentials",
+    "term": "useAppPoolCredentials",
+    "aliases": [],
+    "definition": "An IIS Windows Authentication setting that should be True when PI Vision's application pools run under a domain service account rather than Network Service, so Kerberos works with that account.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "kerberos",
+      "pivision-service-app-pool"
+    ],
+    "sources": [
+      "ops2-pisquare-vision-security-blog"
+    ]
+  },
+  {
+    "id": "custom-symbol",
+    "term": "Custom symbol",
+    "aliases": [
+      "PI Vision extensibility",
+      "extension symbol"
+    ],
+    "definition": "A PI Vision extension made of a sym-<name>.js definition and a sym-<name>-template.html template, placed in the ext folder and registered with PV.symbolCatalog.register.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "symbol-ext-folder",
+      "symbol-definition",
+      "datashape"
+    ],
+    "sources": [
+      "ops2-gh-vision-ext-guide"
+    ]
+  },
+  {
+    "id": "symbol-ext-folder",
+    "term": "ext folder",
+    "aliases": [
+      "symbols\\ext"
+    ],
+    "definition": "The folder Scripts\\app\\editor\\symbols\\ext under the PI Vision installation where custom symbol files live, with icons and libraries subfolders; tool panes go in Scripts\\app\\editor\\tools\\ext.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "custom-symbol"
+    ],
+    "sources": [
+      "ops2-gh-vision-ext-guide",
+      "ops2-gh-leniel-vision-ext"
+    ]
+  },
+  {
+    "id": "symbol-definition",
+    "term": "Symbol definition",
+    "aliases": [],
+    "definition": "The object passed to PV.symbolCatalog.register, with properties such as typeName (required), displayName, datasourceBehavior, iconUrl, getDefaultConfig, configOptions, inject, visObjectType (required) and supportsCollections.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "custom-symbol",
+      "datasource-behavior",
+      "datashape"
+    ],
+    "sources": [
+      "ops2-gh-vision-ext-guide"
+    ]
+  },
+  {
+    "id": "datashape",
+    "term": "DataShape",
+    "aliases": [],
+    "definition": "The data format a custom symbol asks PI Vision to supply, set in getDefaultConfig: Value, Gauge, Trend, Table or TimeSeries.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "symbol-definition"
+    ],
+    "sources": [
+      "ops2-gh-vision-ext-guide"
+    ]
+  },
+  {
+    "id": "datasource-behavior",
+    "term": "datasourceBehavior",
+    "aliases": [],
+    "definition": "A symbol definition property: None (0) for a static symbol not shown in the selector, Single (1) for one data item, or Multiple (2) for several.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.vision-admin"
+    ],
+    "related": [
+      "symbol-definition"
+    ],
+    "sources": [
+      "ops2-gh-vision-ext-guide"
+    ]
+  },
+  {
+    "id": "pi-processbook",
+    "term": "PI ProcessBook",
+    "aliases": [
+      "ProcessBook"
+    ],
+    "definition": "OSIsoft's legacy Windows desktop display tool for process graphics, saved as .pdi files. AVEVA announced its retirement in October 2021 in favour of PI Vision.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.processbook"
+    ],
+    "related": [
+      "pdi-file",
+      "processbook-migration-utility",
+      "pi-vision"
+    ],
+    "sources": [
+      "dcv-pb-migration-lab-2020",
+      "ops2-aveva-pb-retire-blog"
+    ]
+  },
+  {
+    "id": "pdi-file",
+    "term": "PDI file",
+    "aliases": [
+      ".pdi"
+    ],
+    "definition": "A PI ProcessBook display file, such as PowerGeneration.pdi.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.processbook"
+    ],
+    "related": [
+      "pi-processbook"
+    ],
+    "sources": [
+      "dcv-pb-migration-lab-2020"
+    ]
+  },
+  {
+    "id": "processbook-migration-utility",
+    "term": "PI ProcessBook to PI Vision Migration Utility",
+    "aliases": [
+      "Migration Utility",
+      "ProcessBook Migration Tool"
+    ],
+    "definition": "A separately installed tool that analyses ProcessBook .pdi displays and migrates them to native PI Vision displays, reporting issues such as VBA before migration.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.processbook"
+    ],
+    "related": [
+      "pi-processbook",
+      "pdi-file"
+    ],
+    "sources": [
+      "dcv-pb-migration-lab-2020",
+      "ops2-pb-migration-workbook"
+    ]
+  },
+  {
+    "id": "processbook-dataset",
+    "term": "ProcessBook dataset",
+    "aliases": [
+      "dataset"
+    ],
+    "definition": "A calculation defined inside PI ProcessBook. Datasets are not carried over by the Migration Utility; the AVEVA lab rebuilds them as AF analyses.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.processbook"
+    ],
+    "related": [
+      "pi-processbook",
+      "asset-analytics"
+    ],
+    "sources": [
+      "dcv-pb-migration-lab-2020"
+    ]
+  },
+  {
+    "id": "pi-datalink",
+    "term": "PI DataLink",
+    "aliases": [
+      "DataLink"
+    ],
+    "definition": "An Excel add-in that retrieves PI point, AF attribute and event frame data into worksheet cells through task panes and functions grouped as single-value, multiple-value, calculation, events, search and properties.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "picompdat",
+      "piadvcalcval",
+      "explore-events"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "picompdat",
+    "term": "PICompDat",
+    "aliases": [
+      "Compressed Data"
+    ],
+    "definition": "The PI DataLink Excel function written by the Compressed Data task, returning stored (compressed) values for a data item over a time range, for example PICompDat(\"cdm158\",\"y\",\"t\",1,\"\",\"inside\").",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "pi-datalink",
+      "piadvcalcval"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "piadvcalcval",
+    "term": "PIAdvCalcVal",
+    "aliases": [
+      "Calculated Data"
+    ],
+    "definition": "The PI DataLink Excel function written by the Calculated Data task, which returns summaries such as totals or averages over intervals, with a conversion factor and optional percent good.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "pi-datalink",
+      "picompdat"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "datalink-volatile-function",
+    "term": "Volatile function (DataLink)",
+    "aliases": [],
+    "definition": "An Excel function that recalculates whenever Excel recalculates. In PI DataLink, only Current Value is volatile by default.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "pi-datalink"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "explore-events",
+    "term": "Explore Events",
+    "aliases": [],
+    "definition": "A PI DataLink event retrieval method that returns event frames hierarchically, suited to events sharing a template, with a setting for child event levels.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "compare-events",
+      "event-frame"
+    ],
+    "sources": [
+      "dcv-analyzing-workbook-2018"
+    ]
+  },
+  {
+    "id": "compare-events",
+    "term": "Compare Events",
+    "aliases": [],
+    "definition": "A PI DataLink event retrieval method that returns event frames as a flat list, with child attributes on the parent's row.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "related": [
+      "explore-events",
+      "event-frame"
+    ],
+    "sources": [
+      "dcv-analyzing-workbook-2018"
+    ]
+  },
+  {
+    "id": "pi-webparts",
+    "term": "PI WebParts",
+    "aliases": [
+      "WebParts"
+    ],
+    "definition": "OSIsoft web parts for building PI composite applications and dashboards in Microsoft SharePoint. A 2022 feedback post lists it among deprecated products no longer sold.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.legacy-web"
+    ],
+    "related": [
+      "pi-visualization-suite",
+      "pi-vision"
+    ],
+    "sources": [
+      "ops2-rs2011-coresight",
+      "ops2-feedback-picust-192"
+    ],
+    "verify": true,
+    "verifyNote": "Deprecated status comes from a user-written feedback post; no official end-of-support date was found."
+  },
+  {
+    "id": "pi-manual-logger",
+    "term": "PI Manual Logger",
+    "aliases": [
+      "PI ML",
+      "PI Manual Logger Web"
+    ],
+    "definition": "An OSIsoft product for entering readings by hand, with web and mobile clients. It stores settings and data in SQL Server before sending them to the PI Data Archive.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.legacy-web"
+    ],
+    "related": [
+      "pi-visualization-suite"
+    ],
+    "sources": [
+      "ops2-uc15-manual-logger",
+      "dcv-collins-pi101-2017"
+    ]
+  },
+  {
+    "id": "pi-visualization-suite",
+    "term": "PI Visualization Suite",
+    "aliases": [],
+    "definition": "OSIsoft's 2017 grouping of PI client tools: PI Vision, PI ProcessBook, PI DataLink and PI WebParts.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.legacy-web"
+    ],
+    "related": [
+      "pi-vision",
+      "pi-processbook",
+      "pi-datalink",
+      "pi-webparts"
+    ],
+    "sources": [
+      "dcv-collins-pi101-2017"
+    ]
+  },
+  {
+    "id": "integrator-worker-node",
+    "term": "Worker node (PI Integrator)",
+    "aliases": [],
+    "definition": "An additional PI Integrator for Business Analytics node that adds processing capacity under the PI Integrator Framework master service. Up to five can be added.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.bi"
+    ],
+    "related": [
+      "pi-integrator-ba",
+      "pi-integrator-sync"
+    ],
+    "sources": [
+      "dcv-devtech-workbook-2020"
+    ]
+  },
+  {
+    "id": "pi-integrator-sync",
+    "term": "PI Integrator Sync",
+    "aliases": [],
+    "definition": "The PI Integrator for Business Analytics component that watches for PI tag and AF changes so published views stay current.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.bi"
+    ],
+    "related": [
+      "pi-integrator-ba",
+      "integrator-worker-node"
+    ],
+    "sources": [
+      "dcv-devtech-workbook-2020"
+    ]
+  },
+  {
+    "id": "data-hub-power-bi-connector",
+    "term": "AVEVA Data Hub Power BI Connector",
+    "aliases": [
+      "Data Hub Power BI connector"
+    ],
+    "definition": "A Power BI connector that reads Data Views from AVEVA Data Hub (now CONNECT data services), listed with the REST API as a Data Views consumer.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.bi",
+      "vis.connect"
+    ],
+    "related": [
+      "cds-data-view",
+      "connect-data-services"
+    ],
+    "sources": [
+      "ops2-uc23-dataviews-coppock"
+    ]
+  },
+  {
+    "id": "business-intelligence-tool",
+    "term": "BI tool",
+    "aliases": [
+      "business intelligence tool"
+    ],
+    "definition": "Reporting and analytics software such as Power BI, Tableau, Spotfire or QlikView. PI data is reshaped for these tools by PI Integrator for BA, PI SQL Client or Data Views.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.bi"
+    ],
+    "related": [
+      "pi-integrator-ba",
+      "pi-sql-client",
+      "cds-data-view"
+    ],
+    "sources": [
+      "dcv-devtech-workbook-2020"
+    ]
+  },
+  {
+    "id": "connect-visualization-services",
+    "term": "CONNECT visualisation services",
+    "aliases": [
+      "CONNECT visualization",
+      "AVEVA Connect visualization services"
+    ],
+    "definition": "The visualisation part of AVEVA's CONNECT cloud platform, for viewing and sharing industrial data from CONNECT data services in the browser. 2025 updates added Experience visualizations and asset and time context.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.connect"
+    ],
+    "related": [
+      "aveva-connect",
+      "connect-data-services"
+    ],
+    "sources": [
+      "ops2-arc-connect-launch",
+      "dcv-felts-connectivity-2023",
+      "ops2-aveva-connect-2025-updates"
+    ],
+    "verify": true,
+    "verifyNote": "Only high-level statements were readable; feature detail of CONNECT visualisation was not researched."
+  },
+  {
+    "id": "data-hub-trend-tool",
+    "term": "Data Hub trend tool",
+    "aliases": [],
+    "definition": "The trending view in AVEVA Data Hub (now CONNECT data services) used to look at stream data, for example data sent from Edge Data Store.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.connect"
+    ],
+    "related": [
+      "connect-visualization-services",
+      "edge-data-store"
+    ],
+    "sources": [
+      "dcv-uc23-mqtt-eds-workshop"
+    ]
+  },
+  {
+    "id": "industrial-ai-assistant",
+    "term": "Industrial AI Assistant",
+    "aliases": [],
+    "definition": "An AI assistant in AVEVA CONNECT, announced in open preview in AVEVA's December 2025 list of CONNECT updates.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.connect"
+    ],
+    "related": [
+      "aveva-connect"
+    ],
+    "sources": [
+      "ops2-aveva-connect-2025-updates"
+    ]
+  },
+  {
+    "id": "pi-data-infrastructure",
+    "term": "AVEVA PI Data Infrastructure",
+    "aliases": [
+      "PI Data Infrastructure"
+    ],
+    "definition": "An AVEVA offer that augments the on-premises PI System with cloud functions. Its core is PI Server, Edge Data Store, CONNECT data services and connectivity, and it also includes PI Vision, PI DataLink and PI Web API.",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.connect"
+    ],
+    "related": [
+      "connect-data-services",
+      "pi-vision"
+    ],
+    "sources": [
+      "ops2-pidi-service-description"
+    ]
+  }
+]

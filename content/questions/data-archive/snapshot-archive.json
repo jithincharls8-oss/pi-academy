@@ -1,0 +1,205 @@
+[
+  {
+    "id": "q-snap-path",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 2,
+    "prompt": "Order the stages an in-order event passes through inside the Data Archive.",
+    "items": [
+      { "id": "a", "text": "PI Network Manager receives the event" },
+      { "id": "b", "text": "Snapshot Subsystem updates the snapshot and applies compression" },
+      { "id": "c", "text": "Event queue holds the event" },
+      { "id": "d", "text": "Archive Subsystem write cache" },
+      { "id": "e", "text": "Archive file on disk" }
+    ],
+    "explanation": "The data path is pinetmgr, then the Snapshot Subsystem (piarcmem.dat, compression), the event queue (pimq0000.dat), the Archive Subsystem write cache (flushed every 5 minutes), then the .arc file.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["data-flow"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-display-not-archived",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 2,
+    "scenario": "An operator saw a pressure of 12.31 bar on a live display at 10:15. The next day a trend of archived data shows no value at exactly 10:15 and passes smoothly from 12.20 to 12.40.",
+    "prompt": "What explains this?",
+    "options": [
+      { "id": "a", "text": "The display read the snapshot table before compression; compression later decided that event did not need to be archived" },
+      { "id": "b", "text": "The archive file is corrupt" },
+      { "id": "c", "text": "The interface sent the value to the wrong server" },
+      { "id": "d", "text": "The event is still in the event queue and will appear in a week" }
+    ],
+    "answer": "a",
+    "explanation": "Clients asking for snapshot data read the snapshot table before compression is applied, so real-time displays can show values that are later not archived. This is normal behaviour.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["compression", "scenario"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-ooo-symptom",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive", "da.backfill"],
+    "difficulty": 3,
+    "prompt": "Which message-log entry is the telltale sign of heavy out-of-order writes?",
+    "options": [
+      { "id": "a", "text": "Message ID 2016, 'Inserting overflow record'" },
+      { "id": "b", "text": "Message ID 6079, point creation" },
+      { "id": "c", "text": "[-11140] Archive query exceeded maximum execution time" },
+      { "id": "d", "text": "[-10767] Client exceeded maximum concurrent queries" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's 2023 performance session lists high CPU or memory, slow archive operations and message 2016 'Inserting overflow record' as OOO symptoms.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["out-of-order", "message-log"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-snap-files",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 2,
+    "prompt": "Match each Data Archive file to its role.",
+    "pairs": [
+      { "left": "piarcmem.dat", "right": "Snapshot table" },
+      { "left": "pimq0000.dat", "right": "Event queue" },
+      { "left": ".arc file", "right": "Archive file" },
+      { "left": ".ann file", "right": "Annotation file" }
+    ],
+    "explanation": "The training names piarcmem.dat as the snapshot table and pimq0000.dat as the event queue. Archive files have the .arc extension with a matching .ann annotation file.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["files"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-flush",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive", "da.tuning"],
+    "difficulty": 2,
+    "prompt": "Which tuning parameter sets how often the archive write cache is flushed to disk (default 5 minutes)?",
+    "accepted": ["Archive_SecondsBetweenFlush"],
+    "explanation": "The archive subsystem writes incoming data to a memory write cache that is flushed every 5 minutes by default, controlled by Archive_SecondsBetweenFlush.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["tuning"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-piartool",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive", "da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each piartool option to what it shows.",
+    "pairs": [
+      { "left": "piartool -ss", "right": "Snapshot statistics" },
+      { "left": "piartool -qs", "right": "Event-queue statistics" },
+      { "left": "piartool -as", "right": "Archive statistics" },
+      { "left": "piartool -al", "right": "List of archives and shift progress" }
+    ],
+    "explanation": "-ss, -qs and -as each refresh every 5 seconds; -al lists archives and shows shift progress.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["tools"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-archiving-flag",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 3,
+    "prompt": "On a PI Data Archive 2018 server, piartool -as shows the Archiving flag. Which value is healthy?",
+    "options": [
+      { "id": "a", "text": "3 (historic and future)" },
+      { "id": "b", "text": "1 (historic only)" },
+      { "id": "c", "text": "0 (not archiving)" },
+      { "id": "d", "text": "2 (future only)" }
+    ],
+    "answer": "a",
+    "explanation": "The flag is 0 not archiving, 1 historic only, 2 future only, 3 historic and future. Healthy is 1 for Data Archive 2012 and earlier, and 3 for 2015 and later, because 2015 added future archives.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["monitoring"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-snap-ooo-causes",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive", "da.backfill"],
+    "difficulty": 2,
+    "prompt": "What are the main causes of out-of-order data, according to AVEVA's 2023 performance session? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Analysis recalculation" },
+      { "id": "b", "text": "History recovery through PI to PI" },
+      { "id": "c", "text": "History recovery through RDBMS or UFL interfaces" },
+      { "id": "d", "text": "Users opening PI Vision displays" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OOO data is caused mainly by analysis recalculation and history recovery (PI to PI, RDBMS, UFL). Reading displays does not write data.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["out-of-order"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-snap-queue-loss",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 2,
+    "prompt": "True or false: data waiting in a growing event queue is lost if the Archive Subsystem is slow.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "The event queue is a 'tank' between snapshot and archive; data builds up there if the archive falls behind or no primary archive covers the time, and is not lost while queued.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["true-false", "event-queue"],
+    "sources": ["da-admin-workbook-2017r2"],
+    "verify": true,
+    "verifyNote": "That queued data is not lost is the research author's inference from the training's 'tank' description; confirm against AVEVA documentation."
+  },
+  {
+    "id": "q-snap-read-cache",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive", "da.tuning"],
+    "difficulty": 3,
+    "prompt": "When does the Archive Subsystem's own read cache help most?",
+    "options": [
+      { "id": "a", "text": "For repeated summary calculations on the same point" },
+      { "id": "b", "text": "For the first read of a point never queried before" },
+      { "id": "c", "text": "For writing out-of-order data" },
+      { "id": "d", "text": "It replaces the Windows file system cache entirely" }
+    ],
+    "answer": "a",
+    "explanation": "The archive read cache is separate from the Windows file system cache (which holds 256 KB sections of archive files) and helps most for repeated summary calculations on the same point.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["performance"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-snap-ooo-avoid",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.snapshot-archive"],
+    "difficulty": 3,
+    "prompt": "To keep out-of-order inserts cheap, which of these does AVEVA suggest avoiding or limiting? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Excessive string and BLOB tags" },
+      { "id": "b", "text": "Float64 points" },
+      { "id": "c", "text": "Sub-second timestamps" },
+      { "id": "d", "text": "Annotations" },
+      { "id": "e", "text": "Ordering OOO writes within each archive file" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The session lists avoiding excessive string and blob tags, Float64, sub-second timestamps and annotations. Ordering OOO writes within each archive is a recommended mitigation, not something to avoid.",
+    "lessonId": "snapshot-and-archive",
+    "tags": ["out-of-order", "performance"],
+    "sources": ["da-uc23-da-performance"]
+  }
+]

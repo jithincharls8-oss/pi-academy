@@ -1,0 +1,117 @@
+[
+  {
+    "id": "caterpillar-marine",
+    "company": "Caterpillar",
+    "title": "AVEVA PI System creates smooth sailing for Caterpillar's marine operations",
+    "industry": "marine-transport",
+    "products": [
+      "data-archive",
+      "interfaces-connectors"
+    ],
+    "summary": "Caterpillar's CAT Asset Intelligence provides \"whole-ship monitoring\" for remote condition checks, predictive maintenance and compliance support. It is powered by PI System, with PI Servers onboard and onshore.",
+    "challenge": "Vessels are complex, weather and ocean conditions add \"noise\" to the data, and data was held in silos onboard each ship.",
+    "solution": "CAT Asset Intelligence, powered by PI System with PI Servers onboard and onshore linked by PI connectors.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "About $450,000 per vessel per year from timing barnacle removal (hull fouling)",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "About $10,000 saved in 2018 by catching an abnormal cylinder temperature on a cruise liner",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"Hundreds of thousands of dollars\" from reduced downtime and fuel burn",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.marine-transport"
+    ],
+    "sources": [
+      "ind-ss-caterpillar"
+    ],
+    "verify": false
+  },
+  {
+    "id": "csl-group",
+    "company": "CSL Group",
+    "title": "Chartering a course to net zero",
+    "industry": "marine-transport",
+    "products": [
+      "data-archive",
+      "pi-vision",
+      "data-hub"
+    ],
+    "region": "Global (Canadian roots)",
+    "summary": "CSL Group sends ship-to-shore data from more than 40 self-unloading vessels to AVEVA PI Data Infrastructure, using Edge Data Store onboard and prioritised satellite transfer.",
+    "challenge": "A target of a 35% CO2 cut by 2030, limited bandwidth and frequent crew turnover.",
+    "solution": "Edge Data Store with prioritised satellite transfer, enriched with voyage, weather, traffic, geofencing and compliance context.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "8,233 mt CO2e avoided across 11 vessels in a year (third-party verified)",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "29% carbon intensity reduction",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "Over 300 anomaly detections",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Up to 50% upload bandwidth reduction ship-to-shore",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "14,000 tons of marine gas oil substituted",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.marine-transport"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ],
+    "verify": false
+  },
+  {
+    "id": "delfi-ils",
+    "company": "Delfi ILS Solutions",
+    "title": "AVEVA PI System helps virtually train maritime crews",
+    "industry": "marine-transport",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Delfi ILS Solutions' ShipView, built on PI System, feeds live ship automation data into 3D crew-training simulations.",
+    "challenge": "A varied fleet, where manuals alone were not enough to train crews.",
+    "solution": "ShipView built on PI System.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Qualitative: \"We reduce the training cost at scale\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.marine-transport"
+    ],
+    "sources": [
+      "ind-ss-delfi"
+    ],
+    "verify": false
+  }
+]

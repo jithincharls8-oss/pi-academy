@@ -1,0 +1,415 @@
+[
+  {
+    "id": "q-elements-templates-element-value",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: an AF element has its own data reference and value, just like an attribute.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The workbook says an element \"has no Data Reference and does not have a value\". Values live on the element's attributes.",
+    "lessonId": "elements-and-templates",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-template-change",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 1,
+    "prompt": "You add a new attribute template to the element template 'Pump'. What happens to the 200 existing pump elements built from it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nothing until each element is recreated"
+      },
+      {
+        "id": "b",
+        "text": "They are updated automatically and get the new attribute"
+      },
+      {
+        "id": "c",
+        "text": "Only elements created after the change get it"
+      },
+      {
+        "id": "d",
+        "text": "PSE asks you to convert each element by hand"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Elements created from a template are updated automatically when the template's attribute definitions, default values or structure change. That is the main reason to use templates.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-reset",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 2,
+    "prompt": "An engineer overrode the default value of 'Max Speed' on one element. Later the template default changes, but that element still shows the old value. What restores the template behaviour?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Check In the template again"
+      },
+      {
+        "id": "b",
+        "text": "Reset to Template on the element attribute"
+      },
+      {
+        "id": "c",
+        "text": "Convert to Template"
+      },
+      {
+        "id": "d",
+        "text": "Delete and recreate the template"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Attribute-level overrides survive template changes. \"Reset to Template\" removes the override so the element follows its template again. Convert to Template does the opposite job: it makes a template from an element.",
+    "lessonId": "elements-and-templates",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-ref-types",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each element reference type to its behaviour.",
+    "pairs": [
+      {
+        "left": "Composition",
+        "right": "Deleting the parent deletes the child"
+      },
+      {
+        "left": "Parent-Child",
+        "right": "The default; a child can have several parents"
+      },
+      {
+        "left": "Weak",
+        "right": "Goes away when the child's last strong parent reference is removed"
+      }
+    ],
+    "explanation": "These are the three element reference types described in AVEVA's building-assets workbook. Parent-Child is the default.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-drag-modifiers",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 2,
+    "prompt": "In PI System Explorer, you drag an element onto another element without holding any key. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The element is moved"
+      },
+      {
+        "id": "b",
+        "text": "The element is copied"
+      },
+      {
+        "id": "c",
+        "text": "An element reference is created"
+      },
+      {
+        "id": "d",
+        "text": "Nothing; a modifier key is required"
+      }
+    ],
+    "answer": "c",
+    "explanation": "Shift-drag moves the element, Ctrl-drag copies it, and a plain drag creates an element reference. Learners often expect a plain drag to move.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-invalid-names",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 2,
+    "prompt": "Which characters are NOT allowed in an element name? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Semicolon ;"
+      },
+      {
+        "id": "b",
+        "text": "Question mark ?"
+      },
+      {
+        "id": "c",
+        "text": "Hyphen -"
+      },
+      {
+        "id": "d",
+        "text": "Pipe |"
+      },
+      {
+        "id": "e",
+        "text": "Square brackets [ ]"
+      },
+      {
+        "id": "f",
+        "text": "Underscore _"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "d",
+      "e"
+    ],
+    "explanation": "Element names cannot contain control characters or symbols including semicolon, question mark, backtick, double quote, backslash, pipe, braces and square brackets. Hyphens and underscores are fine.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-unique-name",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: two elements named 'Transformer' can sit under the same parent element.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. An element name must be unique along its path, so two siblings cannot share a name. The same name under different parents is fine.",
+    "lessonId": "elements-and-templates",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-elements-templates-extensions",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the main risk of the checkbox they want to tick?",
+    "scenario": "A team ticks the template General-tab option that allows extra element-level attributes, so each site can add its own attributes to pump elements built from the shared template.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It deletes the template's analyses"
+      },
+      {
+        "id": "b",
+        "text": "Elements of the template are no longer guaranteed to have identical attributes, which can break template-wide analyses and displays"
+      },
+      {
+        "id": "c",
+        "text": "It stops template changes from reaching elements"
+      },
+      {
+        "id": "d",
+        "text": "It makes every attribute read-only"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Allowing extensions means elements of that template are not guaranteed identical attributes. The workbook states that; the knock-on effect on template-wide analyses and displays is an inference, which is why standard templates are preferred.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "The effect on template-wide analyses and displays is inferred in the research; confirm with AF documentation."
+  },
+  {
+    "id": "q-elements-templates-base-only",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 3,
+    "prompt": "AF 2018 SP2 added a template setting that prevents a template from being used to create elements. What is it for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Marking a base template that other templates derive from"
+      },
+      {
+        "id": "b",
+        "text": "Locking a template so nobody can edit it"
+      },
+      {
+        "id": "c",
+        "text": "Hiding the template from PI Vision"
+      },
+      {
+        "id": "d",
+        "text": "Deleting unused templates"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF 2018 SP2 added a \"base template only\" setting. It suits base templates in a derived-template hierarchy, which helps searching and standardisation.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-elements-templates-substituted-default",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 3,
+    "prompt": "When you convert an element with PI Point attributes to a template, the Substituted column defaults to which pattern? (Type the pattern.)",
+    "accepted": [
+      "%Element%.%Attribute%.%ID%"
+    ],
+    "caseSensitive": false,
+    "explanation": "The Substituted column defaults to %Element%.%Attribute%.%ID% even if the real tag names do not follow that pattern. AVEVA declined to change this, so review the tag paths after converting.",
+    "lessonId": "elements-and-templates",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-feedback-pida-174"
+    ]
+  },
+  {
+    "id": "q-elements-templates-convert-steps",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the steps for turning a working element into a template-based model in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Build and test one element with its attributes"
+      },
+      {
+        "id": "b",
+        "text": "Right-click the element and choose Convert to Template"
+      },
+      {
+        "id": "c",
+        "text": "Review the PI Point paths on the new template"
+      },
+      {
+        "id": "d",
+        "text": "Create the other elements from the template"
+      },
+      {
+        "id": "e",
+        "text": "Check In"
+      }
+    ],
+    "explanation": "Convert to Template creates a template without changing the element and sets the element to the new template. Review the tag patterns (the Substituted default may be wrong), then create more elements and Check In so others see the changes.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-feedback-pida-174"
+    ]
+  },
+  {
+    "id": "q-elements-templates-bulk-create",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "difficulty": 1,
+    "prompt": "Which tool is described in AVEVA training for publishing many elements at once from Excel?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI DataLink"
+      },
+      {
+        "id": "b",
+        "text": "PI Builder"
+      },
+      {
+        "id": "c",
+        "text": "PI Vision"
+      },
+      {
+        "id": "d",
+        "text": "piconfig"
+      }
+    ],
+    "answer": "b",
+    "explanation": "PI Builder is an Excel add-in that publishes AF elements in bulk, for example with Edit Mode \"Create Only\". PI DataLink reads data into Excel and piconfig is a Data Archive tool.",
+    "lessonId": "elements-and-templates",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  }
+]

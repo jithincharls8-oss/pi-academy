@@ -1,0 +1,328 @@
+[
+  {
+    "id": "san-jose-water",
+    "company": "San Jose Water",
+    "title": "San Jose Water optimizes pump performance with AVEVA PI System",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "summary": "San Jose Water monitors pump efficiency and relative operating cost across its groundwater and booster stations using PI System alongside System Platform, InTouch HMI and AVEVA Historian.",
+    "challenge": "Field efficiency tests were expensive and slow, and pumps failed unexpectedly.",
+    "solution": "Consolidated pump data in PI so that pumps run when energy rates are lowest.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Energy savings of \"$143,000 annually\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "\"206 tons per year\" carbon reduction",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "Return on investment in less than one year (estimated)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-sjw"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ladwp",
+    "company": "Los Angeles Department of Water and Power",
+    "title": "Los Angeles DWP uses AVEVA PI System to unify utility data",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Los Angeles, USA",
+    "summary": "The Los Angeles Department of Water and Power, a combined water and power utility, uses PI System and PI Vision to collect data automatically from many separate sources.",
+    "challenge": "Aging infrastructure, drought and wildfire put pressure on the utility.",
+    "solution": "PI System and PI Vision for automated data collection and visualisation.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "Qualitative only: unified utility data (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-ladwp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "white-house-utility-district",
+    "company": "White House Utility District",
+    "title": "AVEVA PI System helps White House Utility District build resilience",
+    "industry": "water",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Tennessee, USA",
+    "summary": "White House Utility District uses PI to watch District Metered Area (DMA) flows every morning, isolate pipeline sections to find leaks and spot pressure differentials across more than 600 miles of rural pipe.",
+    "challenge": "Infrastructure is rural and isolated, and procedures were legacy ones.",
+    "solution": "PI System to isolate pipeline sections and identify pressure differentials.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"Saved US $2M\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "\"Recovered US $30,000 in employee time\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"Deferred US $15-20M capital expansion for 11 years\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-whud"
+    ],
+    "verify": false
+  },
+  {
+    "id": "colorado-springs-utilities",
+    "company": "Colorado Springs Utilities",
+    "title": "Colorado Springs Utilities reduces overtime with AVEVA PI System",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "summary": "Colorado Springs Utilities monitors water quality in real time with PI, covering 14,000 samples and 80,000 analytes a year across eight watersheds, seven treatment facilities and 38 finished-water reservoirs.",
+    "challenge": "Teams relied on SCADA operators, systems were not integrated, and the service area is large.",
+    "solution": "PI System gathers real-time water quality data, shown in PI Vision.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Analysis reporting time decreased from three weeks to fifteen minutes\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "Overtime reduced by 58%",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "Vehicle usage reduced by 30%",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "Effluent chlorine costs reduced by 10%",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-csu"
+    ],
+    "verify": false
+  },
+  {
+    "id": "halifax-water",
+    "company": "Halifax Water",
+    "title": "Leveraging the PI System in water loss control",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "interfaces-connectors",
+      "processbook",
+      "datalink"
+    ],
+    "region": "Halifax, Nova Scotia, Canada",
+    "year": 2013,
+    "summary": "Halifax Water set up 70 District Metered Areas (DMAs) and monitored minimum night flow in PI to control water loss, using a single PI 2010 server with 5,000 tags.",
+    "challenge": "An IWA water audit showed performance was worse than expected, and former municipalities had no SCADA capable of supporting the programme.",
+    "solution": "DMAs, minimum night flow trending and PI DataLink \"White Boards\", on a PI 2010 server with 10 OPC interfaces, ProcessBook and WebParts.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "System inputs fell from 168 MLD (2000) to 131 MLD (2012)",
+        "reportedBy": "The company (Carl Yates, GM) in an OSIsoft UC 2013 presentation"
+      },
+      {
+        "category": "cost",
+        "text": "$600,000 direct annual savings in recovered water",
+        "reportedBy": "The company (Carl Yates, GM) in an OSIsoft UC 2013 presentation"
+      },
+      {
+        "category": "reliability",
+        "text": "Main breaks fell from 23 to 12 per year with advanced pressure management",
+        "reportedBy": "OSIsoft (2015 water deck)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013",
+      "ind-pres-water-2015"
+    ],
+    "verify": false
+  },
+  {
+    "id": "detroit-water-sewerage",
+    "company": "Detroit Water & Sewerage Department",
+    "title": "Operational intelligence for water supply",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "event-frames",
+      "notifications"
+    ],
+    "region": "Detroit, USA",
+    "year": 2015,
+    "summary": "Detroit Water & Sewerage used PI event frames for flow monitoring, together with automated reporting and notifications.",
+    "challenge": "Costly software and manual reporting.",
+    "solution": "PI automated reports, notifications and event frames.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"$500,000\" savings 2012-2015",
+        "reportedBy": "OSIsoft (2015 London water deck)"
+      },
+      {
+        "category": "cost",
+        "text": "\"Expected $2,000,000\" savings over the next 5 years (an expectation)",
+        "reportedBy": "OSIsoft (2015 London water deck)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-pres-water-2015"
+    ],
+    "verify": true,
+    "verifyNote": "The $2,000,000 figure is an expected saving, not a measured result."
+  },
+  {
+    "id": "yorkshire-water",
+    "company": "Yorkshire Water",
+    "title": "With AVEVA PI System, Yorkshire Water predicts leaks four and a half days earlier",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision"
+    ],
+    "summary": "Yorkshire Water, with integrator Capula, automated leak prediction on an AF data structure; Capula said the \"asset framework was a key enabler\".",
+    "challenge": "Aging infrastructure, new regulations and the risk of fines.",
+    "solution": "AF-driven automated analytics on PI Data Archive data, shown in PI Vision.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "Leak prediction \"four and a half days earlier\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Leak repair turnaround \"from 30 days to under 10 days\"",
+        "reportedBy": "OSIsoft (2020 webinar)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-yorkshire",
+      "ind-webinar-compesa-2020"
+    ],
+    "verify": false
+  },
+  {
+    "id": "evides-waterbedrijf",
+    "company": "Evides Waterbedrijf",
+    "title": "Dutch water company improves situational awareness with data from AVEVA PI System",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "datalink",
+      "pi-vision"
+    ],
+    "region": "Netherlands",
+    "summary": "Evides built GAMEs (Geographic Assets Management at Evides) on PI System, combining operational, equipment and geographic data.",
+    "challenge": "A large network and many orphan datasets.",
+    "solution": "PI System data combined with GIS in the GAMEs application.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Fifty functionalities developed in twelve months\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-ss-evides"
+    ],
+    "verify": false
+  },
+  {
+    "id": "compesa",
+    "company": "Compesa",
+    "title": "O uso do PI System na Indústria de Águas & Saneamento",
+    "industry": "water",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "notifications",
+      "event-frames",
+      "analytics"
+    ],
+    "region": "Pernambuco, Brazil",
+    "year": 2020,
+    "summary": "Compesa telemeters 5,300 variables across 238 sources, 200 wells, 234 pumping stations, 500 treatment stations and 519 reservoirs on PI System.",
+    "challenge": "A semi-arid region, with safety and operational control needs.",
+    "solution": "Real-time monitoring and PI alarms (level, pressure, flow, communication failure, rainfall, power factor), dam monitoring, and BI and GIS integration.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "No Compesa outcome figures are stated. Other utilities cited in the same webinar: Sabesp energy use down 9%; MPWiK 500,000 litres saved in 6 months.",
+        "reportedBy": "OSIsoft webinar (Muller, Squassoni)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.water"
+    ],
+    "sources": [
+      "ind-webinar-compesa-2020"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,144 @@
+[
+  {
+    "id": "q-ann-file-ext",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.annotations"],
+    "difficulty": 1,
+    "prompt": "Each archive (.arc) file has a matching annotation file. What is that file's extension?",
+    "accepted": [".ann", "ann"],
+    "explanation": "Archive files have the .arc extension, each with a matching .ann annotation file.",
+    "lessonId": "annotations",
+    "tags": ["files"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-ann-same-folder",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.annotations", "da.archive-files"],
+    "difficulty": 2,
+    "scenario": "An admin moves five old archives to a new volume. She copies the .arc files, re-registers them and deletes the old folder. Users then report that comments they had attached to events from those years have disappeared.",
+    "prompt": "What went wrong?",
+    "options": [
+      { "id": "a", "text": "The matching .ann files were not moved; each .ann must stay in the same directory as its archive" },
+      { "id": "b", "text": "Annotations are stored only in the snapshot table" },
+      { "id": "c", "text": "Re-registering an archive always deletes annotations" },
+      { "id": "d", "text": "Annotations expire after 35 days" }
+    ],
+    "answer": "a",
+    "explanation": "Annotations live in the .ann file that matches each .arc file and must be kept in the same directory. Moving archives means moving .arc and .ann together. 35 days is the message-log retention, unrelated to annotations.",
+    "lessonId": "annotations",
+    "tags": ["archives", "scenario"],
+    "sources": ["da-admin-workbook-2017r2", "adm-it-pros-workbook-2017r2"]
+  },
+  {
+    "id": "q-ann-performance",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.annotations"],
+    "difficulty": 2,
+    "prompt": "What does AVEVA's 2023 performance guidance say about annotations?",
+    "options": [
+      { "id": "a", "text": "Heavy use of annotations should be avoided or limited for archive performance" },
+      { "id": "b", "text": "Annotations speed up archive queries" },
+      { "id": "c", "text": "Every event should be annotated for traceability" },
+      { "id": "d", "text": "Annotations are required for out-of-order writes" }
+    ],
+    "answer": "a",
+    "explanation": "The session lists heavy use of annotations among the things to avoid or limit, alongside excessive string/blob tags, Float64 and sub-second timestamps.",
+    "lessonId": "annotations",
+    "tags": ["performance"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-ann-event-flags",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.annotations", "fnd.timeseries"],
+    "difficulty": 2,
+    "prompt": "OSIsoft's 2010 material lists what an event can carry besides its timestamp and value. Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Quality" },
+      { "id": "b", "text": "Substitution and change flags" },
+      { "id": "c", "text": "Annotations" },
+      { "id": "d", "text": "The PI Vision display name" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Each event can carry a timestamp, value, quality, substitution and change flags, and annotations. Display names are not part of an event.",
+    "lessonId": "annotations",
+    "tags": ["events"],
+    "sources": ["da-rs2011-pisystem2010"]
+  },
+  {
+    "id": "q-ann-move-order",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.annotations", "da.archive-files"],
+    "difficulty": 2,
+    "prompt": "Order the steps for moving an archive, with its annotations, to another folder.",
+    "items": [
+      { "id": "a", "text": "Force an archive shift" },
+      { "id": "b", "text": "Unregister the archive" },
+      { "id": "c", "text": "Move the .arc and .ann files together" },
+      { "id": "d", "text": "Re-register the archive" }
+    ],
+    "explanation": "The 2017 R2 course: force a shift, unregister, move .arc and .ann, then re-register. The primary archive cannot be unregistered, hence the shift first.",
+    "lessonId": "annotations",
+    "tags": ["procedure"],
+    "sources": ["adm-it-pros-workbook-2017r2"]
+  },
+  {
+    "id": "q-ann-tf-value",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.annotations"],
+    "difficulty": 1,
+    "prompt": "True or false: an annotation is stored in the same .arc file as the event's value.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "Annotations are kept in the separate .ann file that matches each .arc file; the 2010 material describes 'Archive and Annotation Files'.",
+    "lessonId": "annotations",
+    "tags": ["true-false", "files"],
+    "sources": ["da-admin-workbook-2017r2", "da-rs2011-pisystem2010"]
+  },
+  {
+    "id": "q-ann-ooo-list",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.annotations", "da.snapshot-archive"],
+    "difficulty": 3,
+    "prompt": "Annotations appear in AVEVA's 2023 list of things to limit alongside which other items?",
+    "options": [
+      { "id": "a", "text": "Excessive string and blob tags, Float64 and sub-second timestamps" },
+      { "id": "b", "text": "Digital state sets and PI Identities" },
+      { "id": "c", "text": "Fixed-size archives and event queues" },
+      { "id": "d", "text": "Windows Integrated Security and Kerberos" }
+    ],
+    "answer": "a",
+    "explanation": "The out-of-order mitigation list says to avoid excessive string and blob tags, Float64, sub-second timestamps and annotations.",
+    "lessonId": "annotations",
+    "tags": ["performance"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-ann-match",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.annotations"],
+    "difficulty": 2,
+    "prompt": "Match each Data Archive file to what it holds.",
+    "pairs": [
+      { "left": ".arc", "right": "Archived events" },
+      { "left": ".ann", "right": "Annotations on archived events" },
+      { "left": "piarcmem.dat", "right": "Current snapshot values" }
+    ],
+    "explanation": "Archive files (.arc) hold archived events, each with a matching .ann annotation file; piarcmem.dat is the snapshot table.",
+    "lessonId": "annotations",
+    "tags": ["files"],
+    "sources": ["da-admin-workbook-2017r2"]
+  }
+]

@@ -1,0 +1,455 @@
+[
+  {
+    "id": "q-afsdk-dev-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 1,
+    "prompt": "An AF SDK program adds elements and templates without errors, but nothing appears in PI System Explorer. What did it most likely forget?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To call CheckIn() on the database"
+      },
+      {
+        "id": "b",
+        "text": "To call AFDataCache.UpdateData()"
+      },
+      {
+        "id": "c",
+        "text": "To create a PIDataPipe"
+      },
+      {
+        "id": "d",
+        "text": "To set a PIPagingConfiguration"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Changes are persisted with database.CheckIn(); AVEVA's samples guard it with if (database.IsDirty). Without CheckIn the changes stay local and uncommitted.",
+    "sources": [
+      "dev2-gh-afsdk-ex4",
+      "dev2-gh-afsdk-ex5"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "What does attribute.Data.RecordedValuesByCount(triggerTime, 100, false, AFBoundaryType.Interpolated, uom, filter, false) return?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The 100 values before triggerTime"
+      },
+      {
+        "id": "b",
+        "text": "The 100 values after triggerTime"
+      },
+      {
+        "id": "c",
+        "text": "100 interpolated values spread evenly over the day"
+      },
+      {
+        "id": "d",
+        "text": "Every value except the first 100"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The third argument is isForward. With false, the call returns the 100 values before triggerTime. The uom argument asks the server to convert values into that unit.",
+    "sources": [
+      "int-gh-afsdk-eventcalc-program"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-03",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "A timer-driven AF SDK calculation produces nothing for its first minute.",
+    "scenario": "A service uses `System.Timers.Timer` with `TimerIntervalMS = 60000` to run an AF SDK calculation. After every restart there is a one-minute gap with no output, then results arrive every minute.\n\nWhat does AVEVA's timer-triggered sample do about this?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Calls the calculation once at start, before the first timer tick"
+      },
+      {
+        "id": "b",
+        "text": "Sets the interval to 0 so the timer fires immediately and repeatedly"
+      },
+      {
+        "id": "c",
+        "text": "Switches to a PIDataPipe of type Archive"
+      },
+      {
+        "id": "d",
+        "text": "Calls CheckIn() before starting the timer"
+      }
+    ],
+    "answer": "a",
+    "explanation": "System.Timers.Timer waits a full interval before the first tick, so AVEVA's timer-triggered sample calls the calculation once at start. Changing the interval or the pipe type does not fix the start-up gap.",
+    "sources": [
+      "int-gh-afsdk-timercalc"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-04",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 1,
+    "prompt": "Which of these are built on AF SDK according to OSIsoft and AVEVA sources? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Analysis Service"
+      },
+      {
+        "id": "b",
+        "text": "PI Notifications Service"
+      },
+      {
+        "id": "c",
+        "text": "PI Web API"
+      },
+      {
+        "id": "d",
+        "text": "PI SQL Client 2018 R2"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "PI Analysis Service and PI Notifications Service are examples of services built on AF SDK, and PI Web API is built on top of AF SDK. PI SQL Client 2018 R2 removed its AF SDK dependency.",
+    "sources": [
+      "int-dev-tech-overview",
+      "int-piworld2020-webapi-lab",
+      "dev2-bachmann-pisql-2019"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-05",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "Which AF SDK class lets you choose the pipe type (Snapshot, Archive or TimeSeries) when signing up for PI point updates?",
+    "accepted": [
+      "PIDataPipe"
+    ],
+    "explanation": "AFDataPipeType selection is only available on PIDataPipe. AFDataPipe and AFDataCache use a TimeSeries pipe for PI-point attributes.",
+    "sources": [
+      "dev2-gh-afsdk-course-ex5",
+      "dev2-pisquare-afdatapipe-dups"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-06",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the steps of using a snapshot PIDataPipe in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "new PIDataPipe(AFDataPipeType.Snapshot)"
+      },
+      {
+        "id": "b",
+        "text": "pipe.AddSignups(points)"
+      },
+      {
+        "id": "c",
+        "text": "pipe.GetUpdateEvents(1000)"
+      },
+      {
+        "id": "d",
+        "text": "pipe.Close()"
+      },
+      {
+        "id": "e",
+        "text": "pipe.Dispose()"
+      }
+    ],
+    "explanation": "Create the pipe with new PIDataPipe(AFDataPipeType.Snapshot), sign up points with AddSignups, poll GetUpdateEvents (for example 1000 at a time), then Close() and Dispose().",
+    "sources": [
+      "dev2-gh-afsdk-course-ex5"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-07",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each data pipe type to its behaviour as described on PI Square.",
+    "pairs": [
+      {
+        "left": "Snapshot",
+        "right": "Suits live trends; events may never be archived"
+      },
+      {
+        "left": "Archive",
+        "right": "Reports values late"
+      },
+      {
+        "left": "TimeSeries",
+        "right": "Suits future data and RangeDelete notifications"
+      }
+    ],
+    "explanation": "Snapshot events may never reach the archive because of compression but suit live trends. Archive pipes report values late. TimeSeries suits future data and RangeDelete notifications.",
+    "sources": [
+      "dev2-pisquare-datapipe-types"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-08",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "What does the AFAttributeSearch query Element:{Name:'Boiler*'} Name:'Feed Rate' find?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Feed Rate attributes on elements named Boiler*"
+      },
+      {
+        "id": "b",
+        "text": "Elements named Boiler* that have no Feed Rate attribute"
+      },
+      {
+        "id": "c",
+        "text": "Every attribute whose value contains 'Boiler'"
+      },
+      {
+        "id": "d",
+        "text": "Child elements of Feed Rate named Boiler*"
+      }
+    ],
+    "answer": "a",
+    "explanation": "It is a nested query (AF SDK 2.9.5+): Feed Rate attributes on elements whose name starts with Boiler. Both client and server must support PISystemFeatures.QuerySearchAttribute.",
+    "sources": [
+      "dev2-pisquare-afsearch-nested"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-09",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "Why pass new PIPagingConfiguration(PIPageType.TagCount, 100) to a PIPointList bulk call?",
+    "options": [
+      {
+        "id": "a",
+        "text": "So the bulk request is processed in pages of 100 tags"
+      },
+      {
+        "id": "b",
+        "text": "To limit each tag to 100 values"
+      },
+      {
+        "id": "c",
+        "text": "To keep a 100-second client cache"
+      },
+      {
+        "id": "d",
+        "text": "To retry failed tags 100 times"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Bulk list calls on PIPointList or AFAttributeList take a paging configuration so a large request is sent in pages, here 100 tags per page.",
+    "sources": [
+      "dev2-gh-lewiston-afsdk",
+      "dev2-gh-afsdk-ex3"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-10",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 3,
+    "prompt": "Which setting in %ProgramData%\\OSIsoft\\AF\\AFSDK.config controls whether AF SDK clients use OpenID Connect (values Prompt, Never, Always)?",
+    "accepted": [
+      "preferOIDCAuth"
+    ],
+    "explanation": "preferOIDCAuth in AFSDK.config takes Prompt, Never or Always.",
+    "sources": [
+      "int-uc23-claims-auth"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-11",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 3,
+    "prompt": "A C# developer builds a nested AFSearch query with an interpolated string. Which version is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "$\"Element:{{Name:'{elemName}'}}\""
+      },
+      {
+        "id": "b",
+        "text": "$\"Element:{Name:'{elemName}'}\""
+      },
+      {
+        "id": "c",
+        "text": "$\"Element:[Name:'{elemName}']\""
+      },
+      {
+        "id": "d",
+        "text": "$\"Element:(Name:'{elemName}')\""
+      }
+    ],
+    "answer": "a",
+    "explanation": "Braces in C# interpolated strings must be doubled to appear literally, so Element:{{Name:'{elemName}'}} produces Element:{Name:'Boiler1'}.",
+    "sources": [
+      "dev2-pisquare-afsearch-nested"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-12",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 1,
+    "prompt": "In AF SDK and PI Web API attribute paths such as \\Meters\\Meter001|Energy Usage, what does the | character do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Separates the element path from the attribute name"
+      },
+      {
+        "id": "b",
+        "text": "Means OR in a search"
+      },
+      {
+        "id": "c",
+        "text": "Separates the AF server from the database"
+      },
+      {
+        "id": "d",
+        "text": "Marks a PI point data reference"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The pipe separates the element path from the attribute name, in AFAttribute.FindAttribute and in PI Web API /attributes?path=.",
+    "sources": [
+      "dev2-gh-afsdk-ex3",
+      "int-gh-batch-call-py"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-13",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 2,
+    "prompt": "Which search improvements did AF 2018 SP2 add?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An OR operator and an OwnerName field"
+      },
+      {
+        "id": "b",
+        "text": "Nested queries for the first time"
+      },
+      {
+        "id": "c",
+        "text": "Indexed Search through the PI Web API Crawler"
+      },
+      {
+        "id": "d",
+        "text": "SQL queries through RTQP"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF 2018 SP2 added faster event-frame searches for overlapping/active ranges, an OR operator and an OwnerName field, and exposed admin functions such as re-indexing via AF SDK and PowerShell. Nested queries came earlier, in AF SDK 2.9.5.",
+    "sources": [
+      "int-dev-tech-overview"
+    ],
+    "lessonId": "af-sdk-development"
+  },
+  {
+    "id": "q-afsdk-dev-14",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "difficulty": 1,
+    "prompt": "How does AVEVA's event-calculation sample remove bad values before computing statistics?",
+    "options": [
+      {
+        "id": "a",
+        "text": "values.RemoveAll(v => !v.IsGood)"
+      },
+      {
+        "id": "b",
+        "text": "values.Clear()"
+      },
+      {
+        "id": "c",
+        "text": "AFBoundaryType.Inside"
+      },
+      {
+        "id": "d",
+        "text": "AFUpdateOption.Remove"
+      }
+    ],
+    "answer": "a",
+    "explanation": "values.RemoveAll(v => !v.IsGood) removes values that are not good, such as system digital states. Not filtering them is a listed pitfall.",
+    "sources": [
+      "int-gh-afsdk-eventcalc-program"
+    ],
+    "lessonId": "af-sdk-development"
+  }
+]

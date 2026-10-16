@@ -1,0 +1,199 @@
+[
+  {
+    "id": "q-arch-minimal",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 1,
+    "prompt": "Which parts make up a minimal PI System? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "A collector (PI Interface or PI Connector)" },
+      { "id": "b", "text": "A PI Server (Data Archive and AF)" },
+      { "id": "c", "text": "A visualisation tool" },
+      { "id": "d", "text": "A network load balancer in front of the Data Archive" },
+      { "id": "e", "text": "A PI Data Archive collective" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The training defines a minimal PI System as a collector, a PI Server and a visualisation tool. A load balancer in front of the Data Archive is discouraged, and a collective is optional high availability.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["architecture"],
+    "sources": ["da-admin-workbook-2017r2", "da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-arch-port-5450",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 1,
+    "prompt": "Which TCP port do clients and interfaces use to connect to the PI Data Archive?",
+    "accepted": ["5450", "TCP 5450", "tcp/5450"],
+    "explanation": "The Data Archive client port is TCP 5450. TCP 5457 is the AF SDK port on the AF Server.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["ports"],
+    "sources": ["da-admin-workbook-2017r2", "da-uc23-security"]
+  },
+  {
+    "id": "q-arch-buffer-role",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 1,
+    "prompt": "What does the PI Buffer Subsystem (pibufss) do?",
+    "options": [
+      { "id": "a", "text": "It runs on interface nodes as a Windows service and holds data when the Data Archive or the network is unavailable" },
+      { "id": "b", "text": "It runs on the Data Archive and writes events to archive files" },
+      { "id": "c", "text": "It stores AF element templates in SQL Server" },
+      { "id": "d", "text": "It caches PI Vision displays" }
+    ],
+    "answer": "a",
+    "explanation": "pibufss is installed with every PI Interface, runs as a Windows service and buffers data when the server or network is down; OSIsoft compares it to a reservoir. Writing archive files is the Archive Subsystem's job.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["buffering"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arch-ports-match",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "prompt": "Match each TCP port to its service.",
+    "pairs": [
+      { "left": "5450", "right": "PI Data Archive clients" },
+      { "left": "5457", "right": "AF SDK to AF Server" },
+      { "left": "5459", "right": "PI SQL for AF" },
+      { "left": "5463", "right": "PI Analysis Service" },
+      { "left": "5468", "right": "PI Notifications Service" }
+    ],
+    "explanation": "From AVEVA's 2023 security session: Data Archive TCP 5450; AF server inbound 5457 (AF SDK), 5459 (PI SQL for AF), 5463 (PI Analysis Service) and 5468 (PI Notifications Service).",
+    "lessonId": "pi-system-architecture",
+    "tags": ["ports"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-arch-collectors-compare",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "prompt": "Match each collector type to how it treats a tag's exception settings.",
+    "pairs": [
+      { "left": "PI Interface", "right": "Applies the tag's exception settings" },
+      { "left": "PI Connector", "right": "Does not test exception" },
+      { "left": "AVEVA Adapter", "right": "Can filter by its own deadband but ignores the tag's exception settings" }
+    ],
+    "explanation": "AVEVA's 2023 exception and compression session: interfaces apply exception, connectors do not test exception, and adapters can filter by deadband but ignore the tag's exception settings.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["collectors"],
+    "sources": ["da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-arch-failover-types",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "prompt": "Order the interface failover types from least to most potential data loss.",
+    "items": [
+      { "id": "a", "text": "Hot" },
+      { "id": "b", "text": "Warm" },
+      { "id": "c", "text": "Cold" }
+    ],
+    "explanation": "Hot failover has no data loss, warm has minimal or possible data loss, and cold has some data loss.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["failover"],
+    "sources": ["da-rs2010-rome-arch", "da-rs2011-arch-best-practices"]
+  },
+  {
+    "id": "q-arch-sql-express",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "scenario": "A project plans to install PI Data Archive, PI AF and SQL Server Express on one virtual machine for a production system that will grow quickly and serve AF to three PI Servers.",
+    "prompt": "What does AVEVA's architecture guidance suggest?",
+    "options": [
+      { "id": "a", "text": "Fine as planned; SQL Express has no limits that matter" },
+      { "id": "b", "text": "Put SQL Server on a separate computer, and AF on a separate computer from the Data Archive because AF serves multiple PI Servers" },
+      { "id": "c", "text": "Remove AF; the Data Archive cannot run alongside AF" },
+      { "id": "d", "text": "Put a network load balancer in front of the Data Archive" }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA recommends SQL Server on a separate computer for performance and security. SQL Express on the same node is limited to one physical CPU and 1 GB of RAM. AF and the Data Archive should be on separate computers when AF serves multiple PI Servers or uses high availability.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["sizing", "scenario"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-arch-connector-failover",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "prompt": "True or false: PI Connectors (2nd generation) support the same failover as PI Interfaces.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "The architecture workbook states there is no failover support for PI Connector (2nd gen) or PI Connector Relay. Interface failover runs redundant interface copies on separate computers.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["true-false", "failover"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-arch-disconnected-startup",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 2,
+    "prompt": "What does disconnected startup let a PI Interface do?",
+    "options": [
+      { "id": "a", "text": "Start without a PI Server connection, using a local tag cache" },
+      { "id": "b", "text": "Send data without exception filtering" },
+      { "id": "c", "text": "Write directly to archive files" },
+      { "id": "d", "text": "Run without the PI Buffer Subsystem" }
+    ],
+    "answer": "a",
+    "explanation": "Disconnected startup builds a local tag cache so the interface can start without the server. It is recommended for production interfaces.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["interfaces"],
+    "sources": ["da-rs2011-arch-best-practices", "da-arch-workbook"]
+  },
+  {
+    "id": "q-arch-buffer-files",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 3,
+    "prompt": "Match each PI Buffer Subsystem file to its role.",
+    "pairs": [
+      { "left": "pibufmem_<GUID>.dat", "right": "Buffer snapshot table" },
+      { "left": "pibufq_<GUID>.dat", "right": "Buffer queue" },
+      { "left": "APIBUF_<Data Archive name>.dat", "right": "Shared-memory overflow" }
+    ],
+    "explanation": "The training lists pibufmem as the snapshot table, pibufq as the buffer queue (32 MB per file by default) and APIBUF as the shared-memory overflow file.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["buffering"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arch-throughput",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.architecture"],
+    "difficulty": 3,
+    "prompt": "A 2017 OSIsoft deck published Data Archive performance figures. Which figure did it give for archive input?",
+    "options": [
+      { "id": "a", "text": "Over 500,000 events per second" },
+      { "id": "b", "text": "Over 10 million events per second" },
+      { "id": "c", "text": "About 4,000 events per second" },
+      { "id": "d", "text": "Over 1 billion events per second" }
+    ],
+    "answer": "a",
+    "explanation": "The deck lists archive input over 500,000 events/s, snapshot input over 1 million events/s and archive output over 10 million events/s, with over 20 million tags.",
+    "lessonId": "pi-system-architecture",
+    "tags": ["performance"],
+    "sources": ["da-pi101-2017-basics"]
+  }
+]

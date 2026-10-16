@@ -1,0 +1,382 @@
+[
+  {
+    "id": "q-notifications-trigger",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 1,
+    "prompt": "What triggers a notification rule in PI Server 2016 R2 and later?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A PI tag exceeding its CompDev"
+      },
+      {
+        "id": "b",
+        "text": "Event frames matching the rule's criteria"
+      },
+      {
+        "id": "c",
+        "text": "A scheduled Windows task"
+      },
+      {
+        "id": "d",
+        "text": "A PI Vision display being opened"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Notification rules are triggered by event frames. A rule can even be created straight from an Event Frame Generation analysis.",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-notifications-channels",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "Which delivery channels do PI Server 2016 R2+ notification rules support? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Email"
+      },
+      {
+        "id": "b",
+        "text": "Web Service"
+      },
+      {
+        "id": "c",
+        "text": "SMS (custom channel)"
+      },
+      {
+        "id": "d",
+        "text": "Pager"
+      },
+      {
+        "id": "e",
+        "text": "Custom delivery channels"
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "Notification rules support only Email and Web Service delivery channels, and custom delivery endpoints are not supported. Pager and custom channels were part of legacy notifications.",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-pisquare-notif-sms",
+      "af-notifications-2009-deck"
+    ]
+  },
+  {
+    "id": "q-notifications-sms",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the supported way to deliver these alerts?",
+    "scenario": "A water utility upgraded to PI Server 2018. Its old PI Notifications 2012 set-up sent SMS messages through a custom delivery channel. The team wants the same SMS alerts with notification rules.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Re-register the custom channel in PSE"
+      },
+      {
+        "id": "b",
+        "text": "Use email to an email-to-SMS gateway, or the web service channel"
+      },
+      {
+        "id": "c",
+        "text": "Ask AVEVA for the custom channel migration path"
+      },
+      {
+        "id": "d",
+        "text": "Use PI Builder to recreate the channel"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Custom delivery channels are not supported after 2016 R2, and AVEVA declined to provide a migration path for them. Use an email-to-SMS gateway or a web service.",
+    "lessonId": "notifications",
+    "tags": [
+      "migration"
+    ],
+    "sources": [
+      "af-pisquare-notif-sms",
+      "af-feedback-pida-994"
+    ]
+  },
+  {
+    "id": "q-notifications-upgrade-trap",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "A site upgrades AF Server to 2.8.5 (2016 R2) but does nothing about its PI Notifications 2012 configuration. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Legacy notifications keep running unchanged"
+      },
+      {
+        "id": "b",
+        "text": "Legacy notifications stop working; they must be migrated with the PI Notifications Migration Tool"
+      },
+      {
+        "id": "c",
+        "text": "They are migrated automatically"
+      },
+      {
+        "id": "d",
+        "text": "They convert to PI Vision alerts"
+      }
+    ],
+    "answer": "b",
+    "explanation": "An AF Server 2.8.5 (2016 R2) server no longer supports legacy 2012 notifications. The PI Notifications Migration Tool in %pihome%\\Notifications converts them; some legacy features cannot be migrated.",
+    "lessonId": "notifications",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-pisquare-notif-service-not-running",
+      "af-pisquare-notif-migration"
+    ]
+  },
+  {
+    "id": "q-notifications-subscribe-steps",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the steps to subscribe a contact to a notification rule in PSE, as in the PI World 2020 lab.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Open View/Edit Subscriptions on the rule"
+      },
+      {
+        "id": "b",
+        "text": "Drag the contact's delivery endpoint (for example E-mail) into Subscriptions"
+      },
+      {
+        "id": "c",
+        "text": "Check In"
+      },
+      {
+        "id": "d",
+        "text": "Use Test Send to confirm delivery"
+      }
+    ],
+    "explanation": "Subscriptions are configured with View/Edit Subscriptions by dragging a contact's endpoint in, then Check In. Test Send sends a test notification to a contact.",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-notifications-terms",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each notification term to its meaning.",
+    "pairs": [
+      {
+        "left": "Delivery channel",
+        "right": "The transport, such as Email or Web Service"
+      },
+      {
+        "left": "Delivery endpoint",
+        "right": "A contact's specific address on a channel"
+      },
+      {
+        "left": "Subscription",
+        "right": "Link between a rule and a contact's endpoint"
+      },
+      {
+        "left": "Delivery format",
+        "right": "Template for the message content"
+      }
+    ],
+    "explanation": "These four objects make up delivery: channel (how), endpoint (where), subscription (who gets which rule) and format (what the message says).",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-pisquare-notif-sms",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-notifications-start-end",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: a notification can fire when an event starts, when it ends, or both.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. AVEVA's 2019 session states notifications can fire on start, on end or both.",
+    "lessonId": "notifications",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-kwan-getting-more-aa-2019"
+    ]
+  },
+  {
+    "id": "q-notifications-service-account",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 3,
+    "prompt": "PI Notifications Service runs by default as which virtual account? (Type the account name.)",
+    "accepted": [
+      "NT SERVICE\\PINotificationsService"
+    ],
+    "caseSensitive": false,
+    "explanation": "The service runs as the virtual account NT SERVICE\\PINotificationsService. Its log is %programdata%\\osisoft\\pinotifications\\logs\\pinotifications-log.txt.",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-pisquare-notif-service-not-running"
+    ]
+  },
+  {
+    "id": "q-notifications-pibuilder",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "Can notification rules be managed in bulk with PI Builder?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, like elements"
+      },
+      {
+        "id": "b",
+        "text": "No; PI Builder cannot manage notification rules"
+      },
+      {
+        "id": "c",
+        "text": "Only in AF 2018 SP2"
+      },
+      {
+        "id": "d",
+        "text": "Only the subscriptions"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Notification rules cannot be managed in PI Builder, and the DataLink notification add-in shows status but cannot edit rules.",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-pisquare-pibuilder-notifications"
+    ]
+  },
+  {
+    "id": "q-notifications-tags-109",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 3,
+    "prompt": "Messages show '[-109] Value at This Time Already Exists' from tags such as <GUID>_Action. What is the recommended direction?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Increase CompDev on those tags"
+      },
+      {
+        "id": "b",
+        "text": "Migrate from legacy 2012 notifications, which used 7 PI tags each, to notification rules"
+      },
+      {
+        "id": "c",
+        "text": "Delete the AF database"
+      },
+      {
+        "id": "d",
+        "text": "Turn off buffering"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Legacy 2012 notifications used 7 PI tags each (including <GUID>_Action and <GUID>_TimeOffset). Modern notification rules do not rely on these tags, so migration removes the source of the errors.",
+    "lessonId": "notifications",
+    "tags": [
+      "troubleshooting"
+    ],
+    "sources": [
+      "af-pisquare-notification-tags-109"
+    ]
+  },
+  {
+    "id": "q-notifications-ha",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "difficulty": 2,
+    "prompt": "What does AVEVA recommend for high availability of PI Notifications Service?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF collectives"
+      },
+      {
+        "id": "b",
+        "text": "Windows Server Failover Clustering"
+      },
+      {
+        "id": "c",
+        "text": "Running two copies with no clustering"
+      },
+      {
+        "id": "d",
+        "text": "SQL replication"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA's 2022 recommendation is Windows Server Failover Clustering for PI Notifications Service (and PI Analysis Service).",
+    "lessonId": "notifications",
+    "tags": [],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  }
+]

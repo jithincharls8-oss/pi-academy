@@ -1,0 +1,79 @@
+[
+  {
+    "id": "uc-davis-campus",
+    "company": "UC Davis",
+    "title": "UC Davis on track to be carbon neutral by 2025",
+    "industry": "buildings",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "summary": "UC Davis uses PI System, PI Vision and System Platform to optimise energy across 1,000 campus buildings, including chilled water, HVAC scheduling and a switch from district steam to low-temperature hot water.",
+    "challenge": "Diverse buildings, aging infrastructure and a self-sustaining budget.",
+    "solution": "Chilled water optimisation, HVAC scheduling, and conversion of district steam to low-temperature hot water.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "\"46% reduction in energy-use intensity since 2009, a cost savings of $15 million\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "\"62% reduction in gas usage\" from a heating system retrofit",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"Expected annual savings of $150,000\" from chilled water optimisation",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"Projected savings of $197M over 60 years\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.buildings"
+    ],
+    "sources": [
+      "ind-ss-uc-davis"
+    ],
+    "verify": false
+  },
+  {
+    "id": "university-of-maryland",
+    "company": "University of Maryland, College Park",
+    "title": "Reducing electrical outages and saving up to 30% of energy expenses with AVEVA PI System",
+    "industry": "buildings",
+    "products": [
+      "data-archive"
+    ],
+    "region": "College Park, Maryland",
+    "summary": "The University of Maryland, College Park, with partner Data Systems Analysts, Inc., centralised its campus electrical distribution data on PI System.",
+    "challenge": "Electrical distribution data was spread across disparate, isolated systems, which limited outage response.",
+    "solution": "PI-centred visibility of electrical distribution data.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Savings of 30% of HVAC energy expenses",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "Significantly reduced outage downtime (no figure given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.buildings"
+    ],
+    "sources": [
+      "ind-ss-umd"
+    ],
+    "verify": true,
+    "verifyNote": "The page is inconsistent: the results section says 30% of HVAC energy expenses, while the headline says \"up to 30%\" of energy expenses."
+  }
+]

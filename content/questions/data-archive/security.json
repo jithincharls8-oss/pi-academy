@@ -1,0 +1,218 @@
+[
+  {
+    "id": "q-dasec-auth-order",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 2,
+    "prompt": "Order the Data Archive authentication methods from most preferred to least preferred (AVEVA, 2023).",
+    "items": [
+      { "id": "a", "text": "OpenID Connect (PI Server 2023 and later)" },
+      { "id": "b", "text": "Windows Integrated Security (Kerberos or NTLM)" },
+      { "id": "c", "text": "PI Trusts" },
+      { "id": "d", "text": "Explicit logins (PI Users)" }
+    ],
+    "explanation": "AVEVA's 2023 security session ranks OIDC first, then Windows Integrated Security, then PI Trusts, with explicit logins last as the least secure option.",
+    "lessonId": "data-archive-security",
+    "tags": ["authentication"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-dasec-open-trust",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 2,
+    "scenario": "An audit finds a PI Trust that specifies only the PI Server's own name and maps to piadmin. It was created years ago so an old interface could connect.",
+    "prompt": "What is the right assessment?",
+    "options": [
+      { "id": "a", "text": "It is an open trust and a major vulnerability, made worse by mapping to piadmin; replace it with a mapping, or at least two identifiers to a least-privilege identity" },
+      { "id": "b", "text": "It is safe, because it names the server" },
+      { "id": "c", "text": "It is fine as long as explicit logins are disabled" },
+      { "id": "d", "text": "Trusts cannot map to piadmin, so it has no effect" }
+    ],
+    "answer": "a",
+    "explanation": "A trust specifying only the server name is 'open' and a major vulnerability; use at least two identifiers. It is not safe practice to map trusts to piadmin. Windows mappings are preferred.",
+    "lessonId": "data-archive-security",
+    "tags": ["trusts", "scenario"],
+    "sources": ["da-uc23-security", "da-arch-workbook"]
+  },
+  {
+    "id": "q-dasec-wis-upgrade",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 3,
+    "prompt": "Before upgrading interfaces to PI API for WIS 2.0.1.35 or later, what must you do, and why?",
+    "options": [
+      { "id": "a", "text": "Configure mappings first, because PI Trust authentication is disabled by default after the upgrade" },
+      { "id": "b", "text": "Enable explicit logins, because WIS needs a password" },
+      { "id": "c", "text": "Delete the PI Buffer Subsystem, because WIS replaces it" },
+      { "id": "d", "text": "Nothing; trusts keep working unchanged" }
+    ],
+    "answer": "a",
+    "explanation": "PI API for WIS extends Windows security to interfaces, but trusts are disabled by default after the upgrade, so create mappings before upgrading or interfaces will fail to connect.",
+    "lessonId": "data-archive-security",
+    "tags": ["wis", "pitfall"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-dasec-identity-props",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 2,
+    "prompt": "Which statements about PI Identities are correct? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "They have no password" },
+      { "id": "b", "text": "They cannot be used for explicit login" },
+      { "id": "c", "text": "They cannot contain PI Users" },
+      { "id": "d", "text": "They are the recommended replacement for Windows groups" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "PI Identities have no password, cannot be used for explicit login and cannot contain PI Users. They do not replace Windows groups: AD groups are mapped to identities.",
+    "lessonId": "data-archive-security",
+    "tags": ["identities"],
+    "sources": ["da-rs2010-rome-arch", "da-uc23-security"]
+  },
+  {
+    "id": "q-dasec-buffer-perms",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 3,
+    "prompt": "For an interface with PI Buffer and no outputs, match each identity to the permissions AVEVA lists.",
+    "pairs": [
+      { "left": "Interface identity", "right": "Read on PIPoint, DBSecurity, PtSecurity and DataSecurity" },
+      { "left": "PI Buffer identity", "right": "Write on DataSecurity" },
+      { "left": "PIWorld", "right": "Often read access only, or disabled when hardening" }
+    ],
+    "explanation": "The 2023 session lists read on PIPoint, DBSecurity, PtSecurity and DataSecurity for the interface, and write on DataSecurity for the buffer. PIWorld represents all users, often with read access; the 2010 hardening checklist says to disable it.",
+    "lessonId": "data-archive-security",
+    "tags": ["permissions"],
+    "sources": ["da-uc23-security", "da-rs2010-rome-arch"]
+  },
+  {
+    "id": "q-dasec-piadmin",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 1,
+    "prompt": "How should administrators get admin rights on the Data Archive?",
+    "options": [
+      { "id": "a", "text": "Map their AD admin group to the piadmins identity; do not use the piadmin account day to day" },
+      { "id": "b", "text": "Share the piadmin password among the team" },
+      { "id": "c", "text": "Create a PI Trust for each admin's laptop to piadmin" },
+      { "id": "d", "text": "Give PIWorld full read-write access" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA advises not to use the default piadmin account but the piadmins identity, mapped from an AD group, and to verify piadmin has a password. Trusts to piadmin and wide PIWorld access are unsafe.",
+    "lessonId": "data-archive-security",
+    "tags": ["identities"],
+    "sources": ["da-uc23-security", "da-arch-workbook"]
+  },
+  {
+    "id": "q-dasec-acl-fill",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.security", "da.point-attributes"],
+    "difficulty": 3,
+    "prompt": "Complete this security string so PIOperators can read but not write: piadmins: A(r,w) | PIOperators: A(___) | PIWorld: A(r)",
+    "accepted": ["r"],
+    "explanation": "In the access string, A(r) grants read and A(r,w) grants read and write. The format comes from the example pi_users:A(r,w) | bob:A(r,w) | PIWorld:A(r).",
+    "lessonId": "data-archive-security",
+    "tags": ["acl"],
+    "sources": ["da-rs2010-rome-arch"]
+  },
+  {
+    "id": "q-dasec-api-appname",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 3,
+    "prompt": "An older PI API interface named OPCpi connects. Which application name does a PI Trust see?",
+    "options": [
+      { "id": "a", "text": "OPCpE" },
+      { "id": "b", "text": "OPCpi" },
+      { "id": "c", "text": "OPCE" },
+      { "id": "d", "text": "PIAPI" }
+    ],
+    "answer": "a",
+    "explanation": "Older PI API connections are identified by the first four letters of the interface name plus 'E', so OPCpi becomes OPCpE.",
+    "lessonId": "data-archive-security",
+    "tags": ["trusts"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-dasec-explicit-default",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 1,
+    "prompt": "True or false: explicit logins are disabled by default and are the least secure authentication option.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "AVEVA's 2023 session states explicit logins are disabled by default and are the least secure option.",
+    "lessonId": "data-archive-security",
+    "tags": ["true-false", "authentication"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-dasec-kerberos-steps",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 3,
+    "prompt": "Which steps does AVEVA list for troubleshooting Kerberos to a PI Data Archive? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Set LogLevel=1 under the Lsa\\Kerberos\\Parameters registry key" },
+      { "id": "b", "text": "Run klist purge" },
+      { "id": "c", "text": "Check SPNs with setspn -l and setspn -q PIServer/<hostname>" },
+      { "id": "d", "text": "Create an open trust for the client" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The 2023 session's Kerberos steps are LogLevel=1, klist purge, and checking SPNs with setspn. An open trust is a vulnerability, not a fix.",
+    "lessonId": "data-archive-security",
+    "tags": ["kerberos"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-dasec-smt-paths",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.security", "da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each SMT security task to its plug-in.",
+    "pairs": [
+      { "left": "Create a mapping from an AD group", "right": "Security > Mappings & Trusts" },
+      { "left": "Create a PI Identity", "right": "Security > Identities, Users, & Groups" },
+      { "left": "Grant an identity Read/Write on PIPOINT", "right": "Security > Database Security" }
+    ],
+    "explanation": "The administration course: mappings and trusts in Security > Mappings & Trusts, identities in Security > Identities, Users, & Groups, and per-table permissions in Security > Database Security.",
+    "lessonId": "data-archive-security",
+    "tags": ["smt"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-dasec-oidc-tls",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.security"],
+    "difficulty": 2,
+    "prompt": "PI Server 2023 added OpenID Connect authentication. What does it rely on?",
+    "options": [
+      { "id": "a", "text": "AVEVA Identity Manager (AIM), with TLS certificates required for OIDC" },
+      { "id": "b", "text": "PI Trusts with at least two identifiers" },
+      { "id": "c", "text": "Explicit PI User passwords" },
+      { "id": "d", "text": "SQL Server logins" }
+    ],
+    "answer": "a",
+    "explanation": "OIDC on PI Server 2023 works through AVEVA Identity Manager. TLS certificates are optional in general but required for OIDC.",
+    "lessonId": "data-archive-security",
+    "tags": ["oidc"],
+    "sources": ["da-uc23-security"]
+  }
+]

@@ -1,0 +1,1358 @@
+[
+  {
+    "id": "pilicense-dat",
+    "term": "pilicense.dat",
+    "aliases": [
+      "PI Data Archive license file",
+      "license file"
+    ],
+    "definition": "The PI Data Archive license file. Setup copies it to %PISERVER%\\dat, after which the original copy is no longer used.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "machine-signature-file"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "gmsa",
+    "term": "Group Managed Service Account (gMSA)",
+    "aliases": [
+      "gMSA",
+      "group managed service account"
+    ],
+    "definition": "An Active Directory account type whose password Windows manages. The 2024 AVEVA course runs PI Network Manager, the AF Application Service, the PI Analysis Service and the PI to CONNECT Agent under gMSAs such as SVC-PIDA$. Names must be fewer than 15 characters.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade",
+      "adm.hardening"
+    ],
+    "related": [
+      "kds-root-key"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "kds-root-key",
+    "term": "KDS Root Key",
+    "aliases": [
+      "Key Distribution Service root key"
+    ],
+    "definition": "The Active Directory key that gMSA passwords are derived from. By default it takes 10 hours after creation before the KDS Root Key is in effect, so create it well before you install.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "gmsa"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "silent-ini",
+    "term": "silent.ini",
+    "aliases": [
+      "answer file"
+    ],
+    "definition": "The answer file the PI Server install kit uses for unattended (silent) installs. OSIsoft's PowerShell install sample uses the silent.ini extracted from the kit when none is given.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "pi-server-install-kit"
+    ],
+    "sources": [
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-server-install-kit",
+    "term": "PI Server install kit",
+    "aliases": [
+      "PIServer.exe",
+      "PI Server installer"
+    ],
+    "definition": "The single installer that installs PI Data Archive, PI AF Server and supporting tools. Its TYPICAL feature set includes Data Archive and AF Server. Run it as an administrator after SQL Server is installed and running.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "machine-signature-file",
+      "silent-ini",
+      "sql-server-express"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "sql-server-express",
+    "term": "SQL Server Express",
+    "aliases": [
+      "MS SQL Express"
+    ],
+    "definition": "The free edition of Microsoft SQL Server. OSIsoft cites its limits as a single physical CPU, 1 GB of RAM and a 10 GB database, with no AF audit tables, so it suits labs and very small systems rather than production AF.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade",
+      "adm.sizing"
+    ],
+    "related": [
+      "pi-server-install-kit"
+    ],
+    "sources": [
+      "adm-uc15-af-batke",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pisrvsitestop",
+    "term": "pisrvsitestop.bat",
+    "aliases": [
+      "pisrvsitestart.bat",
+      "site stop script"
+    ],
+    "definition": "The site-specific stop script for PI Data Archive. Put local customisations here instead of editing pisrvstop.bat directly.",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "hardware-sizing-spreadsheet",
+    "term": "Hardware and PI System Sizing Recommendations",
+    "aliases": [
+      "sizing spreadsheet"
+    ],
+    "definition": "The OSIsoft spreadsheet referred to for Data Archive and AF hardware sizing. OSIsoft said sizing should be based on workload, not AF object count. AVEVA now sizes new systems with the Customer Success and Account Managers.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "archive-autoarchivefilesize"
+    ],
+    "sources": [
+      "adm-implementation-adoption",
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "archive-autoarchivefilesize",
+    "term": "Archive_AutoArchiveFileSize",
+    "aliases": [
+      "auto archive file size"
+    ],
+    "definition": "Data Archive tuning parameter that sets the size, in MB, of the new primary archive created on an automatic archive shift. A course exercise sets it to 512.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "archive-shift",
+      "fixed-size-archive"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "windows-file-system-cache",
+    "term": "Windows file system cache",
+    "aliases": [
+      "file cache",
+      "OS cache"
+    ],
+    "definition": "Memory Windows uses to cache file data (in 256 KB sections). AVEVA sizes archives so at least two (2024 course) or three (UC23 deck) archive files fit in RAM, so recent data is read from memory.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "archive-autoarchivefilesize"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "fixed-size-archive",
+    "term": "Fixed-size archive",
+    "aliases": [
+      "fixed archive"
+    ],
+    "definition": "The default PI archive type: the file is created at its full size. Dynamic archives grow as needed and are meant only for troubleshooting and reprocessing.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "dynamic-archive",
+      "archive-shift"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dynamic-archive",
+    "term": "Dynamic archive",
+    "aliases": [],
+    "definition": "An archive file that grows as data is added instead of being created at full size. AVEVA training says to use dynamic archives only for troubleshooting and reprocessing.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "fixed-size-archive"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "future-archive",
+    "term": "Future archive",
+    "aliases": [
+      "future data archive"
+    ],
+    "definition": "An archive for data with future timestamps, introduced in Data Archive 2015. Each starts at 1 MB, spans one calendar month and grows dynamically.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing",
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "archive-shift"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "archive-shift",
+    "term": "Archive shift",
+    "aliases": [
+      "automatic archive shift"
+    ],
+    "definition": "The moment the Data Archive starts writing to a new primary archive. It happens automatically when the current archive is about 98% full, and since Data Archive 2012 the new archive is created automatically.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing",
+      "adm.dr-migration"
+    ],
+    "related": [
+      "primary-archive",
+      "archive-autoarchivefilesize"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "event-queue",
+    "term": "Event queue",
+    "aliases": [
+      "snapshot event queue",
+      "PIEventQ"
+    ],
+    "definition": "The disk queue between the Snapshot and Archive subsystems. AVEVA recommends putting it on a different physical drive from the archives, on the second-largest drive.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "archive-shift"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "events-per-second",
+    "term": "Events per second (EPS)",
+    "aliases": [
+      "EPS",
+      "write EPS"
+    ],
+    "definition": "The rate of values written to or read from the Data Archive. OSIsoft's 2012 tier table assumed 50% compression for its write EPS figures.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "hardware-sizing-spreadsheet"
+    ],
+    "sources": [
+      "adm-vcl12-pi-server-2012-keynote"
+    ],
+    "verify": false
+  },
+  {
+    "id": "buffer-queue-file",
+    "term": "Buffer queue file",
+    "aliases": [
+      "PI Buffer Subsystem queue"
+    ],
+    "definition": "The file where the PI Buffer Subsystem stores data waiting to be sent. It defaults to 32 MB, and more files are created as each one fills.",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "related": [
+      "pibufss"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tag-naming-convention",
+    "term": "Tag naming convention",
+    "aliases": [
+      "naming convention",
+      "tag naming standard"
+    ],
+    "definition": "A company standard for PI Point names that is meaningful to people, for example leading characters for the unit or area followed by the instrument tag. Consistent names let AF templates and substitution parameters work.",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "related": [
+      "instrument-tag",
+      "sql-wildcard-characters"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names",
+      "adm-us19-af-rollout-kwan"
+    ],
+    "verify": false
+  },
+  {
+    "id": "instrument-tag",
+    "term": "Instrument Tag",
+    "aliases": [
+      "InstrumentTag"
+    ],
+    "definition": "Point attribute holding the name of the point or address in the source system. It often has to match the source exactly, including case, or the interface collects nothing.",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "point-source"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "sql-wildcard-characters",
+    "term": "SQL wildcard characters",
+    "aliases": [
+      "underscore and percent wildcards"
+    ],
+    "definition": "SQL treats the underscore (_) and percent sign (%) as wildcards. They are legal first characters in PI tag names but can cause problems in SQL-based tools.",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "related": [
+      "tag-naming-convention"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names"
+    ],
+    "verify": false
+  },
+  {
+    "id": "point-creation-lock",
+    "term": "Point creation global lock",
+    "aliases": [
+      "global lock"
+    ],
+    "definition": "Creating or deleting PI Points updates the Point Table, Snapshot Table and primary archive under a global lock, so AVEVA recommends doing bulk point changes off-hours.",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "tag-naming-convention"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "excluded-attribute",
+    "term": "Excluded attribute",
+    "aliases": [
+      "Excluded property"
+    ],
+    "definition": "An attribute property that hides a template attribute on an element where it does not apply, for example missing instrumentation, while keeping the element on its template.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "derived-template",
+      "allow-extensions"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "allow-extensions",
+    "term": "Allow Extensions",
+    "aliases": [
+      "template extensions"
+    ],
+    "definition": "Element template option that lets individual elements add their own attributes. AVEVA advises disabling it on base templates, because it no longer guarantees all elements share the same attributes; use derived templates instead.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "derived-template",
+      "excluded-attribute"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "create-or-update-pi-point",
+    "term": "Create or Update PI Point",
+    "aliases": [
+      "create PI points from template"
+    ],
+    "definition": "AF action that creates the PI Points a template's tag naming pattern describes and locks in the resolved name, which helps performance on large systems. If TagName changes later, reset to template and run it again.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns",
+      "adm.naming"
+    ],
+    "related": [
+      "substitution-parameter",
+      "reset-to-template"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "smart-element",
+    "term": "Smart element",
+    "aliases": [],
+    "definition": "OSIsoft term for an AF element that combines external data, time series, asset details, analyses, notifications and events in one place.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "excluded-attribute"
+    ],
+    "sources": [
+      "adm-us19-af-rollout-kwan"
+    ],
+    "verify": false
+  },
+  {
+    "id": "parameterised-table-query",
+    "term": "Parameterised table query",
+    "aliases": [
+      "parameterized query",
+      "external table query"
+    ],
+    "definition": "An AF linked-table query filtered by a parameter (for example @Asset) so the selection is done on the server. Since PI 2014 it lets you go beyond the roughly 10,000-row guideline for AF tables.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "excluded-attribute"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-pisquare-af-table-lookup-10k"
+    ],
+    "verify": false
+  },
+  {
+    "id": "value-retrieval-method",
+    "term": "Value Retrieval Method",
+    "aliases": [
+      "VRM"
+    ],
+    "definition": "A PI Point data reference setting (for example a 90-day average) that the Data Archive calculates on the fly each time it is read. AVEVA advises moving heavy ones to Asset Analytics.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "asset-analytics"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "expression-variable",
+    "term": "Expression variable",
+    "aliases": [
+      "analysis variable"
+    ],
+    "definition": "A named intermediate result in an expression analysis that avoids repeating a calculation. In AVEVA's example it cut evaluation time from 1.6 ms to 0.6 ms.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "asset-analytics"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "s95-hierarchy",
+    "term": "S95 hierarchy",
+    "aliases": [
+      "ISA-95 hierarchy",
+      "Enterprise-Site-Area"
+    ],
+    "definition": "A standard asset hierarchy (Enterprise, Site, Area and so on) that OSIsoft recommends following for AF, with extra views built from element references for other audiences.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "related": [
+      "smart-element"
+    ],
+    "sources": [
+      "adm-uc15-af-batke",
+      "adm-us19-af-rollout-kwan"
+    ],
+    "verify": false
+  },
+  {
+    "id": "afexport-afimport",
+    "term": "AFExport and AFImport",
+    "aliases": [
+      "AFExport",
+      "AFImport"
+    ],
+    "definition": "Command-line utilities in \\PIPC\\AF that export an AF database to XML and import it elsewhere, for example with /AllReferences. Imports do not propagate deletions.",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns",
+      "adm.deployment-patterns",
+      "adm.dr-migration"
+    ],
+    "related": [
+      "substitution-parameter"
+    ],
+    "sources": [
+      "adm-us19-af-rollout-kwan"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-it-monitor",
+    "term": "PI IT Monitor",
+    "aliases": [],
+    "definition": "An OSIsoft bundle of IT-monitoring interfaces and tools, including the Perfmon, Ping, TCPResponse, SNMP and NetFlow interfaces, SYSLOG, SNMP Trap, PI ICU and the Interface Status Utility.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "pi-perfmon-interface",
+      "pi-ping-interface",
+      "pi-snmp-interface"
+    ],
+    "sources": [
+      "adm-it-monitor-overview"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-perfmon-interface",
+    "term": "PI Performance Monitor Interface",
+    "aliases": [
+      "PI Perfmon",
+      "Perfmon interface"
+    ],
+    "definition": "A PI interface that reads Windows performance counters from a local or remote machine into PI Points, for example PI Archive Subsystem Archived Events/sec.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "pi-it-monitor"
+    ],
+    "sources": [
+      "adm-mcn-health-monitor-tayler"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-ping-interface",
+    "term": "PI Ping Interface",
+    "aliases": [
+      "PI Ping"
+    ],
+    "definition": "A PI interface that measures the latency of network connections. OSIsoft recommends a Ping tag for each data acquisition node, major network device, application server and external destination.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "pi-it-monitor"
+    ],
+    "sources": [
+      "adm-mcn-health-monitor-tayler"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-snmp-interface",
+    "term": "PI SNMP Interface",
+    "aliases": [
+      "SNMP interface"
+    ],
+    "definition": "A PI interface in PI IT Monitor that collects data from network devices using SNMP. Basic versions came with a PI server; full versions on an interface node had no limits.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "pi-it-monitor"
+    ],
+    "sources": [
+      "adm-it-monitor-overview",
+      "adm-mcn-health-monitor-tayler"
+    ],
+    "verify": false
+  },
+  {
+    "id": "interface-status-utility",
+    "term": "PI Interface Status Utility (ISU)",
+    "aliases": [
+      "ISU",
+      "Interface Status Utility"
+    ],
+    "definition": "A server-side watchdog that sets a bad digital state on an interface status tag when the interface's watchdog tag is not updated in time. It has been removed from PI Server install kits.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "uniint-health-points"
+    ],
+    "sources": [
+      "adm-interface-status-utility-overview"
+    ],
+    "verify": false
+  },
+  {
+    "id": "uniint-health-points",
+    "term": "UniInt health points",
+    "aliases": [
+      "interface health points",
+      "health tags"
+    ],
+    "definition": "Points that UniInt-based interfaces write about themselves: Heartbeat, Device Status, IO Rate and Scan Class Scans Skipped, among others.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "heartbeat-point",
+      "io-rate-point",
+      "device-status-point"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "heartbeat-point",
+    "term": "Heartbeat point",
+    "aliases": [
+      "Heartbeat"
+    ],
+    "definition": "UniInt health point that cycles from 1 to 15 while the interface runs. It shows the interface is alive but not that it is collecting data.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "io-rate-point",
+      "uniint-health-points"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "io-rate-point",
+    "term": "IO Rate point",
+    "aliases": [
+      "IO Rate",
+      "I/O rate tag"
+    ],
+    "definition": "UniInt health point that counts the values an interface sends. If it stops updating, data collection has stopped, so it is a better check than Heartbeat.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "heartbeat-point"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "device-status-point",
+    "term": "Device Status point",
+    "aliases": [
+      "Device Status"
+    ],
+    "definition": "UniInt health point describing the interface's connection to its data source; it should read GOOD.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "related": [
+      "uniint-health-points"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "archiving-flag",
+    "term": "Archiving flag",
+    "aliases": [],
+    "definition": "Value shown by piartool -as: 0 none, 1 historic only, 2 future only, 3 both. 3 is healthy for Data Archive 2015 and later.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring",
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-message-subsystem",
+    "term": "PI Message Subsystem",
+    "aliases": [
+      "pimsgss",
+      "PIMSGSS"
+    ],
+    "definition": "The Data Archive subsystem that writes the PI Message Log. Bulletin AVEVA-2024-001 advised restricting write access to it via the PIMSGSS Database Security entry and monitoring its memory.",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring",
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-message-log"
+    ],
+    "sources": [
+      "adm-aveva-bulletin-2024-001"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-message-log",
+    "term": "PI Message Log",
+    "aliases": [
+      "message log"
+    ],
+    "definition": "The Data Archive log of system messages, errors and logins. Read it with PI SMT, the PI SDK Utility or pigetmsg.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "pigetmsg",
+      "pi-message-subsystem"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pigetmsg",
+    "term": "pigetmsg",
+    "aliases": [],
+    "definition": "Command-line reader for the PI Message Log. pigetmsg -f follows new messages as they arrive.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "pi-message-log"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "piartool",
+    "term": "piartool",
+    "aliases": [],
+    "definition": "Data Archive admin tool. For example -ss, -qs and -as show snapshot, event queue and archive statistics, and -thread piarchss -info takes a thread dump. It changes archive registration only on the host it runs on.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting",
+      "adm.dr-migration",
+      "adm.monitoring"
+    ],
+    "related": [
+      "archiving-flag",
+      "pidiag"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-uc23-da-performance-sick",
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pidiag",
+    "term": "pidiag",
+    "aliases": [],
+    "definition": "Data Archive diagnostic tool, for example pidiag -tz for time-zone rules, pidiag -archk to check an archive file, and pidiag -tls to verify or register the TLS certificate.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting",
+      "sec.certificates"
+    ],
+    "related": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-vl2010-optimization",
+      "adm-pisquare-pivision-collective-tls"
+    ],
+    "verify": false
+  },
+  {
+    "id": "apisnap",
+    "term": "apisnap",
+    "aliases": [],
+    "definition": "Command-line utility that tests PI API connectivity to a Data Archive by reading snapshot values: apisnap <server>.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "pibufss"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pibufss",
+    "term": "pibufss",
+    "aliases": [
+      "PI Buffer Subsystem command"
+    ],
+    "definition": "Command for the PI Buffer Subsystem: pibufss -cfg shows buffering status, -qs shows queue statistics, and -bc stop|start pauses or resumes sending.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "buffer-queue-file"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "network-manager-statistics",
+    "term": "Network Manager Statistics",
+    "aliases": [],
+    "definition": "PI SMT view listing current connections to the Data Archive with their IDs and identities. Use a Connection ID from a log message to find the client.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "pi-message-log"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "arcmaxcollect",
+    "term": "ArcMaxCollect",
+    "aliases": [],
+    "definition": "Data Archive tuning parameter that limits how many compressed events one query may return; it defaults to 1.5 million. Exceeding it gives error -11091.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "archive-maxqueryexecutionsec",
+      "heavy-hitter-messages"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "archive-maxqueryexecutionsec",
+    "term": "Archive_MaxQueryExecutionSec",
+    "aliases": [],
+    "definition": "Data Archive tuning parameter that limits how long a query may run; it defaults to 260 seconds. Exceeding it gives error -11140.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "arcmaxcollect"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "heavy-hitter-messages",
+    "term": "Heavy-hitter messages",
+    "aliases": [
+      "heavy hitters"
+    ],
+    "definition": "AVEVA's name for log messages that point to expensive clients: -11091 (event collection limit), -11140 (query time limit) and -10767 (too many concurrent queries).",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "arcmaxcollect",
+      "archive-maxqueryexecutionsec"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-error-code",
+    "term": "PI error code",
+    "aliases": [
+      "pistatus code",
+      "status code"
+    ],
+    "definition": "A negative number the PI System returns for an error, for example -10401 no write access. OSIsoft's pistatus.h header groups them by range, such as -10400 to -10419 for security and -10720 to -10768 for network.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "heavy-hitter-messages"
+    ],
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "location1",
+    "term": "Location1 and Location4",
+    "aliases": [
+      "Location1",
+      "Location4"
+    ],
+    "definition": "Point attributes many interfaces use: Location1 holds the interface ID and Location4 the scan class.",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "related": [
+      "point-source"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-collective",
+    "term": "PI Data Archive collective",
+    "aliases": [
+      "PI collective",
+      "collective"
+    ],
+    "definition": "A set of Data Archive servers, one primary and one or more secondaries, with replicated configuration for high availability. Archives are independent on each member, and members should be identical.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration",
+      "adm.deployment-patterns"
+    ],
+    "related": [
+      "pi-collective-manager",
+      "high-availability"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives",
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-collective-manager",
+    "term": "PI Collective Manager",
+    "aliases": [],
+    "definition": "Tool that creates and maintains a PI collective. It synchronises a secondary by taking a PI Backup of the primary, copying it and registering it.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "pi-collective",
+      "pi-backup"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "primary-archive",
+    "term": "Primary archive",
+    "aliases": [],
+    "definition": "The archive file currently receiving data. It has no end time and cannot be unregistered.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "archive-shift",
+      "annotation-file"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-backup",
+    "term": "PI Backup",
+    "aliases": [
+      "Data Archive backup"
+    ],
+    "definition": "Data Archive backup that uses Windows VSS so files in use can be backed up without downtime. AVEVA advises daily off-peak backups copied to a separate server.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "vss",
+      "pi-collective-manager"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "vss",
+    "term": "Volume Shadow Copy Service (VSS)",
+    "aliases": [
+      "VSS"
+    ],
+    "definition": "Windows service that takes consistent snapshots of files that are in use. PI Backup relies on it.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "pi-backup"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "annotation-file",
+    "term": "Annotation file (.ann)",
+    "aliases": [
+      ".ann file"
+    ],
+    "definition": "The file that holds an archive's annotations. It must stay in the same directory as its .arc archive file, so move both together.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "primary-archive"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "disaster-recovery",
+    "term": "Disaster recovery (DR)",
+    "aliases": [
+      "DR",
+      "DR plan"
+    ],
+    "definition": "The plan and tested procedure for restoring service after a site-level loss. OSIsoft says backups, redundant interfaces and HA are not stand-alone DR, and advises a DR simulation at least once a year.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "related": [
+      "high-availability",
+      "pi-backup"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "high-availability",
+    "term": "High availability (HA)",
+    "aliases": [
+      "HA"
+    ],
+    "definition": "Designs that keep the PI System running through a server failure, such as a Data Archive collective, AF behind a network load balancer and redundant SQL Server.",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration",
+      "adm.deployment-patterns"
+    ],
+    "related": [
+      "pi-collective",
+      "disaster-recovery",
+      "network-load-balancer"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "connect-to-pi-agent",
+    "term": "CONNECT to PI Agent",
+    "aliases": [],
+    "definition": "An agent that writes data from CONNECT streams back to PI tags.",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "related": [
+      "pi-to-connect-agent"
+    ],
+    "sources": [
+      "ops2-pidi-service-description"
+    ],
+    "verify": false
+  },
+  {
+    "id": "powershell-dsc",
+    "term": "PowerShell Desired State Configuration (DSC)",
+    "aliases": [
+      "DSC"
+    ],
+    "definition": "Windows configuration-as-code. OSIsoft's Azure deployment uploaded DSC configurations; DSC's Local Configuration Manager defaults to ApplyAndMonitor at about 15-minute intervals.",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "related": [
+      "azure-key-vault"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "azure-key-vault",
+    "term": "Azure Key Vault",
+    "aliases": [],
+    "definition": "Azure secret store. In OSIsoft's Azure deployment the bootstrapper stored generated credentials there.",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "related": [
+      "powershell-dsc"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-to-pi-interface",
+    "term": "PI to PI interface",
+    "aliases": [
+      "PI to PI",
+      "PItoPI"
+    ],
+    "definition": "A PI interface that copies data from one Data Archive to another, for example from a control-network server to a DMZ or business server. Each connection is one-way, so two licences are needed for both directions.",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns",
+      "sec.architecture"
+    ],
+    "related": [
+      "pi-connector-relay",
+      "dmz"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov",
+      "ops2-sw-schedule-pi-2026"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-connector-relay",
+    "term": "PI Connector Relay",
+    "aliases": [
+      "Connector Relay"
+    ],
+    "definition": "A component that receives data from PI Connectors and forwards it on. OSIsoft's Pattern 3 variant places it in the DMZ.",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns",
+      "sec.architecture"
+    ],
+    "related": [
+      "pi-to-pi-interface"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-cloud-connect",
+    "term": "PI Cloud Connect",
+    "aliases": [],
+    "definition": "An OSIsoft service that linked site Data Archives and AF to a corporate site and to partners.",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "related": [
+      "pi-to-pi-interface"
+    ],
+    "sources": [
+      "adm-pi-system-basics-2017"
+    ],
+    "verify": false
+  },
+  {
+    "id": "failover-interface",
+    "term": "Failover interface",
+    "aliases": [
+      "redundant interface",
+      "interface failover"
+    ],
+    "definition": "A pair of interface nodes collecting the same data, where the backup sends data only if the primary fails. It is an early step on OSIsoft's architecture growth path.",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "related": [
+      "pi-collective",
+      "high-availability"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov",
+      "ops2-sw-schedule-pi-2026"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,468 @@
+[
+  {
+    "id": "q-sql-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 1,
+    "prompt": "A team needs to insert and update PI point values from SQL. Which product supports this?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI OLEDB Provider"
+      },
+      {
+        "id": "b",
+        "text": "PI OLEDB Enterprise"
+      },
+      {
+        "id": "c",
+        "text": "RTQP Master catalog"
+      },
+      {
+        "id": "d",
+        "text": "PI SQL Commander Lite"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI OLEDB Provider offers read/write (CRUD) access to PI point data. PI OLEDB Enterprise is read-only and covers AF, not points. The RTQP engine exposes one AF database.",
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pioledb-basics"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "A report queries piarchive..piinterp and shows values at odd times such as 10:09:51. The user wanted the archived events. Which table should they use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "piarchive..picomp2"
+      },
+      {
+        "id": "b",
+        "text": "piarchive..piinterp2"
+      },
+      {
+        "id": "c",
+        "text": "piarchive..piavg"
+      },
+      {
+        "id": "d",
+        "text": "pipoint..classic"
+      }
+    ],
+    "answer": "a",
+    "explanation": "piinterp returns interpolated values at a timestep (default 1 h) aligned to the query time, which caused the odd timestamps. picomp2 returns archived events with their real timestamps.",
+    "sources": [
+      "dev2-pisquare-interp-vs-comp"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-03",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the only built-in catalog in the RTQP engine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Master"
+      },
+      {
+        "id": "b",
+        "text": "piarchive"
+      },
+      {
+        "id": "c",
+        "text": "pipoint"
+      },
+      {
+        "id": "d",
+        "text": "pids"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The only built-in RTQP catalog is Master, with tables such as Master.Element.Element, Master.Element.Attribute and Master.EventFrame.EventFrame. piarchive and pipoint are PI OLEDB Provider catalogs.",
+    "sources": [
+      "dev2-pisql-migrate-lab-2020"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-04",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each PI OLEDB Provider catalog to what it contains.",
+    "pairs": [
+      {
+        "left": "piarchive",
+        "right": "Archive-related tables"
+      },
+      {
+        "left": "pipoint",
+        "right": "Point configuration tables, one per point class"
+      },
+      {
+        "left": "pids",
+        "right": "Digital state tables"
+      },
+      {
+        "left": "piuser",
+        "right": "User database tables"
+      }
+    ],
+    "explanation": "From the PI OLEDB basics: piarchive holds archive-related tables, pipoint holds point configuration (one table per point class), pids holds digital state tables and piuser holds user database tables.",
+    "sources": [
+      "dev2-pioledb-basics"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-05",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 3,
+    "prompt": "When migrating PI OLEDB Enterprise queries to RTQP, which rules apply? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use PrimaryPath and Template columns instead of joining ElementHierarchy and ElementTemplate"
+      },
+      {
+        "id": "b",
+        "text": "Subqueries are supported only in FROM"
+      },
+      {
+        "id": "c",
+        "text": "Use positional ? parameters instead of named parameters"
+      },
+      {
+        "id": "d",
+        "text": "OPTION (FORCE ORDER) is required for joins"
+      },
+      {
+        "id": "e",
+        "text": "Event frame versions are now queried with a Version column"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The 2020 migration lab lists: use PrimaryPath and Template columns directly instead of joining hierarchy and template tables; subqueries only in FROM; OPTION (FORCE ORDER) not supported; named parameters not supported (use positional ?). Event frame versioning was dropped, not added.",
+    "sources": [
+      "dev2-pisql-migrate-lab-2020"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-06",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "What Java class name does a JDBC client load for the PI JDBC Driver?",
+    "accepted": [
+      "com.osisoft.jdbc.Driver"
+    ],
+    "caseSensitive": false,
+    "explanation": "The PI JDBC driver class is com.osisoft.jdbc.Driver, in PIJDBCDriver.jar under PIPC\\JDBC.",
+    "sources": [
+      "dev2-ignition-pijdbc"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-07",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "Ignition chart fails on picomp2 values.",
+    "scenario": "An Ignition project connects through PI JDBC and runs `SELECT TOP 10 tag, time, value FROM piarchive..picomp2 WHERE tag = 'sinusoid'`. The query returns rows, but the chart component will not plot them.\n\nWhat is the documented fix?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Select cast(value as Float32) instead of value"
+      },
+      {
+        "id": "b",
+        "text": "Query piarchive..piinterp instead"
+      },
+      {
+        "id": "c",
+        "text": "Add OPTION (FORCE ORDER)"
+      },
+      {
+        "id": "d",
+        "text": "Switch the driver to PI OLEDB Enterprise"
+      }
+    ],
+    "answer": "a",
+    "explanation": "picomp2 stores values as variants instead of separate float and string columns, and some clients such as Ignition charts fail unless the value is cast: cast(value as Float32). Switching to piinterp would return interpolated values instead of archived events.",
+    "sources": [
+      "dev2-ignition-pijdbc",
+      "dev2-pisquare-pipoint-table"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-08",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "piarchive..piavg returns which kind of average by default, and how do you get the other kind?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Time-weighted; use pimean or calcbasis = 'EventWeighted' for event-weighted"
+      },
+      {
+        "id": "b",
+        "text": "Event-weighted; use pitotal for time-weighted"
+      },
+      {
+        "id": "c",
+        "text": "Time-weighted only; event-weighted is not available"
+      },
+      {
+        "id": "d",
+        "text": "Event-weighted; add timestep = '1h' for time-weighted"
+      }
+    ],
+    "answer": "a",
+    "explanation": "piavg is time-weighted by default. For event-weighted results, query pimean or add calcbasis = 'EventWeighted'.",
+    "sources": [
+      "dev2-pisquare-sql-datalink"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-09",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "What changed in PI SQL Client 2018 R2 compared with the first 2018 release?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It added ODBC and JDBC drivers and removed the AF SDK dependency"
+      },
+      {
+        "id": "b",
+        "text": "It added write access to AF attributes"
+      },
+      {
+        "id": "c",
+        "text": "It removed the OLE DB driver"
+      },
+      {
+        "id": "d",
+        "text": "It added Data Archive tables to RTQP"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The first release (2018) contained only OLE DB. 2018 R2 added ODBC and a pure-Java JDBC driver and removed the AF SDK dependency.",
+    "sources": [
+      "dev2-bachmann-pisql-2019",
+      "int-dev-tech-overview"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-10",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: the PI JDBC driver can connect over net.tcp as well as HTTPS.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. PI JDBC works over HTTPS only and requires PI SQL Data Access Server. PI ODBC and PI SQL Client in general can use net.tcp or HTTPS.",
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-bachmann-pisql-2019"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-11",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "A query on pipoint..classic misses some tags. Which table does an OSIsoft staff answer recommend for all tags?",
+    "options": [
+      {
+        "id": "a",
+        "text": "pipoint..pipoint2"
+      },
+      {
+        "id": "b",
+        "text": "piarchive..picomp2"
+      },
+      {
+        "id": "c",
+        "text": "pids..pids"
+      },
+      {
+        "id": "d",
+        "text": "Master.Element.Attribute"
+      }
+    ],
+    "answer": "a",
+    "explanation": "pipoint..classic returns only classic point-class attributes. pipoint2 is recommended unless an application needs backward compatibility.",
+    "sources": [
+      "dev2-pisquare-pipoint-table"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-12",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 3,
+    "prompt": "How are RTQP template table-valued functions such as [Master].[Element].[GetSummary] invoked in a query?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With CROSS APPLY"
+      },
+      {
+        "id": "b",
+        "text": "With EXEC as a stored procedure"
+      },
+      {
+        "id": "c",
+        "text": "Inside a WHERE subquery"
+      },
+      {
+        "id": "d",
+        "text": "With OPTION (FORCE ORDER)"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Template-based TVFs take the element template name and attribute names and are invoked with CROSS APPLY, as in the PI World 2020 wind-farm lab.",
+    "sources": [
+      "dev2-pisql-migrate-lab-2020"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-13",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 3,
+    "prompt": "Linked server date conversion error.",
+    "scenario": "A DBA set up a SQL Server Linked Server to PI OLEDB Provider. A four-part-name query with `time BETWEEN '*-1h' AND '*'` fails with \"Conversion failed when converting date and/or time from character string\".\n\nWhat worked around this on PI Square?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Run the query through OPENQUERY"
+      },
+      {
+        "id": "b",
+        "text": "Replace '*' with GETDATE() in the four-part query"
+      },
+      {
+        "id": "c",
+        "text": "Use PI OLEDB Enterprise instead"
+      },
+      {
+        "id": "d",
+        "text": "Add calcbasis = 'EventWeighted'"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Through a SQL Server Linked Server, PI time strings raised \"Conversion failed when converting date and/or time from character string\". Running the query with OPENQUERY passed it through to the PI provider and worked around the problem.",
+    "sources": [
+      "dev2-pisquare-sql-datalink"
+    ],
+    "lessonId": "pi-sql-family"
+  },
+  {
+    "id": "q-sql-14",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI OLEDB function is the successor of the deprecated PICalcVal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PIAdvCalcVal"
+      },
+      {
+        "id": "b",
+        "text": "PICalcValEx"
+      },
+      {
+        "id": "c",
+        "text": "GetSummary"
+      },
+      {
+        "id": "d",
+        "text": "piinterp2"
+      }
+    ],
+    "answer": "a",
+    "explanation": "A PI Square answer states \"PICalcVal function is deprecated and PIAdvCalcVal is its successor.\"",
+    "sources": [
+      "dev2-pisquare-sql-datalink"
+    ],
+    "lessonId": "pi-sql-family"
+  }
+]

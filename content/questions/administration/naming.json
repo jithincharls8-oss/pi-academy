@@ -1,0 +1,419 @@
+[
+  {
+    "id": "q-naming-first-char",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 1,
+    "prompt": "Which characters may be the FIRST character of a PI tag name? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A letter or digit"
+      },
+      {
+        "id": "b",
+        "text": "An underscore (_)"
+      },
+      {
+        "id": "c",
+        "text": "A percent sign (%)"
+      },
+      {
+        "id": "d",
+        "text": "A square bracket ([)"
+      },
+      {
+        "id": "e",
+        "text": "A question mark (?)"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "\"The first character must be alphanumeric, an underscore (_), or a percent sign (%).\" Square brackets and question marks are not allowed anywhere in a tag name.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "rules"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-forbidden",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "Which characters are NOT allowed anywhere in a PI tag name? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Semicolon (;)"
+      },
+      {
+        "id": "b",
+        "text": "Pipe (|)"
+      },
+      {
+        "id": "c",
+        "text": "Backslash (\\)"
+      },
+      {
+        "id": "d",
+        "text": "Full stop (.)"
+      },
+      {
+        "id": "e",
+        "text": "Hyphen (-)"
+      },
+      {
+        "id": "f",
+        "text": "Double quote (\")"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "f",
+      "c"
+    ],
+    "explanation": "Single and double quotes, question mark, semicolon, curly braces, square brackets, pipe, backslash and backtick are not allowed in tag names (they are allowed in the descriptor). Full stops are fine: AF naming patterns produce names like FFS01.OEE.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "rules"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names",
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-rename-element",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "Which tools are most likely affected?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Vision displays and PI DataLink definitions, which use element names"
+      },
+      {
+        "id": "b",
+        "text": "AF element references, which use names"
+      },
+      {
+        "id": "c",
+        "text": "The Data Archive archive files"
+      },
+      {
+        "id": "d",
+        "text": "Nothing; renaming never affects clients"
+      }
+    ],
+    "scenario": "An engineer renames an AF element from \"Pump 7\" to \"P-07 North\". AF analyses and references to the element keep working, but some users report broken items in their reports and displays.",
+    "answer": "a",
+    "explanation": "AF relationships use GUIDs, so they survive renames, but PI Vision and PI DataLink definitions use element names and need updating.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-sql-wildcards",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "Why can underscores and percent signs in tag names cause trouble even though they are legal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "SQL uses them as wildcards"
+      },
+      {
+        "id": "b",
+        "text": "The Data Archive converts them to spaces"
+      },
+      {
+        "id": "c",
+        "text": "They are reserved for digital states"
+      },
+      {
+        "id": "d",
+        "text": "PI Vision cannot display them"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"SQL uses the underscore (_) and percent sign (%) as wild cards\", so those characters may cause problems in some applications, such as SQL-based tools.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "sql"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-pi-api-truncate",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 3,
+    "prompt": "The PI API functions pipt_tag and pipt_updates truncate tag names to how many characters?",
+    "accepted": [
+      "12",
+      "twelve"
+    ],
+    "caseSensitive": false,
+    "explanation": "The guide says tags may be any length, but PI API pipt_tag and pipt_updates truncate to 12 characters; pipt_findpoint reports only the first 80, and the PI SQL Subsystem handles at most 1016.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "limits"
+    ],
+    "sources": [
+      "adm-pisquare-valid-tag-names"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-default-pattern",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the AF default PI Point naming pattern?",
+    "options": [
+      {
+        "id": "a",
+        "text": "%Element%.%Attribute%.%ID%"
+      },
+      {
+        "id": "b",
+        "text": "%Server%\\%Element%"
+      },
+      {
+        "id": "c",
+        "text": "%Database%_%Template%"
+      },
+      {
+        "id": "d",
+        "text": "%Attribute%.%Element%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The building-assets workbook gives the default pattern as %Element%.%Attribute%.%ID%.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-random-names",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "What does AVEVA's guidance say?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inconsistent names stop substitution from working; use manual TagName child attributes or PI Builder, and adopt a convention for new tags"
+      },
+      {
+        "id": "b",
+        "text": "Substitution parameters ignore naming, so it will work as is"
+      },
+      {
+        "id": "c",
+        "text": "Rename the archive files to match"
+      },
+      {
+        "id": "d",
+        "text": "Delete the old points and recreate them; there is no downside"
+      }
+    ],
+    "scenario": "A site has tags named FFS01SealTemp, 02ST3000 and SealTemp_Line3 for the same measurement on three filler lines. The team wants one AF template to find each line's tag automatically with substitution parameters.",
+    "answer": "a",
+    "explanation": "Inconsistent names stop substitution from working, so you need manual TagName attributes or PI Builder. Deleting points is risky: there is no undelete and archived data becomes inaccessible.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "af",
+      "pitfall"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-bulk-offhours",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AVEVA recommends creating large numbers of PI Points during off-hours because point creation needs a global lock.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. The UC23 performance deck says point creation and deletion update the Point Table, Snapshot Table and primary archive under a global lock.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "performance",
+      "true-false"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-unique",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 1,
+    "prompt": "The AF course says element names must be unique within their path. What does it recommend beyond that?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unique names across the whole hierarchy, using a location code for duplicate device names"
+      },
+      {
+        "id": "b",
+        "text": "Reusing the same names in every site for simplicity"
+      },
+      {
+        "id": "c",
+        "text": "Using only numeric names"
+      },
+      {
+        "id": "d",
+        "text": "Naming elements after their GUIDs"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The course recommends unique names across the hierarchy and a location code for duplicate device names; distinct names are less confusing and easier in tabular reports.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "adm-building-assets-workbook",
+      "adm-uc15-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-vistra",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 1,
+    "prompt": "Which naming lesson did Vistra Energy share?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Limit and discourage the use of acronyms"
+      },
+      {
+        "id": "b",
+        "text": "Use as many acronyms as possible to keep names short"
+      },
+      {
+        "id": "c",
+        "text": "Let each plant choose its own convention"
+      },
+      {
+        "id": "d",
+        "text": "Avoid naming conventions for PI Vision"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Vistra's lessons were \"Limit and discourage the use of acronyms\" and \"Naming convention is important for PI Vision\".",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "case"
+    ],
+    "sources": [
+      "adm-uc19-vistra-cloud"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-naming-unicode",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.naming"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: a PI Square answer says PI Server stores tag names as Unicode, so any client encoding reads them correctly.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. The answer says PI Server \"does not support Unicode\" in tag names and \"stores the raw bits\", so readers need the same non-Unicode encoding as the creator.",
+    "lessonId": "naming-conventions",
+    "tags": [
+      "encoding",
+      "true-false"
+    ],
+    "sources": [
+      "adm-pisquare-unicode-tag-names"
+    ],
+    "verify": false
+  }
+]

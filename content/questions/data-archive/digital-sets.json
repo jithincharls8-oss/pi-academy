@@ -1,0 +1,184 @@
+[
+  {
+    "id": "q-digital-append",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 2,
+    "scenario": "A state set has 0 = CLOSED and 1 = OPEN and has been in use for three years. Operations wants to add a TRAVEL state.",
+    "prompt": "What is the safe change?",
+    "options": [
+      { "id": "a", "text": "Append TRAVEL as state 2 and leave 0 and 1 unchanged" },
+      { "id": "b", "text": "Insert TRAVEL as state 1 and move OPEN to 2" },
+      { "id": "c", "text": "Delete the set and create a new one with the same name" },
+      { "id": "d", "text": "Change all the valve points to String type" }
+    ],
+    "answer": "a",
+    "explanation": "Only append new states; never reassign an existing integer. Renumbering changes how years of archived integers are read.",
+    "lessonId": "digital-state-sets",
+    "tags": ["digital", "scenario"],
+    "sources": ["da-fb-pida-1142"]
+  },
+  {
+    "id": "q-digital-system-set",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 2,
+    "prompt": "Which states does OSIsoft training name among the factory defaults of the global system digital state set? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Shutdown" },
+      { "id": "b", "text": "Intf Shut" },
+      { "id": "c", "text": "I/O Timeout" },
+      { "id": "d", "text": "OPEN" },
+      { "id": "e", "text": "RUNNING" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The system state set is global and its factory defaults include Shutdown, Intf Shut and I/O Timeout. OPEN and RUNNING belong in site-specific sets.",
+    "lessonId": "digital-state-sets",
+    "tags": ["system-states"],
+    "sources": ["da-uc2003-system-mgmt"]
+  },
+  {
+    "id": "q-digital-compdev",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets", "da.exception-compression"],
+    "difficulty": 2,
+    "prompt": "What effect does CompDev have on a digital point?",
+    "options": [
+      { "id": "a", "text": "None; for digital points CompDev and ExcDev have no effect" },
+      { "id": "b", "text": "It sets how many states the set can hold" },
+      { "id": "c", "text": "It is the minimum time between state changes" },
+      { "id": "d", "text": "It is applied as a percentage of the number of states" }
+    ],
+    "answer": "a",
+    "explanation": "For digital points CompDev and ExcDev have no effect; many users turn compression off and adjust only ExcMax. The Percent variants are shown as zero for digital tags.",
+    "lessonId": "digital-state-sets",
+    "tags": ["compression"],
+    "sources": ["da-ps-compdev-standard-thread", "da-rockwell-studio5000-params"]
+  },
+  {
+    "id": "q-digital-table-owner",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets", "da.subsystems"],
+    "difficulty": 2,
+    "prompt": "Which Data Archive subsystem maintains the Digital State Table?",
+    "accepted": ["PI Base Subsystem", "Base Subsystem", "pibasess", "Base"],
+    "explanation": "The PI Base Subsystem maintains the Point Database, Digital State Table, authentication databases and Module Database.",
+    "lessonId": "digital-state-sets",
+    "tags": ["subsystems"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-digital-header",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 3,
+    "prompt": "Where does the Data Archive record which digital state set archived values belong to?",
+    "options": [
+      { "id": "a", "text": "In each archive record header, as the digital state set ID" },
+      { "id": "b", "text": "Only in the point's DigitalSet attribute, read at query time" },
+      { "id": "c", "text": "In the PI Vision display" },
+      { "id": "d", "text": "In the message log" }
+    ],
+    "answer": "a",
+    "explanation": "Each archive record header stores the digital state set ID, and reprocessing uses the set in the archive file's header. That is why changing DigitalSet does not reinterpret history.",
+    "lessonId": "digital-state-sets",
+    "tags": ["archive"],
+    "sources": ["da-fb-pisrv-1351", "da-fb-pida-1142"]
+  },
+  {
+    "id": "q-digital-af-equivalent",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 2,
+    "prompt": "In PI Builder, match each Data Archive ObjectType to the AF ObjectType you change it to when converting digital states into AF enumeration sets.",
+    "pairs": [
+      { "left": "DigitalStateSet", "right": "EnumerationSet" },
+      { "left": "DigitalState", "right": "EnumerationValue" },
+      { "left": "PIPoint", "right": "Not converted; it is the ObjectType for PI tags" }
+    ],
+    "explanation": "PI Builder tips: change ObjectType DigitalStateSet to EnumerationSet and DigitalState to EnumerationValue. PIPoint is the ObjectType for PI tags.",
+    "lessonId": "digital-state-sets",
+    "tags": ["af", "pi-builder"],
+    "sources": ["da-pse-builder-tips-pdf", "da-assets-workbook"]
+  },
+  {
+    "id": "q-digital-status-tag",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets", "da.exception-compression"],
+    "difficulty": 3,
+    "prompt": "In AVEVA's 2023 example, a 0/1 status tag was scanned every second for 48 hours with no exception and CompMax 8 hours. How many events were stored, compared with 172,800 without compression?",
+    "options": [
+      { "id": "a", "text": "15" },
+      { "id": "b", "text": "1,728" },
+      { "id": "c", "text": "86,400" },
+      { "id": "d", "text": "172,800" }
+    ],
+    "answer": "a",
+    "explanation": "The talk reported 15 stored events instead of 172,800 over 48 hours: only state changes (and the CompMax time trigger) were archived.",
+    "lessonId": "digital-state-sets",
+    "tags": ["compression"],
+    "sources": ["da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-digital-tf-numeric",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 1,
+    "prompt": "True or false: the SYSTEM digital state set applies only to digital points.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "The system digital state set is global and applies to all points, so states such as I/O Timeout can appear in numeric tags.",
+    "lessonId": "digital-state-sets",
+    "tags": ["true-false", "system-states"],
+    "sources": ["da-uc2003-system-mgmt"]
+  },
+  {
+    "id": "q-digital-guidance",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets"],
+    "difficulty": 2,
+    "prompt": "Which practices does OSIsoft recommend for digital state sets? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Create dedicated state sets" },
+      { "id": "b", "text": "Include placeholders in sets that change often" },
+      { "id": "c", "text": "Standardise sets across the enterprise, especially with PI to PI" },
+      { "id": "d", "text": "Reuse one huge set for every device in the plant" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OSIsoft guidance: dedicated sets, placeholders for sets that change often, and enterprise standardisation, especially for PI to PI.",
+    "lessonId": "digital-state-sets",
+    "tags": ["design"],
+    "sources": ["da-uc2003-system-mgmt"]
+  },
+  {
+    "id": "q-digital-dbsecurity",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.digital-sets", "da.security"],
+    "difficulty": 3,
+    "prompt": "Default database security restricts write access to which table that holds digital state sets?",
+    "options": [
+      { "id": "a", "text": "PIDS" },
+      { "id": "b", "text": "PIARC" },
+      { "id": "c", "text": "PIMSGSS" },
+      { "id": "d", "text": "PIBUFQ" }
+    ],
+    "answer": "a",
+    "explanation": "Default DBSecurity restricts write access to PIDS (digital sets) and to PIModules and PIHeadingSets in the Module Database.",
+    "lessonId": "digital-state-sets",
+    "tags": ["security"],
+    "sources": ["da-uc2003-system-mgmt"]
+  }
+]

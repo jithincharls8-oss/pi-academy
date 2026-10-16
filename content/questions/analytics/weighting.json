@@ -1,0 +1,314 @@
+[
+  {
+    "id": "q-weighting-definition",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 1,
+    "prompt": "What does a time-weighted average do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Counts each recorded event equally"
+      },
+      {
+        "id": "b",
+        "text": "Weights each value by how long it was in effect"
+      },
+      {
+        "id": "c",
+        "text": "Uses only the last value"
+      },
+      {
+        "id": "d",
+        "text": "Ignores bad values"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Time-weighted averaging weights each value by its duration; event-weighted counts each recorded event equally, like (v1+v2+v3)/3.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted"
+    ]
+  },
+  {
+    "id": "q-weighting-calc",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 2,
+    "prompt": "A step signal is 10 for 10 s, 20 for 5 s and 30 for 5 s (a 20 s window). What is the time-weighted average?",
+    "accepted": [
+      "17.5"
+    ],
+    "caseSensitive": false,
+    "explanation": "(10x10 + 20x5 + 30x5) / 20 = 350 / 20 = 17.5. The event-weighted mean of the three values is 20.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted"
+    ],
+    "verify": true,
+    "verifyNote": "Numbers are constructed from the thread's durations; arithmetic is ours."
+  },
+  {
+    "id": "q-weighting-calc-event",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 1,
+    "prompt": "For the same values 10, 20 and 30, what is the event-weighted mean?",
+    "accepted": [
+      "20"
+    ],
+    "caseSensitive": false,
+    "explanation": "Event-weighted counts each event equally: (10+20+30)/3 = 20.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted"
+    ]
+  },
+  {
+    "id": "q-weighting-which",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each function or summary to its weighting.",
+    "pairs": [
+      {
+        "left": "TagAvg",
+        "right": "Time-weighted"
+      },
+      {
+        "left": "TagMean",
+        "right": "Event-weighted"
+      },
+      {
+        "left": "PI DataLink 'Average'",
+        "right": "Time-weighted (average)"
+      },
+      {
+        "left": "PI DataLink 'Mean'",
+        "right": "Event-weighted (mean)"
+      }
+    ],
+    "explanation": "\"Average is time-weighted and mean is event-weighted\" in PI DataLink; TagAvg and TagMean follow the same split.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-pisquare-mean-vs-average",
+      "af-pisquare-sum-values"
+    ]
+  },
+  {
+    "id": "q-weighting-choose",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 2,
+    "prompt": "Which summary suits each case?",
+    "scenario": "Case 1: a continuous flow rate archived with compression. Case 2: lab samples of moisture taken a few times a shift at irregular times.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Case 1 time-weighted, case 2 event-weighted"
+      },
+      {
+        "id": "b",
+        "text": "Both time-weighted"
+      },
+      {
+        "id": "c",
+        "text": "Both event-weighted"
+      },
+      {
+        "id": "d",
+        "text": "Case 1 event-weighted, case 2 time-weighted"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Use average (time-weighted) for continuous rates such as flow, and mean (event-weighted) for discrete measurements.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-pisquare-mean-vs-average"
+    ]
+  },
+  {
+    "id": "q-weighting-no-new-data",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: if an analysis re-evaluates every second with no new data, TagAvg over '*-1h' to '*' can still return new values, while TagMean stays the same.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. TagAvg is time-weighted, so its result changes as time advances; TagMean only changes when a new event arrives.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted"
+    ]
+  },
+  {
+    "id": "q-weighting-basis-enum",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 3,
+    "prompt": "Which AFCalculationBasis member treats values as a stair step regardless of the attribute's Step setting?",
+    "options": [
+      {
+        "id": "a",
+        "text": "TimeWeighted"
+      },
+      {
+        "id": "b",
+        "text": "TimeWeightedContinuous"
+      },
+      {
+        "id": "c",
+        "text": "TimeWeightedDiscrete"
+      },
+      {
+        "id": "d",
+        "text": "EventWeighted"
+      }
+    ],
+    "answer": "c",
+    "explanation": "TimeWeightedDiscrete treats values as a stair step regardless of Step; TimeWeightedContinuous interpolates as continuous regardless of Step; plain TimeWeighted follows the attribute's Step setting.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "fn-piwebapi-calc-basis",
+      "fn-gh-piconnect-af-data"
+    ]
+  },
+  {
+    "id": "q-weighting-double-count",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 3,
+    "prompt": "Which calculation basis drops the event at each interval's end time so boundary events are not counted twice?",
+    "options": [
+      {
+        "id": "a",
+        "text": "EventWeightedExcludeMostRecentEvent"
+      },
+      {
+        "id": "b",
+        "text": "EventWeightedIncludeBothEnds"
+      },
+      {
+        "id": "c",
+        "text": "EventWeightedExcludeEarliestEvent"
+      },
+      {
+        "id": "d",
+        "text": "TimeWeighted"
+      }
+    ],
+    "answer": "a",
+    "explanation": "EventWeightedExcludeMostRecentEvent drops the end-time event; ExcludeEarliestEvent drops the start-time event; IncludeBothEnds keeps both.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "fn-piwebapi-calc-basis"
+    ]
+  },
+  {
+    "id": "q-weighting-pida-load",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the trade-off of running summary calculations on the PI Data Archive rather than in Analytics?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No trade-off"
+      },
+      {
+        "id": "b",
+        "text": "Only results are sent to Analytics, cutting its load, but Data Archive load rises"
+      },
+      {
+        "id": "c",
+        "text": "Results are less accurate"
+      },
+      {
+        "id": "d",
+        "text": "They cannot be event-weighted"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Data Archive summaries send only the results, reducing Analytics load but increasing Data Archive load. They support event- or time-weighting.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-weighting-durations",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: when rolling up event frame durations, Average (time-weighted) and Mean (event-weighted) give the same result.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True, per the event frame rollup custom data reference blog: for durations, Average and Mean coincide.",
+    "lessonId": "time-vs-event-weighting",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-ef-rollup-cdr-blog"
+    ]
+  }
+]

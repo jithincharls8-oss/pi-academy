@@ -1,0 +1,290 @@
+[
+  {
+    "id": "q-categories-enums-enum-def",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 1,
+    "prompt": "Which definition of an AF enumeration set is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A list of attributes shared by a template"
+      },
+      {
+        "id": "b",
+        "text": "An ordinal list of sequential integer values mapped to names"
+      },
+      {
+        "id": "c",
+        "text": "A group of PI tags with the same point source"
+      },
+      {
+        "id": "d",
+        "text": "A category applied to elements"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The workbook defines an enumeration set as \"an ordinal list of sequential integer values, which are mapped to names\", for example 0 AQ4500, 1 HC1500, 2 WX1200.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-categories-enums-enum-value",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 1,
+    "prompt": "In the enumeration set 0 AQ4500, 1 HC1500, 2 WX1200, which integer value maps to HC1500?",
+    "accepted": [
+      "1"
+    ],
+    "caseSensitive": false,
+    "explanation": "Each name maps to a sequential integer. HC1500 is value 1 in the workbook's example.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-categories-enums-hier-separator",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 2,
+    "prompt": "Which character separates levels in a hierarchical enumeration value such as WX1200|Old Recipe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Backslash \\"
+      },
+      {
+        "id": "b",
+        "text": "Pipe |"
+      },
+      {
+        "id": "c",
+        "text": "Full stop ."
+      },
+      {
+        "id": "d",
+        "text": "Colon :"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Hierarchical enumeration values use |, as in WX1200|Old Recipe (3) and WX1200|New Recipe (4). Hierarchical sets were added in AF 2017 R2.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-categories-enums-hier-version",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: hierarchical enumeration sets were added in AF 2017 R2.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. The building-assets workbook states hierarchical enumeration sets were added in AF 2017 R2.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-categories-enums-reason-codes",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 2,
+    "prompt": "What do operators use a multi-tiered enumeration set for when working with event frames?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Choosing a reason code to annotate the event"
+      },
+      {
+        "id": "b",
+        "text": "Setting the event frame's start trigger"
+      },
+      {
+        "id": "c",
+        "text": "Naming the event frame"
+      },
+      {
+        "id": "d",
+        "text": "Choosing the delivery channel"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Reason codes let operators pick from a multi-tiered enumeration set to explain an event frame after the fact.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-categories-enums-rollup-filter",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 2,
+    "prompt": "How can the rollup select just the right inputs?",
+    "scenario": "A site element has child elements of many types. A rollup should sum only attributes in the attribute category 'Energy' on child elements in the element category 'Production'.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Name every attribute in the rollup by hand"
+      },
+      {
+        "id": "b",
+        "text": "Use the rollup's Attribute Category and Element Category masks"
+      },
+      {
+        "id": "c",
+        "text": "Create a separate AF database for production assets"
+      },
+      {
+        "id": "d",
+        "text": "Use an enumeration set as the input"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Rollup inputs can be filtered by Attribute Name, Attribute Category, Element Category or Element Template masks. Categories make the selection automatic as assets are added.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-categories-enums-nested-category",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 3,
+    "prompt": "Write an AFAttributeSearch query that finds attributes in category 'Process Monitoring' on elements of template 'FCC Pump Process' that are in element category 'ProcessMonitoring'.",
+    "language": "af",
+    "accepted": [
+      "Element:{Template:'FCC Pump Process' Category:'ProcessMonitoring'} Category:'Process Monitoring'"
+    ],
+    "requiredPatterns": [
+      "element\\s*:\\s*\\{",
+      "template\\s*:\\s*'fcc pump process'",
+      "\\}\\s*category\\s*:\\s*'process monitoring'"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "In a nested query, the filter inside the braces applies to the element and the one outside applies to the attribute. This exact query appears in the AF 2017 R2 AFSearch blog.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-pisquare-afsearch-2017r2-blog"
+    ]
+  },
+  {
+    "id": "q-categories-enums-category-uses",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 2,
+    "prompt": "According to the sources, where can categories be used? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Filtering rollup inputs"
+      },
+      {
+        "id": "b",
+        "text": "AFSearch Category: filters"
+      },
+      {
+        "id": "c",
+        "text": "Suggested analysis grouping such as 'Calculated Data'"
+      },
+      {
+        "id": "d",
+        "text": "Replacing the UOM of an attribute"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Categories filter rollup inputs, can be searched with Category: in AFSearch, and labs suggest analysis categories such as Calculated Data and Aggregation. They have nothing to do with units.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-pisquare-afsearch-2017r2-blog",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-categories-enums-match",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each Library object to its purpose.",
+    "pairs": [
+      {
+        "left": "Category",
+        "right": "A label for grouping and searching objects"
+      },
+      {
+        "left": "Enumeration set",
+        "right": "Integer values mapped to names, usable as a value type"
+      },
+      {
+        "left": "Hierarchical enumeration set",
+        "right": "Multi-level values such as WX1200|New Recipe"
+      }
+    ],
+    "explanation": "Categories group and filter; enumeration sets map integers to names; hierarchical sets add levels separated by |.",
+    "lessonId": "categories-and-enumeration-sets",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-building-assets-workbook"
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "oil-gas",
+    "title": "Oil & Gas",
+    "summary": "Oil and gas companies use PI System across upstream (wells, platforms, artificial lift), midstream (pipelines, compression, storage) and downstream refining. Large operators replace tag-based \"spider web\" architectures with a PI AF asset model, and phase enterprise rollouts asset by asset.",
+    "hierarchy": "```mermaid\nflowchart TD\n  E[Enterprise] --> R[Region or Basin]\n  R --> F[Field or Asset such as platform, FPSO or pad]\n  F --> W[Facility or Well]\n  W --> Q1[ESP]\n  W --> Q2[Compressor]\n  W --> Q3[Separator]\n  E --> P[Pipeline System]\n  P --> S[Segment]\n  S --> ST[Compressor, Pump or Meter Station]\n  E --> PL[Refinery Plant]\n  PL --> U[Unit or System]\n  U --> EQ[Equipment such as columns and control loops]\n```",
+    "tags": [
+      {
+        "name": "Oil Rate",
+        "description": "Oil production rate on each well element, rolled up to field level.",
+        "uom": "bbl/d"
+      },
+      {
+        "name": "Temperature",
+        "description": "Equipment metal or process temperature, an input to the HTHA template.",
+        "uom": "degC"
+      },
+      {
+        "name": "H2 Partial Pressure",
+        "description": "Hydrogen partial pressure, an input to the HTHA template."
+      },
+      {
+        "name": "Exposure Hours",
+        "description": "Hours of exposure, calculated by an analysis for the HTHA template.",
+        "uom": "h"
+      }
+    ],
+    "templates": [
+      {
+        "name": "HTHA Equipment",
+        "description": "Refinery equipment at risk of High Temperature Hydrogen Attack. Built from the inputs named in an OSIsoft deck; the attribute layout is illustrative.",
+        "attributes": [
+          "Metallurgy (static)",
+          "Temperature (PI Point, degC)",
+          "H2 Partial Pressure (PI Point)",
+          "Exposure Hours (analysis output)"
+        ]
+      },
+      {
+        "name": "Well",
+        "description": "Upstream well element carrying production attributes that roll up to the field.",
+        "attributes": [
+          "Oil Rate (bbl/d)"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Field oil rate rollup",
+        "expression": "Sum of Oil Rate (bbl/d) across child well elements",
+        "description": "Rolls well production up to the field element. The rollup design is illustrative."
+      },
+      {
+        "name": "HTHA exposure",
+        "expression": "Accumulate Exposure Hours while Temperature and H2 Partial Pressure exceed the limit curve",
+        "description": "Feeds the HTHA event frame and notification. The expression shape is illustrative; the source names the inputs only."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "HTHA limit exceedance",
+        "trigger": "Temperature and hydrogen partial pressure exceed the limit curve for the equipment metallurgy"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Cost per BOED",
+        "definition": "Exploration and production cost per barrel of oil equivalent per day. OSIsoft cites a 2-5% year-on-year reduction as a benchmark target."
+      },
+      {
+        "name": "Controllable margin",
+        "definition": "Margin attributable to operational decisions. OSIsoft cites a 1-5% year-on-year improvement target for hydrocarbon processing."
+      },
+      {
+        "name": "HC loss",
+        "definition": "Hydrocarbon loss: unaccounted material found by material balancing."
+      },
+      {
+        "name": "Lifting cost",
+        "definition": "The cost of producing oil from the well, named as an upstream KPI in the OSIsoft deck."
+      },
+      {
+        "name": "Plan vs Actual (PvA)",
+        "definition": "Comparison of planned and actual production or yield, used with yield accounting."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "49 CFR 192 (PHMSA)",
+        "summary": "US gas pipeline safety rules. PG&E used PI AF for alarm management and condition-based monitoring after a mandate to implement NTSB and PHMSA 49 CFR 192 following the 2010 gas explosion."
+      },
+      {
+        "name": "API RP 1165",
+        "summary": "Pipeline SCADA display guidance. Enbridge describes its HMIs as API RP 1165-compliant with abnormal situation management support."
+      }
+    ],
+    "pitfalls": [
+      "Tag-based \"spider web\" architectures make integration hard: one operator had 3+M tags with inconsistent naming across 29 historians. The remedy cited is an AF asset data object model.",
+      "Offshore data transmission brings security, performance and reliability issues; PI-to-PI is used for data quality and security.",
+      "Enterprise agreements need champions, defined business use cases and proven ROI before the rollout scales (Noble Energy).",
+      "Keep figures from different sources separate: MOL's \"$500M-550M\" EBITDA (2015 deck) and \"$1 billion in EBITA since 2010\" (2023 overview) are different claims."
+    ],
+    "caseStudies": [
+      "eni-oil-field",
+      "eni-global-ep",
+      "mol-downstream",
+      "yasref",
+      "bpx-energy",
+      "pertamina-2023",
+      "pertamina-2014",
+      "pge-gas",
+      "noble-energy",
+      "dcp-midstream",
+      "petronas",
+      "tc-energy",
+      "cameron-lng",
+      "enbridge"
+    ],
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "sources": [
+      "ind-uc15-og-chem",
+      "ind-pres-noble-2015",
+      "ind-pres-bpx-2023",
+      "ind-pres-graves-2014",
+      "ind-ss-tc-energy",
+      "ind-ss-enbridge",
+      "ind-ss-cameron-lng"
+    ],
+    "verify": true,
+    "verifyNote": "The AF hierarchy, the HTHA template attribute layout and the well rollup are syntheses inferred from customer decks; no published AVEVA reference template library for oil and gas was found."
+  }
+]

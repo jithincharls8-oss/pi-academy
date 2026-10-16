@@ -1,0 +1,148 @@
+[
+  {
+    "id": "power",
+    "title": "Power & Utilities",
+    "summary": "Power companies use PI System for thermal plant performance, renewables monitoring and transmission and distribution grids. Templated AF models carry heat rate, condition monitoring and event frames for downtime, startups and failures, rolled up from equipment to unit, plant and fleet.",
+    "hierarchy": "```mermaid\nflowchart TD\n  FL[Fleet] --> PL[Plant]\n  PL --> U[Unit]\n  U --> PS[Primary System such as boiler, turbine, condenser]\n  PS --> SS[Subsystem]\n  SS --> EQ[Equipment such as a feedwater pump]\n  PF[Wind Portfolio] --> WF[Wind Farm]\n  WF --> T[Turbine]\n  UT[Utility] --> RG[Region]\n  RG --> SB[Substation]\n  SB --> TX[Transformer, Breaker, Feeder or Circuit]\n```",
+    "tags": [
+      {
+        "name": "Net MW",
+        "description": "Net generation: output delivered to the line after the plant's own (auxiliary) use.",
+        "uom": "MW"
+      },
+      {
+        "name": "Fuel Flow",
+        "description": "Fuel mass flow, an input to the heat rate calculation.",
+        "uom": "lb/h"
+      },
+      {
+        "name": "Active Power",
+        "description": "Actual power output of a wind turbine, compared with theoretical power.",
+        "uom": "MW"
+      },
+      {
+        "name": "Wind Speed",
+        "description": "Wind speed at the turbine.",
+        "uom": "m/s"
+      },
+      {
+        "name": "Dissolved Oxygen",
+        "description": "Boiler water chemistry measurement; an OSIsoft deck cites a limit below 10 ppb.",
+        "uom": "ppb"
+      },
+      {
+        "name": "Cation Conductivity",
+        "description": "Boiler water chemistry measurement; an OSIsoft deck cites a limit below 0.2 µS/cm.",
+        "uom": "µS/cm"
+      }
+    ],
+    "templates": [
+      {
+        "name": "Wind Turbine",
+        "description": "Templated turbine element under a wind farm. ENTEGA compares theoretical with actual power per turbine; the attribute names are illustrative.",
+        "attributes": [
+          "Active Power",
+          "Wind Speed (m/s)",
+          "Theoretical Power",
+          "Status"
+        ]
+      },
+      {
+        "name": "Thermal Unit",
+        "description": "Generating unit element with performance calculations, notifications and performance curves carried on the template.",
+        "attributes": [
+          "Net MW",
+          "Fuel Flow",
+          "Heat Rate (Btu/kWh)",
+          "Efficiency (%)"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Heat rate",
+        "expression": "HeatRate_BtuPerkWh = FuelFlow_lb_h * HHV_Btu_lb / (NetMW * 1000)",
+        "description": "Fuel energy input per net kWh generated (EIA definition). Lower is better. The AF expression form is illustrative."
+      },
+      {
+        "name": "Thermal efficiency",
+        "expression": "Efficiency_pct = 3412 / HeatRate_BtuPerkWh * 100",
+        "description": "EIA states 3,412 Btu equals 1 kWh, so 10,500 Btu/kWh is about 33% and 7,500 Btu/kWh about 45%."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Downtime",
+        "trigger": "Unit stops generating; one of the power event types named by OSIsoft"
+      },
+      {
+        "name": "Startup",
+        "trigger": "Unit start condition becomes true"
+      },
+      {
+        "name": "Failure",
+        "trigger": "Equipment failure condition becomes true"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Heat rate",
+        "definition": "Energy used per net kWh generated, in Btu/kWh."
+      },
+      {
+        "name": "Production vs schedule",
+        "definition": "Actual generation compared with scheduled generation."
+      },
+      {
+        "name": "Availability",
+        "definition": "Share of time a unit is available to generate; Longannet reported a 12.4% improvement."
+      },
+      {
+        "name": "Theoretical vs actual power",
+        "definition": "Per-turbine comparison of expected and delivered power (ENTEGA)."
+      }
+    ],
+    "regulation": [
+      {
+        "name": "NERC CIP",
+        "summary": "North American Electric Reliability Corporation Critical Infrastructure Protection standards. OSIsoft decks cite them, including the Electronic Security Perimeter that limits direct access to cyber assets, when designing PI security architecture."
+      }
+    ],
+    "pitfalls": [
+      "Naming conventions matter, especially for element-relative PI Vision displays (Luminant).",
+      "Document the analysis backfill sequence and know asset interdependencies before backfilling (Luminant).",
+      "Mirroring a work-management structure such as Maximo in AF can become too hard to maintain; Longannet cut its structure back to metrics only."
+    ],
+    "caseStudies": [
+      "entega",
+      "xcel-energy",
+      "fingrid",
+      "pjm",
+      "alectra-utilities",
+      "agl-energy",
+      "luminant",
+      "scottishpower-longannet",
+      "tenaga-nasional",
+      "dong-energy",
+      "dominion-energy",
+      "ontario-power-generation",
+      "bruce-power",
+      "kansai-electric",
+      "ladwp"
+    ],
+    "coverage": [
+      "ind.power"
+    ],
+    "sources": [
+      "ind-eia-heat-rate",
+      "ind-pres-power-oceania-2012",
+      "ind-pres-power-trends-2015",
+      "ind-pres-luminant-2017",
+      "ind-pres-longannet-2014",
+      "ind-ss-dominion",
+      "ind-ss-entega"
+    ],
+    "verify": true,
+    "verifyNote": "The wind turbine attribute names and the T&D level ordering are inferred; the AF form of the heat rate expression is illustrative. No readable AVEVA source on wind-turbine availability formulas (IEC 61400-26) was found."
+  }
+]

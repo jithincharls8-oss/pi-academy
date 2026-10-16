@@ -1,0 +1,200 @@
+[
+  {
+    "id": "digital-realty",
+    "company": "Digital Realty",
+    "title": "Demystifying the data center",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "region": "US (20+ colocation sites)",
+    "year": 2017,
+    "summary": "Digital Realty, with Casne Engineering, built a hosted PI and templated AF model for PUE, capacity planning and customer usage across its colocation sites.",
+    "challenge": "Weekly manual data pulls, Excel tracking and landlord-owned sites that limit data visibility.",
+    "solution": "A templated AF model \"to enforce tag consistency\", covering the power chain from utility feed to customer circuits.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Time savings of over 50% in viewing reports\"",
+        "reportedBy": "The company (Gupana, Lake) in an OSIsoft UC 2017 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-pres-digitalrealty-2017"
+    ],
+    "verify": false
+  },
+  {
+    "id": "equinix",
+    "company": "Equinix",
+    "title": "SCADA replacement with the PI System",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "notifications"
+    ],
+    "region": "Silicon Valley, USA",
+    "year": 2011,
+    "summary": "Equinix and DST Controls replaced legacy SCADA with PI in 6 weeks at a 54,488 sq ft site, converting 15,000 tags and 115 screens and connecting 108 controllers.",
+    "challenge": "Unsupported SCADA, weak capacity planning and poor outage notification.",
+    "solution": "PI with a capacity view, automated monthly energy summaries and about 2,000 reorganised alarms and notifications.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Software vendors cut from 6 to 1",
+        "reportedBy": "Equinix and DST Controls in an OSIsoft UC 2011 presentation"
+      },
+      {
+        "category": "cost",
+        "text": "Servers cut from 2 SCADA servers to 1 PI server",
+        "reportedBy": "Equinix and DST Controls in an OSIsoft UC 2011 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-pres-equinix-2011"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ebay",
+    "company": "eBay",
+    "title": "eBay enhances data center visibility and forecasting at scale",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "year": 2018,
+    "summary": "eBay consolidated its PI Servers, rebuilt its asset framework \"from the ground up\" and collects 3 million data points in PI, with Clarity DCIM dashboards on top.",
+    "challenge": "There was no holistic real-time view, and teams relied on spreadsheets.",
+    "solution": "A cockpit view of power allocation, busway loading, rack power demand and cooling.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "\"Faster, data-driven decisions on million-dollar infrastructure investments\" (qualitative)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-ss-ebay"
+    ],
+    "verify": false
+  },
+  {
+    "id": "paypal",
+    "company": "PayPal",
+    "title": "Gaining real-time control of data center operations",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "notifications",
+      "pi-vision"
+    ],
+    "region": "Global (33 data centres)",
+    "summary": "PayPal separated about 20 years of shared data from eBay's PI System, built its own PI System, and now generates ServiceNow tickets from PI alerts across 33 data centres.",
+    "challenge": "PayPal had to \"untangle 20 years' worth of data\" from a shared system.",
+    "solution": "Its own PI System, with millions of tags plus AF and notification data migrated, and alerts that create ServiceNow tickets.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "Executive reporting \"in seconds instead of weeks\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-ss-paypal"
+    ],
+    "verify": true,
+    "verifyNote": "The page is inconsistent: the outcome says \"in seconds instead of weeks\", while a quote elsewhere says \"instead of 40 days later\"."
+  },
+  {
+    "id": "aligned-energy",
+    "company": "Aligned Energy",
+    "title": "Making data center billing more flexible and transparent",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-web-api"
+    ],
+    "year": 2018,
+    "summary": "Aligned Energy models asset relationships in AF and builds billing \"charge points\" for each customer, at busway level for shared PDUs and at PDU-output level for dedicated PDUs.",
+    "challenge": "Client load demands vary, and customers want billing transparency.",
+    "solution": "An AF model of asset relationships with customer portals; customer access through PI Web API is planned.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "\"Customers can monitor their own energy usage and unused capacity\"",
+        "reportedBy": "AVEVA (customer success story); also a PI World 2018 talk by Energy Metrics"
+      },
+      {
+        "category": "other",
+        "text": "\"Improved billing transparency\"",
+        "reportedBy": "AVEVA (customer success story); also a PI World 2018 talk by Energy Metrics"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-ss-aligned",
+      "ind-pres-aligned-2018"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dell-emc",
+    "company": "Dell EMC",
+    "title": "Dell EMC gains real-time visibility and streamlines micro data centers management",
+    "industry": "data-centres",
+    "products": [
+      "data-archive",
+      "pi-vision",
+      "interfaces-connectors"
+    ],
+    "region": "Global",
+    "year": 2017,
+    "summary": "Dell EMC's MDCi platform runs PI Server on a Dell IoT gateway in each unstaffed micro modular data centre, using PI Connector for Redfish and a Modbus connector.",
+    "challenge": "Thousands of remote micro data centres with no staff on site.",
+    "solution": "PI as a \"single pane of glass\" across the micro data centres.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "For eBay's hyperscale modules, \"Reduced asset configuration time from two weeks to four hours\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "\"~50%\" less commissioning time",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.data-centres"
+    ],
+    "sources": [
+      "ind-ss-dell-emc"
+    ],
+    "verify": false
+  }
+]

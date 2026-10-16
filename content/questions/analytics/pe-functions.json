@@ -1,0 +1,398 @@
+[
+  {
+    "id": "q-pe-functions-tagtot-units",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "A flow tag is in t/h. TagTot('Flow','t','*') returns 50. What is the actual total tonnage so far today?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50 t"
+      },
+      {
+        "id": "b",
+        "text": "1,200 t (50 x 24)"
+      },
+      {
+        "id": "c",
+        "text": "2.08 t (50 / 24)"
+      },
+      {
+        "id": "d",
+        "text": "180,000 t (50 x 3600)"
+      }
+    ],
+    "answer": "b",
+    "explanation": "TagTot integrates as if the rate were per day and knows nothing of the tag's units. For a per-hour rate multiply by 24.",
+    "lessonId": "pe-functions",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-units",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-pe-functions-tagtot-hourly",
+    "type": "code",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Write a PE expression for the total of the per-hour rate 'PowerDraw' over the last hour.",
+    "language": "pe",
+    "accepted": [
+      "TagTot('PowerDraw','*-1h','*') * 24",
+      "TagTot('PowerDraw','*-1h','*')*24"
+    ],
+    "requiredPatterns": [
+      "tagtot\\(\\s*'powerdraw'\\s*,\\s*'\\*-1h'\\s*,\\s*'\\*'\\s*\\)\\s*\\*\\s*24"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "TagTot assumes per-day units, so a per-hour rate needs * 24. This is the seminar deck's own example.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "fn-rs2012-asia-calcs"
+    ]
+  },
+  {
+    "id": "q-pe-functions-what-returns",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each function to what it returns.",
+    "pairs": [
+      {
+        "left": "TimeEq('S','t','*',\"Running\")",
+        "right": "Seconds S equalled Running since midnight"
+      },
+      {
+        "left": "FindEq('S','*','-7d',\"Regenerating\")",
+        "right": "Timestamp of an occurrence of Regenerating, searching back 7 days"
+      },
+      {
+        "left": "PrevEvent('T','*')",
+        "right": "Timestamp of the previous recorded event"
+      },
+      {
+        "left": "EventCount('T','t','*')",
+        "right": "Number of events since midnight"
+      }
+    ],
+    "explanation": "TimeEq returns seconds; FindEq returns a timestamp and searches backwards when start is later than end; PrevEvent returns the previous event's time; EventCount counts events.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-data-exploration-notification-2020",
+      "af-pisquare-prevevent-prevval",
+      "af-pisquare-sum-values"
+    ]
+  },
+  {
+    "id": "q-pe-functions-weighting",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 1,
+    "prompt": "Which PE summary function is event-weighted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "TagAvg"
+      },
+      {
+        "id": "b",
+        "text": "TagTot"
+      },
+      {
+        "id": "c",
+        "text": "TagMean"
+      },
+      {
+        "id": "d",
+        "text": "TagMax"
+      }
+    ],
+    "answer": "c",
+    "explanation": "Most PI summary functions are time-weighted, \"the exception being TagMean\", which averages recorded events equally.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "af-pisquare-retrieval-methods-timerange",
+      "af-pisquare-time-vs-event-weighted"
+    ]
+  },
+  {
+    "id": "q-pe-functions-run-hours",
+    "type": "code",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Write a PE expression for the hours per day that 'PowerDraw' was at or above 20 over the last 24 hours.",
+    "language": "pe",
+    "accepted": [
+      "TimeGE('PowerDraw','*-24h','*',20) / 3600",
+      "TimeGE('PowerDraw','*-24h','*',20)/3600"
+    ],
+    "requiredPatterns": [
+      "timege\\(\\s*'powerdraw'\\s*,\\s*'\\*-24h'\\s*,\\s*'\\*'\\s*,\\s*20\\s*\\)\\s*/\\s*3600"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "TimeGE returns seconds the condition held, so divide by 3600 for hours.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "fn-rs2012-asia-calcs"
+    ]
+  },
+  {
+    "id": "q-pe-functions-quality-guard",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Which expression adds a sensible data-quality guard?",
+    "scenario": "An hourly energy calculation sometimes runs when the meter was offline for most of the hour, giving a misleadingly low total.",
+    "options": [
+      {
+        "id": "a",
+        "text": "IF PctGood('PowerDraw','*-1h','*') > 50 THEN TagTot('PowerDraw','*-1h','*') * 24 ELSE NoOutput()"
+      },
+      {
+        "id": "b",
+        "text": "TagTot('PowerDraw','*-1h','*') * 24 + PctGood('PowerDraw','*-1h','*')"
+      },
+      {
+        "id": "c",
+        "text": "IF BadVal('PowerDraw') THEN 0 ELSE 'PowerDraw'"
+      },
+      {
+        "id": "d",
+        "text": "TagMean('PowerDraw','*-1h','*')"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PctGood returns the percentage of good data; writing nothing (NoOutput) when less than half is good avoids a misleading total. This is the seminar deck's example.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-rs2012-oceania-calcs"
+    ]
+  },
+  {
+    "id": "q-pe-functions-prevevent-plus",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: PrevEvent('tag','*+1s') is used so that an event exactly at the current timestamp is included.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. PrevEvent looks before the given time, so adding one second includes an event stamped at the current time.",
+    "lessonId": "pe-functions",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-prevevent-prevval",
+      "af-pisquare-pse-write-trigger"
+    ]
+  },
+  {
+    "id": "q-pe-functions-curve",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "How are the points in Curve(x, ...) separated?",
+    "options": [
+      {
+        "id": "a",
+        "text": "(x1,y1) (x2,y2) with spaces between pairs"
+      },
+      {
+        "id": "b",
+        "text": "(x1,y1),(x2,y2) with commas"
+      },
+      {
+        "id": "c",
+        "text": "x1:y1;x2:y2"
+      },
+      {
+        "id": "d",
+        "text": "[x1,y1][x2,y2]"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The documented form is Curve( x, (x1,y1) (x2,y2) ... ), with spaces between pairs. Comma-separating the pairs is a common mistake.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "fn-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-pe-functions-zero-check",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "You want to detect that 'tag' was exactly 0 for the whole last 2 minutes. Which test is robust?",
+    "options": [
+      {
+        "id": "a",
+        "text": "TimeEq('tag', '*-2m', '*', 0) = 120"
+      },
+      {
+        "id": "b",
+        "text": "TagAvg('tag','*-2m','*') = 0"
+      },
+      {
+        "id": "c",
+        "text": "TagMean('tag','*-2m','*') = 0"
+      },
+      {
+        "id": "d",
+        "text": "EventCount('tag','*-2m','*') = 0"
+      }
+    ],
+    "answer": "a",
+    "explanation": "TimeEq counting 120 seconds at 0 is the robust test. Averages can hide values: -1 and +1 average to 0, so TagAvg or TagMean = 0 is not a guarantee. EventCount = 0 only means no new events arrived.",
+    "lessonId": "pe-functions",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-pisquare-pe-zero-2min"
+    ]
+  },
+  {
+    "id": "q-pe-functions-category",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 1,
+    "prompt": "In OSIsoft's 2018 course, which category contains TimeEq and NextEvent?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Archive Value Statistics"
+      },
+      {
+        "id": "b",
+        "text": "Search and Retrieval"
+      },
+      {
+        "id": "c",
+        "text": "Math"
+      },
+      {
+        "id": "d",
+        "text": "Status"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The course groups TimeEq and NextEvent under Search and Retrieval; TagAvg and PctGood are Archive Value Statistics; NoOutput and TagBad are Status.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "fn-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-pe-functions-bom",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PE function returns the beginning of the month for a time, as used in TagMean(prod,bom('*'),'*')?",
+    "accepted": [
+      "Bom",
+      "bom",
+      "Bom()",
+      "BOM"
+    ],
+    "caseSensitive": false,
+    "explanation": "Bom(time) returns the beginning of the month. Combined with '*' it gives month-to-date ranges.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "af-pisquare-sum-values"
+    ]
+  },
+  {
+    "id": "q-pe-functions-badval",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "difficulty": 1,
+    "prompt": "What does BadVal('Flow') return?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The last good value of Flow"
+      },
+      {
+        "id": "b",
+        "text": "True when Flow is a bad value (a system digital state)"
+      },
+      {
+        "id": "c",
+        "text": "The number of bad events"
+      },
+      {
+        "id": "d",
+        "text": "The percent of good data"
+      }
+    ],
+    "answer": "b",
+    "explanation": "BadVal tests whether a value is bad. A typical use is IF BadVal('Flow') THEN 0 ELSE 'Flow'. AF Analytics has no PrevGoodVal; the workaround uses BadVal, PrevVal and PrevEvent.",
+    "lessonId": "pe-functions",
+    "tags": [],
+    "sources": [
+      "af-pisquare-pe-to-analytics-migration",
+      "af-software-athlete-calc-syntax"
+    ]
+  }
+]

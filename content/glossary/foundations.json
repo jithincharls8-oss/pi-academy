@@ -1,0 +1,539 @@
+[
+  {
+    "id": "osisoft",
+    "term": "OSIsoft",
+    "aliases": [
+      "OSIsoft LLC",
+      "Oil Systems Inc."
+    ],
+    "definition": "The company, founded in 1980 by Dr. J. Patrick Kennedy as Oil Systems Inc., that created the PI System. AVEVA completed its acquisition on 19 March 2021.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.history"
+    ],
+    "related": [
+      "aveva",
+      "pi-system"
+    ],
+    "sources": [
+      "da-lns-2020",
+      "da-wiki-osisoft",
+      "da-arc-completion-2021"
+    ]
+  },
+  {
+    "id": "aveva",
+    "term": "AVEVA",
+    "aliases": [],
+    "definition": "The industrial software company that acquired OSIsoft (announced 25 August 2020, completed 19 March 2021) and now sells the PI System. Since January 2023 it is wholly owned by Schneider Electric.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.history"
+    ],
+    "related": [
+      "osisoft",
+      "pi-system"
+    ],
+    "sources": [
+      "da-automationworld-2020",
+      "da-arc-completion-2021",
+      "da-aveva-schneider-2023"
+    ]
+  },
+  {
+    "id": "pi-system",
+    "term": "PI System",
+    "aliases": [
+      "AVEVA PI System",
+      "OSIsoft PI"
+    ],
+    "definition": "A software suite that collects, stores, organises, calculates on and delivers industrial sensor data. Introduced in 1985; it is software that runs on servers and computers on a network, not an appliance.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.history",
+      "fnd.historian"
+    ],
+    "related": [
+      "pi-server",
+      "pi-data-archive",
+      "historian"
+    ],
+    "sources": [
+      "da-lns-2020",
+      "da-admin-workbook-2017r2",
+      "da-pi101-2017-academic"
+    ]
+  },
+  {
+    "id": "pi-coresight",
+    "term": "PI Coresight",
+    "aliases": [
+      "Coresight"
+    ],
+    "definition": "The earlier OSIsoft web visualisation product that was the predecessor of PI Vision.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.history"
+    ],
+    "related": [
+      "pi-system"
+    ],
+    "sources": [
+      "da-pi101-2017-basics"
+    ]
+  },
+  {
+    "id": "historian",
+    "term": "Historian",
+    "aliases": [
+      "process historian"
+    ],
+    "definition": "A database optimised to store and serve time-stamped process data. In the PI System the historian is the PI Data Archive.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.historian"
+    ],
+    "related": [
+      "pi-data-archive",
+      "pi-system"
+    ],
+    "sources": [
+      "da-pi101-2017-basics"
+    ]
+  },
+  {
+    "id": "pi-data-archive",
+    "term": "PI Data Archive",
+    "aliases": [
+      "Data Archive",
+      "PI DA",
+      "PI Archive"
+    ],
+    "definition": "The PI Server component that stores time-series data: a proprietary database optimised for time series, often called the Historian and 'the heart of the PI System'.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.historian",
+      "fnd.architecture"
+    ],
+    "related": [
+      "historian",
+      "pi-server",
+      "pi-point"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-pi101-2017-basics",
+      "da-visualizing-workbook"
+    ]
+  },
+  {
+    "id": "pi-server",
+    "term": "PI Server",
+    "aliases": [
+      "AVEVA PI Server"
+    ],
+    "definition": "The server product made of the PI Data Archive and the PI Asset Framework (AF) server. AVEVA describes it as the on-premises home for operational data.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture",
+      "fnd.historian"
+    ],
+    "related": [
+      "pi-data-archive",
+      "pi-interface"
+    ],
+    "sources": [
+      "da-arch-workbook",
+      "da-aveva-pi-server-2022"
+    ]
+  },
+  {
+    "id": "pi-interface",
+    "term": "PI Interface",
+    "aliases": [
+      "interface"
+    ],
+    "definition": "Software that reads data from a source system, timestamps and formats it, applies exception filtering and sends it to the Data Archive. OSIsoft compares it to a translator.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.historian",
+      "fnd.architecture"
+    ],
+    "related": [
+      "exception-reporting",
+      "pi-connector",
+      "pibufss"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "pi-connector",
+    "term": "PI Connector",
+    "aliases": [
+      "connector"
+    ],
+    "definition": "A newer style of PI data collector. Unlike PI Interfaces, connectors do not apply the tag's exception settings, ignore PointSource and create base-class points.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture"
+    ],
+    "related": [
+      "pi-interface",
+      "base-point-class"
+    ],
+    "sources": [
+      "da-uc23-exc-comp",
+      "da-ps-pointsource-thread"
+    ]
+  },
+  {
+    "id": "pi-event",
+    "term": "Event",
+    "aliases": [
+      "PI event",
+      "PI tag event"
+    ],
+    "definition": "One record of a PI point: a timestamp, a value and a status such as GOOD. An event can also carry substitution and change flags and annotations.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.timeseries"
+    ],
+    "related": [
+      "pi-point",
+      "snapshot"
+    ],
+    "sources": [
+      "da-pi101-2017-basics",
+      "da-rs2011-pisystem2010"
+    ]
+  },
+  {
+    "id": "stepped-point",
+    "term": "Stepped point",
+    "aliases": [
+      "Step = 1",
+      "Step on"
+    ],
+    "definition": "A point with Step on: its value is held constant until the next archived event instead of being linearly interpolated. Step also affects the compression calculation.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.timeseries",
+      "da.point-attributes"
+    ],
+    "related": [
+      "interpolated-value",
+      "compression"
+    ],
+    "sources": [
+      "da-rockwell-studio5000-params",
+      "da-ps-step-thread"
+    ]
+  },
+  {
+    "id": "utc-storage",
+    "term": "UTC storage",
+    "aliases": [
+      "UTC timestamps"
+    ],
+    "definition": "The Data Archive stores timestamps in UTC seconds, so every stored day has 24 hours and time zone changes do not alter stored data; clients convert to local time and DST.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.timeseries"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "da-pi-programming-pdf",
+      "da-uc2011-tips-trenches"
+    ]
+  },
+  {
+    "id": "disconnected-startup",
+    "term": "Disconnected startup",
+    "aliases": [],
+    "definition": "An interface feature that keeps a local tag cache so the interface can start without a PI Server connection. Recommended for production interfaces.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture"
+    ],
+    "related": [
+      "pi-interface",
+      "failover-interface"
+    ],
+    "sources": [
+      "da-rs2011-arch-best-practices",
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "pi-icu",
+    "term": "PI ICU",
+    "aliases": [
+      "PI Interface Configuration Utility"
+    ],
+    "definition": "The GUI used to create and configure PI Interface batch files and Windows services.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture"
+    ],
+    "related": [
+      "pi-interface"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "buffering-manager",
+    "term": "Buffering Manager",
+    "aliases": [],
+    "definition": "The tool for configuring the PI Buffer Subsystem, available from PI Buffer Subsystem 4.3; it accepts a gMSA from version 4.9.0.37.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture"
+    ],
+    "related": [
+      "pibufss"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "pi-port-5450",
+    "term": "Port 5450",
+    "aliases": [
+      "TCP 5450"
+    ],
+    "definition": "The TCP port that clients, interfaces and buffers use to connect to the PI Data Archive. AF clients use TCP 5457.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.architecture"
+    ],
+    "related": [
+      "pi-data-archive"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-uc23-security"
+    ]
+  },
+  {
+    "id": "machine-signature-file",
+    "term": "Machine Signature File",
+    "aliases": [
+      "MSF"
+    ],
+    "definition": "A file generated by the PI Server install kit on the target server or VM and uploaded to the Customer Portal to create a PI Data Archive licence bound to that machine. A file made on another machine will not work.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "pi-license-manager"
+    ],
+    "sources": [
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "pi-license-manager",
+    "term": "PI License Manager",
+    "aliases": [
+      "pilicmgr"
+    ],
+    "definition": "The Data Archive subsystem that maintains licence information, such as the point count limit and permitted applications, for the Data Archive and connected applications.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing",
+      "da.subsystems"
+    ],
+    "related": [
+      "machine-signature-file"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "aveva-flex",
+    "term": "AVEVA Flex",
+    "aliases": [
+      "Flex"
+    ],
+    "definition": "AVEVA's credit-based subscription program giving flexible access to any amount and mix of AVEVA software across cloud, hybrid and on-premises products.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "flex-credits"
+    ],
+    "sources": [
+      "da-flex-pdf",
+      "ops2-aveva-trade-in-2022"
+    ]
+  },
+  {
+    "id": "flex-credits",
+    "term": "Flex credits",
+    "aliases": [
+      "AVEVA Flex Credits"
+    ],
+    "definition": "Credits bought for an AVEVA Connect account and consumed against AVEVA Flex Product Rate Plans at daily, monthly or annual burn-down rates.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "aveva-flex"
+    ],
+    "sources": [
+      "da-flex-pdf"
+    ]
+  },
+  {
+    "id": "aggregate-tag-model",
+    "term": "Aggregate Tag model",
+    "aliases": [
+      "Aggregate Tag tier"
+    ],
+    "definition": "A PI Server licence model where the customer commits to a minimum tag tier shared across all PI Servers, pays overage at a daily rate, and reports usage through the PI to CONNECT Agent on each server.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "data-stream-licence",
+      "pi-to-connect-agent"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026",
+      "ops2-pidi-service-description"
+    ]
+  },
+  {
+    "id": "pi-test-server",
+    "term": "PI Test Server",
+    "aliases": [
+      "test server licence"
+    ],
+    "definition": "A non-production PI Server licence that matches the production tag count up to one million tags and has a 90-day data retrieval limit.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "aggregate-tag-model"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026"
+    ]
+  },
+  {
+    "id": "data-stream-licence",
+    "term": "Data stream (licensing)",
+    "aliases": [
+      "data streams"
+    ],
+    "definition": "The unit the PI System Software Schedule uses to license data collection along with nodes; tags or modules count as data streams, and counts are not transferable between products.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.licensing"
+    ],
+    "related": [
+      "aggregate-tag-model"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026"
+    ]
+  },
+  {
+    "id": "aveva-connect",
+    "term": "CONNECT",
+    "aliases": [
+      "AVEVA CONNECT",
+      "AVEVA Connect"
+    ],
+    "definition": "AVEVA's cloud industrial intelligence platform. CONNECT data services (formerly AVEVA Data Hub) is its data-management foundation; AVEVA lists CONNECT as a core part of its PI Data Infrastructure offering.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.connect"
+    ],
+    "related": [
+      "connect-data-services"
+    ],
+    "sources": [
+      "da-aveva-cds-blog-2024",
+      "da-aveva-pi-system-page"
+    ]
+  },
+  {
+    "id": "hybrid-pi-server",
+    "term": "Hybrid PI Server",
+    "aliases": [
+      "PI Server 2023 hybrid"
+    ],
+    "definition": "PI Server 2023 was the first 'hybrid' release: it integrates with AVEVA Data Hub and added OpenID Connect claims-based authentication.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.connect",
+      "fnd.history"
+    ],
+    "related": [
+      "pi-server",
+      "connect-data-services"
+    ],
+    "sources": [
+      "da-uc23-security",
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "edge-data-store",
+    "term": "Edge Data Store",
+    "aliases": [
+      "EDS",
+      "AVEVA Edge Data Store"
+    ],
+    "definition": "AVEVA edge software, listed as a core part of the PI Data Infrastructure, that transfers data to the PI Server and to AVEVA's cloud data service.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.connect"
+    ],
+    "related": [
+      "pi-server",
+      "connect-data-services"
+    ],
+    "sources": [
+      "da-flex-pdf",
+      "da-aveva-pi-system-page"
+    ]
+  },
+  {
+    "id": "pi-to-connect-agent",
+    "term": "PI to CONNECT Agent",
+    "aliases": [
+      "PI to Data Hub agent"
+    ],
+    "definition": "An on-premises agent that reports tag usage for the Aggregate Tag licence model and can optionally send process data from a PI Server to CONNECT data services.",
+    "domain": "foundations",
+    "coverage": [
+      "fnd.connect",
+      "fnd.licensing"
+    ],
+    "related": [
+      "aggregate-tag-model",
+      "connect-data-services"
+    ],
+    "sources": [
+      "ops2-pidi-service-description",
+      "ops2-sw-schedule-pi-2026"
+    ]
+  }
+]

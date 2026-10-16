@@ -1,0 +1,396 @@
+[
+  {
+    "id": "q-data-centres-pue-calc",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 1,
+    "prompt": "Over a month a site's total facility energy is 1,500,000 kWh and its IT equipment energy is 1,000,000 kWh. What is its PUE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1.5"
+      },
+      {
+        "id": "b",
+        "text": "0.67"
+      },
+      {
+        "id": "c",
+        "text": "2.5"
+      },
+      {
+        "id": "d",
+        "text": "500,000"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PUE is energy entering the facility divided by energy used by the IT equipment: 1,500,000 / 1,000,000 = 1.5. 0.67 is the ratio upside down; 500,000 kWh is the overhead, not a ratio.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "beginner",
+      "calculation"
+    ],
+    "sources": [
+      "ind-greengrid-pue"
+    ]
+  },
+  {
+    "id": "q-data-centres-energy-not-power",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the better way to calculate a reportable PUE?",
+    "scenario": "An engineer builds a PUE analysis that divides the current utility kW reading by the current IT kW reading every minute and reports the latest value as the month's PUE.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Divide energy (kWh) totals for both meters over the same period"
+      },
+      {
+        "id": "b",
+        "text": "Use the highest one-minute value of the month"
+      },
+      {
+        "id": "c",
+        "text": "Divide IT load by facility load"
+      },
+      {
+        "id": "d",
+        "text": "Average the utility kW and IT kW separately and subtract them"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Use energy totals over the same period rather than an instantaneous kW snapshot. Dividing IT by facility load inverts the definition, and subtraction gives overhead, not PUE.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "practitioner",
+      "calculation"
+    ],
+    "sources": [
+      "ind-greengrid-pue"
+    ],
+    "verify": true,
+    "verifyNote": "Using energy totals rather than instantaneous kW for reportable PUE is marked inferred in the research."
+  },
+  {
+    "id": "q-data-centres-equinix",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which outcomes did Equinix and DST Controls report after replacing SCADA with PI? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Software vendors from 6 to 1"
+      },
+      {
+        "id": "b",
+        "text": "Servers from 2 SCADA servers to 1 PI server"
+      },
+      {
+        "id": "c",
+        "text": "PUE reduced from 1.70 to 1.15"
+      },
+      {
+        "id": "d",
+        "text": "Time savings of over 50% in viewing reports"
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "Equinix reported 6 vendors to 1 and 2 SCADA servers to 1 PI server. PUE 1.70 vs 1.15 is a Skanska/Infozone scenario comparison, and over 50% time savings is Digital Realty.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-pres-equinix-2011"
+    ]
+  },
+  {
+    "id": "q-data-centres-pue-ideal",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: A PUE of 1.0 is the theoretical ideal.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. PUE 1.0 would mean all facility energy goes to IT equipment. Equal overhead and IT energy gives PUE 2.0.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "beginner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-greengrid-pue"
+    ]
+  },
+  {
+    "id": "q-data-centres-m-points",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each Microsoft (2009) measurement point to what it measures.",
+    "pairs": [
+      {
+        "left": "M1",
+        "right": "Utility total load"
+      },
+      {
+        "left": "M3",
+        "right": "HVAC/mechanical"
+      },
+      {
+        "left": "M7",
+        "right": "CRAC"
+      },
+      {
+        "left": "M8",
+        "right": "UPS"
+      },
+      {
+        "left": "M10",
+        "right": "IT asset power"
+      }
+    ],
+    "explanation": "Microsoft's 2009 list runs from M1 utility total load to M10 IT asset power; M7 is the computer room air conditioner and M8 the UPS.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-microsoft-2009-stl"
+    ]
+  },
+  {
+    "id": "q-data-centres-colocation-billing",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Where did Aligned Energy place its AF billing charge points?",
+    "scenario": "A colocation provider has some customers on shared PDUs and others on dedicated PDUs. It wants transparent, per-customer energy billing from PI.",
+    "options": [
+      {
+        "id": "a",
+        "text": "At busway level for shared PDUs and at PDU-output level for dedicated PDUs"
+      },
+      {
+        "id": "b",
+        "text": "Only at the utility feed"
+      },
+      {
+        "id": "c",
+        "text": "At the chiller"
+      },
+      {
+        "id": "d",
+        "text": "At the CRAC units"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Aligned Energy models asset relationships in AF and builds billing charge points at busway level for shared PDUs and at PDU-output level for dedicated PDUs. It plans customer access via PI Web API.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "practitioner",
+      "af-modelling"
+    ],
+    "sources": [
+      "ind-ss-aligned"
+    ]
+  },
+  {
+    "id": "q-data-centres-pue-target",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 3,
+    "prompt": "Digital Realty's 2017 talk cited federal targets to report PUE below ___ by 2018, with below 1.2 encouraged.",
+    "accepted": [
+      "1.4"
+    ],
+    "caseSensitive": false,
+    "explanation": "The talk cited reporting PUE below 1.4 by 2018, with below 1.2 encouraged.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-pres-digitalrealty-2017"
+    ]
+  },
+  {
+    "id": "q-data-centres-redfish",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Dell EMC's micro modular data centres pull server data into PI using which connector?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Connector for Redfish"
+      },
+      {
+        "id": "b",
+        "text": "PI Connector for OPC UA"
+      },
+      {
+        "id": "c",
+        "text": "PI Integrator for Business Analytics"
+      },
+      {
+        "id": "d",
+        "text": "PI to PI Interface"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Each micro data centre runs a Dell IoT gateway with PI Server; PI Connector for Redfish pulls server data, and a Modbus connector is also used. Redfish is a DMTF standard REST API for server hardware.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-dell-emc"
+    ]
+  },
+  {
+    "id": "q-data-centres-divestiture",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which lesson from PayPal applies most?",
+    "scenario": "A company is splitting off a division that has shared one PI System with the parent for many years. Tags, AF databases and notifications are intermixed.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Plan to untangle tags, AF and notifications; plan namespaces so they can be separated"
+      },
+      {
+        "id": "b",
+        "text": "Copy the whole PI System and let both companies keep everything"
+      },
+      {
+        "id": "c",
+        "text": "Delete all historical data before the split"
+      },
+      {
+        "id": "d",
+        "text": "Separation is automatic in PI"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PayPal separated about 20 years of shared data from eBay's PI System, migrating millions of tags plus AF and notification data. The research advises planning namespaces for such untangling.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "expert",
+      "architecture"
+    ],
+    "sources": [
+      "ind-ss-paypal"
+    ]
+  },
+  {
+    "id": "q-data-centres-paypal-time",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: The PayPal page states only one version of its executive reporting improvement.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The page reports executive reporting \"in seconds instead of weeks\", while a quote elsewhere on the same page says \"instead of 40 days later\". Quote one exactly, with the reporter, and note the other.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "expert",
+      "critical-reading",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-paypal"
+    ]
+  },
+  {
+    "id": "q-data-centres-pue-code",
+    "type": "code",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "difficulty": 3,
+    "prompt": "Write an AF analysis expression that computes PUE from two energy attributes named 'Facility kWh' and 'IT kWh'.",
+    "language": "af",
+    "accepted": [
+      "'Facility kWh' / 'IT kWh'"
+    ],
+    "requiredPatterns": [
+      "'facility kwh'\\s*/\\s*'it kwh'"
+    ],
+    "forbiddenPatterns": [],
+    "placeholder": "'Attribute A' / 'Attribute B'",
+    "explanation": "PUE is total facility energy divided by IT equipment energy, so the facility attribute goes on top. Reversing the division gives a value below 1, which is wrong.",
+    "lessonId": "pi-in-data-centres",
+    "tags": [
+      "expert",
+      "calculation"
+    ],
+    "sources": [
+      "ind-greengrid-pue"
+    ],
+    "verify": true,
+    "verifyNote": "The AF expression form is illustrative; ind.md gives the PUE definition but not an AVEVA-published expression."
+  }
+]

@@ -1,0 +1,379 @@
+[
+  {
+    "id": "q-af-functions-recordedvaluesbycount",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 1,
+    "prompt": "What does RecordedValuesByCount('Best Operating State','*',10) return?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The number of events in the last 10 minutes"
+      },
+      {
+        "id": "b",
+        "text": "An array of the last 10 recorded values"
+      },
+      {
+        "id": "c",
+        "text": "The 10th value after now"
+      },
+      {
+        "id": "d",
+        "text": "The average of 10 values"
+      }
+    ],
+    "answer": "b",
+    "explanation": "RecordedValuesByCount('attr', time, n) returns an array of the last n recorded values before the time.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-af-functions-dollar-val",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "In FilterData(PastTenStates, ____ = \"Drying\"), what placeholder stands for each array element's value?",
+    "accepted": [
+      "$val"
+    ],
+    "caseSensitive": false,
+    "explanation": "FilterData uses $val in its predicate to refer to each element's value.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-af-functions-array-steps",
+    "type": "ordering",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "Order the rows of the PI World 2020 lab calculation for hours into the current drying phase.",
+    "items": [
+      {
+        "id": "a",
+        "text": "PastTenStates = RecordedValuesByCount('Best Operating State','*',10)"
+      },
+      {
+        "id": "b",
+        "text": "PastDryingStates = FilterData(PastTenStates, $val=\"Drying\")"
+      },
+      {
+        "id": "c",
+        "text": "LastDryingEvent = TimeStamp(PastDryingStates[1])"
+      },
+      {
+        "id": "d",
+        "text": "HrsIntoDrying = TimeEq('Best Operating State', LastDryingEvent, '*', \"Drying\")/3600"
+      }
+    ],
+    "explanation": "Get recent values as an array, filter to Drying, take the timestamp of the first match (arrays are 1-based in this example), then count seconds in Drying and divide by 3600.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-af-functions-what-does",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each AF function to what it does.",
+    "pairs": [
+      {
+        "left": "Convert(expr, \"kW\")",
+        "right": "Sets or converts the result's unit of measure"
+      },
+      {
+        "left": "Exit()",
+        "right": "Ends evaluation and skips the remaining rows"
+      },
+      {
+        "left": "EventFrame(\"Duration\")",
+        "right": "Returns a property of the current event frame"
+      },
+      {
+        "left": "Split(s, \"|\")",
+        "right": "Makes a string array from a string and a delimiter"
+      },
+      {
+        "left": "HasChanged(<Attribute>,<Time>)",
+        "right": "Checks whether an attribute changed"
+      }
+    ],
+    "explanation": "Convert handles UOM; Exit (2018 SP2) stops evaluation; EventFrame returns StartTime/EndTime/Duration; Split (2018 SP2) creates string arrays; HasChanged gates expensive work.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-optimizing-analytics-2020",
+      "af-pisquare-af2018sp2-highlights",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-af-functions-weighting-sp2",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: from AF 2018 SP2, tag summary functions such as TagAvg gained an event-weighted option and array summary functions such as Avg gained a time-weighted option.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. AF 2018 SP2 gave tag summaries an event-weighted option and the array/data summary functions (formerly event-weighted only) a time-weighted option.",
+    "lessonId": "af-analysis-functions",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights",
+      "af-feedback-pida-1059"
+    ]
+  },
+  {
+    "id": "q-af-functions-nested-arg",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Can you pass a nested expression where an AF analysis function expects an attribute name, e.g. TagAvg(<expression>, '*-1h', '*')?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, always"
+      },
+      {
+        "id": "b",
+        "text": "No; functions that take an attribute name do not accept a nested expression there"
+      },
+      {
+        "id": "c",
+        "text": "Only for string attributes"
+      },
+      {
+        "id": "d",
+        "text": "Only in Rollup analyses"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Functions that take an attribute-name argument do not accept a nested expression in its place; a request to allow it has no status.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-feedback-pida-825"
+    ]
+  },
+  {
+    "id": "q-af-functions-countif",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "Which approach is described in PI Square for counting occurrences before array functions?",
+    "scenario": "A team needs the number of times a valve state was \"Open\" today. They are on an older AF version without array functions.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use the built-in CountIf() function"
+      },
+      {
+        "id": "b",
+        "text": "An intermediate analysis IF 'Tag' = \"Value\" THEN 1 ELSE NoOutput(), then EventCount over its output"
+      },
+      {
+        "id": "c",
+        "text": "TagAvg of the state"
+      },
+      {
+        "id": "d",
+        "text": "A Table Lookup on the archive"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AF Analytics has no built-in function to count occurrences of a value; the workaround writes 1 or NoOutput() to an intermediate output and counts its events with EventCount. KB01120 covers filtered calculations.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-pisquare-number-occurrences"
+    ]
+  },
+  {
+    "id": "q-af-functions-not-available",
+    "type": "multi",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "As of 2022, which of these were requested on AVEVA Feedback but NOT available in AF analytics? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A sort function"
+      },
+      {
+        "id": "b",
+        "text": "ForEach loops"
+      },
+      {
+        "id": "c",
+        "text": "Cubic spline"
+      },
+      {
+        "id": "d",
+        "text": "FilterData"
+      },
+      {
+        "id": "e",
+        "text": "Total over an array"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Sort, dot product, ForEach, index search, sequence/shuffle/sample and cubic spline were requested but not available. FilterData exists, and Total(A1) sums an array.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "fn-feedback-pida-850",
+      "fn-feedback-pida-855"
+    ]
+  },
+  {
+    "id": "q-af-functions-timestamp-sched",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 3,
+    "prompt": "In a periodically scheduled analysis, Timestamp('attr') returned the evaluation time rather than the last event's time. Why?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A bug in Timestamp"
+      },
+      {
+        "id": "b",
+        "text": "The attribute value is interpolated to the trigger time"
+      },
+      {
+        "id": "c",
+        "text": "The attribute is a Formula DR"
+      },
+      {
+        "id": "d",
+        "text": "The analysis uses UTC"
+      }
+    ],
+    "answer": "b",
+    "explanation": "In scheduled analyses attribute values are interpolated to the trigger time, so Timestamp('attr') gives the trigger time. Use PrevEvent for the last recorded event's time.",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "af-pisquare-timestamp-diff"
+    ]
+  },
+  {
+    "id": "q-af-functions-split-index",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "Split(string, \"|\")[2] was reported as not working. What is the sensible workaround?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Assign the Split result to a variable first, then index it"
+      },
+      {
+        "id": "b",
+        "text": "Use Exit()"
+      },
+      {
+        "id": "c",
+        "text": "Use a String Builder DR"
+      },
+      {
+        "id": "d",
+        "text": "Arrays cannot be indexed"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Indexing a function result inline was reported not to work. Assigning the result to a variable first is the inferred workaround; the lab shows indexing a variable, as in PastDryingStates[1].",
+    "lessonId": "af-analysis-functions",
+    "tags": [],
+    "sources": [
+      "fn-pisquare-help-with-arrays",
+      "af-data-exploration-notification-2020"
+    ],
+    "verify": true,
+    "verifyNote": "The variable workaround is inferred, not confirmed in the thread."
+  },
+  {
+    "id": "q-af-functions-array-display",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: according to a PI Square answer, standard clients display Array-type attributes meaningfully.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. \"To my knowledge there is not any client which is able to display anything meaningful for an Array type Attribute.\" Reduce arrays to a number or string before output.",
+    "lessonId": "af-analysis-functions",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "fn-pisquare-help-with-arrays"
+    ]
+  }
+]

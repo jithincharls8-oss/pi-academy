@@ -1,0 +1,414 @@
+[
+  {
+    "id": "q-monitoring-heartbeat",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "Which health point best confirms whether data collection has stopped?",
+    "options": [
+      {
+        "id": "a",
+        "text": "IO Rate"
+      },
+      {
+        "id": "b",
+        "text": "Heartbeat"
+      },
+      {
+        "id": "c",
+        "text": "Point Count"
+      },
+      {
+        "id": "d",
+        "text": "Bytes Received/sec on the client PC"
+      }
+    ],
+    "scenario": "An interface's Heartbeat point is cycling 1 to 15 as normal, but users say its tags have not updated for an hour.",
+    "answer": "a",
+    "explanation": "Heartbeat cycles while the interface runs but does not show data collection. IO Rate counts values sent; if it stops updating, collection has stopped.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "interfaces"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-archiving-flag",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "piartool -as shows an archiving flag. Which value is healthy for Data Archive 2015 and later?",
+    "options": [
+      {
+        "id": "a",
+        "text": "3"
+      },
+      {
+        "id": "b",
+        "text": "1"
+      },
+      {
+        "id": "c",
+        "text": "0"
+      },
+      {
+        "id": "d",
+        "text": "2"
+      }
+    ],
+    "answer": "a",
+    "explanation": "0 none, 1 historic only, 2 future only, 3 both. 3 is healthy for 2015 and later; 1 was normal for 2012 and earlier, before future archives existed.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-velco-health",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 1,
+    "prompt": "Which items are part of VELCO's definition of a healthy PI System? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Data flowing"
+      },
+      {
+        "id": "b",
+        "text": "Data stored"
+      },
+      {
+        "id": "c",
+        "text": "Users can access data"
+      },
+      {
+        "id": "d",
+        "text": "Capacity to continue"
+      },
+      {
+        "id": "e",
+        "text": "Every tag updates every second"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "VELCO's definition: data flowing, data stored, no corruptions, no significant errors, capacity to continue, users can access data. Every tag updating every second is not a health criterion.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "definition"
+    ],
+    "sources": [
+      "adm-uc23-velco-health"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-ping",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 1,
+    "prompt": "What does the PI Ping interface measure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The latency of network connections"
+      },
+      {
+        "id": "b",
+        "text": "CPU load on remote servers"
+      },
+      {
+        "id": "c",
+        "text": "SQL Server query times"
+      },
+      {
+        "id": "d",
+        "text": "Archive file fragmentation"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Ping \"Measures the latency of network connections\". CPU load comes from the Perfmon interface.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "network"
+    ],
+    "sources": [
+      "adm-mcn-health-monitor-tayler"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-counters",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each Perfmon counter to its PI subsystem object.",
+    "pairs": [
+      {
+        "left": "Connections",
+        "right": "PI Network Manager"
+      },
+      {
+        "left": "Pending Events",
+        "right": "PI Update Manager"
+      },
+      {
+        "left": "Archived Events/sec",
+        "right": "PI Archive Subsystem"
+      },
+      {
+        "left": "Snapshots/sec",
+        "right": "PI Snapshot Subsystem"
+      },
+      {
+        "left": "Point Count",
+        "right": "PI Base Subsystem"
+      }
+    ],
+    "explanation": "These are the example counters in OSIsoft's health-monitoring talk: Network Manager Connections, Update Manager Pending Events, Archive Subsystem Archived Events/sec, Snapshot Subsystem Snapshots/sec and Base Subsystem Point Count.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "perfmon"
+    ],
+    "sources": [
+      "adm-mcn-health-monitor-tayler"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-qs",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 3,
+    "prompt": "In piartool -qs output, what pattern is normal?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Total Event Reads and Total Event Writes increase together, with normally 1 event queue file"
+      },
+      {
+        "id": "b",
+        "text": "Writes increase while reads stay at 0"
+      },
+      {
+        "id": "c",
+        "text": "The number of event queue files keeps growing"
+      },
+      {
+        "id": "d",
+        "text": "Both counters stay constant"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Reads and writes should rise together and there should normally be one event queue file. Writes rising without reads, or extra queue files, suggest the archive is not keeping up.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-isu",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: the PI Interface Status Utility is still included in current PI Server install kits.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. The ISU watched a watchdog tag per interface and set a bad state when it went stale, but it has been removed from PI Server install kits (AL00284).",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "interfaces",
+      "true-false"
+    ],
+    "sources": [
+      "adm-interface-status-utility-overview"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-restart",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "Security bulletins AVEVA-2025-001 and AVEVA-2026-002 advise what for PI Network Manager and PI Archive Subsystem?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Monitor their liveness and set them to restart automatically"
+      },
+      {
+        "id": "b",
+        "text": "Run them under piadmin"
+      },
+      {
+        "id": "c",
+        "text": "Stop them outside working hours"
+      },
+      {
+        "id": "d",
+        "text": "Move them to a separate server from the archives"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The bulletins advise monitoring the liveness of these services (and all services in \\PI\\adm\\pisrvstart.bat) and setting them to restart automatically.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "services"
+    ],
+    "sources": [
+      "adm-aveva-bulletin-2025-001",
+      "adm-aveva-bulletin-2026-002"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-refresh",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "piartool -ss, -qs and -as refresh their statistics every how many seconds?",
+    "accepted": [
+      "5",
+      "five",
+      "5 seconds"
+    ],
+    "caseSensitive": false,
+    "explanation": "The 2017 R2 course says these statistics refresh every 5 seconds.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "piartool"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-ps-script",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 3,
+    "prompt": "What does the PI Square PowerShell health-check script need in order to run?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PowerShell Tools for the PI System, run as local administrator on the Data Archive"
+      },
+      {
+        "id": "b",
+        "text": "PI Vision installed on the same server"
+      },
+      {
+        "id": "c",
+        "text": "An explicit piadmin login with a blank password"
+      },
+      {
+        "id": "d",
+        "text": "SQL Server Express"
+      }
+    ],
+    "answer": "a",
+    "explanation": "It needs PowerShell Tools for the PI System (shipped with PI SMT 2015 or later), uses Connect-PIDataArchive and must run as local administrator on the Data Archive. Blank-password piadmin logins should be disabled.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "scripting"
+    ],
+    "sources": [
+      "adm-pisquare-pda-health-powershell"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-monitoring-velco-stack",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.monitoring"
+    ],
+    "difficulty": 2,
+    "prompt": "Order VELCO's monitoring stack from data collection to display.",
+    "items": [
+      {
+        "id": "a",
+        "text": "PI PerfMon Interface and interface health points collect data"
+      },
+      {
+        "id": "b",
+        "text": "PI Analyses evaluate the data"
+      },
+      {
+        "id": "c",
+        "text": "PI Notifications send alerts"
+      },
+      {
+        "id": "d",
+        "text": "PI Vision shows status"
+      }
+    ],
+    "explanation": "VELCO collects with PerfMon and health points, evaluates with PI Analyses, alerts with PI Notifications and shows status in PI Vision, all standardised with AF templates.",
+    "lessonId": "monitoring-and-health",
+    "tags": [
+      "case"
+    ],
+    "sources": [
+      "adm-uc23-velco-health"
+    ],
+    "verify": false
+  }
+]

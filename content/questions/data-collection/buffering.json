@@ -1,0 +1,241 @@
+[
+  {
+    "id": "q-buffering-start-order",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 1,
+    "prompt": "On a buffered interface node, which service must start first?",
+    "options": [
+      { "id": "a", "text": "The PI Buffer Subsystem, before all PI Interfaces on the machine" },
+      { "id": "b", "text": "The PI Interface, so it can create the buffer files" },
+      { "id": "c", "text": "PI ICU" },
+      { "id": "d", "text": "It does not matter; they connect to each other in any order" }
+    ],
+    "answer": "a",
+    "explanation": "PIBufss must start before all the PI Interfaces on the machine. PI ICU adds it to the interface's service dependencies when you choose yes. If the interface starts first it may send directly to the Data Archive and bypass buffering.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["start-order"],
+    "sources": ["dcv-simple-pi-system-2020", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-buffering-qs-command",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "Which command shows the statistics of the buffer queue file, where a healthy queue shows both reads and writes?",
+    "options": [
+      { "id": "a", "text": "pibufss -cfg" },
+      { "id": "b", "text": "pibufss -qs" },
+      { "id": "c", "text": "pibufss -bc stop" },
+      { "id": "d", "text": "pigetmsg -f" }
+    ],
+    "answer": "b",
+    "explanation": "pibufss -qs shows the buffer queue statistics until you press Ctrl+C. pibufss -cfg shows the overall buffering status, pibufss -bc stop stops sending, and pigetmsg -f follows the PI Message Log.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["commands"],
+    "sources": ["dcv-pi-sys-admin-workbook"]
+  },
+  {
+    "id": "q-buffering-bufserv-when",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "According to the administration course, when should the API Buffer Server (bufserv) be used instead of PIBufss? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "The PI Server receiving the buffered data is older than version 3.4.375" },
+      { "id": "b", "text": "The interface runs on a non-Windows platform" },
+      { "id": "c", "text": "The data comes from an AF SDK application" },
+      { "id": "d", "text": "The target is a PI collective" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "bufserv should only be used if the receiving PI Server is older than 3.4.375 or the interface runs on a non-Windows platform. bufserv only buffers PI API data, so it cannot buffer AF SDK applications, and PIBufss is the one designed for high availability with collectives.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["bufserv"],
+    "sources": ["dcv-admin-it-2017r2", "dcv-techsupport-tools"]
+  },
+  {
+    "id": "q-buffering-files-match",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "Match each buffering file to what it holds.",
+    "pairs": [
+      { "left": "APIBUF_<Data Archive name>.dat", "right": "Overflow when the shared-memory buffer is full" },
+      { "left": "pibufmem_<GUID>.dat", "right": "Snapshot table with the most recent value of each buffered point" },
+      { "left": "pibufq_<GUID>.dat", "right": "Buffer queue file, the 'tank' of events awaiting delivery" }
+    ],
+    "explanation": "APIBUF takes the overflow from shared memory, pibufmem is the snapshot table, and pibufq is the buffer queue that the course calls the tank.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["files"],
+    "sources": ["dcv-admin-it-2017r2"]
+  },
+  {
+    "id": "q-buffering-flow-order",
+    "type": "ordering",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "Put the stages that PI API data passes through inside PIBufss in order.",
+    "items": [
+      { "id": "a", "text": "Shared memory buffer" },
+      { "id": "b", "text": "Snapshot table" },
+      { "id": "c", "text": "Events marked for compression (Snapshot Only or To Be Archived)" },
+      { "id": "d", "text": "Memory-mapped buffer queue file" },
+      { "id": "e", "text": "PI Data Archive" }
+    ],
+    "explanation": "The course gives the buffering flow as shared memory buffer, snapshot table, compression marking, buffer queue file, then the Data Archive. PI SDK and AF SDK applications skip the shared-memory step and write straight into the snapshot table.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["data-flow"],
+    "sources": ["dcv-admin-it-2017r2", "dcv-pi-sys-admin-workbook"]
+  },
+  {
+    "id": "q-buffering-queue-size",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "The buffer queue file has a default size of 32 MB. What happens when it fills during a long outage?",
+    "options": [
+      { "id": "a", "text": "The oldest events are overwritten" },
+      { "id": "b", "text": "Additional queue files are created as each fills, until the disk runs out of space" },
+      { "id": "c", "text": "PIBufss stops and the interface sends directly to the Data Archive" },
+      { "id": "d", "text": "Compression is turned off to save space" }
+    ],
+    "answer": "b",
+    "explanation": "Additional files are created as each queue file fills, until the disk runs out of space. That is why AVEVA strongly recommends separating the buffer queue from the OS drive.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["queue"],
+    "sources": ["dcv-pi-sys-admin-workbook", "dcv-admin-it-2017r2"]
+  },
+  {
+    "id": "q-buffering-nway",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 3,
+    "scenario": "An interface node buffers to a three-member PI collective. Member 2 is shut down for patching for four hours. Members 1 and 3 stay online.",
+    "prompt": "What does PIBufss do during those four hours?",
+    "options": [
+      { "id": "a", "text": "Holds all data for every member until member 2 returns, so all three fall behind" },
+      { "id": "b", "text": "Sends data to members 1 and 3 immediately while member 2's own queue grows" },
+      { "id": "c", "text": "Drops member 2's data, which must be recovered with PI to PI" },
+      { "id": "d", "text": "Stops buffering and logs error 11403" }
+    ],
+    "answer": "b",
+    "explanation": "With n-way buffering PIBufss keeps a separate queue for each collective member. Data for the members that are up flows immediately while the down member's queue grows and drains when it returns.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["n-way", "collective"],
+    "sources": ["dcv-pisquare-nway"]
+  },
+  {
+    "id": "q-buffering-compression-on-node",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 3,
+    "prompt": "Why does PIBufss reduce load on the PI Server compared with sending unbuffered data?",
+    "options": [
+      { "id": "a", "text": "It runs compression on the data-collection node before the data is sent" },
+      { "id": "b", "text": "It discards values that fail exception testing on the server" },
+      { "id": "c", "text": "It sends data only once per hour" },
+      { "id": "d", "text": "It writes directly into the archive files, skipping the Snapshot Subsystem" }
+    ],
+    "answer": "a",
+    "explanation": "PIBufss runs compression on the collection node (marking events as Snapshot Only or To Be Archived) before sending, which reduces PI Server load. Exception is done by the interface, and PIBufss does not bypass the server's subsystems.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["compression"],
+    "sources": ["dcv-techsupport-tools", "dcv-pohl-interfaces-2008"]
+  },
+  {
+    "id": "q-buffering-any-app",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 1,
+    "prompt": "True or false: PIBufss can only buffer data from OSIsoft PI Interfaces.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. PIBufss can buffer data from any application, OSIsoft or custom-built, that writes to a Data Archive, including PI SDK and AF SDK applications. It is bufserv that is limited to PI API data.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["true-false"],
+    "sources": ["dcv-pi-sys-admin-workbook", "dcv-techsupport-tools"]
+  },
+  {
+    "id": "q-buffering-lab-order",
+    "type": "ordering",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 2,
+    "prompt": "Put the steps of the course lab that proves buffering works in order.",
+    "items": [
+      { "id": "a", "text": "Run pibufss -cfg and confirm it is connected and sending" },
+      { "id": "b", "text": "Run pibufss -bc stop to simulate a network outage" },
+      { "id": "c", "text": "Run pibufss -qs and watch writes to the queue grow" },
+      { "id": "d", "text": "Run pibufss -bc start and watch the queue drain" }
+    ],
+    "explanation": "Check health, stop sending, watch the queue fill, then restart sending and watch it drain. This proves no data is lost during an outage.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["lab"],
+    "sources": ["dcv-admin-it-2017r2", "dcv-pi-sys-admin-workbook"]
+  },
+  {
+    "id": "q-buffering-manager-health",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 1,
+    "prompt": "In the Buffering Manager (PI ICU > Tools > Buffering), which sign shows buffering is healthy?",
+    "options": [
+      { "id": "a", "text": "The \"total events sent\" count keeps increasing" },
+      { "id": "b", "text": "The queue file size stays at 0 MB" },
+      { "id": "c", "text": "The service status shows Stopped" },
+      { "id": "d", "text": "The number of queue files keeps increasing" }
+    ],
+    "answer": "a",
+    "explanation": "The course's health check is that \"total events sent\" should keep increasing. A growing number of queue files means data is not being delivered.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["buffering-manager"],
+    "sources": ["dcv-simple-pi-system-2020"]
+  },
+  {
+    "id": "q-buffering-hostname-mismatch",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 3,
+    "scenario": "An interface is configured with /host=PISRV01, but the buffering configuration on the same node lists the server by IP address. Data is not being buffered as expected.",
+    "prompt": "What is the most likely fix?",
+    "options": [
+      { "id": "a", "text": "Make the interface and the buffering configuration use the same server name format" },
+      { "id": "b", "text": "Switch to bufserv" },
+      { "id": "c", "text": "Move the queue file to the OS drive" },
+      { "id": "d", "text": "Add a second /host parameter" }
+    ],
+    "answer": "a",
+    "explanation": "The architecture course lists using a hostname in the interface but an IP address in the buffering configuration as a pitfall: they must match. bufserv is legacy, and the queue should be off the OS drive.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["pitfall"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-buffering-gmsa-version",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.buffering"],
+    "difficulty": 3,
+    "prompt": "From which PIBufss version does the Buffering Manager accept a gMSA directly? (Give the version number.)",
+    "accepted": ["4.9.0.37"],
+    "caseSensitive": false,
+    "explanation": "The Buffering Manager accepts a gMSA starting with PIBufss 4.9.0.37. Older versions need the gMSA added to the PI Buffering Administrators group.",
+    "lessonId": "pi-buffer-subsystem",
+    "tags": ["security"],
+    "sources": ["dcv-arch-workbook"]
+  }
+]

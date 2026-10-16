@@ -1,0 +1,1588 @@
+[
+  {
+    "id": "exception-reporting",
+    "term": "Exception reporting",
+    "aliases": [
+      "exception",
+      "exception test"
+    ],
+    "definition": "Deadband filtering done by a PI Interface before data is sent to the Data Archive snapshot. A new value is sent only when it differs from the last sent value by more than ExcDev, or when ExcMax has elapsed.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression"
+    ],
+    "related": [
+      "excdev",
+      "excmax",
+      "excmin",
+      "compression"
+    ],
+    "sources": [
+      "da-uc23-exc-comp",
+      "da-admin-workbook-2017r2",
+      "da-rockwell-ftme-glossary"
+    ]
+  },
+  {
+    "id": "compression",
+    "term": "Compression",
+    "aliases": [
+      "data compression",
+      "swinging-door compression"
+    ],
+    "definition": "Filtering done by the Snapshot Subsystem (or by the PI Buffer Subsystem as compression marking) that decides which snapshot events are written to the archive, using the swinging-door algorithm.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression"
+    ],
+    "related": [
+      "swinging-door",
+      "compdev",
+      "compmax",
+      "compmin",
+      "compression-marking"
+    ],
+    "sources": [
+      "da-uc23-exc-comp",
+      "da-admin-workbook-2017r2",
+      "da-rockwell-ftme-glossary"
+    ]
+  },
+  {
+    "id": "swinging-door",
+    "term": "Swinging door",
+    "aliases": [
+      "swinging-door algorithm"
+    ],
+    "definition": "The compression algorithm used by the PI Data Archive. It keeps the events needed to reconstruct the signal as straight lines whose error stays within CompDev of every dropped value.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression"
+    ],
+    "related": [
+      "compression",
+      "compdev"
+    ],
+    "sources": [
+      "da-rockwell-ftme-glossary",
+      "da-ps-compression-formula-thread"
+    ]
+  },
+  {
+    "id": "excdev",
+    "term": "ExcDev",
+    "aliases": [
+      "exception deviation",
+      "ExcDevPercent"
+    ],
+    "definition": "Point attribute: how far, in engineering units, a new value must differ from the last sent value before the interface sends it. ExcDevPercent gives the same deadband as a percent of span (default 0.1).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "exception-reporting",
+      "excmax",
+      "compdev"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-rockwell-ftme-glossary"
+    ]
+  },
+  {
+    "id": "excmax",
+    "term": "ExcMax",
+    "aliases": [
+      "exception maximum"
+    ],
+    "definition": "Point attribute: the longest time, in seconds, an interface can go without reporting a value. After ExcMax the next value is sent even if it is inside the ExcDev deadband. Default 600.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "exception-reporting",
+      "excmin",
+      "compmax"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-compmin-thread"
+    ]
+  },
+  {
+    "id": "excmin",
+    "term": "ExcMin",
+    "aliases": [
+      "exception minimum"
+    ],
+    "definition": "Point attribute: values arriving sooner than ExcMin seconds after the last reported value are not sent. ExcMin never forces a value to be sent and is typically 0.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "exception-reporting",
+      "excmax"
+    ],
+    "sources": [
+      "da-ps-compmin-thread"
+    ]
+  },
+  {
+    "id": "compdev",
+    "term": "CompDev",
+    "aliases": [
+      "compression deviation",
+      "CompDevPercent"
+    ],
+    "definition": "Point attribute: the deviation, in engineering units, from the swinging-door line that makes an event significant enough to archive. CompDevPercent expresses it as a percent of span (default 0.2).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "compression",
+      "swinging-door",
+      "excdev"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-help-compdev-thread"
+    ]
+  },
+  {
+    "id": "compmax",
+    "term": "CompMax",
+    "aliases": [
+      "compression maximum"
+    ],
+    "definition": "Point attribute: once CompMax seconds have passed since the last archived event, the next event is archived regardless of deviation. Default 28800 (8 hours).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "compression",
+      "compmin",
+      "excmax"
+    ],
+    "sources": [
+      "da-rockwell-ftme-glossary",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "compmin",
+    "term": "CompMin",
+    "aliases": [
+      "compression minimum"
+    ],
+    "definition": "Point attribute: the minimum time, in seconds, before a new value can be archived. Usually 0, especially when the interface already applies exception reporting.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression",
+      "da.point-attributes"
+    ],
+    "related": [
+      "compression",
+      "compmax"
+    ],
+    "sources": [
+      "da-rockwell-studio5000-params",
+      "da-ps-compmin-thread"
+    ]
+  },
+  {
+    "id": "compression-marking",
+    "term": "Compression marking",
+    "aliases": [],
+    "definition": "Compression decisions made in the PI Buffer Subsystem instead of the snapshot. Events are marked Snapshot Only (replaced when a new event arrives) or To Be Archived (stored).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.exception-compression"
+    ],
+    "related": [
+      "compression"
+    ],
+    "sources": [
+      "da-uc23-exc-comp",
+      "da-admin-workbook-fr"
+    ],
+    "verify": true,
+    "verifyNote": "The minimum PI Buffer Subsystem version that supports compression marking is not confirmed in a readable source (research notes say 4.x)."
+  },
+  {
+    "id": "pi-point",
+    "term": "PI Point",
+    "aliases": [
+      "PI Tag",
+      "tag",
+      "PI data stream"
+    ],
+    "definition": "A unique, named storage point for a stream of time-series data in the PI Data Archive. A PI tag and a PI point are the same thing; the name must be unique within the Data Archive.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "fnd.timeseries"
+    ],
+    "related": [
+      "pi-event",
+      "point-class",
+      "pointtype"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-pi-programming-pdf",
+      "da-assets-workbook"
+    ]
+  },
+  {
+    "id": "snapshot",
+    "term": "Snapshot",
+    "aliases": [
+      "snapshot value",
+      "current value"
+    ],
+    "definition": "The most recent event for a point, held by the Snapshot Subsystem in the snapshot table (piarcmem.dat) before compression decides whether it is archived.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive",
+      "fnd.timeseries"
+    ],
+    "related": [
+      "pi-snapshot-subsystem",
+      "event-queue",
+      "compression"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "pointid",
+    "term": "PointID",
+    "aliases": [
+      "point ID"
+    ],
+    "definition": "The internal numeric identifier of a PI point. Archive files store PointIDs, not tag names; the tag-to-PointID map is in the PIPOINT table.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "related": [
+      "pi-point",
+      "archive-file"
+    ],
+    "sources": [
+      "da-ps-piarch-thread"
+    ]
+  },
+  {
+    "id": "pointtype",
+    "term": "PointType",
+    "aliases": [
+      "point type"
+    ],
+    "definition": "Point attribute giving the data type of stored values: Digital, Timestamp, Float64, Float32, Float16, Int32, Int16, String or Blob.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.point-attributes"
+    ],
+    "related": [
+      "pi-point",
+      "float16-point",
+      "digital-state-set"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-assets-workbook"
+    ]
+  },
+  {
+    "id": "float16-point",
+    "term": "Float16",
+    "aliases": [
+      "Float16 point"
+    ],
+    "definition": "A compact point type that needs a well-defined Zero and a positive Span. It suits systems over 50,000 points, sub-second collection and high-density data; Float32 roughly doubles archive I/O by comparison.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "related": [
+      "pointtype",
+      "span"
+    ],
+    "sources": [
+      "da-uc2003-system-mgmt",
+      "da-rockwell-ftme-general"
+    ]
+  },
+  {
+    "id": "point-class",
+    "term": "Point class",
+    "aliases": [
+      "ptclassname",
+      "PointClass"
+    ],
+    "definition": "The attribute set a point has, named in the ptclassname attribute. The common classes are base and classic.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.point-attributes"
+    ],
+    "related": [
+      "base-point-class",
+      "classic-point-class"
+    ],
+    "sources": [
+      "da-ps-pointclass-thread",
+      "da-pse-builder-tips-pdf"
+    ]
+  },
+  {
+    "id": "base-point-class",
+    "term": "Base point class",
+    "aliases": [
+      "base class"
+    ],
+    "definition": "The point class holding the core attributes. PI Connectors create base-class points without instrument tags; they can later be changed to classic without affecting the connector.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.point-attributes"
+    ],
+    "related": [
+      "point-class",
+      "classic-point-class"
+    ],
+    "sources": [
+      "da-ps-pointsource-thread"
+    ]
+  },
+  {
+    "id": "classic-point-class",
+    "term": "Classic point class",
+    "aliases": [
+      "classic class"
+    ],
+    "definition": "The point class that adds interface-specific attributes such as Location1-5, InstrumentTag and UserInt/UserReal to the base attributes.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.point-attributes"
+    ],
+    "related": [
+      "point-class",
+      "base-point-class"
+    ],
+    "sources": [
+      "da-ps-pointclass-thread"
+    ],
+    "verify": true,
+    "verifyNote": "The exact list of classic-only attributes is inferred from a PI Square thread, not an official attribute table."
+  },
+  {
+    "id": "point-builder",
+    "term": "Point Builder",
+    "aliases": [
+      "SMT Point Builder"
+    ],
+    "definition": "The PI SMT plug-in (Points > Point Builder) for creating and editing PI points one at a time.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.tools"
+    ],
+    "related": [
+      "pi-smt",
+      "pi-builder"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "descriptor",
+    "term": "Descriptor",
+    "aliases": [],
+    "definition": "Point attribute: optional free text describing the point, often used as a search criterion.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "exdesc"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-assets-workbook"
+    ]
+  },
+  {
+    "id": "exdesc",
+    "term": "ExDesc",
+    "aliases": [
+      "extended descriptor"
+    ],
+    "definition": "Point attribute: an optional extended description. Some interfaces use it for configuration, for example trigger expressions.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "descriptor"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-rockwell-ftme-general"
+    ]
+  },
+  {
+    "id": "zero-attribute",
+    "term": "Zero",
+    "aliases": [
+      "Zero attribute"
+    ],
+    "definition": "Point attribute: the lowest possible value of the point. Default 0.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "span",
+      "typicalvalue"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "span",
+    "term": "Span",
+    "aliases": [
+      "Span attribute"
+    ],
+    "definition": "Point attribute: the range between the minimum and maximum values, so Zero + Span is the highest value. Default 100. ExcDevPercent and CompDevPercent are percentages of Span.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "zero-attribute",
+      "compdev",
+      "float16-point"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "typicalvalue",
+    "term": "TypicalValue",
+    "aliases": [
+      "typical value"
+    ],
+    "definition": "Point attribute: a reasonable value for the point. For numeric points it lies between Zero and Zero + Span.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "zero-attribute",
+      "span"
+    ],
+    "sources": [
+      "da-rockwell-ftme-general"
+    ]
+  },
+  {
+    "id": "compressing",
+    "term": "Compressing",
+    "aliases": [
+      "Compressing attribute"
+    ],
+    "definition": "Point attribute (0 or 1): whether snapshot events go through compression. Compressing = 0 archives every snapshot event, which is not the same as CompDev = 0.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes",
+      "da.exception-compression"
+    ],
+    "related": [
+      "compression",
+      "compdev"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-uc23-exc-comp"
+    ]
+  },
+  {
+    "id": "archiving-attribute",
+    "term": "Archiving (point attribute)",
+    "aliases": [
+      "Archiving"
+    ],
+    "definition": "Point attribute (0 or 1) that enables or disables archiving of the point's data.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "compressing"
+    ],
+    "sources": [
+      "da-tibco-tagdef"
+    ]
+  },
+  {
+    "id": "scan-attribute",
+    "term": "Scan (point attribute)",
+    "aliases": [
+      "Scan"
+    ],
+    "definition": "Point attribute (0 or 1) that switches interface scanning on or off for the point. OSIsoft training says it should always be on.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "point-source",
+      "location4"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "location4",
+    "term": "Location4",
+    "aliases": [],
+    "definition": "Point attribute typically holding the interface scan class number. For the OPC DA interface, Location3 sets polled/event (0), advise (1) or output (2).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "location1",
+      "scan-class"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "sourcetag",
+    "term": "SourceTag",
+    "aliases": [],
+    "definition": "Point attribute naming another PI point whose data feeds this point, for example for output points.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes"
+    ],
+    "related": [
+      "pi-point"
+    ],
+    "sources": [
+      "da-tibco-tagdef"
+    ]
+  },
+  {
+    "id": "future-attribute",
+    "term": "Future (point attribute)",
+    "aliases": [
+      "Future"
+    ],
+    "definition": "Point attribute that marks a future-data point. Future = true stores data in the future archive set; false uses the historical archive set. It can be set in the PI Web API create call.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes",
+      "da.backfill"
+    ],
+    "related": [
+      "future-archive",
+      "future-data"
+    ],
+    "sources": [
+      "da-emea14-future-data",
+      "da-ps-webapi-create-thread"
+    ]
+  },
+  {
+    "id": "digitalset-attribute",
+    "term": "DigitalSet (point attribute)",
+    "aliases": [
+      "DigitalSet"
+    ],
+    "definition": "Point attribute naming the digital state set a digital point uses; only used when PointType is Digital. Changing it does not change how archived values are interpreted until archives are reprocessed.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.point-attributes",
+      "da.digital-sets"
+    ],
+    "related": [
+      "digital-state-set"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-fb-pisrv-1351"
+    ]
+  },
+  {
+    "id": "digital-state-set",
+    "term": "Digital state set",
+    "aliases": [
+      "state set",
+      "digital set"
+    ],
+    "definition": "A named, ordered list of state strings that a digital point's integer values map to, for example 0 = CLOSED, 1 = OPEN. Only append new states; never renumber existing ones.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.digital-sets"
+    ],
+    "related": [
+      "digital-point",
+      "system-digital-state-set",
+      "enumeration-set"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-fb-pida-1142"
+    ],
+    "verify": true,
+    "verifyNote": "Definition wording is a synthesis (research marks it inferred); confirm against AVEVA's digital state set documentation."
+  },
+  {
+    "id": "digital-point",
+    "term": "Digital point",
+    "aliases": [
+      "digital tag"
+    ],
+    "definition": "A PI point whose values are limited to a few discrete states, referenced through its DigitalSet attribute. Preferred over string tags for discrete states; CompDev and ExcDev have no effect on it.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.digital-sets",
+      "da.points"
+    ],
+    "related": [
+      "digital-state-set",
+      "pointtype"
+    ],
+    "sources": [
+      "da-tibco-tagdef",
+      "da-uc2003-system-mgmt",
+      "da-ps-compdev-standard-thread"
+    ]
+  },
+  {
+    "id": "system-digital-state-set",
+    "term": "SYSTEM digital state set",
+    "aliases": [
+      "system states",
+      "SYSTEM set"
+    ],
+    "definition": "The global digital state set that applies to all points, with factory states such as Shutdown, Intf Shut and I/O Timeout that can be written into numeric as well as digital points.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.digital-sets"
+    ],
+    "related": [
+      "digital-state-set"
+    ],
+    "sources": [
+      "da-uc2003-system-mgmt"
+    ]
+  },
+  {
+    "id": "digital-state-table",
+    "term": "Digital State Table",
+    "aliases": [
+      "PIDS"
+    ],
+    "definition": "The Data Archive table, maintained by the PI Base Subsystem, that holds digital state sets. Default database security restricts write access to it.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.digital-sets"
+    ],
+    "related": [
+      "pi-base-subsystem",
+      "digital-state-set"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-uc2003-system-mgmt"
+    ]
+  },
+  {
+    "id": "snapshot-table",
+    "term": "Snapshot table",
+    "aliases": [
+      "piarcmem.dat"
+    ],
+    "definition": "The file piarcmem.dat, which holds the current (snapshot) value of every point. Clients asking for snapshot data read it before compression is applied.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive"
+    ],
+    "related": [
+      "snapshot",
+      "event-queue"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "archive-write-cache",
+    "term": "Archive write cache",
+    "aliases": [
+      "write cache"
+    ],
+    "definition": "Memory cache where the Archive Subsystem first writes incoming data; it is flushed to archive files every Archive_SecondsBetweenFlush (default 5 minutes).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive",
+      "da.tuning"
+    ],
+    "related": [
+      "archive-read-cache",
+      "archive-secondsbetweenflush"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "archive-read-cache",
+    "term": "Archive read cache",
+    "aliases": [
+      "read cache"
+    ],
+    "definition": "The Archive Subsystem's own cache of archive records, separate from the Windows file system cache. It helps most for repeated summary calculations on the same point.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive",
+      "da.tuning"
+    ],
+    "related": [
+      "archive-write-cache",
+      "windows-file-system-cache"
+    ],
+    "sources": [
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "out-of-order-event",
+    "term": "Out-of-order event",
+    "aliases": [
+      "OOO data",
+      "out-of-order data"
+    ],
+    "definition": "An event older than the point's snapshot. It is inserted directly into the archive, bypassing compression; heavy OOO writes cause overflow records and slow the archive.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive",
+      "da.backfill"
+    ],
+    "related": [
+      "overflow-record",
+      "archive-backfill"
+    ],
+    "sources": [
+      "da-uc23-da-performance",
+      "da-uc23-exc-comp"
+    ],
+    "verify": true,
+    "verifyNote": "The 'older than the snapshot' definition is the research author's synthesis; confirm the exact rule in AVEVA documentation."
+  },
+  {
+    "id": "overflow-record",
+    "term": "Overflow record",
+    "aliases": [
+      "message 2016"
+    ],
+    "definition": "An extra archive record created when a point's record fills, typically from out-of-order inserts. Logged as message 2016, 'Inserting overflow record'.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.snapshot-archive"
+    ],
+    "related": [
+      "out-of-order-event"
+    ],
+    "sources": [
+      "da-uc23-da-performance"
+    ],
+    "verify": true,
+    "verifyNote": "The cause (a full record) is inferred in the research; only the message text and the OOO link are read."
+  },
+  {
+    "id": "archive-file",
+    "term": "Archive file",
+    "aliases": [
+      ".arc file",
+      "archive"
+    ],
+    "definition": "A Data Archive file (.arc) holding archived events for a time range, stored by PointID, with a matching .ann annotation file in the same directory. Historic archives are sequential and do not overlap.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.archive-files"
+    ],
+    "related": [
+      "primary-archive",
+      "archive-shift",
+      "annotation-file"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-piarch-thread"
+    ]
+  },
+  {
+    "id": "registered-archive",
+    "term": "Registered archive",
+    "aliases": [
+      "archive registration"
+    ],
+    "definition": "An archive file the Data Archive knows about and can read. Archives can be registered from any drive the server can reach; the primary archive cannot be unregistered.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.archive-files"
+    ],
+    "related": [
+      "archive-file",
+      "primary-archive"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "archive-autoarchivefileroot",
+    "term": "Archive_AutoArchiveFileRoot",
+    "aliases": [],
+    "definition": "Tuning parameter setting the location and name root of automatically created historic archives. Clearing it disables auto-creation, so a shift then reuses an empty archive or overwrites the oldest. Archive_FutureAutoArchiveFileRoot is the future equivalent.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.archive-files",
+      "da.tuning"
+    ],
+    "related": [
+      "archive-autoarchivefilesize",
+      "archive-shift"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "archive-reprocessing",
+    "term": "Archive reprocessing",
+    "aliases": [
+      "offline archive reprocessing",
+      "Offline Archive Utility"
+    ],
+    "definition": "Running piarchss offline (or the Offline Archive Utility) on an archive to repair errors, rearrange records for faster reads and make space for new tags. Set Archive_ReprocessThreadCount to 1 on 2018 SP2 and later.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.archive-files"
+    ],
+    "related": [
+      "archive-file",
+      "pi-archive-subsystem"
+    ],
+    "sources": [
+      "da-vcampus-2010-tuning",
+      "da-uc2011-tips-trenches",
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "archive-sizing-rule",
+    "term": "Archive sizing rule",
+    "aliases": [
+      "archive size guideline"
+    ],
+    "definition": "Course guideline for archive size: the smaller of (RAM in MB / 3) and (3 x licensed points / 1024) MB, rounded down to a power of 2, between 256 MB and 10,240 MB.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.archive-files"
+    ],
+    "related": [
+      "archive-autoarchivefilesize",
+      "archive-file"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "archive-backfill",
+    "term": "Backfilling (archive)",
+    "aliases": [
+      "history backfill",
+      "history recovery"
+    ],
+    "definition": "Writing historical data older than the point's snapshot into the archive, for example through PI to PI, RDBMS or UFL recovery or analysis recalculation. It bypasses compression and adds out-of-order load.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backfill"
+    ],
+    "related": [
+      "out-of-order-event",
+      "dynamic-archive",
+      "backfill"
+    ],
+    "sources": [
+      "da-uc23-da-performance",
+      "da-uc23-exc-comp"
+    ],
+    "verify": true,
+    "verifyNote": "The definition wording is inferred in the research; the facts it rests on (bypass, OOO sources) are read."
+  },
+  {
+    "id": "future-data",
+    "term": "Future data",
+    "aliases": [
+      "forecast data",
+      "predictive data"
+    ],
+    "definition": "Values with timestamps ahead of now, supported natively since PI Data Archive 2015 for January 1970 through January 2038. It may arrive out of order and sporadically, and is stored in future archives.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backfill"
+    ],
+    "related": [
+      "future-point",
+      "future-archive"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-rs2015-future-data"
+    ]
+  },
+  {
+    "id": "future-point",
+    "term": "Future point",
+    "aliases": [
+      "future tag"
+    ],
+    "definition": "A point with Future = true. It stores data in the Future Archive Set, the only archives that accept timestamps more than 10 minutes ahead.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backfill"
+    ],
+    "related": [
+      "future-attribute",
+      "future-data"
+    ],
+    "sources": [
+      "da-emea14-future-data",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "annotation",
+    "term": "Annotation",
+    "aliases": [
+      "event annotation"
+    ],
+    "definition": "A note or object attached to an individual archived event and stored in the .ann file that matches the archive. Heavy use should be limited for archive performance.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.annotations"
+    ],
+    "related": [
+      "annotation-file",
+      "archive-file"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-rs2011-pisystem2010",
+      "da-uc23-da-performance"
+    ],
+    "verify": true,
+    "verifyNote": "The definition is inferred from the .arc/.ann pairing and event-flag descriptions; confirm against AVEVA documentation."
+  },
+  {
+    "id": "pi-batch-database",
+    "term": "PI Batch Database",
+    "aliases": [
+      "PI BatchDB",
+      "PI Batch"
+    ],
+    "definition": "The legacy Data Archive store for batch records. PI Server 2015 and RtReports 4.0 added migration of batch data to AF Event Frames, which supersede it.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.batch-msglog"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "da-uc2002-251",
+      "da-uc2015-roadmap-hughes"
+    ],
+    "verify": true,
+    "verifyNote": "When PI Batch was removed and its subsystem details (pibatch, PIUnitBatch tables) were not found."
+  },
+  {
+    "id": "messagelog-daylimit",
+    "term": "MessageLog_DayLimit",
+    "aliases": [],
+    "definition": "Tuning parameter setting how many days PI Message Log files are kept; default 35. Introduced with PI SDK 1.4.0.416 / PI Server 3.4.380 SP1.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.batch-msglog",
+      "da.tuning"
+    ],
+    "related": [
+      "pi-message-log",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "pipc-log",
+    "term": "pipc.log",
+    "aliases": [
+      "Migratelog"
+    ],
+    "definition": "The legacy plain-text log used by older PI API applications. Setting Migratelog=1 in pipc.ini forwards it to the PI Message Log.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.batch-msglog"
+    ],
+    "related": [
+      "pi-message-log"
+    ],
+    "sources": [
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "database-security",
+    "term": "Database security",
+    "aliases": [
+      "DBSecurity"
+    ],
+    "definition": "Per-table access control on Data Archive configuration tables (for example PIPOINT or PIDS), set in SMT Security > Database Security.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.security"
+    ],
+    "related": [
+      "pi-identity",
+      "ptsecurity-datasecurity"
+    ],
+    "sources": [
+      "da-uc23-security",
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "pi-acl-string",
+    "term": "Security access string",
+    "aliases": [
+      "ACL string",
+      "access control list"
+    ],
+    "definition": "The single string that holds object-level security on the Data Archive, listing identities and their access, for example piadmins: A(r,w) | PIOperators: A(r) | PIWorld: A(r).",
+    "domain": "data-archive",
+    "coverage": [
+      "da.security"
+    ],
+    "related": [
+      "ptsecurity-datasecurity",
+      "pi-identity"
+    ],
+    "sources": [
+      "da-rs2010-rome-arch"
+    ]
+  },
+  {
+    "id": "pi-user-legacy",
+    "term": "PI User and PI Group",
+    "aliases": [
+      "PI Users",
+      "PI Groups"
+    ],
+    "definition": "Legacy Data Archive accounts and groups used for explicit logins. Not recommended; replace them with Windows mappings to PI Identities.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.security"
+    ],
+    "related": [
+      "explicit-login",
+      "pi-identity"
+    ],
+    "sources": [
+      "da-uc23-security"
+    ]
+  },
+  {
+    "id": "pi-api-for-wis",
+    "term": "PI API for WIS",
+    "aliases": [],
+    "definition": "PI API release (2.0.1.35 and later) that extends Windows Integrated Security to PI Interfaces. PI Trust authentication is disabled by default after the upgrade, so create mappings first.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.security"
+    ],
+    "related": [
+      "windows-integrated-security",
+      "pi-trust"
+    ],
+    "sources": [
+      "da-uc23-security"
+    ]
+  },
+  {
+    "id": "pi-base-subsystem",
+    "term": "PI Base Subsystem",
+    "aliases": [
+      "pibasess"
+    ],
+    "definition": "Data Archive subsystem that maintains the Point Database, Digital State Table, authentication configuration databases and PI Module Database. Logs point creation as message 6079.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems"
+    ],
+    "related": [
+      "digital-state-table",
+      "pi-point"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-msglog-blog",
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "pi-snapshot-subsystem",
+    "term": "PI Snapshot Subsystem",
+    "aliases": [
+      "pisnapss",
+      "Snapshot Subsystem"
+    ],
+    "definition": "Data Archive subsystem that keeps the latest event for each point, applies compression and sends archive-worthy events to the event queue.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems",
+      "da.snapshot-archive"
+    ],
+    "related": [
+      "snapshot",
+      "compression",
+      "event-queue"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "pi-archive-subsystem",
+    "term": "PI Archive Subsystem",
+    "aliases": [
+      "piarchss",
+      "Archive Subsystem"
+    ],
+    "definition": "Data Archive subsystem that stores data coming out of the snapshot and serves historical queries, using a write cache and its own read cache.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems",
+      "da.snapshot-archive"
+    ],
+    "related": [
+      "archive-write-cache",
+      "archive-read-cache",
+      "piarchss-threadcount"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "pi-network-manager",
+    "term": "PI Network Manager",
+    "aliases": [
+      "pinetmgr"
+    ],
+    "definition": "Data Archive subsystem that manages communication between subsystems, interfaces and clients, and validates clients when they connect.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems"
+    ],
+    "related": [
+      "pi-port-5450"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-msglog-blog"
+    ]
+  },
+  {
+    "id": "pi-update-manager",
+    "term": "PI Update Manager",
+    "aliases": [
+      "Update Manager"
+    ],
+    "definition": "Data Archive subsystem that queues notifications of changes to values, point attributes and modules for clients that subscribe to them. Good compression reduces its load.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems"
+    ],
+    "related": [
+      "maxupdatequeue"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-uc23-exc-comp"
+    ]
+  },
+  {
+    "id": "pi-backup-subsystem",
+    "term": "PI Backup Subsystem",
+    "aliases": [],
+    "definition": "Data Archive subsystem that manages and coordinates Data Archive backups.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems",
+      "da.backup"
+    ],
+    "related": [
+      "pi-backup",
+      "vss"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "pisrvstop",
+    "term": "pisrvstop.bat",
+    "aliases": [
+      "pisrvstart.bat"
+    ],
+    "definition": "The scripts that stop (pisrvstop.bat) and start (pisrvstart.bat) all Data Archive services, run as administrator. Do not edit pisrvstop.bat; put custom commands in pisrvsitestop.bat.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems"
+    ],
+    "related": [
+      "pisrvsitestop"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "piarchss-threadcount",
+    "term": "piarchss_ThreadCount",
+    "aliases": [
+      "pisnapss_ThreadCount"
+    ],
+    "definition": "Tuning parameter for how many RPC requests the Archive Subsystem runs at once. AVEVA suggests cores minus 1 for standard use, or 2x cores for large-query systems without real-time users.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.subsystems",
+      "da.tuning"
+    ],
+    "related": [
+      "pi-archive-subsystem",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-uc23-da-performance",
+      "da-dell-wp-2012"
+    ]
+  },
+  {
+    "id": "pi-smt",
+    "term": "PI SMT",
+    "aliases": [
+      "System Management Tools",
+      "SMT"
+    ],
+    "definition": "PI System Management Tools: the MMC-style admin console for the Data Archive, with plug-ins such as Point Builder, PI Services, Archives, Tuning Parameters, Message Logs and the security plug-ins.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tools"
+    ],
+    "related": [
+      "point-builder",
+      "archive-editor",
+      "piconfig"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "piconfig",
+    "term": "piconfig",
+    "aliases": [
+      "PI configuration utility"
+    ],
+    "definition": "The Data Archive's scriptable command-line tool for reading and editing tables. Commands start with @, comments with *, and scripts follow @tabl, @mode, @istr or @ostr, data lines, @ends.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tools"
+    ],
+    "related": [
+      "pi-smt",
+      "piartool"
+    ],
+    "sources": [
+      "da-livelibrary-piconfig",
+      "da-ps-piarch-thread"
+    ]
+  },
+  {
+    "id": "archive-editor",
+    "term": "Archive Editor",
+    "aliases": [
+      "SMT Archive Editor"
+    ],
+    "definition": "The SMT plug-in that views and edits archived values.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tools"
+    ],
+    "related": [
+      "pi-smt"
+    ],
+    "sources": [
+      "da-ps-string-thread"
+    ]
+  },
+  {
+    "id": "collective-primary",
+    "term": "Primary member",
+    "aliases": [
+      "collective primary"
+    ],
+    "definition": "The collective member where configuration changes are made and replicated from to the secondaries.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.collectives"
+    ],
+    "related": [
+      "collective-secondary",
+      "pi-collective"
+    ],
+    "sources": [
+      "da-arch-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "Research marks this definition as inferred; whether secondaries reject configuration edits is not confirmed."
+  },
+  {
+    "id": "collective-secondary",
+    "term": "Secondary member",
+    "aliases": [
+      "collective secondary"
+    ],
+    "definition": "A collective member holding a copy of the primary's configuration and receiving the same time-series data directly from interfaces. A good target for expensive client queries.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.collectives"
+    ],
+    "related": [
+      "collective-primary",
+      "n-way-buffering"
+    ],
+    "sources": [
+      "da-uc23-da-performance",
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "collective-connection-preference",
+    "term": "Collective connection preference",
+    "aliases": [
+      "PreferPrimary",
+      "RequirePrimary"
+    ],
+    "definition": "PI SDK client setting for choosing a collective member: PreferPrimary, RequirePrimary or Any (default). Use it instead of a network load balancer in front of the Data Archive.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.collectives"
+    ],
+    "related": [
+      "pi-collective"
+    ],
+    "sources": [
+      "da-uc2011-tips-trenches"
+    ]
+  },
+  {
+    "id": "two-phase-backup",
+    "term": "Two-phase backup",
+    "aliases": [],
+    "definition": "AVEVA's recommended routine: daily incremental PI backups run off-peak with Windows Task Scheduler, written locally first and then copied to a separate server so they survive loss of the PI server.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backup"
+    ],
+    "related": [
+      "pi-backup",
+      "disaster-recovery"
+    ],
+    "sources": [
+      "da-uc23-security"
+    ]
+  },
+  {
+    "id": "afbackup",
+    "term": "AFBackup.bat",
+    "aliases": [
+      "dbo.usp_backup"
+    ],
+    "definition": "The AF backup script that PIBackup.bat calls. It runs the stored procedure dbo.usp_backup on the PIFD SQL database.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backup"
+    ],
+    "related": [
+      "pi-backup",
+      "pifd"
+    ],
+    "sources": [
+      "da-fb-pida-84"
+    ]
+  },
+  {
+    "id": "rollback-backup",
+    "term": "Rollback backup",
+    "aliases": [
+      "upgrade rollback backup"
+    ],
+    "definition": "The backup taken during a PI Server upgrade so it can be rolled back; it needs free space equal to the Data Archive databases plus the primary archive.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.backup"
+    ],
+    "related": [
+      "pi-backup"
+    ],
+    "sources": [
+      "da-arch-workbook"
+    ]
+  },
+  {
+    "id": "tuning-parameter",
+    "term": "Tuning parameter",
+    "aliases": [
+      "timeout parameter"
+    ],
+    "definition": "A named Data Archive configuration setting that controls subsystem behaviour, such as ArcMaxCollect or Archive_SecondsBetweenFlush. Viewed and changed in SMT Operation > Tuning Parameters.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tuning"
+    ],
+    "related": [
+      "arcmaxcollect",
+      "archive-secondsbetweenflush"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "archive-secondsbetweenflush",
+    "term": "Archive_SecondsBetweenFlush",
+    "aliases": [],
+    "definition": "Tuning parameter for how often the archive write cache is flushed to archive files; default 5 minutes.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tuning",
+      "da.snapshot-archive"
+    ],
+    "related": [
+      "archive-write-cache",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ]
+  },
+  {
+    "id": "snapshot-eventqueuesize",
+    "term": "Snapshot_EventQueueSize",
+    "aliases": [
+      "Snapshot_EventQueuePath"
+    ],
+    "definition": "Tuning parameter giving the event queue size in MB; Snapshot_EventQueuePath sets where the queue lives.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tuning"
+    ],
+    "related": [
+      "event-queue",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-vcampus-2010-tuning"
+    ],
+    "verify": true,
+    "verifyNote": "The current default size is not confirmed; Dell's 2012 test used 64 MB as the default."
+  },
+  {
+    "id": "maxupdatequeue",
+    "term": "MaxUpdateQueue",
+    "aliases": [
+      "TotalUpdateQueue"
+    ],
+    "definition": "Tuning parameters that limit the PI Update Manager's queues (per consumer and in total). 2010 OSIsoft guidance said not to change them.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tuning"
+    ],
+    "related": [
+      "pi-update-manager",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-vcampus-2010-tuning"
+    ],
+    "verify": true,
+    "verifyNote": "The per-consumer versus total split is inferred from the names; the source only says they limit Update Manager queues."
+  },
+  {
+    "id": "autotrustconfig",
+    "term": "AutoTrustConfig",
+    "aliases": [],
+    "definition": "A basic Data Archive server setting related to automatic trusts; 2010 tuning guidance recommends 0.",
+    "domain": "data-archive",
+    "coverage": [
+      "da.tuning",
+      "da.security"
+    ],
+    "related": [
+      "pi-trust",
+      "tuning-parameter"
+    ],
+    "sources": [
+      "da-vcampus-2010-tuning"
+    ],
+    "verify": true,
+    "verifyNote": "What each AutoTrustConfig value does is not described in a readable source; only the recommended value 0 is."
+  }
+]

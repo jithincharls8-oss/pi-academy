@@ -1,0 +1,181 @@
+[
+  {
+    "id": "q-backup-what",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 1,
+    "prompt": "Which items does OSIsoft training say a Data Archive backup plan must cover? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Data files: snapshot, event queues, archives" },
+      { "id": "b", "text": "Configuration: point configuration and tuning parameters" },
+      { "id": "c", "text": "The subsystems (Windows services) and the hardware underneath" },
+      { "id": "d", "text": "Only the newest archive file" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The training lists subsystems, data files (snapshot, event queues, archives), configuration (point configuration, tuning parameters) and the hardware. Backing up only one archive loses the rest.",
+    "lessonId": "backup-and-restore",
+    "tags": ["backup"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-backup-two-phase",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 2,
+    "scenario": "Ransomware encrypts a PI server's disks. The nightly PI backup was written to D:\\PIBackup on the same server and nowhere else.",
+    "prompt": "Which practice from AVEVA's 2023 security guidance would have prevented the loss?",
+    "options": [
+      { "id": "a", "text": "A two-phase strategy: back up locally first, then copy to a separate server" },
+      { "id": "b", "text": "Running backups during peak hours" },
+      { "id": "c", "text": "Disabling VSS" },
+      { "id": "d", "text": "Using larger archive files" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA recommends daily incremental backups off-peak with Task Scheduler and a two-phase strategy (local first, then a copy to a separate server). Keeping backups only on the same server is a listed mistake.",
+    "lessonId": "backup-and-restore",
+    "tags": ["backup", "security", "scenario"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-backup-numarch",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.backup", "da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each piartool -backup option to what it selects.",
+    "pairs": [
+      { "left": "-numarch <n>", "right": "The latest n archives counted back from now" },
+      { "left": "-archives <list>", "right": "Specific archive numbers" },
+      { "left": "A range of older archives", "right": "Not supported by piartool -backup" }
+    ],
+    "explanation": "piartool -backup supports -numarch and -archives; it cannot take a range of older archives (AVEVA feedback portal PIDA-1092).",
+    "lessonId": "backup-and-restore",
+    "tags": ["piartool"],
+    "sources": ["da-fb-pida-1092"]
+  },
+  {
+    "id": "q-backup-vss",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 1,
+    "prompt": "Which Windows service lets PI backups copy files that are in use? Give its name or acronym.",
+    "accepted": ["VSS", "Volume Shadow Copy Service", "Volume Shadow Copy"],
+    "explanation": "PI backups use the Windows Volume Shadow Copy Service (VSS), so they can back up files in use without downtime.",
+    "lessonId": "backup-and-restore",
+    "tags": ["backup"],
+    "sources": ["da-rs2010-rome-arch", "adm-pisquare-piartool-collectives"]
+  },
+  {
+    "id": "q-backup-af-proc",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 3,
+    "prompt": "When PIBackup.bat calls AFBackup.bat, what does the AF SQL backup run?",
+    "options": [
+      { "id": "a", "text": "The stored procedure dbo.usp_backup on the PIFD database" },
+      { "id": "b", "text": "piartool -backup -numarch 1" },
+      { "id": "c", "text": "pidiag -archk on the AF database" },
+      { "id": "d", "text": "A copy of piarcmem.dat" }
+    ],
+    "answer": "a",
+    "explanation": "The AF SQL backup runs dbo.usp_backup on PIFD, for example sqlcmd -S <instance> -d PIFD -Q \"EXEC dbo.usp_backup @outpath = N'<path>';\" -E.",
+    "lessonId": "backup-and-restore",
+    "tags": ["af", "backup"],
+    "sources": ["da-fb-pida-84"]
+  },
+  {
+    "id": "q-backup-rollback-space",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 2,
+    "prompt": "How much free space does a rollback backup during a PI Server upgrade need?",
+    "options": [
+      { "id": "a", "text": "Space equal to the databases plus the primary archive" },
+      { "id": "b", "text": "Space equal to all registered archives" },
+      { "id": "c", "text": "10 MB" },
+      { "id": "d", "text": "None; rollback backups are stored in memory" }
+    ],
+    "answer": "a",
+    "explanation": "The architecture workbook says a rollback backup during upgrades needs space equal to the databases plus the primary archive.",
+    "lessonId": "backup-and-restore",
+    "tags": ["upgrade"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-backup-not-dr",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backup", "da.collectives"],
+    "difficulty": 2,
+    "prompt": "True or false: according to AVEVA's 2019 architecture talk, PI backups, redundant interfaces and high availability are complete disaster-recovery solutions on their own.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "The talk states they are NOT stand-alone disaster-recovery solutions, and recommends a DR simulation at least once a year.",
+    "lessonId": "backup-and-restore",
+    "tags": ["true-false", "dr"],
+    "sources": ["adm-uc19-architecting-zhimanov"]
+  },
+  {
+    "id": "q-backup-licence-standby",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backup", "fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "A team wants to restore last night's backup to a spare server and keep it running as a hot standby. What does the 2026 licence schedule say?",
+    "options": [
+      { "id": "a", "text": "Backup copies may not be used as a hot standby, for testing or training, or as a caching server" },
+      { "id": "b", "text": "Backup copies may run as hot standby for up to 90 days" },
+      { "id": "c", "text": "Any backup copy may run as a hot standby" },
+      { "id": "d", "text": "Hot standby is allowed only for PI Test Servers" }
+    ],
+    "answer": "a",
+    "explanation": "The schedule forbids using backup copies for testing or training, as a hot standby or as a caching server. HA uses licensed collective members.",
+    "lessonId": "backup-and-restore",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-backup-schedule",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.backup"],
+    "difficulty": 2,
+    "prompt": "Order the steps of AVEVA's recommended daily backup routine.",
+    "items": [
+      { "id": "a", "text": "Windows Task Scheduler starts the backup off-peak" },
+      { "id": "b", "text": "The backup is written locally" },
+      { "id": "c", "text": "The backup is copied to a separate server" }
+    ],
+    "explanation": "AVEVA recommends daily incremental backups off-peak with Windows Task Scheduler, local first, then a copy to a separate server.",
+    "lessonId": "backup-and-restore",
+    "tags": ["backup"],
+    "sources": ["da-uc23-security"]
+  },
+  {
+    "id": "q-backup-collective-init",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backup", "da.collectives"],
+    "difficulty": 3,
+    "prompt": "How does PI Collective Manager bring a new secondary member up to date with history?",
+    "options": [
+      { "id": "a", "text": "It takes a PI Backup of the primary, copies it and registers it on the secondary" },
+      { "id": "b", "text": "It replicates every event from the primary in real time" },
+      { "id": "c", "text": "It reprocesses the secondary's archives offline" },
+      { "id": "d", "text": "It asks interfaces to resend all history" }
+    ],
+    "answer": "a",
+    "explanation": "Per PI Square, PI Collective Manager synchronises a secondary by taking a PI Backup of the primary, copying it and registering it.",
+    "lessonId": "backup-and-restore",
+    "tags": ["collectives"],
+    "sources": ["adm-pisquare-piartool-collectives"]
+  }
+]

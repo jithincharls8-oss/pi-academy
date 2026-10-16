@@ -1,0 +1,751 @@
+[
+  {
+    "id": "cds-get-identity-well-known-openid-configuration",
+    "controller": "CONNECT data services: Identity",
+    "method": "GET",
+    "path": "/identity/.well-known/openid-configuration",
+    "summary": "OpenID discovery document; read token_endpoint from it, then POST client_id, client_secret and grant_type=client_credentials to get access_token and expires_in.",
+    "params": [],
+    "example": "GET https://uswe.datahub.connect.aveva.com/identity/.well-known/openid-configuration",
+    "sources": [
+      "int-gh-omf-complexdynamic-auth",
+      "int-gh-adh-transfer-verification-getdata"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams",
+    "controller": "CONNECT data services: Streams",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams",
+    "summary": "Lists or searches streams, e.g. query=ID:PI_PISRV01_* AND Name:sinusoid.",
+    "params": [
+      {
+        "name": "query",
+        "in": "query",
+        "description": "search text, e.g. Id:StreamDemo1 or S*",
+        "required": false
+      },
+      {
+        "name": "skip",
+        "in": "query",
+        "description": "items to skip",
+        "required": false
+      },
+      {
+        "name": "count",
+        "in": "query",
+        "description": "items to return",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams",
+      "int-gh-adh-pi-readonly-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid",
+    "controller": "CONNECT data services: Streams",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}",
+    "summary": "Gets a stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-post-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid",
+    "controller": "CONNECT data services: Streams",
+    "method": "POST",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}",
+    "summary": "Gets or creates a stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "SdsStream definition",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-put-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid",
+    "controller": "CONNECT data services: Streams",
+    "method": "PUT",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}",
+    "summary": "Creates or updates a stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "SdsStream definition",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-delete-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid",
+    "controller": "CONNECT data services: Streams",
+    "method": "DELETE",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}",
+    "summary": "Deletes a stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-type",
+    "controller": "CONNECT data services: Streams",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Type",
+    "summary": "Gets the stream's SdsType.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": true,
+    "verifyNote": "The route is listed in AVEVA's library; the HTTP method is assumed to be GET."
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-tags",
+    "controller": "CONNECT data services: Streams",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Tags",
+    "summary": "Stream tags.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": true,
+    "verifyNote": "The route is listed in AVEVA's library; the HTTP method is assumed to be GET (a PUT form may also exist)."
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-metadata",
+    "controller": "CONNECT data services: Streams",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Metadata",
+    "summary": "Stream metadata.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": true,
+    "verifyNote": "The route is listed in AVEVA's library; the HTTP method is assumed to be GET (a PUT form may also exist)."
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data",
+    "summary": "Reads one event by index or a window. Window reads page with count and continuationToken; loop until the token is null.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "index",
+        "in": "query",
+        "description": "single index",
+        "required": false
+      },
+      {
+        "name": "startIndex",
+        "in": "query",
+        "description": "window start",
+        "required": false
+      },
+      {
+        "name": "endIndex",
+        "in": "query",
+        "description": "window end",
+        "required": false
+      },
+      {
+        "name": "count",
+        "in": "query",
+        "description": "page size, e.g. 250000",
+        "required": false
+      },
+      {
+        "name": "continuationToken",
+        "in": "query",
+        "description": "token from the previous page",
+        "required": false
+      }
+    ],
+    "example": "GET https://uswe.datahub.connect.aveva.com/api/v1/Tenants/{t}/Namespaces/{ns}/Streams/PI_PISRV01_12/Data?startIndex=2024-01-01T00:00:00Z&endIndex=2024-01-02T00:00:00Z&count=250000\nAuthorization: Bearer <token>",
+    "sources": [
+      "int-gh-adh-lib-streams",
+      "int-gh-adh-transfer-verification-getdata"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-post-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data",
+    "controller": "CONNECT data services: Data",
+    "method": "POST",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data",
+    "summary": "Inserts events.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "array of events",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-put-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data",
+    "controller": "CONNECT data services: Data",
+    "method": "PUT",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data",
+    "summary": "Updates events; with ?allowCreate=false it replaces existing events only.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "allowCreate",
+        "in": "query",
+        "description": "false to replace without creating",
+        "required": false
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "array of events",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-delete-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data",
+    "controller": "CONNECT data services: Data",
+    "method": "DELETE",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data",
+    "summary": "Deletes events by index or window.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      },
+      {
+        "name": "index",
+        "in": "query",
+        "description": "index",
+        "required": false
+      },
+      {
+        "name": "startIndex",
+        "in": "query",
+        "description": "window start",
+        "required": false
+      },
+      {
+        "name": "endIndex",
+        "in": "query",
+        "description": "window end",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-first",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/First",
+    "summary": "First event of the stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-last",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/Last",
+    "summary": "Last event of the stream.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-summaries",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/Summaries",
+    "summary": "Summary values over a window.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-sampled",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/Sampled",
+    "summary": "Sampled values over a window.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-transform",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/Transform",
+    "summary": "Transformed data.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-streams-streamid-data-transform-interpolated",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/Transform/Interpolated",
+    "summary": "Interpolated data.",
+    "params": [
+      {
+        "name": "streamId",
+        "in": "path",
+        "description": "stream ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-bulk-streams-data-joins",
+    "controller": "CONNECT data services: Data",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/Bulk/Streams/Data/Joins",
+    "summary": "Bulk read joining several streams.",
+    "params": [],
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "verify": true,
+    "verifyNote": "The route is listed in AVEVA's library; the HTTP method and parameters were not read."
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews",
+    "summary": "Lists data views. Paging follows links in the HTTP Link header.",
+    "params": [
+      {
+        "name": "skip",
+        "in": "query",
+        "description": "items to skip",
+        "required": false
+      },
+      {
+        "name": "count",
+        "in": "query",
+        "description": "items to return (default 100)",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}",
+    "summary": "Gets a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-post-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id",
+    "controller": "CONNECT data services: Data views",
+    "method": "POST",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}",
+    "summary": "Creates a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "data view definition",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-put-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id",
+    "controller": "CONNECT data services: Data views",
+    "method": "PUT",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}",
+    "summary": "Creates or updates a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "data view definition",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-delete-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id",
+    "controller": "CONNECT data services: Data views",
+    "method": "DELETE",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}",
+    "summary": "Deletes a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id-resolved-dataitems-queryid",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}/Resolved/DataItems/{queryId}",
+    "summary": "Data items resolved for one query of the view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      },
+      {
+        "name": "queryId",
+        "in": "path",
+        "description": "query ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id-resolved-ineligibledataitems-queryid",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}/Resolved/IneligibleDataItems/{queryId}",
+    "summary": "Data items that matched but are not eligible.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      },
+      {
+        "name": "queryId",
+        "in": "path",
+        "description": "query ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id-resolved-availablefieldsets",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}/Resolved/AvailableFieldSets",
+    "summary": "Field sets available to the view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id-data-interpolated",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}/data/interpolated",
+    "summary": "Interpolated tabular data from a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      },
+      {
+        "name": "startIndex",
+        "in": "query",
+        "description": "start",
+        "required": false
+      },
+      {
+        "name": "endIndex",
+        "in": "query",
+        "description": "end",
+        "required": false
+      },
+      {
+        "name": "interval",
+        "in": "query",
+        "description": "interval",
+        "required": false
+      },
+      {
+        "name": "count",
+        "in": "query",
+        "description": "rows per page",
+        "required": false
+      },
+      {
+        "name": "form",
+        "in": "query",
+        "description": "output form",
+        "required": false
+      },
+      {
+        "name": "cache",
+        "in": "query",
+        "description": "cache behaviour",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-get-api-version-tenants-tenantid-namespaces-namespaceid-dataviews-id-data-stored",
+    "controller": "CONNECT data services: Data views",
+    "method": "GET",
+    "path": "/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}/dataviews/{id}/data/stored",
+    "summary": "Stored tabular data from a data view.",
+    "params": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "data view ID",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cds-post-api-version-tenants-tenantid-namespaces-namespaceid-omf",
+    "controller": "CONNECT data services: OMF",
+    "method": "POST",
+    "path": "/api/{version}/tenants/{tenantId}/namespaces/{namespaceId}/omf",
+    "summary": "OMF ingress. Uses a client-credentials client and an OMF connection (State Active) set up in the portal. Only the Dynamic type classification; no Link data. A 202 returns an Operation-Id; 413 means payload too large.",
+    "params": [
+      {
+        "name": "messagetype",
+        "in": "body",
+        "description": "header: type, container or data",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "JSON array of OMF objects",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-omf-complexdynamic-program",
+      "int-gh-aveva-samples-omf",
+      "dcv-github-datahub-omf-ingress",
+      "dcv-github-adh-omf-ingress"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,203 @@
+[
+  {
+    "id": "q-timeseries-event-parts",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 1,
+    "prompt": "A real-time reading is stored as a PI tag event. Which three parts does every event have? Select three.",
+    "options": [
+      { "id": "a", "text": "Timestamp" },
+      { "id": "b", "text": "Value" },
+      { "id": "c", "text": "Status, for example GOOD" },
+      { "id": "d", "text": "The operator's name" },
+      { "id": "e", "text": "The interface's IP address" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OSIsoft describes a PI tag event as a timestamp, a value and a status such as GOOD. Operator names and IP addresses are not part of an event.",
+    "lessonId": "time-series-basics",
+    "tags": ["events"],
+    "sources": ["da-pi101-2017-basics"]
+  },
+  {
+    "id": "q-timeseries-false-ramp",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 2,
+    "scenario": "A solar MW tag sits at 0 overnight. It is not stepped and has the default CompMax of 28800 s. A PI DataLink Sampled Data report shows the output rising slowly through the night, although the plant produced nothing.",
+    "prompt": "Which change shows the real night-time values?",
+    "options": [
+      { "id": "a", "text": "Read compressed (recorded) data instead of sampled data, or set CompMax to 3600 so a zero is stored every hour" },
+      { "id": "b", "text": "Increase CompMax to 86400" },
+      { "id": "c", "text": "Change the server time zone" },
+      { "id": "d", "text": "Increase ExcDev" }
+    ],
+    "answer": "a",
+    "explanation": "Sampled data interpolates between the last stored 0 and the first morning value, drawing a false ramp. The PI Square fixes are to use compressed data, set CompMax to 3600 so zeros are stored hourly, or use an AF analysis threshold. A larger CompMax makes the gap worse; time zone and ExcDev do not help.",
+    "lessonId": "time-series-basics",
+    "tags": ["interpolation", "scenario"],
+    "sources": ["da-ps-step-thread", "da-ps-interp-thread"]
+  },
+  {
+    "id": "q-timeseries-utc",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 2,
+    "prompt": "How does the Data Archive store timestamps?",
+    "options": [
+      { "id": "a", "text": "In UTC, so every stored day has 24 hours; clients apply the time zone and DST" },
+      { "id": "b", "text": "In the server's local time, including DST" },
+      { "id": "c", "text": "In the interface node's local time" },
+      { "id": "d", "text": "As text strings in the client's format" }
+    ],
+    "answer": "a",
+    "explanation": "The Data Archive stores timestamps in UTC seconds. Time zone and daylight-saving adjustments are applied when values are returned to clients, so changing time zones does not alter stored data.",
+    "lessonId": "time-series-basics",
+    "tags": ["time"],
+    "sources": ["da-pi-programming-pdf", "da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-timeseries-time-expr",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 1,
+    "prompt": "Match each PI time expression to its meaning.",
+    "pairs": [
+      { "left": "*", "right": "Now" },
+      { "left": "t", "right": "Today" },
+      { "left": "y", "right": "Yesterday" },
+      { "left": "*-1d", "right": "One day ago" },
+      { "left": "*+1h", "right": "One hour from now" }
+    ],
+    "explanation": "PI time expressions use * for now, t for today and y for yesterday, plus offsets such as -1d or +3h. Future timestamps use the same syntax, for example *+1h.",
+    "lessonId": "time-series-basics",
+    "tags": ["time"],
+    "sources": ["da-pi-programming-pdf", "da-assets-workbook"]
+  },
+  {
+    "id": "q-timeseries-step",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries", "da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "A point has Step turned on. How are values between two archived events returned when you ask for an interpolated value?",
+    "options": [
+      { "id": "a", "text": "As a straight line between the two events" },
+      { "id": "b", "text": "Held at the earlier event's value until the next archived event" },
+      { "id": "c", "text": "As the average of the two events" },
+      { "id": "d", "text": "As no data" }
+    ],
+    "answer": "b",
+    "explanation": "With Step on, a value is held until the next archived value. With Step off, values between archived events are linearly interpolated.",
+    "lessonId": "time-series-basics",
+    "tags": ["interpolation"],
+    "sources": ["da-rockwell-studio5000-params"]
+  },
+  {
+    "id": "q-timeseries-snapshot-def",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries", "da.snapshot-archive"],
+    "difficulty": 1,
+    "prompt": "What is the name for the most recent event of a PI point?",
+    "accepted": ["snapshot", "the snapshot", "snapshot value"],
+    "explanation": "The snapshot is the most recent event for each point, held by the Snapshot Subsystem.",
+    "lessonId": "time-series-basics",
+    "tags": ["events"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-timeseries-retrieval-match",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 2,
+    "prompt": "Match each retrieval method to what it returns.",
+    "pairs": [
+      { "left": "Compressed / recorded data", "right": "Only the events actually stored in the archive" },
+      { "left": "Sampled or timed data in DataLink", "right": "Values interpolated at chosen times" },
+      { "left": "Archived value with previous retrieval", "right": "The stored value at or before the requested time" }
+    ],
+    "explanation": "Per the PI Square thread on interpolation: Sampled and Timed Data functions interpolate, Archived Value with previous retrieval returns stored values, and compressed data returns only archived events.",
+    "lessonId": "time-series-basics",
+    "tags": ["retrieval"],
+    "sources": ["da-ps-interp-thread"]
+  },
+  {
+    "id": "q-timeseries-afsdk-code",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 3,
+    "prompt": "In the AF SDK, which PIPoint method returns the values actually stored in the archive for a time range?",
+    "options": [
+      { "id": "a", "text": "RecordedValues" },
+      { "id": "b", "text": "InterpolatedValues" },
+      { "id": "c", "text": "CurrentValue" },
+      { "id": "d", "text": "PlotValues" }
+    ],
+    "answer": "a",
+    "explanation": "PIPoint.RecordedValues(AFTimeRange, AFBoundaryType.Inside, \"\", false) returns archived (recorded) values. InterpolatedValues calculates values at an interval between stored events.",
+    "lessonId": "time-series-basics",
+    "tags": ["af-sdk"],
+    "sources": ["da-pi-programming-pdf"]
+  },
+  {
+    "id": "q-timeseries-future-vs-hist",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries", "da.backfill"],
+    "difficulty": 2,
+    "prompt": "Which statements describe future (predictive) data compared with historical (measured) data? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "It may arrive out of order" },
+      { "id": "b", "text": "It may be sporadic" },
+      { "id": "c", "text": "It is usually less dense" },
+      { "id": "d", "text": "It always streams in steadily in time order" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OSIsoft's 2015 future-data talk: historical data streams in time order, steadily and densely; future data may arrive out of order, may be sporadic and is usually less dense.",
+    "lessonId": "time-series-basics",
+    "tags": ["future-data"],
+    "sources": ["da-rs2015-future-data"]
+  },
+  {
+    "id": "q-timeseries-dst-check",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries", "da.tools"],
+    "difficulty": 3,
+    "prompt": "Daylight-saving rules change in your country. Besides operating-system patches, what does OSIsoft say to check on the Data Archive?",
+    "options": [
+      { "id": "a", "text": "That localhost.tz is updated, verified with pidiag -tz" },
+      { "id": "b", "text": "Nothing; PI ignores time zones completely" },
+      { "id": "c", "text": "Re-index every archive with piartool -al" },
+      { "id": "d", "text": "Change every point's Step attribute" }
+    ],
+    "answer": "a",
+    "explanation": "After DST rule changes, OS patches and an updated localhost.tz are required; pidiag -tz (run from pipc\\adm) verifies localhost.tz. Stored UTC data is not affected, but clients need the right rules to convert it. piartool -al lists archives.",
+    "lessonId": "time-series-basics",
+    "tags": ["time", "tools"],
+    "sources": ["da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-timeseries-tf-ramp",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.timeseries"],
+    "difficulty": 1,
+    "prompt": "True or false: an OPC UA connector that stores only changes can make a pump that starts suddenly look like a slow ramp on an interpolated trend.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "In the PI Square example, a pump idle for a year that starts at 10 l/s appears as a slow ramp rather than a step, because only changes were stored and the trend interpolates between them.",
+    "lessonId": "time-series-basics",
+    "tags": ["true-false", "interpolation"],
+    "sources": ["da-ps-opcua-integrity-thread"]
+  }
+]

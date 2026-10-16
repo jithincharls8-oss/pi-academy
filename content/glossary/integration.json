@@ -1,0 +1,1497 @@
+[
+  {
+    "id": "pi-web-api",
+    "term": "PI Web API",
+    "aliases": [
+      "piwebapi"
+    ],
+    "definition": "A RESTful, stateless web service for the PI System. Its root URL is https://<server>/piwebapi and its built-in help is at /piwebapi/help. It is built on AF SDK and exposes a subset of it, so any platform that can make HTTP requests can read and write PI and AF data.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid",
+      "webapi-stream",
+      "af-sdk"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "webid",
+    "term": "WebID",
+    "aliases": [
+      "Web ID"
+    ],
+    "definition": "A persistent, URL-safe identifier that PI Web API uses to address an object (PI point, element, attribute and so on) in URLs. WebIDs can be stored by client applications.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid-2",
+      "webid-full",
+      "webid-idonly",
+      "webid-pathonly"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "webid-2",
+    "term": "WebID 2.0",
+    "aliases": [
+      "WebID version 2"
+    ],
+    "definition": "The open WebID format introduced in PI Web API 2017 R2. WebID 1.0 was opaque; WebID 2.0 follows an open specification so clients can build and decode WebIDs themselves. Character 1 is the type letter, character 2 the version, characters 3-4 the object-type marker, then Base64url-encoded IDs and/or path.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid",
+      "webid-pathonly"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-java-webidinfo"
+    ]
+  },
+  {
+    "id": "webid-full",
+    "term": "Full WebID",
+    "aliases": [
+      "WebID type Full"
+    ],
+    "definition": "The default WebID 2.0 type (type letter F). It encodes both the object IDs and the path, so it is the longest form and the most resilient.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid-2",
+      "webid-idonly",
+      "webid-pathonly"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-java-webidinfo"
+    ]
+  },
+  {
+    "id": "webid-idonly",
+    "term": "IDOnly WebID",
+    "aliases": [
+      "WebID type IDOnly"
+    ],
+    "definition": "A WebID 2.0 type (type letter I) that encodes only the object IDs. It survives moves and renames but becomes invalid when the object is deleted.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid-full",
+      "webid-pathonly"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "webid-pathonly",
+    "term": "PathOnly WebID",
+    "aliases": [
+      "WebID type PathOnly"
+    ],
+    "definition": "A WebID 2.0 type (type letter P) that encodes only the object's path, so a client can build it without a lookup. It breaks when the object is renamed and always points to whatever is at that path.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid-full",
+      "webid-idonly"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pydevclub-webid-helper"
+    ]
+  },
+  {
+    "id": "webid-type-parameter",
+    "term": "webIdType",
+    "aliases": [
+      "webIdType query parameter"
+    ],
+    "definition": "PI Web API query parameter that chooses which WebID type the response uses, for example ?webIdType=PathOnly or webidtype=idonly.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webid-2"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-jmp-pi-tagnames"
+    ]
+  },
+  {
+    "id": "webapi-stream",
+    "term": "Stream (PI Web API)",
+    "aliases": [
+      "streams controller"
+    ],
+    "definition": "In PI Web API, the time series of a PI point or an AF attribute, addressed as /streams/{webId}. Stream endpoints include value, end, recorded, interpolated, plot, summary and channel.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "streamset",
+      "webid"
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api"
+    ]
+  },
+  {
+    "id": "streamset",
+    "term": "StreamSet",
+    "aliases": [
+      "streamsets controller"
+    ],
+    "definition": "A set of streams read or written in one PI Web API call: either all attributes of an element (/streamsets/{webId}/...) or an ad hoc list of WebIDs passed as a repeated webId query parameter.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webapi-stream"
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ]
+  },
+  {
+    "id": "selected-fields",
+    "term": "selectedFields",
+    "aliases": [
+      "selected fields"
+    ],
+    "definition": "PI Web API query parameter that trims a response to the listed fields, given as semicolon-separated dotted paths such as Items.Timestamp;Items.Value.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "webapi-links",
+    "term": "Links (PI Web API)",
+    "aliases": [
+      "Links object"
+    ],
+    "definition": "The object in each PI Web API response that holds URLs to related resources, so a client can navigate the API. The root response Links include Self, AssetServers, DataServers, Omf, Search and System.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "x-requested-with",
+    "term": "X-Requested-With header",
+    "aliases": [
+      "CSRF defence",
+      "CSRF defense"
+    ],
+    "definition": "The HTTP header that PI Web API's CSRF (cross-site request forgery) defence requires on POST, PUT, PATCH and DELETE requests. Any value works; samples use XmlHttpRequest. GET requests are not affected.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "pi-web-api",
+      "cors"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-uc17-secure-webapi"
+    ]
+  },
+  {
+    "id": "cors",
+    "term": "CORS",
+    "aliases": [
+      "cross-origin resource sharing"
+    ],
+    "definition": "A browser mechanism that lets a web page from another origin call a service. PI Web API configures it with the attributes CorsOrigins, CorsMethods, CorsHeaders, CorsExposedHeaders and CorsSupportsCredentials.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "x-requested-with"
+    ],
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-gh-angular-sample"
+    ]
+  },
+  {
+    "id": "pi-web-api-admin-utility",
+    "term": "PI Web API Admin Utility",
+    "aliases": [],
+    "definition": "The tool that manages PI Web API installation-level settings: Telemetry, Configuration Store, Authentication, AIM Registration, Listen Port, Certificate, API Service and OMF Servers.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "aveva-identity-manager",
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-cisa-cm0143"
+    ]
+  },
+  {
+    "id": "disablewrites",
+    "term": "DisableWrites",
+    "aliases": [],
+    "definition": "Boolean PI Web API configuration attribute that, when set, makes the service read-only.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-gh-angular-sample"
+    ]
+  },
+  {
+    "id": "aveva-identity-manager",
+    "term": "AVEVA Identity Manager",
+    "aliases": [
+      "AIM"
+    ],
+    "definition": "AVEVA's OpenID Connect identity provider, used for claims-based authentication in the PI System. It runs as a Windows service, is part of Platform Common Services, uses Windows AD by default and can federate one more identity provider (AVEVA Connect, recommended, or Azure AD).",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "openid-connect",
+      "pi-web-api-admin-utility"
+    ],
+    "sources": [
+      "int-uc23-claims-auth"
+    ]
+  },
+  {
+    "id": "openid-connect",
+    "term": "OpenID Connect",
+    "aliases": [
+      "OIDC"
+    ],
+    "definition": "An authentication layer on top of OAuth 2.0. PI Web API accepts it as Bearer authentication; its discovery document is fetched from /.well-known/openid-configuration. Bearer and Kerberos cannot be enabled together on PI Web API.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics",
+      "int.adh-apis"
+    ],
+    "related": [
+      "aveva-identity-manager",
+      "client-credentials"
+    ],
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-cisa-cm0143"
+    ]
+  },
+  {
+    "id": "webapi-web-exception",
+    "term": "WebException (PI Web API)",
+    "aliases": [
+      "PIWebException"
+    ],
+    "definition": "A model with StatusCode (integer) and Errors (list of strings) that appears as a WebException property on objects returned inside batch and bulk PI Web API responses.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webapi-batch"
+    ],
+    "sources": [
+      "int-gh-pyclient-webexception"
+    ]
+  },
+  {
+    "id": "timed-value",
+    "term": "Timed value (PI Web API)",
+    "aliases": [
+      "PITimedValue"
+    ],
+    "definition": "One time-series item in a PI Web API response, with Timestamp, Value, UnitsAbbreviation and the flags Good, Questionable, Substituted and Annotated. Digital states come back as an object with Name and Value.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "related": [
+      "webapi-stream"
+    ],
+    "sources": [
+      "int-gh-pyclient-timedvalue",
+      "int-piworld2020-webapi-lab",
+      "int-pisquare-afvalue-run"
+    ]
+  },
+  {
+    "id": "indexed-search",
+    "term": "Indexed Search",
+    "aliases": [
+      "Search controller"
+    ],
+    "definition": "The PI Web API Search controller (for example /search/query?q=...), backed by index files built by the PI Web API Crawler. It is an optional feature, and results depend on the crawler having indexed the objects.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "pi-web-api-crawler",
+      "afsearch-query"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "pi-web-api-crawler",
+    "term": "PI Web API Crawler",
+    "aliases": [
+      "PI Web API Search Crawler"
+    ],
+    "definition": "A separate, optional service that crawls AF databases to build the index files used by Indexed Search. PI Vision 2020 no longer uses it.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "indexed-search"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-feedback-pidevtech-118"
+    ]
+  },
+  {
+    "id": "afsearch-query",
+    "term": "AFSearch query string",
+    "aliases": [
+      "AF search query syntax"
+    ],
+    "definition": "Token syntax used by AF SDK search classes (AFElementSearch, AFEventFrameSearch, AFAttributeSearch) and passed through by PI Web API search query methods, for example Name:=*b* AND Template:=PumpTemplate or Template:'Pump' Name:'P*'.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced",
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "indexed-search",
+      "afsearch-nested-query"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "dev2-gh-lonnie-afsearch"
+    ]
+  },
+  {
+    "id": "webapi-channel",
+    "term": "Channel (PI Web API)",
+    "aliases": [
+      "channels"
+    ],
+    "definition": "A WebSocket subscription in PI Web API that pushes new values for a stream or stream set over a persistent connection. Secure channel URLs start with wss:// instead of https://.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "websocket",
+      "stream-updates"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "websocket",
+    "term": "WebSocket",
+    "aliases": [
+      "wss"
+    ],
+    "definition": "A protocol for a persistent two-way connection over which a server can push messages. PI Web API channels use it.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "webapi-channel"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "stream-updates",
+    "term": "Stream Updates",
+    "aliases": [],
+    "definition": "PI Web API's HTTP-only (non-WebSocket) way to get new data. A client registers with POST /streams/{webId}/updates, receives a marker, then polls GET /streams/updates/{marker}; results are queued server-side so the client gets only new data. It appeared as a CTP around PI Web API 2018 SP1.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "stream-updates-marker",
+      "webapi-channel"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-stream-api",
+      "int-dev-tech-overview"
+    ]
+  },
+  {
+    "id": "stream-updates-marker",
+    "term": "Marker (Stream Updates)",
+    "aliases": [
+      "LatestMarker"
+    ],
+    "definition": "An opaque token returned by Stream Updates that marks the position from which to fetch the next updates. Each response includes the next marker (LatestMarker) to send in the following request.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "stream-updates"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "webapi-batch",
+    "term": "Batch (PI Web API)",
+    "aliases": [
+      "Batch controller",
+      "POST /batch"
+    ],
+    "definition": "The PI Web API controller that runs many sub-requests in one HTTP POST to /batch. Each named sub-request has Method and Resource and optionally Content, Headers, ParentIds, Parameters and RequestTemplate. GET is not supported on /batch.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "batch-parentids",
+      "batch-requesttemplate",
+      "jsonpath"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-request"
+    ]
+  },
+  {
+    "id": "batch-parentids",
+    "term": "ParentIds",
+    "aliases": [
+      "Parameters (batch)"
+    ],
+    "definition": "Batch property listing the sub-requests that must complete first. It is used with Parameters: JSONPath expressions such as $.1.Content.WebId whose results fill {0}, {1} placeholders in the child's Resource.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "webapi-batch",
+      "jsonpath"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-batch-call-py"
+    ]
+  },
+  {
+    "id": "batch-requesttemplate",
+    "term": "RequestTemplate",
+    "aliases": [],
+    "definition": "Batch property holding a parameterised Resource so one sub-request can be repeated over many parameter values, for example every WebID returned by a parent request.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "webapi-batch"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-request"
+    ],
+    "verify": true,
+    "verifyNote": "The exact RequestTemplate JSON shape and expansion behaviour were partly inferred; check against the PI Web API Batch documentation."
+  },
+  {
+    "id": "jsonpath",
+    "term": "JSONPath",
+    "aliases": [],
+    "definition": "A path syntax for picking values out of JSON. PI Web API batch supports $ (root), dot notation ($.C.D), index ($.B[0].Val) and wildcard ($.B[*].Val).",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "batch-parentids"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ]
+  },
+  {
+    "id": "omf-endpoint",
+    "term": "OMF endpoint (PI Web API)",
+    "aliases": [
+      "/piwebapi/omf"
+    ],
+    "definition": "The PI Web API endpoint, added in the 2019 release, that accepts OSIsoft Message Format messages POSTed to {piwebapi}/omf. The OMF option must be selected when installing PI Web API for it to be available.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "omf-message-types",
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-dev-tech-overview",
+      "int-gh-omf-complexdynamic-program",
+      "int-fledge-omf"
+    ]
+  },
+  {
+    "id": "omf-message-types",
+    "term": "OMF message types",
+    "aliases": [
+      "type, container and data messages"
+    ],
+    "definition": "OMF (OSIsoft Message Format) sends three kinds of JSON message, chosen with the messagetype header: type (the schema), container (a stream of one type) and data (values). They must be sent in that order, and a type cannot be changed once defined.",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-advanced"
+    ],
+    "related": [
+      "omf-endpoint"
+    ],
+    "sources": [
+      "int-gh-omf-complexdynamic-sendomf",
+      "int-gh-omf-complexdynamic-program",
+      "int-fledge-omf"
+    ]
+  },
+  {
+    "id": "pisystems",
+    "term": "PISystems",
+    "aliases": [
+      "PISystem"
+    ],
+    "definition": "AF SDK collection of the AF servers known to the client. Each item is a PISystem (one AF server), reached with systems[\"name\"] or systems.DefaultPISystem; its Databases collection holds the AF databases.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "piservers",
+      "af-sdk"
+    ],
+    "sources": [
+      "int-gh-afsdk-eventcalc-program",
+      "dev2-gh-afsdk-ex3"
+    ]
+  },
+  {
+    "id": "piservers",
+    "term": "PIServers",
+    "aliases": [
+      "PIServer"
+    ],
+    "definition": "AF SDK collection of PI Data Archives known to the client. Each item is a PIServer, for example new PIServers().DefaultPIServer, used to find and create PI points.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "pisystems",
+      "pidatapipe"
+    ],
+    "sources": [
+      "dev2-gh-afsdk-course-ex5"
+    ]
+  },
+  {
+    "id": "afdatacache",
+    "term": "AFDataCache",
+    "aliases": [],
+    "definition": "AF SDK client-side cache of attribute values. You Add an attribute list, set CacheTimeSpan, call UpdateData() and Subscribe an observer; internally it uses a data pipe to receive updates from the server.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "afdatapipe"
+    ],
+    "sources": [
+      "int-gh-afsdk-eventcalc-program",
+      "int-gh-afsdk-eventcalc"
+    ]
+  },
+  {
+    "id": "afdatapipe",
+    "term": "AFDataPipe",
+    "aliases": [
+      "AFDataPipeEvent"
+    ],
+    "definition": "AF SDK mechanism to subscribe to new events for attributes. Each AFDataPipeEvent carries a Value (an AFValue) and an Action. For PI-point attributes it reads using a TimeSeries pipe.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "pidatapipe",
+      "afdatacache"
+    ],
+    "sources": [
+      "int-gh-afsdk-eventcalc",
+      "int-gh-afsdk-eventcalc-program",
+      "dev2-pisquare-afdatapipe-dups"
+    ]
+  },
+  {
+    "id": "pidatapipe",
+    "term": "PIDataPipe",
+    "aliases": [],
+    "definition": "AF SDK sign-up mechanism for update events on PI points. You create it with a type (Snapshot, Archive or TimeSeries), AddSignups, poll GetUpdateEvents, then Close and Dispose it. Choosing the pipe type is only possible on PIDataPipe.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "afdatapipe",
+      "piservers"
+    ],
+    "sources": [
+      "dev2-gh-afsdk-course-ex5",
+      "dev2-pisquare-datapipe-types",
+      "dev2-pisquare-afdatapipe-dups"
+    ]
+  },
+  {
+    "id": "afboundarytype",
+    "term": "AFBoundaryType",
+    "aliases": [
+      "boundary type"
+    ],
+    "definition": "AF SDK enumeration that controls how values at the edges of a time range are returned by recorded-value calls. Samples use Inside and Interpolated.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "afupdateoption"
+    ],
+    "sources": [
+      "int-gh-afsdk-eventcalc-program",
+      "dev2-gh-afsdk-ex3"
+    ]
+  },
+  {
+    "id": "afupdateoption",
+    "term": "AFUpdateOption",
+    "aliases": [
+      "update option"
+    ],
+    "definition": "AF SDK enumeration that controls write behaviour in UpdateValue and UpdateValues, for example Insert or Remove.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "afboundarytype"
+    ],
+    "sources": [
+      "int-gh-afsdk-eventcalc-program",
+      "dev2-gh-afsdk-ex3"
+    ]
+  },
+  {
+    "id": "pipagingconfiguration",
+    "term": "PIPagingConfiguration",
+    "aliases": [
+      "paging configuration"
+    ],
+    "definition": "AF SDK setting for bulk list calls on PIPointList or AFAttributeList, for example new PIPagingConfiguration(PIPageType.TagCount, 100), so a large request is sent in pages.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "piservers"
+    ],
+    "sources": [
+      "dev2-gh-afsdk-ex3",
+      "dev2-gh-lewiston-afsdk"
+    ]
+  },
+  {
+    "id": "af-checkin",
+    "term": "CheckIn (AF SDK)",
+    "aliases": [
+      "CheckIn",
+      "IsDirty"
+    ],
+    "definition": "AF SDK call that commits pending AF object changes to the AF server, for example database.CheckIn(). Samples guard it with if (database.IsDirty). Without it, changes stay local and uncommitted.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "af-sdk"
+    ],
+    "sources": [
+      "dev2-gh-afsdk-ex4",
+      "dev2-gh-afsdk-ex5"
+    ]
+  },
+  {
+    "id": "afsearch-nested-query",
+    "term": "Nested query (AFSearch)",
+    "aliases": [],
+    "definition": "An AFSearch clause that filters on a related object, added in AF SDK 2.9.5. Example: Element:{Name:'Boiler*'} Name:'Feed Rate' finds Feed Rate attributes on elements named Boiler*. A nested query cannot contain its own nested query.",
+    "domain": "integration",
+    "coverage": [
+      "int.afsdk-dev"
+    ],
+    "related": [
+      "afsearch-query"
+    ],
+    "sources": [
+      "dev2-pisquare-afsearch-nested"
+    ]
+  },
+  {
+    "id": "pi-sql-client",
+    "term": "PI SQL Client",
+    "aliases": [],
+    "definition": "The package of PI SQL drivers (OLE DB, ODBC v3 and a pure-Java JDBC driver) that send SQL to PI SQL Data Access Server. Version 2018 had only OLE DB; 2018 R2 added ODBC and JDBC and removed the AF SDK dependency.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "rtqp-engine",
+      "pi-sql-das"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-bachmann-pisql-2019",
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "rtqp-engine",
+    "term": "RTQP engine",
+    "aliases": [
+      "Real-Time Query Processor"
+    ],
+    "definition": "The Real-Time Query Processor hosted by PI SQL Data Access Server. Each connection targets one AF database, exposed as the Master catalog with tables such as Master.Element.Element and Master.EventFrame.EventFrame.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "pi-sql-client",
+      "rtqp-master-catalog"
+    ],
+    "sources": [
+      "dev2-bachmann-pisql-2019",
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "rtqp-master-catalog",
+    "term": "Master catalog (RTQP)",
+    "aliases": [
+      "Master"
+    ],
+    "definition": "The only built-in RTQP catalog. Its tables include Master.Element.Element, Master.Element.Attribute (with ValueTimeStamp and Value for the current value) and Master.EventFrame.EventFrame. There is no separate snapshot table.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "rtqp-engine",
+      "rtqp-tvf"
+    ],
+    "sources": [
+      "dev2-pisql-migrate-lab-2020",
+      "dev2-bachmann-pisql-2019"
+    ]
+  },
+  {
+    "id": "rtqp-tvf",
+    "term": "Template table-valued function (RTQP)",
+    "aliases": [
+      "GetSummary",
+      "GetSampledValues"
+    ],
+    "definition": "RTQP functions such as [Master].[Element].[GetSummary] and GetSampledValues that take an element template name plus attribute names and return a table. They are invoked with CROSS APPLY.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "rtqp-master-catalog"
+    ],
+    "sources": [
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "pi-sql-das",
+    "term": "PI SQL Data Access Server",
+    "aliases": [
+      "PI SQL DAS"
+    ],
+    "definition": "Middleware that PI SQL clients connect to over net.tcp or HTTPS. It hosts the RTQP engine (and an Integrator Framework variant) and is required by the PI JDBC driver.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "pi-sql-client",
+      "pi-jdbc"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-techsupport-pijdbc"
+    ]
+  },
+  {
+    "id": "pi-oledb-provider",
+    "term": "PI OLEDB Provider",
+    "aliases": [
+      "PI OLE DB Provider"
+    ],
+    "definition": "OLE DB provider for PI Data Archive point data with read/write (CRUD) access, not AF. Its catalogs are piarchive (archive tables), pipoint (point configuration), pids (digital states) and piuser.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "picomp2",
+      "piinterp2",
+      "pi-oledb-enterprise"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pioledb-basics"
+    ]
+  },
+  {
+    "id": "pi-oledb-enterprise",
+    "term": "PI OLEDB Enterprise",
+    "aliases": [],
+    "definition": "OLE DB provider with read-only access to AF assets, event frames and AF attribute data. Queries written for it can be migrated to the RTQP engine.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "pi-oledb-provider",
+      "rtqp-engine"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "pi-jdbc",
+    "term": "PI JDBC Driver",
+    "aliases": [
+      "PI JDBC"
+    ],
+    "definition": "Java database driver (JDBC 4.0 to 4.2) that works over HTTPS only and needs PI SQL Data Access Server. Class com.osisoft.jdbc.Driver, URL form jdbc:pisql://<das_node>/Data Source=<pi_server>; Integrated Security=SSPI;.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "pi-sql-das",
+      "pi-odbc"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-techsupport-pijdbc",
+      "dev2-ignition-pijdbc"
+    ]
+  },
+  {
+    "id": "pi-odbc",
+    "term": "PI ODBC",
+    "aliases": [
+      "PI ODBC Driver"
+    ],
+    "definition": "ODBC v3 driver for PI data over net.tcp or HTTPS, now part of PI SQL Client. Connection string example: DRIVER=PI SQL Client;Integrated Security=SSPI;AF Server=PISRV01;AF Database=WindFarm.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "pi-sql-client",
+      "pi-jdbc"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "picomp2",
+    "term": "picomp2",
+    "aliases": [
+      "piarchive..picomp2"
+    ],
+    "definition": "PI OLEDB Provider table of archived (compressed) events with their real timestamps. It stores values as variants, so some clients need cast(value as Float32).",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "piinterp2",
+      "pi-oledb-provider"
+    ],
+    "sources": [
+      "dev2-pioledb-basics",
+      "dev2-pisquare-pipoint-table",
+      "dev2-ignition-pijdbc"
+    ]
+  },
+  {
+    "id": "piinterp2",
+    "term": "piinterp2",
+    "aliases": [
+      "piarchive..piinterp2",
+      "piinterp"
+    ],
+    "definition": "PI OLEDB Provider table of interpolated values at a timestep; the manual calls it the newer, recommended version of piinterp. The timestep defaults to 1 hour, aligned to the query time.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "picomp2"
+    ],
+    "sources": [
+      "dev2-opssys-pioledb",
+      "dev2-pisquare-interp-vs-comp"
+    ]
+  },
+  {
+    "id": "pi-sql-commander",
+    "term": "PI SQL Commander",
+    "aliases": [
+      "PI SQL Commander Lite"
+    ],
+    "definition": "Query tool for PI SQL. The Lite edition connects to RTQP and PI OLEDB Enterprise and offers model browsing, a Query Compendium and SQL generation for table-valued-function templates.",
+    "domain": "integration",
+    "coverage": [
+      "int.sql"
+    ],
+    "related": [
+      "rtqp-engine"
+    ],
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pisql-migrate-lab-2020"
+    ]
+  },
+  {
+    "id": "pi-integrator-ba",
+    "term": "PI Integrator for Business Analytics",
+    "aliases": [
+      "PI Integrator",
+      "PI Integrator for BA"
+    ],
+    "definition": "Product that reads data from PI Asset Framework, shapes it into views and writes it to third-party platforms called targets. Standard Edition does scheduled bulk updates; Advanced Edition is a superset that adds streaming views.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "integrator-shape",
+      "integrator-target",
+      "streaming-view"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2",
+      "dev2-integrators-uc18eu"
+    ]
+  },
+  {
+    "id": "integrator-shape",
+    "term": "Shape (PI Integrator)",
+    "aliases": [
+      "Shape Builder"
+    ],
+    "definition": "A reusable, template-based pattern of AF elements and attributes, built in the Shape Builder, that defines a view's structure. Shape elements are matched by template and can be filtered by asset name or template.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "asset-view",
+      "event-view"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "asset-view",
+    "term": "Asset View",
+    "aliases": [],
+    "definition": "PI Integrator view based on elements and element templates; its columns come from asset attributes, sampled between a start and end time at an interval.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "event-view",
+      "streaming-view"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "event-view",
+    "term": "Event View",
+    "aliases": [],
+    "definition": "PI Integrator view based on event frames and event frame templates; its columns come from event frame attributes.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "asset-view"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "streaming-view",
+    "term": "Streaming View",
+    "aliases": [],
+    "definition": "PI Integrator view for targets that support streaming, such as Apache Kafka, Azure Event Hub and Azure IoT Hub. Only Advanced Edition supports it.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "asset-view",
+      "pi-integrator-ba"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "integrator-target",
+    "term": "Target (PI Integrator)",
+    "aliases": [
+      "publish target"
+    ],
+    "definition": "A third-party platform that PI Integrator writes view data to, such as Microsoft SQL Server, Oracle, Azure SQL Database, Apache Kafka, Amazon S3 or Google BigQuery.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "pi-integrator-ba"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2",
+      "dev2-integrators-uc18eu"
+    ]
+  },
+  {
+    "id": "integrator-stream",
+    "term": "Stream (PI Integrator licensing)",
+    "aliases": [],
+    "definition": "The unit PI Integrator is licensed by: a unique PI tag used in a view, counted once across views. Static attributes do not consume streams, and removing a view does not free its streams.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "pi-integrator-ba"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "pi-view-target",
+    "term": "PI View (Integrator target)",
+    "aliases": [
+      "PI Views"
+    ],
+    "definition": "PI Integrator target that exposes a view for ODBC/SQL query. It is for development and test only and is deprecated because of a security vulnerability; use a SQL Server target when one is available.",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "related": [
+      "integrator-target"
+    ],
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ]
+  },
+  {
+    "id": "piconnect",
+    "term": "PIconnect",
+    "aliases": [
+      "PIconnect (Python)"
+    ],
+    "definition": "Open-source, MIT-licensed Python connector to the PI System and PI AF that works through the AF SDK. Recorded values come back as a decorated pandas Series. Install with conda install PIconnect or pip install PIconnect.",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "related": [
+      "af-sdk",
+      "powershell-tools-for-pi"
+    ],
+    "sources": [
+      "dev2-gh-piconnect",
+      "dev2-piconnect-install",
+      "dev2-piconnect-piserver"
+    ]
+  },
+  {
+    "id": "powershell-tools-for-pi",
+    "term": "PowerShell Tools for the PI System",
+    "aliases": [
+      "OSIsoft.PowerShell"
+    ],
+    "definition": "PowerShell module (OSIsoft.PowerShell) that ships with PI System Management Tools 2015 and later. Cmdlets include Connect-PIDataArchive, Get-PIPoint, Get-PIValue, Add-PIValue and Start-PIBackup.",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "related": [
+      "connect-pidataarchive",
+      "piconnect"
+    ],
+    "sources": [
+      "int-gh-adh-transfer-verification-ps",
+      "dev2-pisquare-pstools-blog"
+    ]
+  },
+  {
+    "id": "connect-pidataarchive",
+    "term": "Connect-PIDataArchive",
+    "aliases": [],
+    "definition": "PowerShell Tools cmdlet that opens a connection object to a PI Data Archive, for example $con = Connect-PIDataArchive -PIDataArchiveMachineName PISRV01. Other cmdlets take it through -Connection.",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "related": [
+      "powershell-tools-for-pi"
+    ],
+    "sources": [
+      "dev2-pisquare-pstools-blog",
+      "int-gh-adh-transfer-verification-getdata"
+    ]
+  },
+  {
+    "id": "requests-kerberos",
+    "term": "requests_kerberos",
+    "aliases": [
+      "HTTPKerberosAuth"
+    ],
+    "definition": "Python package that adds HTTPKerberosAuth to the requests library for Kerberos (Negotiate) authentication. AVEVA's PI Web API samples use it with mutual_authentication='REQUIRED'.",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "related": [
+      "pi-web-api"
+    ],
+    "sources": [
+      "int-gh-batch-call-py"
+    ]
+  },
+  {
+    "id": "connect-data-services",
+    "term": "CONNECT data services",
+    "aliases": [
+      "AVEVA Data Hub",
+      "ADH",
+      "OSIsoft Cloud Services"
+    ],
+    "definition": "AVEVA's cloud data service, formerly AVEVA Data Hub and before that OSIsoft Cloud Services. It is powered by the Sequential Data Store and offers REST APIs under {resource}/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sds",
+      "cds-tenant",
+      "cds-namespace"
+    ],
+    "sources": [
+      "int-gh-cloudops-samples",
+      "int-gh-adh-lib-baseclient"
+    ],
+    "verify": true,
+    "verifyNote": "The product name timeline (OSIsoft Cloud Services to AVEVA Data Hub to CONNECT data services) and its dates are not confirmed by a dated source."
+  },
+  {
+    "id": "sds",
+    "term": "Sequential Data Store",
+    "aliases": [
+      "SDS"
+    ],
+    "definition": "The storage engine of CONNECT data services for types, streams and indexed data.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sdstype",
+      "sdsstream"
+    ],
+    "sources": [
+      "int-gh-cloudops-samples"
+    ]
+  },
+  {
+    "id": "sdstype",
+    "term": "SdsType",
+    "aliases": [
+      "SDS type"
+    ],
+    "definition": "The schema of a stream's events in the Sequential Data Store. It is defined with SdsTypeCode values (such as Object, Double, DateTime) and a property flagged IsKey as the index; time series use a DateTime key.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sdsstream",
+      "sds"
+    ],
+    "sources": [
+      "int-gh-adh-time-series-program"
+    ]
+  },
+  {
+    "id": "sdsstream",
+    "term": "SdsStream",
+    "aliases": [
+      "SDS stream"
+    ],
+    "definition": "A sequence of events of one SdsType in the Sequential Data Store, managed through /Streams and read through /Streams/{id}/Data.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sdstype"
+    ],
+    "sources": [
+      "int-gh-adh-time-series-program",
+      "int-gh-adh-lib-streams"
+    ]
+  },
+  {
+    "id": "cds-tenant",
+    "term": "Tenant (CONNECT data services)",
+    "aliases": [
+      "tenant"
+    ],
+    "definition": "The top-level CONNECT data services account container. Its ID appears in every REST path and in client-credentials sign-in.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "cds-namespace"
+    ],
+    "sources": [
+      "int-gh-cloudops-auth"
+    ]
+  },
+  {
+    "id": "cds-namespace",
+    "term": "Namespace (CONNECT data services)",
+    "aliases": [
+      "namespace"
+    ],
+    "definition": "A logical container within a tenant that isolates types, streams and data views.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "cds-tenant",
+      "cds-community"
+    ],
+    "sources": [
+      "int-gh-adh-pi-readonly-py"
+    ]
+  },
+  {
+    "id": "cds-data-view",
+    "term": "Data view (CONNECT data services)",
+    "aliases": [
+      "dataviews"
+    ],
+    "definition": "A server-side definition that queries streams and returns aligned interpolated or stored tabular data through /dataviews/{id}/data/interpolated and /data/stored. Paging follows links in the HTTP Link header.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sdsstream"
+    ],
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ]
+  },
+  {
+    "id": "cds-community",
+    "term": "Community (CONNECT data services)",
+    "aliases": [
+      "Community-id"
+    ],
+    "definition": "A cross-tenant sharing space for streams. When a CommunityId is set in AVEVA's samples, the namespace ID is ignored.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "cds-namespace"
+    ],
+    "sources": [
+      "int-gh-adh-to-pi-py"
+    ]
+  },
+  {
+    "id": "client-credentials",
+    "term": "Client Credentials flow",
+    "aliases": [
+      "client credentials client"
+    ],
+    "definition": "OAuth 2.0 machine-to-machine sign-in used by services calling CONNECT data services: tenant ID, client ID and client secret are exchanged at the token endpoint for an access token. It gives no refresh token.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "openid-connect",
+      "authorization-code-pkce"
+    ],
+    "sources": [
+      "int-gh-cloudops-auth",
+      "int-gh-omf-complexdynamic-auth"
+    ]
+  },
+  {
+    "id": "authorization-code-pkce",
+    "term": "Authorization Code + PKCE flow",
+    "aliases": [
+      "PKCE"
+    ],
+    "definition": "OAuth 2.0 sign-in flow for single-page and native apps calling CONNECT data services, with silent refresh and no refresh token. The Hybrid flow, for thick apps with a server component, gives both access and refresh tokens.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "client-credentials"
+    ],
+    "sources": [
+      "int-gh-cloudops-auth"
+    ]
+  },
+  {
+    "id": "continuation-token",
+    "term": "continuationToken",
+    "aliases": [
+      "continuation token"
+    ],
+    "definition": "Paging token in Sequential Data Store window reads. The client repeats the request with the token until it comes back null; ignoring it means only the first page is read.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "sdsstream"
+    ],
+    "sources": [
+      "int-gh-adh-lib-streams",
+      "int-gh-adh-transfer-verification-getdata"
+    ]
+  },
+  {
+    "id": "accept-verbosity",
+    "term": "Accept-Verbosity header",
+    "aliases": [
+      "accept-verbosity"
+    ],
+    "definition": "Optional CONNECT data services request header (verbose or non-verbose) that controls whether default-valued fields are returned in data responses.",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "related": [
+      "connect-data-services"
+    ],
+    "sources": [
+      "int-gh-adh-lib-baseclient",
+      "int-gh-adh-pi-readonly-py"
+    ]
+  }
+]

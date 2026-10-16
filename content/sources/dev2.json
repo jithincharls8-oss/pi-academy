@@ -1,0 +1,668 @@
+[
+ {
+  "id": "dev2-manualzz-datalink-toc",
+  "title": "PI DataLink User Guide (function reference TOC)",
+  "url": "https://manualzz.com/doc/o/offii/pi-datalink-user-guide--english--pi-datalink-function-reference",
+  "publisher": "OSIsoft (via manualzz)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Only table of contents readable; function list read."
+ },
+ {
+  "id": "dev2-datalink-ug-41",
+  "title": "PI DataLink User Guide Version 4.1 (published 5.11.2009)",
+  "url": "https://kipdf.com/pi-datalink-user-guide-version-41_5ac53ceb1723dd394529f7af.html",
+  "publisher": "OSIsoft (via kipdf)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Full text incl. Appendix B function syntax, retrieval modes, boundary types, outcode bits."
+ },
+ {
+  "id": "dev2-ftdl42-p121",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 121 (PIArcVal/PIExpVal)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=121",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p124",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 124 (PICompDat/PINCompFilDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=124",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p126",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 126 (PICompFilDat/PISampDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=126",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p128",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 128 (PISampFilDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=128",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p129",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 129 (PIExpDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=129",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p130",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 130 (PITimeDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=130",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p134",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 134 (PIAdvCalcVal/PICalcVal example)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=134",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p136",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 136 (PIAdvCalcFilVal)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=136",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p138",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 138 (PIAdvCalcExpFilVal)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=138",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p140",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 140 (PICalcDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=140",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p141",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 141 (PIAdvCalcDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=141",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p142",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 142 (PIAdvCalcFilDat)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=142",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p147",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 147 (PITimeFilter)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=147",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-ftdl42-p148",
+  "title": "FactoryTalk Historian SE DataLink 4.2 User Guide, page 148 (PITimeFilterVal)",
+  "url": "https://www.manualsdir.com/manuals/581046/rockwell-automation-factorytalk-historian-se-datalink-42-user-guide.html?page=148",
+  "publisher": "Rockwell Automation (OEM of OSIsoft PI DataLink)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Rebranded PI DataLink; function names/arguments identical to PI DataLink."
+ },
+ {
+  "id": "dev2-gh-osipidl-vba",
+  "title": "IndustrialAutomationVBA OSIPIDL.cls (DataLink via Application.Run)",
+  "url": "https://github.com/itecasolutions/IndustrialAutomationVBA/blob/main/OSI%20PI/DataLink/CLASS/OSIPIDL.cls",
+  "publisher": "GitHub (itecasolutions)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-datalink-basics-2019",
+  "title": "PI DataLink: Basics (online course workbook)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/Online%20Course%20Workbooks/PI%20DataLink%20Basics.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Course uses PI DataLink 2019 SP1 Patch 1 5.5.2.0."
+ },
+ {
+  "id": "dev2-datalink-lab-2020",
+  "title": "PI DataLink Lab Workbook",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PI%20DataLink%20LabWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-integrator-bi-course-2020r2",
+  "title": "BI Reporting with PI Integrator for Business Analytics Version 2020 R2",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/Online%20Course%20Workbooks/BIReportingwithPIIntegratorforBusinessAnalytics.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-integrators-uc18eu",
+  "title": "Actionable Insights with PI Integrators (UC 2018 EMEA, Wang)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2018-uc-emea-barcelona/UC18EU-D3PN06-OSIsoft-Wang-Actionable-Insights-with-PI-Integrators.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-integrator-knox-2015",
+  "title": "PI Integrator for Business Analytics: Delivering Your Data in Purpose-Built Formats (RS 2015, Knox)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/RegionalSeminars/RS2015_Charlotte/PDF/RS15CH050_OSIsoft_Knox_PIIntegratorforBusinessAnalyticsDeliveringYourDatainPurposeBuiltFormats.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-bachmann-pisql-2019",
+  "title": "Modernizing PI SQL For The Future (UC 2019, Bachmann)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-san-francisco/US19NA-D3TT03-OSIsoft-Bachmann-Modernizing-PI-SQL-For-The-Future.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisql-migrate-lab-2020",
+  "title": "PI World 2020 Lab: Build new or migrate existing PI SQL Queries",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/Build%20new%20or%20migrate%20existing%20PI%20SQL%20Queries.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Published 17 Apr 2020; PI SQL Client 2018 R2, PI Server 2018 SP3 P1."
+ },
+ {
+  "id": "dev2-feedback-rtqp-pipoints",
+  "title": "PIDEVTECH-I-198: Be able to use RTQP to access PI Points and Config strings",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDEVTECH-I-198",
+  "publisher": "AVEVA Feedback",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-feedback-rtqp-elemref",
+  "title": "PIDEVTECH-I-202: Add element reference information to RTQP tables",
+  "url": "https://pisystem.feedback.aveva.com/ideas/PIDEVTECH-I-202",
+  "publisher": "AVEVA Feedback",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pioledb-basics",
+  "title": "PI OLEDB Basics, Learn How to Query PI",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PI%20OLEDB%20Basics%20Learn%20How%20to%20Query%20PI.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Copyright 1995-2009."
+ },
+ {
+  "id": "dev2-opssys-pioledb",
+  "title": "OPS SQL/PI interface article on piinterp2 vs picomp",
+  "url": "https://www.opssys.com/InstantKB/Article.aspx?id=12638",
+  "publisher": "OPS Systems",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-pipoint-table",
+  "title": "What is pipoint..pipoint table in PI?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/91569/what-is-pipoint-pipoint-table-in-pi",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-sql-datalink",
+  "title": "What is an equivalent SQL query for the below Excel add-in functions (PICalcVal/PIAdvCalcDat)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/95568/what-is-an-equivalent-sql-query-for-the-below-excel-add-in-functions-picalcval-tagname-begin-time-end-time-average-1-0-server1-piadvcalcdat-tagname-y-t-15m-average-time-weighted-quo",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-interp-vs-comp",
+  "title": "PI SQL query timestamps differ from archive data (piinterp vs picomp2)",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/95507/we-are-fetching-data-from-pi-da-using-pi-sql-query-but-it-s-showing-the-time-stamp-different-as-per-the-archive-data-can-anyone-suggest-how-to-pull-the-event-time-stamp-value-using-query",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-techsupport-pijdbc",
+  "title": "PI JDBC Driver product overview",
+  "url": "https://techsupport.osisoft.com/Products/PI-System-Access/PI-JDBC-Driver/Overview",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-ignition-pijdbc",
+  "title": "Using JDBC to Access OSI PI from Ignition",
+  "url": "https://support.inductiveautomation.com/hc/en-us/articles/360047175812-Using-JDBC-to-Access-OSI-PI-from-Ignition",
+  "publisher": "Inductive Automation",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Dated 22 Dec 2021."
+ },
+ {
+  "id": "dev2-gh-afsdk-gsg",
+  "title": "AF SDK Getting Started Guide (README)",
+  "url": "https://github.com/osisoft/AF-SDK-Getting-Started-Guide/",
+  "publisher": "OSIsoft/AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Repo now AVEVA/AF-SDK-Getting-Started-Guide; v1.1.2, AF 2.10."
+ },
+ {
+  "id": "dev2-gh-afsdk-ex3",
+  "title": "AF SDK Getting Started Guide Ex3 Reading and Writing Data (Program3.cs)",
+  "url": "https://raw.githubusercontent.com/AVEVA/AF-SDK-Getting-Started-Guide/main/Ex3-Reading-And-Writing-Data-Sln/Program3.cs",
+  "publisher": "AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-afsdk-ex4",
+  "title": "AF SDK Getting Started Guide Ex4 Building an AF Hierarchy (Program4.cs)",
+  "url": "https://raw.githubusercontent.com/AVEVA/AF-SDK-Getting-Started-Guide/main/Ex4-Building-An-AF-Hierarchy-Sln/Program4.cs",
+  "publisher": "AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-afsdk-ex5",
+  "title": "AF SDK Getting Started Guide Ex5 Working with Event Frames (Program5.cs)",
+  "url": "https://raw.githubusercontent.com/AVEVA/AF-SDK-Getting-Started-Guide/main/Ex5-Working-With-Event-Frames-Sln/Program5.cs",
+  "publisher": "AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-afsdk-course-ex5",
+  "title": "AF SDK Programming Online Course Exercise5 Solution (PIDataPipe)",
+  "url": "https://raw.githubusercontent.com/AVEVA/AF-SDK-Programming-Online-Course/master/Exercise5/CSharp/Exercise5_Solution/Exercise5_Solution/Program.cs",
+  "publisher": "AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Copyright 2017 OSIsoft, Apache 2.0."
+ },
+ {
+  "id": "dev2-gh-lonnie-afsearch",
+  "title": "PI-System-Time-Formatting-Example Program.cs (AFElementSearch query)",
+  "url": "https://api.github.com/repositories/142187651/contents/Time Formatting/Program.cs?ref=225f2fb7e7892a5d870af7f2cbf747ba444cd42c",
+  "publisher": "GitHub (LonnieBowling)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-pisquare-afsearch-nested",
+  "title": "Event Frame search using AFSearch for a template over a subset of elements",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/90778/event-fame-search-using-afsearch-for-a-template-over-a-subset-of-elements",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-gewebber-afsdk",
+  "title": "PI-AF-SDK WindowsFormsApp1 Form1.cs (FindPIPoint/RecordedValues)",
+  "url": "https://api.github.com/repositories/143072382/contents/WindowsFormsApp1/WindowsFormsApp1/Form1.cs?ref=fdd20f66dc79ad977de287b3c228f3f9ec8716b6",
+  "publisher": "GitHub (gewebber)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-gh-seeq-pitools",
+  "title": "seeq12/pi-tools ReadComparison Program.cs",
+  "url": "https://api.github.com/repositories/134694091/contents/ReadComparison/Program.cs?ref=5d2948abdb2d96bc70f8a6e52060e14ddbc56f03",
+  "publisher": "GitHub (Seeq)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-gh-lewiston-afsdk",
+  "title": "Lewiston-AI AFSDK_Example Program.cs (PIPointList paging)",
+  "url": "https://github.com/Lewiston-AI/AFSDK_Example/blob/main/AFSDK_Example/Program.cs",
+  "publisher": "GitHub (Lewiston-AI)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-datapipe-types",
+  "title": "Data pipe event types: Snapshot vs Archive vs TimeSeries",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/99211/while-using-datapipes-there-are-4-event-types-i-e-add-insert-update-and-refresh-can-somebody-elaborate-on-the-different-event-types-and-what-are-the-differences/374100",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-afdatapipe-dups",
+  "title": "AFDataPipe outputting duplicate events",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/84240/afdatapipe-outputting-duplicate-events",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-piconnect",
+  "title": "PIconnect (GitHub README)",
+  "url": "https://github.com/Hugovdberg/PIconnect",
+  "publisher": "GitHub (Hugovdberg)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-install",
+  "title": "PIconnect Installation",
+  "url": "https://piconnect.readthedocs.io/en/develop/installation.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-piserver",
+  "title": "PIconnect tutorial: Connecting to a PI Server",
+  "url": "https://piconnect.readthedocs.io/en/develop/tutorials/piserver.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-recorded",
+  "title": "PIconnect tutorial: Extracting recorded values",
+  "url": "https://piconnect.readthedocs.io/en/develop/tutorials/recorded_values.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-interp",
+  "title": "PIconnect tutorial: Extracting interpolated values",
+  "url": "https://piconnect.readthedocs.io/en/develop/tutorials/interpolated_values.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-update",
+  "title": "PIconnect tutorial: Update value in PI",
+  "url": "https://piconnect.readthedocs.io/en/develop/tutorials/update_value.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-af",
+  "title": "PIconnect tutorial: Connecting to a AF Database",
+  "url": "https://piconnect.readthedocs.io/en/develop/tutorials/af.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-piconnect-api-pi",
+  "title": "PIconnect.PI module API reference",
+  "url": "https://piconnect.readthedocs.io/en/stable/api/PI/PIconnect.PI.html",
+  "publisher": "PIconnect docs",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-pstools-blog",
+  "title": "Getting started with the new PowerShell Tools for the PI System",
+  "url": "https://community.aveva.com/pi-square-community/b/aveva-blogs/posts/getting-started-with-the-new-powershell-tools-for-the-pi-system",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Notes as of Aug 2015; SMT 2015 (3.5.1.7)."
+ },
+ {
+  "id": "dev2-pisquare-manual-update",
+  "title": "Manually update values into existing PI Tags",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/92968/manually-update-values-into-existing-pi-tags",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-aveva-ps-verify",
+  "title": "sample-adh-pi_to_adh_transfer_verification-powershell GetData.ps1",
+  "url": "https://raw.githubusercontent.com/AVEVA/sample-adh-pi_to_adh_transfer_verification-powershell/main/GetData.ps1",
+  "publisher": "AVEVA (GitHub)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-ps-movearchives",
+  "title": "sample-pi_core-deployment_aws-powershell MoveOldArchives.ps1",
+  "url": "https://raw.githubusercontent.com/pthivierge/sample-pi_core-deployment_aws-powershell/master/scripts/PIDA/MoveOldArchives.ps1",
+  "publisher": "GitHub (OSIsoft sample, pthivierge fork)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Header: sample code provided by OSIsoft."
+ },
+ {
+  "id": "dev2-gh-ps-backup",
+  "title": "sample-pi_core-deployment_aws-powershell Backup.ps1",
+  "url": "https://raw.githubusercontent.com/pthivierge/sample-pi_core-deployment_aws-powershell/master/scripts/PIDA/Backup.ps1",
+  "publisher": "GitHub (OSIsoft sample, pthivierge fork)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-ps-collective",
+  "title": "sample-pi_core-deployment_aws-powershell CollectiveManager.ps1",
+  "url": "https://api.github.com/repositories/348640088/contents/scripts/PIDA/CollectiveManager.ps1?ref=37179e8e0061a3d29d77a914e29801e73b906730",
+  "publisher": "GitHub (OSIsoft sample, pthivierge fork)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-gh-castagne-ps",
+  "title": "CastagneSenpai/PI-Powershell scripts",
+  "url": "https://api.github.com/repositories/557856320/contents/lib/connection.psm1?ref=f25b92ab4a29ff8bb2e4f622679603aef4a619db",
+  "publisher": "GitHub (CastagneSenpai)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragments."
+ },
+ {
+  "id": "dev2-gh-wolfvictor-upgradeinfo",
+  "title": "Get-PIDataArchiveUpgradeInfo.ps1",
+  "url": "https://api.github.com/repositories/720847975/contents/Get-PIDataArchiveUpgradeInfo.ps1?ref=343d2a450c65e2d8bc1f7206eb7e8641ca2e7333",
+  "publisher": "GitHub (wolfvictor)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-docs-ps-startpibackup",
+  "title": "PowerShell Tools for the PI System 3.1.1: StartPIBackup class",
+  "url": "https://docs.aveva.com/bundle/pi-powershell-3.1.1/page/html/T_OSIsoft_PowerShell_StartPIBackup.htm",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Only search-result titles seen (StartPIBackup, NewPIBackupRestoreFile, GetPIBackupReport, GetPILicenseReport, AddPIValue)."
+ },
+ {
+  "id": "dev2-pisquare-piconfig-pointid",
+  "title": "Tag names from point IDs (PIConfig)?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/90143/tag-names-from-point-ids-piconfig",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-gh-terraform-piconfig",
+  "title": "terraform-snippets piConfigFile.bat (piconfig point creation)",
+  "url": "https://api.github.com/repositories/254919273/contents/cloud-to-cloud/aws/ec2/piconfig/piConfigFile.bat?ref=6cedc40f8eb74cd967d523d154d350dbf694a541",
+  "publisher": "GitHub (cloudmustafa)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-gh-dat2csv-piconfig",
+  "title": "DatalogConvert dat2csv.cs (generates piconfig delete script)",
+  "url": "https://api.github.com/repositories/157215412/contents/dat2csv/dat2csv.cs?ref=eb2d758ef940cd17ada1781dc7010d96340f2d12",
+  "publisher": "GitHub (shrddr)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read via GitHub code search fragment."
+ },
+ {
+  "id": "dev2-pisquare-check-license",
+  "title": "How can I check the PI Server license?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/87212/how-can-i-check-the-pi-server-license",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pisquare-license-grace",
+  "title": "How long license proceed to work after license mismatch message appeared?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/86314/how-long-license-proceed-to-work-after-license-mismatch-message-appeared",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true
+ },
+ {
+  "id": "dev2-pi-sys-admin-pdf",
+  "title": "PI System Administration (course workbook)",
+  "url": "https://osicdn.blob.core.windows.net/learningcontent/pdfs/PI%20System%20Administration.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Text truncated in extraction after section 3.4.1."
+ },
+ {
+  "id": "dev2-blog-restore-pi",
+  "title": "How to Restore your PI Server",
+  "url": "http://rudrakshala.blogspot.com/2014/02/how-to-restore-your-pi-server.html",
+  "publisher": "Sharepoint and .Net Stuff (blog)",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "2014 third-party blog; old c:\\pi paths."
+ },
+ {
+  "id": "dev2-manualzz-da-3-4-390",
+  "title": "OSIsoft PI Data Archive 3.4.390 System Management Guide (manualzz)",
+  "url": "https://manualzz.com/doc/o/t3woq/pi-data-archive-3.4.390-system-management-guide-pi-archives",
+  "publisher": "OSIsoft (via manualzz)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Only TOC and user Q&A readable."
+ }
+]

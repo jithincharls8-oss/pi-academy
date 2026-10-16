@@ -1,0 +1,268 @@
+[
+  {
+    "id": "q-uniint-pointsource-match",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 1,
+    "prompt": "An interface is started with /PS=O. Which PI point attribute must be set to O so the interface loads the point?",
+    "options": [
+      { "id": "a", "text": "PointSource" },
+      { "id": "b", "text": "Location1" },
+      { "id": "c", "text": "InstrumentTag" },
+      { "id": "d", "text": "PointClass" }
+    ],
+    "answer": "a",
+    "explanation": "The PointSource attribute must match the value set by the interface's /PS parameter. Location1 usually matches /ID (the instance), InstrumentTag holds a source address on some interfaces, and PointClass has nothing to do with which interface owns the point.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["point-attributes"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-scan-class-location4",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 1,
+    "prompt": "Which point attribute typically assigns a PI point to one of the interface's /f scan classes?",
+    "options": [
+      { "id": "a", "text": "Location1" },
+      { "id": "b", "text": "Location4" },
+      { "id": "c", "text": "Location5" },
+      { "id": "d", "text": "Scan" }
+    ],
+    "answer": "b",
+    "explanation": "Location4 is typically the scan class number (/f). Location1 is typically the interface instance (/ID). The Scan attribute only switches scanning on or off and should always be ON for interface points.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["scan-class"],
+    "sources": ["dcv-arch-workbook", "dcv-simple-pi-system-2020"]
+  },
+  {
+    "id": "q-uniint-icu-same-machine",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "Which statement about the PI Interface Configuration Utility (PI ICU) is correct?",
+    "options": [
+      { "id": "a", "text": "It can configure interfaces on any computer in the domain" },
+      { "id": "b", "text": "It can only configure PI Interfaces that run on the same computer as PI ICU" },
+      { "id": "c", "text": "It stores the configuration only in the batch file, never on the Data Archive" },
+      { "id": "d", "text": "It replaces the batch file with an XML configuration file" }
+    ],
+    "answer": "b",
+    "explanation": "PI ICU can only configure interfaces on its own computer. It is a GUI for the startup batch file and also writes the configuration to the Module Database on the Data Archive, which allows recovery. The batch file remains the interface's configuration.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["pi-icu"],
+    "sources": ["dcv-arch-workbook", "dcv-admin-it-2017r2"]
+  },
+  {
+    "id": "q-uniint-collection-steps",
+    "type": "ordering",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 1,
+    "prompt": "Put the steps a PI Interface follows to collect data in order.",
+    "items": [
+      { "id": "a", "text": "Read the value from the data source" },
+      { "id": "b", "text": "Timestamp it" },
+      { "id": "c", "text": "Format it" },
+      { "id": "d", "text": "Apply exception" },
+      { "id": "e", "text": "Send it to the PI Data Archive" }
+    ],
+    "explanation": "AVEVA's administration course lists interface data collection as read, timestamp, format, apply exception, send. Exception is applied before sending, which is why it saves network traffic.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["data-flow"],
+    "sources": ["dcv-admin-it-2017r2"]
+  },
+  {
+    "id": "q-uniint-provides",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "Which of these does the UniInt framework provide to interfaces built on it? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Orderly startup and shutdown, and messaging" },
+      { "id": "b", "text": "Automatic handling of PI point attribute changes" },
+      { "id": "c", "text": "Failover" },
+      { "id": "d", "text": "Bad-data and comms-failure indication" },
+      { "id": "e", "text": "Swinging-door compression on the Data Archive" },
+      { "id": "f", "text": "Asset Framework template creation" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "UniInt gives a consistent installation, similar parameters, orderly startup and shutdown, messaging, bad-data and comms-failure indication, automatic handling of point attribute changes, and failover. Swinging-door compression runs in the Snapshot Subsystem (or the buffer), and creating AF templates is not a UniInt feature.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["uniint"],
+    "sources": ["dcv-pohl-interfaces-2008", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-parameter-match",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 1,
+    "prompt": "Match each interface startup parameter to what it means.",
+    "pairs": [
+      { "left": "/PS", "right": "Point source: which interface owns a point" },
+      { "left": "/ID", "right": "Interface ID: which instance of the interface" },
+      { "left": "/F", "right": "Scan class: how often to read a value" },
+      { "left": "/HOST", "right": "The name of the PI server" }
+    ],
+    "explanation": "The architecture course describes /PS as \"which interface?\", /ID as \"which instance of the interface?\" and /F as \"how often to read a value?\". /HOST is the name of the PI server.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["parameters"],
+    "sources": ["dcv-arch-workbook", "dcv-rovisys-opc90"]
+  },
+  {
+    "id": "q-uniint-scan-equivalent",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "The scan class /f=00:01:00,00:00:05 can also be written in seconds as /f=___ . Type the value after the equals sign.",
+    "accepted": ["60,5"],
+    "caseSensitive": false,
+    "explanation": "00:01:00 is a 60-second period and 00:00:05 is a 5-second offset, so /f=60,5 is equivalent. Scans then run at reference time + n x frequency + offset.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["scan-class"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-wallclock",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "What does the ,L at the end of /f=24:00:00,00:08:00,L do?",
+    "options": [
+      { "id": "a", "text": "Marks the scan class as low priority" },
+      { "id": "b", "text": "Tells UniInt to use wall-clock scheduling, so the daily 08:00 scan stays at 08:00 across daylight-saving changes" },
+      { "id": "c", "text": "Writes the scan results to the local log file" },
+      { "id": "d", "text": "Limits the scan class to output points" }
+    ],
+    "answer": "b",
+    "explanation": "\",L\" tells UniInt to use the wall-clock scheduling algorithm, which keeps a daily 08:00 local scan steady when clocks change for daylight saving.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["scan-class"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-mixed-scan",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "scenario": "An OT engineer puts 200 polled points and 50 advise points into scan class 1 of the same interface instance. Update rates become erratic and some advise points look stale.",
+    "prompt": "What is the best fix?",
+    "options": [
+      { "id": "a", "text": "Move the advise points to their own scan class so advise and polled points are not mixed" },
+      { "id": "b", "text": "Raise the scan frequency of scan class 1 to one second" },
+      { "id": "c", "text": "Set the Scan attribute of the advise points to OFF" },
+      { "id": "d", "text": "Change the advise points' PointSource to a new letter without changing /PS" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's guidance is \"Do not mix advised points and polled points in the same group (i.e., scan class).\" Turning Scan off stops collection entirely, and a PointSource that no longer matches /PS means the interface will not load the points.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["pitfall", "scan-class"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-clock-skew",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "How far off the server clock can an interface node's clock be before the interface will not run?",
+    "options": [
+      { "id": "a", "text": "More than 30 seconds" },
+      { "id": "b", "text": "More than 10 minutes" },
+      { "id": "c", "text": "More than 30 minutes" },
+      { "id": "d", "text": "Clock differences never matter because timestamps are UTC" }
+    ],
+    "answer": "c",
+    "explanation": "An interface whose clock is more than 30 minutes off the server clock will not run. The 10-minute figure is a different rule: real-time values timestamped more than 10 minutes in the future are discarded. UTC timestamps do not remove the need for accurate clocks.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["time"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-health-points",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "Which UniInt health points does the PI System administration course recommend creating? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Heartbeat" },
+      { "id": "b", "text": "Device Status" },
+      { "id": "c", "text": "IO Rate" },
+      { "id": "d", "text": "Scan Class Scans Skipped" },
+      { "id": "e", "text": "Archive Compression Ratio" },
+      { "id": "f", "text": "Snapshot Queue Length" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The recommended health points, created in PI ICU under UniInt > Health Points, are Heartbeat, Device Status, IO Rate and Scan Class Scans Skipped. The other two are not UniInt health points.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["health"],
+    "sources": ["dcv-pi-sys-admin-workbook"]
+  },
+  {
+    "id": "q-uniint-disconnected-startup",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 3,
+    "prompt": "Which statement about UniInt disconnected startup is correct?",
+    "options": [
+      { "id": "a", "text": "The very first start can be done without any Data Archive connection" },
+      { "id": "b", "text": "Outputs continue to be written while disconnected" },
+      { "id": "c", "text": "The first startup must connect; afterwards the interface can start from its point and digital-set cache files" },
+      { "id": "d", "text": "It is only meant for test systems and is not recommended for production" }
+    ],
+    "answer": "c",
+    "explanation": "Disconnected startup needs one connected start to create the point-cache and digital-set-cache files. After that the interface can start without the Data Archive. Outputs are not supported while disconnected, and AVEVA recommends the feature for production.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["startup"],
+    "sources": ["dcv-pohl-interfaces-2008", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-uniint-log-location",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 2,
+    "prompt": "An interface built on UniInt 4.5.0.x writes its messages where?",
+    "options": [
+      { "id": "a", "text": "To the PI Message Log" },
+      { "id": "b", "text": "Only to PIPC\\dat\\pipc.log" },
+      { "id": "c", "text": "To the Windows Application event log only" },
+      { "id": "d", "text": "To a SQL Server table" }
+    ],
+    "answer": "a",
+    "explanation": "Interfaces with UniInt 4.5.0.x or later write to the PI Message Log, which pigetmsg -f shows continuously. Interfaces with UniInt earlier than 2.5.0.x write to pipc.log.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["logs"],
+    "sources": ["dcv-simple-pi-system-2020"]
+  },
+  {
+    "id": "q-uniint-gmsa-icu",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.uniint"],
+    "difficulty": 3,
+    "scenario": "Your security team wants every new interface service to run under a group managed service account (gMSA). You open PI ICU to create the service for a new instance.",
+    "prompt": "What should you do?",
+    "options": [
+      { "id": "a", "text": "Enter the gMSA in the ICU Service tab and create the service" },
+      { "id": "b", "text": "Create the service in ICU under the default NT Service account, then switch it to the gMSA in Services Manager" },
+      { "id": "c", "text": "Run the interface interactively under the gMSA instead of as a service" },
+      { "id": "d", "text": "Map a PI Trust to piadmin so the account does not matter" }
+    ],
+    "answer": "b",
+    "explanation": "PI ICU cannot create a service under a gMSA. Create it under the default NT Service account, then change the logon account in Services Manager. Interactive runs are for testing only, and trusts should never map to piadmin.",
+    "lessonId": "pi-interfaces-and-uniint",
+    "tags": ["security", "service"],
+    "sources": ["dcv-arch-workbook"]
+  }
+]

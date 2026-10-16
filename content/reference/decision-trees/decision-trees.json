@@ -1,0 +1,944 @@
+[
+  {
+    "id": "tree-interface-connector-adapter",
+    "title": "Interface, connector or adapter?",
+    "description": "Pick a data-collection technology for a new source, based on destination, failover and exception needs.",
+    "root": "dest",
+    "nodes": {
+      "dest": {
+        "question": "Where must the data go?",
+        "options": [
+          {
+            "label": "PI Data Archive (on-premises PI Server)",
+            "next": "custom"
+          },
+          {
+            "label": "CONNECT data services or Edge Data Store",
+            "next": "r-adapter-cloud"
+          }
+        ]
+      },
+      "custom": {
+        "question": "Is the source your own application or device that can send JSON over HTTPS?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-omf"
+          },
+          {
+            "label": "No, it is an industrial protocol or control system",
+            "next": "failover"
+          }
+        ]
+      },
+      "failover": {
+        "question": "Do you need automatic failover of the collector itself?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "fo-proto"
+          },
+          {
+            "label": "No",
+            "next": "exc"
+          }
+        ]
+      },
+      "fo-proto": {
+        "question": "Is the source OPC UA or MQTT?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-adapter-failover"
+          },
+          {
+            "label": "No",
+            "next": "r-interface-failover"
+          }
+        ]
+      },
+      "exc": {
+        "question": "Do you need exception reporting (ExcDev deadband filtering) at the collector?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-interface-exception"
+          },
+          {
+            "label": "No",
+            "next": "r-adapter-or-connector"
+          }
+        ]
+      },
+      "r-adapter-cloud": {
+        "result": "Use an AVEVA Adapter (or Edge Data Store)",
+        "details": "AVEVA Adapters collect time-series data and metadata and send it to OMF endpoints such as PI Web API and CONNECT data services; destinations include PI Servers, AVEVA Data Hub and Edge Data Store. 2023 adapters: Azure Event Hubs, BACnet, DNP3, Modbus TCP, MQTT, OPC UA, RDBMS and Structured Data Files."
+      },
+      "r-omf": {
+        "result": "Send OMF to the PI Web API OMF endpoint",
+        "details": "OMF type, container and data messages are POSTed to {piwebapi}/omf (added in PI Web API 2019; the OMF option must be chosen at install). The OMF sample docs recommend the PI Web API endpoint for new deployments; the PI Connector Relay is described as discontinued as an OMF endpoint."
+      },
+      "r-adapter-failover": {
+        "result": "Use the AVEVA Adapter for OPC UA or MQTT",
+        "details": "AVEVA states adapter failover is 'Available with OPC UA and MQTT Adapters', with Hot, Warm and Cold modes. Avoid 2nd-generation PI Connectors and the PI Connector Relay here: 'There is currently NO FAILOVER support for PI Connector (2nd gen) and PI Connector Relay.'"
+      },
+      "r-interface-failover": {
+        "result": "Use a PI Interface with UniInt failover",
+        "details": "There are over 450 PI Interfaces. UniInt provides Phase 1 failover (synchronised through the data source; needs output support) and Phase 2 (shared file; hot, warm or cold). See the 'Which high-availability option?' tree for Phase 1 vs Phase 2."
+      },
+      "r-interface-exception": {
+        "result": "Use a PI Interface",
+        "details": "Exception (ExcDev, ExcMax, ExcMin) is a deadband filter applied only by PI Interfaces; connectors do not apply the exception settings."
+      },
+      "r-adapter-or-connector": {
+        "result": "Use an AVEVA Adapter or a PI Connector for that protocol",
+        "details": "Check whether an adapter exists for the protocol (Azure Event Hubs, BACnet, DNP3, Modbus TCP, MQTT, OPC UA, RDBMS, Structured Data Files). AVEVA's 2023 roadmap keeps Relay, PI System and OPC UA connectors under 'Continued Support and Investment'. 1st-generation connectors send data straight to the Data Archive with automatic point creation and the source structure to AF."
+      }
+    },
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-felts-connectivity-2023",
+      "dcv-foglamp-omf",
+      "dcv-github-osi-samples-omf",
+      "int-fledge-omf",
+      "dcv-ftsh-h2h-uniint",
+      "da-uc23-exc-comp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-ha-option",
+    "title": "Which high-availability option?",
+    "description": "Choose the redundancy mechanism for each PI System component. Remember that HA and backups are not a disaster-recovery plan on their own.",
+    "root": "comp",
+    "nodes": {
+      "comp": {
+        "question": "Which component needs high availability?",
+        "options": [
+          {
+            "label": "PI Data Archive",
+            "next": "r-collective"
+          },
+          {
+            "label": "A PI Interface",
+            "next": "ufo"
+          },
+          {
+            "label": "AF Server",
+            "next": "r-af"
+          },
+          {
+            "label": "PI Analysis Service or PI Notifications Service",
+            "next": "r-wsfc"
+          },
+          {
+            "label": "PI Connector (2nd gen) or Connector Relay",
+            "next": "r-nofailover"
+          }
+        ]
+      },
+      "ufo": {
+        "question": "Can the data source talk to two interfaces at once, and does the interface support outputs to it?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-phase1"
+          },
+          {
+            "label": "No, or not sure",
+            "next": "loss"
+          }
+        ]
+      },
+      "loss": {
+        "question": "How much data loss can you accept during a failover?",
+        "options": [
+          {
+            "label": "None",
+            "next": "r-hot"
+          },
+          {
+            "label": "A small gap is acceptable",
+            "next": "r-warmcold"
+          }
+        ]
+      },
+      "r-collective": {
+        "result": "PI Data Archive collective",
+        "details": "A collective is a set of servers acting as one. Configuration (points, security) replicates from the primary; time-series data does not, so interfaces send data to every member through n-way buffering (one queue per member). Keep members identical, put each on a different host when virtualised, and point expensive clients at a secondary."
+      },
+      "r-phase1": {
+        "result": "UniInt Phase 1 failover",
+        "details": "Phase 1 'uses the data source itself to synchronize failover operations'. The data source must serve two interfaces simultaneously and the interface must support outputs."
+      },
+      "r-hot": {
+        "result": "UniInt Phase 2, HOT",
+        "details": "Phase 2 synchronises through a shared file (/UFO_Sync). 'The Phase 2 hot failover configuration provides a no data loss solution for a single point of failure.' Set /UFO_ID, /UFO_OtherID, /UFO_Sync (with trailing slash) and /UFO_Type=HOT, and identical /UFO_Interval on both nodes."
+      },
+      "r-warmcold": {
+        "result": "UniInt Phase 2, WARM or COLD",
+        "details": "In warm and cold configurations 'you can expect a small period of data loss' (best-practice decks: Warm = maybe data loss, Cold = some data lost). COLD is the default /UFO_Type."
+      },
+      "r-af": {
+        "result": "Load-balanced AF Application Service with SQL Server Always On",
+        "details": "AVEVA's 2022 recommendation: a load balancer for the AF Application Service and SQL Server Always On Availability Groups for the SQL backend. AF collectives did not support read/write after failover and AVEVA has 'no plans to further update' them."
+      },
+      "r-wsfc": {
+        "result": "Windows Server Failover Clustering",
+        "details": "AVEVA recommends Windows Server failover clustering for PI Analysis Service and PI Notifications Service; analysis PI Point outputs are buffered by the PI Buffer Subsystem."
+      },
+      "r-nofailover": {
+        "result": "No built-in failover: choose another collector if HA is required",
+        "details": "'There is currently NO FAILOVER support for PI Connector (2nd gen) and PI Connector Relay.' Consider a UniInt interface or an OPC UA/MQTT adapter instead."
+      }
+    },
+    "sources": [
+      "da-rs2011-arch-best-practices",
+      "da-arch-workbook",
+      "da-uc2011-tips-trenches",
+      "da-uc23-da-performance",
+      "da-vcampus-2010-tuning",
+      "dcv-pisquare-nway",
+      "dcv-ftsh-h2h-uniint",
+      "dcv-citect-ufo2-ininet",
+      "dcv-bacnet-ufo2-muhaz",
+      "dcv-lonsberry-arch-2011",
+      "af-feedback-pida-185",
+      "af-kwan-getting-more-aa-2019",
+      "dcv-arch-workbook",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-client-choice",
+    "title": "PI Vision or another client?",
+    "description": "Choose the right PI client or integration path for who will use the data and how.",
+    "root": "who",
+    "nodes": {
+      "who": {
+        "question": "What do people need to do with the data?",
+        "options": [
+          {
+            "label": "Watch live displays and dashboards in a browser",
+            "next": "r-vision"
+          },
+          {
+            "label": "Build Excel reports",
+            "next": "r-datalink"
+          },
+          {
+            "label": "Feed a BI tool such as Power BI",
+            "next": "bi"
+          },
+          {
+            "label": "Build a custom application",
+            "next": "app"
+          },
+          {
+            "label": "Keep using existing ProcessBook displays",
+            "next": "r-migrate"
+          }
+        ]
+      },
+      "bi": {
+        "question": "Do you want shaped, template-based tables or streams published on a schedule, or ad hoc SQL queries?",
+        "options": [
+          {
+            "label": "Shaped tables or streams",
+            "next": "r-integrator"
+          },
+          {
+            "label": "Ad hoc SQL",
+            "next": "r-sql"
+          }
+        ]
+      },
+      "app": {
+        "question": "Will the application run on Windows with .NET and need the highest performance?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-afsdk"
+          },
+          {
+            "label": "No, or it must run anywhere",
+            "next": "r-webapi"
+          }
+        ]
+      },
+      "r-vision": {
+        "result": "PI Vision",
+        "details": "PI Vision is the web client (PI Coresight was renamed PI Vision in 2017). AVEVA retired PI ProcessBook as it transitioned to PI Vision (blog, 20 October 2021), so new displays belong in PI Vision."
+      },
+      "r-datalink": {
+        "result": "PI DataLink",
+        "details": "PI DataLink is the Excel add-in; its expressions use the Performance Equation function set (PIExpVal evaluates a PE expression)."
+      },
+      "r-integrator": {
+        "result": "PI Integrator for Business Analytics",
+        "details": "It reads from PI AF and writes shaped views to targets such as SQL Server, data lakes and Kafka. Power BI is not a direct target: publish to SQL Server and import. Streaming views need Advanced Edition."
+      },
+      "r-sql": {
+        "result": "PI SQL Client (RTQP)",
+        "details": "For RTQP, PI SQL Client 'is the recommended tool for new development projects'; it offers OLE DB, ODBC and JDBC. For PI point (tag) data, PI OLEDB Provider is the read/write option."
+      },
+      "r-afsdk": {
+        "result": "AF SDK",
+        "details": "OSIsoft describes AF SDK as the most performant way to access PI data in a Windows environment; PI Web API cannot outperform it."
+      },
+      "r-webapi": {
+        "result": "PI Web API",
+        "details": "PI Web API is RESTful and can be used from any platform that can make HTTP requests; it exposes a subset of AF SDK."
+      },
+      "r-migrate": {
+        "result": "Migrate with the PI ProcessBook to PI Vision Migration Utility",
+        "details": "It is a separate install that converts .pdi displays to native PI Vision displays. Migrate linked displays in the same operation to keep the links. VBA is not supported in PI Vision, and datasets are rebuilt as AF analyses. Third-party and AVEVA World sources say ProcessBook support ends in December 2024."
+      }
+    },
+    "sources": [
+      "ops2-osisoft-coresight-renamed",
+      "ops2-aveva-pb-retire-blog",
+      "ops2-aw24-pb-migration-session",
+      "ops2-pb-migration-workbook",
+      "dcv-pb-migration-lab-2020",
+      "fn-manualzz-datalink-ug",
+      "af-pisquare-pe-text-output",
+      "dev2-integrator-bi-course-2020r2",
+      "dcv-devtech-workbook-2020",
+      "int-dev-tech-overview",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-calculation-engine",
+    "title": "Asset Analytics, PE tags or AF SDK code?",
+    "description": "Decide where a calculation should run: an AF analysis, a legacy Performance Equation tag, or custom AF SDK code.",
+    "root": "kind",
+    "nodes": {
+      "kind": {
+        "question": "What kind of calculation is it?",
+        "options": [
+          {
+            "label": "A continuous result to store over time",
+            "next": "legacy"
+          },
+          {
+            "label": "A one-off or bulk query over many attributes",
+            "next": "r-adhoc"
+          }
+        ]
+      },
+      "legacy": {
+        "question": "Is this an existing PE tag (point source C, PE Scheduler)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-migrate-pe"
+          },
+          {
+            "label": "No, it is new",
+            "next": "funcs"
+          }
+        ]
+      },
+      "funcs": {
+        "question": "Does it need functions Asset Analytics lacked as of 2022 (sort, dot product, ForEach loops, cubic spline)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-afsdk"
+          },
+          {
+            "label": "No",
+            "next": "type"
+          }
+        ]
+      },
+      "type": {
+        "question": "What does the calculation do?",
+        "options": [
+          {
+            "label": "Aggregate attributes across child elements",
+            "next": "r-rollup"
+          },
+          {
+            "label": "Detect start and end of events",
+            "next": "r-efgen"
+          },
+          {
+            "label": "Check values against control limits",
+            "next": "r-sqc"
+          },
+          {
+            "label": "Anything else (formulas, conditions)",
+            "next": "r-expression"
+          }
+        ]
+      },
+      "r-adhoc": {
+        "result": "Query from a client, not Asset Analytics",
+        "details": "Asset Analytics 'was designed to be a streaming calculation engine' and is not suited to ad-hoc queries or bulk extraction across very many attributes. Use client-side summaries (PI Web API /summary, AF SDK Summaries, PI SQL) instead."
+      },
+      "r-migrate-pe": {
+        "result": "Migrate the PE tag to an Expression analysis",
+        "details": "Expression analyses use the same PE syntax. Watch for known issues: changing the point source can leave a 'Scan Off' value, and Analytics has no PrevGoodVal (use BadVal, PrevVal and PrevEvent)."
+      },
+      "r-afsdk": {
+        "result": "Write a custom AF SDK calculation service",
+        "details": "AVEVA publishes AF SDK samples for event-triggered (AFDataCache) and timer-triggered calculations. The functions listed were requested on the feedback portal but not available as of 2022."
+      },
+      "r-rollup": {
+        "result": "Rollup analysis",
+        "details": "Rollups aggregate attributes selected by name, category or template with Sum, Average, Minimum, Maximum, Count and Median. Outputs must be PI Point data references."
+      },
+      "r-efgen": {
+        "result": "Event Frame Generation analysis",
+        "details": "One of the four AF analysis types; EventFrame(\"StartTime\") and similar functions read the current event frame."
+      },
+      "r-sqc": {
+        "result": "SQC analysis",
+        "details": "SQC analyses use Statistical Quality Control methods to check attribute values against set boundaries."
+      },
+      "r-expression": {
+        "result": "Expression analysis on an element template",
+        "details": "Expression analyses use PE syntax with multi-line variables, and an analysis on a template applies to all its elements. Test with Evaluate and Preview before Check In, because check-in starts it on every element."
+      }
+    },
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-kwan-getting-more-aa-2019",
+      "fn-feedback-pida-850",
+      "fn-feedback-pida-855",
+      "af-pisquare-pe-to-analytics-migration",
+      "af-analyzing-pi-data-2018",
+      "af-using-af-analyze-asset-2019",
+      "int-gh-afsdk-eventcalc",
+      "int-gh-afsdk-timercalc",
+      "af-data-exploration-notification-2020"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-onprem-vs-connect",
+    "title": "On-premises PI Server or CONNECT?",
+    "description": "Decide between on-premises PI Server, CONNECT data services, or a hybrid of both.",
+    "root": "have",
+    "nodes": {
+      "have": {
+        "question": "Do you already run PI Server on-premises?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "share"
+          },
+          {
+            "label": "No",
+            "next": "install"
+          }
+        ]
+      },
+      "share": {
+        "question": "Do you need to share data across the enterprise, with partners or with data-science teams?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-hybrid"
+          },
+          {
+            "label": "No",
+            "next": "r-stay"
+          }
+        ]
+      },
+      "install": {
+        "question": "Do you want a service with no software to install, where AVEVA manages updates and infrastructure?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-cds"
+          },
+          {
+            "label": "No, we want to run it ourselves",
+            "next": "r-pi-server"
+          }
+        ]
+      },
+      "r-hybrid": {
+        "result": "Hybrid: keep PI Server and add the PI to CONNECT Agent",
+        "details": "The PI to CONNECT Agent 'enables the transfer of data from on-premises PI Server to CONNECT data services'; it runs on-premises and transfers AF elements, attributes and PI points. OSIsoft's cloud use cases were remote monitoring, enterprise-wide data science and cross-enterprise sharing."
+      },
+      "r-stay": {
+        "result": "Stay on-premises",
+        "details": "AVEVA describes PI Server as 'the on-premises home for operational data'. You can add CONNECT later through the PI to CONNECT Agent."
+      },
+      "r-cds": {
+        "result": "CONNECT data services, with Edge Data Store or adapters at the edge",
+        "details": "AVEVA Data Hub (now CONNECT data services) is self-service in a browser with no software to install, AVEVA manages updates and infrastructure, and it was designed for late or out-of-order data. Edge Data Store and adapters send data to it."
+      },
+      "r-pi-server": {
+        "result": "PI Server, on-premises or on your own VMs",
+        "details": "PI Server is customer-installed Windows software. VM and cloud hosting are possible; OSIsoft showed Azure and AWS deployments in 2019."
+      }
+    },
+    "sources": [
+      "da-aveva-pi-server-2022",
+      "da-arc-datahub-2021",
+      "da-aveva-ocs-2021",
+      "ops2-sw-schedule-pi-2026",
+      "ops2-uc22-carasso-odi",
+      "ops2-eds-datasheet",
+      "adm-pi-system-basics-2017",
+      "adm-aveva-azure-aws-presentation-page",
+      "da-flex-pdf"
+    ],
+    "verify": true,
+    "verifyNote": "The on-premises vs SaaS comparison is partly inferred in the research (customer-installed vs AVEVA-managed); check current AVEVA positioning."
+  },
+  {
+    "id": "tree-buffering",
+    "title": "Which buffering option?",
+    "description": "Choose between the PI Buffer Subsystem (pibufss) and the legacy API Buffer Server (bufserv), and configure it sensibly.",
+    "root": "os",
+    "nodes": {
+      "os": {
+        "question": "Does the interface run on a non-Windows platform?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-bufserv"
+          },
+          {
+            "label": "No, Windows",
+            "next": "ver"
+          }
+        ]
+      },
+      "ver": {
+        "question": "Is the receiving PI Server older than version 3.4.375?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-bufserv"
+          },
+          {
+            "label": "No",
+            "next": "coll"
+          }
+        ]
+      },
+      "coll": {
+        "question": "Does it send to a PI Data Archive collective?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-nway"
+          },
+          {
+            "label": "No, a single server",
+            "next": "r-pibufss"
+          }
+        ]
+      },
+      "r-bufserv": {
+        "result": "API Buffer Server (bufserv)",
+        "details": "'The API Buffer Server should only be used if (1) the PI Server receiving the buffered data is older than version 3.4.375' or (2) the interface runs on a non-Windows platform. It buffers only API-based data; pibufutil is its utility."
+      },
+      "r-pibufss": {
+        "result": "PI Buffer Subsystem (pibufss)",
+        "details": "Installed with every PI Interface; buffers API- and SDK-based applications, runs compression on the collection node and reduces server load. It must start before the interfaces, each interface must have buffering enabled, and the queue should be off the OS drive. Also buffer PI ACE and PI Notifications."
+      },
+      "r-nway": {
+        "result": "PI Buffer Subsystem with n-way buffering",
+        "details": "pibufss keeps a separate queue for each collective member, so data for healthy members flows while a down member's queue grows. Check with pibufss -qs, which asks which member's queue to show."
+      }
+    },
+    "sources": [
+      "dcv-admin-it-2017r2",
+      "dcv-techsupport-tools",
+      "dcv-techsupport-bufss",
+      "dcv-pisquare-nway",
+      "dcv-simple-pi-system-2020",
+      "dcv-vining-arch-2013",
+      "dcv-pi-sys-admin-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-webapi-new-data",
+    "title": "Getting new data from PI Web API",
+    "description": "Choose how a PI Web API client should receive new values or many values at once.",
+    "root": "need",
+    "nodes": {
+      "need": {
+        "question": "What does the client need?",
+        "options": [
+          {
+            "label": "New values as they arrive",
+            "next": "ws"
+          },
+          {
+            "label": "Many different reads or writes in one round trip",
+            "next": "r-batch"
+          },
+          {
+            "label": "A periodic snapshot of many attributes",
+            "next": "r-streamset"
+          }
+        ]
+      },
+      "ws": {
+        "question": "Can the client and network use WebSockets?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-channel"
+          },
+          {
+            "label": "No, plain HTTPS only",
+            "next": "r-updates"
+          }
+        ]
+      },
+      "r-channel": {
+        "result": "Channels (WebSocket)",
+        "details": "Use /streams/{webId}/channel, /streamsets/{webId}/channel or /streamsets/channel?webId=... over wss://. includeInitialValues sends current values first; heartbeatRate sends keep-alive messages. EDPR streamed about 2 million tags this way."
+      },
+      "r-updates": {
+        "result": "Stream Updates",
+        "details": "Register with POST /streams/{webId}/updates (or /streamsets/updates), then poll GET /streams/updates/{marker}, passing LatestMarker each time; the server queues only new data."
+      },
+      "r-batch": {
+        "result": "POST /batch",
+        "details": "Combine named sub-requests; use ParentIds and JSONPath Parameters such as $.1.Content.WebId to chain them. Send X-Requested-With on the batch POST."
+      },
+      "r-streamset": {
+        "result": "StreamSets",
+        "details": "/streamsets/{webId}/value returns one current value per attribute of an element; the ad hoc form takes a repeated webId parameter."
+      }
+    },
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-stream-api",
+      "int-gh-pyclient-streamset-api",
+      "int-uc19-edpr-webapi",
+      "int-gh-batch-call-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-sql-product",
+    "title": "Which PI SQL product?",
+    "description": "Pick the SQL driver for a reporting or integration tool.",
+    "root": "data",
+    "nodes": {
+      "data": {
+        "question": "Is the data PI point (tag) data or AF data?",
+        "options": [
+          {
+            "label": "PI point data",
+            "next": "write"
+          },
+          {
+            "label": "AF elements, attributes or event frames",
+            "next": "java"
+          }
+        ]
+      },
+      "write": {
+        "question": "Do you need to write values?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-oledb"
+          },
+          {
+            "label": "No, read only",
+            "next": "java2"
+          }
+        ]
+      },
+      "java2": {
+        "question": "Is the client a Java application?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-jdbc"
+          },
+          {
+            "label": "No",
+            "next": "r-oledb"
+          }
+        ]
+      },
+      "java": {
+        "question": "Is the client a Java application?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-jdbc"
+          },
+          {
+            "label": "No",
+            "next": "r-rtqp"
+          }
+        ]
+      },
+      "r-oledb": {
+        "result": "PI OLEDB Provider",
+        "details": "Read/write (CRUD) access to PI point data, with catalogs piarchive, pipoint, pids and piuser. Use picomp2 for archived values and piinterp2 for interpolated values. Community answers call it the best way to query Data Archive data programmatically without AF."
+      },
+      "r-jdbc": {
+        "result": "PI JDBC Driver",
+        "details": "JDBC 4.0-4.2, pure Java, HTTPS only, and needs PI SQL Data Access Server. It offers CRUD on PI point data and read on AF. Class com.osisoft.jdbc.Driver."
+      },
+      "r-rtqp": {
+        "result": "PI SQL Client with the RTQP engine",
+        "details": "Each connection targets one AF database as the Master catalog. Recommended for new development; PI OLEDB Enterprise (read-only) is the legacy path and its queries can be migrated."
+      }
+    },
+    "sources": [
+      "int-dev-tech-overview",
+      "dev2-pioledb-basics",
+      "dev2-feedback-rtqp-pipoints",
+      "dev2-techsupport-pijdbc",
+      "dev2-ignition-pijdbc",
+      "dev2-bachmann-pisql-2019",
+      "dev2-pisql-migrate-lab-2020",
+      "dcv-devtech-workbook-2020"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-tag-not-updating",
+    "title": "Troubleshoot: a tag is not updating",
+    "description": "Step through AVEVA's playbook for a PI point that stops receiving data.",
+    "root": "src",
+    "nodes": {
+      "src": {
+        "question": "Is the source providing data (check with a source tool such as the PI OPC Client Tool)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "intf"
+          },
+          {
+            "label": "No",
+            "next": "r-source"
+          }
+        ]
+      },
+      "intf": {
+        "question": "Is the interface IO Rate updating and Device Status GOOD?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "attrs"
+          },
+          {
+            "label": "No",
+            "next": "r-interface"
+          }
+        ]
+      },
+      "attrs": {
+        "question": "Do Instrument Tag, Point Source, Location1 and Location4 match the interface?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "buf"
+          },
+          {
+            "label": "No, or not sure",
+            "next": "r-attrs"
+          }
+        ]
+      },
+      "buf": {
+        "question": "Is buffering healthy (pibufss -cfg connected, pibufss -qs reads and writes)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "perm"
+          },
+          {
+            "label": "No",
+            "next": "r-buffer"
+          }
+        ]
+      },
+      "perm": {
+        "question": "Does the message log show -10401 or -11414?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-perm"
+          },
+          {
+            "label": "No",
+            "next": "clock"
+          }
+        ]
+      },
+      "clock": {
+        "question": "Are the interface and server clocks within limits?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-server"
+          },
+          {
+            "label": "No",
+            "next": "r-clock"
+          }
+        ]
+      },
+      "r-source": {
+        "result": "Fix the data source first",
+        "details": "The playbook starts by confirming the source provides data with a source tool."
+      },
+      "r-interface": {
+        "result": "The interface is not collecting",
+        "details": "IO Rate counts values sent; if it stops updating, collection has stopped. Heartbeat alone is not proof of collection."
+      },
+      "r-attrs": {
+        "result": "Correct the point attributes",
+        "details": "'The most common cause of new PI Points not receiving data is an incorrect configuration of the PI Point attributes.' Instrument Tag must match exactly (often case-sensitive); Location1 is the interface ID; Location4 is the scan class. Read the startup message about matching points."
+      },
+      "r-buffer": {
+        "result": "Fix buffering",
+        "details": "Check pibufss -cfg and pibufss -qs; restart sending with pibufss -bc start if it was stopped."
+      },
+      "r-perm": {
+        "result": "Fix permissions or buffer ownership",
+        "details": "-10401 is no write access: check the identity in Network Manager Statistics and point DataSecurity. -11414 means a buffering service holds an exclusive lock on the point."
+      },
+      "r-clock": {
+        "result": "Fix the clocks",
+        "details": "Points with Future = 0 discard data more than 10 minutes ahead, and an interface more than 30 minutes off the server clock will not run (-11046 target date in future)."
+      },
+      "r-server": {
+        "result": "Check the Data Archive side, then filtering",
+        "details": "Run piartool -ss, -qs and -as (archiving flag 3, reads and writes moving together). Finally, values inside the exception or compression deviation are not stored (this last step is inferred in the playbook)."
+      }
+    },
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2",
+      "adm-it-pros-workbook-2017r2",
+      "adm-pistatus-h",
+      "adm-pisquare-piputval-11414",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tree-cannot-connect",
+    "title": "Troubleshoot: cannot connect to the Data Archive",
+    "description": "Step through AVEVA's playbook when a client or interface cannot connect.",
+    "root": "net",
+    "nodes": {
+      "net": {
+        "question": "Does ping work both ways and is TCP 5450 open (Test-NetConnection or the tcpclient one-liner)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "stack"
+          },
+          {
+            "label": "No",
+            "next": "r-network"
+          }
+        ]
+      },
+      "stack": {
+        "question": "Do apisnap <server> (PI API) and AboutPI-SDK (PI SDK) connect?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "auth"
+          },
+          {
+            "label": "No",
+            "next": "r-stack"
+          }
+        ]
+      },
+      "auth": {
+        "question": "Does the message log show failed logins, or no mapping for the client?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-mapping"
+          },
+          {
+            "label": "No",
+            "next": "kerb"
+          }
+        ]
+      },
+      "kerb": {
+        "question": "Does the client rely on Kerberos (for example through PI Vision)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-kerberos"
+          },
+          {
+            "label": "No",
+            "next": "tls"
+          }
+        ]
+      },
+      "tls": {
+        "question": "Does the log show message ID 748 (no TLS certificate loaded)?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "r-tls"
+          },
+          {
+            "label": "No",
+            "next": "r-timeout"
+          }
+        ]
+      },
+      "r-network": {
+        "result": "Fix the network path",
+        "details": "Data sent to the Data Archive uses TCP 5450; AVEVA bulletins advise limiting access to it to trusted workstations, so check firewalls."
+      },
+      "r-stack": {
+        "result": "Fix the client stack",
+        "details": "apisnap tests PI API connectivity; AboutPI-SDK (Connections) tests PI SDK connectivity."
+      },
+      "r-mapping": {
+        "result": "Add or fix the PI mapping",
+        "details": "Connection failures from interface nodes are usually caused by missing PI Identity mappings; check mappings first, then trusts."
+      },
+      "r-kerberos": {
+        "result": "Check SPNs and delegation",
+        "details": "Query setspn -q PIServer/<host>, enable Kerberos logging (LogLevel 1) and run klist purge. Keep clock drift under 5 minutes."
+      },
+      "r-tls": {
+        "result": "Re-register the Data Archive certificate",
+        "details": "Run pidiag -tls --verify, then pidiag -tls -r <thumbprint>."
+      },
+      "r-timeout": {
+        "result": "Investigate timeouts",
+        "details": "-10722 (PI_NET_TIMEOUT) and -10010 (PI_ERR_TIMEOUT) are timeout codes; check server load and network latency."
+      }
+    },
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2",
+      "adm-tdengine-pi-prereqs",
+      "adm-it-pros-workbook-2017r2",
+      "adm-uc23-security-biggins",
+      "adm-arch-planning-workbook-2024",
+      "adm-pisquare-pivision-collective-tls",
+      "adm-pistatus-h",
+      "adm-aveva-bulletin-2024-001",
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  }
+]

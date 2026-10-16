@@ -1,0 +1,92 @@
+[
+  {
+    "id": "marine-transport",
+    "title": "Marine & Transport",
+    "summary": "Shipping companies use PI System for whole-ship monitoring, fuel and emissions tracking, predictive maintenance and crew training. Vessels buffer data onboard and send critical data ashore by satellite, with non-critical data uploaded later.",
+    "hierarchy": "```mermaid\nflowchart TD\n  FL[Fleet] --> V[Vessel]\n  V --> S1[Main Engine]\n  V --> S2[Auxiliary Engines and Gensets]\n  V --> S3[Boilers and Thermal Oil]\n  V --> S4[Hull]\n  V --> S5[Cranes and Self-unloader]\n  V --> S6[Navigation]\n  S1 --> C1[Cylinder 1 to n]\n```",
+    "tags": [
+      {
+        "name": "Fuel consumption",
+        "description": "Vessel fuel use.",
+        "uom": "t/day"
+      },
+      {
+        "name": "Speed over ground",
+        "description": "Vessel speed.",
+        "uom": "knots"
+      },
+      {
+        "name": "CO2",
+        "description": "CO2 emitted, used for carbon intensity.",
+        "uom": "t"
+      },
+      {
+        "name": "Cylinder temperature",
+        "description": "Engine cylinder temperature; Caterpillar caught an abnormal reading on a cruise liner."
+      }
+    ],
+    "templates": [
+      {
+        "name": "Vessel",
+        "description": "Vessel element with vessel-level KPIs. Illustrative.",
+        "attributes": [
+          "Fuel consumption (t/day)",
+          "Speed over ground (knots)",
+          "CO2",
+          "Carbon intensity"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Carbon intensity",
+        "expression": "CO2 emitted / transport work",
+        "description": "CO2 per unit of transport work; CSL reported a 29% reduction. Illustrative expression."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Equipment anomaly",
+        "trigger": "An abnormal reading, such as cylinder temperature, is detected (CSL reported over 300 anomaly detections)"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "Fuel consumption",
+        "definition": "Fuel burned per day; fuel is nearly 70% of a RORO vessel's lifetime cost (Caterpillar)."
+      },
+      {
+        "name": "Carbon intensity",
+        "definition": "CO2 emitted per unit of transport work."
+      },
+      {
+        "name": "Upload bandwidth",
+        "definition": "Ship-to-shore data volume; CSL reported up to 50% reduction."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Limited, unreliable bandwidth needs prioritised critical and non-critical data paths (CSL).",
+      "Frequent crew turnover causes inconsistent data (CSL).",
+      "Onboard data silos prevent learning across the fleet (Caterpillar).",
+      "Weather and ocean conditions add \"noise\" to operational data (Caterpillar)."
+    ],
+    "caseStudies": [
+      "caterpillar-marine",
+      "csl-group",
+      "delfi-ils",
+      "cargill"
+    ],
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "sources": [
+      "ind-ss-caterpillar",
+      "ind-ss-csl",
+      "ind-ss-cargill",
+      "ind-ss-delfi"
+    ],
+    "verify": true,
+    "verifyNote": "The vessel AF hierarchy, Vessel template and carbon intensity expression are inferred. IMO CII/EEXI and EU MRV reporting with PI, and rail and port PI cases, were not found in a readable source."
+  }
+]

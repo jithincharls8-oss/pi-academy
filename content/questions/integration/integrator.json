@@ -1,0 +1,378 @@
+[
+  {
+    "id": "q-integrator-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 1,
+    "prompt": "A data scientist wants to add raw PI tags to a PI Integrator view. What must happen first?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Map the tags as AF attributes"
+      },
+      {
+        "id": "b",
+        "text": "Export the tags to a CSV file"
+      },
+      {
+        "id": "c",
+        "text": "Create a PI View target"
+      },
+      {
+        "id": "d",
+        "text": "Enable the PI Web API Crawler"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI tags cannot be used directly in PI Integrator. They must first be mapped as AF attributes, because shapes and views are built from AF elements, templates and attributes.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 1,
+    "prompt": "Which PI Integrator for Business Analytics edition supports streaming views?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Advanced Edition"
+      },
+      {
+        "id": "b",
+        "text": "Standard Edition"
+      },
+      {
+        "id": "c",
+        "text": "Business Intelligence Edition"
+      },
+      {
+        "id": "d",
+        "text": "Both Standard and Advanced"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"In short, Advanced Edition supports streaming views while Standard Edition does not.\" Advanced Edition is a superset of Standard that adds continuously streaming data.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2",
+      "dev2-integrators-uc18eu"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-03",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "Counting licence streams.",
+    "scenario": "View A uses PI-point attributes backed by tags `TK1.Level` and `TK1.Temp`. View B uses `TK1.Level` again plus a static (non-PI-point) attribute `Capacity`.\n\nHow many licence streams do these views consume?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2"
+      },
+      {
+        "id": "b",
+        "text": "3"
+      },
+      {
+        "id": "c",
+        "text": "4"
+      },
+      {
+        "id": "d",
+        "text": "1"
+      }
+    ],
+    "answer": "a",
+    "explanation": "A stream is a unique PI tag used in a view, counted once across views. The tag used in both views counts once, the second tag counts once, and static attributes do not consume streams: 2 streams.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-04",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each PI Integrator view type to what it is based on.",
+    "pairs": [
+      {
+        "left": "Asset View",
+        "right": "Elements and element templates"
+      },
+      {
+        "left": "Event View",
+        "right": "Event frames and event frame templates"
+      },
+      {
+        "left": "Streaming View",
+        "right": "Targets that support streaming, such as Kafka"
+      }
+    ],
+    "explanation": "Asset View is based on elements and element templates. Event View is based on event frames and event frame templates. Streaming View is for publish targets that support streaming, such as Kafka.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-05",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "Put PI Integrator's processing pipeline (as described by OSIsoft in 2015) in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Cleanse"
+      },
+      {
+        "id": "b",
+        "text": "Augment"
+      },
+      {
+        "id": "c",
+        "text": "Shape"
+      },
+      {
+        "id": "d",
+        "text": "Transmit"
+      }
+    ],
+    "explanation": "Cleanse (data quality), Augment (model normalisation), Shape (data compatibility and aggregation), Transmit (push to targets).",
+    "sources": [
+      "dev2-integrator-knox-2015"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-06",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "In the 2018 editions, which targets did Advanced Edition add beyond Standard? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Apache Kafka"
+      },
+      {
+        "id": "b",
+        "text": "Azure IoT Hub"
+      },
+      {
+        "id": "c",
+        "text": "Azure Event Hubs"
+      },
+      {
+        "id": "d",
+        "text": "Microsoft SQL Server"
+      },
+      {
+        "id": "e",
+        "text": "Oracle RDBMS"
+      },
+      {
+        "id": "f",
+        "text": "Hadoop HDFS"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Advanced Edition 2018 added Apache Kafka, Azure IoT Hub and Azure Event Hubs. SQL Server, Oracle RDBMS and Hadoop HDFS were already Standard targets.",
+    "sources": [
+      "dev2-integrators-uc18eu"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-07",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "What does the 2020 R2 course say about the PI View target?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is deprecated because of a security vulnerability and should not be used if a SQL Server target is available"
+      },
+      {
+        "id": "b",
+        "text": "It is the recommended production target for Power BI"
+      },
+      {
+        "id": "c",
+        "text": "It is required for streaming views"
+      },
+      {
+        "id": "d",
+        "text": "It replaces the backend PIIntegratorDB database"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI View is for dev/test only, is deprecated because of a security vulnerability and \"should not be used if a Microsoft SQL Server target is available\".",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-08",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "An administrator deletes an unused view to free licence streams for a new one. What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Buffered data is cleared but the streams are not freed"
+      },
+      {
+        "id": "b",
+        "text": "The streams are freed immediately"
+      },
+      {
+        "id": "c",
+        "text": "The streams are freed after the next scheduled run"
+      },
+      {
+        "id": "d",
+        "text": "The view cannot be deleted while it has streams"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Removing a view clears its buffered data, but \"this does not free up the available output streams allowed with your license\".",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-09",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 1,
+    "prompt": "Getting PI Integrator data into Power BI.",
+    "scenario": "An analyst built an asset view of mixing tanks with a 1-hour interval and Month and Hour columns. They look for \"Power BI\" in the target list and cannot find it.\n\nWhat does the PI Integrator course do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Publish the view to Microsoft SQL Server, then import the table into Power BI"
+      },
+      {
+        "id": "b",
+        "text": "Install the Power BI target plug-in"
+      },
+      {
+        "id": "c",
+        "text": "Use a Streaming View to Power BI"
+      },
+      {
+        "id": "d",
+        "text": "Query the AF database from Power BI with PI OLEDB Enterprise"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Power BI is not a direct PI Integrator target. The course publishes the view (Run Once) to SQL Server and then imports the table into Power BI.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-10",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 2,
+    "prompt": "In an event view, which unit should Event Frame Duration be set to so durations are not shown as round hours?",
+    "accepted": [
+      "Second",
+      "Seconds"
+    ],
+    "explanation": "The course tip is to set the Event Frame Duration unit to Second; otherwise \"it will be displayed as a round number of hours\".",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  },
+  {
+    "id": "q-integrator-11",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.integrator"
+    ],
+    "difficulty": 3,
+    "prompt": "Which SQL databases are backend databases of PI Integrator for Business Analytics? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PIIntegratorDB"
+      },
+      {
+        "id": "b",
+        "text": "PIIntegratorLogs"
+      },
+      {
+        "id": "c",
+        "text": "PIIntegratorStats"
+      },
+      {
+        "id": "d",
+        "text": "PIFD"
+      },
+      {
+        "id": "e",
+        "text": "PIVisionDB"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The backend SQL databases are PIIntegratorDB, PIIntegratorLogs and PIIntegratorStats. PIFD is not named in the course material.",
+    "sources": [
+      "dev2-integrator-bi-course-2020r2"
+    ],
+    "lessonId": "pi-integrator-business-analytics"
+  }
+]

@@ -1,0 +1,166 @@
+[
+  {
+    "id": "q-connect-what-is",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 1,
+    "prompt": "What is CONNECT data services?",
+    "options": [
+      { "id": "a", "text": "The cloud-native data-management foundation of AVEVA's CONNECT platform, formerly AVEVA Data Hub" },
+      { "id": "b", "text": "A new name for the on-premises PI Data Archive" },
+      { "id": "c", "text": "A Windows service on interface nodes" },
+      { "id": "d", "text": "A replacement for SQL Server under PI AF" }
+    ],
+    "answer": "a",
+    "explanation": "CONNECT is AVEVA's industrial intelligence platform and CONNECT data services, formerly AVEVA Data Hub, is its data-management foundation in the cloud.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud"],
+    "sources": ["da-aveva-cds-blog-2024"]
+  },
+  {
+    "id": "q-connect-compare",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 2,
+    "prompt": "Match each statement to the product it describes.",
+    "pairs": [
+      { "left": "Customer-installed Windows software that the customer administers", "right": "PI Server" },
+      { "left": "Multitenant SaaS in a browser; AVEVA manages updates and infrastructure", "right": "CONNECT data services" },
+      { "left": "Edge software that transfers data to the PI Server and to the cloud", "right": "Edge Data Store" }
+    ],
+    "explanation": "The PI Server is the on-premises home for operational data. AVEVA Data Hub (now CONNECT data services) is self-service in a browser with AVEVA managing updates. Edge Data Store transfers data to the PI Server and the cloud service.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud", "comparison"],
+    "sources": ["da-aveva-pi-server-2022", "da-arc-datahub-2021", "da-flex-pdf"]
+  },
+  {
+    "id": "q-connect-hybrid",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 2,
+    "prompt": "Which PI Server release was the first 'hybrid' release, integrating with AVEVA Data Hub?",
+    "options": [
+      { "id": "a", "text": "PI Server 2012" },
+      { "id": "b", "text": "PI Server 2018 SP3" },
+      { "id": "c", "text": "PI Server 2023" },
+      { "id": "d", "text": "PI Server 2015" }
+    ],
+    "answer": "c",
+    "explanation": "PI Server 2023 was the first hybrid release, integrating with AVEVA Data Hub, and added OIDC authentication. 2018 SP3 is the feature-stable patch branch; 2015 introduced future data.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["versions"],
+    "sources": ["da-uc23-security", "da-arch-workbook"]
+  },
+  {
+    "id": "q-connect-af-context",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 2,
+    "prompt": "Which PI System component provides the contextualisation that CONNECT builds on before sharing data?",
+    "options": [
+      { "id": "a", "text": "PI Asset Framework (AF)" },
+      { "id": "b", "text": "PI Buffer Subsystem" },
+      { "id": "c", "text": "PI Message Subsystem" },
+      { "id": "d", "text": "PI ICU" }
+    ],
+    "answer": "a",
+    "explanation": "ARC's AVEVA World 2025 report notes that PI AF provides the contextualisation CONNECT builds on. The others are data-path or admin components.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud", "af"],
+    "sources": ["da-arc-avevaworld-2025"]
+  },
+  {
+    "id": "q-connect-late-data",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 2,
+    "prompt": "True or false: AVEVA Data Hub was designed to handle operations data that arrives late or out of order.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "ARC's 2021 report on the launch states AVEVA Data Hub was designed to handle late or out-of-order operations data.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["true-false", "cloud"],
+    "sources": ["da-arc-datahub-2021"]
+  },
+  {
+    "id": "q-connect-ocs-usecases",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 2,
+    "prompt": "Which use cases did AVEVA highlight for OSIsoft Cloud Services (later AVEVA Data Hub)? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Remote monitoring" },
+      { "id": "b", "text": "Enterprise-wide data science" },
+      { "id": "c", "text": "Cross-enterprise data sharing" },
+      { "id": "d", "text": "Replacing the plant's control system" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OCS's highlighted use cases were remote monitoring, enterprise-wide data science and cross-enterprise data sharing. It is not a control system.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud"],
+    "sources": ["da-aveva-ocs-2021"]
+  },
+  {
+    "id": "q-connect-databricks",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 3,
+    "prompt": "CONNECT data services integrates with Databricks via which sharing technology?",
+    "accepted": ["Delta Sharing", "delta sharing"],
+    "explanation": "ARC's AVEVA World 2025 report says CONNECT data services integrates with Databricks via Delta Sharing.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud", "integration"],
+    "sources": ["da-arc-avevaworld-2025"]
+  },
+  {
+    "id": "q-connect-scenario-split",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.connect"],
+    "difficulty": 3,
+    "scenario": "A mining company wants operators at each mine to keep fast local trends even if the internet link fails, while a central data science team analyses data from all mines in the cloud.",
+    "prompt": "Which design fits AVEVA's positioning of its products?",
+    "options": [
+      { "id": "a", "text": "Keep a PI Server (Data Archive and AF) at each mine for local users and send selected data to CONNECT data services for the central team" },
+      { "id": "b", "text": "Remove the local PI Servers and have operators read only from the cloud" },
+      { "id": "c", "text": "Install CONNECT data services on a local Windows server at each mine" },
+      { "id": "d", "text": "Use PI Buffer Subsystem as the long-term store at each mine" }
+    ],
+    "answer": "a",
+    "explanation": "PI Server is the on-premises home for operational data, and CONNECT data services is cloud SaaS with nothing to install, suited to enterprise-wide data science. CONNECT data services cannot be installed locally, and the buffer is only a temporary store.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud", "scenario"],
+    "sources": ["da-aveva-pi-server-2022", "da-arc-datahub-2021", "da-aveva-ocs-2021"]
+  },
+  {
+    "id": "q-connect-agent-role",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.connect", "fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "According to AVEVA's PI Data Infrastructure service description, what does the PI to CONNECT Agent do?",
+    "options": [
+      { "id": "a", "text": "Reports tag usage for the Aggregate Tag model and can optionally send process data to CONNECT data services" },
+      { "id": "b", "text": "Replaces the PI Snapshot Subsystem" },
+      { "id": "c", "text": "Applies exception filtering on interface nodes" },
+      { "id": "d", "text": "Backs up the AF SQL database" }
+    ],
+    "answer": "a",
+    "explanation": "The agent reports tag usage for the Aggregate Tag licence model and can optionally send process data to CONNECT data services; each PI Server in that model needs it.",
+    "lessonId": "pi-system-vs-connect",
+    "tags": ["cloud", "licensing"],
+    "sources": ["ops2-pidi-service-description"],
+    "verify": true,
+    "verifyNote": "How the agent is configured and what it transfers was not read in the da research; check AVEVA's PI to CONNECT Agent documentation."
+  }
+]

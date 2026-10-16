@@ -1,0 +1,544 @@
+[
+  {
+    "id": "q-pharma-audit-trail-text",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "21 CFR 11.10(e) requires \"Use of secure, computer-generated, ______ audit trails\". Fill in the missing word.",
+    "accepted": [
+      "time-stamped",
+      "timestamped",
+      "time stamped"
+    ],
+    "caseSensitive": false,
+    "explanation": "11.10(e) requires \"secure, computer-generated, time-stamped audit trails to independently record the date and time of operator entries and actions that create, modify, or delete electronic records.\"",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "regulation"
+    ],
+    "sources": [
+      "ind-ecfr-11-10"
+    ]
+  },
+  {
+    "id": "q-pharma-compliance-claim",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "Which statement should the validation lead put in the document?",
+    "scenario": "A project's draft validation summary says: \"The PI System is 21 CFR Part 11 compliant, so no further controls are needed.\"",
+    "options": [
+      {
+        "id": "a",
+        "text": "Keep it; AVEVA certifies PI as compliant"
+      },
+      {
+        "id": "b",
+        "text": "Replace it: compliance depends on configuration, procedures and validation by the regulated company"
+      },
+      {
+        "id": "c",
+        "text": "Keep it, but add that PI Vision is also compliant"
+      },
+      {
+        "id": "d",
+        "text": "Remove all mention of Part 11 because it does not apply to historians"
+      }
+    ],
+    "answer": "b",
+    "explanation": "No software is Part 11 compliant on its own. FDA guidance places responsibility on the regulated firm, and Part 11 applies where predicate-rule records are kept electronically, so it may well apply.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "pitfall"
+    ],
+    "sources": [
+      "ind-fda-part11-guidance"
+    ],
+    "verify": true,
+    "verifyNote": "The rule 'do not claim PI is Part 11 compliant on its own' is marked (inferred) in the research, derived from the FDA guidance."
+  },
+  {
+    "id": "q-pharma-janssen-model",
+    "type": "ordering",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Put the levels of Janssen Cork's S88-based AF model in order, from top to bottom.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Element per process"
+      },
+      {
+        "id": "b",
+        "text": "Sub-element per CQA"
+      },
+      {
+        "id": "c",
+        "text": "Child elements for CPPs"
+      },
+      {
+        "id": "d",
+        "text": "PI tags mapped to each CPP"
+      }
+    ],
+    "explanation": "Janssen Cork modelled one element per process, a sub-element per CQA, and child elements for the CPPs, which are mapped to PI tags. Lab CQA results from ELIMS were linked to batches by material ID and time window.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "expert",
+      "af-modelling"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "q-pharma-record-changes",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: Under 21 CFR 11.10(e), a record change may overwrite the previous value as long as the new value is correct.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. 11.10(e) says \"Record changes shall not obscure previously recorded information.\" Audit trail documentation must also be retained at least as long as the subject records.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "beginner",
+      "regulation",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ecfr-11-10"
+    ]
+  },
+  {
+    "id": "q-pharma-enforcement-discretion",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 3,
+    "prompt": "Under FDA's 2003 Part 11 guidance, on which requirements does FDA exercise enforcement discretion? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Validation"
+      },
+      {
+        "id": "b",
+        "text": "Audit trail"
+      },
+      {
+        "id": "c",
+        "text": "Record retention"
+      },
+      {
+        "id": "d",
+        "text": "Record copying"
+      },
+      {
+        "id": "e",
+        "text": "Limiting system access"
+      },
+      {
+        "id": "f",
+        "text": "Electronic signature sections such as 11.50 and 11.200"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "FDA exercises enforcement discretion on validation, audit trail, record retention and record copying, while predicate rules still apply. It continues to enforce access limits, system checks, training, accountability, documentation controls and the e-signature sections.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "expert",
+      "regulation"
+    ],
+    "sources": [
+      "ind-fda-part11-guidance"
+    ]
+  },
+  {
+    "id": "q-pharma-alcoa",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each ALCOA letter to its principle.",
+    "pairs": [
+      {
+        "left": "A (first)",
+        "right": "Attributable"
+      },
+      {
+        "left": "L",
+        "right": "Legible"
+      },
+      {
+        "left": "C",
+        "right": "Contemporaneous"
+      },
+      {
+        "left": "O",
+        "right": "Original"
+      },
+      {
+        "left": "A (last)",
+        "right": "Accurate"
+      }
+    ],
+    "explanation": "OSIsoft life-sciences material lists ALCOA as attributable, legible, contemporaneous, original, accurate, and says electronic data needs time/date stamps, user IDs, metadata and audit trails.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-pres-ls-2016-moree"
+    ]
+  },
+  {
+    "id": "q-pharma-phantom-units",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "Why did PI Batch customers create \"phantom PI Units\"?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Batch allowed only one unit batch per PI Unit at a time, so overlapping batches needed extra units"
+      },
+      {
+        "id": "b",
+        "text": "To hide GMP data from non-GMP users"
+      },
+      {
+        "id": "c",
+        "text": "Phantom units were needed for high availability"
+      },
+      {
+        "id": "d",
+        "text": "To store lab results from LIMS"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Batch allowed only one unit batch per PI Unit at a time. Event Frames support unlimited overlapping events per unit, which made the workaround unnecessary.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-batch-migration-2015"
+    ]
+  },
+  {
+    "id": "q-pharma-batch-migration",
+    "type": "ordering",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 3,
+    "prompt": "Put the PI Batch to Event Frames migration steps (PI Server 2015) in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Upgrade the BES/MES interfaces"
+      },
+      {
+        "id": "b",
+        "text": "Upgrade PI Server to 2015"
+      },
+      {
+        "id": "c",
+        "text": "Install EF clients"
+      },
+      {
+        "id": "d",
+        "text": "Migrate the batch data"
+      },
+      {
+        "id": "e",
+        "text": "Switch the interfaces"
+      }
+    ],
+    "explanation": "The 2015 migration deck gives this order: upgrade the BES/MES interfaces, upgrade PI Server to 2015, install EF clients, migrate the batch data, switch the interfaces.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "expert",
+      "migration"
+    ],
+    "sources": [
+      "ind-pres-batch-migration-2015"
+    ]
+  },
+  {
+    "id": "q-pharma-genentech-figure",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did AVEVA report Genentech moved from a legacy historian with RoviSys?",
+    "options": [
+      {
+        "id": "a",
+        "text": "130 billion events across 27,000 AVEVA PI System tags"
+      },
+      {
+        "id": "b",
+        "text": "7.2 million batch events since April 2006"
+      },
+      {
+        "id": "c",
+        "text": "27,000 events across 130 billion tags"
+      },
+      {
+        "id": "d",
+        "text": "40,000 tags into AIM"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's story says Genentech \"Moved 130 billion events across 27,000 AVEVA PI System tags\". 7.2 million events is the separate 2016 batch-to-Event-Frames migration; 40,000 tags is Bruce Power.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-genentech"
+    ]
+  },
+  {
+    "id": "q-pharma-audit-reporter",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "Which standards does the AVEVA PI Audit Reporter datasheet name as supported?",
+    "options": [
+      {
+        "id": "a",
+        "text": "21 CFR Part 11, NERC CIP and ISO"
+      },
+      {
+        "id": "b",
+        "text": "21 CFR Part 11 and EU Annex 11 only"
+      },
+      {
+        "id": "c",
+        "text": "HIPAA and PCI DSS"
+      },
+      {
+        "id": "d",
+        "text": "IEC 61400-26 and ISA-88"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The datasheet names 21 CFR Part 11, NERC CIP and ISO. It does not mention EU Annex 11, so do not claim it does.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "tools"
+    ],
+    "sources": [
+      "ind-ds-pi-audit-reporter"
+    ]
+  },
+  {
+    "id": "q-pharma-validation-approach",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which approach did J&J/Janssen adopt to reduce this cost?",
+    "scenario": "A pharma group runs PI at many sites. Each site validates its PI System under its own local procedures, and every upgrade triggers a separate, costly validation effort.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stop validating PI because it is not GMP-critical"
+      },
+      {
+        "id": "b",
+        "text": "One common lean validation approach rolled out with standardised PI deployments"
+      },
+      {
+        "id": "c",
+        "text": "Let each site skip IQ/OQ/PQ for minor upgrades"
+      },
+      {
+        "id": "d",
+        "text": "Move all GMP data to spreadsheets"
+      }
+    ],
+    "answer": "b",
+    "explanation": "J&J/Janssen treats PI as a GMP-critical application and moved from site-specific validation to one common lean validation approach with standardised PI deployments (2014).",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "expert",
+      "validation"
+    ],
+    "sources": [
+      "ind-pres-jj-lean-validation-2014"
+    ]
+  },
+  {
+    "id": "q-pharma-cpv-stage",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "In FDA's 2011 process validation guidance, Continued Process Verification (CPV) is which stage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stage 3"
+      },
+      {
+        "id": "b",
+        "text": "Stage 1"
+      },
+      {
+        "id": "c",
+        "text": "Stage 2"
+      },
+      {
+        "id": "d",
+        "text": "It is not part of the guidance"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The three stages are process design, process qualification and continued process verification. Janssen Cork used PI to support Stage 3 CPV.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "regulation"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "q-pharma-pfizer-separation",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did Pfizer Groton do with this kind of data?",
+    "scenario": "A site wants PI data from utilities, building systems and non-GMP research, but its GMP manufacturing data must stay in a tightly controlled environment.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Put everything on one PI server with no separation"
+      },
+      {
+        "id": "b",
+        "text": "Keep GMP and non-GMP, GLP and GCP data on a second, local PI server set"
+      },
+      {
+        "id": "c",
+        "text": "Delete non-GMP data after 24 hours"
+      },
+      {
+        "id": "d",
+        "text": "Store GMP data only in PI Vision displays"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Pfizer Groton keeps GMP and non-GMP, GLP and GCP data on a second, local PI server set, and the PCMM machine's local historian is validated to GMP.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner",
+      "architecture"
+    ],
+    "sources": [
+      "ind-ss-pfizer"
+    ]
+  },
+  {
+    "id": "q-pharma-ef-advantages",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "difficulty": 2,
+    "prompt": "Which are advantages of Event Frames over PI Batch stated in OSIsoft's 2015 migration deck? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unlimited overlapping events per unit"
+      },
+      {
+        "id": "b",
+        "text": "Supported via an HA write AF architecture"
+      },
+      {
+        "id": "c",
+        "text": "Designed for millions of events"
+      },
+      {
+        "id": "d",
+        "text": "Stored in the PI Data Archive with a fixed Batch ID structure"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Event Frames support unlimited overlapping events per unit, an HA write AF architecture and millions of events. The fixed structure in the Data Archive describes PI Batch, not Event Frames, which are stored in the AF SQL Server database.",
+    "lessonId": "pi-in-pharma",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-batch-migration-2015"
+    ]
+  }
+]

@@ -1,0 +1,682 @@
+[
+ {
+  "id": "adm-uc23-security-biggins",
+  "title": "Best practices for security in PI System (UC23NA 2PGK06, Biggins)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK06-AVEVA-Biggins-Best-practices-for-security-in--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "AVEVA World 2023 San Francisco; port table, auth order, Kerberos checklist"
+ },
+ {
+  "id": "adm-uc23-da-performance-sick",
+  "title": "Optimizing data archive performance for PI System (UC23NA 2PGK02, Sick)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PGK02-AVEVA-Sick-Optimizing-data-archive-performance-for--PI-System.pdf",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Tuning parameters, heavy-hitter error codes"
+ },
+ {
+  "id": "adm-pistatus-h",
+  "title": "pistatus.h (OSIsoft PI SDK/API status code header, rev 63, 2008) - third-party repository copy",
+  "url": "https://raw.githubusercontent.com/UtsavChokshiCNU/GenSym-Test2/master/src/specific/intelnt/pistatus.h",
+  "publisher": "GitHub (third-party copy of OSIsoft header)",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Found via GitHub code search (repo UtsavChokshiCNU/GenSym-Test2, path src/specific/intelnt/pistatus.h); OSIsoft copyright 1994-2004; codes newer than 2008 absent"
+ },
+ {
+  "id": "adm-pisquare-piputval-11414",
+  "title": "piputval and piputvalx issue",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/91898/piputval-and-piputvalx-issue/355514",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-uc19-architecting-zhimanov",
+  "title": "Architecting Your PI System to Support Scope, Scalability and Performance (UC19EU D3BP01)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-gothenburg/UC19EU-D3BP01-OSIsoft-Zhimanov-Architecting-Your-PI-System-to-Support-Scope-Scalability.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Security deployment patterns 1-3+, DR guidance"
+ },
+ {
+  "id": "adm-uc19-af-batke",
+  "title": "Best Practices for PI AF Deployment and Management (UC19EU D3BP02, Batke)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-gothenburg/UC19EU-D3BP02-OSIsoft-Batke-Best-Practices-for-PI-AF-Deployment-and-Management.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-easy-wins-af",
+  "title": "Easy Wins to Improve your Asset Framework Experience",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/Easy_Wins_to_Improve_your_Asset_Framework_Experience.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "OSIsoft Learning content"
+ },
+ {
+  "id": "adm-uc18-owl-diode-barcelona",
+  "title": "Data Diode Cybersecurity for PI System (UC18EU D3MP02, Owl Cyber Defense)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2018-uc-emea-barcelona/UC18EU-D3MP02-OwlCyberDefense-Lanahan-Data-Diode-Cybersecuity-for-PI-System.pdf",
+  "publisher": "Owl Cyber Defense / OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Mostly slide markers"
+ },
+ {
+  "id": "adm-pisquare-piartool-collectives",
+  "title": "piartool and multiple collectives",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/98169/piartool-and-multiple-collectives",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-mulesoft-pi-setup",
+  "title": "OSIsoft PI setup guide (MuleSoft Manufacturing)",
+  "url": "https://docs.mulesoft.com/manufacturing/latest/osisoft-pi-setup-guide",
+  "publisher": "MuleSoft",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party; uses insecure settings (Basic auth, CSRF off) - cite as pitfall"
+ },
+ {
+  "id": "adm-github-pi-core-deploy-onprem",
+  "title": "sample-pi_core-deployment_on_prem-powershell",
+  "url": "https://github.com/osisoft/sample-pi_core-deployment_on_prem-powershell",
+  "publisher": "OSIsoft",
+  "kind": "github",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "v1.0.8; PI Server 2018 SP3 Patch 1"
+ },
+ {
+  "id": "adm-uc19-azure-deploy-pdf",
+  "title": "Effortlessly deploying a PI System in Azure (slides)",
+  "url": "https://cdn.mediavalet.com/eunl/content/3T7cBzty60emLkDgM0108g/ob04-8GRr060bvwx3SiFBA/Original/Effortlessly%20deploying%20a%20PI%20System%20in%20Azure.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-aveva-azure-aws-presentation-page",
+  "title": "Presentation: Effortlessly deploying a PI System in Azure or AWS",
+  "url": "https://www.aveva.com/en/perspectives/presentations/2019/effortlessly-deploying-a-pi-system-in-azure-or-aws/",
+  "publisher": "AVEVA",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Session US19NA-D2TT06 landing page"
+ },
+ {
+  "id": "adm-td2014-nerc-cip-ids",
+  "title": "Intrusion Detection as part of the new CIP version 5 standard (TD2014 Albany)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2014/RegionalSeminars/TD2014_Albany/PDF/TD2014_Albany_OSIsoft_Owens_IntrusionDetectionaspartofthenewCIPversion5standard.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-uc2011-digitalbond",
+  "title": "BRS1342 Digital Bond (Peterson) - UC 2011",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/UsersConference2011/PDF/BRS1342_Digital_Bond_Peterson.pdf",
+  "publisher": "Digital Bond / OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Older CIP version references"
+ },
+ {
+  "id": "adm-waterfall-aveva-pi",
+  "title": "Waterfall for AVEVA PI",
+  "url": "https://waterfall-security.com/wp-content/uploads/2022/08/Waterfall-for-AVEVA-PI.pdf",
+  "publisher": "Waterfall Security",
+  "kind": "whitepaper",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Vendor brochure"
+ },
+ {
+  "id": "adm-waterfall-aveva-connect",
+  "title": "Waterfall for AVEVA CONNECT brochure",
+  "url": "https://waterfall-security.com/wp-content/uploads/2023/10/Waterfall-for-AVEVA-connect-brochure.pdf",
+  "publisher": "Waterfall Security",
+  "kind": "whitepaper",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Vendor brochure"
+ },
+ {
+  "id": "adm-aveva-hmi-scada-security-wp",
+  "title": "AVEVA White Paper: HMI/SCADA Security",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/perspectives/white-papers/WhitePaper_HMISCADASecurity.pdf.coredownload.inline.pdf",
+  "publisher": "AVEVA",
+  "kind": "whitepaper",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "ISASecure SDLA, 62443-4-1 statement"
+ },
+ {
+  "id": "adm-iec-62443-background",
+  "title": "IEC 62443 Background (IEC SyC SE cybersecurity guidelines)",
+  "url": "https://syc-se.iec.ch/deliveries/cybersecurity-guidelines/security-standards-and-best-practices/iec-62443/",
+  "publisher": "IEC",
+  "kind": "standard",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-trout-zones-conduits",
+  "title": "IEC 62443 zones and conduits explained",
+  "url": "https://www.trout.software/blog/iec-62443-zones-and-conduits-explained",
+  "publisher": "Trout Software",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Vendor blog; verify against standard"
+ },
+ {
+  "id": "adm-forescout-cip-005-5",
+  "title": "NERC CIP-005-5: Complying With the Electronic Security Perimeter Requirement",
+  "url": "https://www.forescout.com/?p=54695",
+  "publisher": "Forescout",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Vendor blog"
+ },
+ {
+  "id": "adm-cisa-icsa-24-018-01",
+  "title": "CISA ICS Advisory ICSA-24-018-01 (AVEVA PI Server)",
+  "url": "https://cisa.gov/news-events/ics-advisories/icsa-24-018-01",
+  "publisher": "CISA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-cisa-icsa-25-162-07",
+  "title": "CISA ICS Advisory ICSA-25-162-07 (AVEVA PI Data Archive)",
+  "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-25-162-07",
+  "publisher": "CISA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-cybergc-av24-039",
+  "title": "AVEVA security advisory (AV24-039)",
+  "url": "https://cyber.gc.ca/en/alerts-advisories/control-systems-aveva-security-advisory-av24-039",
+  "publisher": "Canadian Centre for Cyber Security",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Not cited in md body; corroborates AVEVA-2024-001"
+ },
+ {
+  "id": "adm-aveva-bulletin-2024-001",
+  "title": "Security Bulletin AVEVA-2024-001 (PI Server)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/support/cyber-security-updates/SecurityBulletin_AVEVA-2024-001.pdf",
+  "publisher": "AVEVA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-aveva-bulletin-2025-001",
+  "title": "Security Bulletin AVEVA-2025-001 (PI Data Archive DoS)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/support/cyber-security-updates/SecurityBulletin_AVEVA-2025-001.pdf",
+  "publisher": "AVEVA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-aveva-bulletin-2026-002",
+  "title": "Security Bulletin AVEVA-2026-002 (PI Data Archive DoS)",
+  "url": "https://www.aveva.com/content/dam/aveva/documents/support/cyber-security-updates/SecurityBulletin_AVEVA-2026-002.pdf",
+  "publisher": "AVEVA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-aveva-cyber-updates-page",
+  "title": "AVEVA Cyber Security Updates",
+  "url": "https://www.aveva.com/en/support-and-success/cyber-security-updates/",
+  "publisher": "AVEVA",
+  "kind": "release-notes",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-it-monitor-overview",
+  "title": "PI IT Monitor - Overview",
+  "url": "https://techsupport.osisoft.com/Products/Layered-Products/PI-IT-Monitor/Overview",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Legacy product page"
+ },
+ {
+  "id": "adm-interface-status-utility-overview",
+  "title": "PI Interface Status Utility - Overview",
+  "url": "https://techsupport.osisoft.com/Products/Interfaces/PI-Interface-Status-Utility/Overview",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-pisquare-pda-health-powershell",
+  "title": "Monitoring the health of PI Data Archive with PowerShell",
+  "url": "https://community.aveva.com/pi-square-community/b/aveva-blog/posts/monitoring-the-health-of-pi-data-archive-with-powershell",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-uc23-velco-health",
+  "title": "VELCO Prescription for Success: PI System Health Monitoring (UC23NA 2PAU05)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2023-AVEVA-San-Francisco/UC23NA-2PAU05-VELCO-Kopin-VELCO-Prescription-for-Success----PI-System-Health-Monitoring.pdf",
+  "publisher": "AVEVA / VELCO",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-uc21-monitoring-pi-with-pi",
+  "title": "Monitoring a PI System with PI (UC21NA D2FB060, Roche)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2021-aveva-pi-world/UC21NA-D2FB060-Roche-Fromm-Monitoring-a-PI-System-with-PI.pdf",
+  "publisher": "AVEVA / Roche",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Fetch returned binary data"
+ },
+ {
+  "id": "adm-mcn-health-monitor-tayler",
+  "title": "MCN Health Monitor (David Tayler, Kuala Lumpur)",
+  "url": "https://1980slca7023akamai94577.osisoft.com/downloads/asia/24OctKualaLumpur/25Oct-PM-05-David%20Tayler_MCN%20Health%20Monitor.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Older (PI SMT3 / ProcessBook era)"
+ },
+ {
+  "id": "adm-pisquare-valid-tag-names",
+  "title": "What are the valid symbols for PI Tag names.",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/90266/what-are-the-valid-symbols-for-pi-tag-names",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Quotes PI Server System Management Guide pp.33-34; ~15 years old"
+ },
+ {
+  "id": "adm-pisquare-unicode-tag-names",
+  "title": "Does PI server support TAG NAMES FOR Unicode characters?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/84260/does-pi-server-support-tag-names-for-unicode-characters",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-pisquare-af-table-lookup-10k",
+  "title": "Mapping PI Point Attributes Using AF Table Lookup > 10,000 Tags?",
+  "url": "https://community.aveva.com/pi-square-community/f/pi-server/88552/mapping-pi-point-attributes-using-af-table-lookup-10-000-tags",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "~9 years old"
+ },
+ {
+  "id": "adm-pisquare-af-attributes-vs-points",
+  "title": "[DISCUSSION] AF Attributes vs. PI Points",
+  "url": "https://community.aveva.com/pi-square-community/learning-forums/f/forum/93999/discussion-af-attributes-vs-pi-points",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-arch-planning-workbook-2024",
+  "title": "PI System Architecture, Planning and Implementation Course (workbook, 2024 versions)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemArchitecturePlanningAndImplementationWorkbook.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Text extraction truncated near p.95; later chapters (HA, ports, Kerberos) not read"
+ },
+ {
+  "id": "adm-it-pros-workbook-2017r2",
+  "title": "PI System Administration for IT Professionals - Version 2017 R2 (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/PISystemAdministratorForITProfessionalsWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Read through archive/tuning sections; security chapters cut off"
+ },
+ {
+  "id": "adm-pdfcoffee-pi-sys-admin-2018sp2",
+  "title": "PI System Administration Version 2018 SP2 (PI System Basics workbook, third-party copy)",
+  "url": "https://pdfcoffee.com/pi-system-administration-pdf-free.html",
+  "publisher": "pdfcoffee (copy of OSIsoft workbook)",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party host of OSIsoft course material"
+ },
+ {
+  "id": "adm-skilljar-da-security-course",
+  "title": "Configuring PI Data Archive Security (course page)",
+  "url": "https://osisoft-learning.skilljar.com/configuring-pi-data-archive-security",
+  "publisher": "OSIsoft Learning",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Not cited in md body; course outline only"
+ },
+ {
+  "id": "adm-rs2011-wis-bryant",
+  "title": "Windows Integrated Security (RS2011 Houston, Bryant)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2011/RegionalSeminars/PDF/RS2011_HOU_OSIsoft_Bryant_Windows-Integrated-Security.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-uc15-af-batke",
+  "title": "Best Practices for Using and Deploying the PI Asset Framework (UC15EU, Batke)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2015/EMEA2015/PDF/UC15EU03O103_OSIsoft_Batke_BestPracticesforUsingandDeployingthePIAssetFramework.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-us19-af-rollout-kwan",
+  "title": "Contextualize: Rolling out Asset Framework (US19NA D3P203, Kwan)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-san-francisco/US19NA-D3P203-OSIsoft-Kwan-Contextualize-Rolling-out-Asset-Framework.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-building-assets-workbook",
+  "title": "Building PI System Assets and Analytics with PI AF (workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/BuildingPISystemAssetsWorkbook.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Extraction truncated at ~p.71"
+ },
+ {
+  "id": "adm-implementation-adoption",
+  "title": "Project Managing a PI System Implementation",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/ImplementationAdoption.pdf",
+  "publisher": "OSIsoft",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Source of SQL -> AF -> Data Archive install order"
+ },
+ {
+  "id": "adm-uc19-vistra-cloud",
+  "title": "Vistra Energy Cloud Transformation in a Nationwide Power Fleet (US19NA D2PG04)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2019-uc-san-francisco/US19NA-D2PG04-VistraEnergy-Swann-Vistra-Energy-Cloud-Transformation-in-a-Nationwide-Power.pdf",
+  "publisher": "OSIsoft / Vistra Energy",
+  "kind": "case-study",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-pisquare-pivision-collective-tls",
+  "title": "PI Vision does not connect to a collective Data Archive",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/98469/pi-vision-does-not-connect-to-a-colective-data-archive/360327",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Not answered"
+ },
+ {
+  "id": "adm-pisquare-webapi-eps",
+  "title": "Is there a limit to how many events per second the PI Web API can send to the data archive?",
+  "url": "https://community.aveva.com/pi-square-community/f/forum/86379/is-there-a-limit-to-how-many-events-per-second-the-pi-web-api-can-send-to-the-data-archive",
+  "publisher": "PI Square",
+  "kind": "pisquare",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-akamai-recommended-architecture",
+  "title": "Recommended architecture and best practices (presentation page)",
+  "url": "https://1980slca7023akamai94577.osisoft.com/presentations/recommended-architecture-and-best-practices",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Not cited in md body; topic list only"
+ },
+ {
+  "id": "adm-vcl12-pi-server-2012-keynote",
+  "title": "PI Server 2012 Keynote (vCampus Live 2012, Vacher)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2012/vCampusLive2012/PDF/VCL12_OSIsoft_Vacher_PIServer2012Keynote.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "2012 sizing tiers"
+ },
+ {
+  "id": "adm-vl2010-optimization",
+  "title": "Optimization (vCampus Live 2010, Lakumb/Vacher)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2010/vCampusLive2010/PDF/VL2010_D2TR2_Optimization_Lakumb_Vacher.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "2010; bytes/event estimate"
+ },
+ {
+  "id": "adm-uc2003-263",
+  "title": "UC2003 presentation 263 (Industrial Evolution hosted PI security)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/uc/uc2003/263.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Historical"
+ },
+ {
+  "id": "adm-pi-system-basics-2017",
+  "title": "PI System 101 - Basics for Beginners (UC17NA)",
+  "url": "https://cdn.osisoft.com/osi/presentations/2017-uc-san-francisco/UC17NA03P102_OSIsoft_Collins_Doherty_PISystem101-BasicsForBeginners.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-visualizing-workbook-2024",
+  "title": "Visualizing PI System Data Version 2024 (March 2025 workbook)",
+  "url": "https://cdn.osisoft.com/learningcontent/pdfs/VisualizingPISystemDataWorkbook.pdf",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-tdengine-pi-prereqs",
+  "title": "PI Data Ingestion Prerequisites (TDengine)",
+  "url": "https://docs.tdengine.com/data-ingest-and-delivery/no-code-ingestion/pi/prerequisites/",
+  "publisher": "TDengine",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party connector doc; ports 5450/5457"
+ },
+ {
+  "id": "adm-uc2008-servers-batke",
+  "title": "AMS TR1 D1 02 Servers (UC2008, Batke)",
+  "url": "https://cdn.osisoft.com/corp/en/media/presentations/2008/UsersConference/AMS_TR1_D1_02_Servers_Batke.pdf",
+  "publisher": "OSIsoft",
+  "kind": "presentation",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "2008"
+ },
+ {
+  "id": "adm-feedback-pida-i-1108",
+  "title": "PIDA-I-1108: PI Data Archive Installation Wizard should provide an option to restore from a backup",
+  "url": "https://feedback.aveva.com/ideas/PIDA-I-1108",
+  "publisher": "AVEVA Feedback",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-feedback-pida-i-1306",
+  "title": "PIDA-I-1306: PI Server 2018 SP3 default Points",
+  "url": "https://feedback.aveva.com/ideas/PIDA-I-1306",
+  "publisher": "AVEVA Feedback",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": ""
+ },
+ {
+  "id": "adm-imd-af-analysis-table-lookup",
+  "title": "Fix PI AF Analysis Not Writing Table Lookup Values",
+  "url": "https://industrialmonitordirect.com/blogs/knowledgebase/fix-pi-af-analysis-not-writing-table-lookup-values",
+  "publisher": "Industrial Monitor Direct",
+  "kind": "other",
+  "accessed": "2026-10-15",
+  "readable": true,
+  "notes": "Third-party, no AVEVA citations; low confidence"
+ },
+ {
+  "id": "adm-docs-af-preinstall",
+  "title": "Pre-installation tasks for AF Server",
+  "url": "https://docs.aveva.com/bundle/pi-server-f-install/page/1022096.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "JS-rendered; title only"
+ },
+ {
+  "id": "adm-docs-piartool-backups",
+  "title": "Use the piartool utility to manage archives and backups",
+  "url": "https://docs.aveva.com/bundle/pi-server-s-da-reference/page/1021477.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ },
+ {
+  "id": "adm-docs-move-af-same-node",
+  "title": "Move PI AF server located on the same node",
+  "url": "https://docs.aveva.com/bundle/pi-server-f-install/page/1020295.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ },
+ {
+  "id": "adm-docs-ping-interface",
+  "title": "PI Interface for Ping 2.1",
+  "url": "https://docs.aveva.com/bundle/pi-interface-for-ping/page/1012246.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ },
+ {
+  "id": "adm-docs-perfcounters-tool",
+  "title": "Build and manage PI points with the Performance Counters tool",
+  "url": "https://docs.aveva.com/bundle/pi-server-l-da-smt/page/1020234.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ },
+ {
+  "id": "adm-docs-install-af-sql-db",
+  "title": "Install the PI AF SQL Server database",
+  "url": "https://docs.aveva.com/bundle/pi-server-l-install/page/1021992.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ },
+ {
+  "id": "adm-docs-mdb-af-transition",
+  "title": "Understand PI MDB to AF Transition",
+  "url": "https://osisoft-prod.zoominsoftware.io/bundle/pi-server-l-install/page/1020320.html",
+  "publisher": "AVEVA",
+  "kind": "docs",
+  "accessed": "2026-10-15",
+  "readable": false,
+  "notes": "Not cited in md body"
+ }
+]

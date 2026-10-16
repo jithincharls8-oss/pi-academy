@@ -1,0 +1,204 @@
+[
+  {
+    "id": "q-coll-replication",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "prompt": "In a PI Data Archive collective, how does time-series data reach the secondary members?",
+    "options": [
+      { "id": "a", "text": "Interfaces send it to every member through the PI Buffer Subsystem; only configuration is replicated" },
+      { "id": "b", "text": "The primary replicates every event to the secondaries" },
+      { "id": "c", "text": "Secondaries copy archive files from the primary every night" },
+      { "id": "d", "text": "SQL Server replication" }
+    ],
+    "answer": "a",
+    "explanation": "Replication synchronises configuration (points, point configuration, security). Time-series data is not replicated; interfaces send it to every member.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["collectives"],
+    "sources": ["da-arch-workbook", "da-uc2011-tips-trenches", "da-uc23-da-performance"]
+  },
+  {
+    "id": "q-coll-load-balancer",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "scenario": "The network team proposes putting a network load balancer in front of the two PI Data Archive members so clients connect to one virtual address.",
+    "prompt": "What does OSIsoft guidance say?",
+    "options": [
+      { "id": "a", "text": "Do not put a load balancer in front of the Data Archive; use collective connection preferences instead" },
+      { "id": "b", "text": "A load balancer is required for every collective" },
+      { "id": "c", "text": "A load balancer replaces the need for PI Buffer Subsystem" },
+      { "id": "d", "text": "Use a load balancer only for the primary" }
+    ],
+    "answer": "a",
+    "explanation": "The 2011 'Tips from the Trenches' session warns against a network load balancer in front of the Data Archive; clients use collective connection preferences.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["collectives", "pitfall", "scenario"],
+    "sources": ["da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-coll-preferences",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "prompt": "Which are PI SDK collective connection preferences? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PreferPrimary" },
+      { "id": "b", "text": "RequirePrimary" },
+      { "id": "c", "text": "Any" },
+      { "id": "d", "text": "RoundRobin" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The preferences are PreferPrimary, RequirePrimary and Any, with Any as the default.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["clients"],
+    "sources": ["da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-coll-default-pref",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "prompt": "What is the default PI SDK collective connection preference?",
+    "accepted": ["Any"],
+    "explanation": "PreferPrimary, RequirePrimary and Any are the options; the default is Any.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["clients"],
+    "sources": ["da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-coll-benefits",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 1,
+    "prompt": "Which benefits do OSIsoft sessions list for collectives? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Rolling upgrades" },
+      { "id": "b", "text": "No single point of failure" },
+      { "id": "c", "text": "Geographic distribution" },
+      { "id": "d", "text": "No need for interfaces to buffer" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Listed benefits include rolling upgrades, no single point of failure, geographic distribution, availability during maintenance and removing the fear of a bad backup. Interfaces must still buffer to every member.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["collectives"],
+    "sources": ["da-uc2011-tips-trenches", "da-rs2010-rome-arch"]
+  },
+  {
+    "id": "q-coll-af2018",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 3,
+    "prompt": "What changed for client connections to collectives with AF Client 2018?",
+    "options": [
+      { "id": "a", "text": "Connections are balanced across all available members, with failback to the original member after a failover" },
+      { "id": "b", "text": "Clients can only connect to the primary" },
+      { "id": "c", "text": "Collectives stopped being supported" },
+      { "id": "d", "text": "Clients must use a load balancer" }
+    ],
+    "answer": "a",
+    "explanation": "Since AF Client 2018, client connections are balanced across all available collective members, and failback returns connections to the original member after a failover.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["clients"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-coll-virtual",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "prompt": "True or false: when collective members are virtual machines, all members may run on the same host.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "For collectives with virtualisation, each member must run on a different host; otherwise one host failure takes out every member.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["true-false", "virtualisation"],
+    "sources": ["da-vcampus-2010-tuning"]
+  },
+  {
+    "id": "q-coll-tool",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 1,
+    "prompt": "Which tool creates a collective and shows the status of its members?",
+    "options": [
+      { "id": "a", "text": "PI Collective Manager" },
+      { "id": "b", "text": "PI ICU" },
+      { "id": "c", "text": "pigetmsg" },
+      { "id": "d", "text": "PI Builder" }
+    ],
+    "answer": "a",
+    "explanation": "PI Collective Manager creates collectives, views the status of collectives and members and edits their properties.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["tools"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-coll-piartool-host",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.collectives", "da.tools"],
+    "difficulty": 3,
+    "scenario": "An admin registers a restored archive on the primary with piartool and expects it to appear on the secondary too. It does not.",
+    "prompt": "Why did this happen?",
+    "options": [
+      { "id": "a", "text": "Archive registration is per host; piartool must be run on each member whose registration you want to change" },
+      { "id": "b", "text": "Secondaries cannot hold archives" },
+      { "id": "c", "text": "Registration replicates only after 35 days" },
+      { "id": "d", "text": "The PI Buffer Subsystem must be restarted" }
+    ],
+    "answer": "a",
+    "explanation": "Archives are independent on each member and only some configuration replicates. You need to run piartool on the Data Archive host whose registration you want to modify.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["archives", "scenario"],
+    "sources": ["adm-pisquare-piartool-collectives"]
+  },
+  {
+    "id": "q-coll-licence",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.collectives", "fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "Under the 2026 PI System Software Schedule, can an HA PI Server licensed as a collective member be split off to run as an independent PI Server?",
+    "options": [
+      { "id": "a", "text": "No; HA PI Servers form a collective with the primary and cannot be separated" },
+      { "id": "b", "text": "Yes, at any time" },
+      { "id": "c", "text": "Yes, but only for 90 days" },
+      { "id": "d", "text": "Only if it holds fewer than one million tags" }
+    ],
+    "answer": "a",
+    "explanation": "The schedule states HA PI Servers are configured to form a collective with the primary and cannot be separated to operate as independent PI Servers.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-coll-downtime",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.collectives"],
+    "difficulty": 2,
+    "prompt": "A secondary member is rebooted for patching. Order what happens.",
+    "items": [
+      { "id": "a", "text": "The secondary goes offline; clients use the other member" },
+      { "id": "b", "text": "Interface nodes hold its data in the PI Buffer Subsystem" },
+      { "id": "c", "text": "The secondary returns" },
+      { "id": "d", "text": "Buffered data is delivered and configuration resynchronises" }
+    ],
+    "explanation": "During a member's downtime, data is buffered in the PI Buffer Subsystem, and configuration resynchronises when the member returns.",
+    "lessonId": "collectives-and-ha",
+    "tags": ["operations"],
+    "sources": ["da-uc2011-tips-trenches"]
+  }
+]

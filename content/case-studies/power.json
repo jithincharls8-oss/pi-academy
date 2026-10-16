@@ -1,0 +1,480 @@
+[
+  {
+    "id": "entega",
+    "company": "ENTEGA",
+    "title": "Going green with AVEVA PI System",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "interfaces-connectors"
+    ],
+    "region": "Darmstadt, Germany",
+    "year": 2015,
+    "summary": "ENTEGA uses PI Interfaces at each renewable site to feed a central PI Server covering 11 wind parks, 3 solar parks, 2 biogas plants and 130 PV plants. PI was adopted in 2015.",
+    "challenge": "Many SCADA systems from many manufacturers made reporting slow, \"very inefficient and time consuming\".",
+    "solution": "PI became a single source of truth. The in-house tool Cogent shows online values, KPIs and forecasts, colour-codes turbines red, yellow or green, and compares theoretical with actual power for each turbine.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "No measured PI outcome figures are stated. Scale figures only: \"over 600,000 customers\" and \"€850M\" invested in renewables.",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-entega"
+    ],
+    "verify": false
+  },
+  {
+    "id": "xcel-energy",
+    "company": "Xcel Energy",
+    "title": "Xcel Energy uses AVEVA PI System to improve wind forecasting",
+    "industry": "power",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Xcel Energy uses PI-based forecasting to predict wind lulls hours ahead, so its coal and gas units can ramp up in time.",
+    "challenge": "Unexpected drops in wind forced costly fast starts of thermal plants.",
+    "solution": "Wind forecasting built on PI System data.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"Savings and efficiencies are roughly estimated over the last six years at $46 million\"",
+        "reportedBy": "Kasen Huwa, Xcel Energy, in an AVEVA success story (OSIsoft's company overview also cites $46 million over six years)"
+      },
+      {
+        "category": "cost",
+        "text": "More than $7 million per year",
+        "reportedBy": "Kasen Huwa, Xcel Energy, in an AVEVA success story (OSIsoft's company overview also cites $46 million over six years)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-xcel",
+      "ind-osisoft-overview"
+    ],
+    "verify": false
+  },
+  {
+    "id": "fingrid",
+    "company": "Fingrid Oyj",
+    "title": "Fingrid Oyj increases innovation with AVEVA PI System",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Finland",
+    "summary": "Fingrid, the Finnish grid operator, automates the analysis and visualisation of grid measurement data with PI System and PI Vision.",
+    "challenge": "Fingrid needed to develop algorithms that use its measurement data efficiently.",
+    "solution": "PI System with PI Vision, automatic fault processing and modelling on live data.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "Prevented \"numerous potential faults across three 400 megavolt amperes transformers\" (no other figures)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-fingrid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pjm",
+    "company": "PJM Interconnection",
+    "title": "PJM uses AVEVA PI System to visualize the electric grid in real time",
+    "industry": "power",
+    "products": [
+      "data-archive"
+    ],
+    "region": "North America (13 states + DC)",
+    "summary": "PJM's Dispatch Interactive Map Application (DIMA) combines PI data with Esri ArcGIS to overlay line status and weather radar for grid dispatchers.",
+    "challenge": "PJM needed to combine geographic and grid data and display \"1.6 million pieces of information\".",
+    "solution": "PI data integrated with Esri ArcGIS in the DIMA application.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "Improved dispatcher situational awareness (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-pjm"
+    ],
+    "verify": false
+  },
+  {
+    "id": "alectra-utilities",
+    "company": "Alectra Utilities",
+    "title": "Alectra improves utility maintenance with AVEVA PI System monitoring",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Ontario, Canada (north of Toronto)",
+    "summary": "Alectra Utilities built a reliability-centred maintenance (RCM3) strategy on PI condition monitoring of its transformer fleet.",
+    "challenge": "Scheduled maintenance did not scale with a growing transformer fleet.",
+    "solution": "PI-based condition monitoring with PI Vision.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "A transformer issue was repaired for $100,000, avoiding a potential $3 million replacement",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "A hydrogen monitor was repaired before failure",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-alectra"
+    ],
+    "verify": false
+  },
+  {
+    "id": "agl-energy",
+    "company": "AGL Energy",
+    "title": "AGL uses AVEVA PI System data to prevent failures and cut maintenance",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "data-hub"
+    ],
+    "region": "Australia",
+    "summary": "AGL centralised its SCADA data in PI System and shares wind and solar data with partners through CONNECT data services, as its capacity grew from 300 MW in 2012 to more than 10,000 MW in 2021.",
+    "challenge": "A rapid energy transition and SCADA data scattered across many systems.",
+    "solution": "PI System plus CONNECT data services for cloud sharing with partners.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"Saved millions in avoided failures and maintenance costs\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Data capture time cut from 10 mins to 1 sec across 200 wind turbines",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-agl"
+    ],
+    "verify": false
+  },
+  {
+    "id": "luminant",
+    "company": "Luminant",
+    "title": "Thermal performance analysis with PI Asset Framework",
+    "industry": "power",
+    "products": [
+      "asset-framework",
+      "analytics",
+      "pi-vision"
+    ],
+    "region": "Texas, USA",
+    "year": 2017,
+    "summary": "Luminant consolidated 13 thermal performance applications into PI AF templates, using substitution parameters and converting Excel calculations to AF analyses with backfill.",
+    "challenge": "Three tools and 13 applications were in use, each needing its own expertise.",
+    "solution": "AF templates with substitution parameters; Excel calculations converted to AF analysis templates with backfill.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Saved $160K on its most recent combined-cycle unit (third-party applications historically cost \"$100K+ per unit\")",
+        "reportedBy": "The company (Jackson, Luminant) in a 2017 OSIsoft regional seminar"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-pres-luminant-2017"
+    ],
+    "verify": false
+  },
+  {
+    "id": "scottishpower-longannet",
+    "company": "ScottishPower (Longannet Power Station)",
+    "title": "Using the power of PI AF to create centralised management reporting at Longannet",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "analytics"
+    ],
+    "region": "Scotland, UK",
+    "year": 2014,
+    "summary": "Longannet Power Station moved 83 management metrics into a site/unit AF model; 24 of them are calculated by PI ACE every 10 minutes, with AF tables for shifts, coal diet and outages.",
+    "challenge": "Metrics lived in spreadsheets, and the station was planning life extension beyond 2020.",
+    "solution": "An AF metrics model with site elements above unit elements, and AF tables for rotas, shifts, coal diet and planned outages.",
+    "outcomes": [
+      {
+        "category": "reliability",
+        "text": "Availability up 12.4% (2014 YTD vs 2013)",
+        "reportedBy": "Capula Ltd in an OSIsoft EMEA 2014 presentation"
+      },
+      {
+        "category": "reliability",
+        "text": "Tube leaks down 0.14 per 1000 running hours (2014 YTD vs 2013)",
+        "reportedBy": "Capula Ltd in an OSIsoft EMEA 2014 presentation"
+      },
+      {
+        "category": "sustainability",
+        "text": "NOx reduced by 0.1 t/GWh (2014 YTD vs 2013)",
+        "reportedBy": "Capula Ltd in an OSIsoft EMEA 2014 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-pres-longannet-2014"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tenaga-nasional",
+    "company": "Tenaga Nasional Berhad",
+    "title": "PI as a unifying data layer across a generation fleet",
+    "industry": "power",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Malaysia",
+    "year": 2015,
+    "summary": "Tenaga Nasional Berhad (TNB) deployed PI in-house as a unifying data layer across its diverse generation fleet, and also sells PI deployment services.",
+    "challenge": "A diverse fleet with no common data layer.",
+    "solution": "PI as the unifying data layer, implemented in-house.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Over USD 7 million savings from in-house implementation",
+        "reportedBy": "OSIsoft in a 2015 São Paulo seminar deck"
+      },
+      {
+        "category": "cost",
+        "text": "Over USD 10 million tangible savings from plant analysis and optimisation",
+        "reportedBy": "OSIsoft in a 2015 São Paulo seminar deck"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dong-energy",
+    "company": "DONG Energy",
+    "title": "PI with Esri ArcGIS for offshore wind",
+    "industry": "power",
+    "products": [
+      "data-archive"
+    ],
+    "year": 2015,
+    "summary": "DONG Energy combined PI System and Esri ArcGIS for asset integrity and logistics across 1,800 offshore wind turbines.",
+    "challenge": "Offshore work is about 15 times more expensive than onshore work.",
+    "solution": "Condition-based and predictive monitoring on PI data.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Could \"cut OPEX by up to about €20M per year (NPV)\" (an expectation, not a measured result)",
+        "reportedBy": "OSIsoft (2015 seminar deck; the OSIsoft company overview also cites €20 million)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015",
+      "ind-osisoft-overview"
+    ],
+    "verify": true,
+    "verifyNote": "The €20M figure is an expected saving, not a measured result."
+  },
+  {
+    "id": "dominion-energy",
+    "company": "Dominion Energy",
+    "title": "Building a cloud-enabled, unified asset environment",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision",
+      "data-hub"
+    ],
+    "region": "US",
+    "summary": "Dominion Energy built an AF SDK application that automatically keeps an \"evergreen\" AF model of about 28,000 elements and more than 135,000 analyses up to date from SCADA, EMS, ADMS, SAP and GIS data.",
+    "challenge": "Thousands of assets are added or retired every week, and data was siloed.",
+    "solution": "An AF SDK auto-builder for the AF model, plus CONNECT for data sharing.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "50% increase in speed-to-market for environmental data",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "42 potential equipment failures identified and prevented in one year",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "New use cases in days instead of months",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-dominion"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ontario-power-generation",
+    "company": "Ontario Power Generation",
+    "title": "Delivering safe, reliable, and sustainable power",
+    "industry": "power",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Ontario, Canada",
+    "summary": "Ontario Power Generation runs more than 1,200 AI predictive models, fed from PI, for condition-based maintenance across its nuclear and hydro fleet.",
+    "challenge": "A high-risk operating environment and a reactive maintenance culture.",
+    "solution": "More than 1,200 AVEVA Predictive Analytics models fed from PI System.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Up to $4 million (USD) efficiency savings in the first 24 months",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "$400,000 from one nuclear catch and $200,000 from one hydro catch",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "3,000 annual maintenance hours redirectable",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-opg"
+    ],
+    "verify": false
+  },
+  {
+    "id": "bruce-power",
+    "company": "Bruce Power",
+    "title": "The world's largest nuclear facility powers digital transformation with data-centric processes",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "pi-vision",
+      "data-hub"
+    ],
+    "region": "Ontario, Canada",
+    "summary": "Bruce Power consolidated 40,000 PI tags, plus documents and equipment codes, into AVEVA Asset Information Management (AIM), with live PI Vision data embedded in AIM workflows.",
+    "challenge": "Processes were document-centric.",
+    "solution": "Live PI Vision data embedded in AIM workflows, alongside Point Cloud Manager and CONNECT.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "1000 employee hours saved",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "15% savings in avoided repeat walkdowns",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "30% execution savings",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "50% savings at engineering change closeout",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-bruce-power"
+    ],
+    "verify": true,
+    "verifyNote": "These outcomes are mostly attributable to AIM and engineering tools rather than PI System alone."
+  },
+  {
+    "id": "kansai-electric",
+    "company": "Kansai Electric Power",
+    "title": "The power of communication: how Kansai used the PI System to transform its power plants",
+    "industry": "power",
+    "products": [
+      "data-archive",
+      "asset-framework"
+    ],
+    "region": "Japan",
+    "summary": "Kansai Electric brought all nine of its power plants into PI System and built equipment digital twins in AF, after market reforms ended its regional monopoly.",
+    "challenge": "Market deregulation ended its regional monopoly.",
+    "solution": "PI System plus AF equipment digital twins.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "\"Savings of $3 million a year in one plant alone\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.power"
+    ],
+    "sources": [
+      "ind-ss-kansai"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,165 @@
+[
+  {
+    "id": "q-historian-heart",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 1,
+    "prompt": "Which PI System component is the historian, the part responsible for storing time-series data?",
+    "options": [
+      { "id": "a", "text": "PI Data Archive" },
+      { "id": "b", "text": "PI Vision" },
+      { "id": "c", "text": "PI DataLink" },
+      { "id": "d", "text": "PI Buffer Subsystem" }
+    ],
+    "answer": "a",
+    "explanation": "The PI Data Archive stores time-series data and is often called the Historian or 'the heart of the PI System'. PI Vision and PI DataLink deliver data; the buffer only holds data temporarily on the way.",
+    "lessonId": "the-historian-concept",
+    "tags": ["historian"],
+    "sources": ["da-admin-workbook-2017r2", "da-pi101-2017-basics", "da-visualizing-workbook"]
+  },
+  {
+    "id": "q-historian-layers",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 1,
+    "prompt": "Match each PI System layer to a product that belongs in it.",
+    "pairs": [
+      { "left": "Collect", "right": "PI Interfaces and PI Connectors" },
+      { "left": "Manage / Enhance", "right": "PI Server (Data Archive and AF)" },
+      { "left": "Deliver", "right": "PI Vision and PI DataLink" }
+    ],
+    "explanation": "OSIsoft's PI 101 model: interfaces and connectors collect, the PI Server manages and enhances, and tools such as PI Vision, DataLink, ProcessBook and Notifications deliver.",
+    "lessonId": "the-historian-concept",
+    "tags": ["architecture"],
+    "sources": ["da-pi101-2017-academic"]
+  },
+  {
+    "id": "q-historian-interface-steps",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 2,
+    "prompt": "Put the jobs of a PI Interface in the order they happen to a new reading.",
+    "items": [
+      { "id": "a", "text": "Read the value from the source" },
+      { "id": "b", "text": "Timestamp the value" },
+      { "id": "c", "text": "Format the value" },
+      { "id": "d", "text": "Apply exception filtering" },
+      { "id": "e", "text": "Send it to the Data Archive" }
+    ],
+    "explanation": "The training describes an interface as reading from the source, timestamping, formatting, applying exception filtering and then sending to the Data Archive.",
+    "lessonId": "the-historian-concept",
+    "tags": ["interfaces"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-historian-appliance",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 1,
+    "prompt": "True or false: the PI System is a hardware appliance that you buy as a box.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "OSIsoft training stresses that the PI System is 'just software' running on servers and computers on a network.",
+    "lessonId": "the-historian-concept",
+    "tags": ["true-false", "pitfall"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-historian-translator",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 1,
+    "prompt": "OSIsoft compares a PI Interface to a ________, because it converts data from the source system's format into PI.",
+    "accepted": ["translator", "a translator"],
+    "explanation": "The training material calls an interface 'a translator' between the data source and the Data Archive.",
+    "lessonId": "the-historian-concept",
+    "tags": ["interfaces"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-historian-core-components",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 2,
+    "prompt": "Which items does AVEVA list as the core of the PI Data Infrastructure offering (not optional add-ons)? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "AVEVA PI Server" },
+      { "id": "b", "text": "AVEVA Edge Data Store" },
+      { "id": "c", "text": "CONNECT" },
+      { "id": "d", "text": "PI Manual Logger" },
+      { "id": "e", "text": "RtReports" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "AVEVA lists PI Server, Edge Data Store, CONNECT and connectivity products as the core. PI Manual Logger and RtReports are listed as optional add-ons, along with PI Vision, PI DataLink and PI Integrator for Business Analytics.",
+    "lessonId": "the-historian-concept",
+    "tags": ["products"],
+    "sources": ["da-aveva-pi-system-page"]
+  },
+  {
+    "id": "q-historian-retention",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.historian"],
+    "difficulty": 2,
+    "prompt": "How long does OSIsoft describe the PI Server keeping values?",
+    "options": [
+      { "id": "a", "text": "35 days, then values are deleted" },
+      { "id": "b", "text": "One year, then values must be exported" },
+      { "id": "c", "text": "Indefinitely: it 'stores the values forever', with decades of data online" },
+      { "id": "d", "text": "Only until the next archive shift" }
+    ],
+    "answer": "c",
+    "explanation": "OSIsoft said the PI Server stores values forever and keeps data online for decades. 35 days is the default message-log retention, not data retention, and an archive shift just starts a new archive file.",
+    "lessonId": "the-historian-concept",
+    "tags": ["historian"],
+    "sources": ["da-rs2011-pisystem2010", "da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-historian-why-timeindex",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.historian", "fnd.timeseries"],
+    "difficulty": 2,
+    "scenario": "A data scientist proposes storing all plant readings in an ordinary relational table with one row per minute per sensor. Some sensors report every second, some only on change, and some start years later than others.",
+    "prompt": "What is the strongest argument for using a time-series historian instead?",
+    "options": [
+      { "id": "a", "text": "Time-indexed storage handles uneven spacing, different start times and out-of-range values better than a table index" },
+      { "id": "b", "text": "A historian needs no network" },
+      { "id": "c", "text": "Relational databases cannot store numbers" },
+      { "id": "d", "text": "A historian stores every reading without any filtering" }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft's PI 101 material says time-indexed sensor data suits uneven spacing, different start times and out-of-range values better than a table index. A PI historian does filter data (exception and compression), so option d is wrong.",
+    "lessonId": "the-historian-concept",
+    "tags": ["time-series", "scenario"],
+    "sources": ["da-pi101-2017-academic"]
+  },
+  {
+    "id": "q-historian-pi-server-parts",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.historian", "fnd.architecture"],
+    "difficulty": 1,
+    "prompt": "The PI Server is made of which two components? Select both.",
+    "options": [
+      { "id": "a", "text": "PI Data Archive" },
+      { "id": "b", "text": "PI Asset Framework (AF)" },
+      { "id": "c", "text": "PI Vision" },
+      { "id": "d", "text": "PI DataLink" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "PI Server = PI Data Archive + PI AF. PI Vision and PI DataLink are client tools in the deliver layer.",
+    "lessonId": "the-historian-concept",
+    "tags": ["architecture"],
+    "sources": ["da-arch-workbook", "da-pi101-2017-academic"]
+  }
+]

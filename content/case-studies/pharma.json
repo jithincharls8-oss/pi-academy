@@ -1,0 +1,340 @@
+[
+  {
+    "id": "pfizer-groton",
+    "company": "Pfizer",
+    "title": "Accessible anywhere: Pfizer uses AVEVA PI System for production analysis",
+    "industry": "pharma",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision",
+      "pi-integrator",
+      "datalink",
+      "interfaces-connectors",
+      "event-frames",
+      "analytics"
+    ],
+    "region": "Groton, Connecticut, US",
+    "summary": "Pfizer models each production room and its equipment in AF and publishes the data to AWS for analysis in Spotfire. A PI Vision floor-plan dashboard and a second PI server set for utilities and building management complete the picture.",
+    "challenge": "Data was siloed, staff exported CSV files to Excel by hand, and 8 to 12 utility and building automation systems had mismatched timestamps.",
+    "solution": "AF equipment and process models; analyses that compute yield and capture event frame snapshots at the start and end of each batch; GMP, non-GMP, GLP and GCP data held on local servers.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "\"50% faster compliance reporting\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "\"90% faster alarm resolution\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "\"50% reduction in BMS reporting\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Root cause analysis 30% faster",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Subject-matter experts save five to 10 hours per week",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-pfizer"
+    ],
+    "verify": false
+  },
+  {
+    "id": "glaxosmithkline",
+    "company": "GlaxoSmithKline",
+    "title": "GlaxoSmithKline improves sustainability with AVEVA PI System",
+    "industry": "pharma",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "GSK uses PI System together with AVEVA System Platform and AVEVA Reports as the foundation of its \"Factory of the Future\".",
+    "challenge": "GSK wanted more efficiency, more standardisation and faster technology transfer.",
+    "solution": "An integrated platform for operational information built on PI System and System Platform.",
+    "outcomes": [
+      {
+        "category": "other",
+        "text": "Qualitative only (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-gsk"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dr-reddys",
+    "company": "Dr. Reddy's Laboratories",
+    "title": "AVEVA PI System is at the heart of Dr. Reddy's Laboratories' digital transformation",
+    "industry": "pharma",
+    "products": [
+      "data-archive"
+    ],
+    "region": "India-headquartered, global plants",
+    "summary": "Dr. Reddy's uses PI System for real-time streaming analytics that monitor processes against specification limits, as the core of its digital transformation.",
+    "challenge": "Equipment efficiency, downtime, batch failures and paper-based outputs were all problems.",
+    "solution": "PI System as the core of the digital transformation programme.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Nearly 90% improvement in productivity\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "quality",
+        "text": "\"40% reduction in quality-related costs\" at its flagship site",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "other",
+        "text": "World Economic Forum lighthouse recognition",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-drreddys"
+    ],
+    "verify": false
+  },
+  {
+    "id": "genentech-2016",
+    "company": "Genentech",
+    "title": "Migrating a pharmaceutical facility to event frames",
+    "industry": "pharma",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision",
+      "interfaces-connectors",
+      "event-frames"
+    ],
+    "region": "US",
+    "year": 2016,
+    "summary": "Genentech, with Control Systems Integration, migrated 7.2 million batch events (dating from April 2006) from PI Batch to Event Frames in a validated system.",
+    "challenge": "KPIs were kept in spreadsheets, and not all data was linked to PI Batch.",
+    "solution": "A virtual development environment, event frame templates built from user requirements, and the EMDVB interface on PI Server 2015 R2 / AF Server 2015 R2.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "User-reported time savings and data confidence (no figures given)",
+        "reportedBy": "Genentech and Control Systems Integration in an OSIsoft UC 2016 presentation"
+      },
+      {
+        "category": "other",
+        "text": "3 days of downtime affecting batch data only",
+        "reportedBy": "Genentech and Control Systems Integration in an OSIsoft UC 2016 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-pres-genentech-ef-2016"
+    ],
+    "verify": false
+  },
+  {
+    "id": "genentech-migration",
+    "company": "Genentech",
+    "title": "Migrated and validated billions of data points to AVEVA PI System",
+    "industry": "pharma",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "summary": "Genentech and RoviSys migrated about 20 years of data from a legacy historian into PI System with zero downtime, proving the move kept 100% data integrity.",
+    "challenge": "No downtime was allowed, and the team had to prove data integrity.",
+    "solution": "Migration and validation carried out with RoviSys.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "\"Moved 130 billion events across 27,000 AVEVA PI System tags\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-genentech"
+    ],
+    "verify": false
+  },
+  {
+    "id": "janssen-cork",
+    "company": "Janssen Pharmaceutical (Cork)",
+    "title": "Combining laboratory and process data on the PI System",
+    "industry": "pharma",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "analytics",
+      "datalink",
+      "processbook"
+    ],
+    "region": "Cork, Ireland",
+    "year": 2013,
+    "summary": "Janssen Cork modelled AF on S88, linking lab-measured critical quality attributes (CQAs) to critical process parameters (CPPs) to support continued process verification (CPV).",
+    "challenge": "Lab and process data sat in separate systems.",
+    "solution": "One AF element per process, a sub-element per CQA and child elements for CPPs mapped to PI tags; PI ACE writes to SQL, and lab results come from ELIMS.",
+    "outcomes": [
+      {
+        "category": "quality",
+        "text": "Qualitative: CPV extended to a broad user base (no figures given)",
+        "reportedBy": "The company (Kevin Crean) in an OSIsoft UC 2013 presentation"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ],
+    "verify": false
+  },
+  {
+    "id": "roche-ripin",
+    "company": "F. Hoffmann-La Roche",
+    "title": "GxP compliant alarm handling with event frames and AF",
+    "industry": "pharma",
+    "products": [
+      "event-frames",
+      "asset-framework",
+      "pi-vision"
+    ],
+    "region": "Switzerland",
+    "year": 2016,
+    "summary": "Roche and OctaveSoft built RIPIN (Roche Interface for PI Event Frames), a GxP-compliant alarm interface that replaced OSIsoft's PI AlarmView.",
+    "challenge": "Roche had to replace the legacy PI AlarmView in a GxP context.",
+    "solution": "Standard event frame templates, AF as a meta database, and web-based alarm acknowledgement and annotation.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "No outcomes are quantified",
+        "reportedBy": "Roche and OctaveSoft in an OSIsoft UC 2016 abstract"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-pres-roche-ripin-2016"
+    ],
+    "verify": false
+  },
+  {
+    "id": "biogen",
+    "company": "Biogen",
+    "title": "Bringing Alzheimer's drug within reach with AVEVA PI System",
+    "industry": "pharma",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Biogen uses contextualised PI data on the plant floor for real-time review by exception before batches advance.",
+    "challenge": "No real-time visibility in a strictly regulated process.",
+    "solution": "Contextualised PI data available on the plant floor.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "No measured figures. Goals only: reduce costs \"from $10,000 to $100-150 per gram\" and make enough drug for one million patients.",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-biogen"
+    ],
+    "verify": true,
+    "verifyNote": "The cost figures are goals, not measured results."
+  },
+  {
+    "id": "bristol-myers-squibb",
+    "company": "Bristol-Myers Squibb",
+    "title": "Empowering operators with real-time fault detection",
+    "industry": "pharma",
+    "products": [
+      "asset-framework",
+      "event-frames"
+    ],
+    "summary": "Bristol-Myers Squibb built real-time multivariate monitoring with AF so operators can detect faults during batches.",
+    "challenge": "Batch data arrived late and lacked context.",
+    "solution": "Monitoring \"built with out-of-the-box tools in the asset framework\".",
+    "outcomes": [
+      {
+        "category": "quality",
+        "text": "Qualitative only (no figures given)",
+        "reportedBy": "AVEVA (customer success story); the same team presented at PI World 2019"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-ss-bms",
+      "ind-pres-ls-2019"
+    ],
+    "verify": false
+  },
+  {
+    "id": "etech-biotech",
+    "company": "Unnamed biotech (E Tech Group)",
+    "title": "Biotech scale-up uses FTView and AVEVA PI Historian",
+    "industry": "pharma",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "pi-vision",
+      "notifications",
+      "analytics"
+    ],
+    "summary": "An unnamed biotech, working with integrator E Tech Group, scaled up to cGMP manufacturing with the audit trail enabled on PI Server and a full validation lifecycle.",
+    "challenge": "Islands of automation, some of which predated 21 CFR Part 11.",
+    "solution": "URS, FS and SDS documents, FAT and SAT testing, and access limited to authorised users through Active Directory.",
+    "outcomes": [
+      {
+        "category": "compliance",
+        "text": "Automatic batch reports (no quantified results)",
+        "reportedBy": "E Tech Group (integrator case study)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.pharma"
+    ],
+    "sources": [
+      "ind-etech-biotech"
+    ],
+    "verify": false
+  }
+]

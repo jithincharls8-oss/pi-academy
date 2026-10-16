@@ -1,0 +1,171 @@
+[
+  {
+    "id": "q-relay-no-failover",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 1,
+    "prompt": "True or false: the PI Connector Relay supports failover.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. The architecture course states: \"There is currently NO FAILOVER support for PI Connector (2nd gen) and PI Connector Relay.\"",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["true-false", "failover"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-relay-gen2-path",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 1,
+    "prompt": "How does a 2nd-generation PI Connector deliver its data?",
+    "options": [
+      { "id": "a", "text": "Through the PI Connector Relay, which forwards it to the PI Data Archive and AF, with configuration managed in PI Data Collection Manager" },
+      { "id": "b", "text": "Directly to the PI Data Archive, with structure sent straight to AF" },
+      { "id": "c", "text": "Through the PI Buffer Subsystem only" },
+      { "id": "d", "text": "By writing CSV files that PI_UFL picks up" }
+    ],
+    "answer": "a",
+    "explanation": "2nd-generation connectors send through the PI Connector Relay to the Data Archive and AF, configured in DCM. Sending straight to the Data Archive and AF is the 1st-generation design.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["generations"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-relay-omf-new-apps",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm", "dc.adapters-eds"],
+    "difficulty": 2,
+    "scenario": "A developer is building a new OMF application to send sensor data into an on-premises PI Server. An old wiki page tells him to get a Producer Token and Relay Ingress URL from Data Collection Manager.",
+    "prompt": "What should he target instead?",
+    "options": [
+      { "id": "a", "text": "The PI Web API OMF endpoint" },
+      { "id": "b", "text": "The PI Connector Relay, as the wiki says" },
+      { "id": "c", "text": "The PI Buffer Subsystem's queue file" },
+      { "id": "d", "text": "PI ICU" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's OMF samples list the Relay as \"not tested\" and recommend the PI Web API OMF endpoint for PI; a third-party OMF client notes the Relay was discontinued as an OMF endpoint and replaced by PI Web API.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["omf"],
+    "sources": ["dcv-github-osi-samples-omf", "dcv-foglamp-omf"]
+  },
+  {
+    "id": "q-relay-gmsa-groups",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 3,
+    "prompt": "To run PI Connectors, the Relay or DCM under a gMSA, which local groups can the gMSA be added to? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI Connector Administrators" },
+      { "id": "b", "text": "PI Trusted Installers" },
+      { "id": "c", "text": "PI Vision Admins" },
+      { "id": "d", "text": "PI Buffering Administrators" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "The architecture course says to add the gMSA to the PI Connector Administrators or PI Trusted Installers group. PI Buffering Administrators is for older PIBufss versions, and PI Vision Admins controls the PI Vision admin site.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["security", "gmsa"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-relay-dmz",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 2,
+    "prompt": "In OSIsoft's 2017 IIoT architecture, where did the PI Connector Relay sit?",
+    "options": [
+      { "id": "a", "text": "In the DMZ between the edge and the enterprise PI Server" },
+      { "id": "b", "text": "On every PLC" },
+      { "id": "c", "text": "Inside the PI Data Archive service" },
+      { "id": "d", "text": "On each user's desktop" }
+    ],
+    "answer": "a",
+    "explanation": "The Relay sat in the DMZ between edge and enterprise PI Server. Traditional connections used X.509 certificates and remote devices or OMF apps used SAS tokens.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["architecture"],
+    "sources": ["dcv-maytum-iiot-2017"]
+  },
+  {
+    "id": "q-relay-dcm-role",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 1,
+    "prompt": "What is PI Data Collection Manager (DCM)?",
+    "options": [
+      { "id": "a", "text": "The central tool for registering and configuring connectors, relays and destinations" },
+      { "id": "b", "text": "A replacement for the PI Data Archive" },
+      { "id": "c", "text": "A PI Vision symbol" },
+      { "id": "d", "text": "The buffer queue file used by connectors" }
+    ],
+    "answer": "a",
+    "explanation": "DCM provides a \"Unified Admin Experience\" for configuring 2nd-generation connectors, the Relay and their destinations.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["dcm"],
+    "sources": ["dcv-coen-connectivity-2017", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-relay-generations-match",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 2,
+    "prompt": "Match each component to its description.",
+    "pairs": [
+      { "left": "1st-generation PI Connector", "right": "Sends data straight to the Data Archive and structure to AF" },
+      { "left": "2nd-generation PI Connector", "right": "Sends data through the Relay" },
+      { "left": "PI Connector Relay", "right": "Forwards connector data to the Data Archive and AF" },
+      { "left": "PI Data Collection Manager", "right": "Configures connectors, relays and destinations" }
+    ],
+    "explanation": "1st-gen connectors write directly; 2nd-gen connectors send to the Relay, which forwards to the Data Archive and AF; DCM manages the configuration.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["generations"],
+    "sources": ["dcv-arch-workbook", "dcv-coen-connectivity-2017"]
+  },
+  {
+    "id": "q-relay-utc",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 2,
+    "prompt": "In which time basis do PI Connectors and the PI Connector Relay send event timestamps?",
+    "options": [
+      { "id": "a", "text": "UTC" },
+      { "id": "b", "text": "The local time of the connector node" },
+      { "id": "c", "text": "The local time of the PI Data Archive" },
+      { "id": "d", "text": "Whatever the user sets in DCM" }
+    ],
+    "answer": "a",
+    "explanation": "The architecture course states that PI Connectors and the PI Connector Relay send events with UTC timestamps, as interfaces and adapters do.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["time"],
+    "sources": ["dcv-arch-workbook-2020"]
+  },
+  {
+    "id": "q-relay-security-features",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.relay-dcm"],
+    "difficulty": 2,
+    "prompt": "Which capabilities did OSIsoft's 2017 connectivity deck give the PI Connector Relay? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Sending data across networks to multiple destinations" },
+      { "id": "b", "text": "Certificates for authentication and encryption" },
+      { "id": "c", "text": "Hot, warm and cold failover" },
+      { "id": "d", "text": "Running PI Vision displays" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "The deck described \"Secure & Flexible Architectures\" with multiple destinations and \"Certificates: Authentication and Encryption\". The Relay has no failover, and it does not host displays.",
+    "lessonId": "connector-relay-and-dcm",
+    "tags": ["security"],
+    "sources": ["dcv-coen-connectivity-2017", "dcv-arch-workbook"]
+  }
+]

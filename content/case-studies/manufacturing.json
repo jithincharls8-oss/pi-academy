@@ -1,0 +1,63 @@
+[
+  {
+    "id": "toyota-motor-europe",
+    "company": "Toyota Motor Europe",
+    "title": "Dreams of a green new world with AVEVA PI System",
+    "industry": "manufacturing",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Europe",
+    "summary": "Toyota Motor Europe built a single centralised energy monitoring system (EnMS) on PI System to standardise data models across its European plants.",
+    "challenge": "Plants differed widely in monitoring capability, with no standard data model and no benchmarks.",
+    "solution": "Standardised PI data models in a central energy monitoring system.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Less than one minute to validate and share data\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.manufacturing"
+    ],
+    "sources": [
+      "ind-ss-toyota"
+    ],
+    "verify": false
+  },
+  {
+    "id": "michelin",
+    "company": "Michelin",
+    "title": "Embracing a data-driven approach to energy management",
+    "industry": "manufacturing",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Global (15 sites)",
+    "summary": "Michelin collects and standardises energy data from 15 production sites in PI System so plants can share best practice.",
+    "challenge": "Many different data sources and large data volumes.",
+    "solution": "PI System to contextualise energy consumption across sites.",
+    "outcomes": [
+      {
+        "category": "sustainability",
+        "text": "\"Up to 10% savings in the initial few months\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "sustainability",
+        "text": "Energy reduced \"by as much as 16%\"; quote: \"we save from 3% to 16% in energy consumption\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.manufacturing"
+    ],
+    "sources": [
+      "ind-ss-michelin"
+    ],
+    "verify": false
+  }
+]

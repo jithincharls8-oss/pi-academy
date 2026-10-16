@@ -1,0 +1,423 @@
+[
+  {
+    "id": "q-deployment-patterns-growth",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Order OSIsoft's architecture growth path from simplest to most resilient.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Single Data Archive plus AF"
+      },
+      {
+        "id": "b",
+        "text": "Failover interface"
+      },
+      {
+        "id": "c",
+        "text": "Data Archive collective"
+      },
+      {
+        "id": "d",
+        "text": "AF high availability"
+      },
+      {
+        "id": "e",
+        "text": "PI Vision behind NLB"
+      },
+      {
+        "id": "f",
+        "text": "Clustered Analysis and Notifications"
+      }
+    ],
+    "explanation": "The PI World 2019 architecture deck gives this growth path, adding redundancy layer by layer.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "growth"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-security",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each OSIsoft security pattern to its design.",
+    "pairs": [
+      {
+        "left": "Pattern 1",
+        "right": "Web-facing PI Vision, Notifications and Web API in a DMZ"
+      },
+      {
+        "left": "Pattern 2",
+        "right": "Pattern 1 with high availability"
+      },
+      {
+        "left": "Pattern 3",
+        "right": "DMZ with PI to PI carrying data only"
+      },
+      {
+        "left": "Pattern 3+",
+        "right": "One-way transfer enforced by physics"
+      }
+    ],
+    "explanation": "Patterns 1-3+ from the 2019 deck. A Pattern 3 variant puts PI Connector Relay in the DMZ.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "security"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-small",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Which design matches AVEVA guidance for this stage?",
+    "options": [
+      {
+        "id": "a",
+        "text": "One server with Data Archive, AF and SQL Express for the pilot, moving SQL off Express and onto its own server if it becomes production-critical"
+      },
+      {
+        "id": "b",
+        "text": "Two collectives, two AF Servers behind an NLB and a data diode"
+      },
+      {
+        "id": "c",
+        "text": "No AF, since AF is only for enterprises"
+      },
+      {
+        "id": "d",
+        "text": "SQL Express on the production AF for ever, since it has no limits"
+      }
+    ],
+    "scenario": "A small food plant wants a pilot with about 5,000 tags and one production line modelled in AF. Budget allows one server for now.",
+    "answer": "a",
+    "explanation": "OSIsoft's 2012 rule allowed PI, AF and SQL on one node for small systems, and its advice is to start with a single targeted project and expand as needed. SQL Express is limited to one CPU, 1 GB RAM and 10 GB, and AVEVA recommends SQL on a different computer for production.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "small"
+    ],
+    "sources": [
+      "ops2-rs2012-vining-arch",
+      "adm-uc19-architecting-zhimanov",
+      "adm-arch-planning-workbook-2024",
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-enterprise",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Which elements does AVEVA recommend for large distributed systems? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Data Archive collectives"
+      },
+      {
+        "id": "b",
+        "text": "Two PI AF Servers behind a Network Load Balancer"
+      },
+      {
+        "id": "c",
+        "text": "SQL Server on separate redundant computers"
+      },
+      {
+        "id": "d",
+        "text": "SQL Express on the AF server"
+      },
+      {
+        "id": "e",
+        "text": "A single AF database per plant"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The 2024 course recommends collectives, two AF Servers behind an NLB and SQL on separate redundant computers. SQL Express and per-plant AF databases are discouraged.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "enterprise"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-pitopi-licence",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: one PI to PI licence covers data transfer in both directions between two servers.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. Each PI to PI connection is unidirectional, so two licences are needed for bidirectional transfer.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "licensing",
+      "true-false"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-takeaways",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 1,
+    "prompt": "Which were takeaways of OSIsoft's 2019 architecture talk? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "No perfect architecture"
+      },
+      {
+        "id": "b",
+        "text": "Expand as needed"
+      },
+      {
+        "id": "c",
+        "text": "Plan the desired architecture in advance"
+      },
+      {
+        "id": "d",
+        "text": "Always start with the enterprise design"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The takeaways were \"No perfect architecture\", \"Expand as needed\" and \"Plan the desired architecture in advance\".",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-af-sync",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 3,
+    "prompt": "How does OSIsoft's rollout guidance keep site AF databases aligned with corporate templates?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Templates are owned centrally and deployed to sites with AFExport/AFImport, using AF SDK for deletions"
+      },
+      {
+        "id": "b",
+        "text": "Each site designs its own templates and corporate copies them"
+      },
+      {
+        "id": "c",
+        "text": "PI to PI copies AF templates"
+      },
+      {
+        "id": "d",
+        "text": "SQL replication between AF databases"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Templates are owned centrally and synced with AFExport/AFImport; because imports do not propagate deletions, AF SDK handles those.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "adm-us19-af-rollout-kwan",
+      "adm-uc19-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-failover",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "In the licence schedule, when does the included failover interface or connector deployment send data?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only if the primary interface or connector deployment fails"
+      },
+      {
+        "id": "b",
+        "text": "Always, in parallel with the primary"
+      },
+      {
+        "id": "c",
+        "text": "Only during backfill"
+      },
+      {
+        "id": "d",
+        "text": "Only to the collective secondary"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The failover deployment \"only sends data if the primary interface or connector deployment fails\".",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "interfaces"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-separate-af",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Moving from a single server to a mid-size design, when does AVEVA recommend separating AF from the Data Archive computer?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When AF uses data from multiple PI Servers or is configured for high availability"
+      },
+      {
+        "id": "b",
+        "text": "Only above 10 million tags"
+      },
+      {
+        "id": "c",
+        "text": "Never; AF must share the Data Archive server"
+      },
+      {
+        "id": "d",
+        "text": "Only in the cloud"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2024 course recommends separate AF and Data Archive computers when AF uses multiple PI Servers or is HA.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "mid-size"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-aggregation",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 3,
+    "prompt": "What does Waterfall describe for security-sensitive fleets of PI servers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Many-to-one aggregation of industrial PI servers into an enterprise replica through unidirectional gateways"
+      },
+      {
+        "id": "b",
+        "text": "Merging all archives into one file"
+      },
+      {
+        "id": "c",
+        "text": "Letting business users query each plant server directly"
+      },
+      {
+        "id": "d",
+        "text": "Replacing PI servers with spreadsheets"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Waterfall supports many-to-one aggregation into an enterprise replica, with complete or selective replication.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "enterprise"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-deployment-patterns-collectors",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.deployment-patterns"
+    ],
+    "difficulty": 1,
+    "prompt": "AVEVA says it has over how many PI interfaces (round number)?",
+    "accepted": [
+      "450",
+      "450+"
+    ],
+    "caseSensitive": false,
+    "explanation": "The 2024 course says AVEVA has over 450 PI interfaces and over 20 PI Connectors.",
+    "lessonId": "deployment-patterns-by-size",
+    "tags": [
+      "collection"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  }
+]

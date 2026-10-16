@@ -1,0 +1,290 @@
+[
+  {
+    "id": "q-buildings-eui",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings"
+    ],
+    "difficulty": 1,
+    "prompt": "Which building is more energy-efficient?",
+    "scenario": "Building A used 2,000,000 kWh last year and has 20,000 m² of floor area. Building B used 900,000 kWh and has 6,000 m².",
+    "options": [
+      {
+        "id": "a",
+        "text": "Building A, at 100 kWh/m² per year versus 150 for B"
+      },
+      {
+        "id": "b",
+        "text": "Building B, because it used less energy in total"
+      },
+      {
+        "id": "c",
+        "text": "They are equal"
+      },
+      {
+        "id": "d",
+        "text": "You cannot tell without PUE"
+      }
+    ],
+    "answer": "a",
+    "explanation": "EUI is energy per unit floor area per year: A = 100, B = 150 kWh/m². B uses less in total but more per square metre. PUE is a data-centre ratio, not a building comparison metric.",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "beginner",
+      "calculation"
+    ],
+    "sources": [
+      "ind-ss-uc-davis"
+    ]
+  },
+  {
+    "id": "q-buildings-umd-headline",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which wording should you quote?",
+    "scenario": "The University of Maryland, College Park success story headline says \"saving up to 30% of energy expenses\". The results section says savings of 30% of HVAC energy expenses.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The results-section wording: savings of 30% of HVAC energy expenses, reported by AVEVA, noting the headline differs"
+      },
+      {
+        "id": "b",
+        "text": "\"30% of all energy expenses\", because it is the bigger claim"
+      },
+      {
+        "id": "c",
+        "text": "\"Up to 30%\" with no source"
+      },
+      {
+        "id": "d",
+        "text": "Average them to 15%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The headline is broader (all energy) and hedged (\"up to\"); the results section is specific to HVAC energy. Quote the specific wording with its reporter and note the inconsistency.",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "practitioner",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-umd"
+    ]
+  },
+  {
+    "id": "q-buildings-bremen",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: The City of Bremen building management story (energy down 15% to 18%) is a PI System example.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The research checked it: Bremen uses AVEVA InTouch and Historian, not PI System. Do not use it as a PI example.",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "practitioner",
+      "critical-reading",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-bremen"
+    ]
+  },
+  {
+    "id": "q-buildings-ucd-forecasts",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which UC Davis figures are forecasts rather than achieved results? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "\"Expected annual savings of $150,000 from chilled water optimization\""
+      },
+      {
+        "id": "b",
+        "text": "\"Projected savings of $197M over 60 years\""
+      },
+      {
+        "id": "c",
+        "text": "\"46% reduction in energy-use intensity since 2009, a cost savings of $15 million\""
+      },
+      {
+        "id": "d",
+        "text": "\"62% reduction in gas usage from heating system retrofit\""
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "\"Expected\" and \"Projected\" mark forecasts. The 46% EUI reduction with $15 million savings and the 62% gas reduction are reported as achieved.",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "expert",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-uc-davis"
+    ]
+  },
+  {
+    "id": "q-buildings-ucd-eui",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "UC Davis reported a ___% reduction in energy-use intensity since 2009.",
+    "accepted": [
+      "46"
+    ],
+    "caseSensitive": false,
+    "explanation": "AVEVA's UC Davis story: \"46% reduction in energy-use intensity since 2009, a cost savings of $15 million\".",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-uc-davis"
+    ]
+  },
+  {
+    "id": "q-buildings-pfizer-bms",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What does AVEVA report from Pfizer Groton's second PI server set for utilities and building automation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50% reduction in BMS reporting"
+      },
+      {
+        "id": "b",
+        "text": "46% reduction in EUI"
+      },
+      {
+        "id": "c",
+        "text": "30% of HVAC energy expenses saved"
+      },
+      {
+        "id": "d",
+        "text": "90% reduction in BMS alarms"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Pfizer Groton's floor-plan dashboard overlays environmental and process data by room, and AVEVA reports \"50% reduction in BMS reporting\" (alongside \"90% faster alarm resolution\").",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-pfizer"
+    ]
+  },
+  {
+    "id": "q-buildings-terms",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each buildings term to its meaning.",
+    "pairs": [
+      {
+        "left": "EUI",
+        "right": "Energy per unit floor area per year"
+      },
+      {
+        "left": "BMS / BAS",
+        "right": "Building management or automation system"
+      },
+      {
+        "left": "Chilled water optimisation",
+        "right": "A UC Davis project expected to save $150,000 a year"
+      }
+    ],
+    "explanation": "EUI and BMS/BAS are defined in the buildings research; the chilled water figure is UC Davis's \"Expected annual savings of $150,000\".",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-ss-uc-davis",
+      "ind-ss-pfizer"
+    ]
+  },
+  {
+    "id": "q-buildings-umd-problem",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What problem did the University of Maryland have before centralising electrical distribution data on PI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Data spread across disparate, isolated systems limited outage response"
+      },
+      {
+        "id": "b",
+        "text": "It had no electrical meters at all"
+      },
+      {
+        "id": "c",
+        "text": "Its BMS was too new for PI"
+      },
+      {
+        "id": "d",
+        "text": "Its PUE was above 2.0"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The story says electrical distribution data spread across disparate, isolated systems limited outage response. It reports significantly reduced outage downtime afterwards.",
+    "lessonId": "pi-in-buildings",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-ss-umd"
+    ]
+  }
+]

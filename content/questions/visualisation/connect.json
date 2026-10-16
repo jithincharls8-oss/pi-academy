@@ -1,0 +1,156 @@
+[
+  {
+    "id": "q-vis-connect-platform",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 1,
+    "prompt": "Which capabilities did AVEVA name for CONNECT at its 2024 launch? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Native data services" },
+      { "id": "b", "text": "Visualization services" },
+      { "id": "c", "text": "Modeling and analytics capabilities" },
+      { "id": "d", "text": "Replacing every on-premises PI Data Archive" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "CONNECT was described as offering \"native data services, visualization services, modeling and analytics capabilities\" on Microsoft Azure. AVEVA's hybrid offer augments, rather than replaces, the on-premises PI System.",
+    "lessonId": "connect-visualisation",
+    "tags": ["connect"],
+    "sources": ["ops2-arc-connect-launch", "ops2-pidi-service-description"]
+  },
+  {
+    "id": "q-vis-connect-trend-tool",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 1,
+    "prompt": "In AVEVA's 2023 MQTT and EDS workshop, which tool was used to view EDS-sourced data that had been sent to Data Hub?",
+    "options": [
+      { "id": "a", "text": "The Data Hub trend tool" },
+      { "id": "b", "text": "PI ProcessBook" },
+      { "id": "c", "text": "PI DataLink" },
+      { "id": "d", "text": "PI WebParts" }
+    ],
+    "answer": "a",
+    "explanation": "EDS-sourced data in Data Hub can be viewed with the Data Hub trend tool, while PI data can be viewed in PI Vision.",
+    "lessonId": "connect-visualisation",
+    "tags": ["trend"],
+    "sources": ["dcv-uc23-mqtt-eds-workshop"]
+  },
+  {
+    "id": "q-vis-connect-2025",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 2,
+    "prompt": "Which items appear in AVEVA's December 2025 list of CONNECT updates? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "\"Experience visualizations\"" },
+      { "id": "b", "text": "AVEVA Asset Information Management integration in CONNECT visualization" },
+      { "id": "c", "text": "An Industrial AI Assistant (open preview)" },
+      { "id": "d", "text": "Databricks integration" },
+      { "id": "e", "text": "A new version of PI ProcessBook" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The 9 December 2025 blog lists Databricks integration, AIM integration in CONNECT visualization, Experience visualizations, asset and time context, and an Industrial AI Assistant in open preview. ProcessBook was retired.",
+    "lessonId": "connect-visualisation",
+    "tags": ["connect", "history"],
+    "sources": ["ops2-aveva-connect-2025-updates", "ops2-aveva-pb-retire-blog"]
+  },
+  {
+    "id": "q-vis-connect-azure",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 2,
+    "prompt": "On which cloud does AVEVA's CONNECT platform run, according to the launch coverage?",
+    "options": [
+      { "id": "a", "text": "Microsoft Azure" },
+      { "id": "b", "text": "Only on customer-owned servers" },
+      { "id": "c", "text": "It has no cloud component" },
+      { "id": "d", "text": "On each PI Vision server" }
+    ],
+    "answer": "a",
+    "explanation": "The April 2024 launch report says CONNECT runs on Microsoft Azure.",
+    "lessonId": "connect-visualisation",
+    "tags": ["connect"],
+    "sources": ["ops2-arc-connect-launch"]
+  },
+  {
+    "id": "q-vis-connect-foundation",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 1,
+    "prompt": "What is described as \"the foundation of our industrial intelligence platform, CONNECT\"?",
+    "options": [
+      { "id": "a", "text": "CONNECT data services" },
+      { "id": "b", "text": "PI Vision" },
+      { "id": "c", "text": "PI DataLink" },
+      { "id": "d", "text": "PI Manual Logger" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's July 2024 blog calls CONNECT data services, formerly AVEVA Data Hub, the foundation of CONNECT.",
+    "lessonId": "connect-visualisation",
+    "tags": ["connect"],
+    "sources": ["ops2-aveva-dh-to-cds-blog"]
+  },
+  {
+    "id": "q-vis-connect-hybrid",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 2,
+    "scenario": "A company buys AVEVA PI Data Infrastructure. The plant manager asks whether operators must stop using PI Vision and move to the cloud.",
+    "prompt": "What do the sources indicate?",
+    "options": [
+      { "id": "a", "text": "No; the package augments the on-premises PI System and includes PI Vision alongside CONNECT data services" },
+      { "id": "b", "text": "Yes; PI Vision is not part of the package" },
+      { "id": "c", "text": "Yes; CONNECT replaces the PI Data Archive" },
+      { "id": "d", "text": "No; but PI Vision must be replaced by ProcessBook" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA PI Data Infrastructure \"augments the on-premises PI System with cloud-enabled functionalities\" and includes PI Vision, PI DataLink and PI Web API.",
+    "lessonId": "connect-visualisation",
+    "tags": ["hybrid"],
+    "sources": ["ops2-pidi-service-description"]
+  },
+  {
+    "id": "q-vis-connect-dataview-consumers",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 2,
+    "prompt": "Which consumers of Data Views did AVEVA's 2023 session list? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "The AVEVA Data Hub Power BI Connector" },
+      { "id": "b", "text": "The REST API" },
+      { "id": "c", "text": "PI ICU" },
+      { "id": "d", "text": "PIBufss" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "Data Views consumers include the AVEVA Data Hub Power BI Connector and the REST API. PI ICU and PIBufss are on-premises data collection tools.",
+    "lessonId": "connect-visualisation",
+    "tags": ["data-views"],
+    "sources": ["ops2-uc23-dataviews-coppock"]
+  },
+  {
+    "id": "q-vis-connect-edge-pairing",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.connect"],
+    "difficulty": 3,
+    "prompt": "In AVEVA's 2023 connectivity architecture, what do edge devices pair and bootstrap to?",
+    "options": [
+      { "id": "a", "text": "AVEVA Connect, common cloud platform" },
+      { "id": "b", "text": "The PI Connector Relay" },
+      { "id": "c", "text": "PI Data Collection Manager" },
+      { "id": "d", "text": "The PI Vision Admin site" }
+    ],
+    "answer": "a",
+    "explanation": "The 2023 architecture says edge devices pair and bootstrap to \"AVEVA Connect, common cloud platform\", which also lists visualization services.",
+    "lessonId": "connect-visualisation",
+    "tags": ["architecture"],
+    "sources": ["dcv-felts-connectivity-2023"]
+  }
+]

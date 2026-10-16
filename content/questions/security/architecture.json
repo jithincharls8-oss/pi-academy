@@ -1,0 +1,386 @@
+[
+  {
+    "id": "q-architecture-data-only",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 1,
+    "prompt": "In OSIsoft security Pattern 3, what crosses into the DMZ from the control network?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI to PI carrying data only, with no user queries crossing the boundary"
+      },
+      {
+        "id": "b",
+        "text": "All PI Vision user sessions"
+      },
+      {
+        "id": "c",
+        "text": "Remote desktop for engineers"
+      },
+      {
+        "id": "d",
+        "text": "AF SDK clients querying the plant server"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Pattern 3 is a DMZ with PI to PI carrying data only; no user queries cross the boundary.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "patterns"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-kerberos-dmz",
+    "type": "scenario",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 3,
+    "prompt": "Which workarounds did OSIsoft list?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A trusted domain in the DMZ, or very specific firewall rules"
+      },
+      {
+        "id": "b",
+        "text": "Switch every user to explicit logins with blank passwords"
+      },
+      {
+        "id": "c",
+        "text": "Create an open PI Trust for all IP addresses"
+      },
+      {
+        "id": "d",
+        "text": "Use Anonymous authentication"
+      }
+    ],
+    "scenario": "A new DMZ Data Archive must authenticate business users with Windows accounts, but the firewall blocks the DMZ from the corporate domain controllers.",
+    "answer": "a",
+    "explanation": "OSIsoft noted firewalls block Kerberos to domain controllers and listed \"a trusted domain in the DMZ\" or \"very specific firewalls rules\". Explicit logins, open trusts and Anonymous all weaken security.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "kerberos"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-diode-users",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "With a Waterfall unidirectional gateway, how do business users work with PI data?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They interact bi-directionally with enterprise replicas, which receive tags, attributes, events, values and AF one way"
+      },
+      {
+        "id": "b",
+        "text": "They connect through the gateway to the plant server"
+      },
+      {
+        "id": "c",
+        "text": "They receive daily CSV e-mails only"
+      },
+      {
+        "id": "d",
+        "text": "They cannot use AF at all"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Waterfall replicates PI Data Archive and AF to enterprise replicas through a unidirectional gateway, and users interact normally with the replicas.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "diode"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-patterns",
+    "type": "matching",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each design to OSIsoft's pattern name.",
+    "pairs": [
+      {
+        "left": "PI Vision, Notifications and Web API in a DMZ",
+        "right": "Pattern 1"
+      },
+      {
+        "left": "DMZ fed by PI to PI, data only",
+        "right": "Pattern 3"
+      },
+      {
+        "left": "PI Connector Relay in the DMZ",
+        "right": "Pattern 3 variant"
+      },
+      {
+        "left": "One-way enforced by physics",
+        "right": "Pattern 3+"
+      }
+    ],
+    "explanation": "These are the security patterns from the PI World 2019 architecture deck. Pattern 2 is Pattern 1 with HA.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "patterns"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-backfill",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "What does Waterfall PI Backfill do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Retransmits data to fill gaps without duplicates"
+      },
+      {
+        "id": "b",
+        "text": "Deletes old archives on the replica"
+      },
+      {
+        "id": "c",
+        "text": "Opens a reverse channel for writes"
+      },
+      {
+        "id": "d",
+        "text": "Converts PI tags to OPC UA"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Waterfall PI Backfill retransmits data to fill gaps without duplicates, for example after a link outage.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "diode"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-owl",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Owl Cyber Defense demonstrated PI to PI replication over its OPDS-1000 data diode.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. Owl demonstrated \"OSI PI to PI Replication\" over the OPDS-1000 at the 2018 Barcelona conference.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "diode",
+      "true-false"
+    ],
+    "sources": [
+      "adm-uc18-owl-diode-barcelona"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-2003",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 3,
+    "prompt": "What did a 2003 PI conference design use to protect the control network?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A replica database, with users denied direct access through the firewall and a single secure tunnel out"
+      },
+      {
+        "id": "b",
+        "text": "A data diode with OMF"
+      },
+      {
+        "id": "c",
+        "text": "PI Vision in the control network"
+      },
+      {
+        "id": "d",
+        "text": "AVEVA CONNECT"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2003 design used a replica database, denied users direct access and allowed a \"single secure tunnel\" out. PI Vision, OMF and CONNECT came much later.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "history"
+    ],
+    "sources": [
+      "adm-uc2003-263"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-replica-why",
+    "type": "multi",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "Why do these architectures give business users a replica instead of access to the plant Data Archive? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "No user query crosses into the control network"
+      },
+      {
+        "id": "b",
+        "text": "A compromised business PC has no path into the plant"
+      },
+      {
+        "id": "c",
+        "text": "It restricts data flow between zones"
+      },
+      {
+        "id": "d",
+        "text": "It removes the need for any authentication on the replica"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Replicas keep user queries and potential attackers out of the control zone and restrict data flow between zones. The replica still needs authentication and hardening.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "principles"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov",
+      "adm-iec-62443-background",
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-aggregation",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 2,
+    "prompt": "Which replication option does Waterfall support for many industrial PI servers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Many-to-one aggregation into an enterprise replica, with complete or selective replication"
+      },
+      {
+        "id": "b",
+        "text": "Only one-to-one, with every tag"
+      },
+      {
+        "id": "c",
+        "text": "Two-way synchronisation of all servers"
+      },
+      {
+        "id": "d",
+        "text": "Replication only of AF, not data"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Waterfall supports many-to-one aggregation to an enterprise replica with complete or selective replication.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "diode"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-architecture-dmz-ports",
+    "type": "multi",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "difficulty": 3,
+    "prompt": "A Data Archive placed in a DMZ still needs outbound access for which services, per AVEVA's UC23 firewall table? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "TCP/UDP 88 for Kerberos"
+      },
+      {
+        "id": "b",
+        "text": "TCP/UDP 135 for SPN registration"
+      },
+      {
+        "id": "c",
+        "text": "UDP 53 for DNS"
+      },
+      {
+        "id": "d",
+        "text": "TCP 3389 for internet RDP"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The UC23 table lists outbound 135 (SPN registration), 88 (Kerberos), 53 (DNS) and dynamic ports to domain controllers. Internet RDP is not part of the PI firewall requirements.",
+    "lessonId": "dmz-diodes-pi-to-pi",
+    "tags": [
+      "firewall"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,262 @@
+[
+  {
+    "id": "q-filtering-units-no-dimension",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AF analyses apply dimensional (unit) logic, so adding kg values and writing to a gram attribute converts automatically.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Analyses have no UOM dimensional logic; AF assumes the output is already in the output attribute's UOM. Wrap the result in Convert().",
+    "lessonId": "filtering-and-units",
+    "tags": [
+      "pitfall",
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-uom-conversion-analytics"
+    ]
+  },
+  {
+    "id": "q-filtering-units-convert",
+    "type": "code",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 1,
+    "prompt": "Wrap the expression Curve('Adjusted Wind Speed', (0,0) (4,78) (16,3000)) so its result is in kW.",
+    "language": "af",
+    "accepted": [
+      "Convert(Curve('Adjusted Wind Speed', (0,0) (4,78) (16,3000)),\"kW\")",
+      "Convert(Curve('Adjusted Wind Speed', (0,0) (4,78) (16,3000)), \"kW\")"
+    ],
+    "requiredPatterns": [
+      "^convert\\(\\s*curve\\(",
+      ",\\s*\\\"kw\\\"\\s*\\)$"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "Convert(<expression>, \"kW\") is the lab pattern for setting an output unit.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-filtering-units-summary-convert",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 3,
+    "prompt": "When does a summary (non-PE) expression convert automatically to the output attribute's UOM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Always"
+      },
+      {
+        "id": "b",
+        "text": "When it contains no mathematical operations"
+      },
+      {
+        "id": "c",
+        "text": "Never"
+      },
+      {
+        "id": "d",
+        "text": "Only for rollups"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Summary expressions convert to the output UOM when they contain no mathematical operations; otherwise wrap the result in Convert().",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tagtot-units"
+    ]
+  },
+  {
+    "id": "q-filtering-units-where-conversion",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 2,
+    "prompt": "Between which objects does AF unit conversion happen?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Between any two numbers in an expression"
+      },
+      {
+        "id": "b",
+        "text": "Between a PI Point and an AF attribute, or between two AF attributes, within one UOM class"
+      },
+      {
+        "id": "c",
+        "text": "Only inside Table Lookups"
+      },
+      {
+        "id": "d",
+        "text": "Only in PI Vision"
+      }
+    ],
+    "answer": "b",
+    "explanation": "UOM conversion happens between a PI Point and an attribute, or between two attributes, provided both units are in the same UOM class.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-uom-conversion-analytics",
+      "af-pisquare-tagtot-units"
+    ]
+  },
+  {
+    "id": "q-filtering-units-intermediate",
+    "type": "code",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 2,
+    "prompt": "Write the pre-2018 intermediate-attribute expression that outputs 'Tag1' only when 'BIT' equals 1, and nothing otherwise.",
+    "language": "pe",
+    "accepted": [
+      "If('BIT'=1) then 'Tag1' else NoOutput()",
+      "IF 'BIT' = 1 THEN 'Tag1' ELSE NoOutput()"
+    ],
+    "requiredPatterns": [
+      "^if\\s*\\(?\\s*'bit'\\s*=\\s*1\\s*\\)?\\s*then\\s+'tag1'\\s+else\\s+nooutput\\(\\)$"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "Before 2018, filtered averages used an intermediate attribute such as If('BIT'=1) then 'Tag1' else NoOutput(), which was then summarised.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tagtot-condition"
+    ]
+  },
+  {
+    "id": "q-filtering-units-since-2018",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 1,
+    "prompt": "From Asset Analytics 2018, how can you do a filtered calculation without an intermediate attribute?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With array functions such as RecordedValuesByCount and FilterData"
+      },
+      {
+        "id": "b",
+        "text": "With a Table Lookup"
+      },
+      {
+        "id": "c",
+        "text": "With ExcDev"
+      },
+      {
+        "id": "d",
+        "text": "It is still impossible"
+      }
+    ],
+    "answer": "a",
+    "explanation": "From 2018, array functions allow filtered calculations without an intermediate attribute.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-filter-expression",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-filtering-units-different-result",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 3,
+    "prompt": "What explanation was given in the thread?",
+    "scenario": "A PI DataLink filtered summary gave 66.78, but a two-step AF calculation (intermediate attribute, then average) gave 55.689 for the same period.",
+    "options": [
+      {
+        "id": "a",
+        "text": "DataLink uses a different archive"
+      },
+      {
+        "id": "b",
+        "text": "Splitting the calculation introduces interpolation effects, while DataLink uses AF SDK filtered summaries"
+      },
+      {
+        "id": "c",
+        "text": "AF rounds to Display Digits"
+      },
+      {
+        "id": "d",
+        "text": "The AF result was event-weighted by mistake"
+      }
+    ],
+    "answer": "b",
+    "explanation": "PI DataLink filtered summaries use AF SDK filtered summaries. The two-step AF approach gave a different result, which was blamed on interpolation when the calculation is split.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-filter-expression"
+    ]
+  },
+  {
+    "id": "q-filtering-units-tagtot-rate",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "difficulty": 2,
+    "prompt": "Will TagTot convert a per-hour rate into the correct total automatically?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, if the attribute has a UOM"
+      },
+      {
+        "id": "b",
+        "text": "No; it assumes per-day units, so multiply a per-hour rate by 24"
+      },
+      {
+        "id": "c",
+        "text": "Yes, with Convert"
+      },
+      {
+        "id": "d",
+        "text": "Only on step tags"
+      }
+    ],
+    "answer": "b",
+    "explanation": "TagTot has no knowledge of the input's units and assumes per-day rates. Expecting it to convert a per-hour rate is a listed pitfall.",
+    "lessonId": "filtering-and-units",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tagtot-units"
+    ]
+  }
+]

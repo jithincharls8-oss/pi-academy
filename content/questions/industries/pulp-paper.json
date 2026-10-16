@@ -1,0 +1,300 @@
+[
+  {
+    "id": "q-pulp-paper-loop-monitoring",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI components did Ence use for its control-loop monitoring and diagnostics tool?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Server asset framework and event frames, visualised in PI Vision"
+      },
+      {
+        "id": "b",
+        "text": "PI DataLink spreadsheets only"
+      },
+      {
+        "id": "c",
+        "text": "PI Batch and PI ProcessBook"
+      },
+      {
+        "id": "d",
+        "text": "PI Integrator for Business Analytics only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Ence built its tool from PI Server asset framework and event frames and visualised it in PI Vision.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-sappi-decision",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI use case at Sappi's Somerset mill matches this?",
+    "scenario": "A paper mill has its own boiler. Grid power prices change, and the mill must choose between buying more grid electricity and raising steam production on site.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use PI data to decide whether to buy grid energy or raise boiler steam, balancing generated and purchased power"
+      },
+      {
+        "id": "b",
+        "text": "Shut the boiler whenever grid power is available"
+      },
+      {
+        "id": "c",
+        "text": "Run the boiler at maximum all the time"
+      },
+      {
+        "id": "d",
+        "text": "Report energy only once a year"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Sappi's Somerset mill uses PI System to decide whether to buy more grid energy or raise steam production in its own boiler.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-sappi"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-ence-mwh",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "How should you quote this outcome?",
+    "scenario": "The Ence success story gives an energy saving as \"1,500 MWh saved per pulp mill\" in one place and \"1,500 MWs per hour per year\" in the body text.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quote \"1,500 MWh saved per pulp mill\", reported by AVEVA, and note that the page is inconsistent"
+      },
+      {
+        "id": "b",
+        "text": "Quote \"1,500 MWs per hour per year\" because it is in the body"
+      },
+      {
+        "id": "c",
+        "text": "Average the two and say 1,500 MW"
+      },
+      {
+        "id": "d",
+        "text": "Convert both to GJ and combine them"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"MWs per hour per year\" is not a valid unit, so the page is inconsistent. Quote the clear version exactly, say AVEVA reported it, and note the inconsistency. Never convert or combine.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "expert",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-adt",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper"
+    ],
+    "difficulty": 1,
+    "prompt": "Pulp production is measured in air-dry ______ (ADt).",
+    "accepted": [
+      "tonnes",
+      "tons",
+      "tonne",
+      "ton"
+    ],
+    "caseSensitive": false,
+    "explanation": "The air-dry tonne is the standard pulp production unit. Klabin reported production up 3,400 air-dry tons per year.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-ss-klabin"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-ence-outcomes",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which outcomes does the Ence success story report? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "15% emissions reduction (pulp mills)"
+      },
+      {
+        "id": "b",
+        "text": "Summer water-shortage downtime from 15 days to zero"
+      },
+      {
+        "id": "c",
+        "text": "€150,000/year biomass savings"
+      },
+      {
+        "id": "d",
+        "text": "Nearly 900 manual interventions avoided per day"
+      },
+      {
+        "id": "e",
+        "text": "Maintenance costs cut by nearly $10 million"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The first four are Ence figures. Maintenance costs cut by nearly $10 million is Klabin.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-klabin-variables",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "How many variables does Klabin's integrator say the PI System keeps in one place?",
+    "options": [
+      {
+        "id": "a",
+        "text": "85,000"
+      },
+      {
+        "id": "b",
+        "text": "25,000"
+      },
+      {
+        "id": "c",
+        "text": "3,400"
+      },
+      {
+        "id": "d",
+        "text": "1 million"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The integrator says \"we have 85,000 variables of the various integration systems, and the PI System keeps it all in one place\". 25,000+ is the number of assets; 3,400 is the extra air-dry tons per year.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-klabin"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-ence-water",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Ence publishes AF-contextualised water-usage data to CONNECT, where deep-learning models predict river flow.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. Ence contextualises water-usage data with AF and publishes it to CONNECT, where deep-learning models predict river flow to plan water consumption.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "practitioner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ]
+  },
+  {
+    "id": "q-pulp-paper-cases",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each pulp and paper company to its PI use.",
+    "pairs": [
+      {
+        "left": "Ence",
+        "right": "Control-loop monitoring and river-flow prediction"
+      },
+      {
+        "left": "Sappi Fine Paper",
+        "right": "Buy-vs-generate energy decisions"
+      },
+      {
+        "left": "Klabin",
+        "right": "Real-time models from tree harvesting through drying"
+      }
+    ],
+    "explanation": "Each pairing is taken from the company's AVEVA success story.",
+    "lessonId": "pi-in-pulp-paper",
+    "tags": [
+      "beginner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-ence",
+      "ind-ss-sappi",
+      "ind-ss-klabin"
+    ]
+  }
+]

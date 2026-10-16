@@ -1,0 +1,329 @@
+[
+  {
+    "id": "q-tables-uom-table-kinds",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 1,
+    "prompt": "Which kinds of AF table exist? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Internal"
+      },
+      {
+        "id": "b",
+        "text": "Imported"
+      },
+      {
+        "id": "c",
+        "text": "Linked"
+      },
+      {
+        "id": "d",
+        "text": "Archived"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "AF tables can be internal, imported or linked. \"Archived\" is not an AF table kind.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-tables-uom-rows",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the best-practice size limit for an internal AF table?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Under 1,000 rows"
+      },
+      {
+        "id": "b",
+        "text": "Under 10,000 rows"
+      },
+      {
+        "id": "c",
+        "text": "Under 100,000 rows"
+      },
+      {
+        "id": "d",
+        "text": "No limit"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Best practice is to keep an AF table under 10,000 rows, because internal tables are loaded into each client's memory.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tlookup-10000"
+    ]
+  },
+  {
+    "id": "q-tables-uom-linked-limit",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: since PI 2014, the 10,000-row guideline still applies to linked (external) tables queried with parameters.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Since PI 2014 the guideline no longer applies to linked tables, because a parameterised query is resolved on the server rather than loading the whole table into the client.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-tlookup-10000"
+    ]
+  },
+  {
+    "id": "q-tables-uom-conversion-class",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "An analysis output in MW is mapped to an attribute in MWh. Will AF convert it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, AF converts any two units"
+      },
+      {
+        "id": "b",
+        "text": "No, AF converts only between units in the same UOM class"
+      },
+      {
+        "id": "c",
+        "text": "Yes, if the Display UOM Group is Metric"
+      },
+      {
+        "id": "d",
+        "text": "Only for PI Point attributes"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AF converts UOMs only when both units are in the same UOM class. Power (MW) and energy (MWh) are different classes, so no conversion happens.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-units"
+    ]
+  },
+  {
+    "id": "q-tables-uom-case",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 3,
+    "prompt": "Why should you avoid defining two UOMs whose abbreviations differ only by case, such as MW and mW?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF treats UOMs and abbreviations case-insensitively, and uniqueness is enforced across the whole UOM database"
+      },
+      {
+        "id": "b",
+        "text": "PI Vision cannot show lower-case units"
+      },
+      {
+        "id": "c",
+        "text": "Lower-case abbreviations are reserved for US Customary"
+      },
+      {
+        "id": "d",
+        "text": "It disables Display Digits"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF treats UOMs and abbreviations case-insensitively, and uniqueness is checked across the whole UOM database, not per class. So MW and mW would clash.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "q-tables-uom-display-group",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 1,
+    "prompt": "In PSE, the Display UOM Group (for example Metric or US Customary) is set under Tools > ____.",
+    "accepted": [
+      "Options"
+    ],
+    "caseSensitive": false,
+    "explanation": "The Display UOM Group is set in PSE under Tools > Options.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-tables-uom-custom-uom",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "What should the engineer know before adding it?",
+    "scenario": "An engineer working in AF database 'Site A' wants to add a custom UOM 'decimeter' (0.1 m) to class Length for one report.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It will be visible only in Site A"
+      },
+      {
+        "id": "b",
+        "text": "The UOM database is shared, so the unit appears for every AF database on the server"
+      },
+      {
+        "id": "c",
+        "text": "Custom UOMs are not allowed"
+      },
+      {
+        "id": "d",
+        "text": "It must be added to SQL Server directly"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Custom UOMs such as decimeter (0.1 m) can be added, but the UOM database is a single repository shared by all AF databases on the server.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "q-tables-uom-terms",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each UOM term to its meaning.",
+    "pairs": [
+      {
+        "left": "UOM class",
+        "right": "A family of convertible units, such as Volume or Density"
+      },
+      {
+        "left": "UOM group",
+        "right": "A display preference set such as Metric or US Customary"
+      },
+      {
+        "left": "UOM database",
+        "right": "The single store of units shared by all AF databases on a server"
+      }
+    ],
+    "explanation": "Classes define convertibility, groups define display preference, and the UOM database is server-wide.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "q-tables-uom-export-uom",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: exporting an AF database with 'All Referenced Objects' includes the UOM database.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. An export with All Referenced Objects includes the UOM database, so the target server gets the units it needs.",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "q-tables-uom-timezone",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "difficulty": 2,
+    "prompt": "Where is time-zone handling for an AF table's data configured?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On the table, in PSE under Library > Tables"
+      },
+      {
+        "id": "b",
+        "text": "In SQL Server"
+      },
+      {
+        "id": "c",
+        "text": "In the PI Data Archive tuning parameters"
+      },
+      {
+        "id": "d",
+        "text": "In the PI Vision display"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Time-zone handling for table data is configured on the table itself in PSE (Library > Tables).",
+    "lessonId": "tables-and-units-of-measure",
+    "tags": [],
+    "sources": [
+      "af-pisquare-tlookup-timezones"
+    ]
+  }
+]

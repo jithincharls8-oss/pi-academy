@@ -1,0 +1,207 @@
+[
+  {
+    "id": "q-dc-cloud-rename",
+    "type": "ordering",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 1,
+    "prompt": "Put the names of AVEVA's cloud data service in chronological order, oldest first.",
+    "items": [
+      { "id": "a", "text": "OSIsoft Cloud Services (OCS)" },
+      { "id": "b", "text": "AVEVA Data Hub" },
+      { "id": "c", "text": "CONNECT data services" }
+    ],
+    "explanation": "In 2022 AVEVA said OCS customers would have a migration path to AVEVA Data Hub, and on 11 July 2024 it announced the renaming of AVEVA Data Hub to CONNECT data services.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["history"],
+    "sources": ["ops2-uc22-carasso-odi", "ops2-aveva-dh-to-cds-blog"]
+  },
+  {
+    "id": "q-dc-cloud-omf-endpoint",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "prompt": "Which request path does the Data Hub OMF ingress endpoint use?",
+    "options": [
+      { "id": "a", "text": "POST /api/v1/tenants/{tenantId}/namespaces/{namespaceId}/omf" },
+      { "id": "b", "text": "GET /api/v1/omf/{tenantId}" },
+      { "id": "c", "text": "POST /piwebapi/relay/omf" },
+      { "id": "d", "text": "PUT /api/v1/namespaces/{namespaceId}/streams" }
+    ],
+    "answer": "a",
+    "explanation": "OMF ingress is POST /api/v1/tenants/{tenantId}/namespaces/{namespaceId}/omf, scoped to a tenant and namespace.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["omf", "endpoint"],
+    "sources": ["dcv-github-datahub-omf-ingress"]
+  },
+  {
+    "id": "q-dc-cloud-202",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "prompt": "An OMF message posted to Data Hub is accepted. What does the response contain?",
+    "options": [
+      { "id": "a", "text": "HTTP 202 with an Operation-Id" },
+      { "id": "b", "text": "HTTP 200 with the stored values" },
+      { "id": "c", "text": "HTTP 201 with a WebID" },
+      { "id": "d", "text": "HTTP 204 with no headers" }
+    ],
+    "answer": "a",
+    "explanation": "A 202 response returns an Operation-Id. Error bodies contain OperationId, Error, Reason, Resolution and Parameters.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["omf", "http"],
+    "sources": ["dcv-github-datahub-omf-ingress"]
+  },
+  {
+    "id": "q-dc-cloud-413",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "scenario": "A gateway batches a full day of readings into one OMF data message and posts it to Data Hub. The request fails with HTTP 413.",
+    "prompt": "What does the 413 tell the developer?",
+    "options": [
+      { "id": "a", "text": "The payload is too large; split the batch (and consider gzip compression)" },
+      { "id": "b", "text": "The client credentials are wrong" },
+      { "id": "c", "text": "The namespace does not exist" },
+      { "id": "d", "text": "The service is temporarily unavailable" }
+    ],
+    "answer": "a",
+    "explanation": "413 is payload too large. Credentials problems give 401 or 403, a missing resource gives 404, and service unavailability gives 503.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["http", "troubleshooting"],
+    "sources": ["dcv-github-datahub-omf-ingress"]
+  },
+  {
+    "id": "q-dc-cloud-omf-connection",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 3,
+    "prompt": "Which statements about a Data Hub OMF connection are correct? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "It is created with a Name, Description and ClientIds" },
+      { "id": "b", "text": "It must reach State \"Active\" before use" },
+      { "id": "c", "text": "A client ID may be mapped to at most one connection per namespace" },
+      { "id": "d", "text": "It is configured in PI Data Collection Manager" },
+      { "id": "e", "text": "A client ID can be shared by any number of connections in a namespace" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The OMF connection is created with Name, Description and ClientIds and must be Active before use; \"ClientIds may be mapped to at most one connection per namespace.\" DCM configures on-premises connectors, not Data Hub connections.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["omf-connection"],
+    "sources": ["dcv-github-adh-omf-ingress"]
+  },
+  {
+    "id": "q-dc-cloud-resource-url",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "prompt": "In AVEVA's OMF client samples for Data Hub, what should the resource URL be?",
+    "options": [
+      { "id": "a", "text": "The base address, such as https://uswe.datahub.connect.aveva.com, not the OMF endpoint" },
+      { "id": "b", "text": "The full OMF endpoint path including /omf" },
+      { "id": "c", "text": "The PI Web API URL" },
+      { "id": "d", "text": "http://localhost:5590" }
+    ],
+    "answer": "a",
+    "explanation": "The sample notes that the resource URL is \"the base address, NOT the OMF endpoint\". localhost:5590 is a local EDS, not Data Hub.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["configuration"],
+    "sources": ["dcv-github-adh-omf-ingress", "dcv-github-omf-basic-python"]
+  },
+  {
+    "id": "q-dc-cloud-agent-deletions",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "prompt": "A PI admin deletes several AF elements that were being transferred by the PI to Data Hub (now PI to CONNECT) agent. What happens in the cloud by default?",
+    "options": [
+      { "id": "a", "text": "Nothing; deletions replicate only if you opt in" },
+      { "id": "b", "text": "They are deleted immediately in the cloud" },
+      { "id": "c", "text": "The agent stops transferring all data" },
+      { "id": "d", "text": "The cloud copies are archived to a backup namespace" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's 2022 session states that deletions replicate only if you opt in. Assuming they are mirrored automatically is a listed pitfall.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["agent"],
+    "sources": ["ops2-uc22-carasso-odi"]
+  },
+  {
+    "id": "q-dc-cloud-agent-transfers",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 2,
+    "prompt": "What can the PI to Data Hub agent transfer, according to AVEVA's 2022 session? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI points" },
+      { "id": "b", "text": "AF elements and attributes" },
+      { "id": "c", "text": "PI point references and constant values" },
+      { "id": "d", "text": "PI Vision displays" },
+      { "id": "e", "text": "ProcessBook VBA" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The agent transfers PI points plus AF elements, AF attributes, PI point references, constant values and excluded attributes. Displays and VBA are not part of it.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["agent"],
+    "sources": ["ops2-uc22-carasso-odi"]
+  },
+  {
+    "id": "q-dc-cloud-container-stream",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 1,
+    "prompt": "In Data Hub, what does an OMF container message create?",
+    "options": [
+      { "id": "a", "text": "An SDS stream" },
+      { "id": "b", "text": "A tenant" },
+      { "id": "c", "text": "A PI Vision display" },
+      { "id": "d", "text": "A client-credentials client" }
+    ],
+    "answer": "a",
+    "explanation": "In Data Hub a container message creates an SDS (Sequential Data Store) stream. Types and containers are removed by sending the same messages with Action delete.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["omf", "sds"],
+    "sources": ["dcv-github-adh-omf-ingress"]
+  },
+  {
+    "id": "q-dc-cloud-rename-date",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 3,
+    "prompt": "In which year did AVEVA announce the renaming of AVEVA Data Hub to CONNECT data services?",
+    "accepted": ["2024"],
+    "caseSensitive": false,
+    "explanation": "AVEVA's blog of 11 July 2024 announced \"The renaming of AVEVA Data Hub to CONNECT data services\".",
+    "lessonId": "cloud-ingestion",
+    "tags": ["history"],
+    "sources": ["ops2-aveva-dh-to-cds-blog"]
+  },
+  {
+    "id": "q-dc-cloud-agent-aggregate",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.cloud"],
+    "difficulty": 3,
+    "prompt": "Under the aggregate tag licence model, what does AVEVA's service description require on each PI Server?",
+    "options": [
+      { "id": "a", "text": "The PI to CONNECT Agent installed and configured" },
+      { "id": "b", "text": "A PI Connector Relay" },
+      { "id": "c", "text": "Edge Data Store" },
+      { "id": "d", "text": "PI Vision" }
+    ],
+    "answer": "a",
+    "explanation": "\"Each PI Server in the aggregate tag model requires that the PI to CONNECT Agent be installed and configured.\" The agent reports tag usage and can optionally send process data.",
+    "lessonId": "cloud-ingestion",
+    "tags": ["licensing", "agent"],
+    "sources": ["ops2-pidi-service-description"]
+  }
+]

@@ -1,0 +1,435 @@
+[
+  {
+    "id": "q-install-upgrade-order",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 1,
+    "prompt": "Put these steps in the install order that OSIsoft's implementation guidance gives.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Install Microsoft SQL Server"
+      },
+      {
+        "id": "b",
+        "text": "Install the AF server using the PI Server install kit"
+      },
+      {
+        "id": "c",
+        "text": "Install any instances of Data Archive"
+      }
+    ],
+    "explanation": "The guidance is: 1. SQL Server, 2. AF server with the PI Server install kit, 3. Data Archive. AF needs SQL Server for its database, so SQL comes first.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "install-order"
+    ],
+    "sources": [
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-license-before",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 1,
+    "prompt": "When must the PI Data Archive license file exist?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Before the PI Data Archive server is installed"
+      },
+      {
+        "id": "b",
+        "text": "Within 30 days after installation"
+      },
+      {
+        "id": "c",
+        "text": "Only when the point count passes the free tier"
+      },
+      {
+        "id": "d",
+        "text": "Only for collectives, not stand-alone servers"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2024 course says \"A License File must be generated before the PI Data Archive server is installed\". You get it using the Machine Signature File that the install kit generates on the target machine.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "licensing"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-kds-delay",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the problem with this plan?",
+    "options": [
+      {
+        "id": "a",
+        "text": "By default the KDS Root Key takes 10 hours to take effect, so the gMSAs will not be usable at 10 am"
+      },
+      {
+        "id": "b",
+        "text": "gMSAs cannot be used by PI Network Manager at all"
+      },
+      {
+        "id": "c",
+        "text": "The installer must run before any service accounts exist"
+      },
+      {
+        "id": "d",
+        "text": "gMSAs must have names longer than 15 characters"
+      }
+    ],
+    "scenario": "An administrator plans to create the KDS Root Key and the gMSAs for PI Network Manager and the AF Application Service at 9 am, then run the PI Server installer at 10 am the same morning.",
+    "answer": "a",
+    "explanation": "\"By default, it takes 10 hours until the KDS Root Key is in effect\", so create it well ahead. PI Network Manager does run as a gMSA in the course, and gMSA names must be fewer than 15 characters, not more.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "gmsa"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-precheck",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "Which are pre-install steps listed in the 2024 AVEVA Architecture course? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Confirm the installer account is an administrator with Write permission to SQL Server"
+      },
+      {
+        "id": "b",
+        "text": "Confirm the SQL Server service is running"
+      },
+      {
+        "id": "c",
+        "text": "Check the OS clock and time zone"
+      },
+      {
+        "id": "d",
+        "text": "Generate the Machine Signature File and obtain the license file"
+      },
+      {
+        "id": "e",
+        "text": "Create default health points for the collective"
+      },
+      {
+        "id": "f",
+        "text": "Disable Windows Update permanently"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The course lists the admin account with SQL Write permission, SQL Server running, the clock and time zone, and the MSF/license file before running the installer as administrator. Default points are not part of it (a 2018 SP3 install creates none), and the course asks for Windows to be updated, not for updates to be disabled.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "checklist"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-feedback-pida-i-1306"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-sql-express",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "Why is SQL Server Express a poor choice for a production AF Server database?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is limited to a single physical CPU and 1 GB of RAM, with a 10 GB database cap and no AF audit tables"
+      },
+      {
+        "id": "b",
+        "text": "It cannot be installed on Windows Server"
+      },
+      {
+        "id": "c",
+        "text": "The PI Server install kit refuses to use it"
+      },
+      {
+        "id": "d",
+        "text": "It does not support Windows authentication"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA and OSIsoft cite Express limits of one physical CPU, 1 GB RAM, a 10 GB database and no AF audit tables. The install kit can use it (OSIsoft's PowerShell sample was tested with SQL Server 2017 Express), so it suits labs and small tests.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "sql"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-uc15-af-batke",
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-clock",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: after installing PI Data Archive it is fine to correct the server clock by several hours, because the archive adjusts automatically.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. The course warns \"Changing the clock after installation will cause problems\" and says all clocks should be synchronised from a network time source before you install.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "time",
+      "true-false"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-license-path",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "Setup copies the PI Data Archive license file into which folder? (Use the environment variable form.)",
+    "accepted": [
+      "%PISERVER%\\dat",
+      "%piserver%\\dat\\",
+      "PISERVER\\dat",
+      "%PISERVER%dat"
+    ],
+    "caseSensitive": false,
+    "explanation": "Setup copies the license file to %PISERVER%\\dat, and the original file is no longer used after that.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "licensing"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-dotnet",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "According to OSIsoft's PowerShell install sample, what must be installed before running the PI Server 2018 SP3 install kit?",
+    "options": [
+      {
+        "id": "a",
+        "text": ".NET Framework 4.8, which usually needs a restart"
+      },
+      {
+        "id": "b",
+        "text": "PI ProcessBook"
+      },
+      {
+        "id": "c",
+        "text": "The PI Buffer Subsystem on the Data Archive server"
+      },
+      {
+        "id": "d",
+        "text": "IIS with Basic authentication"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Server 2018 SP3 and Patch 1 require .NET Framework 4.8, which \"must be installed before running\" the install, and the .NET install usually needs a restart. The other items are not prerequisites of the kit.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "prerequisites"
+    ],
+    "sources": [
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-silent",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the name of the answer file the PI Server install kit uses for unattended installs?",
+    "accepted": [
+      "silent.ini"
+    ],
+    "caseSensitive": false,
+    "explanation": "The kit uses silent.ini. OSIsoft's Install-PIServer.ps1 sample uses the silent.ini extracted from the kit when you do not supply one.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "automation"
+    ],
+    "sources": [
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-bulletins",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each AVEVA security bulletin to a minimum PI Server release that fixes it.",
+    "pairs": [
+      {
+        "left": "AVEVA-2024-001",
+        "right": "PI Server 2023 Patch 1 or 2018 SP3 Patch 6"
+      },
+      {
+        "left": "AVEVA-2025-001",
+        "right": "PI Server 2024 or 2018 SP3 Patch 7"
+      },
+      {
+        "left": "AVEVA-2026-002",
+        "right": "PI Server 2024 R2 or 2018 SP3 Patch 8"
+      }
+    ],
+    "explanation": "Each bulletin names fixed releases: 2024-001 is fixed in 2023 Patch 1 or 2018 SP3 Patch 6; 2025-001 in 2024 or 2018 SP3 Patch 7; 2026-002 in 2024 R2 or 2018 SP3 Patch 8.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "patching"
+    ],
+    "sources": [
+      "adm-aveva-bulletin-2024-001",
+      "adm-aveva-bulletin-2025-001",
+      "adm-aveva-bulletin-2026-002"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-collective-first",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 2,
+    "prompt": "You are installing a two-member PI Data Archive collective. Where do you start?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Install and finish post-installation tasks on the primary server first"
+      },
+      {
+        "id": "b",
+        "text": "Install the secondary first so it can take over during the primary install"
+      },
+      {
+        "id": "c",
+        "text": "Install both at the same time from one silent.ini"
+      },
+      {
+        "id": "d",
+        "text": "Install the collective members after the interfaces"
+      }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft says \"you must first perform the installation and post-installation tasks on the primary server\". The secondary is then built from the primary.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "collective"
+    ],
+    "sources": [
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-install-upgrade-buffer-gmsa",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.install-upgrade"
+    ],
+    "difficulty": 3,
+    "prompt": "From which PI Buffer Subsystem version does the Buffering Manager accept a gMSA directly?",
+    "options": [
+      {
+        "id": "a",
+        "text": "4.9.0.37"
+      },
+      {
+        "id": "b",
+        "text": "3.4.380.79"
+      },
+      {
+        "id": "c",
+        "text": "2.0.1.35"
+      },
+      {
+        "id": "d",
+        "text": "4.0.0.0"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2024 course says version 4.9.0.37 (PI Buffer Subsystem 2018 SP2 Patch 2) accepts a gMSA; older versions need the gMSA added to the local PI Buffering Administrators group. 3.4.380.79 is the version that added native Windows authentication, and 2.0.1.35 is a PI API for WIS version.",
+    "lessonId": "pi-server-install-upgrade",
+    "tags": [
+      "gmsa",
+      "buffering"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  }
+]

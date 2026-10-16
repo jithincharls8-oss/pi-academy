@@ -1,0 +1,286 @@
+[
+  {
+    "id": "abbott-nutrition",
+    "company": "Abbott Nutrition",
+    "title": "The perfect fill: AVEVA PI System puts Abbott Nutrition in control of complex processes",
+    "industry": "food-bev",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Granada, Spain",
+    "year": 2018,
+    "summary": "Abbott Nutrition built real-time dashboards for its filling machines and process stages, with drill-down for root-cause analysis, and moved paper records into a central system. The initiative was launched in 2018; the site has used PI since 1999.",
+    "challenge": "Data collection was spread across multiple tools and systems, products varied a lot from one to the next, and decisions were not data-driven.",
+    "solution": "Quality assurance staff and engineers identified critical process parameters (CPPs) and critical quality attributes (CQAs), then built colour-coded dashboards for the filling machines and process stages.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Increased OEE by two percent",
+        "reportedBy": "AVEVA (customer success story PDF)"
+      },
+      {
+        "category": "efficiency",
+        "text": "Increased filling speed by ten percent",
+        "reportedBy": "AVEVA (customer success story PDF)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-abbott"
+    ],
+    "verify": true,
+    "verifyNote": "The headline says filling speed rose by ten percent, but the body text describes an \"opportunity to increase the speed of the filler by more than ten percent\". Check which figure is the measured result. The products list maps \"AVEVA PI System\" to PI Data Archive and assumes the dashboards are PI Vision."
+  },
+  {
+    "id": "coop",
+    "company": "Coop",
+    "title": "Delicious production KPIs: Coop uses AVEVA PI System to reduce production costs and increase availability",
+    "industry": "food-bev",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "region": "Switzerland (Schafisheim)",
+    "summary": "PI became the operations (OT) data layer across Coop's bakery, chocolate, grain and other plants, with PI Vision connected to Power BI.",
+    "challenge": "There was \"no existing layer for operations data and calculation of solid operations KPIs\".",
+    "solution": "Coop used PI System and PI Vision to remove data silos and calculate production KPIs from a common data layer.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"Started over 78 uses cases in one year\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "visibility",
+        "text": "Over 70 operational parameters used for KPIs, with sensors and assets connected from \"over 3,000 sources\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "OEE increased (no figure given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-coop"
+    ],
+    "verify": false
+  },
+  {
+    "id": "illovo-sugar",
+    "company": "Illovo Sugar Africa",
+    "title": "AVEVA PI System sweetens the production process at Illovo Sugar Africa",
+    "industry": "food-bev",
+    "products": [
+      "data-archive",
+      "asset-framework",
+      "event-frames",
+      "datalink",
+      "pi-vision"
+    ],
+    "region": "Five sites in three countries in Africa",
+    "summary": "Illovo Sugar Africa gets real-time OEE and downtime reporting on 49 form-fill-seal (FFS) packing machines across five sites in three countries.",
+    "challenge": "Product weights were inconsistent and there was little reliable machine data; the starting point was shift log sheets.",
+    "solution": "AF templates define the machine hierarchy (a template change cascades to all 49 machine elements), event frames cover reporting periods, each machine has a PI Vision dashboard, and Excel reports come from PI DataLink.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "\"50% improvement in performance\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "\"25% improvement in availability\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "\"30% improvement in OEE in three months\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ],
+    "verify": false
+  },
+  {
+    "id": "kelloggs",
+    "company": "Kellogg's",
+    "title": "Improving product consistency and maintenance strategy with AVEVA PI System",
+    "industry": "food-bev",
+    "products": [
+      "data-archive"
+    ],
+    "region": "Valls, Spain",
+    "summary": "Kellogg's Valls plant used PI System for weight control and to raise OEE to the consumer packaged goods (CPG) best-in-class level.",
+    "challenge": "Weight data was collected manually, and there was product non-conformity.",
+    "solution": "PI System for monitoring variability and reliability.",
+    "outcomes": [
+      {
+        "category": "quality",
+        "text": "\"Reduced CCP by 64%, product failures by 73%, and minor line stops by 67%\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "\"Achieved CPG best-in-class rating for OEE of 80%\"",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "reliability",
+        "text": "\"Increased mean time between failures rate by 180%\"",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-kelloggs"
+    ],
+    "verify": true,
+    "verifyNote": "The page does not expand \"CCP\", so its meaning is unclear."
+  },
+  {
+    "id": "tyson-foods",
+    "company": "Tyson Foods",
+    "title": "Reducing waste and improving yield with AVEVA PI System",
+    "industry": "food-bev",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Tyson Foods' Jimmy Dean sausage plant tracks weight by line, uptime, saleable chubs, yield and giveaway, using Rockwell FactoryTalk Historian, which is \"powered by the AVEVA PI System\".",
+    "challenge": "Waste and line flaws that went undetected.",
+    "solution": "PI monitoring of weight, uptime and yield.",
+    "outcomes": [
+      {
+        "category": "cost",
+        "text": "Waste and giveaway reduced by 50%",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "0.1% yield improvement that paid back within six months",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "efficiency",
+        "text": "8 worker hours saved per day",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-tyson"
+    ],
+    "verify": true,
+    "verifyNote": "The page text says 0.1% yield improvement but the page metadata says \".01%\". Check which is correct."
+  },
+  {
+    "id": "deschutes-brewery",
+    "company": "Deschutes Brewery",
+    "title": "Using AVEVA PI System to apply machine learning and advanced analytics to brewery data",
+    "industry": "food-bev",
+    "products": [
+      "data-archive"
+    ],
+    "summary": "Deschutes Brewery applied machine learning to PI data to control fermenter temperature spikes during cooling and to predict phase transitions.",
+    "challenge": "Fermenter temperature spikes and uncertain timing of phase transitions.",
+    "solution": "Machine learning and analytics on PI System data.",
+    "outcomes": [
+      {
+        "category": "efficiency",
+        "text": "Production time reduced by \"up to 72 hours\" per batch",
+        "reportedBy": "AVEVA (customer success story)"
+      },
+      {
+        "category": "cost",
+        "text": "\"$8M\" in capital upgrades eliminated",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-deschutes"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cargill",
+    "company": "Cargill",
+    "title": "Closing the digital gap at smaller facilities",
+    "industry": "food-bev",
+    "products": [
+      "data-archive",
+      "adapters"
+    ],
+    "region": "Global (200+ plants)",
+    "summary": "Cargill runs PI System at over 200 plants. Smaller sites and ships with only a few hundred data streams use AVEVA Edge Data Store to forward data to a central PI Server.",
+    "challenge": "Small sites lack the IT support to run a PI Server, and ships have intermittent connectivity.",
+    "solution": "Edge Data Store store-and-forward with OPC UA and Modbus adapters; lab robot results sent as structured JSON through an adapter.",
+    "outcomes": [
+      {
+        "category": "visibility",
+        "text": "Qualitative only (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-cargill"
+    ],
+    "verify": false
+  },
+  {
+    "id": "uc-davis-winery",
+    "company": "UC Davis (Robert Mondavi Institute)",
+    "title": "UC Davis uncorks sustainable improvements with AVEVA PI System",
+    "industry": "food-bev",
+    "products": [
+      "data-archive",
+      "pi-vision"
+    ],
+    "summary": "The Robert Mondavi Institute at UC Davis uses PI System as its research data historian to monitor wine fermentation in real time.",
+    "challenge": "Poor visibility into fermentation.",
+    "solution": "PI System as the research historian, with PI Vision and System Platform.",
+    "outcomes": [
+      {
+        "category": "quality",
+        "text": "Qualitative: better insight into wine quality (no figures given)",
+        "reportedBy": "AVEVA (customer success story)"
+      }
+    ],
+    "coverage": [
+      "cs.library",
+      "ind.food-bev"
+    ],
+    "sources": [
+      "ind-ss-uc-davis-winery"
+    ],
+    "verify": true,
+    "verifyNote": "The 62% gas reduction mentioned on the page is a campus figure, not a winery result."
+  }
+]

@@ -1,0 +1,206 @@
+[
+  {
+    "id": "q-tools-piconfig-pattern",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "prompt": "Put the lines of a standard piconfig script in order.",
+    "items": [
+      { "id": "a", "text": "@tabl pipoint" },
+      { "id": "b", "text": "@mode list" },
+      { "id": "c", "text": "@ostr tag,pointid" },
+      { "id": "d", "text": "@ends" }
+    ],
+    "explanation": "The standard piconfig pattern is @tabl <table>, @mode <mode>, @istr or @ostr <attribute list>, data lines, then @ends.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piconfig"],
+    "sources": ["da-ps-piarch-thread", "da-livelibrary-piconfig"],
+    "verify": true,
+    "verifyNote": "The '@mode list' value is not confirmed in a readable source; the order of the other lines is."
+  },
+  {
+    "id": "q-tools-smt-paths",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 1,
+    "prompt": "Match each task to the SMT plug-in used in OSIsoft training.",
+    "pairs": [
+      { "left": "Create a point", "right": "Points > Point Builder" },
+      { "left": "Check that subsystems are running", "right": "Operation > PI Services" },
+      { "left": "Force an archive shift", "right": "Operation > Archives" },
+      { "left": "Change a tuning parameter", "right": "Operation > Tuning Parameters" },
+      { "left": "Read recent error messages", "right": "Operation > Message Logs" }
+    ],
+    "explanation": "These are the SMT plug-in paths named in the administration course and the PI Square message-log guide.",
+    "lessonId": "data-archive-tools",
+    "tags": ["smt"],
+    "sources": ["da-admin-workbook-2017r2", "da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-tools-pidiag-uses",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each pidiag option to its use.",
+    "pairs": [
+      { "left": "pidiag -archk <file>", "right": "Check an archive file and show its storage map" },
+      { "left": "pidiag -tz", "right": "Verify localhost.tz" },
+      { "left": "pidiag -e <code>", "right": "Translate an error code" }
+    ],
+    "explanation": "pidiag -archk checks an archive (including the PointIDs it holds), -tz checks the time-zone file and -e translates error codes such as -11057.",
+    "lessonId": "data-archive-tools",
+    "tags": ["pidiag"],
+    "sources": ["da-vcampus-2010-tuning", "da-uc2011-tips-trenches", "da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-tools-piconfig-chars",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "prompt": "In piconfig, which characters start a command and a comment by default?",
+    "options": [
+      { "id": "a", "text": "@ starts a command, * starts a comment" },
+      { "id": "b", "text": "# starts a command, // starts a comment" },
+      { "id": "c", "text": "$ starts a command, ; starts a comment" },
+      { "id": "d", "text": "! starts a command, @ starts a comment" }
+    ],
+    "answer": "a",
+    "explanation": "The piconfig reference states commands start with @ (the default command character), comments start with *, and the default field delimiter is a comma.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piconfig"],
+    "sources": ["da-livelibrary-piconfig"]
+  },
+  {
+    "id": "q-tools-piarc-read",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 3,
+    "prompt": "In a piconfig script that reads archive values with '@ostr tag,value,timestamp' and '@istr tag,starttime,endtime', which table do you select first with @table?",
+    "accepted": ["piarc", "@table piarc", "@tabl piarc"],
+    "explanation": "The PI Square example uses @table piarc, then @ostr tag,value,timestamp and @istr tag,starttime,endtime, followed by a data line such as sinusoid,*-2h,*.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piconfig"],
+    "sources": ["da-ps-piarch-thread"]
+  },
+  {
+    "id": "q-tools-backup-range",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.tools", "da.backup"],
+    "difficulty": 3,
+    "scenario": "A test team wants a copy of archives 5 to 8 (from three years ago) on their test server. The admin plans to use piartool -backup with a date range for those years.",
+    "prompt": "What will work?",
+    "options": [
+      { "id": "a", "text": "piartool -backup cannot take a range of older archives; unregister them, copy them, register the copies on the test server, then re-register the originals" },
+      { "id": "b", "text": "Run piartool -backup -numarch 4, which backs up archives 5 to 8" },
+      { "id": "c", "text": "Copy only the .arc files while the server is running, without unregistering" },
+      { "id": "d", "text": "Use pidiag -archk to export the archives" }
+    ],
+    "answer": "a",
+    "explanation": "piartool -backup supports -numarch (latest n archives) or -archives (a list), not an older range. The feedback portal's workaround is unregister, copy, register copies, re-register originals. -numarch 4 would back up the four latest archives, not 5 to 8.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piartool", "scenario"],
+    "sources": ["da-fb-pida-1092"]
+  },
+  {
+    "id": "q-tools-apisnap",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "prompt": "What is apisnap used for?",
+    "options": [
+      { "id": "a", "text": "Checking snapshots from interface nodes using the PI API" },
+      { "id": "b", "text": "Creating a new primary archive" },
+      { "id": "c", "text": "Backing up AF" },
+      { "id": "d", "text": "Translating error codes" }
+    ],
+    "answer": "a",
+    "explanation": "The training lists apisnap as a PI API tool for checking snapshots from interface nodes. pidiag -e translates error codes.",
+    "lessonId": "data-archive-tools",
+    "tags": ["tools"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-tools-archive-editor",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 1,
+    "prompt": "True or false: SMT's Archive Editor can view and edit archived values.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "A PI Square thread confirms SMT's Archive Editor can view and edit archived values.",
+    "lessonId": "data-archive-tools",
+    "tags": ["true-false", "smt"],
+    "sources": ["da-ps-string-thread"]
+  },
+  {
+    "id": "q-tools-which-tool",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "scenario": "You must change the EngUnits of 3,000 points from 'degF' to 'degC' and keep a script of exactly what was changed for the change record.",
+    "prompt": "Which tool best fits?",
+    "options": [
+      { "id": "a", "text": "piconfig, using an edit script on the pipoint table" },
+      { "id": "b", "text": "pidiag -archk" },
+      { "id": "c", "text": "piartool -qs" },
+      { "id": "d", "text": "apisnap" }
+    ],
+    "answer": "a",
+    "explanation": "piconfig is the scriptable command-line tool for reading and editing Data Archive tables, so a script on the pipoint table both makes and documents the change. The other tools check archives, show queue statistics or read snapshots.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piconfig", "scenario"],
+    "sources": ["da-livelibrary-piconfig", "da-ps-piarch-thread"]
+  },
+  {
+    "id": "q-tools-line-errors",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 3,
+    "prompt": "In non-interactive mode, what does the piconfig @line setting relate to?",
+    "options": [
+      { "id": "a", "text": "The number of errors after which piconfig stops processing" },
+      { "id": "b", "text": "The archive file line length" },
+      { "id": "c", "text": "The network port" },
+      { "id": "d", "text": "The number of tags per archive" }
+    ],
+    "answer": "a",
+    "explanation": "piconfig in non-interactive mode stops after a number of errors set by @line, so always check output after bulk imports.",
+    "lessonId": "data-archive-tools",
+    "tags": ["piconfig"],
+    "sources": ["da-livelibrary-piconfig"],
+    "verify": true,
+    "verifyNote": "The default @line value is unclear in the source."
+  },
+  {
+    "id": "q-tools-powershell",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.tools"],
+    "difficulty": 2,
+    "prompt": "Which cmdlets are part of the OSIsoft.PowerShell module? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Connect-PIDataArchive" },
+      { "id": "b", "text": "Get-PIDataArchiveConnectionConfiguration" },
+      { "id": "c", "text": "Get-PIMessage" },
+      { "id": "d", "text": "Invoke-PIVisionDisplay" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The PI Square message-log guide uses Connect-PIDataArchive, Get-PIDataArchiveConnectionConfiguration and Get-PIMessage from OSIsoft.PowerShell. The fourth name is invented.",
+    "lessonId": "data-archive-tools",
+    "tags": ["powershell"],
+    "sources": ["da-ps-msglog-blog"]
+  }
+]

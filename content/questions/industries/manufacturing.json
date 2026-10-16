@@ -1,0 +1,344 @@
+[
+  {
+    "id": "q-manufacturing-standard-model",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "What was the key enabler for Toyota Motor Europe?",
+    "scenario": "A car maker wants to benchmark energy use across its European plants, but the plants have very different monitoring capabilities and no common way of naming or structuring data.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A single centralised EnMS on PI System with standardised data models"
+      },
+      {
+        "id": "b",
+        "text": "Buying the same machines for every plant"
+      },
+      {
+        "id": "c",
+        "text": "Letting each plant send monthly spreadsheets"
+      },
+      {
+        "id": "d",
+        "text": "Benchmarking only the newest plant"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Toyota built a centralised energy monitoring system on PI System to standardise data models across plants. The lack of a standard data model was what blocked benchmarking.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-ss-toyota"
+    ]
+  },
+  {
+    "id": "q-manufacturing-event-categories",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "difficulty": 1,
+    "prompt": "Which event categories does OSIsoft list for manufacturing? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Batch"
+      },
+      {
+        "id": "b",
+        "text": "Downtime"
+      },
+      {
+        "id": "c",
+        "text": "Excursion"
+      },
+      {
+        "id": "d",
+        "text": "Invoice"
+      },
+      {
+        "id": "e",
+        "text": "Shipment"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "OSIsoft lists Batch, Downtime and Excursion. Event frames support S88/S95 downtimes and excursions.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "beginner",
+      "event-frames"
+    ],
+    "sources": [
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "q-manufacturing-not-pi",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which manufacturing stories should NOT be cited as PI System examples? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Henkel OEE/energy (OEE +15%)"
+      },
+      {
+        "id": "b",
+        "text": "P&G 90-plant standardisation"
+      },
+      {
+        "id": "c",
+        "text": "Toyota Motor Europe EnMS"
+      },
+      {
+        "id": "d",
+        "text": "Michelin energy management"
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "Henkel and P&G use AVEVA MES/System Platform, not PI. Toyota and Michelin are PI System stories.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "practitioner",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-henkel",
+      "ind-ss-pg",
+      "ind-ss-toyota",
+      "ind-ss-michelin"
+    ]
+  },
+  {
+    "id": "q-manufacturing-toyota-figure",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What outcome does the Toyota Motor Europe story report?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Validating and sharing data takes less than one minute"
+      },
+      {
+        "id": "b",
+        "text": "Energy reduced by as much as 16%"
+      },
+      {
+        "id": "c",
+        "text": "OEE +15%"
+      },
+      {
+        "id": "d",
+        "text": "$10 million a year water and energy savings"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Toyota: \"less than one minute to validate and share data\". 16% is Michelin; OEE +15% is Henkel (not PI); $10 million a year is IBM Burlington in OSIsoft's overview.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-toyota"
+    ]
+  },
+  {
+    "id": "q-manufacturing-michelin-quote",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which statement keeps faith with the source?",
+    "scenario": "A slide says \"Michelin saved 16% energy with PI\". The AVEVA story reports \"Up to 10% savings in the initial few months\", energy reduced \"by as much as 16%\", and quotes \"we save from 3% to 16% in energy consumption\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "Michelin reports energy reduced \"by as much as 16%\" (AVEVA success story)"
+      },
+      {
+        "id": "b",
+        "text": "Michelin saved 16% at every site"
+      },
+      {
+        "id": "c",
+        "text": "Michelin saved an average of 9.5%"
+      },
+      {
+        "id": "d",
+        "text": "Michelin saved 26% in total"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The source hedges the figure: \"by as much as 16%\" and \"from 3% to 16%\". Dropping the hedge, averaging or adding figures all change the claim.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "expert",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-michelin"
+    ]
+  },
+  {
+    "id": "q-manufacturing-ef-duration",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "difficulty": 2,
+    "prompt": "OSIsoft's example excursion event frame on asset Boiler-352, type 'High Violation', lasts 12 min __ sec.",
+    "accepted": [
+      "24"
+    ],
+    "caseSensitive": false,
+    "explanation": "The example event frame lasts 12 min 24 sec and uses attributes such as Fuel Gas Flow.Avg.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "q-manufacturing-excursion",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "difficulty": 1,
+    "prompt": "In manufacturing event frames, what is an excursion?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A period when a value is outside limits"
+      },
+      {
+        "id": "b",
+        "text": "A planned shutdown for maintenance"
+      },
+      {
+        "id": "c",
+        "text": "A batch of product sent off site"
+      },
+      {
+        "id": "d",
+        "text": "A trip by an operator to the field"
+      }
+    ],
+    "answer": "a",
+    "explanation": "An excursion is a period when a value is outside its limits, captured as an event frame.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "q-manufacturing-syensqo",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each Syensqo outcome to its stated time frame or figure.",
+    "pairs": [
+      {
+        "left": "Maintenance cost reduction",
+        "right": "25%, under one year"
+      },
+      {
+        "left": "OEE breakdown losses reduction",
+        "right": "50%, under one year"
+      },
+      {
+        "left": "Batch duration variability reduction",
+        "right": "60%, three months"
+      }
+    ],
+    "explanation": "AVEVA's Syensqo story reports a 25% maintenance cost reduction and a 50% reduction in OEE breakdown losses (both under one year) and a 60% reduction in batch duration variability (three months).",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "expert",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "q-manufacturing-michelin-sites",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing",
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "From how many production sites does Michelin collect and standardise energy data on PI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "15"
+      },
+      {
+        "id": "b",
+        "text": "90"
+      },
+      {
+        "id": "c",
+        "text": "200"
+      },
+      {
+        "id": "d",
+        "text": "5"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Michelin collects and standardises energy data from 15 production sites. 90 plants is P&G (not PI); 200+ plants is Cargill.",
+    "lessonId": "pi-in-manufacturing",
+    "tags": [
+      "beginner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-michelin"
+    ]
+  }
+]

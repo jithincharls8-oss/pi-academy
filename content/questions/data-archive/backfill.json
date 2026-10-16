@@ -1,0 +1,186 @@
+[
+  {
+    "id": "q-backfill-bypass",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 1,
+    "prompt": "What happens to backfilled data written before a point's current snapshot?",
+    "options": [
+      { "id": "a", "text": "It bypasses compression and goes straight to the archive" },
+      { "id": "b", "text": "It is compressed twice" },
+      { "id": "c", "text": "It is rejected" },
+      { "id": "d", "text": "It replaces the snapshot value" }
+    ],
+    "answer": "a",
+    "explanation": "Out-of-order data and data backfilled before the current snapshot bypass compression and are inserted directly into the archive.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["backfill"],
+    "sources": ["da-uc23-exc-comp", "da-ps-help-compdev-thread"]
+  },
+  {
+    "id": "q-backfill-future-reject",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 2,
+    "scenario": "A script writes tomorrow's production plan, timestamped 06:00 tomorrow, into an existing point that was created years ago with the default settings. The writes fail.",
+    "prompt": "Why did this happen?",
+    "options": [
+      { "id": "a", "text": "The point is not a future point; only future archives accept data more than 10 minutes ahead" },
+      { "id": "b", "text": "CompMax is too short" },
+      { "id": "c", "text": "The event queue is full" },
+      { "id": "d", "text": "Future data needs a dynamic historic archive" }
+    ],
+    "answer": "a",
+    "explanation": "Historic and future archives are never mixed. Only future archives, used by points with Future = true, accept data more than 10 minutes ahead.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["future-data", "scenario"],
+    "sources": ["da-admin-workbook-2017r2", "da-emea14-future-data"]
+  },
+  {
+    "id": "q-backfill-future-range",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 2,
+    "prompt": "Future data was introduced in PI Data Archive 2015. Which time range can it store?",
+    "options": [
+      { "id": "a", "text": "January 1970 through January 2038" },
+      { "id": "b", "text": "Only the next 48 hours" },
+      { "id": "c", "text": "January 2000 through December 2099" },
+      { "id": "d", "text": "Any date with no limit" }
+    ],
+    "answer": "a",
+    "explanation": "The training states future data can be stored from January 1970 through January 2038.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["future-data"],
+    "sources": ["da-admin-workbook-2017r2", "da-assets-workbook"]
+  },
+  {
+    "id": "q-backfill-future-archives",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.backfill", "da.archive-files"],
+    "difficulty": 2,
+    "prompt": "Which statements about future archives are correct? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "They are created on demand by calendar month" },
+      { "id": "b", "text": "A new one starts as a 1 MB file and grows dynamically" },
+      { "id": "c", "text": "Separate storage allows different retention policies" },
+      { "id": "d", "text": "They are fixed-size files sized by the licensed point count" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Future archives are created on demand by calendar month as 1 MB files that grow dynamically, suited to sparse data, and separate storage allows different retention. Fixed sizing by point count applies to historic archives.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["future-data"],
+    "sources": ["da-rs2015-future-data", "da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-backfill-dynamic",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 2,
+    "prompt": "What does OSIsoft's tuning guidance say dynamic archives should be used for?",
+    "options": [
+      { "id": "a", "text": "Backfilling jobs only" },
+      { "id": "b", "text": "All normal operation" },
+      { "id": "c", "text": "Future data only" },
+      { "id": "d", "text": "Storing the message log" }
+    ],
+    "answer": "a",
+    "explanation": "Dynamic archives should be kept for backfilling jobs only (KB 2998OSI8). Normal operation uses fixed-size archives, which automatic creation requires.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["archives"],
+    "sources": ["da-vcampus-2010-tuning"]
+  },
+  {
+    "id": "q-backfill-error-11414",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 3,
+    "prompt": "A tool writes directly (not buffered) to points that a PI to PI instance writes through pibufss. Which error can the direct writes return?",
+    "options": [
+      { "id": "a", "text": "-11414" },
+      { "id": "b", "text": "-11091" },
+      { "id": "c", "text": "-11140" },
+      { "id": "d", "text": "2016" }
+    ],
+    "answer": "a",
+    "explanation": "PI to PI writing through pibufss locks points, and non-buffered writes to buffered points can return -11414 (KB00093 covers clearing buffer ownership). -11091 and -11140 are query limits; 2016 is an overflow-record message.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["errors", "buffering"],
+    "sources": ["da-ps-pointsource-thread"]
+  },
+  {
+    "id": "q-backfill-order",
+    "type": "ordering",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 3,
+    "prompt": "Put the steps for a low-impact history recovery in a sensible order.",
+    "items": [
+      { "id": "a", "text": "Check that registered archives cover the time range being recovered" },
+      { "id": "b", "text": "Schedule the recovery outside production peaks" },
+      { "id": "c", "text": "Write the events in time order within each archive file" },
+      { "id": "d", "text": "Watch the message log for 2016 'Inserting overflow record' messages" }
+    ],
+    "explanation": "Archives must cover the time (otherwise events queue), heavy OOO writes should avoid peaks, ordering OOO writes within each archive is an AVEVA mitigation, and message 2016 is the telltale sign of OOO strain.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["backfill", "procedure"],
+    "sources": ["da-uc23-da-performance", "da-admin-workbook-2017r2"],
+    "verify": true,
+    "verifyNote": "This step order is a synthesis of separate AVEVA recommendations, not a published procedure."
+  },
+  {
+    "id": "q-backfill-compression-helps",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill", "da.exception-compression"],
+    "difficulty": 2,
+    "prompt": "In AVEVA's 2023 case, what effect did even 11% compression have on an analysis backfill of about one month?",
+    "options": [
+      { "id": "a", "text": "It cut the backfill time by about 20%" },
+      { "id": "b", "text": "It doubled the backfill time" },
+      { "id": "c", "text": "No effect" },
+      { "id": "d", "text": "It made backfill impossible" }
+    ],
+    "answer": "a",
+    "explanation": "The session reported that even 11% compression cut a one-month analysis backfill by about 20%: less archived data means less to read during recalculation.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["compression", "analytics"],
+    "sources": ["da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-backfill-future-attr",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.backfill", "da.point-attributes"],
+    "difficulty": 1,
+    "prompt": "Which point attribute decides whether a point uses the Future Archive Set or the Historical Archive Set?",
+    "accepted": ["Future", "Future attribute"],
+    "explanation": "Future = true uses the Future Archive Set; Future = false uses the Historical Archive Set.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["future-data"],
+    "sources": ["da-emea14-future-data"]
+  },
+  {
+    "id": "q-backfill-tf-pre2015",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.backfill"],
+    "difficulty": 1,
+    "prompt": "True or false: before PI Data Archive 2015, users stored future data through workarounds.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "OSIsoft's future-data page says users stored future data through workarounds before native support arrived in 2015.",
+    "lessonId": "backfill-and-future-data",
+    "tags": ["true-false", "history"],
+    "sources": ["da-wwwtest-future-page"]
+  }
+]

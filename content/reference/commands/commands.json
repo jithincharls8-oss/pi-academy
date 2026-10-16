@@ -1,0 +1,893 @@
+[
+  {
+    "id": "cmd-piconfig-table-tabl-table",
+    "tool": "piconfig",
+    "command": "@table / @tabl <table>",
+    "description": "Selects the Data Archive table to work on, for example pipoint, piarc or pi_gen,pitimeout. Commands start with @ (the default command character), comments with *, and the default field delimiter is a comma.",
+    "example": "@table pipoint",
+    "sources": [
+      "da-livelibrary-piconfig",
+      "dev2-pisquare-piconfig-pointid",
+      "da-ps-piarch-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-mode-mode",
+    "tool": "piconfig",
+    "command": "@mode <mode>",
+    "description": "Sets the operation mode for the following data lines: list, create, edit or delete. Scripts also use a ', t' suffix (for example @mode create, t).",
+    "example": "@mode list",
+    "sources": [
+      "dev2-pisquare-piconfig-pointid",
+      "dev2-gh-terraform-piconfig",
+      "dev2-gh-dat2csv-piconfig"
+    ],
+    "verify": true,
+    "verifyNote": "The meaning of the ', t' suffix (believed to make piconfig tolerant of existing points) and the full mode list are not confirmed in a readable reference."
+  },
+  {
+    "id": "cmd-piconfig-istructure-istr-attributes",
+    "tool": "piconfig",
+    "command": "@istructure / @istr <attributes>",
+    "description": "Defines the input structure: the order of fields in the data lines that follow.",
+    "example": "@istr tag,pointsource,pointtype,descriptor",
+    "sources": [
+      "da-livelibrary-piconfig",
+      "dev2-pisquare-piconfig-pointid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-ostructure-ostr-attributes",
+    "tool": "piconfig",
+    "command": "@ostructure / @ostr <attributes>",
+    "description": "Defines the output structure: which fields are listed.",
+    "example": "@ostr tag,pointid",
+    "sources": [
+      "dev2-pisquare-piconfig-pointid",
+      "da-ps-piarch-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-select-sele-criteria",
+    "tool": "piconfig",
+    "command": "@select / @sele <criteria>",
+    "description": "Selects the records to act on, for example tag=*. Several selections can follow one structure, each closed by @ends.",
+    "example": "@sele tag=*,pointid=1",
+    "notes": "Command abbreviations such as @tabl, @sele and @modi are seen in examples; the abbreviation rule itself is inferred.",
+    "sources": [
+      "dev2-pisquare-piconfig-pointid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-endsection-ends",
+    "tool": "piconfig",
+    "command": "@endsection / @ends",
+    "description": "Ends a command block and executes the selection.",
+    "example": "@ends",
+    "sources": [
+      "da-livelibrary-piconfig",
+      "dev2-pisquare-piconfig-pointid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-exit-quit-bye",
+    "tool": "piconfig",
+    "command": "@exit / @quit / @bye",
+    "description": "Ends the piconfig session.",
+    "example": "@bye",
+    "sources": [
+      "da-livelibrary-piconfig",
+      "dev2-pisquare-piconfig-pointid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-input-output-file",
+    "tool": "piconfig",
+    "command": "@input / @output <file>",
+    "description": "Reads data lines from a file, or writes listing output to a file.",
+    "example": "@output e:\\Pointid.txt",
+    "sources": [
+      "da-livelibrary-piconfig",
+      "dev2-pisquare-piconfig-pointid",
+      "dev2-pisquare-manual-update"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-modify-modi-field-value",
+    "tool": "piconfig",
+    "command": "@modify / @modi <field=value, ...>",
+    "description": "In an edit script, sets field values for the records read from the input, for example to mark archive values bad.",
+    "example": "@tabl piarc\n@mode edit\n@istructure tag,time\n@modi value=bad, mode=replace\n@input OutofOrderData.csv\n@ends",
+    "notes": "piconfig cannot filter an archive query for a particular value; find the bad values first with DataLink, PI OLEDB Provider, SMT Archive Editor or an AF SDK utility.",
+    "sources": [
+      "dev2-pisquare-manual-update"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-ptclass-class",
+    "tool": "piconfig",
+    "command": "@ptclass <class>",
+    "description": "Sets the point class used when creating points, for example classic.",
+    "example": "@ptclass classic",
+    "sources": [
+      "dev2-gh-terraform-piconfig"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-delimiter-character",
+    "tool": "piconfig",
+    "command": "@delimiter <character>",
+    "description": "Changes the field delimiter from the default comma.",
+    "example": "@delimiter ;",
+    "sources": [
+      "dev2-gh-terraform-piconfig",
+      "da-livelibrary-piconfig"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-echo-level",
+    "tool": "piconfig",
+    "command": "@echo <level>",
+    "description": "Controls echoing: Data, Commands, All, Verbose or None (default Data).",
+    "example": "@echo All",
+    "sources": [
+      "da-livelibrary-piconfig"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-istype-f-d-k",
+    "tool": "piconfig",
+    "command": "@istype <F|D|K>",
+    "description": "Sets the input type (F, D or K; default D).",
+    "example": "@istype D",
+    "sources": [
+      "da-livelibrary-piconfig"
+    ],
+    "verify": true,
+    "verifyNote": "The meanings of F, D and K were not read."
+  },
+  {
+    "id": "cmd-piconfig-line-n",
+    "tool": "piconfig",
+    "command": "@line <n>",
+    "description": "In non-interactive mode piconfig stops after the number of errors set by @line, so check the output for errors after bulk imports.",
+    "example": "@line 100",
+    "sources": [
+      "da-livelibrary-piconfig"
+    ],
+    "verify": true,
+    "verifyNote": "The default value and exact semantics are unclear in the source."
+  },
+  {
+    "id": "cmd-piconfig-atr-tbl",
+    "tool": "piconfig",
+    "command": "? / ?atr / ?tbl",
+    "description": "Help: ?atr lists the attributes of the current table and ?tbl lists the tables.",
+    "example": "?tbl",
+    "sources": [
+      "da-livelibrary-piconfig"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-case-cd-clear-endrecord",
+    "tool": "piconfig",
+    "command": "@case / @cd / @clear / @endrecord",
+    "description": "Other piconfig commands listed in the reference: case handling, change directory, clear settings and end of record.",
+    "example": "@clear",
+    "sources": [
+      "da-livelibrary-piconfig"
+    ],
+    "verify": true,
+    "verifyNote": "Only the command names were read; check each command's behaviour in the piconfig reference."
+  },
+  {
+    "id": "cmd-piconfig-list-point-ids-script",
+    "tool": "piconfig",
+    "command": "List point IDs (script)",
+    "description": "Lists tag names with their PointIDs into a file. Archive files store PointIDs, not tag names; the map is in the PIPOINT table.",
+    "example": "@table pipoint\n@mode list\n@ostr tag,pointid\n@output e:\\Pointid.txt\n@sele tag=*,pointid=1\n@ends\n@bye",
+    "sources": [
+      "dev2-pisquare-piconfig-pointid",
+      "da-ps-piarch-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-read-archive-values-script",
+    "tool": "piconfig",
+    "command": "Read archive values (script)",
+    "description": "Lists archived values of a tag for a time range from the piarc table.",
+    "example": "@table piarc\n@ostr tag,value,timestamp\n@istr tag,starttime,endtime\nsinusoid,*-2h,*",
+    "sources": [
+      "da-ps-piarch-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piconfig-create-points-script",
+    "tool": "piconfig",
+    "command": "Create points (script)",
+    "description": "Creates classic points from data lines that follow the input structure.",
+    "example": "@table pipoint\n@ptclass classic\n@mode create, t\n@istr tag,instrumenttag,descriptor,pointsource,pointtype,compressing,location1,location2,location3,location4,location5",
+    "sources": [
+      "dev2-gh-terraform-piconfig"
+    ],
+    "verify": true,
+    "verifyNote": "The ', t' suffix is not confirmed in a readable reference."
+  },
+  {
+    "id": "cmd-piconfig-delete-points-script",
+    "tool": "piconfig",
+    "command": "Delete points (script)",
+    "description": "Deletes the tags listed after the input structure. Point deletion takes a global lock; run bulk deletes off-hours. There is no undelete.",
+    "example": "@tabl pipoint,classic\n@mode delete\n@istr tag\nOldTag1\nOldTag2",
+    "sources": [
+      "dev2-gh-dat2csv-piconfig",
+      "adm-uc23-da-performance-sick",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": true,
+    "verifyNote": "The deletion script was seen as a snippet only."
+  },
+  {
+    "id": "cmd-piconfig-change-point-class-script",
+    "tool": "piconfig",
+    "command": "Change point class (script)",
+    "description": "Changes a point's class by editing ptclassname on the PIPOINT table.",
+    "example": "@tabl pipoint\n@mode edit\n@istr tag,ptclassname\nMyTag,classic",
+    "sources": [
+      "da-ps-pointclass-thread"
+    ],
+    "verify": true,
+    "verifyNote": "The thread gives the structure but not the exact script."
+  },
+  {
+    "id": "cmd-piconfig-enable-the-data-archive-audit-trail-script",
+    "tool": "piconfig",
+    "command": "Enable the Data Archive audit trail (script)",
+    "description": "Sets the EnableAudit tuning parameter in the pi_gen,pitimeout table. -1 audits all databases; per a 2010 blog the value is a bit mask by subsystem database.",
+    "example": "@table pi_gen,pitimeout\n@mode create,t\n@istr name,value\nEnableAudit,-1",
+    "sources": [
+      "ops2-osipi-blog-audit"
+    ],
+    "verify": true,
+    "verifyNote": "Whether the bit values are current for recent Data Archive versions is not confirmed."
+  },
+  {
+    "id": "cmd-piartool-piartool-ss",
+    "tool": "piartool",
+    "command": "piartool -ss",
+    "description": "Snapshot statistics, refreshed every 5 seconds (Ctrl+C to exit).",
+    "example": "piartool -ss",
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "adm-it-pros-workbook-2017r2",
+      "dev2-pi-sys-admin-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-qs",
+    "tool": "piartool",
+    "command": "piartool -qs",
+    "description": "Event queue statistics, every 5 seconds. Total Event Reads and Writes should rise together; more than one event queue file suggests a problem. A growing queue means the archive subsystem is not keeping up.",
+    "example": "piartool -qs",
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "adm-it-pros-workbook-2017r2",
+      "dev2-pi-sys-admin-pdf",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-as",
+    "tool": "piartool",
+    "command": "piartool -as",
+    "description": "Archive statistics, every 5 seconds. The Archiving flag is 0 none, 1 historic only, 2 future only, 3 both; 3 is healthy on Data Archive 2015 and later (1 on 2012 and earlier).",
+    "example": "piartool -as",
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "dev2-pi-sys-admin-pdf",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-al",
+    "tool": "piartool",
+    "command": "piartool -al",
+    "description": "Lists archives and shows archive-shift progress. Run from the adm folder.",
+    "example": "piartool -al",
+    "sources": [
+      "da-admin-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-thread-piarchss-info",
+    "tool": "piartool",
+    "command": "piartool -thread piarchss -info",
+    "description": "Thread dump of the archive subsystem; use the Connection IDs to find heavy clients in Network Manager Statistics.",
+    "example": "cd /d %piserver%adm\npiartool -thread piarchss -info",
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-backup",
+    "tool": "piartool",
+    "command": "piartool -backup",
+    "description": "Backs up the latest n archives (-numarch <n>) or a list of archive numbers (-archives <list>). It cannot take a range of older archives.",
+    "example": "piartool -backup <path> -numarch 3",
+    "sources": [
+      "da-fb-pida-1092"
+    ],
+    "verify": true,
+    "verifyNote": "Only the -numarch and -archives options are sourced; the full syntax (including the backup path argument) was not read."
+  },
+  {
+    "id": "cmd-piartool-piartool-backup-query",
+    "tool": "piartool",
+    "command": "piartool -backup -query",
+    "description": "Queries backup status (from a community answer).",
+    "example": "piartool -backup -query",
+    "sources": [
+      "dev2-manualzz-da-3-4-390"
+    ],
+    "verify": true,
+    "verifyNote": "From a community answer only."
+  },
+  {
+    "id": "cmd-piartool-piartool-lic-usage",
+    "tool": "piartool",
+    "command": "piartool -lic usage",
+    "description": "Checks licensing and tests the PI License Manager (pilicmgr). Run from %PISERVER%\\adm. With pilicmgr down it returned [-10727] PINET RPC is non-existant.",
+    "example": "cd \"C:\\Program Files\\PI\\adm\"\npiartool -lic usage",
+    "sources": [
+      "dev2-pisquare-check-license",
+      "dev2-pisquare-license-grace"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-block-subsystem-verbose",
+    "tool": "piartool",
+    "command": "piartool -block <subsystem> -verbose",
+    "description": "Waits until a subsystem is ready; pisrvstart.bat runs piartool -block pisnapss -verbose. A hang there pointed to a corrupt snapshot table.",
+    "example": "piartool -block pisnapss -verbose",
+    "sources": [
+      "dev2-pisquare-check-license"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-ar-path",
+    "tool": "piartool",
+    "command": "piartool -ar <path>",
+    "description": "Registers an archive file. Registration is per host: run it on the Data Archive whose registration you want to change (each collective member separately).",
+    "example": "for %f in (piarch.???) do c:\\pi\\adm\\piartool.exe -ar %f",
+    "sources": [
+      "dev2-blog-restore-pi",
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-piartool-piartool-systembackup-start-end-subsystem-piarchss",
+    "tool": "piartool",
+    "command": "piartool -systembackup start|end -subsystem piarchss",
+    "description": "Brackets a file copy of a subsystem file (such as the audit file piarchssaudit.dat) so it can be copied safely.",
+    "example": "piartool -systembackup start -subsystem piarchss\ncopy d:\\pi\\log\\piarchssaudit.dat d:\\pi\\adm\\archaudit_Copy.dat\npiartool -systembackup end -subsystem piarchss",
+    "sources": [
+      "ops2-osipi-blog-audit"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-archk-archive-file",
+    "tool": "pidiag",
+    "command": "pidiag -archk <archive file>",
+    "description": "Checks an archive file and shows its storage map, including the PointIDs it contains.",
+    "example": "pidiag -archk d:\\pi\\arc\\piarch.001",
+    "sources": [
+      "da-vcampus-2010-tuning",
+      "adm-vl2010-optimization",
+      "da-ps-piarch-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-tz",
+    "tool": "pidiag",
+    "command": "pidiag -tz",
+    "description": "Checks localhost.tz (DST rules). After DST rule changes, patch the OS and update localhost.tz.",
+    "example": "pidiag -tz",
+    "sources": [
+      "da-uc2011-tips-trenches",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-tz-sys-dump",
+    "tool": "pidiag",
+    "command": "pidiag -tz -sys -dump",
+    "description": "Dumps the full DST history.",
+    "example": "pidiag -tz -sys -dump",
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-e-code",
+    "tool": "pidiag",
+    "command": "pidiag -e <code>",
+    "description": "Translates an error code into its message.",
+    "example": "pidiag -e -11057",
+    "notes": "The adm research could not confirm this from a readable AVEVA page, but a PI Square blog shows it.",
+    "sources": [
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-ahd-archive-path",
+    "tool": "pidiag",
+    "command": "pidiag -ahd <archive path>",
+    "description": "Dumps an archive header; the primary archive shows End Time 'Current Time'.",
+    "example": "pidiag -ahd d:\\pi\\arc\\piarch.001",
+    "sources": [
+      "dev2-blog-restore-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-ar",
+    "tool": "pidiag",
+    "command": "pidiag -ar",
+    "description": "Registers the primary archive (used during a restore).",
+    "example": "pidiag -ar",
+    "sources": [
+      "dev2-blog-restore-pi"
+    ],
+    "verify": true,
+    "verifyNote": "Arguments were not read."
+  },
+  {
+    "id": "cmd-pidiag-pidiag-tls-verify-y",
+    "tool": "pidiag",
+    "command": "pidiag -tls --verify (-y)",
+    "description": "Reports Data Archive TLS certificate registration.",
+    "example": "pidiag -tls -y",
+    "sources": [
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-tls-r-thumbprint-register",
+    "tool": "pidiag",
+    "command": "pidiag -tls -r <thumbprint> (--register)",
+    "description": "Registers (changes) the Data Archive TLS certificate.",
+    "example": "pidiag -tls -r 3F2A...C9",
+    "sources": [
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pidiag-pidiag-xa-file-st-start-et-end",
+    "tool": "pidiag",
+    "command": "pidiag -xa <file> -st <start> -et <end>",
+    "description": "Reads a copy of a Data Archive audit file for a time range.",
+    "example": "pidiag -xa d:\\pi\\adm\\archaudit_Copy.dat -st \"1-apr-2010\" -et \"2-apr-2010\" >> ArchAudit.log",
+    "sources": [
+      "ops2-osipi-blog-audit"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pigetmsg-pigetmsg-f",
+    "tool": "pigetmsg",
+    "command": "pigetmsg -f",
+    "description": "Follows the PI Message Log continuously. Run from PIHOME\\adm on clients or %piserver%\\adm on the Data Archive.",
+    "example": "pigetmsg -f",
+    "sources": [
+      "da-ps-msglog-blog",
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pigetmsg-pigetmsg-st-start-et-end",
+    "tool": "pigetmsg",
+    "command": "pigetmsg -st <start> -et <end>",
+    "description": "Reads messages for a time window.",
+    "example": "pigetmsg -st *-2h -et *",
+    "sources": [
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pigetmsg-pigetmsg-severity-filters-si-sw-se-sc",
+    "tool": "pigetmsg",
+    "command": "pigetmsg severity filters -si / -sw / -se / -sc",
+    "description": "Filters by minimum severity (information, warning, error, critical); the default minimum is Debug.",
+    "example": "pigetmsg -st *-1d -et * -se",
+    "notes": "The mapping of each switch letter to a severity name is inferred from the letters.",
+    "sources": [
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pigetmsg-pigetmsg-output-formats-fc-ft-fw-fx-and-oa",
+    "tool": "pigetmsg",
+    "command": "pigetmsg output formats -fc / -ft / -fw / -fx and -oa",
+    "description": "Output as CSV (-fc), two-line (-ft), one-line (-fw) or XML (-fx); -oa shows all fields. Default fields are MessageSeverity, MessageTime, ProcessHost, ProcessName, Source1-3, Message and MessageID.",
+    "example": "pigetmsg -st *-1h -et * -fc -of C:\\Temp\\msgs.csv",
+    "sources": [
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pigetmsg-pigetmsg-msg-src-pr-top-of",
+    "tool": "pigetmsg",
+    "command": "pigetmsg -msg / -src / -pr / -top / -of",
+    "description": "-msg filters by message text with * and ? wildcards; -src and -pr filter by source or program; -top pr or -top pid gives summary counts; -of writes to a file.",
+    "example": "pigetmsg -sw -st *-2h -et * -msg *[-11091]* -of C:\\Temp\\arcmax.txt",
+    "notes": "The example combines sourced switches to find ArcMaxCollect hits; the combination itself is inferred.",
+    "sources": [
+      "da-ps-msglog-blog",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-pibackup-pibackup-bat-and-afbackup-bat",
+    "tool": "pibackup",
+    "command": "PIBackup.bat and AFBackup.bat",
+    "description": "PIBackup.bat calls AFBackup.bat for AF. The AF SQL backup runs the stored procedure dbo.usp_backup on the PIFD database. PI Backup uses VSS, so files in use can be backed up without downtime.",
+    "example": "sqlcmd -S <instance> -d PIFD -Q \"EXEC dbo.usp_backup @outpath = N'<path>';\" -E",
+    "notes": "Back up daily off-peak with Windows Task Scheduler, locally first, then copy to a separate server.",
+    "sources": [
+      "da-fb-pida-84",
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": true,
+    "verifyNote": "The pibackup.bat arguments and default folder were not read."
+  },
+  {
+    "id": "cmd-other-pibufss-cfg",
+    "tool": "other",
+    "command": "pibufss -cfg",
+    "description": "Shows the overall PI Buffer Subsystem status (connected, events being sent).",
+    "example": "pibufss -cfg",
+    "sources": [
+      "dcv-pi-sys-admin-workbook",
+      "adm-it-pros-workbook-2017r2",
+      "dcv-admin-it-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-pibufss-qs",
+    "tool": "other",
+    "command": "pibufss -qs",
+    "description": "Shows buffer queue statistics (Ctrl+C to stop). A healthy queue has reads and writes; with a collective it asks which member's queue to show.",
+    "example": "pibufss -qs",
+    "sources": [
+      "dcv-pi-sys-admin-workbook",
+      "dcv-pisquare-nway"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-pibufss-bc-stop-start",
+    "tool": "other",
+    "command": "pibufss -bc stop | start",
+    "description": "Stops or restarts sending buffered data, for example to simulate a network outage.",
+    "example": "pibufss -bc stop\npibufss -bc start",
+    "sources": [
+      "dcv-pi-sys-admin-workbook",
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-pibufutil",
+    "tool": "other",
+    "command": "pibufutil",
+    "description": "Command-line status and shutdown utility for the legacy API Buffer Server (bufserv).",
+    "example": "pibufutil",
+    "sources": [
+      "dcv-techsupport-tools"
+    ],
+    "verify": true,
+    "verifyNote": "Options were not read."
+  },
+  {
+    "id": "cmd-other-apisnap-server",
+    "tool": "other",
+    "command": "apisnap <server>",
+    "description": "PI API tool for checking snapshots and connectivity from an interface node.",
+    "example": "apisnap PISRV01",
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "da-admin-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-pipetest",
+    "tool": "other",
+    "command": "pipetest",
+    "description": "Tests Performance Equation syntax.",
+    "example": "pipetest",
+    "sources": [
+      "af-pisquare-pe-12301"
+    ],
+    "verify": true,
+    "verifyNote": "Options were not read."
+  },
+  {
+    "id": "cmd-other-pisrvsitestop-bat-pisrvstart-bat",
+    "tool": "other",
+    "command": "pisrvsitestop.bat / pisrvstart.bat",
+    "description": "Site-specific stop script: edit pisrvsitestop.bat rather than pisrvstop.bat. AVEVA bulletins advise monitoring the services started by \\PI\\adm\\pisrvstart.bat.",
+    "example": "pisrvsitestop.bat",
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-aveva-bulletin-2025-001"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-port-5450-test-powershell",
+    "tool": "other",
+    "command": "Port 5450 test (PowerShell)",
+    "description": "Checks that the Data Archive port is reachable from a client. Data sent to the Data Archive uses TCP 5450.",
+    "example": "(new-object net.sockets.tcpclient PISRV01, 5450).connected\nTest-NetConnection PISRV01 -Port 5450",
+    "notes": "The Test-NetConnection form is named in the playbook; its exact arguments are standard PowerShell.",
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-tdengine-pi-prereqs"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-install-piserver-ps1-silent-install-sample",
+    "tool": "other",
+    "command": "Install-PIServer.ps1 (silent install sample)",
+    "description": "AVEVA GitHub sample for a silent PI Server install.",
+    "example": ".\\Install-PIServer.ps1 -sql .\\SQL\\SETUP.EXE -piserver .\\PIServer.exe -pilicdir C:\\Test -afdatabase TestDatabase -pibundle .\\PIProcessBook.exe -remote",
+    "sources": [
+      "adm-github-pi-core-deploy-onprem"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-afdiag-ct-thumbprint",
+    "tool": "other",
+    "command": "AFDiag /CT:<thumbprint>",
+    "description": "Changes the AF Server TLS certificate (/CertificateThumbprint:). It is stored as CERTIFICATETHUMBPRINT under HKLM\\SYSTEM\\CurrentControlSet\\Services\\AFService.",
+    "example": "AFDiag /CT:3F2A...C9",
+    "sources": [
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-afdiag-enableaudittrail-true",
+    "tool": "other",
+    "command": "AFDiag /EnableAuditTrail:True",
+    "description": "Turns on the AF audit trail (/AT). SQL Server Agent must be running first, and you need sysadmin on the SQL instance hosting the AF database.",
+    "example": "AFDiag.exe /EnableAuditTrail:True",
+    "sources": [
+      "ops2-pisquare-af-audit-trail"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-afexport-afimport",
+    "tool": "other",
+    "command": "AFExport / AFImport",
+    "description": "Exports and imports AF databases as XML. The utilities are in \\PIPC\\AF on the client.",
+    "example": "AFExport \\\\AF01\\MyDB /AllReferences /Security /File:C:\\Temp\\AFDatabase.xml\nAFImport \\\\AF02 /AllReferences /File:C:\\Temp\\AFDatabase.xml",
+    "sources": [
+      "adm-us19-af-rollout-kwan"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-setspn-u-s-http-host-domain-account",
+    "tool": "other",
+    "command": "setspn -U -S http/<host> <domain\\account>",
+    "description": "Creates the HTTP SPNs for PI Vision's service account; create one for the short name and one for the FQDN.",
+    "example": "setspn -U -S http/pivis01 CORP\\svc-pivision\nsetspn -U -S http/pivis01.corp.example CORP\\svc-pivision",
+    "sources": [
+      "ops2-uc23-security-biggins",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-setspn-l-setspn-q",
+    "tool": "other",
+    "command": "setspn -l / setspn -q",
+    "description": "Lists SPNs on an account, or queries an SPN. The Data Archive SPN class is PIServer; the AF class is AFServer.",
+    "example": "setspn -q PIServer/pida01\nsetspn -q AFServer/piaf01",
+    "sources": [
+      "ops2-uc23-security-biggins",
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-gh-security-audit-tools"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-klist-purge-with-kerberos-logging",
+    "tool": "other",
+    "command": "klist purge (with Kerberos logging)",
+    "description": "Clears cached Kerberos tickets. For troubleshooting, first set LogLevel (REG_DWORD 1) under HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Kerberos\\Parameters and then review the System event log.",
+    "example": "klist purge",
+    "sources": [
+      "ops2-uc23-security-biggins",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-aduser-properties-msds-allowedtodelegateto",
+    "tool": "other",
+    "command": "Get-ADUser -Properties msDS-AllowedToDelegateTo",
+    "description": "Checks which services an account may delegate to (constrained delegation).",
+    "example": "Get-ADUser 'svc-pivision' -Properties msDS-AllowedToDelegateTo,Displayname",
+    "sources": [
+      "ops2-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-command-module-osisoft-powershell",
+    "tool": "other",
+    "command": "Get-Command -Module OSIsoft.PowerShell",
+    "description": "Lists the cmdlets of PowerShell Tools for the PI System (module OSIsoft.PowerShell, shipped with PI SMT 2015 and later, auto-imported on first use).",
+    "example": "Get-Command -Noun *value* -Module OSIsoft.PowerShell",
+    "sources": [
+      "dev2-pisquare-pstools-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-connect-pidataarchive",
+    "tool": "other",
+    "command": "Connect-PIDataArchive",
+    "description": "Opens a connection to a Data Archive; other cmdlets take it with -Connection.",
+    "example": "$con = Connect-PIDataArchive -PIDataArchiveMachineName PISRV01\n$con.Connected",
+    "notes": "Other forms: -AuthenticationMethod Windows; -WindowsCredential $cred -OperationTimeout <hh:mm:ss>; -PIDataArchiveConnectionConfiguration (Get-PIDataArchiveConnectionConfiguration -Name $name).",
+    "sources": [
+      "dev2-pisquare-pstools-blog",
+      "dev2-gh-aveva-ps-verify",
+      "int-gh-adh-transfer-verification-getdata"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-pipoint",
+    "tool": "other",
+    "command": "Get-PIPoint",
+    "description": "Reads point configuration by name or ID.",
+    "example": "Get-PIPoint -Name sinusoid -AllAttributes -Connection $con\nGet-PIPoint -ID 12 -Attributes pointtype -Connection $con",
+    "sources": [
+      "dev2-gh-aveva-ps-verify",
+      "int-gh-adh-transfer-verification-getdata",
+      "dev2-gh-castagne-ps"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-pivalue",
+    "tool": "other",
+    "command": "Get-PIValue",
+    "description": "Reads values at a time, over a range or by count. Timestamps display in UTC.",
+    "example": "Get-PIValue -PointName sinusoid -Connection $con -StartTime \"19-Jul-2015 8:00:00\" -EndTime \"19-Jul-2015 17:00:00\"\nGet-PIValue -PointId 12 -Connection $con -StartTime \"2024-01-01T00:00:00Z\" -Count 100",
+    "notes": "As of August 2015 PI relative times such as * could not be used.",
+    "sources": [
+      "dev2-pisquare-pstools-blog",
+      "dev2-gh-aveva-ps-verify"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-add-pivalue",
+    "tool": "other",
+    "command": "Add-PIValue",
+    "description": "Writes values; it appends unless -WriteMode is given. As of 2015 writes could not be buffered.",
+    "example": "Add-PIValue -PointName Sinusoid,SinusoidU,CDT158 -Time \"1-Apr-2017 20:00:00\",\"3-May-2017 8:00:00\",\"5-Jun-2017 12:00:00\" -Value 100,200,300 -WriteMode ReplaceX -Connection $con",
+    "notes": "The full -WriteMode value list was not read.",
+    "sources": [
+      "dev2-pisquare-pstools-blog",
+      "dev2-pisquare-manual-update"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-set-pipoint",
+    "tool": "other",
+    "command": "Set-PIPoint",
+    "description": "Changes point attributes.",
+    "example": "Set-PIPoint -Name TestTag -Connection $con -Attributes @{ptsecurity=\"piadmin: A(r,w) | piadmins: A(r,w)\"}",
+    "sources": [
+      "dev2-pisquare-pstools-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-piarchivefileinfo-register-piarchive-unregister-piarchive",
+    "tool": "other",
+    "command": "Get-PIArchiveFileInfo / Register-PIArchive / Unregister-PIArchive",
+    "description": "Lists archive files (Index, StartTime, EndTime, PercentFull, IsCorrupt, Path and more) and registers or unregisters them.",
+    "example": "Get-PIArchiveFileInfo -Connection $con -ArchiveSet 0\nUnregister-PIArchive -Name d:\\pi\\arc\\old.arc -Connection $con",
+    "sources": [
+      "dev2-gh-ps-movearchives",
+      "dev2-gh-wolfvictor-upgradeinfo"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-start-pibackup-get-pibackupstate",
+    "tool": "other",
+    "command": "Start-PIBackup / Get-PIBackupState",
+    "description": "Starts a Data Archive backup and polls its progress ($state.IsInProgress, $state.BackupProgress.OverallPercentComplete). \"Backup-PIDataArchive\" does not appear in any source seen.",
+    "example": "Start-PIBackup -BackupLocation E:\\PIBackup -Connection $con\n$state = Get-PIBackupState -Connection $con",
+    "notes": "Start-PIBackup also supports -Exclude, e.g. -Exclude pimsgss, SettingsAndTimeoutParameters (seen in a snippet).",
+    "sources": [
+      "dev2-gh-ps-backup",
+      "da-pshell-startpibackup"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-get-pimessage",
+    "tool": "other",
+    "command": "Get-PIMessage",
+    "description": "Reads the PI Message Log from PowerShell.",
+    "example": "Get-PIMessage -Connection $con -SeverityType Error -StartTime (Get-Date).AddHours(-2) -EndTime (Get-Date)",
+    "sources": [
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "cmd-other-edgecmd-get-system",
+    "tool": "other",
+    "command": "edgecmd get system",
+    "description": "EdgeCmd is the Edge Data Store CLI that translates commands into REST calls (EDS listens on port 5590 by default). This verifies an install.",
+    "example": "edgecmd get system",
+    "sources": [
+      "dcv-uc23-mqtt-eds-workshop",
+      "ops2-uc23-adapters-eds-lab"
+    ],
+    "verify": false
+  }
+]

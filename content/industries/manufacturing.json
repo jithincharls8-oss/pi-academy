@@ -1,0 +1,92 @@
+[
+  {
+    "id": "manufacturing",
+    "title": "Manufacturing",
+    "summary": "Discrete and general manufacturers use PI System for energy management systems, OEE and event-based analysis of batches, downtime and excursions. Standard data models across plants make benchmarking and best-practice sharing possible.",
+    "hierarchy": "```mermaid\nflowchart TD\n  E[Enterprise] --> S[Site]\n  S --> A[Area]\n  A --> WC[Work Centre or Production Line]\n  WC --> WU[Work Unit or Machine]\n  A --> EM[Energy Meter]\n```",
+    "tags": [
+      {
+        "name": "Fuel Gas Flow",
+        "description": "Fuel gas flow on a boiler; its average is captured on excursion event frames."
+      },
+      {
+        "name": "Energy",
+        "description": "Energy consumption per area for an energy management system.",
+        "uom": "kWh"
+      },
+      {
+        "name": "Machine State",
+        "description": "Running or stopped state used for downtime events."
+      }
+    ],
+    "templates": [
+      {
+        "name": "Area energy meter",
+        "description": "Energy meter per area feeding a centralised energy monitoring system (EnMS). Illustrative.",
+        "attributes": [
+          "Energy (kWh)"
+        ]
+      }
+    ],
+    "calculations": [
+      {
+        "name": "Event average",
+        "expression": "Fuel Gas Flow.Avg over the event frame",
+        "description": "OSIsoft example: an excursion event on asset Boiler-352 carries summary attributes such as Fuel Gas Flow.Avg."
+      }
+    ],
+    "eventFrames": [
+      {
+        "name": "Excursion",
+        "trigger": "A value is outside its limits, e.g. type \"High Violation\" on Boiler-352 lasting 12 min 24 sec"
+      },
+      {
+        "name": "Downtime",
+        "trigger": "Machine stops (S88/S95 downtime)"
+      },
+      {
+        "name": "Batch",
+        "trigger": "Batch start and end"
+      }
+    ],
+    "kpis": [
+      {
+        "name": "OEE",
+        "definition": "Overall Equipment Effectiveness, the day-to-day KPI at dsm-firmenich."
+      },
+      {
+        "name": "Energy consumption",
+        "definition": "Energy used per site; Michelin reported reductions of 3% to 16%."
+      },
+      {
+        "name": "OEE breakdown losses",
+        "definition": "OEE losses caused by breakdowns; Syensqo reported a 50% reduction."
+      }
+    ],
+    "regulation": [],
+    "pitfalls": [
+      "Large differences in plant monitoring capability and no standard data model block benchmarking (Toyota).",
+      "Henkel's OEE/energy story and P&G's 90-plant standardisation use AVEVA MES/System Platform, not PI; do not cite them as PI cases."
+    ],
+    "caseStudies": [
+      "toyota-motor-europe",
+      "michelin",
+      "dsm-firmenich",
+      "syensqo"
+    ],
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "sources": [
+      "ind-ss-toyota",
+      "ind-ss-michelin",
+      "ind-ss-syensqo",
+      "ind-pres-dsm-firmenich-2024",
+      "ind-pres-batch-ef-2017",
+      "ind-ss-henkel",
+      "ind-ss-pg"
+    ],
+    "verify": true,
+    "verifyNote": "The ISA-95 AF hierarchy and the area energy meter template are inferred. Automotive and semiconductor PI deployments beyond Toyota and IBM were not read."
+  }
+]

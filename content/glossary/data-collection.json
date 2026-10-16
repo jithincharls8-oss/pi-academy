@@ -1,0 +1,1003 @@
+[
+  {
+    "id": "uniint",
+    "term": "UniInt",
+    "aliases": [
+      "Universal Interface",
+      "UniInt framework"
+    ],
+    "definition": "Short for Universal Interface: reusable code, first developed in 1992, that many PI Interfaces share for installation, startup and shutdown, messaging, scanning, automatic point updates and failover.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "pi-interface",
+      "scan-class",
+      "uniint-failover-phase-2"
+    ],
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-zeilenga-interfaces-2009",
+      "dcv-pohl-interfaces-2008"
+    ]
+  },
+  {
+    "id": "point-source",
+    "term": "Point source",
+    "aliases": [
+      "PointSource",
+      "/PS"
+    ],
+    "definition": "A character or string on each PI point that must match an interface's /PS startup parameter so that the interface loads and services that point.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "uniint",
+      "scan-class"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "scan-class",
+    "term": "Scan class",
+    "aliases": [
+      "/f parameter"
+    ],
+    "definition": "A scan period, with an optional offset, defined by one /f= startup parameter of an interface. Points choose their scan class through the Location4 attribute.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "point-source",
+      "wall-clock-scheduling"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "wall-clock-scheduling",
+    "term": "Wall-clock scheduling",
+    "aliases": [
+      ",L scan class"
+    ],
+    "definition": "UniInt scheduling selected by adding ,L to a scan class, for example /f=24:00:00,00:08:00,L, so that a scan stays at the same local clock time across daylight-saving changes.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "scan-class"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "interface-startup-file",
+    "term": "Interface startup batch file",
+    "aliases": [
+      ".bat file",
+      "startup file"
+    ],
+    "definition": "The .bat file, named after the interface's Windows service, that holds the command-line parameters (/PS, /ID, /F, /HOST and others) for one interface instance.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "pi-icu",
+      "point-source"
+    ],
+    "sources": [
+      "dcv-rovisys-opc90",
+      "dcv-simple-pi-system-2020"
+    ]
+  },
+  {
+    "id": "module-database",
+    "term": "Module Database",
+    "aliases": [
+      "MDB",
+      "PI Module Database"
+    ],
+    "definition": "A database on the PI Data Archive. PI ICU writes each interface's batch-file configuration to it, which allows the configuration to be recovered.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "pi-icu"
+    ],
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-admin-it-2017r2"
+    ]
+  },
+  {
+    "id": "advise-point",
+    "term": "Advise point",
+    "aliases": [
+      "advised point"
+    ],
+    "definition": "An interface point that listens for new events pushed by the source rather than being polled. Advise and polled points should not be mixed in the same scan class.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint",
+      "dc.opc"
+    ],
+    "related": [
+      "scan-class",
+      "polled-point"
+    ],
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-rovisys-opc90"
+    ]
+  },
+  {
+    "id": "polled-point",
+    "term": "Polled point",
+    "aliases": [],
+    "definition": "An interface point that is read on a schedule: the interface sends a refresh call for the group of points in the same scan class.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.uniint"
+    ],
+    "related": [
+      "advise-point",
+      "scan-class"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "uniint-failover-phase-1",
+    "term": "UniInt Phase 1 failover",
+    "aliases": [
+      "Phase 1 failover",
+      "Phase I failover"
+    ],
+    "definition": "UniInt interface failover that synchronises the two interfaces through the data source itself. The source must serve two interfaces at once and the interface must support outputs.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "uniint-failover-phase-2",
+      "failover-interface"
+    ],
+    "sources": [
+      "dcv-ftsh-h2h-uniint",
+      "dcv-pohl-interfaces-2008"
+    ]
+  },
+  {
+    "id": "uniint-failover-phase-2",
+    "term": "UniInt Phase 2 failover",
+    "aliases": [
+      "Phase 2 failover",
+      "UFO2"
+    ],
+    "definition": "UniInt interface failover that synchronises the two interfaces through a shared file named by /UFO_Sync. It supports hot, warm and cold configurations.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "ufo-sync-file",
+      "hot-failover",
+      "warm-failover",
+      "cold-failover"
+    ],
+    "sources": [
+      "dcv-ftsh-h2h-uniint",
+      "dcv-citect-ufo2-ininet"
+    ]
+  },
+  {
+    "id": "hot-failover",
+    "term": "Hot failover",
+    "aliases": [
+      "UFO_Type=HOT"
+    ],
+    "definition": "A Phase 2 failover configuration where the backup interface is connected and collecting, giving no data loss for a single point of failure.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "warm-failover",
+      "cold-failover"
+    ],
+    "sources": [
+      "dcv-ftsh-h2h-uniint",
+      "dcv-lonsberry-arch-2011"
+    ]
+  },
+  {
+    "id": "warm-failover",
+    "term": "Warm failover",
+    "aliases": [
+      "UFO_Type=WARM"
+    ],
+    "definition": "A Phase 2 failover configuration in which a small period of data loss may occur during failover (summarised by AVEVA as \"maybe data loss\").",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "hot-failover",
+      "cold-failover"
+    ],
+    "sources": [
+      "dcv-ftsh-h2h-uniint",
+      "dcv-lonsberry-arch-2011"
+    ]
+  },
+  {
+    "id": "cold-failover",
+    "term": "Cold failover",
+    "aliases": [
+      "UFO_Type=COLD"
+    ],
+    "definition": "The default Phase 2 failover type, in which some data is lost during failover. On the ActiveID tag, Location5 sets the cold failover retry interval in minutes.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "hot-failover",
+      "warm-failover"
+    ],
+    "sources": [
+      "dcv-citect-ufo2-ininet",
+      "dcv-bacnet-ufo2-muhaz",
+      "dcv-lonsberry-arch-2011"
+    ]
+  },
+  {
+    "id": "ufo-sync-file",
+    "term": "Failover sync file",
+    "aliases": [
+      "/UFO_Sync",
+      "shared failover file"
+    ],
+    "definition": "The shared file used by Phase 2 failover, named by /UFO_Sync. Its default name is executablename_pointsource_interfaceID.dat and the first interface to start creates it.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "uniint-failover-phase-2",
+      "ufo-active-id"
+    ],
+    "sources": [
+      "dcv-citect-ufo2-ininet",
+      "dcv-bacnet-ufo2-muhaz"
+    ]
+  },
+  {
+    "id": "ufo-active-id",
+    "term": "ActiveID",
+    "aliases": [
+      "UFO2_ACTIVEID"
+    ],
+    "definition": "The failover control value naming which interface failover ID is currently primary. Changing it manually, for example from 1 to 2, forces a failover.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "ufo-sync-file",
+      "ufo-state"
+    ],
+    "sources": [
+      "dcv-bacnet-ufo2-muhaz"
+    ]
+  },
+  {
+    "id": "ufo-state",
+    "term": "UFO_State",
+    "aliases": [
+      "UFO2_STATE"
+    ],
+    "definition": "The failover state digital set: 0 Off, 1 Backup No Data Source, 2 Backup No PI Connection, 3 Backup, 4 Transition, 5 Primary.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.failover"
+    ],
+    "related": [
+      "ufo-active-id"
+    ],
+    "sources": [
+      "dcv-citect-ufo2-ininet"
+    ]
+  },
+  {
+    "id": "bufserv",
+    "term": "Bufserv",
+    "aliases": [
+      "API Buffer Server",
+      "PI API Buffer Server"
+    ],
+    "definition": "The older OSIsoft buffering service. It buffers only PI API data but runs on non-Windows platforms; pibufutil is its command-line utility. Use it only for PI Servers older than 3.4.375 or non-Windows interface nodes.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.buffering"
+    ],
+    "related": [
+      "pibufss"
+    ],
+    "sources": [
+      "dcv-techsupport-tools",
+      "dcv-admin-it-2017r2"
+    ]
+  },
+  {
+    "id": "buffer-snapshot-table",
+    "term": "Buffer snapshot table",
+    "aliases": [
+      "pibufmem file"
+    ],
+    "definition": "pibufmem_<GUID>.dat, the PIBufss file that holds the most recent value of each buffered point. PI SDK and AF SDK applications write directly into it.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.buffering"
+    ],
+    "related": [
+      "buffer-queue-file",
+      "compression-marking"
+    ],
+    "sources": [
+      "dcv-admin-it-2017r2",
+      "dcv-pi-sys-admin-workbook"
+    ]
+  },
+  {
+    "id": "n-way-buffering",
+    "term": "N-way buffering",
+    "aliases": [
+      "n-way buffering"
+    ],
+    "definition": "Buffering that sends data independently to every member of a PI collective. PIBufss keeps a separate queue for each member, so one member being down does not delay the others.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.buffering"
+    ],
+    "related": [
+      "pibufss",
+      "buffer-queue-file"
+    ],
+    "sources": [
+      "dcv-pisquare-nway"
+    ]
+  },
+  {
+    "id": "pibufss-command",
+    "term": "pibufss command line",
+    "aliases": [
+      "pibufss -cfg",
+      "pibufss -qs",
+      "pibufss -bc"
+    ],
+    "definition": "The PIBufss command-line utility: -cfg shows overall buffering status, -qs shows buffer queue statistics, and -bc stop / -bc start stop and restart sending.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.buffering"
+    ],
+    "related": [
+      "pibufss",
+      "buffering-manager"
+    ],
+    "sources": [
+      "dcv-pi-sys-admin-workbook"
+    ]
+  },
+  {
+    "id": "pi-interface-for-opc-da",
+    "term": "PI Interface for OPC DA",
+    "aliases": [
+      "OPC DA interface",
+      "OPCInt"
+    ],
+    "definition": "The UniInt interface that transfers data between an OPC DA server and the PI System. Each instance connects to a single OPC server; it is certified by the OPC Foundation.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "opc-instrumenttag",
+      "piopctool",
+      "uniint"
+    ],
+    "sources": [
+      "dcv-techsupport-opcda"
+    ]
+  },
+  {
+    "id": "pi-connector-for-opc-ua",
+    "term": "PI Connector for OPC UA",
+    "aliases": [
+      "OPC UA connector"
+    ],
+    "definition": "A PI Connector that reads OPC UA servers, can auto-discover endpoints and auto-create PI points and AF elements. Version 1.3.x.x added Tag Only mode and engineering units.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "aveva-adapter-for-opc-ua",
+      "pi-connector"
+    ],
+    "sources": [
+      "dcv-iuliano-ems-2016",
+      "dcv-saboowala-connectivity-2019"
+    ]
+  },
+  {
+    "id": "aveva-adapter-for-opc-ua",
+    "term": "AVEVA Adapter for OPC UA",
+    "aliases": [
+      "OPC UA adapter"
+    ],
+    "definition": "A lightweight AVEVA Adapter that collects OPC UA data and metadata and sends it by OMF to endpoints such as PI Web API, Edge Data Store or AVEVA Data Hub. It supports failover.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc",
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "pi-connector-for-opc-ua",
+      "aveva-adapter"
+    ],
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-felts-connectivity-2023"
+    ]
+  },
+  {
+    "id": "opc-instrumenttag",
+    "term": "InstrumentTag (OPC)",
+    "aliases": [
+      "OPC ItemID"
+    ],
+    "definition": "For the OPC DA interface, the PI point attribute that holds the OPC ItemID to read, for example CIU-A.Import.AIL_point.OUT.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "pi-interface-for-opc-da",
+      "instrument-tag"
+    ],
+    "sources": [
+      "dcv-rovisys-opc90"
+    ]
+  },
+  {
+    "id": "opc-watchdog-point",
+    "term": "Watchdog point (OPC)",
+    "aliases": [],
+    "definition": "An OPC DA point type, selected with Location3 = 3 or 4, used to monitor server health for server-level failover.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "pi-interface-for-opc-da"
+    ],
+    "sources": [
+      "dcv-rovisys-opc90"
+    ]
+  },
+  {
+    "id": "piopctool",
+    "term": "PIOPCTool",
+    "aliases": [],
+    "definition": "A tool installed with the PI Interface for OPC DA for installing and verifying the connection to an OPC server.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "pi-interface-for-opc-da",
+      "opc-tag-configurator"
+    ],
+    "sources": [
+      "dcv-techsupport-opcda"
+    ]
+  },
+  {
+    "id": "opc-tag-configurator",
+    "term": "OPC Tag Configurator",
+    "aliases": [],
+    "definition": "A tool that creates PI points from the tags in an OPC server, used with the PI Interface for OPC DA.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.opc"
+    ],
+    "related": [
+      "piopctool"
+    ],
+    "sources": [
+      "dcv-techsupport-opcda"
+    ]
+  },
+  {
+    "id": "pi-ufl",
+    "term": "PI_UFL",
+    "aliases": [
+      "Universal File and Stream Loader",
+      "UFL interface"
+    ],
+    "definition": "The PI interface that parses ASCII files, serial (RS-232) streams or POP3 e-mail into PI using a configuration file of field and message rules. It replaces the PI Batch File interface.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors"
+    ],
+    "related": [
+      "ufl-configuration-file",
+      "pi-connector-for-ufl"
+    ],
+    "sources": [
+      "dcv-ufl-studylib"
+    ]
+  },
+  {
+    "id": "ufl-configuration-file",
+    "term": "UFL configuration file",
+    "aliases": [
+      "UFL INI file",
+      "/cf file"
+    ],
+    "definition": "The INI file named by PI_UFL's mandatory /cf parameter, with sections [INTERFACE], [PLUG-IN], [SETTING], [FIELD] and [MSG]. The first three must not come after [FIELD].",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors"
+    ],
+    "related": [
+      "pi-ufl"
+    ],
+    "sources": [
+      "dcv-ufl-studylib"
+    ]
+  },
+  {
+    "id": "pi-connector-for-ufl",
+    "term": "PI Connector for UFL",
+    "aliases": [
+      "UFL connector"
+    ],
+    "definition": "A PI Connector that reads files and REST input, supports secure REST endpoints and user-defined templates and event frames. Version 1.2 added native JSON parsing.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors"
+    ],
+    "related": [
+      "pi-ufl",
+      "pi-connector"
+    ],
+    "sources": [
+      "dcv-iuliano-ems-2016",
+      "dcv-coen-connectivity-2017"
+    ]
+  },
+  {
+    "id": "pi-interface-for-modbus",
+    "term": "PI Interface for Modbus Ethernet PLC",
+    "aliases": [
+      "Modbus interface"
+    ],
+    "definition": "A UniInt interface that reads data from a PLC on a periodic or event basis and sends outputs on an event basis. It supports Phase 2 failover.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors"
+    ],
+    "related": [
+      "uniint"
+    ],
+    "sources": [
+      "dcv-modbus-manualzz"
+    ]
+  },
+  {
+    "id": "sparkplug-b",
+    "term": "Sparkplug B",
+    "aliases": [
+      "MQTT Sparkplug"
+    ],
+    "definition": "An MQTT payload specification. The AVEVA Adapter for MQTT can consume it (component type MQTTSparkplugB).",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors",
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "aveva-adapter"
+    ],
+    "sources": [
+      "dcv-uc23-mqtt-eds-workshop"
+    ]
+  },
+  {
+    "id": "iec-61850-connector",
+    "term": "PI Connector for IEC 61850",
+    "aliases": [
+      "IEC 61850 connector"
+    ],
+    "definition": "A PI Connector for substation IEDs that collects asset information and real-time measurements from the station bus; it also supports IEC 61400-25 for wind.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.other-connectors"
+    ],
+    "related": [
+      "pi-connector"
+    ],
+    "sources": [
+      "dcv-coen-connectivity-2017",
+      "dcv-stedin-61850-2017"
+    ]
+  },
+  {
+    "id": "pi-data-collection-manager",
+    "term": "PI Data Collection Manager",
+    "aliases": [
+      "DCM"
+    ],
+    "definition": "The central web tool for registering and configuring 2nd-generation PI Connectors, the PI Connector Relay and their destinations.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.relay-dcm"
+    ],
+    "related": [
+      "pi-connector-relay"
+    ],
+    "sources": [
+      "dcv-coen-connectivity-2017",
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "first-generation-pi-connector",
+    "term": "1st-generation PI Connector",
+    "aliases": [
+      "PI Connector (1st gen)"
+    ],
+    "definition": "A PI Connector that sends data directly to the PI Data Archive, with automatic point creation, and sends the source structure to AF.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.relay-dcm"
+    ],
+    "related": [
+      "second-generation-pi-connector",
+      "pi-connector"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "second-generation-pi-connector",
+    "term": "2nd-generation PI Connector",
+    "aliases": [
+      "PI Connector (2nd gen)"
+    ],
+    "definition": "A PI Connector that sends data through the PI Connector Relay and is configured with PI Data Collection Manager. It has no failover support.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.relay-dcm"
+    ],
+    "related": [
+      "first-generation-pi-connector",
+      "pi-connector-relay"
+    ],
+    "sources": [
+      "dcv-arch-workbook"
+    ]
+  },
+  {
+    "id": "omf-producer-token",
+    "term": "Producer token",
+    "aliases": [
+      "ProducerToken"
+    ],
+    "definition": "An identifier sent in an OMF message header. Early OMF applications sending through the PI Connector Relay used a producer token and Relay Ingress URL taken from Data Collection Manager.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.relay-dcm",
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "pi-connector-relay",
+      "omf"
+    ],
+    "sources": [
+      "dcv-foglamp-omf",
+      "dcv-chudnovskiy-ocs-2017"
+    ]
+  },
+  {
+    "id": "history-recovery",
+    "term": "History recovery",
+    "aliases": [
+      "PI to PI history recovery"
+    ],
+    "definition": "The PI to PI step, run at startup and after a lost connection is restored, that reads archive data from the source for the outage window and writes it to the target.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.pi-to-pi"
+    ],
+    "related": [
+      "pi-to-pi-interface",
+      "pi-to-pi-exception-data"
+    ],
+    "sources": [
+      "dcv-pitopi-manualzz"
+    ]
+  },
+  {
+    "id": "pi-to-pi-exception-data",
+    "term": "Exception data (PI to PI)",
+    "aliases": [],
+    "definition": "Source data that has only passed exception testing. PI to PI can read it faster, from memory, but unlike archive data it has not been compressed.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.pi-to-pi"
+    ],
+    "related": [
+      "history-recovery",
+      "exception-reporting"
+    ],
+    "sources": [
+      "dcv-pitopi-manualzz"
+    ]
+  },
+  {
+    "id": "pi-system-connector",
+    "term": "PI System Connector",
+    "aliases": [],
+    "definition": "A PI Connector that transfers data between PI Systems, supporting secure cross-domain transfer, archive replication and backfilling. AVEVA's 2023 roadmap lists it as the migration path for PItoPI and other interfaces.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.pi-to-pi"
+    ],
+    "related": [
+      "pi-to-pi-interface",
+      "pi-connector"
+    ],
+    "sources": [
+      "dcv-iuliano-ems-2016",
+      "dcv-felts-connectivity-2023"
+    ]
+  },
+  {
+    "id": "aveva-adapter",
+    "term": "AVEVA Adapter",
+    "aliases": [
+      "adapter",
+      "AVEVA Adapters"
+    ],
+    "definition": "A lightweight, off-the-shelf data collector that gathers time-series data and metadata from a device protocol (OPC UA, MQTT, Modbus TCP, BACnet, DNP3 and others) and sends it by OMF to PI Web API, Edge Data Store or AVEVA Data Hub.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "edge-data-store",
+      "omf",
+      "adapter-facet"
+    ],
+    "sources": [
+      "dcv-arch-workbook",
+      "dcv-felts-connectivity-2023"
+    ]
+  },
+  {
+    "id": "omf",
+    "term": "OMF",
+    "aliases": [
+      "OSIsoft Message Format",
+      "Open Message Format"
+    ],
+    "definition": "A JSON message specification of type, container and data messages, with headers such as messagetype and action, used to ingest data into PI Web API, Edge Data Store or AVEVA Data Hub. It is limited to data ingress.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds",
+      "dc.cloud"
+    ],
+    "related": [
+      "omf-type",
+      "omf-container",
+      "omf-message-types",
+      "omf-endpoint"
+    ],
+    "sources": [
+      "dcv-felts-edge-2017",
+      "dcv-github-datahub-omf-ingress"
+    ]
+  },
+  {
+    "id": "omf-type",
+    "term": "OMF type",
+    "aliases": [
+      "Type message"
+    ],
+    "definition": "The OMF message that defines the schema of readings using JSON Schema, including an index property (for PI, a single DateTime).",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "omf",
+      "omf-container"
+    ],
+    "sources": [
+      "dcv-felts-edge-2017",
+      "dcv-github-osi-samples-omf"
+    ]
+  },
+  {
+    "id": "omf-container",
+    "term": "OMF container",
+    "aliases": [
+      "Container message"
+    ],
+    "definition": "An OMF object, identified by id, that references a typeid and groups readings of that type. It becomes a PI point in PI or an SDS stream in EDS and Data Hub.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds",
+      "dc.cloud"
+    ],
+    "related": [
+      "omf",
+      "omf-type"
+    ],
+    "sources": [
+      "dcv-chudnovskiy-ocs-2017",
+      "dcv-github-adh-omf-ingress"
+    ]
+  },
+  {
+    "id": "adapter-facet",
+    "term": "Facet (adapter configuration)",
+    "aliases": [
+      "configuration facet"
+    ],
+    "definition": "A named section of an adapter's or EDS's configuration, such as DataSource, DataSelection, Buffering or HealthEndpoints. Some facets, such as Diagnostics and FailoverState, are read-only.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "aveva-adapter",
+      "edgecmd"
+    ],
+    "sources": [
+      "dcv-uc23-mqtt-eds-workshop"
+    ]
+  },
+  {
+    "id": "edgecmd",
+    "term": "EdgeCmd",
+    "aliases": [],
+    "definition": "A command-line utility, installed separately on Linux or Windows, that configures Edge Data Store and adapters by translating commands into REST calls (for example edgecmd get system).",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "edge-data-store",
+      "adapter-facet"
+    ],
+    "sources": [
+      "dcv-uc23-mqtt-eds-workshop"
+    ]
+  },
+  {
+    "id": "omf-connection",
+    "term": "OMF connection",
+    "aliases": [],
+    "definition": "A Data Hub (CONNECT data services) object that maps client-credential IDs to a namespace for OMF ingress. It must be Active before use, and a client ID may map to at most one connection per namespace.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.cloud"
+    ],
+    "related": [
+      "omf",
+      "cds-namespace",
+      "client-credentials"
+    ],
+    "sources": [
+      "dcv-github-adh-omf-ingress"
+    ]
+  },
+  {
+    "id": "omf-operation-id",
+    "term": "Operation-Id",
+    "aliases": [
+      "OperationId"
+    ],
+    "definition": "The identifier returned with a 202 response from Data Hub OMF ingress, and included in error bodies alongside Error, Reason, Resolution and Parameters, to trace a request.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.cloud"
+    ],
+    "related": [
+      "omf-connection",
+      "omf"
+    ],
+    "sources": [
+      "dcv-github-datahub-omf-ingress"
+    ]
+  },
+  {
+    "id": "eds-egress",
+    "term": "EDS egress",
+    "aliases": [
+      "egress rules"
+    ],
+    "definition": "Edge Data Store configuration that transfers stored data onward to a PI Server or to the cloud (OCS, now CONNECT data services) using configurable rules.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.cloud",
+      "dc.adapters-eds"
+    ],
+    "related": [
+      "edge-data-store",
+      "connect-data-services"
+    ],
+    "sources": [
+      "dcv-saboowala-connectivity-2019",
+      "dcv-eds-docs-github"
+    ]
+  },
+  {
+    "id": "osisoft-cloud-services",
+    "term": "OSIsoft Cloud Services",
+    "aliases": [
+      "OCS"
+    ],
+    "definition": "OSIsoft's original cloud data service, offering a multi-tenant design and REST API access. In 2022 AVEVA said OCS customers would have a migration path to AVEVA Data Hub.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.cloud"
+    ],
+    "related": [
+      "aveva-data-hub",
+      "connect-data-services"
+    ],
+    "sources": [
+      "ops2-uc22-carasso-odi",
+      "dcv-kwan-roadmap-2016"
+    ]
+  },
+  {
+    "id": "aveva-data-hub",
+    "term": "AVEVA Data Hub",
+    "aliases": [
+      "ADH",
+      "Data Hub"
+    ],
+    "definition": "AVEVA's cloud time-series and asset data service, successor to OSIsoft Cloud Services. It was renamed CONNECT data services on 11 July 2024.",
+    "domain": "data-collection",
+    "coverage": [
+      "dc.cloud"
+    ],
+    "related": [
+      "osisoft-cloud-services",
+      "connect-data-services"
+    ],
+    "sources": [
+      "ops2-aveva-dh-to-cds-blog",
+      "ops2-uc22-carasso-odi"
+    ]
+  }
+]

@@ -1,0 +1,229 @@
+[
+  {
+    "id": "q-other-ufl-sources",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 1,
+    "prompt": "Which data-source plug-ins does PI_UFL provide? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "ASCII files (asciifiles.dll)" },
+      { "id": "b", "text": "Serial port (RS-232)" },
+      { "id": "c", "text": "POP3 e-mail" },
+      { "id": "d", "text": "OPC DA" },
+      { "id": "e", "text": "Modbus TCP" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "PI_UFL reads ASCII stream sources through plug-ins for ASCII files, serial port (RS-232) and POP3 e-mail. OPC DA and Modbus have their own interfaces.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl"],
+    "sources": ["dcv-ufl-studylib"]
+  },
+  {
+    "id": "q-other-ufl-section-order",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "In a PI_UFL configuration file, which rule about section order does the manual state?",
+    "options": [
+      { "id": "a", "text": "Do not place [INTERFACE], [PLUG-IN] or [SETTING] after the [FIELD] section" },
+      { "id": "b", "text": "[MSG] must be the first section" },
+      { "id": "c", "text": "Sections can be in any order" },
+      { "id": "d", "text": "[FIELD] must come before [PLUG-IN]" }
+    ],
+    "answer": "a",
+    "explanation": "The manual warns: \"Do not place any of the above stated sections ([INTERFACE],[PLUG-IN],[SETTING]) after the [FIELD] section!\"",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl"],
+    "sources": ["dcv-ufl-studylib"]
+  },
+  {
+    "id": "q-other-interface-exclusive",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "AVEVA's 2023 roadmap says PI Interfaces have exclusive connectivity to the PI Data Archive for which sources? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "OPC DA" },
+      { "id": "b", "text": "OPC HDA" },
+      { "id": "c", "text": "UFL" },
+      { "id": "d", "text": "RDBMS" },
+      { "id": "e", "text": "PI-To-PI" },
+      { "id": "f", "text": "MQTT" }
+    ],
+    "answers": ["a", "b", "c", "d", "e"],
+    "explanation": "The roadmap lists OPC DA, OPC HDA, UFL, RDBMS and PI-To-PI as interface-exclusive. MQTT is served by the AVEVA Adapter for MQTT.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["roadmap"],
+    "sources": ["dcv-felts-connectivity-2023"]
+  },
+  {
+    "id": "q-other-ufl-cf",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "Which mandatory PI_UFL startup parameter gives the full path to the configuration file? (Type the parameter including the slash, without =.)",
+    "accepted": ["/cf"],
+    "caseSensitive": false,
+    "explanation": "The configuration file is referenced by the mandatory /cf=full_path parameter.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl"],
+    "sources": ["dcv-ufl-studylib"]
+  },
+  {
+    "id": "q-other-ufl-replaces",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "PI_UFL was introduced as a replacement for which older interface?",
+    "options": [
+      { "id": "a", "text": "The PI Batch File interface" },
+      { "id": "b", "text": "The PI Interface for OPC DA" },
+      { "id": "c", "text": "PI to PI" },
+      { "id": "d", "text": "The RDBMS interface" }
+    ],
+    "answer": "a",
+    "explanation": "The UFL manual describes PI_UFL as \"a replacement for the PI Batch File interface\".",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl"],
+    "sources": ["dcv-ufl-studylib"]
+  },
+  {
+    "id": "q-other-connector-features",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "Which of these can PI Connectors do, according to OSIsoft's 2016 description? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Auto-discover the data source" },
+      { "id": "b", "text": "Auto-create AF elements and linked PI points" },
+      { "id": "c", "text": "Store events in event frames" },
+      { "id": "d", "text": "Update when the source changes" },
+      { "id": "e", "text": "Apply ExcDev exception settings" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "Connectors auto-discover the source, build a reference model, auto-create AF elements and linked points, store events in event frames and update with source changes. Exception settings are an interface feature; connectors do not apply them.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["connectors"],
+    "sources": ["dcv-iuliano-ems-2016"]
+  },
+  {
+    "id": "q-other-connector-point-class",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 3,
+    "prompt": "Which point class do points created by PI Connectors use?",
+    "options": [
+      { "id": "a", "text": "Base" },
+      { "id": "b", "text": "Classic" },
+      { "id": "c", "text": "Totalizer" },
+      { "id": "d", "text": "Alarm" }
+    ],
+    "answer": "a",
+    "explanation": "The course notes that points created by PI Connectors use the Base point class.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["connectors"],
+    "sources": ["dcv-simple-pi-system-2020"]
+  },
+  {
+    "id": "q-other-sparkplug",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "prompt": "An IIoT team publishes plant data to an MQTT broker using Sparkplug B payloads. Which AVEVA product consumes them?",
+    "options": [
+      { "id": "a", "text": "The AVEVA Adapter for MQTT, running with Edge Data Store" },
+      { "id": "b", "text": "PI_UFL with the POP3 plug-in" },
+      { "id": "c", "text": "The PI Interface for OPC DA" },
+      { "id": "d", "text": "PI to PI" }
+    ],
+    "answer": "a",
+    "explanation": "The AVEVA Adapter for MQTT (component type MQTTSparkplugB) consumes Sparkplug B and ran with EDS on Linux in the AVEVA World 2023 workshop.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["mqtt"],
+    "sources": ["dcv-uc23-mqtt-eds-workshop"]
+  },
+  {
+    "id": "q-other-ufl-json",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 3,
+    "prompt": "What did the PI Connector for UFL 1.2 (2017) add?",
+    "options": [
+      { "id": "a", "text": "Native JSON parsing, a ForEach construct and multi-parameter REST client calls" },
+      { "id": "b", "text": "Support for OPC UA servers" },
+      { "id": "c", "text": "UniInt Phase 1 failover" },
+      { "id": "d", "text": "A POP3 e-mail plug-in" }
+    ],
+    "answer": "a",
+    "explanation": "The 2017 connectivity deck lists native JSON parsing, a ForEach construct and multi-parameter REST client calls as new in UFL connector 1.2.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl"],
+    "sources": ["dcv-coen-connectivity-2017"]
+  },
+  {
+    "id": "q-other-61850",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 2,
+    "scenario": "A grid operator wants to collect both asset information and real-time measurements from substation IEDs on the station bus, and to add or remove IEDs easily.",
+    "prompt": "Which PI product family matches what Stedin used for this?",
+    "options": [
+      { "id": "a", "text": "The PI Connector for IEC 61850" },
+      { "id": "b", "text": "PI_UFL reading exported CSV files" },
+      { "id": "c", "text": "The PI Interface for OPC DA" },
+      { "id": "d", "text": "PI DataLink" }
+    ],
+    "answer": "a",
+    "explanation": "Stedin's IEC 61850 connector collected asset information and real-time measurements from the station bus and allowed flexible adding and removal of IEDs and reports.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["iec-61850", "power"],
+    "sources": ["dcv-stedin-61850-2017", "dcv-coen-connectivity-2017"]
+  },
+  {
+    "id": "q-other-ufl-attributes",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 3,
+    "prompt": "Match each PI_UFL point attribute to its use.",
+    "pairs": [
+      { "left": "Location4", "right": "Scan class" },
+      { "left": "Location5", "right": "Whether exception reporting is used" },
+      { "left": "InstrumentTag", "right": "Tag-name alias" },
+      { "left": "Convers", "right": "Multiplier" }
+    ],
+    "explanation": "For PI_UFL, Location4 is the scan class, Location5 controls exception reporting, InstrumentTag is the tag-name alias and Convers is a multiplier.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["ufl", "point-attributes"],
+    "sources": ["dcv-ufl-studylib"]
+  },
+  {
+    "id": "q-other-modbus-basis",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.other-connectors"],
+    "difficulty": 1,
+    "prompt": "How does the PI Interface for Modbus Ethernet PLC read data, according to its 4.0.7.x manual?",
+    "options": [
+      { "id": "a", "text": "On a periodic or event basis, with outputs sent on an event basis" },
+      { "id": "b", "text": "Only by reading exported text files" },
+      { "id": "c", "text": "Only by subscribing to an MQTT broker" },
+      { "id": "d", "text": "Only once a day" }
+    ],
+    "answer": "a",
+    "explanation": "The manual says it is designed to read data from a PLC on a periodic or event basis and sends outputs on an event basis. It also supports Phase 2 failover.",
+    "lessonId": "other-interfaces-and-connectors",
+    "tags": ["modbus"],
+    "sources": ["dcv-modbus-manualzz"]
+  }
+]

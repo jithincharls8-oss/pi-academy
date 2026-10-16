@@ -1,0 +1,546 @@
+[
+  {
+    "id": "q-webapi-basics-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "A script can read values from PI Web API, but every POST to /streams/{webId}/value is rejected. GET requests work. What is the most likely cause?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The request has no X-Requested-With header"
+      },
+      {
+        "id": "b",
+        "text": "The script uses HTTPS instead of HTTP"
+      },
+      {
+        "id": "c",
+        "text": "The Indexed Search crawler has not indexed the point"
+      },
+      {
+        "id": "d",
+        "text": "The WebID is a Full WebID instead of PathOnly"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Web API's CSRF defence requires an X-Requested-With header (any value) on POST, PUT, PATCH and DELETE. GET is not affected, which matches the symptom. PI Web API has no plain-HTTP option at all, and Indexed Search has nothing to do with writes.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-uc17-secure-webapi"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "Which WebID 2.0 type keeps working after an object is renamed or moved, but becomes invalid once the object is deleted?",
+    "options": [
+      {
+        "id": "a",
+        "text": "IDOnly"
+      },
+      {
+        "id": "b",
+        "text": "PathOnly"
+      },
+      {
+        "id": "c",
+        "text": "Full"
+      },
+      {
+        "id": "d",
+        "text": "LocalIDOnly"
+      }
+    ],
+    "answer": "a",
+    "explanation": "IDOnly encodes only the object IDs, so a rename or move does not affect it, but a deleted object's ID no longer exists. PathOnly is the opposite: it breaks on rename. Full encodes both and is the most resilient. LocalIDOnly is not persistent.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-03",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "PI Web API returns a digital tag's value as \"Value\": {\"Name\": \"Run\", \"Value\": 3}. Which property gives the state text an operator would recognise?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Value.Name"
+      },
+      {
+        "id": "b",
+        "text": "Value.Value"
+      },
+      {
+        "id": "c",
+        "text": "UnitsAbbreviation"
+      },
+      {
+        "id": "d",
+        "text": "Value.IsSystem"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Digital states come back as an object. Name holds the state text (Run) and Value.Value holds the state code (3). Reading the number as if it were the process value is a common mistake.",
+    "sources": [
+      "int-pisquare-afvalue-run"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-04",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the default maxCount for PI Web API recorded-value calls? (number only)",
+    "accepted": [
+      "1000",
+      "1,000"
+    ],
+    "explanation": "The PI World 2020 lab states that maxCount defaults to 1000, so a long time range can be cut short unless you raise it or page through the data.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-05",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each HTTP verb to the operation PI Web API uses it for.",
+    "pairs": [
+      {
+        "left": "GET",
+        "right": "Read"
+      },
+      {
+        "left": "POST",
+        "right": "Create"
+      },
+      {
+        "left": "PUT",
+        "right": "Full update"
+      },
+      {
+        "left": "PATCH",
+        "right": "Partial update"
+      },
+      {
+        "left": "DELETE",
+        "right": "Delete"
+      }
+    ],
+    "explanation": "PI Web API follows REST conventions: GET reads, POST creates, PUT does a full update, PATCH does a partial update and DELETE deletes.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-06",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "Which statements about PI Web API authentication are true? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Basic can be enabled together with Kerberos"
+      },
+      {
+        "id": "b",
+        "text": "Bearer and Kerberos can be enabled together"
+      },
+      {
+        "id": "c",
+        "text": "AVEVA advises against Anonymous authentication"
+      },
+      {
+        "id": "d",
+        "text": "PI Web API can listen on plain HTTP if TLS is disabled"
+      },
+      {
+        "id": "e",
+        "text": "Basic can be enabled together with Bearer"
+      }
+    ],
+    "answers": [
+      "a",
+      "c",
+      "e"
+    ],
+    "explanation": "Bearer (OpenID Connect) and Kerberos cannot be enabled together, while Basic can be combined with either. AVEVA advises against Anonymous. There is no plain-HTTP option: PI Web API requires HTTPS, default port 443.",
+    "sources": [
+      "int-cisa-cm0143",
+      "int-uc17-secure-webapi"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-07",
+    "type": "code",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "Write the request that returns hourly interpolated values for the last day from the stream with WebID {webId}. Use PI time expressions.",
+    "language": "webapi",
+    "accepted": [
+      "GET https://pisrv01/piwebapi/streams/{webId}/interpolated?startTime=*-1d&endTime=*&interval=1h"
+    ],
+    "requiredPatterns": [
+      "/streams/\\{webid\\}/interpolated",
+      "starttime=\\*-1d",
+      "endtime=\\*(&|$)",
+      "interval=1h"
+    ],
+    "forbiddenPatterns": [
+      "/recorded"
+    ],
+    "placeholder": "GET https://pisrv01/piwebapi/...",
+    "explanation": "Interpolated values come from /streams/{webId}/interpolated with startTime, endTime and interval. *-1d means one day ago, * means now and 1h is the interval. /recorded would return archived events instead of evenly spaced values.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-stream-api"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-08",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "An engineer renamed an attribute in PI System Explorer two minutes ago, but a PI Web API call still shows the old name.",
+    "scenario": "A web dashboard reads element metadata through PI Web API. An engineer renamed an attribute in **PI System Explorer** two minutes ago. The dashboard's next GET still returns the old name, although new time-series values arrive normally.\n\nWhat explains this, and what can the dashboard do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Web API's AF cache refreshes every 5 minutes by default; send Cache-Control: no-cache to bypass it"
+      },
+      {
+        "id": "b",
+        "text": "Time-series values are cached for 5 minutes; switch to a channel"
+      },
+      {
+        "id": "c",
+        "text": "The WebID changed; the dashboard must use PathOnly WebIDs"
+      },
+      {
+        "id": "d",
+        "text": "The change will only appear after the PI Data Archive is restarted"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Web API caches AF metadata and refreshes the cache every 5 minutes by default. Sending Cache-Control: no-cache bypasses the AF cache. Time-series data are never cached, and restarting the Data Archive does not affect AF metadata.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-09",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "In which PI Web API release was WebID 2.0 introduced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "2017 R2"
+      },
+      {
+        "id": "b",
+        "text": "1.4 (2015)"
+      },
+      {
+        "id": "c",
+        "text": "2018 SP1"
+      },
+      {
+        "id": "d",
+        "text": "2019"
+      }
+    ],
+    "answer": "a",
+    "explanation": "WebID 2.0, the open format clients can build themselves, arrived in PI Web API 2017 R2, the same release that added AFSearch-style query methods. WebID 1.0 before it was opaque.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-10",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 3,
+    "prompt": "Put the parts of a WebID 2.0 string in order, from the first character onwards.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Type letter, for example F for Full"
+      },
+      {
+        "id": "b",
+        "text": "Version number, 1"
+      },
+      {
+        "id": "c",
+        "text": "Two-character object marker, for example DP"
+      },
+      {
+        "id": "d",
+        "text": "Optional one-character owner marker"
+      },
+      {
+        "id": "e",
+        "text": "Base64url-encoded IDs and/or path"
+      }
+    ],
+    "explanation": "Character 1 is the type letter (F, I, P, L or D), character 2 the version (1), characters 3-4 the object-type marker (for example DP or Em), then an optional one-character owner marker, then the Base64url-encoded IDs and/or path.",
+    "sources": [
+      "int-gh-java-webidinfo"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-11",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each WebID 2.0 object marker to the object type it identifies.",
+    "pairs": [
+      {
+        "left": "DP",
+        "right": "PI Point"
+      },
+      {
+        "left": "Em",
+        "right": "AF element"
+      },
+      {
+        "left": "Ab",
+        "right": "AF attribute"
+      },
+      {
+        "left": "RS",
+        "right": "AF (asset) server"
+      },
+      {
+        "left": "Fm",
+        "right": "Event frame"
+      },
+      {
+        "left": "DS",
+        "right": "PI Data Server"
+      }
+    ],
+    "explanation": "From the PI Developers Club WebID helper: DP = PI Point, Em = element, Ab = attribute, RS = AF (asset) server, Fm = event frame, DS = PI Data Server.",
+    "sources": [
+      "int-gh-pydevclub-webid-helper"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-12",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: PI Web API can be configured to listen on plain HTTP so that clients without certificates can connect.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. PI Web API has no plain-HTTP option; it requires HTTPS with a certificate, and the default listen port is 443.",
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-cisa-cm0143"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-13",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 1,
+    "prompt": "Which PI Web API query parameter trims a response to listed fields, as in ?...=Items.Timestamp;Items.Value ?",
+    "accepted": [
+      "selectedFields",
+      "selectedfields"
+    ],
+    "explanation": "selectedFields takes semicolon-separated dotted paths and returns only those fields, which keeps responses small.",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-14",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "A site wants PI Web API to serve reads only and refuse every write. Which configuration attribute does this?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DisableWrites"
+      },
+      {
+        "id": "b",
+        "text": "RateLimitMaxRequests"
+      },
+      {
+        "id": "c",
+        "text": "MaxReturnedItemsPerCall"
+      },
+      {
+        "id": "d",
+        "text": "CorsMethods"
+      }
+    ],
+    "answer": "a",
+    "explanation": "DisableWrites (Boolean) in the PI Web API configuration element makes the service read-only. RateLimitMaxRequests limits request rate and MaxReturnedItemsPerCall limits result size; CorsMethods only affects cross-origin browser calls.",
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-gh-angular-sample"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-15",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "Which endpoint returns the value a stream had at one exact past time?",
+    "scenario": "An auditor asks: \"What did tag CDT158 read at 06:00 yesterday?\" A developer calls `GET /streams/{webId}/recorded` with no time parameters and reports the first value returned.\n\nWhich call should the developer use instead?",
+    "options": [
+      {
+        "id": "a",
+        "text": "GET /streams/{webId}/recordedattime?time=y+6h"
+      },
+      {
+        "id": "b",
+        "text": "GET /streams/{webId}/end"
+      },
+      {
+        "id": "c",
+        "text": "GET /streams/{webId}/recorded?maxCount=1"
+      },
+      {
+        "id": "d",
+        "text": "GET /streams/{webId}/plot?intervals=1"
+      }
+    ],
+    "answer": "a",
+    "explanation": "/recordedattime?time=... returns the recorded value at a given time. Calling /recorded without a time range returns recent values over a default range, not the value at a specific past time. /end returns the latest value and /plot is for drawing trends.",
+    "sources": [
+      "int-pisquare-afvalue-run",
+      "int-gh-pyclient-stream-api"
+    ],
+    "lessonId": "pi-web-api-basics"
+  },
+  {
+    "id": "q-webapi-basics-16",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.webapi-basics"
+    ],
+    "difficulty": 2,
+    "prompt": "Which properties appear on each item of a PI Web API time-series response? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Timestamp"
+      },
+      {
+        "id": "b",
+        "text": "Good"
+      },
+      {
+        "id": "c",
+        "text": "Questionable"
+      },
+      {
+        "id": "d",
+        "text": "WebId"
+      },
+      {
+        "id": "e",
+        "text": "Substituted"
+      },
+      {
+        "id": "f",
+        "text": "Path"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "e"
+    ],
+    "explanation": "Each timed value has Timestamp, Value, UnitsAbbreviation and the flags Good, Questionable, Substituted and Annotated. WebId and Path belong to objects such as points and stream values, not to individual timed values.",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-timedvalue"
+    ],
+    "lessonId": "pi-web-api-basics"
+  }
+]

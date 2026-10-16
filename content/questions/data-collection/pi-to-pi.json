@@ -1,0 +1,191 @@
+[
+  {
+    "id": "q-pi-to-pi-one-way",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 1,
+    "prompt": "What does the PI to PI interface do?",
+    "options": [
+      { "id": "a", "text": "Copies PI point data one way from a source PI Data Archive to a target" },
+      { "id": "b", "text": "Keeps two Data Archives identical in both directions" },
+      { "id": "c", "text": "Moves AF databases between servers" },
+      { "id": "d", "text": "Copies PI Vision displays between servers" }
+    ],
+    "answer": "a",
+    "explanation": "PI to PI \"copies PI point data from one PI Data Archive to another\", one way from source to target. It does not sync both ways and does not copy AF or displays.",
+    "lessonId": "pi-to-pi",
+    "tags": ["basics"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-history-recovery",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 2,
+    "prompt": "When does PI to PI run history recovery? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "At interface startup" },
+      { "id": "b", "text": "After a lost connection is restored" },
+      { "id": "c", "text": "Every time a user opens a trend on the target" },
+      { "id": "d", "text": "Only when an administrator runs a manual backfill" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "History recovery recovers archive data for periods when the interface was not running. It runs at startup and after a lost connection is restored.",
+    "lessonId": "pi-to-pi",
+    "tags": ["history-recovery"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-not-replication",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 2,
+    "scenario": "A corporate user reports that annotations and batch records visible on the plant PI Server are missing from the corporate PI Server, which is fed by PI to PI. Process values match fine.",
+    "prompt": "What is the explanation?",
+    "options": [
+      { "id": "a", "text": "PI to PI is not a true data replication tool and does not support annotations or batch data" },
+      { "id": "b", "text": "History recovery has not finished yet" },
+      { "id": "c", "text": "The corporate server's compression is too aggressive" },
+      { "id": "d", "text": "PI to PI must be switched to exception data to copy annotations" }
+    ],
+    "answer": "a",
+    "explanation": "The manual says PI to PI \"is not a true data replication tool\" and does not support annotations or batch data. Neither history recovery nor the choice of exception data changes that.",
+    "lessonId": "pi-to-pi",
+    "tags": ["limits"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-exception-data",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 3,
+    "prompt": "Compared with archive data, what is true of exception data read by PI to PI?",
+    "options": [
+      { "id": "a", "text": "It has only passed exception testing: faster to read from memory, but not compressed" },
+      { "id": "b", "text": "It has passed compression, so it is smaller than archive data" },
+      { "id": "c", "text": "It contains only digital states" },
+      { "id": "d", "text": "It is read from the archive files on disk" }
+    ],
+    "answer": "a",
+    "explanation": "\"Exception data has only passed exception testing.\" It is faster to read because it comes from memory, but unlike archive data it is not compressed.",
+    "lessonId": "pi-to-pi",
+    "tags": ["data-types"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-attributes",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 3,
+    "prompt": "Match each PI to PI point attribute to its purpose.",
+    "pairs": [
+      { "left": "InstrumentTag", "right": "Source point name" },
+      { "left": "UserInt1", "right": "Source point ID" },
+      { "left": "Location2", "right": "Timestamp adjustment" },
+      { "left": "Location5", "right": "Write mode" },
+      { "left": "Location4", "right": "Scan class" }
+    ],
+    "explanation": "The manual's attribute list: Location1 instance, Location2 timestamp adjustment, Location3 interface status events, Location4 scan class, Location5 write mode, InstrumentTag source point name and UserInt1 source point ID.",
+    "lessonId": "pi-to-pi",
+    "tags": ["point-attributes"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-failover",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi", "dc.failover"],
+    "difficulty": 2,
+    "prompt": "Which failover options does PI to PI support? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Source PI Data Archive-level failover" },
+      { "id": "b", "text": "UniInt Phase 2 interface-level failover (cold, warm or hot)" },
+      { "id": "c", "text": "Failover through the PI Connector Relay" },
+      { "id": "d", "text": "No failover of any kind" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "PI to PI supports source Data Archive-level failover and UniInt Phase 2 interface-level failover in cold, warm or hot configurations. The Relay has no failover.",
+    "lessonId": "pi-to-pi",
+    "tags": ["failover"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-uses",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 1,
+    "prompt": "Which are documented uses of PI to PI? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Feeding a corporate Data Archive from plant-level Data Archives" },
+      { "id": "b", "text": "Isolating users from the source server for security and load distribution" },
+      { "id": "c", "text": "Making test copies and backups" },
+      { "id": "d", "text": "Migrating ProcessBook displays to PI Vision" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The manual lists isolating users for security and load, backups, test copies and aggregation, with plant-to-corporate as the common case. ProcessBook migration uses the PI Vision Migration Utility.",
+    "lessonId": "pi-to-pi",
+    "tags": ["use-cases"],
+    "sources": ["dcv-pitopi-manualzz", "dcv-admin-it-2017r2"]
+  },
+  {
+    "id": "q-pi-to-pi-placement",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 2,
+    "prompt": "True or false: the PI to PI interface must be installed on the source PI Data Archive server.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. PI to PI can run on a separate node from both the source and the target.",
+    "lessonId": "pi-to-pi",
+    "tags": ["true-false", "architecture"],
+    "sources": ["dcv-pitopi-manualzz"]
+  },
+  {
+    "id": "q-pi-to-pi-roadmap",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 3,
+    "prompt": "In AVEVA's 2023 connectivity roadmap, which migration path is listed for the Batch, PItoPI, OPC DA and OPC A&E interfaces?",
+    "options": [
+      { "id": "a", "text": "PI System Connector" },
+      { "id": "b", "text": "PI Connector Relay" },
+      { "id": "c", "text": "PI_UFL" },
+      { "id": "d", "text": "PI DataLink" }
+    ],
+    "answer": "a",
+    "explanation": "The 2023 roadmap places these interfaces under a \"PI System Connector\" migration path. The 2016 PI System Connector supported secure cross-domain transfer, archive replication and backfilling.",
+    "lessonId": "pi-to-pi",
+    "tags": ["roadmap"],
+    "sources": ["dcv-felts-connectivity-2023", "dcv-iuliano-ems-2016"]
+  },
+  {
+    "id": "q-pi-to-pi-nerc",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.pi-to-pi"],
+    "difficulty": 2,
+    "prompt": "In OSIsoft's NERC CIP best-practice diagrams, how does the business-domain PI Server get its data?",
+    "options": [
+      { "id": "a", "text": "Through PI to PI from a PI Server in the protected domain" },
+      { "id": "b", "text": "Directly from the control system's PLCs" },
+      { "id": "c", "text": "By users typing values into PI Manual Logger" },
+      { "id": "d", "text": "Through PI DataLink" }
+    ],
+    "answer": "a",
+    "explanation": "The 2011 architecture deck shows a business-domain PI Server fed by PI to PI from a protected-domain PI Server, so business users never touch the protected network.",
+    "lessonId": "pi-to-pi",
+    "tags": ["security"],
+    "sources": ["dcv-lonsberry-arch-2011"]
+  }
+]

@@ -1,0 +1,1954 @@
+[
+  {
+    "id": "pi-af-server",
+    "term": "PI AF Server",
+    "aliases": [
+      "AF Server",
+      "AF server"
+    ],
+    "definition": "The server that stores and serves the Asset Framework model. It runs the PI AF Application Service, which keeps its configuration in a Microsoft SQL Server database (PIFD by default). The AF SDK calls it a PISystem.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "pifd",
+      "af-application-service",
+      "af-database",
+      "pisystem"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-intro-dev-tech-2020"
+    ]
+  },
+  {
+    "id": "pifd",
+    "term": "PIFD",
+    "aliases": [
+      "AF SQL database",
+      "PIFD database"
+    ],
+    "definition": "The default name of the Microsoft SQL Server database that holds an AF server's configuration. Its AFSystemID table has exactly one row recording the AF SQL schema version, data store name and ID.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "pi-af-server",
+      "af-application-service"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-orphaned-pifd"
+    ]
+  },
+  {
+    "id": "af-application-service",
+    "term": "PI AF Application Service",
+    "aliases": [
+      "AFService",
+      "AF Application Service"
+    ],
+    "definition": "The Windows service AF clients connect to. It reads and writes the PIFD SQL database; its SQL connection string is the connectString key in AFService.exe.config. Several instances can share one PIFD database.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "pifd",
+      "pi-af-server"
+    ],
+    "sources": [
+      "af-pisquare-orphaned-pifd",
+      "af-architecture-workbook"
+    ]
+  },
+  {
+    "id": "af-database",
+    "term": "AF database",
+    "aliases": [
+      "asset database"
+    ],
+    "definition": "A container on an AF server for elements, templates, event frames and library objects. References between objects work only within one AF database.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "pi-af-server",
+      "configuration-database",
+      "element"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "configuration-database",
+    "term": "Configuration database",
+    "aliases": [],
+    "definition": "The built-in AF database that holds PI System software configuration. AVEVA training says not to use it to organise your assets.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "af-database"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "pi-af-services-kit",
+    "term": "PI AF Services setup kit",
+    "aliases": [
+      "PI AF Services"
+    ],
+    "definition": "The installer, first released in 2016 R2, that bundles PI AF Server, PI Analysis Service and PI Notifications Service. From 2017 R2 only \"PI AF Services\" appears in Add/Remove Programs.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "related": [
+      "pi-af-server",
+      "pi-analysis-service",
+      "pi-notifications-service"
+    ],
+    "sources": [
+      "af-pisquare-af-services-2017"
+    ]
+  },
+  {
+    "id": "element",
+    "term": "Element",
+    "aliases": [
+      "AF element",
+      "asset"
+    ],
+    "definition": "The basic building block of AF: an object representing a physical or logical asset. An element holds attributes but has no data reference and no value of its own. Its name must be unique under its parent.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element-template",
+      "attribute",
+      "af-database"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "element-template",
+    "term": "Element template",
+    "aliases": [
+      "template"
+    ],
+    "definition": "A Library definition of attributes, analyses and other content shared by every element created from it. Changes to the template flow automatically to its elements, except attribute values overridden on an element.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element",
+      "attribute-template",
+      "reset-to-template",
+      "derived-template"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "composition-reference",
+    "term": "Composition reference",
+    "aliases": [],
+    "definition": "An element reference type where deleting the parent element also deletes the child element.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "parent-child-reference",
+      "weak-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "parent-child-reference",
+    "term": "Parent-Child reference",
+    "aliases": [],
+    "definition": "The default element reference type. A child element can have several parents, and substitution parameters resolve according to the path the element is accessed through.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "composition-reference",
+      "weak-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "weak-reference",
+    "term": "Weak reference",
+    "aliases": [],
+    "definition": "An element reference that disappears when the child's last strong parent reference is removed. It lets an element appear in a second hierarchy without owning it.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "parent-child-reference",
+      "composition-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "dev2-gh-afsdk-ex4"
+    ]
+  },
+  {
+    "id": "derived-template",
+    "term": "Derived template",
+    "aliases": [
+      "base template"
+    ],
+    "definition": "A template based on another (base) template, inheriting its attributes. A template hierarchy helps searching and standardisation. AF 2018 SP2 added a \"base template only\" setting that stops a template being used to create elements.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element-template"
+    ],
+    "sources": [
+      "af-murdock-event-frames-2019",
+      "af-pisquare-af2018sp2-highlights"
+    ]
+  },
+  {
+    "id": "reset-to-template",
+    "term": "Reset to Template",
+    "aliases": [],
+    "definition": "The PSE command that removes attribute-level overrides on an element so it follows its template again.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element-template",
+      "convert-to-template"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "convert-to-template",
+    "term": "Convert to Template",
+    "aliases": [],
+    "definition": "The PSE command that creates a template from an existing element. It does not delete or change the element, and it sets the element to use the new template.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element-template",
+      "reset-to-template"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "pi-builder",
+    "term": "PI Builder",
+    "aliases": [
+      "PI Builder add-in"
+    ],
+    "definition": "An Excel add-in for creating and editing AF objects in bulk, for example publishing elements with Edit Mode \"Create Only\". It cannot manage notification rules.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.elements-templates"
+    ],
+    "related": [
+      "element"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-pibuilder-notifications"
+    ]
+  },
+  {
+    "id": "attribute",
+    "term": "Attribute",
+    "aliases": [
+      "AF attribute"
+    ],
+    "definition": "A named property of an element or event frame. It has a value type and a default UOM, and gets its value either statically (no data reference) or from a data reference such as a PI Point.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute-template",
+      "data-reference",
+      "element"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "attribute-template",
+    "term": "Attribute template",
+    "aliases": [],
+    "definition": "The definition of an attribute (name, value type, default UOM, data reference) inside an element or event frame template.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute",
+      "element-template"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "value-type",
+    "term": "Value type",
+    "aliases": [],
+    "definition": "The data type of an attribute. AVEVA training suggests Double for most numbers, String for text and Boolean for 0/1 values. Enumeration sets can also be used as value types.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute",
+      "enumeration-set"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "display-digits",
+    "term": "Display Digits",
+    "aliases": [],
+    "definition": "Attribute property for how many digits to show. Zero or positive sets decimal places; negative sets significant digits. For 23.45: 3 shows 23.450, 1 shows 23.5, -5 (default) shows 23.45.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "default-uom",
+    "term": "Default UOM",
+    "aliases": [
+      "default unit of measure"
+    ],
+    "definition": "The unit of measure an attribute's values are expressed in. Training says always set it; leaving it undefined disables UOM conversion.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "unit-of-measure",
+      "attribute"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "configuration-item",
+    "term": "Configuration item",
+    "aliases": [],
+    "definition": "An attribute flagged as configuration (static set-up) data rather than process data, for example a Product attribute with default HC1500.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "child-attribute",
+    "term": "Child attribute",
+    "aliases": [
+      "sub-attribute"
+    ],
+    "definition": "An attribute nested under another attribute. Analyses reference it with the pipe syntax, for example 'Production Efficiency|Efficiency Target'.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute",
+      "attribute-trait"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "attribute-trait",
+    "term": "Attribute trait",
+    "aliases": [
+      "trait"
+    ],
+    "definition": "A special child attribute with a defined role. Trait types are Limit, Forecast, Location, Reason, Analysis start-trigger and Health.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "limit-traits",
+      "child-attribute"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "limit-traits",
+    "term": "Limit traits",
+    "aliases": [
+      "limits"
+    ],
+    "definition": "The limit trait set: Minimum, Maximum, LoLo, Lo, Hi, HiHi and Target. Configured from the attribute's \"Limits...\" menu, and often used to drive event frame severities.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute-trait",
+      "severity"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "indexed-attribute",
+    "term": "Indexed attribute",
+    "aliases": [],
+    "definition": "An attribute marked for indexing so that searches on its stored values, such as event frame searches, run faster. Index the attributes users search often.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "related": [
+      "attribute",
+      "event-frame-search"
+    ],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "data-reference",
+    "term": "Data reference",
+    "aliases": [
+      "DR"
+    ],
+    "definition": "A plug-in that supplies an attribute's value from somewhere else. Built-in types include PI Point, PI Point Array, Formula, Table Lookup, String Builder and URI Builder; <None> means a static value.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "pi-point-data-reference",
+      "formula-data-reference",
+      "table-lookup-data-reference",
+      "string-builder-data-reference",
+      "analysis-data-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "pi-point-data-reference",
+    "term": "PI Point data reference",
+    "aliases": [
+      "PI Point DR"
+    ],
+    "definition": "The data reference that links an attribute to a PI tag. Settings include Data Server, Tag and Source Units; the tag name can be built with substitution parameters.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference",
+      "substitution-parameter",
+      "config-string"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "formula-data-reference",
+    "term": "Formula data reference",
+    "aliases": [
+      "Formula DR"
+    ],
+    "definition": "A data reference that computes a value from other attributes bound to letter variables, for example D * V. It is not time-weighted and is computed on demand, so it can slow analyses that use it as an input.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-calc-asset-analytics-2022",
+      "af-feedback-pida-825"
+    ]
+  },
+  {
+    "id": "table-lookup-data-reference",
+    "term": "Table Lookup data reference",
+    "aliases": [
+      "Table Lookup DR"
+    ],
+    "definition": "A data reference that returns a value from an AF table with a SQL-like SELECT ... WHERE query. An @ prefix references an attribute value, for example MaterialID = @Product.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "af-table",
+      "rwm-option",
+      "data-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-tlookup-timezones"
+    ]
+  },
+  {
+    "id": "string-builder-data-reference",
+    "term": "String Builder data reference",
+    "aliases": [
+      "String Builder DR"
+    ],
+    "definition": "A data reference that joins literal text and substitution parameters into a string. AF 2018 SP2 added NewLine() for multi-line strings.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference",
+      "substitution-parameter"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-af2018sp2-highlights"
+    ]
+  },
+  {
+    "id": "uri-builder-data-reference",
+    "term": "URI Builder data reference",
+    "aliases": [
+      "URI Builder DR"
+    ],
+    "definition": "A built-in data reference type listed in AVEVA training alongside String Builder. No readable source described how it is configured.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference",
+      "string-builder-data-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "Only the name is sourced; check the AF documentation for what it builds and its settings."
+  },
+  {
+    "id": "analysis-data-reference",
+    "term": "Analysis data reference",
+    "aliases": [
+      "Analysis DR"
+    ],
+    "definition": "An analysis output attribute that is computed only when a client asks for its data, and is not stored. A trended Analysis DR was seen to evaluate at every input event and ignore the analysis schedule; map to a PI Point to store results.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference",
+      "output-attribute"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-pisquare-analysis-dr-plotting"
+    ]
+  },
+  {
+    "id": "substitution-parameter",
+    "term": "Substitution parameter",
+    "aliases": [
+      "substitution string"
+    ],
+    "definition": "A %...% token in a data reference or naming pattern that is replaced at run time, such as %Element%, %Attribute%, %ID%, %Server% or %@Attribute% (the value of another attribute).",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "pi-point-data-reference",
+      "config-string",
+      "naming-pattern"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-substitution-strings"
+    ]
+  },
+  {
+    "id": "config-string",
+    "term": "ConfigString",
+    "aliases": [
+      "configuration string"
+    ],
+    "definition": "The text that stores a data reference's settings, for example \\\\%Server%\\%Element%.%Attribute%.%ID% for a PI Point DR or a SELECT ... WHERE query for a Table Lookup DR.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "data-reference",
+      "substitution-parameter"
+    ],
+    "sources": [
+      "af-feedback-pida-174",
+      "af-pisquare-tlookup-timezones"
+    ]
+  },
+  {
+    "id": "relative-attribute-path",
+    "term": "Relative attribute path",
+    "aliases": [],
+    "definition": "A path that starts from the current object. ..\\ moves up to the parent element and .| moves down to an attribute; without .| the name is read as a child element.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "substitution-parameter"
+    ],
+    "sources": [
+      "af-pisquare-substitution-strings"
+    ]
+  },
+  {
+    "id": "rwm-option",
+    "term": "RWM option",
+    "aliases": [
+      "replacement when missing"
+    ],
+    "definition": "A Table Lookup ConfigString option, ;RWM=<value>, giving the value returned when the query finds no rows, for example ;RWM=%Time% or ;RWM=@Attribute2.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.data-references"
+    ],
+    "related": [
+      "table-lookup-data-reference"
+    ],
+    "sources": [
+      "af-pisquare-tlookup-timezones"
+    ]
+  },
+  {
+    "id": "af-category",
+    "term": "Category",
+    "aliases": [
+      "AF category",
+      "element category",
+      "attribute category"
+    ],
+    "definition": "A Library label applied to objects such as elements, attributes and analyses for grouping and searching. Rollups can filter inputs by Attribute Category or Element Category, and AFSearch supports Category: filters.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "related": [
+      "af-library",
+      "rollup-analysis"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-pisquare-afsearch-2017r2-blog"
+    ]
+  },
+  {
+    "id": "enumeration-set",
+    "term": "Enumeration set",
+    "aliases": [
+      "enum set"
+    ],
+    "definition": "An AF Library list of sequential integer values mapped to names, for example 0 AQ4500, 1 HC1500, 2 WX1200. It can be used as an attribute value type.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "related": [
+      "hierarchical-enumeration-set",
+      "value-type",
+      "reason-code"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "hierarchical-enumeration-set",
+    "term": "Hierarchical enumeration set",
+    "aliases": [],
+    "definition": "An enumeration set (added in AF 2017 R2) whose values have levels separated by |, for example WX1200|Old Recipe. Used for multi-tier reason codes.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.categories-enums"
+    ],
+    "related": [
+      "enumeration-set",
+      "reason-code"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "af-table",
+    "term": "AF table",
+    "aliases": [
+      "table"
+    ],
+    "definition": "A table in the AF Library. Tables can be internal, imported or linked. Internal tables are loaded into each client's memory, and best practice is to keep them under 10,000 rows.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "linked-table",
+      "table-lookup-data-reference"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-tlookup-10000"
+    ]
+  },
+  {
+    "id": "linked-table",
+    "term": "Linked table",
+    "aliases": [
+      "external table"
+    ],
+    "definition": "An AF table whose rows come from an external database through a connection. Since PI 2014, parameterised queries are resolved on the server, so the 10,000-row guideline does not apply.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "af-table"
+    ],
+    "sources": [
+      "af-pisquare-tlookup-10000"
+    ]
+  },
+  {
+    "id": "unit-of-measure",
+    "term": "Unit of measure (UOM)",
+    "aliases": [
+      "UOM"
+    ],
+    "definition": "A unit such as bar, psi or kg/L. AF converts between units only when both are in the same UOM class. UOMs and abbreviations are case-insensitive and must be unique across the whole UOM database.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "uom-class",
+      "uom-database",
+      "default-uom"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-uom-db-scope",
+      "af-pisquare-tagtot-units"
+    ]
+  },
+  {
+    "id": "uom-class",
+    "term": "UOM class",
+    "aliases": [],
+    "definition": "A family of convertible units, such as Volume, Density or Length. Conversion only works between units in the same class.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "unit-of-measure",
+      "uom-group"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-tagtot-units"
+    ]
+  },
+  {
+    "id": "uom-group",
+    "term": "UOM group",
+    "aliases": [
+      "Display UOM Group"
+    ],
+    "definition": "A display preference set such as Metric or US Customary used to choose display units. In PSE the Display UOM Group is set under Tools > Options.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "uom-class",
+      "unit-of-measure"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "uom-database",
+    "term": "UOM database",
+    "aliases": [
+      "units of measure database"
+    ],
+    "definition": "The single repository of units on an AF server, shared by all AF databases on that server. A change made for one database affects every database.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.tables-uom"
+    ],
+    "related": [
+      "unit-of-measure",
+      "af-database"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "event-frame",
+    "term": "Event frame",
+    "aliases": [
+      "EF"
+    ],
+    "definition": "An AF object that bookmarks a time range of interest. It has a name, a start time, an end time and context such as the element it refers to. An active (open) event frame has a start but no end yet.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame-template",
+      "start-trigger",
+      "event-frame-generation-analysis"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-murdock-event-frames-2019",
+      "af-sartorius-simapi-guide"
+    ]
+  },
+  {
+    "id": "event-frame-template",
+    "term": "Event frame template",
+    "aliases": [],
+    "definition": "A Library definition of an event type: the attributes captured for each event and the naming pattern used for new event frames.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame",
+      "naming-pattern"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "naming-pattern",
+    "term": "Naming pattern",
+    "aliases": [],
+    "definition": "A string on an event frame template's General tab with tokens such as %TEMPLATE%, %ELEMENT% and %STARTTIME:yyyy-MM-dd HH:mm:ss% used to name new event frames.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame-template",
+      "substitution-parameter"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "start-trigger",
+    "term": "Start trigger",
+    "aliases": [],
+    "definition": "The Boolean expression in an Event Frame Generation analysis whose change to true opens an event frame, for example 'Best Operating State'=\"Regenerating\".",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame-generation-analysis",
+      "time-true"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "time-true",
+    "term": "Time true",
+    "aliases": [],
+    "definition": "A minimum period a start trigger must stay true before Event Frame Generation creates the event frame. It filters out short blips.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "start-trigger"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "root-cause-event-frame",
+    "term": "Root cause event frame",
+    "aliases": [
+      "root cause window"
+    ],
+    "definition": "An optional child event frame covering a window before the main event starts (five minutes by default), so you can see what led up to the event.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "severity",
+    "term": "Severity",
+    "aliases": [
+      "event frame severity"
+    ],
+    "definition": "The classification of an event frame, such as Minor, Major or Critical, shown by colour in clients like PI Vision's Events pane. An Event Frame Generation analysis can have one start trigger per severity.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame",
+      "limit-traits"
+    ],
+    "sources": [
+      "af-murdock-event-frames-2019",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "reason-code",
+    "term": "Reason code",
+    "aliases": [],
+    "definition": "An annotation, chosen from a multi-tier enumeration set, that operators write back to an event frame to explain why it happened.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "hierarchical-enumeration-set",
+      "event-frame"
+    ],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "output-at-close",
+    "term": "Output at close",
+    "aliases": [
+      "outputs at close"
+    ],
+    "definition": "An Event Frame Generation expression computed when the event frame closes. Each one must be mapped to an event frame attribute (or a PI tag); the mapping order is not the expression order.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame-generation-analysis",
+      "eventframe-function"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "event-frame-search",
+    "term": "Event frame search",
+    "aliases": [],
+    "definition": "A query for event frames by search type, time range, name (with wildcards), element, template and attribute criteria. Indexed attributes make searches on values faster.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame",
+      "indexed-attribute",
+      "afsearch"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "afdiag",
+    "term": "AFDiag",
+    "aliases": [],
+    "definition": "An AF command-line utility. The 2019 event frames deck names it as the tool for bulk deletion of event frames.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.event-frames"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "notification-rule",
+    "term": "Notification rule",
+    "aliases": [],
+    "definition": "The AF 2016 R2+ object that sends messages to subscribers when event frames matching its criteria start, end, or both. Notification rules cannot be managed in PI Builder.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "subscription",
+      "delivery-channel",
+      "event-frame"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-kwan-getting-more-aa-2019",
+      "af-pisquare-pibuilder-notifications"
+    ]
+  },
+  {
+    "id": "delivery-channel",
+    "term": "Delivery channel",
+    "aliases": [],
+    "definition": "The transport plug-in for notifications. Since PI Server 2016 R2 only Email and Web Service channels are supported; custom delivery channels are not.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "delivery-endpoint",
+      "notification-rule"
+    ],
+    "sources": [
+      "af-pisquare-notif-sms"
+    ]
+  },
+  {
+    "id": "delivery-endpoint",
+    "term": "Delivery endpoint",
+    "aliases": [],
+    "definition": "A contact's address on a delivery channel, such as an e-mail address or a web service URL. Dynamic endpoints need AF 2017 R2 or later.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "delivery-channel",
+      "subscription"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-learning-configuring-analytics-course"
+    ]
+  },
+  {
+    "id": "subscription",
+    "term": "Subscription",
+    "aliases": [],
+    "definition": "The link between a notification rule and a contact's delivery endpoint. Set up in View/Edit Subscriptions by dragging an endpoint in, then checking in.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "notification-rule",
+      "delivery-endpoint"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "delivery-format",
+    "term": "Delivery format",
+    "aliases": [
+      "notification format"
+    ],
+    "definition": "The template for a notification's message content, managed with Manage Formats, for example a copy of \"Global Default Email\" with extra links.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "notification-rule"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "pi-notifications-service",
+    "term": "PI Notifications Service",
+    "aliases": [],
+    "definition": "The Windows service that runs notification rules. It runs as NT SERVICE\\PINotificationsService and logs to pinotifications-log.txt under %programdata%\\osisoft\\pinotifications\\logs. AVEVA recommends Windows Server Failover Clustering for its HA.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "notification-rule",
+      "windows-failover-clustering"
+    ],
+    "sources": [
+      "af-pisquare-notif-service-not-running",
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "notifications-migration-tool",
+    "term": "PI Notifications Migration Tool",
+    "aliases": [],
+    "definition": "The utility in %pihome%\\Notifications that converts legacy PI Notifications 2012 to notification rules. Needed only if 2012 notifications were used; some legacy features do not migrate.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "legacy-notifications",
+      "notification-rule"
+    ],
+    "sources": [
+      "af-pisquare-notif-migration",
+      "af-pisquare-notif-service-not-running"
+    ]
+  },
+  {
+    "id": "legacy-notifications",
+    "term": "Legacy notifications (2012)",
+    "aliases": [
+      "PI Notifications 2012"
+    ],
+    "definition": "The older notifications product built on AF plug-ins, which used 7 PI tags per notification. An AF Server 2.8.5 (2016 R2) no longer supports it.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.notifications"
+    ],
+    "related": [
+      "notifications-migration-tool",
+      "notification-rule"
+    ],
+    "sources": [
+      "af-pisquare-notif-service-not-running",
+      "af-pisquare-notification-tags-109",
+      "af-notifications-2009-deck"
+    ]
+  },
+  {
+    "id": "asset-analytics",
+    "term": "Asset Analytics",
+    "aliases": [
+      "AF analytics",
+      "AF analyses"
+    ],
+    "definition": "The AF calculation engine. Analyses are configured on elements or templates and run by PI Analysis Service. It is designed for streaming calculations, not ad-hoc queries or bulk extraction.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "pi-analysis-service",
+      "expression-analysis"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-kwan-getting-more-aa-2019"
+    ]
+  },
+  {
+    "id": "expression-analysis",
+    "term": "Expression analysis",
+    "aliases": [],
+    "definition": "An analysis type that uses Performance Equation syntax over several rows. Each row is a variable that later rows can use, and variables can be mapped to output attributes.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "asset-analytics",
+      "performance-equation",
+      "output-attribute"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "rollup-analysis",
+    "term": "Rollup analysis",
+    "aliases": [
+      "rollup"
+    ],
+    "definition": "An analysis that aggregates attributes from child elements or the element itself, chosen by name, category or template, with Sum, Average, Minimum, Maximum, Count or Median. Outputs must be PI Points.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "asset-analytics",
+      "af-category"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "event-frame-generation-analysis",
+    "term": "Event Frame Generation analysis",
+    "aliases": [
+      "EF generation analysis"
+    ],
+    "definition": "An analysis that opens and closes event frames from trigger expressions. It is configured with an event frame template, start triggers, variables and outputs at close.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "event-frame",
+      "start-trigger",
+      "output-at-close"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "sqc-analysis",
+    "term": "SQC analysis",
+    "aliases": [
+      "Statistical Quality Control analysis"
+    ],
+    "definition": "An analysis type that uses Statistical Quality Control methods to check attribute values against set boundaries.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "asset-analytics"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "pi-analysis-service",
+    "term": "PI Analysis Service",
+    "aliases": [
+      "Analysis Service"
+    ],
+    "definition": "The Windows service that schedules and runs all analyses of an AF server. By default it tries to restart analyses in error every 15 minutes. AVEVA recommends Windows Server Failover Clustering for its HA.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "asset-analytics",
+      "windows-failover-clustering"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-optimizing-analytics-2020",
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "output-attribute",
+    "term": "Output attribute",
+    "aliases": [
+      "analysis output"
+    ],
+    "definition": "The attribute an analysis variable is mapped to. If it uses a PI Point data reference, results are archived in the Data Archive; the default point name pattern is %Element%.%Attribute%.%ID%.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "expression-analysis",
+      "pi-point-data-reference"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "example-element",
+    "term": "Example element",
+    "aliases": [],
+    "definition": "The element chosen in a template's analysis editor so that attribute references resolve for Evaluate and Preview Results.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "evaluate-button",
+      "element-template"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "evaluate-button",
+    "term": "Evaluate",
+    "aliases": [],
+    "definition": "The analysis editor button that runs the expressions against current values (now) and shows each variable's result. It runs on the client with the user's account.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "preview-results",
+      "example-element"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "preview-results",
+    "term": "Preview Results",
+    "aliases": [],
+    "definition": "The analysis editor option that runs an expression against archived values over a time range and shows a trend or table, without writing outputs.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "related": [
+      "evaluate-button"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "periodic-schedule",
+    "term": "Periodic schedule",
+    "aliases": [
+      "clock-based scheduling"
+    ],
+    "definition": "Clock-based scheduling: the analysis runs every set period, with an optional offset from midnight. In the AF SDK it is the Periodic time rule, for example Frequency=300 (seconds).",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "event-triggered-schedule",
+      "trigger-time"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-pisquare-programmatic-analytics-blog"
+    ]
+  },
+  {
+    "id": "event-triggered-schedule",
+    "term": "Event-triggered schedule",
+    "aliases": [
+      "Natural scheduling"
+    ],
+    "definition": "Scheduling where an analysis runs whenever its chosen input attributes (Any Input, or a listed set) receive new values. Older AF versions labelled it \"Natural\".",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "periodic-schedule",
+      "trigger-time"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019",
+      "af-pisquare-pse-write-trigger"
+    ]
+  },
+  {
+    "id": "trigger-time",
+    "term": "Trigger time",
+    "aliases": [],
+    "definition": "The time an evaluation is computed at: the scheduled time for periodic analyses, or the input event's time for event-triggered ones. By default it is also the output timestamp.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "periodic-schedule",
+      "output-timestamp"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "output-timestamp",
+    "term": "Output timestamp",
+    "aliases": [],
+    "definition": "The advanced analysis setting for result timestamps: Trigger Time (default), Execution Time, or Relative to Trigger Time, which allows future-stamped outputs.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "trigger-time"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "backfill",
+    "term": "Backfill",
+    "aliases": [
+      "backfilling"
+    ],
+    "definition": "Running an analysis over a past period. The mode \"Leave existing data and fill gaps\" keeps existing results. Outputs must be mapped to PI Points.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "recalculation",
+      "auto-recalculation"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "recalculation",
+    "term": "Recalculation",
+    "aliases": [],
+    "definition": "Deleting existing analysis outputs for a period and computing them again (\"Permanently delete existing data and recalculate\"). Requests from the Management plug-in account for dependent analyses.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "backfill",
+      "auto-recalculation"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "auto-recalculation",
+    "term": "Automatic recalculation",
+    "aliases": [
+      "auto-recalculation"
+    ],
+    "definition": "An analysis option that recomputes results when late or out-of-order input data arrives. Use it when past results must be corrected; avoid it when past results must not change.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "recalculation",
+      "backfill"
+    ],
+    "sources": [
+      "af-kwan-getting-more-aa-2019",
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "evaluation-latency",
+    "term": "Evaluation latency",
+    "aliases": [
+      "lag",
+      "maximum latency"
+    ],
+    "definition": "The delay between an analysis's trigger time and the end of its evaluation. Maximum Latency is healthy when it stays around 5 s or below the latency you can tolerate.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "skipped-evaluation",
+      "trigger-ratio"
+    ],
+    "sources": [
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "skipped-evaluation",
+    "term": "Skipped evaluation",
+    "aliases": [
+      "Evaluation Skipped Count"
+    ],
+    "definition": "An evaluation the Analysis Service drops because it cannot keep up. The Evaluation Skipped Count should stay at 0.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "evaluation-latency"
+    ],
+    "sources": [
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "trigger-ratio",
+    "term": "TriggerRatio",
+    "aliases": [],
+    "definition": "Analysis-group statistic: AverageElapsed / AverageTrigger. Ideally below 0.15; about 2.5 means the group will lag permanently.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "evaluation-latency",
+      "analysis-group"
+    ],
+    "sources": [
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "analysis-group",
+    "term": "Analysis group",
+    "aliases": [],
+    "definition": "A set of analyses that the service schedules together, shown in the PSE Performance view by schedule. Group names end in LoadSheddingSupported or LoadSheddingNotSupported.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "related": [
+      "trigger-ratio"
+    ],
+    "sources": [
+      "af-pisquare-analysis-groups",
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "af-sdk",
+    "term": "AF SDK",
+    "aliases": [
+      "PI AF SDK"
+    ],
+    "definition": "A Microsoft .NET library for Visual Basic .NET, C# and Managed C++ that reads and writes AF and PI data. It ships in the PI AF Client.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "pisystem",
+      "afdatabase",
+      "afsearch"
+    ],
+    "sources": [
+      "af-intro-dev-tech-2020"
+    ]
+  },
+  {
+    "id": "pisystem",
+    "term": "PISystem",
+    "aliases": [
+      "PISystems"
+    ],
+    "definition": "The AF SDK object for one AF server (\"a single logical data store\"). PISystems is the collection of AF servers known to the client.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "af-sdk",
+      "afdatabase",
+      "pi-af-server"
+    ],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020",
+      "dev2-gh-afsdk-ex3"
+    ]
+  },
+  {
+    "id": "afdatabase",
+    "term": "AFDatabase",
+    "aliases": [],
+    "definition": "The AF SDK object for one database on an AF server. AFDatabase.CheckIn() commits pending changes.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "pisystem",
+      "check-in"
+    ],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020"
+    ]
+  },
+  {
+    "id": "afsearch",
+    "term": "AFSearch",
+    "aliases": [
+      "AFElementSearch",
+      "AFEventFrameSearch",
+      "AFAttributeSearch"
+    ],
+    "definition": "The family of server-side AF SDK search classes introduced in AF 2016 (SDK 2.8.0), such as AFElementSearch and AFEventFrameSearch, which take query strings or tokens.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "af-sdk",
+      "cachetimeout",
+      "nested-query"
+    ],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "cachetimeout",
+    "term": "CacheTimeout",
+    "aliases": [],
+    "definition": "The AFSearch property that keeps search results cached on the server for paging, for example TimeSpan.FromMinutes(10).",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "afsearch"
+    ],
+    "sources": [
+      "af-pisquare-afeventframesearch-blog",
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "nested-query",
+    "term": "Nested query",
+    "aliases": [],
+    "definition": "An AFSearch query with a braced sub-query, for example Element:{Template:'FCC Pump Process'} Category:'Process Monitoring'. Added in AF 2017 R2 (SDK 2.9.5).",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "related": [
+      "afsearch"
+    ],
+    "sources": [
+      "af-pisquare-afsearch-2017r2-blog",
+      "dev2-pisquare-afsearch-nested"
+    ]
+  },
+  {
+    "id": "pi-system-explorer",
+    "term": "PI System Explorer (PSE)",
+    "aliases": [
+      "PSE"
+    ],
+    "definition": "The desktop client for building and managing AF: elements, event frames, the Library, units of measure and analysis management.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "related": [
+      "check-in",
+      "pse-navigator"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "check-in",
+    "term": "Check In",
+    "aliases": [],
+    "definition": "Committing sandboxed edits to the AF server so others can see them. In PSE the shortcut is Ctrl+S; until then, checked-out objects cannot be edited by others.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "related": [
+      "af-sandbox",
+      "pi-system-explorer"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "af-sandbox",
+    "term": "Sandbox (AF)",
+    "aliases": [
+      "check-out"
+    ],
+    "definition": "AF's model for edits: changes stay private to the editor until Check In. \"Undo all changes to the Database\" resets the sandbox.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "related": [
+      "check-in"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "pse-navigator",
+    "term": "Navigator, Browser and Viewer",
+    "aliases": [
+      "Navigator pane",
+      "Browser pane",
+      "Viewer pane"
+    ],
+    "definition": "The three main PSE panes: the Navigator (lower left) lists sections such as Elements, Event Frames, Library, Unit of Measure and Management; the Browser lists the section's objects; the Viewer is the work area.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "related": [
+      "pi-system-explorer"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "management-plugin",
+    "term": "Management plug-in",
+    "aliases": [
+      "Management section"
+    ],
+    "definition": "The PSE section where analyses are searched, enabled, disabled, backfilled and recalculated in bulk.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "related": [
+      "backfill",
+      "pi-system-explorer"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "af-collective",
+    "term": "AF collective",
+    "aliases": [],
+    "definition": "A legacy primary/secondary AF server arrangement with SQL replication. It did not support read/write after failover, and AVEVA has no plans to update it.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "related": [
+      "always-on-availability-group",
+      "network-load-balancer"
+    ],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "always-on-availability-group",
+    "term": "Always On availability group",
+    "aliases": [
+      "SQL Always On"
+    ],
+    "definition": "A SQL Server high-availability feature. AVEVA recommends it for the PIFD SQL back end.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "related": [
+      "af-collective",
+      "pifd"
+    ],
+    "sources": [
+      "af-feedback-pida-185",
+      "af-ha-2015-deck"
+    ]
+  },
+  {
+    "id": "network-load-balancer",
+    "term": "Network load balancer (AF)",
+    "aliases": [
+      "NLB"
+    ],
+    "definition": "A load balancer in front of two or more AF Application Service instances so clients fail over automatically. AVEVA's 2022 recommendation for AF Server HA.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "related": [
+      "af-collective",
+      "af-application-service"
+    ],
+    "sources": [
+      "af-feedback-pida-185",
+      "af-ha-2015-deck",
+      "af-architecture-workbook"
+    ]
+  },
+  {
+    "id": "windows-failover-clustering",
+    "term": "Windows Server Failover Clustering",
+    "aliases": [
+      "WSFC"
+    ],
+    "definition": "The Windows clustering feature AVEVA recommends for high availability of PI Analysis Service and PI Notifications Service.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "related": [
+      "pi-analysis-service",
+      "pi-notifications-service"
+    ],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "af-identity",
+    "term": "AF identity",
+    "aliases": [
+      "AF identities",
+      "AF mapping"
+    ],
+    "definition": "An AF security principal (such as Administrators or World) that Windows accounts or groups are mapped to, so permissions on AF objects can be granted to the identity.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "related": [
+      "windows-failover-clustering"
+    ],
+    "sources": [
+      "af-architecture-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "Identities and mappings come from training knowledge only; the readable source says only that AF uses Windows Integrated Security and Windows security descriptors. Check the AF security documentation."
+  },
+  {
+    "id": "af-library",
+    "term": "Library (AF)",
+    "aliases": [
+      "AF Library"
+    ],
+    "definition": "The part of an AF database that holds reusable definitions: element templates, event frame templates, categories, enumeration sets and tables. It automatically includes the UOM database.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "related": [
+      "element-template",
+      "enumeration-set",
+      "af-table"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "af-xml-export",
+    "term": "AF XML export/import",
+    "aliases": [
+      "Export to File",
+      "Import from File"
+    ],
+    "definition": "Moving AF objects as XML, from PSE File > Export to File / Import from File or the AF SDK ExportXml/ImportXml. \"Include All Referenced Objects\" also exports the templates, tables and UOMs needed.",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "related": [
+      "af-library"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-afsdk-pm-best-practices-2020"
+    ]
+  }
+]

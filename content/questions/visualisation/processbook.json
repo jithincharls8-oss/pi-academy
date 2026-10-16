@@ -1,0 +1,170 @@
+[
+  {
+    "id": "q-vis-pb-links-same-run",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 2,
+    "scenario": "A team migrates a ProcessBook overview display on Monday and the three detail displays it links to on Tuesday. In PI Vision the overview's links no longer open the detail displays.",
+    "prompt": "What should they have done?",
+    "options": [
+      { "id": "a", "text": "Migrated the linked displays together in the same operation" },
+      { "id": "b", "text": "Exported the VBA first" },
+      { "id": "c", "text": "Set Display Sharing Access to World" },
+      { "id": "d", "text": "Migrated the detail displays first" }
+    ],
+    "answer": "a",
+    "explanation": "\"In order to preserve links between PI ProcessBook displays, they must be migrated in the same operation.\" Order and sharing settings do not preserve links.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["migration", "pitfall"],
+    "sources": ["dcv-pb-migration-lab-2020", "ops2-pb-migration-workbook"]
+  },
+  {
+    "id": "q-vis-pb-vba",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 1,
+    "prompt": "What happens to VBA code in a ProcessBook display when it is migrated to PI Vision?",
+    "options": [
+      { "id": "a", "text": "It is not supported in PI Vision; the utility can export it so you can plan a replacement" },
+      { "id": "b", "text": "It is converted to JavaScript automatically" },
+      { "id": "c", "text": "It runs unchanged inside PI Vision" },
+      { "id": "d", "text": "It is converted into AF analyses" }
+    ],
+    "answer": "a",
+    "explanation": "The 2020 lab states VBA \"is not supported in PI Vision\"; Export VBA writes it to a .vba file and MigrationAnalysis.csv. Datasets, not VBA, are what the lab rebuilds as AF analyses, and that is a manual step.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["vba"],
+    "sources": ["dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-pb-workflow",
+    "type": "ordering",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 2,
+    "prompt": "Put the steps of the PI ProcessBook to PI Vision Migration Utility workflow in order.",
+    "items": [
+      { "id": "a", "text": "Add Files and select folders of .pdi files" },
+      { "id": "b", "text": "Run Analysis and review results and issues" },
+      { "id": "c", "text": "Export VBA" },
+      { "id": "d", "text": "Migrate" },
+      { "id": "e", "text": "Review the Migration Report" }
+    ],
+    "explanation": "The 2020 lab runs Add Files, Run Analysis, Export VBA, Migrate, then review the Migration Report.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["migration"],
+    "sources": ["dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-pb-extension",
+    "type": "fill",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 1,
+    "prompt": "What file extension do PI ProcessBook display files use? (Include the dot.)",
+    "accepted": [".pdi", "pdi"],
+    "caseSensitive": false,
+    "explanation": "ProcessBook display files use the .pdi extension, for example PowerGeneration.pdi.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["files"],
+    "sources": ["dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-pb-datasets",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 2,
+    "prompt": "In the 2020 migration lab, what happens to ProcessBook datasets (calculations)?",
+    "options": [
+      { "id": "a", "text": "They are not carried over; the lab rebuilds them as AF analyses" },
+      { "id": "b", "text": "They become PI Vision collections" },
+      { "id": "c", "text": "They are stored in the PI Vision SQL database unchanged" },
+      { "id": "d", "text": "They become PI Data Archive totalizer points automatically" }
+    ],
+    "answer": "a",
+    "explanation": "Datasets are not carried over by the utility. The lab rebuilds them as AF analyses so the results are available to every client.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["datasets"],
+    "sources": ["dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-pb-settings",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 2,
+    "prompt": "Which settings does the Migration Utility ask for before migrating? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI Vision server URL" },
+      { "id": "b", "text": "Destination folder" },
+      { "id": "c", "text": "Target Display Owner" },
+      { "id": "d", "text": "Display Sharing Access" },
+      { "id": "e", "text": "The ProcessBook licence key" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "Settings include the PI Vision server URL, destination folder, Target Display Owner, Display Sharing Access and Persist folder structure. A licence key is not listed.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["migration"],
+    "sources": ["dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-pb-retire-year",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 2,
+    "prompt": "When did AVEVA's blog announce that it was \"officially retiring PI ProcessBook as we transition to AVEVA PI Vision\"?",
+    "options": [
+      { "id": "a", "text": "October 2021" },
+      { "id": "b", "text": "June 2011" },
+      { "id": "c", "text": "July 2024" },
+      { "id": "d", "text": "September 2016" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's blog of 20 October 2021 announced the retirement, citing that \"the existing code base is outdated\". 2011 was PI Coresight's launch, and July 2024 the Data Hub rename.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["history"],
+    "sources": ["ops2-aveva-pb-retire-blog"]
+  },
+  {
+    "id": "q-vis-pb-support-end",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 3,
+    "prompt": "According to a third-party article and an AVEVA World 2024 session abstract, when did PI ProcessBook support end?",
+    "options": [
+      { "id": "a", "text": "December 2024" },
+      { "id": "b", "text": "December 2019" },
+      { "id": "c", "text": "It is still fully supported" },
+      { "id": "d", "text": "December 2030" }
+    ],
+    "answer": "a",
+    "explanation": "The article says support would end entirely in December 2024, and the AVEVA World 2024 abstract says support \"is coming to an end in December\". No AVEVA lifecycle page was read to confirm it.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["history"],
+    "sources": ["ops2-digitalrefining-pb", "ops2-aw24-pb-migration-session"],
+    "verify": true,
+    "verifyNote": "Date comes from a third-party article and an undated session abstract; confirm against AVEVA's product lifecycle page."
+  },
+  {
+    "id": "q-vis-pb-separate-install",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.processbook"],
+    "difficulty": 1,
+    "prompt": "True or false: the PI ProcessBook to PI Vision Migration Utility is installed as part of PI Vision.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. The installation workbook describes it as \"a separate installation\" from PI Vision that migrates ProcessBook displays to native PI Vision displays.",
+    "lessonId": "processbook-and-migration",
+    "tags": ["true-false"],
+    "sources": ["ops2-pb-migration-workbook"]
+  }
+]

@@ -1,0 +1,411 @@
+[
+  {
+    "id": "q-iec62443-zone",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 1,
+    "prompt": "In IEC 62443, what is a zone?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A grouping of assets based on risk"
+      },
+      {
+        "id": "b",
+        "text": "A single firewall rule"
+      },
+      {
+        "id": "c",
+        "text": "A geographic site"
+      },
+      {
+        "id": "d",
+        "text": "A user role in Active Directory"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"A zone is a grouping of assets based on risk\"; communication between zones runs through conduits.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "zones"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-fr",
+    "type": "matching",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each IEC 62443 foundational requirement number to its name.",
+    "pairs": [
+      {
+        "left": "FR1",
+        "right": "Identification and authentication control"
+      },
+      {
+        "left": "FR2",
+        "right": "Use control"
+      },
+      {
+        "left": "FR3",
+        "right": "System integrity"
+      },
+      {
+        "left": "FR5",
+        "right": "Restricted data flow"
+      },
+      {
+        "left": "FR7",
+        "right": "Resource availability"
+      }
+    ],
+    "explanation": "The seven FRs are FR1 identification and authentication control, FR2 use control, FR3 system integrity, FR4 data confidentiality, FR5 restricted data flow, FR6 timely response to events and FR7 resource availability.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "fr"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-sdla",
+    "type": "scenario",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 3,
+    "prompt": "What does the readable evidence support?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AVEVA states its development lifecycle is 62443-4-1 compliant with ISASecure SDLA certification; no source confirmed a 4-2 product certification of PI Server"
+      },
+      {
+        "id": "b",
+        "text": "PI Server is certified to SL4 under 4-2"
+      },
+      {
+        "id": "c",
+        "text": "IEC 62443 does not apply to software vendors"
+      },
+      {
+        "id": "d",
+        "text": "ISASecure SDLA is the same as a 4-2 component certification"
+      }
+    ],
+    "scenario": "A procurement form asks: \"Is AVEVA PI Server certified to IEC 62443-4-2 (component technical requirements)?\" A colleague wants to answer yes because AVEVA mentions ISASecure.",
+    "answer": "a",
+    "explanation": "SDLA certifies the secure development process (4-1). The research found no ISASecure CSA or 4-2 certification for PI Server itself, so answer precisely and check with AVEVA.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "certification"
+    ],
+    "sources": [
+      "adm-aveva-hmi-scada-security-wp",
+      "adm-iec-62443-background"
+    ],
+    "verify": true,
+    "verifyNote": "Absence of a PI Server 4-2 certification reflects what the research could find; confirm current status with AVEVA."
+  },
+  {
+    "id": "q-iec62443-clusters",
+    "type": "matching",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each IEC 62443 document to its subject.",
+    "pairs": [
+      {
+        "left": "2-3",
+        "right": "Patch management"
+      },
+      {
+        "left": "3-2",
+        "right": "Zones and conduits risk assessment"
+      },
+      {
+        "left": "4-1",
+        "right": "Secure development process"
+      },
+      {
+        "left": "4-2",
+        "right": "Component technical requirements"
+      }
+    ],
+    "explanation": "2-x covers policies and procedures (2-3 patch management), 3-x systems (3-2 zones and conduits risk assessment, 3-3 system requirements) and 4-x components (4-1 process, 4-2 technical requirements).",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "structure"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-levels",
+    "type": "ordering",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the security levels from weakest to strongest adversary they protect against.",
+    "items": [
+      {
+        "id": "a",
+        "text": "SL1: casual or coincidental violation"
+      },
+      {
+        "id": "b",
+        "text": "SL2: intentional, simple means"
+      },
+      {
+        "id": "c",
+        "text": "SL3: intentional, sophisticated means"
+      },
+      {
+        "id": "d",
+        "text": "SL4: sophisticated means with extended resources"
+      }
+    ],
+    "explanation": "The standard defines four security levels correlating countermeasures with adversary strength, from SL1 to SL4.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "levels"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-trout-zones-conduits"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-sl-types",
+    "type": "matching",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each security level type to its meaning.",
+    "pairs": [
+      {
+        "left": "SL-T",
+        "right": "Target level"
+      },
+      {
+        "left": "SL-C",
+        "right": "Capability level"
+      },
+      {
+        "left": "SL-A",
+        "right": "Achieved level"
+      }
+    ],
+    "explanation": "A vendor explainer defines SL-T as the target, SL-C as the capability of a component or system and SL-A as what is achieved.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "levels"
+    ],
+    "sources": [
+      "adm-trout-zones-conduits"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-conduit-pi",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "In a zone-and-conduit model of a PI System, what is the PI to PI link from the plant Data Archive to a DMZ Data Archive?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A conduit between zones"
+      },
+      {
+        "id": "b",
+        "text": "A zone of its own"
+      },
+      {
+        "id": "c",
+        "text": "A security level"
+      },
+      {
+        "id": "d",
+        "text": "A foundational requirement"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Communication between zones runs through conduits, so the PI to PI link (or a one-way gateway) is the conduit. This mapping is an inference from the sources.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "mapping"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": true,
+    "verifyNote": "Mapping PI components to zones and conduits is the research team's inference."
+  },
+  {
+    "id": "q-iec62443-fr5",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "Which foundational requirement is most directly supported by a data-only PI to PI or one-way gateway design?",
+    "options": [
+      {
+        "id": "a",
+        "text": "FR5 restricted data flow"
+      },
+      {
+        "id": "b",
+        "text": "FR4 data confidentiality"
+      },
+      {
+        "id": "c",
+        "text": "FR7 resource availability"
+      },
+      {
+        "id": "d",
+        "text": "FR1 identification and authentication control"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Data-only or one-way designs restrict data flow between zones, which is FR5. This mapping is an inference from the sources.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "mapping"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": true,
+    "verifyNote": "The FR5 mapping is the research team's inference, not an AVEVA statement."
+  },
+  {
+    "id": "q-iec62443-defence",
+    "type": "mcq",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: AVEVA recommends segmenting the network and separating zones with firewalls and virtual network technology, following defence in depth.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. AVEVA's HMI/SCADA security paper recommends segmentation, zone separation with firewalls and virtual network technology, and defence in depth.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "principles",
+      "true-false"
+    ],
+    "sources": [
+      "adm-aveva-hmi-scada-security-wp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-fr-count",
+    "type": "fill",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 1,
+    "prompt": "How many foundational requirements (FRs) does IEC 62443 define?",
+    "accepted": [
+      "7",
+      "seven"
+    ],
+    "caseSensitive": false,
+    "explanation": "There are seven foundational requirements, FR1 to FR7.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "fr"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-iec62443-procedural",
+    "type": "multi",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these IEC 62443 parts are in the 2-x policies and procedures cluster? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "2-1 asset owner programme"
+      },
+      {
+        "id": "b",
+        "text": "2-3 patch management"
+      },
+      {
+        "id": "c",
+        "text": "2-4 service providers"
+      },
+      {
+        "id": "d",
+        "text": "4-1 secure development process"
+      },
+      {
+        "id": "e",
+        "text": "3-3 system requirements"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "2-1, 2-3 and 2-4 are policies and procedures. 4-1 is a component-level process standard and 3-3 is a system standard.",
+    "lessonId": "iec-62443-for-pi",
+    "tags": [
+      "structure"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  }
+]

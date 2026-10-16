@@ -1,0 +1,188 @@
+[
+  {
+    "id": "q-vis-bi-integrator-af",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 2,
+    "prompt": "When you build a view's search criteria in PI Integrator for Business Analytics, what does it search?",
+    "options": [
+      { "id": "a", "text": "PI AF, not the PI Data Archive" },
+      { "id": "b", "text": "The PI Data Archive point database only" },
+      { "id": "c", "text": "The PI Vision SQL database" },
+      { "id": "d", "text": "Excel workbooks built with DataLink" }
+    ],
+    "answer": "a",
+    "explanation": "The developer workbook says Integrator \"works directly with PI AF (not the PI Data Archive)\" when building view search criteria, so a good AF model matters.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["integrator"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-worker-nodes",
+    "type": "fill",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 2,
+    "prompt": "What is the maximum number of worker nodes that can be added to PI Integrator for Business Analytics?",
+    "accepted": ["5", "five"],
+    "caseSensitive": false,
+    "explanation": "The workbook states: \"Up to 5 worker nodes can be added\".",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["integrator"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-sql-client-new",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 2,
+    "scenario": "A data scientist is starting a new project that will query PI AF and Data Archive data with SQL from a Python notebook using ODBC.",
+    "prompt": "Which tool does AVEVA's developer workbook recommend for new development?",
+    "options": [
+      { "id": "a", "text": "PI SQL Client with the RTQP engine" },
+      { "id": "b", "text": "PI OLEDB Enterprise" },
+      { "id": "c", "text": "PI DataLink" },
+      { "id": "d", "text": "PI WebParts" }
+    ],
+    "answer": "a",
+    "explanation": "For RTQP, PI SQL Client \"is the recommended tool for new development projects\". RTQP succeeded PI OLEDB Enterprise, and its drivers include OLEDB, ODBC and JDBC.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["sql"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-components",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 2,
+    "prompt": "Match each PI Integrator for BA component to its role.",
+    "pairs": [
+      { "left": "PI Integrator Framework", "right": "The master service" },
+      { "left": "Worker Nodes", "right": "Extra processing capacity, up to five" },
+      { "left": "PI Integrator Sync", "right": "Watches for PI tag and AF changes" }
+    ],
+    "explanation": "The workbook lists the Framework as the master service, up to five Worker Nodes, and PI Integrator Sync watching for PI tag and AF changes.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["integrator"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-rtqp-where",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 3,
+    "prompt": "Where does the RTQP engine install?",
+    "options": [
+      { "id": "a", "text": "Only on the PI AF Server" },
+      { "id": "b", "text": "Only on the PI Data Archive server" },
+      { "id": "c", "text": "On every client that runs Power BI" },
+      { "id": "d", "text": "On the PI Vision web server" }
+    ],
+    "answer": "a",
+    "explanation": "RTQP installs only on the PI AF Server and became available in PI Server 2018 SP2. Clients connect to it with PI SQL Client drivers.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["sql"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-drivers",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 1,
+    "prompt": "Which drivers does PI SQL Client provide? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "OLEDB" },
+      { "id": "b", "text": "ODBC" },
+      { "id": "c", "text": "JDBC" },
+      { "id": "d", "text": "OPC DA" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "PI SQL Client provides OLEDB, ODBC and JDBC drivers, over Net.Tcp or HTTPS. OPC DA is a data collection protocol.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["sql"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-dataview-outputs",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.bi", "vis.connect"],
+    "difficulty": 2,
+    "prompt": "Which output formats do CONNECT / Data Hub Data Views offer, as of 2023? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "JSON" },
+      { "id": "b", "text": "CSV" },
+      { "id": "c", "text": "Parquet" },
+      { "id": "d", "text": "Table" },
+      { "id": "e", "text": ".pdi" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "Data Views output JSON, CSV, Table and (new in 2023) Parquet. .pdi is a ProcessBook display file.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["data-views"],
+    "sources": ["ops2-uc23-dataviews-coppock"]
+  },
+  {
+    "id": "q-vis-bi-power-bi-cloud",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 2,
+    "prompt": "Which AVEVA component lets Power BI read Data Views from the cloud service?",
+    "options": [
+      { "id": "a", "text": "The AVEVA Data Hub Power BI Connector" },
+      { "id": "b", "text": "PI Integrator Sync" },
+      { "id": "c", "text": "PI Connector Relay" },
+      { "id": "d", "text": "PI DataLink" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's 2023 Data Views session lists the \"AVEVA Data Hub Power BI Connector\" and the REST API as consumers of Data Views.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["power-bi"],
+    "sources": ["ops2-uc23-dataviews-coppock"]
+  },
+  {
+    "id": "q-vis-bi-tools",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 1,
+    "prompt": "Which BI tools does the developer workbook name as targets for PI Integrator for BA output? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Power BI" },
+      { "id": "b", "text": "Tableau" },
+      { "id": "c", "text": "Spotfire" },
+      { "id": "d", "text": "QlikView" },
+      { "id": "e", "text": "PI ProcessBook" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The workbook names Power BI, Tableau, Spotfire and QlikView. ProcessBook is a retired PI display tool, not a BI target.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["integrator"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-vis-bi-flow-steps",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.bi"],
+    "difficulty": 3,
+    "prompt": "Which list matches the PI Integrator data flow steps in OSIsoft's 2017 PI 101 deck?",
+    "options": [
+      { "id": "a", "text": "Cleanse, Augment, Shape, Transmit, Pull and Push" },
+      { "id": "b", "text": "Read, Timestamp, Format, Exception, Send" },
+      { "id": "c", "text": "Select, Analyze, Migrate" },
+      { "id": "d", "text": "Type, Container, Data" }
+    ],
+    "answer": "a",
+    "explanation": "The deck lists Cleanse, Augment, Shape, Transmit, Pull and Push. The others are the interface collection steps, the ProcessBook migration flow and the OMF message order.",
+    "lessonId": "bi-tools-and-integrator",
+    "tags": ["integrator"],
+    "sources": ["dcv-collins-pi101-2017"]
+  }
+]

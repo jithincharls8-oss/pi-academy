@@ -1,0 +1,846 @@
+[
+  {
+    "id": "performance-equation",
+    "term": "Performance Equation (PE)",
+    "aliases": [
+      "PE",
+      "PE syntax"
+    ],
+    "definition": "The PI expression language: tags and attributes in single quotes, strings and digital states in double quotes, PI time expressions and built-in functions. Used by legacy PE tags, PI DataLink expressions and AF Expression analyses.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "pe-tag",
+      "pi-time-expression",
+      "expression-analysis"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "fn-manualzz-datalink-ug"
+    ]
+  },
+  {
+    "id": "pe-tag",
+    "term": "PE tag",
+    "aliases": [
+      "Performance Equation tag",
+      "PE point"
+    ],
+    "definition": "A legacy PI point (point source C) whose value is calculated by the PI Performance Equation Scheduler. It supports clock scheduling or event scheduling on a single trigger tag.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "performance-equation"
+    ],
+    "sources": [
+      "af-pisquare-pe-digital-states",
+      "af-pisquare-pe-to-analytics-migration"
+    ]
+  },
+  {
+    "id": "pi-time-expression",
+    "term": "PI time expression",
+    "aliases": [
+      "time string",
+      "relative time"
+    ],
+    "definition": "A time written as a reference time (*, t, y, a weekday or an absolute time) plus an optional offset, for example *-1h or t+8h. Use only one offset per expression.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "time-offset",
+      "parsetime"
+    ],
+    "sources": [
+      "af-visualizing-pi-data",
+      "fn-piwebapi-time-strings",
+      "fn-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "time-offset",
+    "term": "Time offset",
+    "aliases": [
+      "interval"
+    ],
+    "definition": "The signed part of a PI time expression, such as -1h or +3d. Units are s, m, h, d, w, mo and y; fractions are allowed only for seconds, minutes and hours.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "af-visualizing-pi-data",
+      "fn-piwebapi-time-strings"
+    ]
+  },
+  {
+    "id": "digital-state-literal",
+    "term": "Digital state literal",
+    "aliases": [],
+    "definition": "A digital state name written in double quotes in an expression, for example \"Running\" or \"ON\".",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "performance-equation"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "parsetime",
+    "term": "ParseTime()",
+    "aliases": [
+      "ParseTime"
+    ],
+    "definition": "A PE function that evaluates a time string when the expression runs. A quoted time such as '*' is evaluated when the expression is parsed.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "af-pisquare-timestamp-diff"
+    ]
+  },
+  {
+    "id": "pe-error-12301",
+    "term": "Error -12301",
+    "aliases": [
+      "[-12301] Performance Equation parsing error"
+    ],
+    "definition": "A PE tag error meaning the expression could not be parsed, for example because it references a tag that does not exist. The message log gives the error position as \"Offset x\" characters.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "pe-tag",
+      "pipetest"
+    ],
+    "sources": [
+      "af-pisquare-pe-12301"
+    ]
+  },
+  {
+    "id": "pipetest",
+    "term": "pipetest",
+    "aliases": [],
+    "definition": "A PI utility that can be used to test Performance Equation syntax.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "related": [
+      "pe-error-12301"
+    ],
+    "sources": [
+      "af-pisquare-pe-12301"
+    ]
+  },
+  {
+    "id": "tagtot",
+    "term": "TagTot()",
+    "aliases": [
+      "TagTot"
+    ],
+    "definition": "PE totaliser: the time integral of an input over a range. It assumes the input rate is per day and knows nothing of the tag's units, so a per-hour rate needs * 24.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "tagavg",
+      "time-weighted"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-units",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "tagavg",
+    "term": "TagAvg()",
+    "aliases": [
+      "TagAvg"
+    ],
+    "definition": "PE function returning the time-weighted average of a tag or attribute over a range, for example TagAvg('CaseTemp','*-1h','*').",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "tagmean",
+      "time-weighted"
+    ],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted",
+      "fn-rs2012-asia-calcs"
+    ]
+  },
+  {
+    "id": "tagmean",
+    "term": "TagMean()",
+    "aliases": [
+      "TagMean"
+    ],
+    "definition": "PE function returning the event-weighted mean of the recorded events in a range. It is the exception among PI summary functions, which are mostly time-weighted.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "tagavg",
+      "event-weighted"
+    ],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted",
+      "af-pisquare-retrieval-methods-timerange"
+    ]
+  },
+  {
+    "id": "timeeq",
+    "term": "TimeEq()",
+    "aliases": [
+      "TimeEq",
+      "TimeGE",
+      "TimeGT"
+    ],
+    "definition": "PE function returning the time in seconds that an input equalled a value in a range, for example TimeEq('Press Status','t','*',\"Running\"). TimeGE, TimeGT and similar test other conditions.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "findeq"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "fn-rs2012-asia-calcs"
+    ]
+  },
+  {
+    "id": "findeq",
+    "term": "FindEq()",
+    "aliases": [
+      "FindEq",
+      "FindGE"
+    ],
+    "definition": "PE function returning the timestamp of the first time an input equals a value in a range. A start later than the end searches backwards.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "timeeq"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-pisquare-number-occurrences"
+    ]
+  },
+  {
+    "id": "prevevent",
+    "term": "PrevEvent() / PrevVal()",
+    "aliases": [
+      "PrevEvent",
+      "PrevVal"
+    ],
+    "definition": "PrevEvent returns the timestamp, and PrevVal the value, of the previous recorded event before a time. PrevEvent('tag','*+1s') includes an event at the current time.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "tagval"
+    ],
+    "sources": [
+      "af-pisquare-prevevent-prevval",
+      "af-pisquare-last-recorded-value"
+    ]
+  },
+  {
+    "id": "tagval",
+    "term": "TagVal()",
+    "aliases": [
+      "TagVal"
+    ],
+    "definition": "PE function returning a value at a time, for example TagVal('Active Power','*'). With no time argument it uses the evaluation time.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "prevevent",
+      "interpolated-value"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "fn-using-af-analyze-2019"
+    ]
+  },
+  {
+    "id": "badval",
+    "term": "BadVal()",
+    "aliases": [
+      "BadVal"
+    ],
+    "definition": "Returns true when its argument is a bad value (a system digital state), for example IF BadVal('Flow') THEN 0 ELSE 'Flow'.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "nooutput"
+    ],
+    "sources": [
+      "af-pisquare-pe-to-analytics-migration",
+      "af-software-athlete-calc-syntax"
+    ]
+  },
+  {
+    "id": "eventcount",
+    "term": "EventCount()",
+    "aliases": [
+      "EventCount"
+    ],
+    "definition": "PE function returning the number of recorded events in a range. TagMean times EventCount gives an event-weighted sum.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "tagmean"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-units",
+      "af-pisquare-sum-values"
+    ]
+  },
+  {
+    "id": "pctgood",
+    "term": "PctGood()",
+    "aliases": [
+      "PctGood"
+    ],
+    "definition": "PE function returning the percentage of a range with good values. Used as a data-quality guard, for example PctGood('PowerDraw','*-1h','*') > 50.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "nooutput"
+    ],
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-rs2012-oceania-calcs"
+    ]
+  },
+  {
+    "id": "nooutput",
+    "term": "NoOutput()",
+    "aliases": [
+      "NoOutput"
+    ],
+    "definition": "A function with no arguments that tells an analysis or PE not to write a result for this evaluation.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "exit-function",
+      "badval"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "fn-rs2012-oceania-calcs"
+    ]
+  },
+  {
+    "id": "curve-function",
+    "term": "Curve()",
+    "aliases": [
+      "Curve"
+    ],
+    "definition": "Function that interpolates linearly between (x,y) points: Curve(x, (x1,y1) (x2,y2) ...). The pairs are separated by spaces, not commas.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "poly-function"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "fn-using-af-analyze-2019"
+    ]
+  },
+  {
+    "id": "poly-function",
+    "term": "Poly()",
+    "aliases": [
+      "Poly"
+    ],
+    "definition": "Function that evaluates a polynomial of x from numeric coefficients.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "curve-function"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "daysec",
+    "term": "DaySec()",
+    "aliases": [
+      "DaySec"
+    ],
+    "definition": "Returns the seconds from midnight to a time, for example DaySec('*'). It fails for spans over a day.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-pisquare-timestamp-diff"
+    ]
+  },
+  {
+    "id": "bom-function",
+    "term": "Bom()",
+    "aliases": [
+      "Bom",
+      "BOM"
+    ],
+    "definition": "Returns the beginning of the month for a time, for example Bom('*'). Used for month-to-date ranges.",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-functions"
+    ],
+    "related": [
+      "pi-time-expression"
+    ],
+    "sources": [
+      "af-pisquare-sum-values"
+    ]
+  },
+  {
+    "id": "exit-function",
+    "term": "Exit()",
+    "aliases": [
+      "Exit"
+    ],
+    "definition": "AF analysis function (added in AF 2018 SP2) that ends the evaluation and skips all remaining rows.",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "nooutput"
+    ],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights",
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "analysis-array",
+    "term": "Analysis array",
+    "aliases": [
+      "array (analysis)"
+    ],
+    "definition": "An array value, available in analyses since AF 2018, returned by functions such as RecordedValuesByCount or Split and processed with FilterData or summary functions like Total.",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "filterdata",
+      "recordedvaluesbycount"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "fn-feedback-pida-850"
+    ]
+  },
+  {
+    "id": "recordedvaluesbycount",
+    "term": "RecordedValuesByCount()",
+    "aliases": [
+      "RecordedValuesByCount"
+    ],
+    "definition": "AF function returning an array of the last n recorded values of an attribute before a time, for example RecordedValuesByCount('Best Operating State','*',10).",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "analysis-array",
+      "filterdata"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "filterdata",
+    "term": "FilterData()",
+    "aliases": [
+      "FilterData"
+    ],
+    "definition": "AF function that returns the array elements matching a predicate, where $val stands for each element's value, for example FilterData(A, $val = \"Drying\").",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "analysis-array"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "convert-function",
+    "term": "Convert()",
+    "aliases": [
+      "Convert"
+    ],
+    "definition": "AF function that sets or converts the unit of measure of an expression result before it is written, for example Convert(Curve(...),\"kW\").",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "unit-of-measure"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "eventframe-function",
+    "term": "EventFrame()",
+    "aliases": [
+      "EventFrame"
+    ],
+    "definition": "AF function returning a property of the current event frame in Event Frame Generation analyses: EventFrame(\"StartTime\"), EventFrame(\"EndTime\") or EventFrame(\"Duration\").",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "output-at-close"
+    ],
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "haschanged",
+    "term": "HasChanged()",
+    "aliases": [
+      "HasChanged"
+    ],
+    "definition": "AF function, written HasChanged(<Attribute>,<Time>), that checks whether an attribute changed. Used to gate expensive calculations.",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "exit-function"
+    ],
+    "sources": [
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "split-function",
+    "term": "Split()",
+    "aliases": [
+      "Split"
+    ],
+    "definition": "AF 2018 SP2 function that turns a string and a delimiter into a string array.",
+    "domain": "analytics",
+    "coverage": [
+      "an.af-functions"
+    ],
+    "related": [
+      "analysis-array"
+    ],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights",
+      "fn-pisquare-af2018sp2"
+    ]
+  },
+  {
+    "id": "time-weighted",
+    "term": "Time-weighted",
+    "aliases": [
+      "time weighting"
+    ],
+    "definition": "A summary in which each value counts in proportion to how long it was in effect. TagAvg is time-weighted; use it for continuous rates such as flow.",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "related": [
+      "event-weighted",
+      "calculation-basis"
+    ],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted",
+      "af-pisquare-mean-vs-average"
+    ]
+  },
+  {
+    "id": "event-weighted",
+    "term": "Event-weighted",
+    "aliases": [
+      "event weighting"
+    ],
+    "definition": "A summary in which each recorded event counts equally, like (v1+v2+v3)/3. TagMean is event-weighted; use it for discrete measurements.",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "related": [
+      "time-weighted",
+      "calculation-basis"
+    ],
+    "sources": [
+      "af-pisquare-time-vs-event-weighted",
+      "af-pisquare-mean-vs-average"
+    ]
+  },
+  {
+    "id": "calculation-basis",
+    "term": "Calculation basis",
+    "aliases": [
+      "AFCalculationBasis"
+    ],
+    "definition": "How a summary weights values. AFCalculationBasis members are TimeWeighted, EventWeighted, TimeWeightedContinuous, TimeWeightedDiscrete, EventWeightedExcludeMostRecentEvent, EventWeightedExcludeEarliestEvent and EventWeightedIncludeBothEnds.",
+    "domain": "analytics",
+    "coverage": [
+      "an.weighting"
+    ],
+    "related": [
+      "time-weighted",
+      "event-weighted"
+    ],
+    "sources": [
+      "fn-gh-piconnect-af-data",
+      "fn-piwebapi-calc-basis"
+    ]
+  },
+  {
+    "id": "step-attribute",
+    "term": "Step attribute",
+    "aliases": [
+      "stepped data",
+      "step"
+    ],
+    "definition": "A point or attribute whose value holds until the next event. Interpolation on a step tag always uses the last recorded value, not a line to the next event.",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "related": [
+      "interpolated-value",
+      "recorded-value"
+    ],
+    "sources": [
+      "af-pisquare-moving-average"
+    ]
+  },
+  {
+    "id": "interpolated-value",
+    "term": "Interpolated value",
+    "aliases": [],
+    "definition": "A value computed at a time between two recorded events. For a continuous tag PI draws a straight line to the next archived event.",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "related": [
+      "step-attribute",
+      "recorded-value"
+    ],
+    "sources": [
+      "af-pisquare-moving-average",
+      "af-pisquare-prevevent-prevval"
+    ]
+  },
+  {
+    "id": "recorded-value",
+    "term": "Recorded value",
+    "aliases": [
+      "compressed value",
+      "archived event"
+    ],
+    "definition": "An actual event stored in the archive. PI DataLink's Compressed Data returns all of them for a period.",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "related": [
+      "interpolated-value"
+    ],
+    "sources": [
+      "af-visualizing-pi-data"
+    ]
+  },
+  {
+    "id": "boundary-type",
+    "term": "Boundary type",
+    "aliases": [
+      "AFBoundaryType"
+    ],
+    "definition": "How recorded-value retrieval treats the ends of a range: Inside (values inside the range), Outside (values just outside) or Interpolated (interpolated end-point values).",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "related": [
+      "recorded-value",
+      "interpolated-value"
+    ],
+    "sources": [
+      "fn-gh-piconnect-af-data",
+      "fn-piwebapi-boundary-type"
+    ]
+  },
+  {
+    "id": "retrieval-mode",
+    "term": "Retrieval mode",
+    "aliases": [
+      "AFRetrievalMode",
+      "value retrieval method"
+    ],
+    "definition": "How a value is picked for a single time: for example At or Before, At or After, Exact, Before, After, Interpolated or Automatic. Exact returns a No Data error when no value exists at that time.",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "related": [
+      "interpolated-value"
+    ],
+    "sources": [
+      "fn-gh-piconnect-af-data",
+      "fn-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "summary-type",
+    "term": "Summary type",
+    "aliases": [
+      "AFSummaryTypes"
+    ],
+    "definition": "The kind of statistic a summary call returns, as flags: Total=1, Average=2, Minimum=4, Maximum=8, Range=16, StdDev=32, PopulationStdDev=64, Count=128, PercentGood=8192, TotalWithUOM=16384.",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "related": [
+      "calculation-basis",
+      "totalwithuom"
+    ],
+    "sources": [
+      "fn-gh-piconnect-af-data",
+      "fn-piwebapi-summary-type"
+    ]
+  },
+  {
+    "id": "totalwithuom",
+    "term": "TotalWithUOM",
+    "aliases": [],
+    "definition": "A summary type that returns a total carrying a unit of measure. Without a UOM on the input it behaves like Total, and it errors if no valid units can be determined.",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "related": [
+      "summary-type"
+    ],
+    "sources": [
+      "fn-piwebapi-summary-type"
+    ]
+  },
+  {
+    "id": "percent-good",
+    "term": "PercentGood",
+    "aliases": [],
+    "definition": "A summary type giving the share of good data: time-based for time-weighted and count-based for event-weighted calculations.",
+    "domain": "analytics",
+    "coverage": [
+      "an.rollups-summaries"
+    ],
+    "related": [
+      "summary-type",
+      "pctgood"
+    ],
+    "sources": [
+      "fn-piwebapi-summary-type"
+    ]
+  },
+  {
+    "id": "filtered-calculation",
+    "term": "Filtered calculation",
+    "aliases": [
+      "filtered summary"
+    ],
+    "definition": "A summary over only the values that meet a condition. Before AF 2018 it needed an intermediate attribute; from 2018 array functions can do it directly.",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "related": [
+      "intermediate-attribute",
+      "filterdata"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-condition",
+      "af-pisquare-filter-expression"
+    ]
+  },
+  {
+    "id": "intermediate-attribute",
+    "term": "Intermediate attribute",
+    "aliases": [],
+    "definition": "An extra analysis output that holds a value only when a condition is true (NoOutput() otherwise), so a later analysis can summarise it, for example If('BIT'=1) then 'Tag1' else NoOutput().",
+    "domain": "analytics",
+    "coverage": [
+      "an.filtering-units"
+    ],
+    "related": [
+      "filtered-calculation",
+      "nooutput"
+    ],
+    "sources": [
+      "af-pisquare-tagtot-condition",
+      "af-pisquare-number-occurrences"
+    ]
+  }
+]

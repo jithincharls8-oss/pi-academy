@@ -1,0 +1,186 @@
+[
+  {
+    "id": "q-subsys-base-role",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 1,
+    "prompt": "Which subsystem maintains the Point Database, the Digital State Table and the authentication databases?",
+    "options": [
+      { "id": "a", "text": "PI Base Subsystem" },
+      { "id": "b", "text": "PI Snapshot Subsystem" },
+      { "id": "c", "text": "PI Archive Subsystem" },
+      { "id": "d", "text": "PI Update Manager" }
+    ],
+    "answer": "a",
+    "explanation": "The PI Base Subsystem maintains the Point Database, Digital State Table, authentication configuration databases and PI Module Database. The Snapshot and Archive subsystems handle data; the Update Manager queues change notifications.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["subsystems"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-subsys-process-names",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 2,
+    "prompt": "Match each process name to its subsystem.",
+    "pairs": [
+      { "left": "pibasess", "right": "PI Base Subsystem" },
+      { "left": "pinetmgr", "right": "PI Network Manager" },
+      { "left": "pilicmgr", "right": "PI License Manager" },
+      { "left": "piarchss", "right": "PI Archive Subsystem" },
+      { "left": "pisnapss", "right": "PI Snapshot Subsystem" }
+    ],
+    "explanation": "These process names appear as message-log sources: pibasess, pinetmgr, pilicmgr, piarchss and pisnapss.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["subsystems"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-subsys-sitestop",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 2,
+    "scenario": "Your site needs to stop a custom data-export service every time the Data Archive is shut down. A colleague suggests adding the command to pisrvstop.bat.",
+    "prompt": "What should you do instead?",
+    "options": [
+      { "id": "a", "text": "Put the custom command in pisrvsitestop.bat and leave pisrvstop.bat unchanged" },
+      { "id": "b", "text": "Edit pisrvstop.bat as suggested" },
+      { "id": "c", "text": "Stop the PI Network Manager service by hand each time" },
+      { "id": "d", "text": "Rename pisrvstop.bat so it is not overwritten" }
+    ],
+    "answer": "a",
+    "explanation": "The training says never edit pisrvstop.bat; put custom commands in pisrvsitestop.bat. Stop and start the Data Archive with pisrvstop.bat and pisrvstart.bat as administrator.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["operations", "scenario"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-subsys-roles-match",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 2,
+    "prompt": "Match each subsystem to its job.",
+    "pairs": [
+      { "left": "PI Network Manager", "right": "Manages communication and validates clients on connection" },
+      { "left": "PI Update Manager", "right": "Queues change notifications for subscribed clients" },
+      { "left": "PI Snapshot Subsystem", "right": "Keeps the latest event per point and applies compression" },
+      { "left": "PI Backup Subsystem", "right": "Manages Data Archive backups" },
+      { "left": "PI Message Subsystem", "right": "Writes status and error messages to the log" }
+    ],
+    "explanation": "Roles as listed in the OSIsoft administration course.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["subsystems"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-subsys-threadcount",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems", "da.tuning"],
+    "difficulty": 3,
+    "prompt": "A server has 16 cores and normal real-time users. What piarchss_ThreadCount does AVEVA's 2023 guidance suggest?",
+    "options": [
+      { "id": "a", "text": "15 (cores minus 1)" },
+      { "id": "b", "text": "32 (2x cores)" },
+      { "id": "c", "text": "1" },
+      { "id": "d", "text": "64, as in the Dell benchmark" }
+    ],
+    "answer": "a",
+    "explanation": "The suggestion is cores minus 1 for standard use and 2x cores only for large-query systems without real-time users. The Dell test's 64 was a benchmark setting, not a recommendation.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["tuning"],
+    "sources": ["da-uc23-da-performance", "da-dell-wp-2012"]
+  },
+  {
+    "id": "q-subsys-thread-info",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems", "da.tools"],
+    "difficulty": 3,
+    "prompt": "Complete the command that dumps the Archive Subsystem's RPC threads with duration and client connection ID: piartool -thread ______ -info",
+    "accepted": ["piarchss"],
+    "explanation": "piartool -thread piarchss -info dumps archive-subsystem RPC threads; durations over 1000 ms are long.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["tools"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-subsys-count",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 1,
+    "prompt": "Which of these are among the core Data Archive subsystems listed in OSIsoft training? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI License Manager" },
+      { "id": "b", "text": "PI Update Manager" },
+      { "id": "c", "text": "PI Backup Subsystem" },
+      { "id": "d", "text": "PI Buffer Subsystem" },
+      { "id": "e", "text": "PI Vision Service" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The core eight are Network Manager, Message, License Manager, Update Manager, Base, Snapshot, Archive and Backup. The PI Buffer Subsystem runs on interface nodes, and PI Vision is a separate product.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["subsystems"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-subsys-long-thread",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 2,
+    "prompt": "In piartool -thread piarchss -info output, above what duration does AVEVA call a thread long?",
+    "options": [
+      { "id": "a", "text": "1000 ms" },
+      { "id": "b", "text": "10 ms" },
+      { "id": "c", "text": "260 s" },
+      { "id": "d", "text": "5 minutes" }
+    ],
+    "answer": "a",
+    "explanation": "Durations over 1000 ms are long. 260 s is the default Archive_MaxQueryExecutionSec, and 5 minutes is the default write-cache flush.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["performance"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-subsys-services-tf",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 1,
+    "prompt": "True or false: the Data Archive subsystems run as Windows services and are visible in SMT under Operation > PI Services.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "The core subsystems are Windows services, visible in SMT Operation > PI Services and in services.msc as services starting with 'PI'.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["true-false"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-subsys-counters",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.subsystems"],
+    "difficulty": 3,
+    "prompt": "Which performance counters does the 2010 tuning guidance list for watching subsystems? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "RPC Request in Queue" },
+      { "id": "b", "text": "RPC Thread Active" },
+      { "id": "c", "text": "Transaction Completed/sec" },
+      { "id": "d", "text": "PI Vision Displays Open" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Subsystem counters include RPC Request in Queue, RPC Thread Active, Transaction Completed/sec and Messages Sent/Received per second.",
+    "lessonId": "data-archive-subsystems",
+    "tags": ["monitoring"],
+    "sources": ["da-vcampus-2010-tuning"]
+  }
+]

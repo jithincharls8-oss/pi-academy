@@ -1,0 +1,283 @@
+[
+  {
+    "id": "q-vis-basics-design-mode-border",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "How can you tell that a PI Vision display is in design mode?",
+    "options": [
+      { "id": "a", "text": "An orange border surrounds the display" },
+      { "id": "b", "text": "The time bar disappears" },
+      { "id": "c", "text": "The display name turns red" },
+      { "id": "d", "text": "The URL contains Mode=Kiosk" }
+    ],
+    "answer": "a",
+    "explanation": "An orange border marks design mode. Mode=Kiosk is a URL parameter for limited interactivity, and an asterisk (not a colour change) beside the name marks unsaved changes.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["design-mode"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-one-offset",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "Which PI time expression is NOT valid in PI Vision?",
+    "options": [
+      { "id": "a", "text": "*-1d+2h" },
+      { "id": "b", "text": "t+8h" },
+      { "id": "c", "text": "mon+14.5h" },
+      { "id": "d", "text": "y-8h" }
+    ],
+    "answer": "a",
+    "explanation": "Only one offset is allowed per expression, so *-1d+2h is invalid. The others use one offset each, and 14.5h is fine because fractions are allowed for s, m and h.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["pi-time", "pitfall"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-kiosk",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "Which URL parameter opens a PI Vision display with limited interactivity, for a wall screen?",
+    "options": [
+      { "id": "a", "text": "Mode=Kiosk" },
+      { "id": "b", "text": "HideTimebar" },
+      { "id": "c", "text": "StartTime=*-1h" },
+      { "id": "d", "text": "ReadOnly=true" }
+    ],
+    "answer": "a",
+    "explanation": "Mode=Kiosk gives limited interactivity (read-only). HideTimebar only hides the time bar, StartTime sets the start of the time range, and ReadOnly is not a PI Vision parameter in the course.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["url-parameters"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-default-span",
+    "type": "fill",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "What is the default time span of a new PI Vision display, in hours?",
+    "accepted": ["8", "8 hours", "eight"],
+    "caseSensitive": false,
+    "explanation": "The course states the default display span is 8 hours, set and changed through the time bar.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["time-bar"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-core-symbols",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "Which of these are among the core dynamic symbols listed in the 2024 Visualizing course? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Trend" },
+      { "id": "b", "text": "Radial Gauge" },
+      { "id": "c", "text": "Asset Comparison Table" },
+      { "id": "d", "text": "XY Plot" },
+      { "id": "e", "text": "Pie Chart" },
+      { "id": "f", "text": "Gantt Chart" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The core list is Trend, Value, Vertical, Horizontal and Radial Gauge, Table, Asset Comparison Table, Time Series Table, Bar Chart and XY Plot. Pie and Gantt charts are not in the list.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["symbols"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-multistate-limits",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "scenario": "A user adds multi-state to a Value symbol bound to an AF attribute that has Limits (Lo, Hi and so on) configured. She wants to change the range where the symbol turns red, but the maximum fields cannot be edited.",
+    "prompt": "Why can she not edit the ranges?",
+    "options": [
+      { "id": "a", "text": "Multi-state uses the AF attribute's Limits, so only the colours can be changed in PI Vision" },
+      { "id": "b", "text": "Multi-state only works on gauges" },
+      { "id": "c", "text": "She is not in design mode, because there is no orange border" },
+      { "id": "d", "text": "Multi-state ranges can only be set through a URL parameter" }
+    ],
+    "answer": "a",
+    "explanation": "If the AF attribute has Limits, multi-state uses them and only the colours can change. To change the ranges, change the Limits in AF.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["multi-state"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-bad-data-state",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics", "vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "Who can configure the Bad data state of a multi-state symbol?",
+    "options": [
+      { "id": "a", "text": "Only a PI administrator, although any user can change its colour" },
+      { "id": "b", "text": "Any display owner" },
+      { "id": "c", "text": "Nobody; it is fixed" },
+      { "id": "d", "text": "Only users with the Explorer licence" }
+    ],
+    "answer": "a",
+    "explanation": "\"The Bad data state can only be configured by a PI administrator\", though any user can change its colour. Explorers cannot save display changes at all.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["multi-state"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-wildcards",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "In the PI Vision Search pane, what does the query F?Rate match?",
+    "options": [
+      { "id": "a", "text": "Names starting with F, then any single character, then Rate (with * assumed at the end)" },
+      { "id": "b", "text": "Only the exact name F?Rate" },
+      { "id": "c", "text": "Any name containing F or Rate" },
+      { "id": "d", "text": "Names where any number of characters sit between F and Rate" }
+    ],
+    "answer": "a",
+    "explanation": "? matches a single character and * is assumed at the end of every query. Any number of characters would need *.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["search"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-shortcuts",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "Match each PI Vision design-mode shortcut to its action.",
+    "pairs": [
+      { "left": "Ctrl+S", "right": "Save" },
+      { "left": "Ctrl+Z", "right": "Undo" },
+      { "left": "Shift+drag", "right": "Resize proportionally" },
+      { "left": "Ctrl+click", "right": "Multi-select" },
+      { "left": "Shift while drawing a line", "right": "Snap the line to 45 degrees" }
+    ],
+    "explanation": "These shortcuts are listed in the 2024 Visualizing course.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["shortcuts"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-drag-trend",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "You drag a second attribute onto an existing trend in design mode. What happens?",
+    "options": [
+      { "id": "a", "text": "A trace is added to that trend" },
+      { "id": "b", "text": "The first trace is replaced" },
+      { "id": "c", "text": "A new trend is created beside it" },
+      { "id": "d", "text": "Nothing; trends hold one attribute" }
+    ],
+    "answer": "a",
+    "explanation": "Dragging another attribute onto an existing trend adds a trace. Dragging onto a blank area creates the default symbol.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["trend"],
+    "sources": ["dcv-exploration-notification-2020"]
+  },
+  {
+    "id": "q-vis-basics-time-codes",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "Match each PI time abbreviation to its meaning.",
+    "pairs": [
+      { "left": "*", "right": "Now" },
+      { "left": "t", "right": "Today (midnight)" },
+      { "left": "y", "right": "Yesterday (midnight)" },
+      { "left": "mo", "right": "Month offset unit" }
+    ],
+    "explanation": "* is now, t is today and y is yesterday; missing time fields default to midnight. mo is the month offset unit (m is minutes).",
+    "lessonId": "pi-vision-basics",
+    "tags": ["pi-time"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-fraction",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "True or false: *-1.5d is a valid PI time expression.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. Fractions are allowed only with s, m and h. Use *-36h instead.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["true-false", "pi-time"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-nav-link",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "Which options does Add Navigation Link offer? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Set start and end time" },
+      { "id": "b", "text": "Set asset context" },
+      { "id": "c", "text": "Use current asset" },
+      { "id": "d", "text": "Open hyperlink to another page" },
+      { "id": "e", "text": "Run a VBA macro" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "Navigation links can carry time and asset context to another display or open a web page. VBA is a ProcessBook feature and is not supported in PI Vision.",
+    "lessonId": "pi-vision-basics",
+    "tags": ["navigation"],
+    "sources": ["dcv-visualizing-workbook-2024", "dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-basics-ad-hoc",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 2,
+    "prompt": "What is an ad hoc display in PI Vision?",
+    "options": [
+      { "id": "a", "text": "A temporary display showing a single trend of chosen data items" },
+      { "id": "b", "text": "A display shared with the whole organisation" },
+      { "id": "c", "text": "A display that runs in kiosk mode" },
+      { "id": "d", "text": "A migrated ProcessBook display" }
+    ],
+    "answer": "a",
+    "explanation": "An ad hoc display is \"a temporary display that shows a single trend populated with specified data items\".",
+    "lessonId": "pi-vision-basics",
+    "tags": ["ad-hoc"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  },
+  {
+    "id": "q-vis-basics-recent-group",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-basics"],
+    "difficulty": 1,
+    "prompt": "On the PI Vision home page, how far back does the predefined Recent group look?",
+    "options": [
+      { "id": "a", "text": "The last seven days" },
+      { "id": "b", "text": "The last 24 hours" },
+      { "id": "c", "text": "The last 30 days" },
+      { "id": "d", "text": "Since the user last logged in" }
+    ],
+    "answer": "a",
+    "explanation": "The predefined groups are All Displays, Favorites, My Displays and Recent (last seven days).",
+    "lessonId": "pi-vision-basics",
+    "tags": ["home-page"],
+    "sources": ["dcv-visualizing-workbook-2024"]
+  }
+]

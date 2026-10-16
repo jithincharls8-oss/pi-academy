@@ -1,0 +1,227 @@
+[
+  {
+    "id": "q-adapters-eds-port",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 1,
+    "prompt": "On which TCP port does the Edge Data Store REST API listen by default?",
+    "accepted": ["5590"],
+    "caseSensitive": false,
+    "explanation": "The EDS REST API port is 5590 by default and is configurable. In the AVEVA World 2023 workshop the MQTT adapter component used 5591.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["eds", "ports"],
+    "sources": ["dcv-eds-docs-github", "dcv-uc23-mqtt-eds-workshop"]
+  },
+  {
+    "id": "q-adapters-omf-order",
+    "type": "ordering",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 1,
+    "prompt": "Put the OMF messages in the order an application must send them.",
+    "items": [
+      { "id": "a", "text": "Type: the schema of the readings" },
+      { "id": "b", "text": "Container: a stream that references the type" },
+      { "id": "c", "text": "Data: readings that reference the container" }
+    ],
+    "explanation": "A Type defines the schema, a Container groups readings of a single Type and references its typeid, and Data messages carry readings for a containerid. Each depends on the one before it, as in AVEVA's sample that sends OMF-Types.json, OMF-Containers.json and then OMF-Data.json.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["omf"],
+    "sources": ["dcv-felts-edge-2017", "dcv-github-omf-basic-python"]
+  },
+  {
+    "id": "q-adapters-eds-not-replacement",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 1,
+    "prompt": "How does AVEVA position Edge Data Store relative to the PI System?",
+    "options": [
+      { "id": "a", "text": "A lightweight collection and storage application that complements the PI System and is not a replacement for it" },
+      { "id": "b", "text": "A full replacement for the PI Data Archive at small sites" },
+      { "id": "c", "text": "A visualisation tool for edge devices" },
+      { "id": "d", "text": "A Windows-only buffer service" }
+    ],
+    "answer": "a",
+    "explanation": "EDS documentation says it complements the PI System and OCS and is not a replacement for them; the 2017 deck also said \"not a PI Data Archive Replacement\". It runs on Linux and Windows.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["eds"],
+    "sources": ["dcv-eds-docs-github", "dcv-felts-edge-2017"]
+  },
+  {
+    "id": "q-adapters-protocols",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "Which protocols or sources are covered by AVEVA Adapters in AVEVA's 2023 list? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "MQTT" },
+      { "id": "b", "text": "DNP3" },
+      { "id": "c", "text": "Structured Data Files" },
+      { "id": "d", "text": "Azure Event Hubs" },
+      { "id": "e", "text": "OPC DA" },
+      { "id": "f", "text": "PI to PI" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The 2023 list is Azure Event Hubs, BACnet, DNP3, Modbus TCP, MQTT, OPC UA, RDBMS and Structured Data Files. OPC DA and PI to PI remain interface-only.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["adapters"],
+    "sources": ["dcv-felts-connectivity-2023"]
+  },
+  {
+    "id": "q-adapters-facets",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 3,
+    "prompt": "Which adapter configuration facets are configurable (not read-only)? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "DataSource" },
+      { "id": "b", "text": "DataSelection" },
+      { "id": "c", "text": "Buffering" },
+      { "id": "d", "text": "Diagnostics" },
+      { "id": "e", "text": "FailoverState" },
+      { "id": "f", "text": "Version" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Configurable facets are Components, Logging, Buffering, HealthEndpoints, DataSource, DataEndpoints, DataFilters and DataSelection. Version, General, Diagnostics, Application, FailoverState and ClientSettings are read-only.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["facets"],
+    "sources": ["dcv-uc23-mqtt-eds-workshop"]
+  },
+  {
+    "id": "q-adapters-edgecmd",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "What is EdgeCmd?",
+    "options": [
+      { "id": "a", "text": "A command-line tool that translates commands into REST calls to configure EDS and adapters" },
+      { "id": "b", "text": "The EDS storage engine" },
+      { "id": "c", "text": "A PI ICU plug-in" },
+      { "id": "d", "text": "A Windows service that buffers OMF messages" }
+    ],
+    "answer": "a",
+    "explanation": "EdgeCmd is a separately installed command-line tool for Linux or Windows whose commands are translated into REST calls against EDS or adapter APIs, for example edgecmd get system.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["edgecmd"],
+    "sources": ["dcv-uc23-mqtt-eds-workshop"]
+  },
+  {
+    "id": "q-adapters-omf-headers",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "Match each OMF header to the values AVEVA Data Hub accepts for it.",
+    "pairs": [
+      { "left": "messagetype", "right": "type, container or data" },
+      { "left": "messageformat", "right": "json only" },
+      { "left": "action", "right": "create (default), update or delete" },
+      { "left": "compression", "right": "gzip only" },
+      { "left": "omfversion", "right": "1.0, 1.1 or 1.2" }
+    ],
+    "explanation": "The Data Hub OMF ingress documentation lists these accepted header values.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["omf", "headers"],
+    "sources": ["dcv-github-datahub-omf-ingress"]
+  },
+  {
+    "id": "q-adapters-pi-index",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 3,
+    "scenario": "A developer defines an OMF type whose index is an integer sample number, plus a second index property for the channel. Sending to Data Hub works, but the PI Web API OMF endpoint rejects the type.",
+    "prompt": "What is the most likely reason?",
+    "options": [
+      { "id": "a", "text": "PI accepts only DateTime as the index, and supports only one index" },
+      { "id": "b", "text": "PI requires the static classification" },
+      { "id": "c", "text": "PI requires gzip compression" },
+      { "id": "d", "text": "PI does not accept container messages" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's OMF samples note that PI accepts only DateTime as the index and supports only one index. Compression is optional, and PI does accept containers (they become PI points).",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["omf", "pitfall"],
+    "sources": ["dcv-github-osi-samples-omf"]
+  },
+  {
+    "id": "q-adapters-same-type",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "True or false: a single OMF message can mix type, container and data objects.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. In each OMF message all objects must be of the same message type, which the messagetype header declares.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["true-false", "omf"],
+    "sources": ["dcv-devtech-workbook-2020"]
+  },
+  {
+    "id": "q-adapters-omf-option",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "What must be done for PI Web API to offer its OMF endpoint?",
+    "options": [
+      { "id": "a", "text": "Select the OMF option when installing PI Server" },
+      { "id": "b", "text": "Install the PI Connector Relay" },
+      { "id": "c", "text": "Enable bufserv" },
+      { "id": "d", "text": "Nothing; every PI Web API has it automatically" }
+    ],
+    "answer": "a",
+    "explanation": "The PI Web API OMF endpoint requires the OMF option to be selected at PI Server install, and it is recommended for all new deployments.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["omf", "pi-web-api"],
+    "sources": ["dcv-foglamp-omf"]
+  },
+  {
+    "id": "q-adapters-eds-components",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "Which are components of Edge Data Store according to its documentation? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Modbus TCP adapter" },
+      { "id": "b", "text": "OPC UA adapter" },
+      { "id": "c", "text": "Data Storage" },
+      { "id": "d", "text": "Data egress" },
+      { "id": "e", "text": "PI Vision display server" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "EDS components are the Modbus TCP adapter, OPC UA adapter, Data Storage, Data egress (to PI Server or OCS) and Health. It does not serve PI Vision displays.",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["eds"],
+    "sources": ["dcv-eds-docs-github"]
+  },
+  {
+    "id": "q-adapters-container-becomes",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.adapters-eds"],
+    "difficulty": 2,
+    "prompt": "When an OMF container is sent to the PI System, what does it become?",
+    "options": [
+      { "id": "a", "text": "A PI point" },
+      { "id": "b", "text": "An AF element template" },
+      { "id": "c", "text": "An event frame" },
+      { "id": "d", "text": "A PI Vision display" }
+    ],
+    "answer": "a",
+    "explanation": "An OMF container, identified by id and referencing a typeid, becomes a PI point (or an SDS stream in EDS and Data Hub).",
+    "lessonId": "adapters-and-edge-data-store",
+    "tags": ["omf"],
+    "sources": ["dcv-chudnovskiy-ocs-2017"]
+  }
+]

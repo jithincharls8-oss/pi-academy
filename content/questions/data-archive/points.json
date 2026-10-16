@@ -1,0 +1,402 @@
+[
+  {
+    "id": "q-points-unique-name",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 1,
+    "prompt": "Which statement about PI point names is correct?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A point's name must be unique within the Data Archive"
+      },
+      {
+        "id": "b",
+        "text": "Two points may share a name if they have different point types"
+      },
+      {
+        "id": "c",
+        "text": "Names must be unique only within one interface"
+      },
+      {
+        "id": "d",
+        "text": "Archive files store point names, so names can never change"
+      }
+    ],
+    "answer": "a",
+    "explanation": "A point's name must be unique within the Data Archive. Archive files store PointIDs, not tag names; the tag-to-PointID map is in the PIPOINT table.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "points"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-ps-piarch-thread"
+    ]
+  },
+  {
+    "id": "q-points-float16",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 2,
+    "scenario": "A new system will have 120,000 analogue points with sub-second collection. Each measurement has a well-defined range, for example 0 to 400 degC.",
+    "prompt": "According to OSIsoft's system-management guidance, which point type suits this best?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Float16, with a well-defined Zero and a positive Span"
+      },
+      {
+        "id": "b",
+        "text": "String"
+      },
+      {
+        "id": "c",
+        "text": "Timestamp"
+      },
+      {
+        "id": "d",
+        "text": "BLOB"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Float16 requires a well-defined zero and span and suits systems over 50,000 points, sub-second collection and high-density applications. Span must be positive for Float16. Float32 is easier to administer but roughly doubles archive I/O.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "point-types",
+      "scenario"
+    ],
+    "sources": [
+      "da-uc2003-system-mgmt",
+      "da-rockwell-ftme-general"
+    ]
+  },
+  {
+    "id": "q-points-webapi-create",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 3,
+    "prompt": "Which fields can you include in the body of a PI Web API (2017 R2) request that creates a PI point? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Name"
+      },
+      {
+        "id": "b",
+        "text": "PointType"
+      },
+      {
+        "id": "c",
+        "text": "EngineeringUnits"
+      },
+      {
+        "id": "d",
+        "text": "Future"
+      },
+      {
+        "id": "e",
+        "text": "PointSource"
+      },
+      {
+        "id": "f",
+        "text": "Location1"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The create body takes Name, Descriptor, PointClass, PointType, EngineeringUnits, Step and Future. Other attributes such as pointsource, exdesc, archiving or location1 cause a 'not allowed' error and must be set afterwards.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "web-api",
+      "pitfall"
+    ],
+    "sources": [
+      "da-ps-webapi-create-thread"
+    ]
+  },
+  {
+    "id": "q-points-webapi-url",
+    "type": "code",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 3,
+    "language": "webapi",
+    "prompt": "Write the PI Web API request line (method and path) that creates a point on the Data Archive whose WebId is {webId}. Use https://server as the host.",
+    "accepted": [
+      "POST https://server/piwebapi/dataservers/{webId}/points"
+    ],
+    "requiredPatterns": [
+      "^post\\s",
+      "/piwebapi/dataservers/\\{?webid\\}?/points"
+    ],
+    "forbiddenPatterns": [
+      "/attributes",
+      "^get\\s"
+    ],
+    "placeholder": "METHOD https://server/piwebapi/...",
+    "explanation": "PI Web API creates points with POST {server}/piwebapi/dataservers/{webId}/points. GET on the same collection lists points rather than creating one.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "web-api"
+    ],
+    "sources": [
+      "da-ps-webapi-create-thread"
+    ]
+  },
+  {
+    "id": "q-points-three-files",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 2,
+    "prompt": "Creating or deleting a point updates which files? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The PI Point Table"
+      },
+      {
+        "id": "b",
+        "text": "The PI Snapshot Table"
+      },
+      {
+        "id": "c",
+        "text": "The primary archive file"
+      },
+      {
+        "id": "d",
+        "text": "Every historic archive file"
+      },
+      {
+        "id": "e",
+        "text": "The PI Vision display database"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Point creation and deletion update the Point Table, the Snapshot Table and the primary archive file. This needs a global lock, so bulk changes should run off-hours.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "q-points-afsub",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 2,
+    "prompt": "An AF template's tag-name pattern is %Element%LI.PV. What point name is created for the element Tank02?",
+    "accepted": [
+      "Tank02LI.PV"
+    ],
+    "explanation": "AF substitution replaces %Element% with the element name, so %Element%LI.PV on Tank02 creates Tank02LI.PV. The default pattern is %Element%.%Attribute%.%ID%.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "af",
+      "naming"
+    ],
+    "sources": [
+      "da-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-points-class-match",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.point-attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each point class to its description.",
+    "pairs": [
+      {
+        "left": "base",
+        "right": "Core attributes only; used by connector-created points"
+      },
+      {
+        "left": "classic",
+        "right": "Adds interface attributes such as Location1-5 and InstrumentTag"
+      },
+      {
+        "left": "ptclassname",
+        "right": "The attribute that holds a point's class name"
+      }
+    ],
+    "explanation": "The base class holds core attributes and is used by connectors. The classic class adds interface-specific attributes. ptclassname is the attribute naming the class, and can be edited with piconfig.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "point-class"
+    ],
+    "sources": [
+      "da-ps-pointclass-thread",
+      "da-ps-pointsource-thread"
+    ]
+  },
+  {
+    "id": "q-points-bulk-tools",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each tool to how it creates points.",
+    "pairs": [
+      {
+        "left": "SMT Point Builder",
+        "right": "Create and edit points one at a time in the admin console"
+      },
+      {
+        "left": "PI Builder",
+        "right": "Excel add-in for bulk creation and editing"
+      },
+      {
+        "left": "PI OPC Client Tool",
+        "right": "Generates a CSV for bulk creation, up to 500 OPC items per addition"
+      }
+    ],
+    "explanation": "The administration course lists SMT Points > Point Builder, the PI Builder Excel add-in for bulk work, and the PI OPC Client Tool CSV with a 500-item maximum per bulk addition.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "tools"
+    ],
+    "sources": [
+      "da-admin-workbook-2017r2",
+      "da-pse-builder-tips-pdf"
+    ]
+  },
+  {
+    "id": "q-points-digital-vs-string",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: for discrete states such as RUNNING or STOPPED, OSIsoft prefers digital points over string tags.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "OSIsoft's system-management guidance prefers digital points for discrete states. Excessive string tags also hurt archive performance.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "true-false",
+      "point-types"
+    ],
+    "sources": [
+      "da-uc2003-system-mgmt",
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "q-points-create-msgid",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points",
+      "da.batch-msglog"
+    ],
+    "difficulty": 3,
+    "prompt": "Which subsystem and message ID appear in the message log when a point is created?",
+    "options": [
+      {
+        "id": "a",
+        "text": "pibasess, message ID 6079"
+      },
+      {
+        "id": "b",
+        "text": "pisnapss, message ID 2016"
+      },
+      {
+        "id": "c",
+        "text": "piarchss, message ID -11091"
+      },
+      {
+        "id": "d",
+        "text": "pinetmgr, message ID -10767"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Point creation is logged under pibasess with message ID 6079. 2016 is 'Inserting overflow record', -11091 is the ArcMaxCollect limit and -10767 is too many concurrent queries.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "message-log"
+    ],
+    "sources": [
+      "da-uc23-da-performance"
+    ]
+  },
+  {
+    "id": "q-points-stale",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": [
+      "da.points"
+    ],
+    "difficulty": 2,
+    "prompt": "Why does AVEVA's 2023 performance session warn about stale tags?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They slow interpolated queries and snapshot deletion because the system must search many archives"
+      },
+      {
+        "id": "b",
+        "text": "They use up licence point count only on the AF Server"
+      },
+      {
+        "id": "c",
+        "text": "They make the archive shift every minute"
+      },
+      {
+        "id": "d",
+        "text": "They disable compression for all other points"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Stale tags slow interpolated queries and snapshot deletion, because the system must search many archives to find their last values.",
+    "lessonId": "points-and-point-classes",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "da-uc23-da-performance"
+    ]
+  }
+]

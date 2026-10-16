@@ -1,0 +1,1299 @@
+[
+  {
+    "id": "boed",
+    "term": "BOED",
+    "aliases": [
+      "barrels of oil equivalent per day"
+    ],
+    "definition": "Barrels of oil equivalent per day. Upstream oil and gas companies use it in cost-per-BOED KPIs; OSIsoft's 2015 deck cites a benchmark of E&P cost per BOED reduced 2-5% year on year.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "lifting-cost"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "lifting-cost",
+    "term": "Lifting cost",
+    "aliases": [],
+    "definition": "The cost of producing oil and gas from a well. OSIsoft's oil and gas deck lists lifting cost reduction as an upstream PI use case and lifting cost as a KPI.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "boed"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "hpi",
+    "term": "HPI",
+    "aliases": [
+      "Hydrocarbon Processing Industries"
+    ],
+    "definition": "Hydrocarbon Processing Industries: the downstream refining and processing part of oil and gas. OSIsoft's 2015 deck lists HPI use cases such as interlock statuses, operating envelopes, alarm management, APC monitoring and corrosion control.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "controllable-margin"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "htha",
+    "term": "HTHA",
+    "aliases": [
+      "High Temperature Hydrogen Attack"
+    ],
+    "definition": "High Temperature Hydrogen Attack: a refinery corrosion mechanism. One refinery modelled it in a PI AF template whose inputs are metallurgy, temperature, hydrogen partial pressure and exposure length.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "element-template"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "electrical-submersible-pump",
+    "term": "ESP (electrical submersible pump)",
+    "aliases": [
+      "ESP",
+      "electric submersible pump"
+    ],
+    "definition": "An artificial-lift pump placed down an oil well. ESP optimisation is a common upstream PI use case, for example at BPX Energy. Do not confuse it with the NERC CIP Electronic Security Perimeter, also shortened to ESP.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "electronic-security-perimeter"
+    ],
+    "sources": [
+      "ind-pres-bpx-2023"
+    ]
+  },
+  {
+    "id": "linepack",
+    "term": "Linepack",
+    "aliases": [
+      "line pack"
+    ],
+    "definition": "The volume of gas stored inside a pipeline. TC Energy forecasts linepack with AWS machine-learning models that use PI AF data.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-tc-energy"
+    ]
+  },
+  {
+    "id": "demurrage",
+    "term": "Demurrage",
+    "aliases": [],
+    "definition": "Charges paid when loading or unloading of a vessel is delayed. OSIsoft reported that Pertamina's integrated downstream dashboard reduced demurrage by 40%.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-graves-2014"
+    ]
+  },
+  {
+    "id": "plan-vs-actual",
+    "term": "Plan vs Actual (PvA)",
+    "aliases": [
+      "PvA"
+    ],
+    "definition": "A KPI comparing planned with actual production or performance. OSIsoft's oil and gas deck lists it alongside yield accounting and material balancing.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "yield-accounting"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "yield-accounting",
+    "term": "Yield accounting",
+    "aliases": [],
+    "definition": "Accounting for how much product is obtained from the feed. OSIsoft's oil and gas deck names yield accounting with Sigmafine on PI AF, together with first- and second-level material balancing.",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "related": [
+      "hc-loss",
+      "plan-vs-actual"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "heat-rate",
+    "term": "Heat rate",
+    "aliases": [],
+    "definition": "The amount of energy an electrical generator or power plant uses to generate one kilowatthour, expressed in Btu per net kWh. Lower is better. EIA gives efficiency (%) as 3,412 divided by the heat rate.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [
+      "net-generation"
+    ],
+    "sources": [
+      "ind-eia-heat-rate"
+    ]
+  },
+  {
+    "id": "net-generation",
+    "term": "Net generation",
+    "aliases": [],
+    "definition": "Electricity delivered to the transmission line after subtracting the plant's own use (auxiliary or station service load). Heat rate is calculated on net kWh.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [
+      "heat-rate"
+    ],
+    "sources": [
+      "ind-eia-heat-rate"
+    ]
+  },
+  {
+    "id": "controllable-losses",
+    "term": "Controllable losses",
+    "aliases": [],
+    "definition": "Margin lost to deviations from design that operators can control, such as condenser backpressure. OSIsoft's power deck lists controllable-loss tracking as a PI use case.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [
+      "heat-rate"
+    ],
+    "sources": [
+      "ind-pres-power-oceania-2012"
+    ]
+  },
+  {
+    "id": "electronic-security-perimeter",
+    "term": "Electronic Security Perimeter",
+    "aliases": [
+      "ESP (NERC CIP)"
+    ],
+    "definition": "A NERC CIP concept cited in OSIsoft power decks: a boundary that limits direct access to cyber assets. PI security architectures for power utilities are designed around it.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-power-trends-2015",
+      "ind-pres-power-oceania-2012"
+    ]
+  },
+  {
+    "id": "iso-rto",
+    "term": "ISO / RTO",
+    "aliases": [
+      "Independent System Operator",
+      "Regional Transmission Organization"
+    ],
+    "definition": "Independent System Operator / Regional Transmission Organization: the body that runs a regional electric grid. PJM is an example. OSIsoft claimed in 2012 that 100% of North American ISOs/RTOs used PI.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-pjm",
+      "ind-pres-power-oceania-2012"
+    ]
+  },
+  {
+    "id": "condition-based-maintenance",
+    "term": "Condition-based maintenance (CBM)",
+    "aliases": [
+      "CBM"
+    ],
+    "definition": "Maintenance triggered by the measured condition of equipment rather than a fixed schedule. Power decks describe CBM using vibration, temperature and amps, with PI totalisers as run-time counters; PG&E used PI AF for critical-asset CBM.",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-power-oceania-2012",
+      "ind-pres-graves-2014"
+    ]
+  },
+  {
+    "id": "scada",
+    "term": "SCADA",
+    "aliases": [
+      "supervisory control and data acquisition"
+    ],
+    "definition": "Supervisory control and data acquisition: the systems that monitor and control remote field assets such as pipelines, wind farms and water networks. SCADA systems are a frequent PI data source; Enbridge consolidated 37 proprietary SCADA systems and Equinix replaced its SCADA servers with one PI server.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-enbridge",
+      "ind-pres-equinix-2011",
+      "ind-ss-entega"
+    ],
+    "verify": true,
+    "verifyNote": "The research sources use the acronym SCADA but do not spell it out. Confirm the expansion against a cited source."
+  },
+  {
+    "id": "non-revenue-water",
+    "term": "Non-revenue water (NRW)",
+    "aliases": [
+      "NRW"
+    ],
+    "definition": "In the IWA/AWWA water balance, the sum of unbilled authorised consumption, apparent losses and real losses. It is water that is put into the system but earns no revenue.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "apparent-losses",
+      "real-losses",
+      "water-audit"
+    ],
+    "sources": [
+      "ind-awe-water-audit"
+    ]
+  },
+  {
+    "id": "apparent-losses",
+    "term": "Apparent losses",
+    "aliases": [],
+    "definition": "Water losses that are not physical leaks: customer metering inaccuracies, unauthorised consumption such as hydrant theft, and billing data errors.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "non-revenue-water",
+      "real-losses"
+    ],
+    "sources": [
+      "ind-awe-water-audit"
+    ]
+  },
+  {
+    "id": "real-losses",
+    "term": "Real losses",
+    "aliases": [],
+    "definition": "The annual volume lost through all types of leaks, breaks and overflows on mains, reservoirs and service connections, up to the customer meter.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "non-revenue-water",
+      "apparent-losses"
+    ],
+    "sources": [
+      "ind-awe-water-audit"
+    ]
+  },
+  {
+    "id": "water-audit",
+    "term": "Water audit",
+    "aliases": [
+      "IWA water audit"
+    ],
+    "definition": "A water audit compares volumes of water treated and pumped with volumes consumed by customers. Halifax Water used the IWA methodology and found it was doing worse than it thought.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "non-revenue-water"
+    ],
+    "sources": [
+      "ind-awe-water-audit",
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "district-metered-area",
+    "term": "District Metered Area (DMA)",
+    "aliases": [
+      "DMA"
+    ],
+    "definition": "A hydraulically discrete zone of a water network with metered inflows, used for leak detection. Halifax Water set up 70 DMAs and monitored their night flows in PI.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "minimum-night-flow"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "minimum-night-flow",
+    "term": "Minimum Night Flow (MNF)",
+    "aliases": [
+      "MNF"
+    ],
+    "definition": "The lowest inflow to a DMA, usually overnight when legitimate use is low. A rising MNF indicates leakage.",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [
+      "district-metered-area"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "mld",
+    "term": "MLD",
+    "aliases": [
+      "million litres per day"
+    ],
+    "definition": "Million litres per day, a water volume-rate unit seen in PI deployments. Halifax Water's system inputs fell from 168 MLD (2000) to 131 MLD (2012).",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "controllable-margin",
+    "term": "Controllable margin",
+    "aliases": [],
+    "definition": "The part of margin that operational decisions can influence. OSIsoft's 2015 deck cites a benchmark of HPI controllable margin improved 1-5% year on year.",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "related": [
+      "hpi"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "hc-loss",
+    "term": "HC loss",
+    "aliases": [
+      "hydrocarbon loss"
+    ],
+    "definition": "Hydrocarbon loss: material that is unaccounted for in the material balance. MOL Downstream reported HC loss -30% in OSIsoft's 2015 deck.",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "related": [
+      "yield-accounting"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "aggregate-tag-licensing",
+    "term": "Aggregate tag licensing",
+    "aliases": [],
+    "definition": "Licensing based on the total number of data streams across a data infrastructure rather than per server. Syensqo is introducing AVEVA PI Data Infrastructure with aggregate tag licensing.",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "central-to-local-model",
+    "term": "Central-to-local model",
+    "aliases": [],
+    "definition": "A governance pattern in which central data managers own standard AF templates and hierarchies and local site teams build their own solutions on them. Syensqo uses it to keep templates standard while sites keep autonomy.",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "related": [
+      "element-template"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "operations-data-layer",
+    "term": "Operations Data Layer (ODL)",
+    "aliases": [
+      "ODL"
+    ],
+    "definition": "dsm-firmenich's name for its global, standardised data layer built on PI Server and AF. It supports 3,500 users.",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-dsm-firmenich-2024"
+    ]
+  },
+  {
+    "id": "gxp",
+    "term": "GxP",
+    "aliases": [
+      "GMP",
+      "GLP",
+      "GCP"
+    ],
+    "definition": "Umbrella term for Good Manufacturing, Laboratory and Clinical Practice regulations (GMP, GLP, GCP). Pfizer Groton keeps GMP and non-GMP, GLP and GCP data on a separate local PI server set.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "21-cfr-part-11"
+    ],
+    "sources": [
+      "ind-ss-pfizer"
+    ]
+  },
+  {
+    "id": "21-cfr-part-11",
+    "term": "21 CFR Part 11",
+    "aliases": [
+      "Part 11"
+    ],
+    "definition": "The US FDA regulation on electronic records and electronic signatures. Section 11.10 lists controls such as validation, accurate copies, record protection, access limits and secure, computer-generated, time-stamped audit trails.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "predicate-rule",
+      "gxp-audit-trail",
+      "gxp"
+    ],
+    "sources": [
+      "ind-ecfr-11-10",
+      "ind-fda-part11-guidance"
+    ]
+  },
+  {
+    "id": "predicate-rule",
+    "term": "Predicate rule",
+    "aliases": [],
+    "definition": "An underlying FDA record-keeping requirement outside Part 11. FDA's 2003 guidance says Part 11 applies to records required by predicate rules that are kept electronically.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "21-cfr-part-11"
+    ],
+    "sources": [
+      "ind-fda-part11-guidance"
+    ]
+  },
+  {
+    "id": "gxp-audit-trail",
+    "term": "Audit trail (Part 11)",
+    "aliases": [
+      "audit trail"
+    ],
+    "definition": "Under 21 CFR 11.10(e), a secure, computer-generated, time-stamped record of the date and time of operator entries and actions that create, modify or delete electronic records. Record changes must not obscure previously recorded information.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "21-cfr-part-11",
+      "pi-audit-reporter"
+    ],
+    "sources": [
+      "ind-ecfr-11-10"
+    ]
+  },
+  {
+    "id": "pi-audit-reporter",
+    "term": "AVEVA PI Audit Reporter",
+    "aliases": [
+      "PI Audit Reporter"
+    ],
+    "definition": "A web-based audit trail review and reporting tool. Remote agents collect audit records from PI Data Archive and PI AF servers into one searchable interface; the datasheet names 21 CFR Part 11, NERC CIP and ISO as supported standards.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "gxp-audit-trail"
+    ],
+    "sources": [
+      "ind-ds-pi-audit-reporter"
+    ]
+  },
+  {
+    "id": "alcoa",
+    "term": "ALCOA",
+    "aliases": [],
+    "definition": "Data integrity principles: attributable, legible, contemporaneous, original, accurate. OSIsoft life-sciences material says electronic data needs time/date stamps, user IDs, metadata and audit trails to meet them.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "data-integrity"
+    ],
+    "sources": [
+      "ind-pres-ls-2016-moree"
+    ]
+  },
+  {
+    "id": "data-integrity",
+    "term": "Data integrity",
+    "aliases": [],
+    "definition": "The accuracy and consistency of data over its full life cycle. MHRA (2014) calls it fundamental to a pharmaceutical quality system, for paper and electronic records alike.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "alcoa"
+    ],
+    "sources": [
+      "ind-pres-ls-2016-moree"
+    ]
+  },
+  {
+    "id": "cpv",
+    "term": "Continued Process Verification (CPV)",
+    "aliases": [
+      "CPV"
+    ],
+    "definition": "Stage 3 of FDA's 2011 process validation guidance, after process design and process qualification. Janssen Cork used PI to support CPV.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "cpp",
+      "cqa"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "cpp",
+    "term": "Critical Process Parameter (CPP)",
+    "aliases": [
+      "CPP"
+    ],
+    "definition": "A process parameter that must be controlled to make product of the right quality. At Janssen Cork, CPPs were child elements in AF mapped to PI tags.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "cqa"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "cqa",
+    "term": "Critical Quality Attribute (CQA)",
+    "aliases": [
+      "CQA"
+    ],
+    "definition": "A product quality property that must stay within limits, often measured in the lab (for example loss on drying or HPLC assay). At Janssen Cork each CQA was a sub-element in AF, linked to the CPPs that affect it.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "cpp"
+    ],
+    "sources": [
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "golden-batch",
+    "term": "Golden batch",
+    "aliases": [],
+    "definition": "A reference batch profile that other batches are compared against. OSIsoft lists golden batch analysis as a life-sciences PI use case.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-ls-2016-moree"
+    ]
+  },
+  {
+    "id": "iq-oq-pq",
+    "term": "IQ / OQ / PQ",
+    "aliases": [
+      "Installation Qualification",
+      "Operational Qualification",
+      "Performance Qualification"
+    ],
+    "definition": "Installation, Operational and Performance Qualification: the test stages used to validate a system in a regulated environment.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "urs-fs-sds"
+    ],
+    "sources": [
+      "ind-pres-genentech-ef-2016"
+    ]
+  },
+  {
+    "id": "urs-fs-sds",
+    "term": "URS / FS / SDS",
+    "aliases": [
+      "User Requirements Specification",
+      "Functional Specification",
+      "Software Design Specification"
+    ],
+    "definition": "User Requirements, Functional and Software Design Specifications in a GMP validation lifecycle. In E Tech Group's biotech project the exported PI tag list was kept as a living appendix to the SDS.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "iq-oq-pq"
+    ],
+    "sources": [
+      "ind-etech-biotech"
+    ]
+  },
+  {
+    "id": "phantom-pi-unit",
+    "term": "Phantom PI Unit",
+    "aliases": [],
+    "definition": "A workaround unit in the PI Module Database used to hold overlapping batches, because PI Batch allowed only one unit batch per PI Unit at a time. Event Frames made it unnecessary.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "ind-pres-batch-migration-2015"
+    ]
+  },
+  {
+    "id": "isa-88",
+    "term": "ISA-88 (S88)",
+    "aliases": [
+      "S88",
+      "ISA-88"
+    ],
+    "definition": "The batch control standard whose physical model runs Enterprise > Site > Area > Process Cell > Unit > Equipment Module. OSIsoft's example is Area My House > Process Cell Kitchen > Units Mixer, Pan and Oven.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "ind-pres-batch-ef-2017",
+      "ind-pres-janssen-cork-2013"
+    ]
+  },
+  {
+    "id": "lean-validation",
+    "term": "Lean validation",
+    "aliases": [],
+    "definition": "J&J/Janssen's single, common validation approach for its GMP-critical PI System, rolled out with standardised PI deployments instead of site-by-site validation (2014).",
+    "domain": "industries",
+    "coverage": [
+      "ind.pharma"
+    ],
+    "related": [
+      "iq-oq-pq"
+    ],
+    "sources": [
+      "ind-pres-jj-lean-validation-2014"
+    ]
+  },
+  {
+    "id": "p80",
+    "term": "P80",
+    "aliases": [],
+    "definition": "The particle size that 80% of material passes; the key grinding performance indicator. Hindustan Zinc runs a P80 soft sensor on PI data.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [
+      "soft-sensor"
+    ],
+    "sources": [
+      "ind-pres-hzl-2021-pdf"
+    ]
+  },
+  {
+    "id": "soft-sensor",
+    "term": "Soft sensor",
+    "aliases": [
+      "virtual sensor"
+    ],
+    "definition": "A model-derived (virtual) measurement written back to PI, such as P80 or sulphide sulphur at Hindustan Zinc. Newcrest used model-driven virtual sensors to keep running through sensor failure.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [
+      "p80"
+    ],
+    "sources": [
+      "ind-pres-hzl-2021-pdf",
+      "ind-ss-newcrest"
+    ]
+  },
+  {
+    "id": "match-factor",
+    "term": "Match factor",
+    "aliases": [],
+    "definition": "A ratio used to judge whether the number of haul trucks matches the shovels loading them, and so how well the haul fleet is used. AMMC tracked it in PI.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [
+      "mine-plan-conformity"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "mine-plan-conformity",
+    "term": "Mine plan conformity",
+    "aliases": [],
+    "definition": "Actual versus planned extraction by material type and shovel face. AMMC's target was above 80% and it reported conformity increased by an additional 5%.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [
+      "match-factor",
+      "value-driver-tree"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "mtpa",
+    "term": "MTPA",
+    "aliases": [
+      "million tonnes per annum"
+    ],
+    "definition": "Million tonnes per annum, a mining capacity unit. AMMC's mining capacity was 150+ MTPA. Cameron LNG also uses MTPA for its 13.5 MTPA capacity.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [],
+    "sources": [
+      "ind-pres-ammc-2019",
+      "ind-ss-cameron-lng"
+    ]
+  },
+  {
+    "id": "value-driver-tree",
+    "term": "Value driver tree",
+    "aliases": [],
+    "definition": "A KPI breakdown from top-level output down to the process drivers behind it. Level 2 of AMMC's Operations Management System was a value driver tree per process: drilling, loading and hauling.",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "related": [
+      "mine-plan-conformity"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "oee",
+    "term": "OEE",
+    "aliases": [
+      "Overall Equipment Effectiveness"
+    ],
+    "definition": "Overall Equipment Effectiveness: the product of availability, performance and quality. Illovo Sugar's AF templates break OEE into these three parts for each packing machine.",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "related": [
+      "mtbf",
+      "event-frame"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ]
+  },
+  {
+    "id": "form-fill-seal",
+    "term": "FFS (form-fill-seal)",
+    "aliases": [
+      "FFS"
+    ],
+    "definition": "A packaging machine that forms a bag, fills it and seals it. Illovo Sugar tracks 49 FFS packing machines across 5 sites in PI.",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "related": [
+      "oee"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ]
+  },
+  {
+    "id": "giveaway",
+    "term": "Giveaway",
+    "aliases": [],
+    "definition": "Product overfilled beyond the declared weight, given away free. Tyson Foods reported waste and giveaway reduced by 50% at its Jimmy Dean plant.",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-tyson"
+    ]
+  },
+  {
+    "id": "clean-in-place",
+    "term": "Clean-In-Place (CIP)",
+    "aliases": [
+      "CIP"
+    ],
+    "definition": "An automated cleaning cycle for process equipment. OSIsoft's event frame demos split CIP into pre-rinse, caustic main wash, final rinse and acid second wash. Do not confuse with NERC CIP.",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "ind-pres-ef-bajoll-2016",
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "mtbf",
+    "term": "MTBF",
+    "aliases": [
+      "mean time between failures"
+    ],
+    "definition": "Mean time between failures. Kellogg's Valls reported it \"Increased mean time between failures rate by 180%\".",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "related": [
+      "oee"
+    ],
+    "sources": [
+      "ind-ss-kelloggs"
+    ]
+  },
+  {
+    "id": "pue",
+    "term": "PUE",
+    "aliases": [
+      "Power Usage Effectiveness"
+    ],
+    "definition": "Power Usage Effectiveness: energy entering the facility divided by the energy used by the IT equipment (The Green Grid). 1.0 is the theoretical ideal; equal overhead and IT energy gives 2.0.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "partial-pue"
+    ],
+    "sources": [
+      "ind-greengrid-pue",
+      "ind-pres-digitalrealty-2017"
+    ]
+  },
+  {
+    "id": "partial-pue",
+    "term": "Partial PUE",
+    "aliases": [
+      "pPUE"
+    ],
+    "definition": "A PUE-style ratio for one part of the overhead, such as cooling.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "pue"
+    ],
+    "sources": [
+      "ind-greengrid-pue"
+    ]
+  },
+  {
+    "id": "dcim",
+    "term": "DCIM",
+    "aliases": [
+      "Data Centre Infrastructure Management"
+    ],
+    "definition": "Data Centre Infrastructure Management software. eBay uses the Clarity DCIM platform on PI data, and PayPal built its own DCIM on its own PI System.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "pue"
+    ],
+    "sources": [
+      "ind-ss-ebay",
+      "ind-ss-paypal"
+    ]
+  },
+  {
+    "id": "pdu",
+    "term": "PDU",
+    "aliases": [
+      "Power Distribution Unit"
+    ],
+    "definition": "Power Distribution Unit: equipment that distributes power to racks. Digital Realty's AF model covered utility feed, UPS, PDU, RPP and onward to cabinets and customers.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "rpp"
+    ],
+    "sources": [
+      "ind-pres-digitalrealty-2017"
+    ]
+  },
+  {
+    "id": "rpp",
+    "term": "RPP",
+    "aliases": [
+      "Remote Power Panel"
+    ],
+    "definition": "Remote Power Panel: a panel downstream of the PDU in a data-centre power chain, part of Digital Realty's AF model.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "pdu"
+    ],
+    "sources": [
+      "ind-pres-digitalrealty-2017"
+    ]
+  },
+  {
+    "id": "crac",
+    "term": "CRAC",
+    "aliases": [
+      "Computer Room Air Conditioner"
+    ],
+    "definition": "Computer Room Air Conditioner. CRAC is measurement point M7 in Microsoft's 2009 list of ten data-centre power measurement points.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "pue"
+    ],
+    "sources": [
+      "ind-pres-microsoft-2009-stl"
+    ]
+  },
+  {
+    "id": "colocation",
+    "term": "Colocation",
+    "aliases": [],
+    "definition": "A data centre that rents space and power to many customers, so it needs per-customer billing. Aligned Energy builds AF billing charge points for this.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [
+      "pdu"
+    ],
+    "sources": [
+      "ind-ss-aligned"
+    ]
+  },
+  {
+    "id": "redfish",
+    "term": "Redfish",
+    "aliases": [],
+    "definition": "A DMTF standard REST API for server hardware management. Dell EMC's micro data centres use PI Connector for Redfish to pull server data.",
+    "domain": "industries",
+    "coverage": [
+      "ind.data-centres"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-dell-emc"
+    ]
+  },
+  {
+    "id": "air-dry-tonne",
+    "term": "Air-dry tonne (ADt)",
+    "aliases": [
+      "ADt",
+      "air-dry ton"
+    ],
+    "definition": "The standard unit of pulp production. Klabin reported production up 3,400 air-dry tons per year.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-klabin"
+    ]
+  },
+  {
+    "id": "control-loop-monitoring",
+    "term": "Control-loop monitoring",
+    "aliases": [],
+    "definition": "Tracking the performance of PID control loops (for example time in manual or oscillation) to find poorly tuned loops. Ence built a loop monitoring tool on PI AF and event frames.",
+    "domain": "industries",
+    "coverage": [
+      "ind.pulp-paper"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "ind-ss-ence"
+    ]
+  },
+  {
+    "id": "eui",
+    "term": "EUI",
+    "aliases": [
+      "energy-use intensity"
+    ],
+    "definition": "Energy-use intensity: energy used per unit of floor area per year. UC Davis reported a 46% reduction in EUI since 2009.",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings"
+    ],
+    "related": [
+      "bms"
+    ],
+    "sources": [
+      "ind-ss-uc-davis"
+    ]
+  },
+  {
+    "id": "bms",
+    "term": "BMS / BAS",
+    "aliases": [
+      "building management system",
+      "building automation system"
+    ],
+    "definition": "Building management or automation system: controls HVAC and other building services and is a common PI data source, for example at Pfizer Groton and PayPal.",
+    "domain": "industries",
+    "coverage": [
+      "ind.buildings"
+    ],
+    "related": [
+      "eui"
+    ],
+    "sources": [
+      "ind-ss-pfizer",
+      "ind-ss-paypal"
+    ]
+  },
+  {
+    "id": "enms",
+    "term": "EnMS",
+    "aliases": [
+      "Energy Management System"
+    ],
+    "definition": "Energy Management System: a centralised energy monitoring system. Toyota Motor Europe built one on PI System to standardise data models across its European plants.",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-toyota"
+    ]
+  },
+  {
+    "id": "excursion",
+    "term": "Excursion",
+    "aliases": [],
+    "definition": "A period when a value is outside its limits, captured as an event frame. OSIsoft lists Batch, Downtime and Excursion as manufacturing event categories.",
+    "domain": "industries",
+    "coverage": [
+      "ind.manufacturing"
+    ],
+    "related": [
+      "event-frame"
+    ],
+    "sources": [
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "ship-to-shore",
+    "term": "Ship-to-shore",
+    "aliases": [],
+    "definition": "Data transfer from a vessel to onshore servers over satellite, often store-and-forward. CSL sends critical data in near real time and uploads non-critical data later.",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "roro",
+    "term": "RORO",
+    "aliases": [
+      "roll-on/roll-off"
+    ],
+    "definition": "Roll-on/roll-off cargo vessel. Caterpillar notes fuel is nearly 70% of a RORO vessel's lifetime cost.",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "related": [
+      "hull-fouling"
+    ],
+    "sources": [
+      "ind-ss-caterpillar"
+    ]
+  },
+  {
+    "id": "hull-fouling",
+    "term": "Hull fouling",
+    "aliases": [],
+    "definition": "Marine growth such as barnacles on a ship's hull, which increases drag and fuel burn. Caterpillar reported about $450,000 per vessel per year from timing barnacle removal.",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "related": [
+      "roro"
+    ],
+    "sources": [
+      "ind-ss-caterpillar"
+    ]
+  },
+  {
+    "id": "carbon-intensity",
+    "term": "Carbon intensity",
+    "aliases": [],
+    "definition": "CO2 emitted per unit of transport work. CSL Group reported a 29% carbon intensity reduction.",
+    "domain": "industries",
+    "coverage": [
+      "ind.marine-transport"
+    ],
+    "related": [],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "success-story",
+    "term": "Success story",
+    "aliases": [
+      "customer success story"
+    ],
+    "definition": "A vendor-published customer case, such as those on aveva.com. Its outcome figures are as reported by AVEVA and are not independently audited.",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "related": [
+      "pi-world"
+    ],
+    "sources": [
+      "ind-aveva-ss-index"
+    ]
+  },
+  {
+    "id": "pi-world",
+    "term": "PI World / AVEVA World",
+    "aliases": [
+      "OSIsoft Users Conference",
+      "AVEVA World"
+    ],
+    "definition": "The OSIsoft and later AVEVA user conference where customers present their own PI deployments. Figures in these talks are reported by the presenting company or integrator.",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "related": [
+      "success-story"
+    ],
+    "sources": [
+      "ind-pres-ls-2019"
+    ]
+  }
+]

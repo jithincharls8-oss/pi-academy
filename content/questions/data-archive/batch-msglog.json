@@ -1,0 +1,204 @@
+[
+  {
+    "id": "q-msglog-retention",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 1,
+    "prompt": "By default, how long are PI Message Log files kept, and which tuning parameter controls it?",
+    "options": [
+      { "id": "a", "text": "35 days, MessageLog_DayLimit" },
+      { "id": "b", "text": "Forever, no parameter" },
+      { "id": "c", "text": "7 days, Archive_SecondsBetweenFlush" },
+      { "id": "d", "text": "1 year, ArcMaxCollect" }
+    ],
+    "answer": "a",
+    "explanation": "Message logs expire after 35 days, controlled by MessageLog_DayLimit. Archive_SecondsBetweenFlush controls the archive write cache and ArcMaxCollect limits query size.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["message-log", "tuning"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-pigetmsg-build",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog", "da.tools"],
+    "difficulty": 3,
+    "scenario": "You need every warning-or-worse message from the last two hours that contains the text [-11091], saved to C:\\Temp\\arcmax.txt.",
+    "prompt": "Which pigetmsg command does this?",
+    "options": [
+      { "id": "a", "text": "pigetmsg -sw -st *-2h -et * -msg *[-11091]* -of C:\\Temp\\arcmax.txt" },
+      { "id": "b", "text": "pigetmsg -f -top pr -of C:\\Temp\\arcmax.txt" },
+      { "id": "c", "text": "pigetmsg -se -st * -et *-2h -src -11091" },
+      { "id": "d", "text": "pidiag -e -11091 -of C:\\Temp\\arcmax.txt" }
+    ],
+    "answer": "a",
+    "explanation": "-sw sets the minimum severity to warning, -st/-et give the window (start *-2h, end *), -msg filters text with wildcards and -of writes to a file. Option c has the times reversed and filters by source, and pidiag -e only translates an error code.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["pigetmsg", "scenario"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-batch-ef",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 2,
+    "prompt": "Which PI Server release added migration of the legacy batch database to Event Frames?",
+    "options": [
+      { "id": "a", "text": "PI Server 2015" },
+      { "id": "b", "text": "PI Server 2010" },
+      { "id": "c", "text": "PI Server 2023" },
+      { "id": "d", "text": "PI Server 3.4.380" }
+    ],
+    "answer": "a",
+    "explanation": "PI Server 2015 added migration of the batch database to Event Frames; RtReports 4.0 added its own batch-to-Event-Frames migration.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["batch"],
+    "sources": ["da-uc2015-roadmap-hughes"]
+  },
+  {
+    "id": "q-msglog-codes",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 2,
+    "prompt": "Match each Data Archive message to its meaning.",
+    "pairs": [
+      { "left": "[-11091]", "right": "Event collection exceeded the maximum allowed" },
+      { "left": "[-11140]", "right": "Archive query exceeded maximum execution time" },
+      { "left": "[-10767]", "right": "Client exceeded maximum concurrent queries" },
+      { "left": "2016", "right": "Inserting overflow record" },
+      { "left": "6079", "right": "Point creation by pibasess" }
+    ],
+    "explanation": "These message examples come from AVEVA's 2023 Data Archive performance session.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["errors"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-msglog-subsystem-down",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 2,
+    "prompt": "Where do messages go while the PI Message Subsystem is down?",
+    "options": [
+      { "id": "a", "text": "To the Windows Application Event Log; they are copied into the PI log when it comes back" },
+      { "id": "b", "text": "They are lost" },
+      { "id": "c", "text": "To the event queue file pimq0000.dat" },
+      { "id": "d", "text": "To pipc.log on the server only" }
+    ],
+    "answer": "a",
+    "explanation": "If the Message Subsystem is down, messages go to the Windows Application Event Log and are copied into the PI log when it returns.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["message-log"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-severity",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog", "da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each pigetmsg option to its purpose.",
+    "pairs": [
+      { "left": "-f", "right": "Follow messages continuously" },
+      { "left": "-of", "right": "Write output to a file" },
+      { "left": "-fc", "right": "CSV format" },
+      { "left": "-top pr", "right": "Summary counts by program" },
+      { "left": "-oa", "right": "Show all fields" }
+    ],
+    "explanation": "From the PI Square message-log guide: -f follows, -of sets the output file, -fc gives CSV (with -ft, -fw, -fx for other formats), -top pr summarises by program and -oa outputs all fields.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["pigetmsg"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-file-location",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 2,
+    "prompt": "Which statements about PI Message Log files on a server are correct? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "They are binary pimsg_*.dat files" },
+      { "id": "b", "text": "They are in the PI\\log folder" },
+      { "id": "c", "text": "They are locked by the Message Subsystem" },
+      { "id": "d", "text": "They are plain text you can edit in Notepad" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Message logs are binary pimsg files in PI\\log (PIPC\\log on clients), locked by the Message Subsystem; read them with pigetmsg or SMT. The plain-text pipc.log was a legacy PI API log.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["message-log"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-migratelog",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 3,
+    "prompt": "Which pipc.ini setting forwards the legacy pipc.log to the PI Message Log?",
+    "accepted": ["Migratelog=1", "Migratelog = 1", "Migratelog"],
+    "explanation": "pipc.log was a plain-text log used by older PI API applications; Migratelog=1 in pipc.ini forwards it to the PI Message Log.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["legacy"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-pidiag-e",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog", "da.tools"],
+    "difficulty": 1,
+    "prompt": "A message shows error -11057 and you want its text. Which command translates the code?",
+    "options": [
+      { "id": "a", "text": "pidiag -e -11057" },
+      { "id": "b", "text": "piartool -ss -11057" },
+      { "id": "c", "text": "pigetmsg -f" },
+      { "id": "d", "text": "piconfig @tabl -11057" }
+    ],
+    "answer": "a",
+    "explanation": "pidiag -e <code> translates error codes. piartool -ss shows snapshot statistics and pigetmsg -f follows the log.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["errors", "tools"],
+    "sources": ["da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-msglog-old-dbs",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog"],
+    "difficulty": 3,
+    "prompt": "Which configuration databases did older PI Servers have? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI BatchDB" },
+      { "id": "b", "text": "PI ModuleDB" },
+      { "id": "c", "text": "PI Vision SQL database" },
+      { "id": "d", "text": "PIFD AF database" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "A 2002 OSIsoft session lists PI BatchDB and PI ModuleDB as configuration databases of older PI Servers. The PI Vision database and PIFD belong to later products.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["batch", "history"],
+    "sources": ["da-uc2002-251"]
+  },
+  {
+    "id": "q-msglog-permissions",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.batch-msglog", "da.security"],
+    "difficulty": 2,
+    "prompt": "True or false: a user without read permission on the message log can still diagnose their own write failures from it.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "A PI Square thread notes users without read permission on the message log cannot troubleshoot write failures.",
+    "lessonId": "batch-and-message-log",
+    "tags": ["true-false", "security"],
+    "sources": ["da-ps-string-thread"]
+  }
+]

@@ -1,0 +1,465 @@
+[
+  {
+    "id": "q-power-heat-rate-efficiency",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 2,
+    "prompt": "A unit's heat rate is 10,500 Btu/kWh. Using EIA's 3,412 Btu per kWh, what is its efficiency?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 33%"
+      },
+      {
+        "id": "b",
+        "text": "About 45%"
+      },
+      {
+        "id": "c",
+        "text": "About 10.5%"
+      },
+      {
+        "id": "d",
+        "text": "About 68%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Efficiency (%) = 3,412 / heat rate x 100 = 3,412 / 10,500 x 100, about 32.5%, which EIA rounds to 33%. 45% corresponds to 7,500 Btu/kWh. A lower heat rate means higher efficiency.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "calculation"
+    ],
+    "sources": [
+      "ind-eia-heat-rate"
+    ]
+  },
+  {
+    "id": "q-power-hierarchy",
+    "type": "ordering",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the levels of the power equipment hierarchy from OSIsoft's 2015 power deck in order, top to bottom.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Plant"
+      },
+      {
+        "id": "b",
+        "text": "Unit"
+      },
+      {
+        "id": "c",
+        "text": "Primary system"
+      },
+      {
+        "id": "d",
+        "text": "Subsystem"
+      },
+      {
+        "id": "e",
+        "text": "Equipment"
+      }
+    ],
+    "explanation": "The 2015 power trends deck gives the hierarchy as plant, unit, primary system, subsystem, equipment. A primary system is for example the boiler/HRSG, turbine or condenser.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "hierarchy"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015"
+    ]
+  },
+  {
+    "id": "q-power-luminant-templates",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.power",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which AF feature let Luminant generate the PI tags and attribute references for 24 elements from one template?",
+    "scenario": "Luminant replaced three tools and 13 thermal performance applications with PI AF. One element template produced 24 elements, and the team did not want to create tags by hand.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Substitution parameters in the template"
+      },
+      {
+        "id": "b",
+        "text": "Event frame templates"
+      },
+      {
+        "id": "c",
+        "text": "PI Notifications delivery channels"
+      },
+      {
+        "id": "d",
+        "text": "Manual Logger forms"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Luminant used substitution parameters to generate PI tags and attribute references, and converted Excel calculations into AF analysis templates with backfill. Event frames and notifications do not create tags.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "templates"
+    ],
+    "sources": [
+      "ind-pres-luminant-2017"
+    ]
+  },
+  {
+    "id": "q-power-net-generation",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: EIA's heat rate is calculated using gross generation, before the plant's own auxiliary load is subtracted.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. EIA expresses heat rate in Btu per net kWh generated. Net generation is what is delivered to the transmission line after subtracting the plant's own use.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "beginner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-eia-heat-rate"
+    ]
+  },
+  {
+    "id": "q-power-btu-per-kwh",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 1,
+    "prompt": "According to EIA, ____ Btu is the energy equivalent of 1 kWh.",
+    "accepted": [
+      "3,412",
+      "3412"
+    ],
+    "caseSensitive": false,
+    "explanation": "EIA states that 3,412 Btu equals 1 kWh. That is why efficiency is 3,412 divided by the heat rate.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-eia-heat-rate"
+    ]
+  },
+  {
+    "id": "q-power-luminant-figure",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.power",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What saving did Luminant report from using PI AF on its most recent combined-cycle unit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "$160K"
+      },
+      {
+        "id": "b",
+        "text": "$100K+ per unit"
+      },
+      {
+        "id": "c",
+        "text": "$46 million over six years"
+      },
+      {
+        "id": "d",
+        "text": "$3 million a year"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Luminant reported $160K saved on its most recent combined-cycle unit. \"$100K+ per unit\" is what third-party applications historically cost. $46 million is Xcel Energy's estimate; $3 million a year in one plant is Kansai.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-pres-luminant-2017"
+    ]
+  },
+  {
+    "id": "q-power-longannet-outcomes",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.power",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which outcomes did Capula report for Longannet Power Station (2014 YTD vs 2013)? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Availability up 12.4%"
+      },
+      {
+        "id": "b",
+        "text": "Tube leaks down 0.14 per 1000 running hours"
+      },
+      {
+        "id": "c",
+        "text": "NOx reduced by 0.1 t/GWh"
+      },
+      {
+        "id": "d",
+        "text": "NOx annual limit cut to 1.8 t/GWh"
+      },
+      {
+        "id": "e",
+        "text": "Heat rate improved by 12.4%"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Capula's OSIsoft EMEA 2014 deck reports availability up 12.4%, tube leaks down 0.14 per 1000 running hours and NOx reduced by 0.1 t/GWh. 1.8 t/GWh is the NOx annual limit, not an outcome, and no heat rate figure is reported.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "expert",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-pres-longannet-2014"
+    ]
+  },
+  {
+    "id": "q-power-maintenance-mix",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 2,
+    "prompt": "What best-practice maintenance mix does OSIsoft's 2012 power deck cite?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Under 10% reactive, 35% preventive, 55% predictive"
+      },
+      {
+        "id": "b",
+        "text": "55% reactive, 35% preventive, 10% predictive"
+      },
+      {
+        "id": "c",
+        "text": "33% each of reactive, preventive and predictive"
+      },
+      {
+        "id": "d",
+        "text": "100% predictive"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck cites under 10% reactive, 35% preventive and 55% predictive, versus more than 55% reactive for the average plant. The second option describes the average plant, not best practice.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-power-oceania-2012"
+    ]
+  },
+  {
+    "id": "q-power-xcel-reporter",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.power",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "How should the trainer present the Xcel Energy figure?",
+    "scenario": "A trainer's slide says: \"Xcel Energy proved PI saves $46 million.\" The source is an AVEVA success story quoting Kasen Huwa of Xcel Energy.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Leave it; $46 million is an audited saving"
+      },
+      {
+        "id": "b",
+        "text": "Say savings and efficiencies are roughly estimated at $46 million over the last six years, as reported by Xcel Energy in an AVEVA success story"
+      },
+      {
+        "id": "c",
+        "text": "Round it to $50 million for clarity"
+      },
+      {
+        "id": "d",
+        "text": "Convert it to $7.7 million a year and drop the source"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The source says \"Savings and efficiencies are roughly estimated over the last six years at $46 million\". It is an estimate, reported by an Xcel Energy employee in a vendor story. Never round, convert or drop the reporter.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "reported-by"
+    ],
+    "sources": [
+      "ind-ss-xcel"
+    ]
+  },
+  {
+    "id": "q-power-cases",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.power",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each power company to what it built on PI.",
+    "pairs": [
+      {
+        "left": "Dominion Energy",
+        "right": "An evergreen AF model of about 28,000 elements built by an AF SDK application"
+      },
+      {
+        "left": "PJM Interconnection",
+        "right": "A dispatch map combining PI data with Esri ArcGIS"
+      },
+      {
+        "left": "ENTEGA",
+        "right": "Theoretical vs actual power per wind turbine, colour-coded"
+      },
+      {
+        "left": "AGL Energy",
+        "right": "Data capture cut from 10 mins to 1 sec across 200 wind turbines"
+      },
+      {
+        "left": "Kansai Electric",
+        "right": "All nine power plants in PI with AF equipment digital twins"
+      }
+    ],
+    "explanation": "Each pairing is taken from the AVEVA success story for that company.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-dominion",
+      "ind-ss-pjm",
+      "ind-ss-entega",
+      "ind-ss-agl",
+      "ind-ss-kansai"
+    ]
+  },
+  {
+    "id": "q-power-esp-meaning",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 2,
+    "prompt": "In OSIsoft's power decks, what does \"ESP\" mean in the NERC CIP context?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Electronic Security Perimeter, which limits direct access to cyber assets"
+      },
+      {
+        "id": "b",
+        "text": "Electrical submersible pump"
+      },
+      {
+        "id": "c",
+        "text": "Event Severity Priority"
+      },
+      {
+        "id": "d",
+        "text": "Energy Savings Programme"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Power decks reference NERC CIP and the Electronic Security Perimeter (ESP) limiting direct access to cyber assets. Electrical submersible pump is the oil and gas meaning of ESP, so check context.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "practitioner",
+      "security"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015",
+      "ind-pres-power-oceania-2012"
+    ]
+  },
+  {
+    "id": "q-power-longannet-hierarchy",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.power"
+    ],
+    "difficulty": 3,
+    "prompt": "What did Longannet's experience suggest?",
+    "scenario": "A power station team plans to make its AF hierarchy mirror its Maximo work-management structure exactly, and map every tag into it, before building any metrics.",
+    "options": [
+      {
+        "id": "a",
+        "text": "That is the recommended approach; mirror the CMMS completely"
+      },
+      {
+        "id": "b",
+        "text": "Mapping all tags that way proved too difficult; Longannet cut the structure back to metrics only"
+      },
+      {
+        "id": "c",
+        "text": "AF cannot hold more than two levels, so it will fail"
+      },
+      {
+        "id": "d",
+        "text": "Use AF tables for every tag instead of elements"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Longannet tried to mirror its Maximo structure, found mapping all tags too difficult and cut the structure back to metrics only. Its AF used site-level elements above unit-level elements, with AF tables for rotas, shifts, coal diet and planned outages.",
+    "lessonId": "pi-in-power",
+    "tags": [
+      "expert",
+      "hierarchy",
+      "pitfall"
+    ],
+    "sources": [
+      "ind-pres-longannet-2014",
+      "ind-pres-luminant-2017"
+    ]
+  }
+]

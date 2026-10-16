@@ -1,0 +1,259 @@
+[
+  {
+    "id": "q-failover-phase2-shared-file",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 1,
+    "prompt": "How does UniInt Phase 2 failover keep the two interface nodes synchronised?",
+    "options": [
+      { "id": "a", "text": "Through the data source itself, using output points on the DCS" },
+      { "id": "b", "text": "Through a shared file on a network share" },
+      { "id": "c", "text": "Through Microsoft Failover Clustering" },
+      { "id": "d", "text": "Through the PI Buffer Subsystem queue" }
+    ],
+    "answer": "b",
+    "explanation": "Phase 2 uses a shared file (/UFO_Sync) to synchronise failover. Phase 1 is the one that uses the data source and needs output support. Microsoft Cluster failover is not recommended for the OPC DA interface.",
+    "lessonId": "interface-failover",
+    "tags": ["phase-2"],
+    "sources": ["dcv-ftsh-h2h-uniint"]
+  },
+  {
+    "id": "q-failover-hot-no-loss",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 1,
+    "prompt": "Match each Phase 2 failover type to its data-loss expectation, as AVEVA's architecture decks summarise it.",
+    "pairs": [
+      { "left": "Hot", "right": "No data loss" },
+      { "left": "Warm", "right": "Maybe data loss" },
+      { "left": "Cold", "right": "Some data lost" }
+    ],
+    "explanation": "Phase 2 hot provides a no-data-loss solution for a single point of failure. In warm and cold configurations you can expect a small period of data loss; the decks summarise this as Hot = no loss, Warm = maybe, Cold = some lost.",
+    "lessonId": "interface-failover",
+    "tags": ["failover-types"],
+    "sources": ["dcv-lonsberry-arch-2011", "dcv-ftsh-h2h-uniint"]
+  },
+  {
+    "id": "q-failover-sync-trailing-slash",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "scenario": "Both failover nodes are configured with /UFO_Sync=\\\\fileserver\\UFO. The admin expected the interfaces to create their default sync file inside the UFO folder, but a file simply called UFO appears in the root of the share instead.",
+    "prompt": "What went wrong?",
+    "options": [
+      { "id": "a", "text": "The path has no trailing backslash, so the last segment (UFO) is treated as the file name" },
+      { "id": "b", "text": "/UFO_Sync only accepts local paths, not UNC paths" },
+      { "id": "c", "text": "/UFO_Interval is missing, so the default file name is not used" },
+      { "id": "d", "text": "The two nodes must use different sync paths" }
+    ],
+    "answer": "a",
+    "explanation": "The /UFO_Sync path must be terminated by a slash or backslash. Without it, the last segment is taken as the file name. Both nodes must share the same file, and /UFO_Interval is optional (default 1000 ms).",
+    "lessonId": "interface-failover",
+    "tags": ["pitfall", "ufo-sync"],
+    "sources": ["dcv-bacnet-ufo2-muhaz"]
+  },
+  {
+    "id": "q-failover-phase1-requires",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "prompt": "What does UniInt Phase 1 failover require? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "The data source can communicate with and provide data to two interfaces at the same time" },
+      { "id": "b", "text": "The interface supports outputs to the data source" },
+      { "id": "c", "text": "A shared file on a network share" },
+      { "id": "d", "text": "A PI Connector Relay between the interfaces" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "Phase 1 uses the data source itself to synchronise, so the source must serve two interfaces at once and the interface must support outputs to the DCS. A shared file is Phase 2, and the Relay is unrelated (it has no failover support at all).",
+    "lessonId": "interface-failover",
+    "tags": ["phase-1"],
+    "sources": ["dcv-ftsh-h2h-uniint", "dcv-pohl-interfaces-2008"]
+  },
+  {
+    "id": "q-failover-ufo-type-default",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "prompt": "What is the default value of /UFO_Type?",
+    "options": [
+      { "id": "a", "text": "HOT" },
+      { "id": "b", "text": "WARM" },
+      { "id": "c", "text": "COLD" },
+      { "id": "d", "text": "There is no default; the interface will not start" }
+    ],
+    "answer": "c",
+    "explanation": "The Phase 2 parameter table lists /UFO_Type as HOT, WARM or COLD with a default of COLD. If you want no data loss you must ask for HOT explicitly.",
+    "lessonId": "interface-failover",
+    "tags": ["parameters"],
+    "sources": ["dcv-citect-ufo2-ininet"]
+  },
+  {
+    "id": "q-failover-ids",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 1,
+    "prompt": "Node 1 runs /UFO_ID=1. Which settings are correct for node 2?",
+    "options": [
+      { "id": "a", "text": "/UFO_ID=2 /UFO_OtherID=1" },
+      { "id": "b", "text": "/UFO_ID=1 /UFO_OtherID=2" },
+      { "id": "c", "text": "/UFO_ID=0 /UFO_OtherID=1" },
+      { "id": "d", "text": "/UFO_ID=2 /UFO_OtherID=2" }
+    ],
+    "answer": "a",
+    "explanation": "/UFO_ID must be a positive, non-zero integer that differs between nodes, and /UFO_OtherID must equal the partner's /UFO_ID. So node 1 runs ID 1 / Other 2 and node 2 runs ID 2 / Other 1.",
+    "lessonId": "interface-failover",
+    "tags": ["parameters"],
+    "sources": ["dcv-citect-ufo2-ininet", "dcv-pohl-interfaces-2008"]
+  },
+  {
+    "id": "q-failover-interval",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "prompt": "What is the default /UFO_Interval heartbeat interval, in milliseconds?",
+    "accepted": ["1000", "1000 ms", "1,000"],
+    "caseSensitive": false,
+    "explanation": "/UFO_Interval defaults to 1000 ms, with a range of 50 to 20000, and must be identical on both nodes.",
+    "lessonId": "interface-failover",
+    "tags": ["parameters"],
+    "sources": ["dcv-citect-ufo2-ininet"]
+  },
+  {
+    "id": "q-failover-ufo-state-order",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 3,
+    "prompt": "Match each UFO_State value to its state.",
+    "pairs": [
+      { "left": "0", "right": "Off" },
+      { "left": "2", "right": "Backup No PI Connection" },
+      { "left": "3", "right": "Backup" },
+      { "left": "4", "right": "Transition" },
+      { "left": "5", "right": "Primary" }
+    ],
+    "explanation": "The UFO_State digital set runs 0 Off, 1 Backup No Data Source, 2 Backup No PI Connection, 3 Backup, 4 Transition (a brief state that prevents thrashing) and 5 Primary.",
+    "lessonId": "interface-failover",
+    "tags": ["ufo-state"],
+    "sources": ["dcv-citect-ufo2-ininet"]
+  },
+  {
+    "id": "q-failover-force",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "prompt": "You want to test failover by making node 2 primary without stopping node 1. Which control value do you change?",
+    "options": [
+      { "id": "a", "text": "ActiveID, from 1 to 2" },
+      { "id": "b", "text": "Heartbeat 1, to 0" },
+      { "id": "c", "text": "/UFO_Interval, to 50" },
+      { "id": "d", "text": "Location4 of every point, to 2" }
+    ],
+    "answer": "a",
+    "explanation": "ActiveID names the failover ID that is primary; changing it by hand, for example 1 to 2, forces a failover. Heartbeats are written by the interfaces, and Location4 is the scan class.",
+    "lessonId": "interface-failover",
+    "tags": ["active-id"],
+    "sources": ["dcv-bacnet-ufo2-muhaz"]
+  },
+  {
+    "id": "q-failover-device-status",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 3,
+    "prompt": "Node 1 reports Device Status 50 and node 2 reports Device Status 0. Which node tries to be primary?",
+    "options": [
+      { "id": "a", "text": "Node 1, because the higher value is better" },
+      { "id": "b", "text": "Node 2, because the node with the lower value tries to be primary (0 is good, 99 is off)" },
+      { "id": "c", "text": "Whichever node started first" },
+      { "id": "d", "text": "Neither; Device Status is only informational" }
+    ],
+    "answer": "b",
+    "explanation": "Device Status runs 0 to 99, where 0 is good and 99 is off, and the node with the lower value tries to be primary.",
+    "lessonId": "interface-failover",
+    "tags": ["device-status"],
+    "sources": ["dcv-bacnet-ufo2-muhaz"]
+  },
+  {
+    "id": "q-failover-host-collective",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 3,
+    "scenario": "A failover pair sends data to a two-member PI collective. Both nodes are currently configured with /Host=PIDA1.",
+    "prompt": "What does AVEVA's guidance recommend?",
+    "options": [
+      { "id": "a", "text": "Keep /Host identical on both nodes; that is required in every case" },
+      { "id": "b", "text": "Point each node at a different collective member" },
+      { "id": "c", "text": "Remove /Host and rely on /UFO_Sync to find the server" },
+      { "id": "d", "text": "Point both nodes at the collective's secondary member" }
+    ],
+    "answer": "b",
+    "explanation": "Without a collective, /Host must be identical on both nodes. With a collective, each node should point to a different member.",
+    "lessonId": "interface-failover",
+    "tags": ["collective"],
+    "sources": ["dcv-bacnet-ufo2-muhaz", "dcv-citect-ufo2-ininet"]
+  },
+  {
+    "id": "q-failover-connector-support",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 2,
+    "prompt": "Which of these support some form of failover according to the sources? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI Interface for OPC DA (UniInt Phase 1 and Phase 2)" },
+      { "id": "b", "text": "PI to PI (UniInt Phase 2 hot, warm or cold)" },
+      { "id": "c", "text": "AVEVA Adapter for OPC UA" },
+      { "id": "d", "text": "PI Connector Relay" },
+      { "id": "e", "text": "PI Connector (2nd generation)" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "OPC DA supports Phase 1 (from 2.3.2.0) and Phase 2 (from 2.3.10.0); PI to PI supports Phase 2; adapter failover is available with the OPC UA and MQTT adapters. The architecture course states there is currently NO failover support for 2nd-generation PI Connectors and the PI Connector Relay.",
+    "lessonId": "interface-failover",
+    "tags": ["products"],
+    "sources": ["dcv-techsupport-opcda", "dcv-pitopi-manualzz", "dcv-felts-connectivity-2023", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-failover-stopstat",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 3,
+    "prompt": "Why is /stopstat disabled in a UniInt failover configuration?",
+    "options": [
+      { "id": "a", "text": "To stop digital states being written to points while the redundant interface is still writing" },
+      { "id": "b", "text": "Because /stopstat only works with Phase 1" },
+      { "id": "c", "text": "To save network bandwidth on the shared file" },
+      { "id": "d", "text": "Because failover interfaces cannot write any digital states" }
+    ],
+    "answer": "a",
+    "explanation": "If one node wrote a shutdown digital state while its partner keeps collecting, the points would show a false stopped state. Disabling /stopstat prevents this.",
+    "lessonId": "interface-failover",
+    "tags": ["stopstat"],
+    "sources": ["dcv-bacnet-ufo2-muhaz"]
+  },
+  {
+    "id": "q-failover-exdesc-prefix",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.failover"],
+    "difficulty": 3,
+    "prompt": "Which case-sensitive ExDesc prefix identifies the PI tag that holds the failover ActiveID? (Include the square brackets.)",
+    "accepted": ["[UFO2_ACTIVEID]"],
+    "caseSensitive": true,
+    "explanation": "Failover tags use case-sensitive ExDesc prefixes: [UFO2_ACTIVEID], [UFO2_HEARTBEAT:#] and [UFO2_STATE:#], where # is the owning node's failover ID.",
+    "lessonId": "interface-failover",
+    "tags": ["control-points"],
+    "sources": ["dcv-bacnet-ufo2-muhaz"]
+  }
+]

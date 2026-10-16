@@ -1,0 +1,217 @@
+[
+  {
+    "id": "q-tuning-arcmax-default",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 2,
+    "prompt": "What is the default ArcMaxCollect, the maximum number of compressed events one query can return?",
+    "accepted": ["1.5 million", "1500000", "1,500,000", "1.5M"],
+    "explanation": "ArcMaxCollect defaults to 1.5 million events. Hitting it logs [-11091].",
+    "lessonId": "tuning-parameters",
+    "tags": ["tuning", "defaults"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-tuning-arcmax-scenario",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 3,
+    "scenario": "A data scientist's script asks for every raw event of 50 one-second tags for the past year in a single call. It fails, and the message log shows [-11091] Event collection exceeded the maximum allowed.",
+    "prompt": "What is the best first response?",
+    "options": [
+      { "id": "a", "text": "Page the query into smaller time ranges (or use summaries), and only raise ArcMaxCollect with care if still needed" },
+      { "id": "b", "text": "Set ArcMaxCollect to the largest possible value immediately" },
+      { "id": "c", "text": "Increase Archive_SecondsBetweenFlush" },
+      { "id": "d", "text": "Restart the PI Message Subsystem" }
+    ],
+    "answer": "a",
+    "explanation": "-11091 means the query hit ArcMaxCollect (default 1.5 million). The research's troubleshooting card suggests paging the query, or raising the limit with care. The flush interval and the message subsystem have nothing to do with query size.",
+    "lessonId": "tuning-parameters",
+    "tags": ["troubleshooting", "scenario"],
+    "sources": ["da-uc23-da-performance", "da-ps-piarch-thread"]
+  },
+  {
+    "id": "q-tuning-maxquery",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 2,
+    "prompt": "Match each tuning parameter to its default.",
+    "pairs": [
+      { "left": "ArcMaxCollect", "right": "1.5 million events" },
+      { "left": "Archive_MaxQueryExecutionSec", "right": "260 seconds" },
+      { "left": "Archive_SecondsBetweenFlush", "right": "5 minutes" },
+      { "left": "MessageLog_DayLimit", "right": "35 days" }
+    ],
+    "explanation": "These are the sourced defaults: ArcMaxCollect 1.5 million, Archive_MaxQueryExecutionSec 260 s, Archive_SecondsBetweenFlush 5 minutes and MessageLog_DayLimit 35 days.",
+    "lessonId": "tuning-parameters",
+    "tags": ["defaults"],
+    "sources": ["da-uc23-da-performance", "da-admin-workbook-2017r2", "da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-tuning-where",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tuning", "da.tools"],
+    "difficulty": 1,
+    "prompt": "Where in PI SMT do you view and change tuning parameters?",
+    "options": [
+      { "id": "a", "text": "Operation > Tuning Parameters" },
+      { "id": "b", "text": "Security > Database Security" },
+      { "id": "c", "text": "Points > Point Builder" },
+      { "id": "d", "text": "Data > Current Values" }
+    ],
+    "answer": "a",
+    "explanation": "Tuning parameters are viewed and changed in SMT Operation > Tuning Parameters, which has an Archive tab.",
+    "lessonId": "tuning-parameters",
+    "tags": ["smt"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-tuning-11140",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 2,
+    "prompt": "The message log shows [-11140] Archive query exceeded maximum execution time. Which parameter set the limit?",
+    "options": [
+      { "id": "a", "text": "Archive_MaxQueryExecutionSec" },
+      { "id": "b", "text": "ArcMaxCollect" },
+      { "id": "c", "text": "MaxConnIdleTime" },
+      { "id": "d", "text": "Archive_LowDiskSpaceMB" }
+    ],
+    "answer": "a",
+    "explanation": "Archive_MaxQueryExecutionSec (default 260 s) is the maximum archive query run time; exceeding it logs [-11140]. ArcMaxCollect limits event count instead.",
+    "lessonId": "tuning-parameters",
+    "tags": ["errors"],
+    "sources": ["da-uc23-da-performance"]
+  },
+  {
+    "id": "q-tuning-sizing-ram",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 3,
+    "prompt": "A 2012 OSIsoft architecture deck gave a minimum RAM guideline for the Data Archive. What was it?",
+    "options": [
+      { "id": "a", "text": "15 KB per PI point" },
+      { "id": "b", "text": "1 GB in total, whatever the point count" },
+      { "id": "c", "text": "1 MB per PI point" },
+      { "id": "d", "text": "Enough to fit 10 full archives" }
+    ],
+    "answer": "a",
+    "explanation": "The deck listed a minimum of 15 KB per PI point and recommended enough RAM to fit 2 full archives.",
+    "lessonId": "tuning-parameters",
+    "tags": ["sizing"],
+    "sources": ["ops2-rs2012-bryant-arch"]
+  },
+  {
+    "id": "q-tuning-cores",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 3,
+    "prompt": "Using the 2012 recommended CPU guideline '4 + Active Client Connections/2', how many cores are recommended for 40 active client connections?",
+    "accepted": ["24"],
+    "explanation": "4 + 40 / 2 = 24 cores. The minimum guideline was 4 + connections / 5, which gives 12.",
+    "lessonId": "tuning-parameters",
+    "tags": ["sizing", "calculation"],
+    "sources": ["ops2-rs2012-bryant-arch"]
+  },
+  {
+    "id": "q-tuning-autotrust",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tuning", "da.security"],
+    "difficulty": 2,
+    "prompt": "What value does 2010 tuning guidance recommend for AutoTrustConfig?",
+    "options": [
+      { "id": "a", "text": "0" },
+      { "id": "b", "text": "1" },
+      { "id": "c", "text": "-1" },
+      { "id": "d", "text": "260" }
+    ],
+    "answer": "a",
+    "explanation": "The 2010 guidance lists Server_AuthenticationPolicy, AutoTrustConfig (recommended 0) and MaxConnIdleTime as basic server settings.",
+    "lessonId": "tuning-parameters",
+    "tags": ["security"],
+    "sources": ["da-vcampus-2010-tuning"]
+  },
+  {
+    "id": "q-tuning-updatequeue",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 2,
+    "prompt": "True or false: 2010 OSIsoft tuning guidance encouraged raising MaxUpdateQueue and TotalUpdateQueue on busy servers.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "MaxUpdateQueue and TotalUpdateQueue limit Update Manager queues, and the 2010 guidance said not to change them.",
+    "lessonId": "tuning-parameters",
+    "tags": ["true-false", "update-manager"],
+    "sources": ["da-vcampus-2010-tuning"]
+  },
+  {
+    "id": "q-tuning-virtual",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 2,
+    "prompt": "Which virtualisation rules did OSIsoft's 2012 architecture deck give? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Treat virtual machines as if they were physical machines" },
+      { "id": "b", "text": "Do not mix virtual and physical on the same host" },
+      { "id": "c", "text": "Test on the target platform" },
+      { "id": "d", "text": "Virtualisation is not supported" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The deck says OSIsoft supports virtualization, treat VMs as physical machines, do not mix virtual and physical on the same host, and test on the target platform.",
+    "lessonId": "tuning-parameters",
+    "tags": ["virtualisation"],
+    "sources": ["ops2-rs2012-bryant-arch"]
+  },
+  {
+    "id": "q-tuning-param-match",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.tuning"],
+    "difficulty": 3,
+    "prompt": "Match each tuning parameter to what it controls.",
+    "pairs": [
+      { "left": "Snapshot_EventQueuePath", "right": "Where the event queue lives" },
+      { "left": "Archive_LowDiskSpaceMB", "right": "Low-disk threshold" },
+      { "left": "Archive_AutoArchiveFileSize", "right": "Size of the next auto-created primary archive" },
+      { "left": "EnableAudit", "right": "Turns on auditing" },
+      { "left": "MaxConnIdleTime", "right": "Idle connection time limit in seconds" }
+    ],
+    "explanation": "These parameters are described in the 2017 R2 administration course and 2010 tuning guidance.",
+    "lessonId": "tuning-parameters",
+    "tags": ["tuning"],
+    "sources": ["da-admin-workbook-2017r2", "da-vcampus-2010-tuning"]
+  },
+  {
+    "id": "q-tuning-small-node",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.tuning", "fnd.architecture"],
+    "difficulty": 2,
+    "scenario": "A plant expects 8,000 AF assets and 20,000 tags. The project asks whether PI Data Archive, AF and SQL Server can share one node.",
+    "prompt": "What did OSIsoft's 2012 AF topology rule say?",
+    "options": [
+      { "id": "a", "text": "Small systems (under 10,000 assets and under 25,000 tags) can put PI, AF and SQL on one node" },
+      { "id": "b", "text": "Never; at least three nodes are always required" },
+      { "id": "c", "text": "Only if SQL Server runs on the interface node" },
+      { "id": "d", "text": "Only for systems over 1 million tags" }
+    ],
+    "answer": "a",
+    "explanation": "The 2012 deck said small systems (<10,000 assets and <25,000 tags) can put PI, AF and SQL on one node; larger systems need at least two nodes with PI and SQL separate. Note SQL Express is limited to one physical CPU and 1 GB of RAM.",
+    "lessonId": "tuning-parameters",
+    "tags": ["sizing", "scenario"],
+    "sources": ["ops2-rs2012-vining-arch", "ops2-arch-workbook-2025"]
+  }
+]

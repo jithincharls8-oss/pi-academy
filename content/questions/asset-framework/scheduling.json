@@ -1,0 +1,433 @@
+[
+  {
+    "id": "q-scheduling-schedule-types",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each schedule type to how it triggers.",
+    "pairs": [
+      {
+        "left": "Periodic",
+        "right": "Clock-based: every set period, with an optional offset from midnight"
+      },
+      {
+        "left": "Event-triggered",
+        "right": "Whenever the chosen input attributes receive new values"
+      },
+      {
+        "left": "Trigger time",
+        "right": "The scheduled time, or the triggering input event's time"
+      }
+    ],
+    "explanation": "Periodic scheduling is clock-based; event-triggered scheduling runs when inputs get new values (Any Input or a chosen list).",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-scheduling-trigger-time",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "For an event-triggered analysis, what is the trigger time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The time the service started"
+      },
+      {
+        "id": "b",
+        "text": "The input event's time"
+      },
+      {
+        "id": "c",
+        "text": "The next whole minute"
+      },
+      {
+        "id": "d",
+        "text": "Midnight"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The trigger time is the scheduled time for periodic analyses and the input's event time for event-triggered analyses. By default it is also the output timestamp.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-scheduling-output-ts",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "Which are advanced output timestamp options for an analysis? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Trigger Time (default)"
+      },
+      {
+        "id": "b",
+        "text": "Execution Time"
+      },
+      {
+        "id": "c",
+        "text": "Relative to Trigger Time"
+      },
+      {
+        "id": "d",
+        "text": "Archive Time"
+      },
+      {
+        "id": "e",
+        "text": "Snapshot Time"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The options are Trigger Time (default), Execution Time and Relative to Trigger Time, which allows future-stamped outputs.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-scheduling-backfill-pi-points",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: you can backfill an analysis whose outputs are not mapped to PI Points.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. \"Backfilling/recalculation requires that the output attributes have been mapped to PI Points.\"",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-scheduling-backfill-modes",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each backfill option to its effect.",
+    "pairs": [
+      {
+        "left": "Leave existing data and fill gaps",
+        "right": "Keeps existing results and only fills missing periods"
+      },
+      {
+        "left": "Permanently delete existing data and recalculate",
+        "right": "Removes existing results and computes them again"
+      },
+      {
+        "left": "Auto-backfilling",
+        "right": "Fills gaps between service restarts"
+      }
+    ],
+    "explanation": "The first two are the backfill/recalculation modes; auto-backfilling fills gaps between service restarts. Use the delete-and-recalculate mode when existing results are wrong.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-kwan-getting-more-aa-2019"
+    ]
+  },
+  {
+    "id": "q-scheduling-backfill-steps",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the steps to backfill analyses in bulk in PSE.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Open Management and run an Analysis Search with criteria (for example Template)"
+      },
+      {
+        "id": "b",
+        "text": "Select the analyses"
+      },
+      {
+        "id": "c",
+        "text": "Choose Operations > Backfill/Recalculate"
+      },
+      {
+        "id": "d",
+        "text": "Set the start (for example *-1w) and choose the mode"
+      },
+      {
+        "id": "e",
+        "text": "Queue and watch the Backfilling column"
+      }
+    ],
+    "explanation": "The PI World 2019 lab procedure: Management > Analysis Searches > Add Criteria > select analyses > Operations > Backfill/Recalculate > Start > mode > Queue. Progress shows in the Backfilling column.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-scheduling-dependents",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 3,
+    "prompt": "Why might the rollup still be wrong?",
+    "scenario": "An engineer recalculates one turbine's efficiency analysis from that element's Analyses tab. The Farm rollup that depends on it still shows the old values.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rollups cannot be recalculated"
+      },
+      {
+        "id": "b",
+        "text": "Requests from a single element's Analyses tab ignore dependent analyses unless the dependent-analyses recalculation option is selected"
+      },
+      {
+        "id": "c",
+        "text": "The Farm template is checked out"
+      },
+      {
+        "id": "d",
+        "text": "The rollup uses Formula references"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Requests from the Management plug-in account for dependencies; requests from a single element's Analyses tab ignore them unless you select the option to recalculate dependent analyses.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-scheduling-any-input",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "An event-triggered analysis has six fast-changing inputs and uses the default 'Any Input'. What is the risk?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It never runs"
+      },
+      {
+        "id": "b",
+        "text": "It can trigger several times per second"
+      },
+      {
+        "id": "c",
+        "text": "It writes no outputs"
+      },
+      {
+        "id": "d",
+        "text": "It switches to periodic"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Defaulting to Any Input can trigger an analysis several times per second when it has several inputs. List only the inputs that should trigger, or use a periodic schedule.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "af-feedback-pida-756"
+    ]
+  },
+  {
+    "id": "q-scheduling-trigger-ratio",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 3,
+    "prompt": "TriggerRatio = AverageElapsed / AverageTrigger. AVEVA says it should ideally be below which value?",
+    "accepted": [
+      "0.15"
+    ],
+    "caseSensitive": false,
+    "explanation": "Ideally TriggerRatio is below 0.15; about 2.5 means the group will lag perpetually, because evaluations take longer than the time between triggers.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-scheduling-skipped",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the healthy value for the Evaluation Skipped Count counter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0"
+      },
+      {
+        "id": "b",
+        "text": "Any steady value"
+      },
+      {
+        "id": "c",
+        "text": "Below 100 per hour"
+      },
+      {
+        "id": "d",
+        "text": "Equal to Evaluation Count"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Evaluation Skipped Count should stay at 0. A steadily rising value means the service cannot keep up and is dropping evaluations.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-scheduling-long-avg",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 3,
+    "prompt": "Which change follows AVEVA's performance advice?",
+    "scenario": "An analysis computes TagAvg('Temperature','*-30d','*') and is event-triggered on a 1-second input. Latency is climbing.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Change it to an hourly periodic schedule (or use shorter windows or daily-to-monthly rollups)"
+      },
+      {
+        "id": "b",
+        "text": "Add more inputs to Any Input"
+      },
+      {
+        "id": "c",
+        "text": "Switch to an Analysis data reference"
+      },
+      {
+        "id": "d",
+        "text": "Turn on auto-recalculation"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Expensive summaries over long ranges evaluated often should use a less frequent schedule, a shorter window or rollups. A performance lab moved an event-scheduled 30-day average to hourly periodic scheduling.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020",
+      "af-adebayo-optimizing-aa-2019",
+      "af-tips-managing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-scheduling-recalc-midnight",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 3,
+    "prompt": "Late data is causing recalculation cascades. AVEVA's suggested mitigation is to disable automatic recalculation and recalculate manually at low-load times. Which time is specifically called out as a bad choice?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Midnight"
+      },
+      {
+        "id": "b",
+        "text": "Noon"
+      },
+      {
+        "id": "c",
+        "text": "Shift change at 06:00"
+      },
+      {
+        "id": "d",
+        "text": "Weekends"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2020 lab says to avoid midnight, because many daily calculations already run then.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-scheduling-periodic-config",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.scheduling"
+    ],
+    "difficulty": 2,
+    "prompt": "In the AF SDK, the periodic time rule's ConfigString for a 5-minute period is Frequency=____. Type the full ConfigString.",
+    "language": "af",
+    "accepted": [
+      "Frequency=300"
+    ],
+    "requiredPatterns": [
+      "^frequency\\s*=\\s*300$"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "The periodic time rule plug-in is Periodic, with ConfigString Frequency in seconds, so 5 minutes is Frequency=300.",
+    "lessonId": "analysis-scheduling-and-backfill",
+    "tags": [],
+    "sources": [
+      "af-pisquare-programmatic-analytics-blog"
+    ]
+  }
+]

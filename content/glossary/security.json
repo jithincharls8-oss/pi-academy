@@ -1,0 +1,945 @@
+[
+  {
+    "id": "windows-integrated-security",
+    "term": "Windows Integrated Security (WIS)",
+    "aliases": [
+      "WIS"
+    ],
+    "definition": "Data Archive authentication using Windows accounts (Kerberos, then NTLM) mapped to PI identities. Introduced with PI Server 3.4.380 in 2009 and preferred over PI trusts and explicit logins.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-identity",
+      "pi-mapping",
+      "kerberos"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-identity",
+    "term": "PI Identity",
+    "aliases": [],
+    "definition": "A role-like placeholder on the Data Archive that receives permissions on points and databases. Windows users and groups reach it through PI mappings.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-mapping",
+      "windows-integrated-security"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant",
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-mapping",
+    "term": "PI Mapping",
+    "aliases": [
+      "mapping"
+    ],
+    "definition": "A link from an Active Directory user or group to a PI Identity. Mappings are cumulative: a user gets the rights of every identity they map to.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-identity",
+      "pi-trust"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-trust",
+    "term": "PI Trust",
+    "aliases": [
+      "trust"
+    ],
+    "definition": "A legacy rule granting access by IP address, host name and application name without Windows authentication. Only one best-fit trust applies. Avoid open trusts and never map trusts to piadmin.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "two-plus-rule",
+      "pi-mapping",
+      "piadmin"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "adm-rs2011-wis-bryant",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "two-plus-rule",
+    "term": "2+ rule",
+    "aliases": [
+      "two-plus rule"
+    ],
+    "definition": "AVEVA guidance that any PI trust you must keep combines the application name with at least one network identifier: IP address, host name or FQDN.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-trust"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "piadmin",
+    "term": "piadmin",
+    "aliases": [
+      "piadmin user"
+    ],
+    "definition": "The built-in Data Archive superuser. AVEVA advises not using it day to day: give it a password, disable explicit login for it and grant admin rights through the piadmins group instead.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "piadmins",
+      "explicit-login"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "piadmins",
+    "term": "piadmins",
+    "aliases": [
+      "piadmins group",
+      "piadmins identity"
+    ],
+    "definition": "The Data Archive administrators identity to which you map the AD group of PI administrators, instead of using the piadmin account.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "piadmin"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "explicit-login",
+    "term": "Explicit login",
+    "aliases": [
+      "PI User login",
+      "PI Users and Groups"
+    ],
+    "definition": "Legacy username and password login stored in the Data Archive (PI Users). It is disabled by default and not recommended; PI Users and Groups are kept only for backward compatibility.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "piadmin",
+      "windows-integrated-security"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-world-identity",
+    "term": "PI World identity",
+    "aliases": [
+      "PIWorld",
+      "PI World"
+    ],
+    "definition": "The built-in \"everyone\" identity on the Data Archive. Once proper rules are in place, OSIsoft advises disabling PI World and the PI Demo user.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-identity"
+    ],
+    "sources": [
+      "adm-rs2011-wis-bryant"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ptsecurity-datasecurity",
+    "term": "PtSecurity and DataSecurity",
+    "aliases": [
+      "PtSecurity",
+      "DataSecurity"
+    ],
+    "definition": "Point attributes controlling access to a point's configuration (PtSecurity) and to its values (DataSecurity). The PI Buffer Subsystem needs only Write on DataSecurity.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "pi-identity"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "kerberos",
+    "term": "Kerberos",
+    "aliases": [],
+    "definition": "The Windows ticket-based authentication protocol AVEVA recommends over NTLM. It needs correct SPNs, clocks within 5 minutes and access to the KDC on port 88.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening",
+      "sec.certificates"
+    ],
+    "related": [
+      "ntlm",
+      "spn",
+      "constrained-delegation"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "ntlm",
+    "term": "NTLM",
+    "aliases": [],
+    "definition": "Older Windows authentication protocol. It uses weaker encryption and is open to pass-the-hash attacks; the Negotiate package can fall back to it when Kerberos fails.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "kerberos"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "spn",
+    "term": "Service Principal Name (SPN)",
+    "aliases": [
+      "SPN"
+    ],
+    "definition": "An Active Directory record linking a service class and host (for example http/pivis01 or PIServer/pida01) to the account the service runs as. Without it a client cannot get a Kerberos service ticket.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "setspn",
+      "kerberos"
+    ],
+    "sources": [
+      "ops2-uc23-security-biggins",
+      "ops2-pb-migration-workbook",
+      "ops2-gh-security-audit-tools"
+    ],
+    "verify": false
+  },
+  {
+    "id": "setspn",
+    "term": "setspn",
+    "aliases": [],
+    "definition": "Windows command for SPNs: setspn -U -S adds one to a user account after checking for duplicates, setspn -l lists an account's SPNs and setspn -q finds which account holds an SPN.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "spn"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "double-hop",
+    "term": "Double hop",
+    "aliases": [
+      "Kerberos double hop"
+    ],
+    "definition": "When a middle-tier service (for example PI Vision) must pass a user's identity on to a back-end server (Data Archive or AF). It needs Kerberos delegation.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "constrained-delegation",
+      "rbcd"
+    ],
+    "sources": [
+      "ops2-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "constrained-delegation",
+    "term": "Constrained delegation",
+    "aliases": [
+      "Kerberos constrained delegation",
+      "KCD"
+    ],
+    "definition": "Kerberos delegation limited to a listed set of back-end services, such as PIServer and AFServer. More secure than unconstrained delegation.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "rbcd",
+      "unconstrained-delegation",
+      "double-hop"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook",
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "rbcd",
+    "term": "Resource-based constrained delegation (RBCD)",
+    "aliases": [
+      "RBCD"
+    ],
+    "definition": "Constrained delegation configured on the back-end resource's account rather than the front end. An OSIsoft workbook calls it the highly recommended type for PI Vision.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "constrained-delegation"
+    ],
+    "sources": [
+      "ops2-pb-migration-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "unconstrained-delegation",
+    "term": "Unconstrained delegation",
+    "aliases": [],
+    "definition": "Kerberos delegation that lets a service impersonate users to any service. The PI Square security blog says it is not recommended.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "constrained-delegation"
+    ],
+    "sources": [
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "protocol-transition",
+    "term": "Protocol transition",
+    "aliases": [
+      "Use any authentication protocol"
+    ],
+    "definition": "The \"Use any authentication protocol\" delegation option, which lets a service get Kerberos tickets for users who signed in another way.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "constrained-delegation"
+    ],
+    "sources": [
+      "ops2-pisquare-vision-security-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "klist",
+    "term": "klist",
+    "aliases": [
+      "klist purge"
+    ],
+    "definition": "Windows command that lists Kerberos tickets; klist purge clears them so a fresh login can be tested.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "kerberos"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "wdac",
+    "term": "Windows Defender Application Control (WDAC)",
+    "aliases": [
+      "WDAC"
+    ],
+    "definition": "Windows allow-listing that AVEVA recommends on Server 2016-2022 Core for the Data Archive; use AppLocker in audit mode first on older or non-Core servers.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "applocker",
+      "server-core"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "applocker",
+    "term": "AppLocker",
+    "aliases": [],
+    "definition": "Windows application allow-listing. AVEVA suggests it, starting in audit mode, for older or non-Core servers where WDAC is not used.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "wdac"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "server-core",
+    "term": "Windows Server Core",
+    "aliases": [
+      "Server Core"
+    ],
+    "definition": "A Windows Server installation without the desktop experience. AVEVA recommends installing the Data Archive on Server 2016-2022 Core to reduce attack surface.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening",
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "wdac"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "enable-audit",
+    "term": "EnableAudit",
+    "aliases": [
+      "Data Archive audit trail"
+    ],
+    "definition": "Data Archive tuning parameter whose bit mask selects which subsystem databases write audit records; -1 audits all. An admin can set it to 0, which disables auditing.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "af-audit-trail"
+    ],
+    "sources": [
+      "ops2-osipi-blog-audit",
+      "ops2-feedback-pida-452"
+    ],
+    "verify": true,
+    "verifyNote": "Bit values come from a 2010 third-party blog; check they are current for PI Data Archive 2018 SP3 and later."
+  },
+  {
+    "id": "af-audit-trail",
+    "term": "AF Audit Trail",
+    "aliases": [],
+    "definition": "SQL-based change history for AF objects, added in AF 2.6. Enable it with AFDiag /EnableAuditTrail:True while SQL Server Agent is running, and view it in PSE under Tools > AF Audit Trail.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening"
+    ],
+    "related": [
+      "enable-audit",
+      "afdiag"
+    ],
+    "sources": [
+      "ops2-pisquare-af-audit-trail"
+    ],
+    "verify": false
+  },
+  {
+    "id": "security-bulletin",
+    "term": "AVEVA security bulletin",
+    "aliases": [
+      "AVEVA-YYYY-NNN bulletin"
+    ],
+    "definition": "AVEVA advisory for a vulnerability, numbered like AVEVA-2024-001, naming affected versions and the minimum fixed release. CISA often publishes a matching ICS advisory.",
+    "domain": "security",
+    "coverage": [
+      "adm.hardening",
+      "adm.install-upgrade"
+    ],
+    "related": [
+      "piadmin"
+    ],
+    "sources": [
+      "adm-aveva-bulletin-2024-001",
+      "adm-aveva-cyber-updates-page",
+      "adm-cisa-icsa-24-018-01"
+    ],
+    "verify": false
+  },
+  {
+    "id": "iec-62443",
+    "term": "IEC 62443",
+    "aliases": [
+      "ISA/IEC 62443"
+    ],
+    "definition": "The international series of standards for industrial automation and control system security, grouped as 1-x general, 2-x policies and procedures, 3-x system and 4-x component.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "related": [
+      "security-zone",
+      "conduit",
+      "security-level",
+      "foundational-requirements"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "security-zone",
+    "term": "Zone (IEC 62443)",
+    "aliases": [
+      "security zone"
+    ],
+    "definition": "A grouping of assets based on risk. Assets in one zone share security requirements.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443",
+      "sec.architecture"
+    ],
+    "related": [
+      "conduit",
+      "iec-62443"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-trout-zones-conduits"
+    ],
+    "verify": false
+  },
+  {
+    "id": "conduit",
+    "term": "Conduit (IEC 62443)",
+    "aliases": [],
+    "definition": "The path through which communication between zones runs. A PI to PI link or a one-way gateway between a control-network and a DMZ Data Archive can be treated as a conduit.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443",
+      "sec.architecture"
+    ],
+    "related": [
+      "security-zone"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "security-level",
+    "term": "Security level (SL1-SL4)",
+    "aliases": [
+      "SL",
+      "SL-T",
+      "SL-C",
+      "SL-A"
+    ],
+    "definition": "IEC 62443 defines four security levels matched to adversary strength, from SL1 (casual or coincidental violation) to SL4 (sophisticated means with extended resources). SL-T is the target, SL-C the capability and SL-A what is achieved.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "related": [
+      "iec-62443"
+    ],
+    "sources": [
+      "adm-iec-62443-background",
+      "adm-trout-zones-conduits"
+    ],
+    "verify": false
+  },
+  {
+    "id": "foundational-requirements",
+    "term": "Foundational requirements (FR1-FR7)",
+    "aliases": [
+      "FR",
+      "FRs"
+    ],
+    "definition": "The seven IEC 62443 requirement groups: identification and authentication, use control, system integrity, data confidentiality, restricted data flow, timely response to events and resource availability.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "related": [
+      "iec-62443"
+    ],
+    "sources": [
+      "adm-iec-62443-background"
+    ],
+    "verify": false
+  },
+  {
+    "id": "isasecure-sdla",
+    "term": "ISASecure SDLA",
+    "aliases": [
+      "SDLA certification"
+    ],
+    "definition": "ISASecure certification of a vendor's secure development lifecycle against IEC 62443-4-1. AVEVA states its SDL has achieved it; this is a process certification, not a product certification of PI Server.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443"
+    ],
+    "related": [
+      "iec-62443"
+    ],
+    "sources": [
+      "adm-aveva-hmi-scada-security-wp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "defence-in-depth",
+    "term": "Defence in depth",
+    "aliases": [
+      "defense in depth"
+    ],
+    "definition": "Layering several independent security controls, such as network segmentation, firewalls, hardening and monitoring, so one failure does not expose the system. AVEVA recommends it.",
+    "domain": "security",
+    "coverage": [
+      "sec.iec62443",
+      "sec.architecture"
+    ],
+    "related": [
+      "security-zone"
+    ],
+    "sources": [
+      "adm-aveva-hmi-scada-security-wp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "nerc-cip",
+    "term": "NERC CIP",
+    "aliases": [
+      "Critical Infrastructure Protection"
+    ],
+    "definition": "The North American Electric Reliability Corporation's Critical Infrastructure Protection standards for the bulk electric system, such as CIP-005 (electronic security perimeters) and CIP-007 (system security management).",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "related": [
+      "electronic-security-perimeter",
+      "electronic-access-point"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5",
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "electronic-access-point",
+    "term": "Electronic Access Point (EAP)",
+    "aliases": [
+      "EAP"
+    ],
+    "definition": "The identified interface on an ESP through which all External Routable Connectivity must pass (CIP-005-5 R1.2), with access denied by default.",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "related": [
+      "electronic-security-perimeter",
+      "external-routable-connectivity"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "bes-cyber-system",
+    "term": "BES Cyber System (BCS)",
+    "aliases": [
+      "BCS"
+    ],
+    "definition": "A group of cyber assets that perform functions for the bulk electric system (BES) and are protected under NERC CIP.",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "related": [
+      "electronic-security-perimeter"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "external-routable-connectivity",
+    "term": "External Routable Connectivity (ERC)",
+    "aliases": [
+      "ERC"
+    ],
+    "definition": "Routable-protocol communication from outside an ESP to a BES Cyber System. Under CIP-005-5 R1.2 it must pass through an Electronic Access Point.",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "related": [
+      "electronic-access-point"
+    ],
+    "sources": [
+      "adm-forescout-cip-005-5"
+    ],
+    "verify": false
+  },
+  {
+    "id": "intrusion-detection-system",
+    "term": "Intrusion detection system (IDS)",
+    "aliases": [
+      "IDS"
+    ],
+    "definition": "A system that detects suspicious network activity. An OSIsoft CIP v5 deck listed an access point firewall with a commercial IDS module under CIP-005-5 R1.5.",
+    "domain": "security",
+    "coverage": [
+      "sec.nerc-cip"
+    ],
+    "related": [
+      "electronic-access-point"
+    ],
+    "sources": [
+      "adm-td2014-nerc-cip-ids"
+    ],
+    "verify": false
+  },
+  {
+    "id": "dmz",
+    "term": "DMZ (demilitarised zone)",
+    "aliases": [
+      "demilitarized zone",
+      "perimeter network"
+    ],
+    "definition": "A network between the control network and the business network. In OSIsoft patterns web-facing PI Vision, Notifications and PI Web API, or a PI to PI target, sit there so users never connect directly into the control zone.",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture",
+      "adm.deployment-patterns"
+    ],
+    "related": [
+      "pi-to-pi-interface",
+      "data-diode"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "data-diode",
+    "term": "Data diode",
+    "aliases": [
+      "unidirectional gateway",
+      "one-way gateway"
+    ],
+    "definition": "Hardware that lets data flow in one direction only, enforced by physics. Vendors such as Waterfall and Owl replicate PI data through one to a replica on the business side.",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "related": [
+      "pi-replica",
+      "dmz"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi",
+      "adm-uc18-owl-diode-barcelona",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pi-replica",
+    "term": "Replica PI server",
+    "aliases": [
+      "enterprise replica"
+    ],
+    "definition": "A copy of an industrial PI server on the business side of a one-way gateway. Users work with the replica instead of reaching into the control network.",
+    "domain": "security",
+    "coverage": [
+      "sec.architecture"
+    ],
+    "related": [
+      "data-diode"
+    ],
+    "sources": [
+      "adm-waterfall-aveva-pi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "tls",
+    "term": "TLS (Transport Layer Security)",
+    "aliases": [
+      "SSL",
+      "TLS/SSL"
+    ],
+    "definition": "Encryption for network connections using certificates. In PI Server 2023 it is optional for the Data Archive and AF but required for OIDC and AVEVA Identity Manager. PI Web API is HTTPS only.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "certificate-thumbprint",
+      "self-signed-certificate",
+      "transport-security"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins",
+      "ops2-uc17-secure-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "transport-security",
+    "term": "Transport security (PI Server 2015)",
+    "aliases": [
+      "SSPI encryption"
+    ],
+    "definition": "Encryption of Data Archive traffic introduced with PI Server 2015, using the Windows protocol in use: NTLM with RC4/MD5 or Kerberos with AES256/SHA1.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "tls",
+      "kerberos"
+    ],
+    "sources": [
+      "ops2-uc15-roadmap-hughes"
+    ],
+    "verify": true,
+    "verifyNote": "That this is Windows SSPI encryption rather than TLS is inferred from a 2015 slide; confirm in AVEVA documentation."
+  },
+  {
+    "id": "certificate-thumbprint",
+    "term": "Certificate thumbprint",
+    "aliases": [
+      "thumbprint"
+    ],
+    "definition": "The hash that identifies a certificate in the Windows store. pidiag -tls -r <thumbprint> registers the Data Archive certificate and AFDiag /CT:<thumbprint> sets the AF Server one.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "tls",
+      "pidiag"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "self-signed-certificate",
+    "term": "Self-signed certificate",
+    "aliases": [],
+    "definition": "A certificate signed by its own key rather than a certificate authority. It is trusted only locally or where you import it, so clients elsewhere will not trust it automatically.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "tls"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins",
+      "ops2-uc17-secure-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "basic-authentication",
+    "term": "Basic authentication",
+    "aliases": [],
+    "definition": "HTTP login that sends a username and password with each request. It exposes credentials on the network, so AVEVA prefers Kerberos or OIDC for PI Web API.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "anonymous-authentication",
+      "tls"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins",
+      "ops2-cisa-cm0143-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "anonymous-authentication",
+    "term": "Anonymous authentication (PI Web API)",
+    "aliases": [],
+    "definition": "PI Web API option with no user login. Enabling it disables all other authentication types, and AVEVA recommends against it.",
+    "domain": "security",
+    "coverage": [
+      "sec.certificates"
+    ],
+    "related": [
+      "basic-authentication"
+    ],
+    "sources": [
+      "ops2-cisa-cm0143-webapi"
+    ],
+    "verify": false
+  }
+]

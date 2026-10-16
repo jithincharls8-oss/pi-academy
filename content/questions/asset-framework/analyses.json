@@ -1,0 +1,408 @@
+[
+  {
+    "id": "q-analyses-four-types",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 1,
+    "prompt": "Which are the four AF analysis types? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Expression"
+      },
+      {
+        "id": "b",
+        "text": "Rollup"
+      },
+      {
+        "id": "c",
+        "text": "Event Frame Generation"
+      },
+      {
+        "id": "d",
+        "text": "SQC"
+      },
+      {
+        "id": "e",
+        "text": "Totalizer"
+      },
+      {
+        "id": "f",
+        "text": "Filter"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The four analysis types are Expression, Rollup, Event Frame Generation and SQC. Totalizer is a legacy PI Server application, and filtering is done inside expressions.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-analyses-service",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 1,
+    "prompt": "Which service runs all the analyses of an AF server?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI AF Application Service"
+      },
+      {
+        "id": "b",
+        "text": "PI Analysis Service"
+      },
+      {
+        "id": "c",
+        "text": "PI Notifications Service"
+      },
+      {
+        "id": "d",
+        "text": "PI Snapshot Subsystem"
+      }
+    ],
+    "answer": "b",
+    "explanation": "\"The Analysis Service runs all analyses of a AF Server.\" The AF Application Service serves the model, and Notifications Service runs notification rules.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-analyses-template-applies",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: an Expression analysis created on an element template is automatically applied to every element of that template.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. Analyses on templates apply to all elements built from the template, which is why you must test before Check In.",
+    "lessonId": "analyses",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-analyses-test-first",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "What should the engineer have done?",
+    "scenario": "An engineer edited an analysis on the 'Pump' template (800 pumps) and pressed Check In straight away. Bad results now flow to 800 PI tags.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nothing different; analyses only start after a restart"
+      },
+      {
+        "id": "b",
+        "text": "Test with Evaluate and Preview Results on an example element before Check In, because check-in starts the analysis on every element"
+      },
+      {
+        "id": "c",
+        "text": "Use PI Builder instead of PSE"
+      },
+      {
+        "id": "d",
+        "text": "Check In twice"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA labs say to test before Check In, because check-in starts the analysis on every element of the template. On a template, choose an example element to Evaluate or Preview.",
+    "lessonId": "analyses",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-analyses-evaluate-vs-service",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 3,
+    "prompt": "Why can Evaluate/Preview results differ from what the running Analysis Service writes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Evaluate uses a random sample of data"
+      },
+      {
+        "id": "b",
+        "text": "Evaluate and Preview run on the client with the user's account and compressed archive data; the service uses its service account and snapshot data"
+      },
+      {
+        "id": "c",
+        "text": "The service ignores time-weighting"
+      },
+      {
+        "id": "d",
+        "text": "Preview always uses UTC while the service uses local time"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Evaluate and Preview run on the client with the user's account against compressed archive data, while the service uses its own account and snapshot data. Different data and permissions can give different answers.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-analyses-rollup-output",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "What must a Rollup analysis output be?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An Analysis data reference"
+      },
+      {
+        "id": "b",
+        "text": "A PI Point data reference, and output history cannot be turned off"
+      },
+      {
+        "id": "c",
+        "text": "A static attribute"
+      },
+      {
+        "id": "d",
+        "text": "A Formula data reference"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Rollup outputs must use PI Point data references, and rollup analyses do not allow turning off output history.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-analyses-nooutput",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "Write an expression row for Efficiency that returns NoOutput() when ExpectedPowerVar is 0, and otherwise ActivePowerVar/ExpectedPowerVar*100.",
+    "language": "pe",
+    "accepted": [
+      "IF ExpectedPowerVar = 0 THEN NoOutput() ELSE ActivePowerVar/ExpectedPowerVar*100"
+    ],
+    "requiredPatterns": [
+      "^if\\b",
+      "expectedpowervar\\s*=\\s*0",
+      "then\\s+nooutput\\(\\)",
+      "else\\s+activepowervar\\s*/\\s*expectedpowervar\\s*\\*\\s*100"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "NoOutput() suppresses a result for this evaluation, which avoids dividing by zero. Variables from earlier rows are written without quotes. The PI World 2019 lab uses this pattern (adding a Not Running test).",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-analyses-exit",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "What does Exit() do in an expression analysis?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Writes the last good value"
+      },
+      {
+        "id": "b",
+        "text": "Stops evaluation of all further rows without evaluating them"
+      },
+      {
+        "id": "c",
+        "text": "Closes the event frame"
+      },
+      {
+        "id": "d",
+        "text": "Disables the analysis"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Exit(), added in AF 2018 SP2, stops evaluation of all further rows. NoOutput() is different: it only suppresses writing a result for a value.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020",
+      "af-pisquare-af2018sp2-highlights"
+    ]
+  },
+  {
+    "id": "q-analyses-error-retry",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "By default, how often (in minutes) does the Analysis Service try to restart analyses that are in an error state?",
+    "accepted": [
+      "15",
+      "fifteen",
+      "15 minutes"
+    ],
+    "caseSensitive": false,
+    "explanation": "The Analysis Service tries to restart analyses in error every fifteen minutes by default. Many analyses in error can hurt performance because of these retries.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-optimizing-analytics-2020"
+    ]
+  },
+  {
+    "id": "q-analyses-forecast",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 3,
+    "prompt": "In a PI World 2019 lab, how does a forecast analysis write future-timestamped values?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uses Execution Time stamps"
+      },
+      {
+        "id": "b",
+        "text": "Tag Creation with the future flag set to 1, and output timestamp Relative to Trigger Time with offset *+1h"
+      },
+      {
+        "id": "c",
+        "text": "It writes to an Analysis data reference"
+      },
+      {
+        "id": "d",
+        "text": "It uses a Formula data reference"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The lab enables Tag Creation with the future flag set to 1 and uses the output timestamp option Relative to Trigger Time with offset *+1h.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-analyses-sdk-calls",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each AF SDK call to what it does when building an analysis programmatically.",
+    "pairs": [
+      {
+        "left": "AnalysisRulePlugIns[\"PerformanceEquation\"]",
+        "right": "Selects the Expression analysis plug-in"
+      },
+      {
+        "left": "MapVariable(\"SumAvg\", attribute)",
+        "right": "Maps a variable to an output attribute"
+      },
+      {
+        "left": "SetStatus(AFStatus.Enabled)",
+        "right": "Enables the analysis"
+      },
+      {
+        "left": "CheckIn()",
+        "right": "Commits the change"
+      }
+    ],
+    "explanation": "A PI Square blog shows the expression plug-in is named PerformanceEquation, MapVariable maps outputs, SetStatus enables and CheckIn commits.",
+    "lessonId": "analyses",
+    "tags": [],
+    "sources": [
+      "af-pisquare-programmatic-analytics-blog"
+    ]
+  },
+  {
+    "id": "q-analyses-adhoc",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.analyses"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Asset Analytics is designed for ad-hoc queries and bulk data extraction across very many attributes.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Asset Analytics is designed for streaming calculations, and AVEVA says it is not suited to ad-hoc queries or bulk extraction.",
+    "lessonId": "analyses",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-kwan-getting-more-aa-2019"
+    ]
+  }
+]

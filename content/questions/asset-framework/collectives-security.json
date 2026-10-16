@@ -1,0 +1,297 @@
+[
+  {
+    "id": "q-collectives-security-ha-recommendation",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each component to AVEVA's 2022 recommended high-availability approach.",
+    "pairs": [
+      {
+        "left": "PI AF Application Service",
+        "right": "Load balancer"
+      },
+      {
+        "left": "PI Analysis Service",
+        "right": "Windows Server failover clustering"
+      },
+      {
+        "left": "PIFD SQL back end",
+        "right": "SQL Server Always On availability groups"
+      }
+    ],
+    "explanation": "AVEVA's official 2022 recommendation: a load balancer for the AF Application Service, Windows Server failover clustering for PI Analysis Service and PI Notifications Service, and SQL Server Always On availability groups for SQL.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "q-collectives-security-collectives-future",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: AVEVA plans to keep developing AF collectives as its main HA option.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. AVEVA states it has \"no plans to further update the AF Collective implementation\" and recommends load balancing, failover clustering and Always On instead.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "q-collectives-security-collective-limit",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 2,
+    "prompt": "What did AF collectives not support that the recommended configurations do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Windows authentication"
+      },
+      {
+        "id": "b",
+        "text": "Read/write after failover"
+      },
+      {
+        "id": "c",
+        "text": "SQL Server"
+      },
+      {
+        "id": "d",
+        "text": "Event frames"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA says the recommended configurations ensure redundancy and read/write after failover, \"which was not supported with AF Collectives\".",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "q-collectives-security-new-design",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 2,
+    "prompt": "Which design should the architect choose?",
+    "scenario": "An architect is designing a new, large distributed PI System and must make AF highly available, including writes such as new event frames after a failover.",
+    "options": [
+      {
+        "id": "a",
+        "text": "An AF collective with a read-only secondary"
+      },
+      {
+        "id": "b",
+        "text": "Two AF servers behind a network load balancer, with SQL Server on separate redundant computers"
+      },
+      {
+        "id": "c",
+        "text": "One AF server with SQL Express"
+      },
+      {
+        "id": "d",
+        "text": "Two independent AF servers with separate PIFD databases synchronised nightly"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The architecture course recommends two AF servers behind a network load balancer with SQL Server on separate redundant computers. Collectives have no read/write after failover.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-architecture-workbook",
+      "af-feedback-pida-185"
+    ]
+  },
+  {
+    "id": "q-collectives-security-contrast-da",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 3,
+    "prompt": "How does AF HA differ from a PI Data Archive collective?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They are identical"
+      },
+      {
+        "id": "b",
+        "text": "Data Archive collective members are independent data stores, while AF servers in HA share one SQL database"
+      },
+      {
+        "id": "c",
+        "text": "AF stores data in each member's archive files"
+      },
+      {
+        "id": "d",
+        "text": "Data Archive collectives use SQL Always On"
+      }
+    ],
+    "answer": "b",
+    "explanation": "A 2015 HA deck describes Data Archive collective members as completely independent data stores; AF HA shares one SQL database behind load-balanced AF servers.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-ha-2015-deck"
+    ],
+    "verify": true,
+    "verifyNote": "The contrast is inferred in the research from the 2015 deck; confirm wording."
+  },
+  {
+    "id": "q-collectives-security-auth",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 1,
+    "prompt": "How do users authenticate to PI AF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "With AF-only usernames and passwords"
+      },
+      {
+        "id": "b",
+        "text": "With Windows Integrated Security"
+      },
+      {
+        "id": "c",
+        "text": "With API keys"
+      },
+      {
+        "id": "d",
+        "text": "Anonymously by default"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Users connect to PI AF with Windows Integrated Security, and effective permissions are based on the Windows identity and stored as Windows security descriptors.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-architecture-workbook"
+    ]
+  },
+  {
+    "id": "q-collectives-security-nlb",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 2,
+    "prompt": "The 2015 HA deck describes AF HA using Network Load ____, which it calls \"Fully Automatic\" and \"Seamless to clients\".",
+    "accepted": [
+      "Balancing"
+    ],
+    "caseSensitive": false,
+    "explanation": "The deck shows AF HA with Network Load Balancing, supporting HA writes such as event frames, over a SQL cluster or Always On group.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-ha-2015-deck"
+    ]
+  },
+  {
+    "id": "q-collectives-security-search-security",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 3,
+    "prompt": "Which AF SDK 2.10 search fields let you filter objects by their security settings?",
+    "options": [
+      {
+        "id": "a",
+        "text": "SecurityString and SecurityToken"
+      },
+      {
+        "id": "b",
+        "text": "Owner and Group"
+      },
+      {
+        "id": "c",
+        "text": "ACL and DACL"
+      },
+      {
+        "id": "d",
+        "text": "Identity and Mapping"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF Search can filter by SecurityString and SecurityToken from AF SDK 2.10 (AF 2018).",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-collectives-security-identities",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.collectives-security"
+    ],
+    "difficulty": 3,
+    "prompt": "In AF security, what is the role of an AF identity and mapping?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mappings link Windows accounts or groups to AF identities, and permissions are granted to identities"
+      },
+      {
+        "id": "b",
+        "text": "Identities are SQL logins"
+      },
+      {
+        "id": "c",
+        "text": "Mappings link PI tags to attributes"
+      },
+      {
+        "id": "d",
+        "text": "Identities replace Windows authentication"
+      }
+    ],
+    "answer": "a",
+    "explanation": "In AF 2015 and later, AF identities (such as Administrators or World) receive permissions, and mappings link Windows accounts or groups to them.",
+    "lessonId": "af-high-availability-and-security",
+    "tags": [],
+    "sources": [
+      "af-architecture-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "Identities and mappings come from training knowledge only; the readable source confirms Windows Integrated Security and security descriptors. Check AF security docs."
+  }
+]

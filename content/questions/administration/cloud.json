@@ -1,0 +1,416 @@
+[
+  {
+    "id": "q-cloud-azure-sequence",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 3,
+    "prompt": "Order the steps of OSIsoft's 2019 Azure PI deployment.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Network: vnet, subnets, NSGs"
+      },
+      {
+        "id": "b",
+        "text": "Domain controller, then DNS update"
+      },
+      {
+        "id": "c",
+        "text": "SQL and RDS"
+      },
+      {
+        "id": "d",
+        "text": "Integrator and PI Vision"
+      },
+      {
+        "id": "e",
+        "text": "AF and PI Data Archive"
+      },
+      {
+        "id": "f",
+        "text": "Analysis"
+      }
+    ],
+    "explanation": "The deck gives this order: network, domain controller and DNS, SQL and RDS, integrator and PI Vision, AF and PI DA, then Analysis.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "azure"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-agent-direction",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each agent to what it does.",
+    "pairs": [
+      {
+        "left": "PI to CONNECT Agent",
+        "right": "Transfers on-premises PI Server data to CONNECT data services"
+      },
+      {
+        "left": "CONNECT to PI Agent",
+        "right": "Writes data from CONNECT streams back to PI tags"
+      },
+      {
+        "left": "PI to OCS Agent",
+        "right": "OSIsoft Cloud Services-era agent that sent site data to OCS"
+      }
+    ],
+    "explanation": "The PI to CONNECT Agent sends PI data up and reports tag usage; the CONNECT to PI Agent writes CONNECT streams to PI tags; the PI to OCS Agent was used in the OCS patterns OSIsoft described in 2019.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "agents"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026",
+      "ops2-pidi-service-description",
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-aggregate-agent",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: under the Aggregate Tag licence model, each PI Server needs the PI to CONNECT Agent installed and configured.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. \"Each PI Server in the aggregate tag model requires that the PI to CONNECT Agent be installed and configured\", because the agent reports tag usage.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "licensing",
+      "true-false"
+    ],
+    "sources": [
+      "ops2-pidi-service-description"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-rename",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 1,
+    "prompt": "What was AVEVA Data Hub renamed to in July 2024?",
+    "options": [
+      {
+        "id": "a",
+        "text": "CONNECT data services"
+      },
+      {
+        "id": "b",
+        "text": "OSIsoft Cloud Services"
+      },
+      {
+        "id": "c",
+        "text": "PI Cloud Connect"
+      },
+      {
+        "id": "d",
+        "text": "Edge Data Store"
+      }
+    ],
+    "answer": "a",
+    "explanation": "On 11 July 2024 AVEVA announced the renaming of AVEVA Data Hub to CONNECT data services. OSIsoft Cloud Services was the earlier predecessor.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "naming"
+    ],
+    "sources": [
+      "ops2-aveva-dh-to-cds-blog",
+      "ops2-uc22-carasso-odi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-eds-port",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "On which port does Edge Data Store's REST API listen by default?",
+    "accepted": [
+      "5590"
+    ],
+    "caseSensitive": false,
+    "explanation": "EDS listens on port 5590, for example http://localhost:5590/api/v1/tenants/default/namespaces/default/streams/.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "eds"
+    ],
+    "sources": [
+      "ops2-uc23-adapters-eds-lab",
+      "ops2-gh-adh-waveform-sample"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-deletions",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the most likely reason?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Replicating deletions is opt-in, and it was not turned on"
+      },
+      {
+        "id": "b",
+        "text": "The agent only transfers PI points, never AF"
+      },
+      {
+        "id": "c",
+        "text": "CONNECT never deletes anything"
+      },
+      {
+        "id": "d",
+        "text": "The agent runs in the cloud and cannot see deletions"
+      }
+    ],
+    "scenario": "An engineer deletes 200 obsolete AF elements on the plant AF server. A week later the same elements still appear in CONNECT data services, which receives data through the PI to CONNECT Agent.",
+    "answer": "a",
+    "explanation": "The agent transfers AF elements, attributes and PI points, but deletions replicate only if you opt in. The agent runs on premises.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "agents",
+      "pitfall"
+    ],
+    "sources": [
+      "ops2-uc22-carasso-odi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-keyvault",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "In OSIsoft's Azure deployment, where did the bootstrapper store generated credentials?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Azure Key Vault"
+      },
+      {
+        "id": "b",
+        "text": "A text file on the domain controller"
+      },
+      {
+        "id": "c",
+        "text": "The AF Configuration database"
+      },
+      {
+        "id": "d",
+        "text": "The PI Data Archive message log"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The bootstrapper stored generated credentials in Azure Key Vault and uploaded DSC configurations and install kits.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "azure"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-dsc",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 3,
+    "prompt": "What is DSC's Local Configuration Manager default mode, as noted in the Azure deployment deck?",
+    "options": [
+      {
+        "id": "a",
+        "text": "ApplyAndMonitor, at about 15-minute intervals"
+      },
+      {
+        "id": "b",
+        "text": "ApplyOnly, once at boot"
+      },
+      {
+        "id": "c",
+        "text": "ApplyAndAutoCorrect every minute"
+      },
+      {
+        "id": "d",
+        "text": "Disabled until manually started"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck notes the default LCM mode is ApplyAndMonitor at about 15-minute intervals.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "automation"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-outbound",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "What does AVEVA's HMI/SCADA security paper say about cloud edge devices?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They require a single outbound port to be open and can be routed via a DMZ"
+      },
+      {
+        "id": "b",
+        "text": "They need inbound RDP from the cloud"
+      },
+      {
+        "id": "c",
+        "text": "They require port 5450 open to the internet"
+      },
+      {
+        "id": "d",
+        "text": "They must be on the control network with no firewall"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Cloud edge devices \"require a single outbound port to be open and can be routed via DMZ\". Exposing 5450 or RDP to the internet is the opposite of AVEVA guidance.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "network"
+    ],
+    "sources": [
+      "adm-aveva-hmi-scada-security-wp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-flex",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 2,
+    "prompt": "What did AVEVA state in 2023 about PI Server 2023 licensing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It requires you to be on AVEVA Flex"
+      },
+      {
+        "id": "b",
+        "text": "It is free for up to 10,000 tags"
+      },
+      {
+        "id": "c",
+        "text": "It is sold only as a perpetual licence"
+      },
+      {
+        "id": "d",
+        "text": "It can only run in CONNECT"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The AVEVA World 2023 deck says \"AVEVA PI Server 2023 requires you to be on AVEVA Flex\", AVEVA's subscription program.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "licensing"
+    ],
+    "sources": [
+      "ops2-uc23-claims-auth-biggins",
+      "ops2-aveva-trade-in-2022"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-cloud-connect-platform",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.cloud"
+    ],
+    "difficulty": 1,
+    "prompt": "Which statements about CONNECT are supported by the 2024 launch coverage? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is an industrial intelligence platform"
+      },
+      {
+        "id": "b",
+        "text": "It offers data, visualisation, modelling and analytics services"
+      },
+      {
+        "id": "c",
+        "text": "It runs on Microsoft Azure"
+      },
+      {
+        "id": "d",
+        "text": "It replaces PI Data Archive on site"
+      },
+      {
+        "id": "e",
+        "text": "It is an on-premises SQL product"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "CONNECT is \"an industrial intelligence platform\" with native data, visualisation, modelling and analytics services on Azure. It complements, rather than replaces, on-premises PI Server.",
+    "lessonId": "cloud-deployment",
+    "tags": [
+      "connect"
+    ],
+    "sources": [
+      "ops2-arc-connect-launch",
+      "ops2-pidi-service-description"
+    ],
+    "verify": false
+  }
+]

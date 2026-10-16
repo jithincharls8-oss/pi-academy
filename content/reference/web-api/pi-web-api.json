@@ -1,0 +1,1717 @@
+[
+  {
+    "id": "webapi-get-root",
+    "controller": "Home",
+    "method": "GET",
+    "path": "/",
+    "summary": "Root (home) resource. Its Links include Self, AssetServers, DataServers, Omf, Search and System.",
+    "params": [],
+    "example": "GET https://pisrv01/piwebapi",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-system",
+    "controller": "System",
+    "method": "GET",
+    "path": "/system",
+    "summary": "System landing resource, with links to UserInfo and Status.",
+    "params": [],
+    "example": "GET https://pisrv01/piwebapi/system",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-system-userinfo",
+    "controller": "System",
+    "method": "GET",
+    "path": "/system/userinfo",
+    "summary": "Shows the identity the request is authenticated as.",
+    "params": [],
+    "example": "GET https://pisrv01/piwebapi/system/userinfo",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-system-status",
+    "controller": "System",
+    "method": "GET",
+    "path": "/system/status",
+    "summary": "Service status.",
+    "params": [],
+    "example": "GET https://pisrv01/piwebapi/system/status",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-system-configuration",
+    "controller": "System",
+    "method": "GET",
+    "path": "/system/configuration",
+    "summary": "Reads the runtime configuration settings stored in the AF configuration element (OSIsoft > PI Web API > <instance>).",
+    "params": [],
+    "example": "GET https://pisrv01/piwebapi/system/configuration",
+    "sources": [
+      "int-cisa-cm0143",
+      "ops2-cisa-cm0143-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-points",
+    "controller": "Point",
+    "method": "GET",
+    "path": "/points",
+    "summary": "Finds a PI point by path; the response contains its WebId and attributes such as PointClass, PointType, EngineeringUnits, Span, Zero, Step and Future.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<DataArchive>\\<tag>",
+        "required": true
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "webIdType",
+        "in": "query",
+        "description": "WebID type in the response: Full, IDOnly, PathOnly, LocalIDOnly or DefaultIDOnly",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/points?path=\\\\PISRV01\\sinusoid",
+    "sources": [
+      "int-uc19-edpr-webapi",
+      "int-gh-pyclient-point"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-points-search",
+    "controller": "Point",
+    "method": "GET",
+    "path": "/points/search",
+    "summary": "Searches PI points.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read."
+  },
+  {
+    "id": "webapi-post-dataservers-webid-points",
+    "controller": "DataServer",
+    "method": "POST",
+    "path": "/dataservers/{webId}/points",
+    "summary": "Creates a PI point. The body takes Name, Descriptor, PointClass, PointType, EngineeringUnits, Step and Future; other attributes (such as exdesc, pointsource, location1) are rejected at creation and must be set afterwards.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "JSON point definition",
+        "required": true
+      }
+    ],
+    "example": "POST https://pisrv01/piwebapi/dataservers/{webId}/points\nX-Requested-With: XmlHttpRequest\n\n{\"Name\":\"TestTag\",\"Descriptor\":\"\",\"PointClass\":\"classic\",\"PointType\":\"Float32\",\"EngineeringUnits\":\"\",\"Step\":false,\"Future\":false}",
+    "sources": [
+      "da-ps-webapi-create-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-assetservers",
+    "controller": "AssetServer",
+    "method": "GET",
+    "path": "/assetservers",
+    "summary": "Finds an AF server by path.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>",
+        "required": true
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/assetservers?path=\\\\AF01",
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-assetservers-webid-assetdatabases",
+    "controller": "AssetServer",
+    "method": "POST",
+    "path": "/assetservers/{webId}/assetdatabases",
+    "summary": "Creates an AF database. Body keys Name, Description and ExtendedProperties; AVEVA's sample checks for HTTP 201 (Created).",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "Name, Description, ExtendedProperties",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-assetdatabases",
+    "controller": "AssetDatabase",
+    "method": "GET",
+    "path": "/assetdatabases",
+    "summary": "Finds an AF database by path.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>\\<Database>",
+        "required": true
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/assetdatabases?path=\\\\AF01\\NuGreen",
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-assetdatabases-webid-elements",
+    "controller": "AssetDatabase",
+    "method": "GET",
+    "path": "/assetdatabases/{webId}/elements",
+    "summary": "Lists elements of a database with traditional child-query filters.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "nameFilter",
+        "in": "query",
+        "description": "name mask, e.g. *b*",
+        "required": false
+      },
+      {
+        "name": "templateFilter",
+        "in": "query",
+        "description": "element template name",
+        "required": false
+      },
+      {
+        "name": "searchFullHierarchy",
+        "in": "query",
+        "description": "true to search below the top level",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/assetdatabases/{webId}/elements?nameFilter=*b*&templateFilter=PumpTemplate&searchFullHierarchy=true",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-assetdatabases-webid-elementtemplates",
+    "controller": "AssetDatabase",
+    "method": "POST",
+    "path": "/assetdatabases/{webId}/elementtemplates",
+    "summary": "Creates an element template. Body keys Name, Description, CategoryNames and AllowElementToExtend.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "template definition",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-delete-assetdatabases-webid",
+    "controller": "AssetDatabase",
+    "method": "DELETE",
+    "path": "/assetdatabases/{webId}",
+    "summary": "Deletes an AF database; AVEVA's sample gets HTTP 204 (No Content).",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-elementtemplates",
+    "controller": "ElementTemplate",
+    "method": "GET",
+    "path": "/elementtemplates",
+    "summary": "Finds an element template by path.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>\\<Database>\\ElementTemplates[<TemplateName>]",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-elementtemplates-webid-attributetemplates",
+    "controller": "ElementTemplate",
+    "method": "POST",
+    "path": "/elementtemplates/{webId}/attributetemplates",
+    "summary": "Creates an attribute template. Body keys Name, Type, IsConfigurationItem, Description, DataReferencePlugIn and ConfigString.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "attribute template definition",
+        "required": true
+      }
+    ],
+    "example": "{\"Name\": \"SampleTag\", \"Type\": \"Double\", \"DataReferencePlugIn\": \"PI Point\", \"ConfigString\": \"\\\\\\\\<pi_server>\\\\%Element%_OSIPythonSampleTag;ReadOnly=False;ptclassname=classic;pointtype=Float64;pointsource=webapi\"}",
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-elementcategories",
+    "controller": "ElementCategory",
+    "method": "GET",
+    "path": "/elementcategories",
+    "summary": "Finds an element category by path.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>\\<Database>\\CategoriesElement[<CategoryName>]",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-elements",
+    "controller": "Element",
+    "method": "GET",
+    "path": "/elements",
+    "summary": "Finds an AF element by path; the response has WebId, Id, Name, Description, Path, TemplateName, HasChildren, CategoryNames and Links.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>\\<Database>\\<Element>",
+        "required": true
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "webIdType",
+        "in": "query",
+        "description": "WebID type in the response: Full, IDOnly, PathOnly, LocalIDOnly or DefaultIDOnly",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/elements?path=\\\\PISRV01\\NuGreen\\NuGreen\\Houston\\Cracking Process\\Equipment\\B-210",
+    "sources": [
+      "int-uc19-edpr-webapi",
+      "int-gh-pyclient-element"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-elements-webid-elements",
+    "controller": "Element",
+    "method": "GET",
+    "path": "/elements/{webId}/elements",
+    "summary": "Lists child elements.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "webIdType",
+        "in": "query",
+        "description": "WebID type in the response: Full, IDOnly, PathOnly, LocalIDOnly or DefaultIDOnly",
+        "required": false
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/elements/{webId}/elements?webidtype=idonly&selectedfields=items.webid;items.name;items.path;items.haschildren;items.templatename",
+    "sources": [
+      "int-jmp-pi-tagnames"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-elements-search",
+    "controller": "Element",
+    "method": "GET",
+    "path": "/elements/search",
+    "summary": "AFSearch-style element query (PI Web API 2017 R2 and later). Needs no crawler.",
+    "params": [
+      {
+        "name": "databaseWebId",
+        "in": "query",
+        "description": "WebID of the AF database",
+        "required": true
+      },
+      {
+        "name": "query",
+        "in": "query",
+        "description": "AFSearch query, e.g. Name:=*b* AND Template:=PumpTemplate",
+        "required": true
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/elements/search?databaseWebId={webId}&query=Name:=*b* AND Template:=PumpTemplate",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-elements-webid-config",
+    "controller": "Element",
+    "method": "POST",
+    "path": "/elements/{webId}/config",
+    "summary": "Creates the PI points referenced by the element's PI Point data references (like Create or Update Data Reference).",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "includeChildElements",
+        "in": "body",
+        "description": "true to include child elements",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-delete-elements-webid",
+    "controller": "Element",
+    "method": "DELETE",
+    "path": "/elements/{webId}",
+    "summary": "Deletes an element; AVEVA's sample gets HTTP 204.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-create-sandbox-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-attributes",
+    "controller": "Attribute",
+    "method": "GET",
+    "path": "/attributes",
+    "summary": "Finds an AF attribute by path. The pipe | separates the element path from the attribute name.",
+    "params": [
+      {
+        "name": "path",
+        "in": "query",
+        "description": "\\\\<AFServer>\\<Database>\\<Element>|<Attribute>",
+        "required": true
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "webIdType",
+        "in": "query",
+        "description": "WebID type in the response: Full, IDOnly, PathOnly, LocalIDOnly or DefaultIDOnly",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/attributes?path=\\\\AF01\\OSIPythonDatabase\\OSIPythonElement|OSIPythonAttributeSampleTag",
+    "sources": [
+      "int-gh-batch-call-py",
+      "int-gh-pyclient-attribute"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-put-attributes-webid-value",
+    "controller": "Attribute",
+    "method": "PUT",
+    "path": "/attributes/{webId}/value",
+    "summary": "Sets the value of a static (non-PI-point) attribute; AVEVA's sample gets HTTP 204.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "{\"Value\": ...}",
+        "required": true
+      }
+    ],
+    "example": "PUT https://pisrv01/piwebapi/attributes/{webId}/value\nX-Requested-With: XmlHttpRequest\n\n{\"Value\": true}",
+    "sources": [
+      "int-gh-write-attributes-py",
+      "int-gh-batch-call-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-attributes-search",
+    "controller": "Attribute",
+    "method": "GET",
+    "path": "/attributes/search",
+    "summary": "AFSearch-style attribute query (Attribute GetAttributesQuery).",
+    "params": [
+      {
+        "name": "query",
+        "in": "query",
+        "description": "AFSearch query",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": true,
+    "verifyNote": "The method name GetAttributesQuery is sourced; the exact route and parameters were not read."
+  },
+  {
+    "id": "webapi-get-eventframes",
+    "controller": "EventFrame",
+    "method": "GET",
+    "path": "/eventframes",
+    "summary": "Event frames resource.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read."
+  },
+  {
+    "id": "webapi-get-eventframes-search",
+    "controller": "EventFrame",
+    "method": "GET",
+    "path": "/eventframes/search",
+    "summary": "AFSearch-style event frame query (EventFrame GetEventFramesQuery).",
+    "params": [
+      {
+        "name": "query",
+        "in": "query",
+        "description": "AFSearch query",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": true,
+    "verifyNote": "The method name GetEventFramesQuery is sourced; the exact route and parameters were not read."
+  },
+  {
+    "id": "webapi-get-analyses",
+    "controller": "Analysis",
+    "method": "GET",
+    "path": "/analyses",
+    "summary": "Lists or gets analyses.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read."
+  },
+  {
+    "id": "webapi-get-analyses-search",
+    "controller": "Analysis",
+    "method": "GET",
+    "path": "/analyses/search",
+    "summary": "Searches analyses.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read."
+  },
+  {
+    "id": "webapi-get-analyses-webid",
+    "controller": "Analysis",
+    "method": "GET",
+    "path": "/analyses/{webId}",
+    "summary": "Gets an analysis.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-patch-analyses-webid",
+    "controller": "Analysis",
+    "method": "PATCH",
+    "path": "/analyses/{webId}",
+    "summary": "Partially updates an analysis.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "fields to change",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-delete-analyses-webid",
+    "controller": "Analysis",
+    "method": "DELETE",
+    "path": "/analyses/{webId}",
+    "summary": "Deletes an analysis.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-analyses-webid-categories",
+    "controller": "Analysis",
+    "method": "GET",
+    "path": "/analyses/{webId}/categories",
+    "summary": "Gets an analysis's categories.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-analyses-webid-security",
+    "controller": "Analysis",
+    "method": "GET",
+    "path": "/analyses/{webId}/security",
+    "summary": "Gets an analysis's security.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-security",
+    "controller": "Security",
+    "method": "GET",
+    "path": "/security",
+    "summary": "Security resource.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read. The HTTP method is assumed."
+  },
+  {
+    "id": "webapi-get-securityidentities",
+    "controller": "Security",
+    "method": "GET",
+    "path": "/securityIdentities",
+    "summary": "Security identities resource.",
+    "params": [],
+    "sources": [
+      "int-jentic-piwebapi-2018sp1"
+    ],
+    "verify": true,
+    "verifyNote": "Listed in the 2018 Swagger specification; parameters were not read. The HTTP method is assumed."
+  },
+  {
+    "id": "webapi-get-streams-webid-value",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/value",
+    "summary": "Current (snapshot) value of a stream.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streams/{webId}/value",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-gh-read-attributes-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-streams-webid-value",
+    "controller": "Stream",
+    "method": "POST",
+    "path": "/streams/{webId}/value",
+    "summary": "Writes one value (UpdateValue). AVEVA's sample gets HTTP 202. System digital states can be written as {\"Value\": {\"Name\": \"Comm Fail\", \"Value\": 313, \"IsSystem\": true}} (allowed since 1.4).",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "updateOption",
+        "in": "query",
+        "description": "write behaviour",
+        "required": false
+      },
+      {
+        "name": "bufferOption",
+        "in": "query",
+        "description": "buffering behaviour",
+        "required": false
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "{\"Timestamp\": \"...\", \"Value\": ...}",
+        "required": true
+      }
+    ],
+    "example": "POST https://pisrv01/piwebapi/streams/{webId}/value\nX-Requested-With: XmlHttpRequest\nContent-Type: application/json\n\n{\"Timestamp\": \"2015-05-25T07:00:00Z\", \"Value\": 42.0}",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-pisquare-query-examples",
+      "int-gh-write-attributes-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-end",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/end",
+    "summary": "Latest value in the stream.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-recorded",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/recorded",
+    "summary": "Recorded (archived) values. maxCount defaults to 1000. Without a time range it returns recent values, not a value at a past time.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "startTime",
+        "in": "query",
+        "description": "PI time, e.g. *-1d",
+        "required": false
+      },
+      {
+        "name": "endTime",
+        "in": "query",
+        "description": "PI time, e.g. *",
+        "required": false
+      },
+      {
+        "name": "maxCount",
+        "in": "query",
+        "description": "maximum values (default 1000)",
+        "required": false
+      },
+      {
+        "name": "boundaryType",
+        "in": "query",
+        "description": "Inside, Outside or Interpolated",
+        "required": false
+      },
+      {
+        "name": "filterExpression",
+        "in": "query",
+        "description": "e.g. '.'>75, where '.' is the stream's own value",
+        "required": false
+      },
+      {
+        "name": "includeFilteredValues",
+        "in": "query",
+        "description": "include filtered values",
+        "required": false
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "timeZone",
+        "in": "query",
+        "description": "time zone",
+        "required": false
+      },
+      {
+        "name": "desiredUnits",
+        "in": "query",
+        "description": "unit to convert to",
+        "required": false
+      },
+      {
+        "name": "associations",
+        "in": "query",
+        "description": "associations to include",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streams/{webId}/recorded?maxCount=10&selectedFields=Items.Timestamp;Items.Value",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab",
+      "int-pisquare-afvalue-run"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-streams-webid-recorded",
+    "controller": "Stream",
+    "method": "POST",
+    "path": "/streams/{webId}/recorded",
+    "summary": "Writes many values (UpdateValues). AVEVA's 100-value write gets HTTP 202.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "updateOption",
+        "in": "query",
+        "description": "write behaviour",
+        "required": false
+      },
+      {
+        "name": "bufferOption",
+        "in": "query",
+        "description": "buffering behaviour",
+        "required": false
+      },
+      {
+        "name": "body",
+        "in": "body",
+        "description": "JSON array of {Timestamp, Value}",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-gh-write-attributes-py"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-recordedattime",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/recordedattime",
+    "summary": "Recorded value at one time.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "time",
+        "in": "query",
+        "description": "PI time",
+        "required": true
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streams/{webId}/recordedattime?time=y+6h",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-pisquare-afvalue-run"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-recordedattimes",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/recordedattimes",
+    "summary": "Recorded values at several times.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "time",
+        "in": "query",
+        "description": "repeat once per timestamp",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-interpolated",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/interpolated",
+    "summary": "Evenly spaced interpolated values.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "startTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "endTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "interval",
+        "in": "query",
+        "description": "e.g. 1h",
+        "required": false
+      },
+      {
+        "name": "syncTime",
+        "in": "query",
+        "description": "alignment time",
+        "required": false
+      },
+      {
+        "name": "syncTimeBoundaryType",
+        "in": "query",
+        "description": "boundary for syncTime",
+        "required": false
+      },
+      {
+        "name": "filterExpression",
+        "in": "query",
+        "description": "filter",
+        "required": false
+      },
+      {
+        "name": "includeFilteredValues",
+        "in": "query",
+        "description": "include filtered",
+        "required": false
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "timeZone",
+        "in": "query",
+        "description": "time zone",
+        "required": false
+      },
+      {
+        "name": "desiredUnits",
+        "in": "query",
+        "description": "unit",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streams/{webId}/interpolated?startTime=*-1d&endTime=*&interval=1h",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-interpolatedattimes",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/interpolatedattimes",
+    "summary": "Interpolated values at several times.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "time",
+        "in": "query",
+        "description": "repeat once per timestamp",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-plot",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/plot",
+    "summary": "Values suitable for plotting a trend.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "startTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "endTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "intervals",
+        "in": "query",
+        "description": "number of intervals",
+        "required": false
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "timeZone",
+        "in": "query",
+        "description": "time zone",
+        "required": false
+      },
+      {
+        "name": "desiredUnits",
+        "in": "query",
+        "description": "unit",
+        "required": false
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-summary",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/summary",
+    "summary": "Summary values. Each result item has Type and Value.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "summaryType",
+        "in": "query",
+        "description": "repeat for several types, e.g. Average",
+        "required": false
+      },
+      {
+        "name": "calculationBasis",
+        "in": "query",
+        "description": "e.g. time- or event-weighted",
+        "required": false
+      },
+      {
+        "name": "timeType",
+        "in": "query",
+        "description": "timestamp calculation",
+        "required": false
+      },
+      {
+        "name": "summaryDuration",
+        "in": "query",
+        "description": "interval length",
+        "required": false
+      },
+      {
+        "name": "sampleType",
+        "in": "query",
+        "description": "sample type",
+        "required": false
+      },
+      {
+        "name": "sampleInterval",
+        "in": "query",
+        "description": "sample interval",
+        "required": false
+      },
+      {
+        "name": "filterExpression",
+        "in": "query",
+        "description": "filter",
+        "required": false
+      },
+      {
+        "name": "startTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "endTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "selectedFields",
+        "in": "query",
+        "description": "semicolon-separated fields to return, e.g. Items.Timestamp;Items.Value",
+        "required": false
+      },
+      {
+        "name": "timeZone",
+        "in": "query",
+        "description": "time zone",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streams/{webId}/summary?startTime=*-1d&endTime=*&summaryType=Average",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab",
+      "int-gh-pyclient-summaryvalue"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-webid-channel",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/{webId}/channel",
+    "summary": "Opens a WebSocket channel that pushes new values (use wss://).",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "includeInitialValues",
+        "in": "query",
+        "description": "send current values first (default false)",
+        "required": false
+      },
+      {
+        "name": "heartbeatRate",
+        "in": "query",
+        "description": "send empty periodic messages (default none)",
+        "required": false
+      },
+      {
+        "name": "webIdType",
+        "in": "query",
+        "description": "WebID type in the response: Full, IDOnly, PathOnly, LocalIDOnly or DefaultIDOnly",
+        "required": false
+      }
+    ],
+    "example": "wss://pisrv01/piwebapi/streams/{webId}/channel?includeInitialValues=true",
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-streams-webid-updates",
+    "controller": "Stream",
+    "method": "POST",
+    "path": "/streams/{webId}/updates",
+    "summary": "Registers for Stream Updates and returns a marker.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streams-updates-marker",
+    "controller": "Stream",
+    "method": "GET",
+    "path": "/streams/updates/{marker}",
+    "summary": "Returns data changed since the marker, plus LatestMarker for the next call.",
+    "params": [
+      {
+        "name": "marker",
+        "in": "path",
+        "description": "marker from the previous call",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-stream-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-value",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/value",
+    "summary": "Current value of every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "nameFilter",
+        "in": "query",
+        "description": "attribute name filter",
+        "required": false
+      },
+      {
+        "name": "categoryName",
+        "in": "query",
+        "description": "attribute category",
+        "required": false
+      },
+      {
+        "name": "templateName",
+        "in": "query",
+        "description": "attribute template",
+        "required": false
+      },
+      {
+        "name": "searchFullHierarchy",
+        "in": "query",
+        "description": "include child attributes",
+        "required": false
+      },
+      {
+        "name": "showExcluded",
+        "in": "query",
+        "description": "include excluded",
+        "required": false
+      },
+      {
+        "name": "showHidden",
+        "in": "query",
+        "description": "include hidden",
+        "required": false
+      },
+      {
+        "name": "sortField",
+        "in": "query",
+        "description": "sort field",
+        "required": false
+      },
+      {
+        "name": "sortOrder",
+        "in": "query",
+        "description": "sort order",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streamsets/{webId}/value",
+    "sources": [
+      "int-gh-pyclient-streamset-api",
+      "int-uc19-edpr-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-recorded",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/recorded",
+    "summary": "Recorded values for every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      },
+      {
+        "name": "startTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      },
+      {
+        "name": "endTime",
+        "in": "query",
+        "description": "PI time",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streamsets/{webId}/recorded?starttime=*-1h&endtime=*-30m",
+    "sources": [
+      "int-gh-pyclient-streamset-api",
+      "int-uc19-edpr-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-interpolated",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/interpolated",
+    "summary": "Interpolated values for every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-plot",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/plot",
+    "summary": "Plot values for every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-summary",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/summary",
+    "summary": "Summaries for every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-end",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/end",
+    "summary": "Latest values for every attribute of an element.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-webid-channel",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/{webId}/channel",
+    "summary": "WebSocket channel for all attributes of an element. EDPR used it to stream about 2 million tags.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "path",
+        "description": "WebID of the object",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api",
+      "int-uc19-edpr-webapi"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-value",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/value",
+    "summary": "Ad hoc: current values for a list of streams.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "query",
+        "description": "repeat once per stream",
+        "required": true
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/streamsets/value?webId={id1}&webId={id2}",
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-recorded",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/recorded",
+    "summary": "Ad hoc: recorded values for a list of streams.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "query",
+        "description": "repeat once per stream",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-channel",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/channel",
+    "summary": "Ad hoc WebSocket channel for a list of streams.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "query",
+        "description": "repeat once per stream",
+        "required": true
+      },
+      {
+        "name": "includeInitialValues",
+        "in": "query",
+        "description": "send current values first",
+        "required": false
+      },
+      {
+        "name": "heartbeatRate",
+        "in": "query",
+        "description": "heartbeat",
+        "required": false
+      }
+    ],
+    "example": "wss://pisrv01/piwebapi/streamsets/channel?webId={id1}&webId={id2}&includeInitialValues=true&heartbeatRate=10",
+    "sources": [
+      "int-gh-pyclient-streamset-api"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-streamsets-updates",
+    "controller": "StreamSet",
+    "method": "POST",
+    "path": "/streamsets/updates",
+    "summary": "Registers a list of streams for Stream Updates.",
+    "params": [
+      {
+        "name": "webId",
+        "in": "query",
+        "description": "repeat once per stream",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-streamsets-updates",
+    "controller": "StreamSet",
+    "method": "GET",
+    "path": "/streamsets/updates",
+    "summary": "Gets Stream Updates for a list of streams.",
+    "params": [
+      {
+        "name": "marker",
+        "in": "query",
+        "description": "marker(s) from the previous call",
+        "required": true
+      }
+    ],
+    "sources": [
+      "int-gh-pyclient-streamset-api",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-batch",
+    "controller": "Batch",
+    "method": "POST",
+    "path": "/batch",
+    "summary": "Executes named sub-requests in one call (the only action; GET is not supported). Each has Method and Resource, optionally Content (a JSON string), Headers, ParentIds, Parameters and RequestTemplate. Responses hold Status, Headers and Content per sub-request.",
+    "params": [
+      {
+        "name": "body",
+        "in": "body",
+        "description": "JSON object of sub-requests",
+        "required": true
+      }
+    ],
+    "example": "{\n  \"1\": {\"Method\": \"GET\", \"Resource\": \"https://srv/piwebapi/attributes?path=...\"},\n  \"2\": {\"Method\": \"GET\", \"Resource\": \"https://srv/piwebapi/streams/{0}/value\", \"ParentIds\": [\"1\"], \"Parameters\": [\"$.1.Content.WebId\"]}\n}",
+    "sources": [
+      "int-piworld2020-webapi-lab",
+      "int-gh-batch-call-py",
+      "int-gh-pyclient-request"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-get-search-query",
+    "controller": "Search",
+    "method": "GET",
+    "path": "/search/query",
+    "summary": "Indexed Search over crawled AF data. Needs the PI Web API Crawler.",
+    "params": [
+      {
+        "name": "q",
+        "in": "query",
+        "description": "e.g. name:*b* AND afelementtemplate=PumpTemplate",
+        "required": true
+      },
+      {
+        "name": "scope",
+        "in": "query",
+        "description": "database scope",
+        "required": false
+      }
+    ],
+    "example": "GET https://pisrv01/piwebapi/search/query?q=name:*b* AND afelementtemplate=PumpTemplate AND scope=MyAFDatabase",
+    "sources": [
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": false
+  },
+  {
+    "id": "webapi-post-omf",
+    "controller": "Omf",
+    "method": "POST",
+    "path": "/omf",
+    "summary": "Accepts OMF type, container and data messages (added in 2019). Headers: messagetype, action, messageformat, omfversion, optional compression gzip, x-requested-with. AVEVA's sample treats 409 as 'type already exists'.",
+    "params": [
+      {
+        "name": "body",
+        "in": "body",
+        "description": "JSON array of OMF objects of one message type",
+        "required": true
+      }
+    ],
+    "example": "POST https://pisrv01/piwebapi/omf\nmessagetype: type\naction: create\nmessageformat: JSON\nomfversion: 1.2\nx-requested-with: xmlhttprequest",
+    "sources": [
+      "int-gh-omf-complexdynamic-sendomf",
+      "int-gh-omf-complexdynamic-program",
+      "int-fledge-omf"
+    ],
+    "verify": false
+  }
+]

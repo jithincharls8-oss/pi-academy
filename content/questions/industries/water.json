@@ -1,0 +1,420 @@
+[
+  {
+    "id": "q-water-nrw-parts",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 1,
+    "prompt": "In the IWA/AWWA water balance, non-revenue water is the sum of which parts? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Unbilled authorised consumption"
+      },
+      {
+        "id": "b",
+        "text": "Apparent losses"
+      },
+      {
+        "id": "c",
+        "text": "Real losses"
+      },
+      {
+        "id": "d",
+        "text": "Billed metered consumption"
+      },
+      {
+        "id": "e",
+        "text": "Treated water exported to neighbours"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "NRW is \"the sum of Unbilled Authorized Consumption, Apparent Losses, and Real Losses\". Billed consumption earns revenue, so it is not NRW.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-awe-water-audit"
+    ]
+  },
+  {
+    "id": "q-water-mnf-rising",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the most likely explanation?",
+    "scenario": "A DMA's minimum night flow (MNF) has been steady for months. Over the last week the daily MNF value calculated in PI has risen sharply, while the number of customers in the zone has not changed.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A new leak in the DMA"
+      },
+      {
+        "id": "b",
+        "text": "Customers are using less water at night"
+      },
+      {
+        "id": "c",
+        "text": "The PI analysis is compressing the data"
+      },
+      {
+        "id": "d",
+        "text": "Billing errors have increased"
+      }
+    ],
+    "answer": "a",
+    "explanation": "MNF is the lowest DMA inflow, usually overnight, when legitimate use is low. A rising MNF indicates leakage. Billing errors are apparent losses and do not change measured inflow.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "q-water-halifax-figures",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.water",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did Halifax Water's GM report at the OSIsoft UC 2013 about system inputs?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They fell from 168 MLD (2000) to 131 MLD (2012)"
+      },
+      {
+        "id": "b",
+        "text": "They fell from 70 m³/hr to 60 m³/hr"
+      },
+      {
+        "id": "c",
+        "text": "They fell from 23 to 12 per year"
+      },
+      {
+        "id": "d",
+        "text": "They fell by 38%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "System inputs fell from 168 MLD (2000) to 131 MLD (2012), with \"$600,000\" direct annual savings. 70 to 60 m³/hr is the MNF of one DMA (Mt. Edward East 24\"), and 23 to 12 is main breaks per year.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "q-water-losses",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each water-balance term to its meaning.",
+    "pairs": [
+      {
+        "left": "Apparent losses",
+        "right": "Metering inaccuracies, unauthorised use and billing errors"
+      },
+      {
+        "left": "Real losses",
+        "right": "Leaks, breaks and overflows up to the customer meter"
+      },
+      {
+        "left": "Water audit",
+        "right": "Compares water treated and pumped with water consumed by customers"
+      },
+      {
+        "left": "Non-revenue water",
+        "right": "Unbilled authorised consumption plus apparent and real losses"
+      }
+    ],
+    "explanation": "These are the IWA/AWWA definitions. Hydrant theft is an apparent loss even though water physically leaves the network, because it is unauthorised use rather than a leak.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-awe-water-audit"
+    ]
+  },
+  {
+    "id": "q-water-mld",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 1,
+    "prompt": "In water PI deployments, the unit MLD stands for million ______ per day.",
+    "accepted": [
+      "litres",
+      "liters"
+    ],
+    "caseSensitive": false,
+    "explanation": "MLD is million litres per day, seen alongside m³/hr and gpm in Halifax Water's PI deployment.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "beginner",
+      "units"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "q-water-halifax-small",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Halifax Water's 2013 water loss programme ran on a single PI 2010 server with 5,000 tags and 10 OPC interfaces.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. The 2013 presentation describes a single PI 2010 server with 5,000 tags and 10 OPC interfaces, archives back to 2002, and PI ProcessBook, DataLink and WebParts as tools.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner",
+      "sizing",
+      "true-false"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  },
+  {
+    "id": "q-water-csu-reporting",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.water",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Colorado Springs Utilities' AVEVA success story reports which change in analysis reporting time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From three weeks to fifteen minutes"
+      },
+      {
+        "id": "b",
+        "text": "From 5h20 to two minutes"
+      },
+      {
+        "id": "c",
+        "text": "From 30 days to under 10 days"
+      },
+      {
+        "id": "d",
+        "text": "From weeks to seconds"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The story says \"Analysis reporting time decreased from three weeks to fifteen minutes\". 5h20 to two minutes is Vale's air quality reporting; 30 days to under 10 days is Yorkshire Water leak repair turnaround from an OSIsoft webinar.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-csu"
+    ]
+  },
+  {
+    "id": "q-water-whud-outcomes",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.water",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which figures appear in the White House Utility District success story? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "saved US $2M"
+      },
+      {
+        "id": "b",
+        "text": "recovered US $30,000 in employee time"
+      },
+      {
+        "id": "c",
+        "text": "Deferred US $15-20M capital expansion for 11 years"
+      },
+      {
+        "id": "d",
+        "text": "$143,000 annually in energy savings"
+      },
+      {
+        "id": "e",
+        "text": "$600,000 direct annual savings"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "WHUD's story reports \"saved US $2M\", \"recovered US $30,000 in employee time\" and \"Deferred US $15-20M capital expansion for 11 years\". $143,000 annually is San Jose Water and $600,000 is Halifax Water.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "expert",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-whud"
+    ]
+  },
+  {
+    "id": "q-water-sjw-pumps",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.water",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI use case from San Jose Water fits this goal?",
+    "scenario": "A utility's field pump efficiency tests are expensive and slow, and energy prices vary through the day. Management wants to cut pumping cost without new pumps.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Monitor pump efficiency and relative operating cost, and run pumps when energy rates are lowest"
+      },
+      {
+        "id": "b",
+        "text": "Increase CompDev on all pump tags"
+      },
+      {
+        "id": "c",
+        "text": "Move all pumping to night shift regardless of tariff"
+      },
+      {
+        "id": "d",
+        "text": "Replace SCADA with spreadsheets"
+      }
+    ],
+    "answer": "a",
+    "explanation": "San Jose Water monitors pump efficiency and relative operating cost across groundwater and booster stations and runs pumps when energy rates are lowest. AVEVA reports energy savings of \"$143,000 annually\".",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-sjw"
+    ]
+  },
+  {
+    "id": "q-water-detroit-ef",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.water",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "According to OSIsoft's 2015 water deck, what did Detroit Water & Sewerage use event frames for, and what saving was reported for 2012-2015?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Flow monitoring; $500,000"
+      },
+      {
+        "id": "b",
+        "text": "Chlorine dosing; $2,000,000"
+      },
+      {
+        "id": "c",
+        "text": "Leak prediction; $600,000"
+      },
+      {
+        "id": "d",
+        "text": "Billing; $143,000"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Detroit used event frames for flow monitoring and reported $500,000 savings over 2012-2015 from automated reporting, notifications, event frames and replacing costly software. The $2,000,000 figure is an expectation for the next 5 years, not a result.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-pres-water-2015"
+    ]
+  },
+  {
+    "id": "q-water-dma-metering",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.water"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the main risk in this plan?",
+    "scenario": "A utility wants to start DMA-based leak detection next month using only its existing PI tags. Several proposed zones share unmetered connections with neighbouring zones.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI cannot calculate a minimum over time"
+      },
+      {
+        "id": "b",
+        "text": "DMAs need new instrumentation and zone reconfiguration; analytics are only as good as the metering"
+      },
+      {
+        "id": "c",
+        "text": "MNF only works on wastewater systems"
+      },
+      {
+        "id": "d",
+        "text": "The PI Data Archive cannot store night-time data"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Halifax Water's lesson is that creating DMAs needs new instrumentation and zone reconfiguration, so PI analytics are only as good as the metering. A DMA must be hydraulically discrete with metered inflows.",
+    "lessonId": "pi-in-water",
+    "tags": [
+      "expert",
+      "pitfall"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013"
+    ]
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "q-vis-admin-app-pools",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Match each PI Vision IIS application pool to what it runs.",
+    "pairs": [
+      { "left": "PIVisionAdminAppPool", "right": "The Administration website" },
+      { "left": "PIVisionServiceAppPool", "right": "The main PI Vision application website" },
+      { "left": "PIVisionUtilityAppPool", "right": "The PI Vision Display Utility" }
+    ],
+    "explanation": "PI Vision installs these three application pools, per the OSIsoft installation workbook.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["iis"],
+    "sources": ["ops2-pb-migration-workbook"]
+  },
+  {
+    "id": "q-vis-admin-sql-roles",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "Which SQL Server rights does the account that creates the PI Vision database need? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "The dbcreator server role" },
+      { "id": "b", "text": "The ALTER ANY LOGIN permission (via the securityadmin role)" },
+      { "id": "c", "text": "The sysadmin role is the only option" },
+      { "id": "d", "text": "db_datareader on master only" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "The workbook lists the dbcreator server role and ALTER ANY LOGIN, \"given to users who have the securityadmin server role\". sysadmin is not stated as required, and db_datareader cannot create a database.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["sql"],
+    "sources": ["ops2-pb-migration-workbook", "ops2-pisquare-vision-security-blog"]
+  },
+  {
+    "id": "q-vis-admin-network-service",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "scenario": "PI Vision users can see data from one AF server but get errors reading a second AF server. The PI Vision application pools run as the built-in Network Service account.",
+    "prompt": "What is the recommended fix?",
+    "options": [
+      { "id": "a", "text": "Run the Admin, Service and Utility pools under a domain account or gMSA and configure delegation for it" },
+      { "id": "b", "text": "Add both AF servers to CorsOrigins as *" },
+      { "id": "c", "text": "Give every user an Explorer licence" },
+      { "id": "d", "text": "Switch IIS to anonymous authentication" }
+    ],
+    "answer": "a",
+    "explanation": "A PI Square thread notes that built-in Network Service cannot delegate to multiple AF servers; the pools should run under a domain account or gMSA. Wildcard CORS and anonymous access weaken security and do not fix delegation.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["kerberos", "delegation"],
+    "sources": ["ops2-pisquare-vision-af-delegation", "ops2-arch-workbook-2025"]
+  },
+  {
+    "id": "q-vis-admin-groups",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Match each local Windows group created by PI Vision to what it controls.",
+    "pairs": [
+      { "left": "PI Vision Admins", "right": "Access to the PI Vision Admin site" },
+      { "left": "PI Vision Users", "right": "Access to the PI Vision site" },
+      { "left": "PI Vision Utility Users", "right": "Access to the PI Vision Display Utility" }
+    ],
+    "explanation": "These three local groups are created by the installer, as described in the installation workbook.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["groups"],
+    "sources": ["ops2-pb-migration-workbook"]
+  },
+  {
+    "id": "q-vis-admin-url",
+    "type": "fill",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 1,
+    "prompt": "Complete the PI Vision Admin site URL: https://<WebServer>/PIVision/____",
+    "accepted": ["Admin", "admin"],
+    "caseSensitive": false,
+    "explanation": "The Admin site URL is https://<WebServer>/PIVision/Admin.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["admin-site"],
+    "sources": ["ops2-pb-migration-workbook"]
+  },
+  {
+    "id": "q-vis-admin-publisher-explorer",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 1,
+    "prompt": "What can a PI Vision Explorer user NOT do?",
+    "options": [
+      { "id": "a", "text": "Save new displays or changes to existing displays" },
+      { "id": "b", "text": "Change the time range" },
+      { "id": "c", "text": "Switch asset context" },
+      { "id": "d", "text": "Create ad hoc displays" }
+    ],
+    "answer": "a",
+    "explanation": "Explorers can view and interact, switch context, adjust time, investigate events and create ad hoc displays, but \"can not save any new displays or changes to existing displays\". Publishers can save.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["licensing"],
+    "sources": ["dcv-gomatam-pivision-2017", "ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-vis-admin-no-webapi",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "True or false: current PI Vision (2020 and later) requires PI Web API to retrieve data.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. \"Since version 2020 (3.5.0.0) PI Vision no longer relies on PI Web API.\"",
+    "lessonId": "pi-vision-administration",
+    "tags": ["true-false", "architecture"],
+    "sources": ["ops2-pb-migration-workbook"]
+  },
+  {
+    "id": "q-vis-admin-500-19",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "scenario": "After an IIS change, PI Vision returns HTTP 500.19 \"Cannot add duplicate collection entry\". The web.config of the PIVision application and the site-level configuration both contain an Allow rule for the PI Vision Users role.",
+    "prompt": "What fixes it?",
+    "options": [
+      { "id": "a", "text": "Remove the duplicate PI Vision Users rule from one level, then recycle PIVisionServiceAppPool" },
+      { "id": "b", "text": "Tick \"Allow unlisted verbs\" in Request Filtering" },
+      { "id": "c", "text": "Recreate the PI Vision SQL database" },
+      { "id": "d", "text": "Delete the PI Vision Users group" }
+    ],
+    "answer": "a",
+    "explanation": "A rule defined at both site and application level causes 500.19. Remove one and recycle the service app pool. Allow unlisted verbs relates to the 404.6 upgrade problem.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["troubleshooting", "iis"],
+    "sources": ["ops2-pisquare-vision-404"]
+  },
+  {
+    "id": "q-vis-admin-identity-tables",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "The PI Vision service account's PI identity needs Read access to which Data Archive database tables? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PIDBSEC" },
+      { "id": "b", "text": "PIMAPPING" },
+      { "id": "c", "text": "PIPOINT" },
+      { "id": "d", "text": "PIUSER" },
+      { "id": "e", "text": "PIBATCH write access" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The security blog lists Read on PIDBSEC, PIMAPPING, PIPOINT and PIUSER, plus Read on the PI points used. Write access is not required.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["security"],
+    "sources": ["ops2-pisquare-vision-security-blog"]
+  },
+  {
+    "id": "q-vis-admin-cors",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "What does the PI Square security blog recommend for CorsOrigins?",
+    "options": [
+      { "id": "a", "text": "List the PI Vision server host and domain URLs, not just the asterisk" },
+      { "id": "b", "text": "Use * so every client can connect" },
+      { "id": "c", "text": "Leave it empty to disable all access" },
+      { "id": "d", "text": "Set it to the SQL Server name" }
+    ],
+    "answer": "a",
+    "explanation": "CorsOrigins should list the PI Vision server host and domain URLs, \"not just the asterisk\". A wildcard is listed as a common mistake.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["security", "cors"],
+    "sources": ["ops2-pisquare-vision-security-blog"]
+  },
+  {
+    "id": "q-vis-admin-cert",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "What does a clean install of PI Vision 2020 or later do about the HTTPS certificate?",
+    "options": [
+      { "id": "a", "text": "Creates a self-signed certificate and applies it to the target IIS site" },
+      { "id": "b", "text": "Leaves the site on HTTP only" },
+      { "id": "c", "text": "Requests a certificate from a public CA automatically" },
+      { "id": "d", "text": "Copies the PI Data Archive certificate" }
+    ],
+    "answer": "a",
+    "explanation": "From PI Vision 2020, a clean install creates and applies a self-signed certificate; an upgrade reuses the existing one. AVEVA community guidance recommends replacing it with a domain or third-party certificate.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["certificates"],
+    "sources": ["ops2-feedback-pivision-1495", "ops2-pisquare-vision-security-blog"]
+  },
+  {
+    "id": "q-vis-admin-2024-permissions",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Which permission and admin enhancements came with PI Vision 2024? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Users can edit folder-level permissions" },
+      { "id": "b", "text": "Setting inheritance on a parent folder applies access to child folders" },
+      { "id": "c", "text": "Moving a folder with all its displays" },
+      { "id": "d", "text": "Viewing connected users and data access times for open displays" },
+      { "id": "e", "text": "Running ProcessBook VBA inside PI Vision" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The AVEVA World 2025 session lists these 2024 enhancements. VBA is not supported in PI Vision.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["permissions", "history"],
+    "sources": ["ops2-aw25-vision-2024", "dcv-pb-migration-lab-2020"]
+  },
+  {
+    "id": "q-vis-admin-negotiate",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "According to the PI Square security blog, when should you configure the IIS provider as Negotiate:Kerberos instead of the default Negotiate and NTLM?",
+    "options": [
+      { "id": "a", "text": "Only if you do not want a silent fallback to NTLM" },
+      { "id": "b", "text": "Always, because the default is insecure" },
+      { "id": "c", "text": "Only for mobile users with basic authentication" },
+      { "id": "d", "text": "Never; Negotiate:Kerberos is not supported" }
+    ],
+    "answer": "a",
+    "explanation": "The blog calls the default Negotiate and NTLM \"the recommended option\" and advises Negotiate:Kerberos only if you do not want a silent fallback to NTLM.",
+    "lessonId": "pi-vision-administration",
+    "tags": ["kerberos"],
+    "sources": ["ops2-pisquare-vision-security-blog"]
+  }
+]

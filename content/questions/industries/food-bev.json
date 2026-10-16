@@ -1,0 +1,380 @@
+[
+  {
+    "id": "q-food-bev-oee-calc",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "difficulty": 2,
+    "prompt": "A line's availability is 0.9, performance is 0.8 and quality is 0.95. What is its OEE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 68%"
+      },
+      {
+        "id": "b",
+        "text": "About 88%"
+      },
+      {
+        "id": "c",
+        "text": "About 95%"
+      },
+      {
+        "id": "d",
+        "text": "About 72%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "OEE is the product of availability, performance and quality: 0.9 x 0.8 x 0.95 = 0.684, about 68%. Averaging the three (about 88%) is a common mistake; 72% is A x P without quality.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "beginner",
+      "calculation"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ],
+    "verify": true,
+    "verifyNote": "The multiplication structure is from the Illovo source; the detailed OEE formula is marked inferred in the research."
+  },
+  {
+    "id": "q-food-bev-illovo-cascade",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which AF feature makes this change quick?",
+    "scenario": "Illovo Sugar tracks 49 form-fill-seal packing machines across 5 sites. Engineers want to add a new downtime-reason attribute to every machine.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add it to the AF element template; template changes cascade to all 49 machine elements"
+      },
+      {
+        "id": "b",
+        "text": "Edit each of the 49 elements by hand"
+      },
+      {
+        "id": "c",
+        "text": "Create a new PI Data Archive for each site"
+      },
+      {
+        "id": "d",
+        "text": "Add the attribute in PI Vision only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Illovo's AF templates define the hierarchy, and template changes cascade to all 49 machine elements. That is the main reason to model machines on a template.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "beginner",
+      "templates"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ]
+  },
+  {
+    "id": "q-food-bev-not-pi",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these AVEVA food and manufacturing stories should NOT be cited as PI System examples? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nestlé (Waverly)"
+      },
+      {
+        "id": "b",
+        "text": "General Mills"
+      },
+      {
+        "id": "c",
+        "text": "Illovo Sugar Africa"
+      },
+      {
+        "id": "d",
+        "text": "Kellogg's Valls"
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "The research checked Nestlé Waverly (AVEVA Historian, CONNECT) and General Mills (System Platform) and found they do not use PI System. Illovo and Kellogg's are PI System stories.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "practitioner",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-ss-nestle",
+      "ind-ss-general-mills",
+      "ind-ss-illovo",
+      "ind-ss-kelloggs"
+    ]
+  },
+  {
+    "id": "q-food-bev-illovo-figures",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which set of figures does the Illovo Sugar success story report?",
+    "options": [
+      {
+        "id": "a",
+        "text": "50% improvement in performance, 25% in availability, 30% in OEE in three months"
+      },
+      {
+        "id": "b",
+        "text": "25% performance, 50% availability, 30% OEE in a year"
+      },
+      {
+        "id": "c",
+        "text": "OEE of 80%, MTBF up 180%"
+      },
+      {
+        "id": "d",
+        "text": "OEE up two percent, filling speed up ten percent"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Illovo: \"50% improvement in performance\", \"25% improvement in availability\", \"30% improvement in OEE in three months\". OEE of 80% and MTBF +180% are Kellogg's; +2% OEE and +10% filling speed are Abbott Nutrition.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-illovo"
+    ]
+  },
+  {
+    "id": "q-food-bev-cip-phases",
+    "type": "ordering",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the CIP phases from OSIsoft's event frames demo in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Pre-rinse"
+      },
+      {
+        "id": "b",
+        "text": "Caustic main wash"
+      },
+      {
+        "id": "c",
+        "text": "Final rinse"
+      },
+      {
+        "id": "d",
+        "text": "Acid second wash"
+      }
+    ],
+    "explanation": "OSIsoft's demo lists the CIP phases as pre-rinse, caustic main wash, final rinse and acid second wash, with KPIs for protocol adherence and cost/duration deviations.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "practitioner",
+      "event-frames"
+    ],
+    "sources": [
+      "ind-pres-ef-bajoll-2016",
+      "ind-pres-batch-ef-2017"
+    ]
+  },
+  {
+    "id": "q-food-bev-cargill-edge",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What pattern does Cargill use for sites like this?",
+    "scenario": "A feed mill has only a few hundred data streams and no local IT staff to run a PI Server, but head office wants its data in the central PI System.",
+    "options": [
+      {
+        "id": "a",
+        "text": "AVEVA Edge Data Store at the site forwarding data to a central PI Server"
+      },
+      {
+        "id": "b",
+        "text": "A full PI Server collective at every feed mill"
+      },
+      {
+        "id": "c",
+        "text": "Weekly USB exports posted to head office"
+      },
+      {
+        "id": "d",
+        "text": "Leave small sites out of the PI System"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Cargill's smaller sites (feed mills, grain elevators, ships, port terminals) with only a few hundred data streams use AVEVA Edge Data Store to forward data to a central PI Server.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "practitioner",
+      "architecture"
+    ],
+    "sources": [
+      "ind-ss-cargill"
+    ]
+  },
+  {
+    "id": "q-food-bev-giveaway",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "difficulty": 1,
+    "prompt": "Product overfilled beyond its declared weight is called ________.",
+    "accepted": [
+      "giveaway",
+      "give-away",
+      "give away"
+    ],
+    "caseSensitive": false,
+    "explanation": "Giveaway is product overfilled beyond declared weight. Tyson Foods reported waste and giveaway reduced by 50%.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-ss-tyson"
+    ]
+  },
+  {
+    "id": "q-food-bev-tyson-yield",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: The Tyson Foods page states its yield improvement consistently as 0.1% everywhere it appears.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The story reports a 0.1% yield improvement that paid back within six months, but the page metadata says \".01%\", which conflicts. Quote the body figure and note the inconsistency.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "expert",
+      "critical-reading",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-tyson"
+    ]
+  },
+  {
+    "id": "q-food-bev-deschutes",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did AVEVA report for Deschutes Brewery's machine learning on PI data?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Production time reduced by up to 72 hours per batch and $8M in capital upgrades eliminated"
+      },
+      {
+        "id": "b",
+        "text": "OEE of 80% and MTBF up 180%"
+      },
+      {
+        "id": "c",
+        "text": "Waste and giveaway reduced by 50%"
+      },
+      {
+        "id": "d",
+        "text": "Over 78 use cases started in one year"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Deschutes: production time reduced by \"up to 72 hours\" per batch and \"$8M\" in capital upgrades eliminated. The other figures belong to Kellogg's, Tyson Foods and Coop.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-deschutes"
+    ]
+  },
+  {
+    "id": "q-food-bev-terms",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.food-bev"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each food and beverage term to its meaning.",
+    "pairs": [
+      {
+        "left": "OEE",
+        "right": "Availability x performance x quality"
+      },
+      {
+        "left": "FFS",
+        "right": "Form-fill-seal packaging machine"
+      },
+      {
+        "left": "CIP",
+        "right": "Clean-In-Place automated cleaning cycle"
+      },
+      {
+        "left": "MTBF",
+        "right": "Mean time between failures"
+      }
+    ],
+    "explanation": "These are the terms used in the Illovo, OSIsoft event frames and Kellogg's sources.",
+    "lessonId": "pi-in-food-bev",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-ss-illovo",
+      "ind-pres-ef-bajoll-2016",
+      "ind-ss-kelloggs"
+    ]
+  }
+]

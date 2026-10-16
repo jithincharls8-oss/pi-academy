@@ -1,0 +1,954 @@
+[
+  {
+    "id": "err-pi-data-archive-1",
+    "code": "-1",
+    "product": "PI Data Archive",
+    "message": "PI_ERROR",
+    "meaning": "Generic error.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-2",
+    "code": "-2",
+    "product": "PI Data Archive",
+    "message": "Blank tag",
+    "meaning": "The tag name is blank.",
+    "resolution": "Supply a tag name. The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-3",
+    "code": "-3",
+    "product": "PI Data Archive",
+    "message": "Point database full",
+    "meaning": "The point database is full.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-5",
+    "code": "-5",
+    "product": "PI Data Archive",
+    "message": "PI_ATT_TAGNOTFOUND",
+    "meaning": "The tag does not exist.",
+    "resolution": "Check the tag name and that the point exists on this Data Archive. The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-7",
+    "code": "-7",
+    "product": "PI Data Archive",
+    "message": "Tag already exists",
+    "meaning": "A tag with this name already exists.",
+    "resolution": "Use a different name or edit the existing point.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10",
+    "code": "-10",
+    "product": "PI Data Archive",
+    "message": "Tag create blocked",
+    "meaning": "Tag creation is blocked by another process.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11",
+    "code": "-11",
+    "product": "PI Data Archive",
+    "message": "Digital code out of range",
+    "meaning": "The digital state code is out of range for the set.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-12",
+    "code": "-12",
+    "product": "PI Data Archive",
+    "message": "Digital state string not found",
+    "meaning": "The digital state string is not in the set.",
+    "resolution": "Check the state name against the point's digital state set.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-77",
+    "code": "-77",
+    "product": "PI Data Archive",
+    "message": "Exception buffer overflowed",
+    "meaning": "The exception buffer overflowed.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-101",
+    "code": "-101",
+    "product": "PI Data Archive",
+    "message": "PI_ARCH_DATENOTONLINE",
+    "meaning": "The archive for that date is not online (not registered).",
+    "resolution": "The Data Archive can read only registered archives; register the archive covering that date (piartool -ar or SMT Operation > Archives).",
+    "sources": [
+      "adm-pistatus-h",
+      "da-admin-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-102",
+    "code": "-102",
+    "product": "PI Data Archive",
+    "message": "Record not found",
+    "meaning": "Record not found.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10000",
+    "code": "-10000",
+    "product": "PI Data Archive",
+    "message": "Memory allocation failed",
+    "meaning": "Memory allocation failed.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10002",
+    "code": "-10002",
+    "product": "PI Data Archive",
+    "message": "Unable to activate object",
+    "meaning": "Unable to activate object.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10004",
+    "code": "-10004",
+    "product": "PI Data Archive",
+    "message": "Internal error",
+    "meaning": "Internal error.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10005",
+    "code": "-10005",
+    "product": "PI Data Archive",
+    "message": "Subscript below range",
+    "meaning": "Value too small or subscript out of range. In one PI Square case it appeared during archiving because of a point-type mismatch.",
+    "resolution": "In that case the fix was an archive shift and reprocessing.",
+    "sources": [
+      "adm-pistatus-h",
+      "dev2-pisquare-piconfig-pointid"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10010",
+    "code": "-10010",
+    "product": "PI Data Archive",
+    "message": "PI_ERR_TIMEOUT",
+    "meaning": "System timed out.",
+    "resolution": "Treat as a timeout: check network and server load in the cannot-connect playbook. The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10400",
+    "code": "-10400",
+    "product": "PI Data Archive",
+    "message": "PI_XS_NOREAD",
+    "meaning": "No read access.",
+    "resolution": "Check the identity the connection is mapped to (Network Manager Statistics) and the point's PtSecurity/DataSecurity.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10401",
+    "code": "-10401",
+    "product": "PI Data Archive",
+    "message": "PI_XS_NOWRITE",
+    "meaning": "No write access.",
+    "resolution": "Check the identity in Network Manager Statistics and the point's DataSecurity. For analyses, check the output point is writable by the Analysis Service identity.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-pisquare-piputval-11414",
+      "adm-imd-af-analysis-table-lookup"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10402",
+    "code": "-10402",
+    "product": "PI Data Archive",
+    "message": "Malformed access string",
+    "meaning": "The access (security) string is malformed.",
+    "resolution": "Correct the security string syntax, for example 'piadmin: A(r,w) | piadmins: A(r,w)'.",
+    "sources": [
+      "adm-pistatus-h",
+      "dev2-pisquare-pstools-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10407",
+    "code": "-10407",
+    "product": "PI Data Archive",
+    "message": "No read or write access",
+    "meaning": "No read or write access.",
+    "resolution": "Check mappings and point security.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10411",
+    "code": "-10411",
+    "product": "PI Data Archive",
+    "message": "Security or trust mismatch",
+    "meaning": "Security or trust mismatch.",
+    "resolution": "Review mappings and trusts for the connecting client.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10412",
+    "code": "-10412",
+    "product": "PI Data Archive",
+    "message": "Trusts not supported",
+    "meaning": "Trusts are not supported.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10413",
+    "code": "-10413",
+    "product": "PI Data Archive",
+    "message": "PI_XS_NOTRUST",
+    "meaning": "No trust relation for this request.",
+    "resolution": "Connection failures from interface nodes are usually caused by missing PI Identity mappings; check mappings first, then trusts.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10415",
+    "code": "-10415",
+    "product": "PI Data Archive",
+    "message": "IP and net mask both required",
+    "meaning": "A trust needs both an IP address and a net mask.",
+    "resolution": "Enter both values in the trust.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10416",
+    "code": "-10416",
+    "product": "PI Data Archive",
+    "message": "Trust has no specifications",
+    "meaning": "The trust has no specifications.",
+    "resolution": "Add the trust's matching criteria.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10417",
+    "code": "-10417",
+    "product": "PI Data Archive",
+    "message": "Operation requires piadmin",
+    "meaning": "The operation requires piadmin.",
+    "resolution": "Run it with an identity that has administrative rights.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10418",
+    "code": "-10418",
+    "product": "PI Data Archive",
+    "message": "Database security not initialised",
+    "meaning": "Database security is not initialised.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10550",
+    "code": "-10550",
+    "product": "PI Data Archive",
+    "message": "PI_PD_TAGEXISTS",
+    "meaning": "The tag already exists.",
+    "resolution": "Use a different name or edit the existing point.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10552",
+    "code": "-10552",
+    "product": "PI Data Archive",
+    "message": "Broken context chain in table",
+    "meaning": "Broken context chain in a table.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10721",
+    "code": "-10721",
+    "product": "PI Data Archive",
+    "message": "PI_NET_ABORT",
+    "meaning": "The client aborted the connection.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10722",
+    "code": "-10722",
+    "product": "PI Data Archive",
+    "message": "PI_NET_TIMEOUT",
+    "meaning": "A system call timed out.",
+    "resolution": "Follow the cannot-connect playbook: network, client stack, authentication, Kerberos, TLS.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": true,
+    "verifyNote": "Official text beyond the header name was not read."
+  },
+  {
+    "id": "err-pi-data-archive-10723",
+    "code": "-10723",
+    "product": "PI Data Archive",
+    "message": "PI_NET_NOCONNECTION",
+    "meaning": "No connection.",
+    "resolution": "Follow the cannot-connect playbook: ping both ways, then test TCP 5450.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10727",
+    "code": "-10727",
+    "product": "PI Data Archive",
+    "message": "PI_NET_RPC_NONEXISTENT",
+    "meaning": "The RPC does not exist. 'piartool -lic usage' returned '[-10727] PINET RPC is non-existant' when the PI License Manager (pilicmgr) was down.",
+    "resolution": "In that case, check that pilicmgr is running.",
+    "sources": [
+      "adm-pistatus-h",
+      "dev2-pisquare-license-grace"
+    ],
+    "verify": true,
+    "verifyNote": "Official text beyond the header name was not read."
+  },
+  {
+    "id": "err-pi-data-archive-10728",
+    "code": "-10728",
+    "product": "PI Data Archive",
+    "message": "Send error",
+    "meaning": "Network send error.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10729",
+    "code": "-10729",
+    "product": "PI Data Archive",
+    "message": "Receive error",
+    "meaning": "Network receive error.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10731",
+    "code": "-10731",
+    "product": "PI Data Archive",
+    "message": "Incomplete message",
+    "meaning": "Incomplete network message.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10732",
+    "code": "-10732",
+    "product": "PI Data Archive",
+    "message": "Corrupted message",
+    "meaning": "Corrupted network message.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10733",
+    "code": "-10733",
+    "product": "PI Data Archive",
+    "message": "PI_NET_RPCRESOLVEROFFLINE",
+    "meaning": "The RPC resolver is offline.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": true,
+    "verifyNote": "Likely relates to a subsystem not being registered; this is unverified."
+  },
+  {
+    "id": "err-pi-data-archive-10734",
+    "code": "-10734",
+    "product": "PI Data Archive",
+    "message": "Broken connection",
+    "meaning": "Broken connection.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10735",
+    "code": "-10735",
+    "product": "PI Data Archive",
+    "message": "Transaction list full",
+    "meaning": "Transaction list full.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10746",
+    "code": "-10746",
+    "product": "PI Data Archive",
+    "message": "Message too large",
+    "meaning": "The message is too large.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10761",
+    "code": "-10761",
+    "product": "PI Data Archive",
+    "message": "PI_NET_FORCEDDISCONNECT",
+    "meaning": "An administrator forcibly deleted the connection.",
+    "resolution": "Reconnect; check with the administrator why the connection was removed.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10764",
+    "code": "-10764",
+    "product": "PI Data Archive",
+    "message": "Local connection only",
+    "meaning": "Access is allowed only from a local connection.",
+    "resolution": "Run the operation on the Data Archive server itself.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-10767",
+    "code": "-10767",
+    "product": "PI Data Archive",
+    "message": "PI_NET_CONCURMSGABOVELIMIT",
+    "meaning": "The client exceeded the maximum concurrent queries in the RPC thread pool (a 'heavy hitter' message).",
+    "resolution": "Find the client by Connection ID in Network Manager Statistics. piarchss_ThreadCount guidance: number of cores minus 1 for standard use, 2x cores for large queries without real-time users; do not raise it unless clients can use the threads.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-uc23-da-performance-sick",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11001",
+    "code": "-11001",
+    "product": "PI Data Archive",
+    "message": "Record header version mismatch",
+    "meaning": "Record header version mismatch.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11015",
+    "code": "-11015",
+    "product": "PI Data Archive",
+    "message": "Archive file version mismatch",
+    "meaning": "Archive file version mismatch.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11026",
+    "code": "-11026",
+    "product": "PI Data Archive",
+    "message": "Overflow record operation failed",
+    "meaning": "An overflow record operation failed.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11044",
+    "code": "-11044",
+    "product": "PI Data Archive",
+    "message": "PI_AR_EVENTOUTOFORDER",
+    "meaning": "The event was added before the last event (out of order).",
+    "resolution": "Out-of-order data bypasses compression and goes straight to the archive; check the source's timestamps if this is unexpected.",
+    "sources": [
+      "adm-pistatus-h",
+      "da-uc23-exc-comp"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11046",
+    "code": "-11046",
+    "product": "PI Data Archive",
+    "message": "PI_AR_DATEINFUTURE",
+    "meaning": "The target date is in the future.",
+    "resolution": "Points with Future = 0 reject data more than 10 minutes ahead, and an interface more than 30 minutes off the server clock will not run. Fix the clocks, or use a future point.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11049",
+    "code": "-11049",
+    "product": "PI Data Archive",
+    "message": "PI_AR_INVTIMES",
+    "meaning": "Invalid times.",
+    "resolution": "Check the start and end times of the request.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11055",
+    "code": "-11055",
+    "product": "PI Data Archive",
+    "message": "Invalid start time",
+    "meaning": "Invalid start time.",
+    "resolution": "Check the start time of the request.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11057",
+    "code": "-11057",
+    "product": "PI Data Archive",
+    "message": "Not enough good values",
+    "meaning": "Not enough good values for the calculation.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h",
+      "da-ps-msglog-blog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11059",
+    "code": "-11059",
+    "product": "PI Data Archive",
+    "message": "PI_AR_NOGOODDATA",
+    "meaning": "No good data for this time.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11060",
+    "code": "-11060",
+    "product": "PI Data Archive",
+    "message": "Calculation failed",
+    "meaning": "The calculation failed, for example divide by zero.",
+    "resolution": "Check the calculation inputs.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11090",
+    "code": "-11090",
+    "product": "PI Data Archive",
+    "message": "Operation on empty archive file",
+    "meaning": "Operation on an empty archive file.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11091",
+    "code": "-11091",
+    "product": "PI Data Archive",
+    "message": "PI_AR_TOOMANYEVENTS",
+    "meaning": "Event collection exceeded the maximum allowed (ArcMaxCollect, default 1.5 million compressed events per query).",
+    "resolution": "Find the client by Connection ID, then page the query or narrow its time range; raise ArcMaxCollect only with care.",
+    "sources": [
+      "adm-pistatus-h",
+      "adm-uc23-da-performance-sick",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11101",
+    "code": "-11101",
+    "product": "PI Data Archive",
+    "message": "All events filtered out",
+    "meaning": "All events were filtered out in a summary.",
+    "resolution": "Check the filter expression.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11131",
+    "code": "-11131",
+    "product": "PI Data Archive",
+    "message": "Too many cache records",
+    "meaning": "More cache records than the configured maximum.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11140",
+    "code": "-11140",
+    "product": "PI Data Archive",
+    "message": "Query exceeded maximum execution time",
+    "meaning": "An archive query ran longer than Archive_MaxQueryExecutionSec (default 260 s). Not in the 2008 header, so added later.",
+    "resolution": "Find the client by Connection ID and reduce the query; check storage latency and RPC durations (over 1000 ms is long).",
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11200",
+    "code": "-11200",
+    "product": "PI Data Archive",
+    "message": "PI_3PHUNAVAIL",
+    "meaning": "PI-Redirector is not installed or not running.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11201",
+    "code": "-11201",
+    "product": "PI Data Archive",
+    "message": "Redirector could not get archived value",
+    "meaning": "The redirector could not get an archived value.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11300",
+    "code": "-11300",
+    "product": "PI Data Archive",
+    "message": "Annotation not found",
+    "meaning": "Annotation not found.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-11414",
+    "code": "-11414",
+    "product": "PI Data Archive",
+    "message": "Buffered point does not accept new events",
+    "meaning": "A buffering service holds an exclusive lock on the point, so a non-buffered write is refused. Common on interface nodes, in collectives and with PI to PI through pibufss.",
+    "resolution": "Write through the same buffering service, or clear buffer ownership (KB00093). Not in the 2008 header.",
+    "sources": [
+      "adm-pisquare-piputval-11414",
+      "da-ps-pointsource-thread"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-15010",
+    "code": "-15010",
+    "product": "PI Data Archive",
+    "message": "PI_OVERFLOW",
+    "meaning": "The value is too large.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-15011",
+    "code": "-15011",
+    "product": "PI Data Archive",
+    "message": "PI_NOTANUMBER",
+    "meaning": "The value is not numeric.",
+    "resolution": "Check that the value matches the point type.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-pi-data-archive-16000",
+    "code": "-16000",
+    "product": "PI Data Archive",
+    "message": "No object for effective date",
+    "meaning": "No object exists for the effective date.",
+    "resolution": "The 2008 header gives only the name and meaning. Translate the code on your server with pidiag -e <code> and read the surrounding PI Message Log entries.",
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-performance-equations-12301",
+    "code": "-12301",
+    "product": "Performance Equations",
+    "message": "Performance Equation parsing error",
+    "meaning": "A PE expression could not be parsed, for example because it references a tag that does not exist. The message log shows the error position as 'Offset x'.",
+    "resolution": "Check the tag names in the expression and test the syntax with pipetest.",
+    "sources": [
+      "af-pisquare-pe-12301"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-da-msg-748",
+    "code": "ID 748",
+    "product": "PI Data Archive",
+    "message": "client attempted TLS connection but PInetmgr does not have a certificate loaded",
+    "meaning": "A client tried TLS but the Data Archive has no certificate loaded.",
+    "resolution": "Run pidiag -tls --verify, then re-register the certificate with pidiag -tls -r <thumbprint>.",
+    "sources": [
+      "adm-pisquare-pivision-collective-tls",
+      "ops2-pisquare-vision-collective"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-da-msg-2016",
+    "code": "Message 2016",
+    "product": "PI Data Archive",
+    "message": "Inserting overflow record",
+    "meaning": "Indicates backfilling or out-of-order writes.",
+    "resolution": "Expected during backfills; otherwise find the writing client.",
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-da-msg-6079",
+    "code": "Message 6079",
+    "product": "PI Data Archive",
+    "message": "Point creation (pibasess)",
+    "meaning": "Logged by pibasess when a point is created.",
+    "resolution": "Informational. Bulk point creation takes a global lock, so run it off-hours.",
+    "sources": [
+      "da-uc23-da-performance"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-interface-no-points",
+    "code": "Startup message",
+    "product": "PI Interfaces",
+    "message": "Total Number of points matching pointsource '<ps>' is 0",
+    "meaning": "No PI points match the interface's point source (and interface ID).",
+    "resolution": "Check Point Source, Location1 (interface ID) and Location4 (scan class) on the points; incorrect point attributes are the most common cause of new points not receiving data.",
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-omf-409",
+    "code": "409",
+    "product": "PI Web API / OMF",
+    "message": "Conflict",
+    "meaning": "AVEVA's OMF sample treats 409 as 'type already exists with the same ID and version'.",
+    "resolution": "Treat as already created; to change a type, define a new type id or version, because OMF types cannot be changed.",
+    "sources": [
+      "int-gh-omf-complexdynamic-sendomf",
+      "int-fledge-omf"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-cds-207",
+    "code": "207",
+    "product": "CONNECT data services",
+    "message": "Multi-Status",
+    "meaning": "Partial success on a collection call: some items failed.",
+    "resolution": "Treat it as an error and inspect the per-item results, as AVEVA's library does.",
+    "sources": [
+      "int-gh-adh-lib-baseclient"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-cds-omf-413",
+    "code": "413",
+    "product": "CONNECT data services / OMF",
+    "message": "Payload too large",
+    "meaning": "The OMF request body is too large.",
+    "resolution": "Send smaller batches of OMF messages.",
+    "sources": [
+      "dcv-github-datahub-omf-ingress"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-webapi-errors-array",
+    "code": "Errors array",
+    "product": "PI Web API",
+    "message": "{\"Errors\": [\"Parameter 'Value' is required.\", \"Unsupported value type.\"]}",
+    "meaning": "PI Web API validation errors come back as JSON with an Errors list; in batch responses a WebException property carries StatusCode and Errors.",
+    "resolution": "Fix the request body (also check for invalid JSON such as trailing commas).",
+    "sources": [
+      "int-pisquare-query-examples",
+      "int-gh-pyclient-webexception"
+    ],
+    "verify": false
+  },
+  {
+    "id": "err-webapi-csrf",
+    "code": "CSRF rejection",
+    "product": "PI Web API",
+    "message": "Write request rejected",
+    "meaning": "POST, PUT, PATCH or DELETE without the X-Requested-With header is rejected by CSRF defence.",
+    "resolution": "Add an X-Requested-With header (any value, e.g. XmlHttpRequest).",
+    "sources": [
+      "int-uc17-secure-webapi",
+      "int-piworld2020-webapi-lab"
+    ],
+    "verify": true,
+    "verifyNote": "The exact HTTP status code returned is not confirmed."
+  },
+  {
+    "id": "err-sql-linked-server-time",
+    "code": "Linked server conversion error",
+    "product": "PI OLEDB Provider via SQL Server",
+    "message": "Conversion failed when converting date and/or time from character string",
+    "meaning": "PI time strings in a four-part Linked Server query are parsed by SQL Server.",
+    "resolution": "Run the query through OPENQUERY.",
+    "sources": [
+      "dev2-pisquare-sql-datalink"
+    ],
+    "verify": false
+  }
+]

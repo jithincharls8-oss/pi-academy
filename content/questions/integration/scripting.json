@@ -1,0 +1,452 @@
+[
+  {
+    "id": "q-scripting-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 1,
+    "prompt": "AVEVA's Python sample writes one value with POST to /streams/{WebId}/value. Which HTTP status does it expect on success?",
+    "options": [
+      {
+        "id": "a",
+        "text": "202 Accepted"
+      },
+      {
+        "id": "b",
+        "text": "200 OK"
+      },
+      {
+        "id": "c",
+        "text": "201 Created"
+      },
+      {
+        "id": "d",
+        "text": "204 No Content"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Both the single-value write and the 100-value write to /recorded return 202 (Accepted) in AVEVA's sample. A PUT to a static attribute value returns 204. Testing for 200 is a listed mistake.",
+    "sources": [
+      "int-gh-write-attributes-py"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 1,
+    "prompt": "What does PIconnect's point.recorded_values('*-48h', '*') return?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A decorated pandas Series"
+      },
+      {
+        "id": "b",
+        "text": "A raw JSON string"
+      },
+      {
+        "id": "c",
+        "text": "A list of AFValue objects only"
+      },
+      {
+        "id": "d",
+        "text": "A CSV file on disk"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PIconnect documents the result as \"essentially a decorated version of a pandas.Series\", which makes it easy to analyse in Python.",
+    "sources": [
+      "dev2-piconnect-piserver"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-03",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PowerShell Tools for the PI System cmdlet starts a Data Archive backup in OSIsoft's samples?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Start-PIBackup"
+      },
+      {
+        "id": "b",
+        "text": "Backup-PIDataArchive"
+      },
+      {
+        "id": "c",
+        "text": "Invoke-PIArchiveBackup"
+      },
+      {
+        "id": "d",
+        "text": "New-PIBackupRestoreFile"
+      }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft samples use Start-PIBackup -BackupLocation <dir> -Connection $con and poll Get-PIBackupState. \"Backup-PIDataArchive\" does not appear in any source seen.",
+    "sources": [
+      "dev2-gh-ps-backup"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-04",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the module name of PowerShell Tools for the PI System, as used in Get-Command -Module <name>?",
+    "accepted": [
+      "OSIsoft.PowerShell"
+    ],
+    "explanation": "The module is OSIsoft.PowerShell, installed under %pihome%\\OSIsoft.PowerShell and auto-imported on first use.",
+    "sources": [
+      "dev2-pisquare-pstools-blog"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-05",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "Which practices do the sources warn against in production scripts? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "verify=False in Python requests"
+      },
+      {
+        "id": "b",
+        "text": "Secure(0) in a JMP JSL script"
+      },
+      {
+        "id": "c",
+        "text": "Hard-coding a password in the script"
+      },
+      {
+        "id": "d",
+        "text": "Using Kerberos authentication"
+      },
+      {
+        "id": "e",
+        "text": "Sending X-Requested-With on writes"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Disabling certificate verification (verify=False in Python, Secure(0) in JSL) and hard-coding credentials are listed pitfalls; Kerberos avoids storing passwords. Sending X-Requested-With on writes is required, not a risk.",
+    "sources": [
+      "int-gh-read-attributes-py",
+      "int-jmp-pi-tagnames"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-06",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "Connecting an integration platform that cannot do Kerberos.",
+    "scenario": "An integration platform must read PI data through PI Web API. Its HTTP client supports Basic and Bearer but not Kerberos. PI Web API is installed with default authentication.\n\nWhat change does the Cybus integration guide describe?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add Basic to the PI Web API AuthenticationMethods configuration item"
+      },
+      {
+        "id": "b",
+        "text": "Disable HTTPS so no authentication is needed"
+      },
+      {
+        "id": "c",
+        "text": "Enable Anonymous authentication"
+      },
+      {
+        "id": "d",
+        "text": "Remove Kerberos and enable both Bearer and Kerberos"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Cybus Connectware does not support Kerberos, so Basic must be added to the PI Web API AuthenticationMethods configuration item; Kerberos is enabled by default. Disabling HTTPS is not possible, and Anonymous is advised against.",
+    "sources": [
+      "int-cybus-pi-integration",
+      "int-cisa-cm0143"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-07",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "PIconnect is asked for PI.PIServer('NoSuchServer'). What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A warning is raised and the default server is returned"
+      },
+      {
+        "id": "b",
+        "text": "An exception stops the script"
+      },
+      {
+        "id": "c",
+        "text": "PIconnect creates a new server entry"
+      },
+      {
+        "id": "d",
+        "text": "The call blocks until the server appears"
+      }
+    ],
+    "answer": "a",
+    "explanation": "If a named server is not found, \"a warning is raised\" and the default server is returned. That makes typos easy to miss, so check which server you got.",
+    "sources": [
+      "dev2-piconnect-piserver"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-08",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each PowerShell Tools cmdlet to its purpose.",
+    "pairs": [
+      {
+        "left": "Connect-PIDataArchive",
+        "right": "Open a connection object"
+      },
+      {
+        "left": "Get-PIPoint",
+        "right": "Read point configuration"
+      },
+      {
+        "left": "Get-PIValue",
+        "right": "Read values"
+      },
+      {
+        "left": "Add-PIValue",
+        "right": "Write values"
+      },
+      {
+        "left": "Get-PIArchiveFileInfo",
+        "right": "List archive files"
+      },
+      {
+        "left": "Start-PIBackup",
+        "right": "Start a backup"
+      }
+    ],
+    "explanation": "Connect-PIDataArchive opens a connection; Get-PIPoint reads point configuration; Get-PIValue reads values; Add-PIValue writes values; Get-PIArchiveFileInfo lists archive files; Start-PIBackup starts a backup.",
+    "sources": [
+      "dev2-pisquare-pstools-blog",
+      "dev2-gh-ps-movearchives",
+      "dev2-gh-ps-backup"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-09",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 1,
+    "prompt": "In which time zone do PowerShell Tools for the PI System display timestamps?",
+    "options": [
+      {
+        "id": "a",
+        "text": "UTC"
+      },
+      {
+        "id": "b",
+        "text": "The PI Data Archive's local time"
+      },
+      {
+        "id": "c",
+        "text": "The client's local time"
+      },
+      {
+        "id": "d",
+        "text": "The time zone of the AF database"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2015 PI Square blog notes that PowerShell Tools show timestamps in UTC, which surprises users who expect local time.",
+    "sources": [
+      "dev2-pisquare-pstools-blog"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-10",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 1,
+    "prompt": "Which Python string is the safe way to pass the AF path Plant1\\Outlet to PIconnect's database.descendant()?",
+    "options": [
+      {
+        "id": "a",
+        "text": "r\"Plant1\\Outlet\""
+      },
+      {
+        "id": "b",
+        "text": "\"Plant1/Outlet\""
+      },
+      {
+        "id": "c",
+        "text": "\"Plant1|Outlet\""
+      },
+      {
+        "id": "d",
+        "text": "'Plant1.Outlet'"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Write AF paths as raw strings (r\"Plant1\\Outlet\") or escape the backslashes; otherwise sequences such as \\O may be treated as escapes.",
+    "sources": [
+      "dev2-piconnect-af"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-11",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 3,
+    "prompt": "In PIconnect's recorded_values, what does %tag% mean in filter_expression=\"'%tag%' > 100 and '%tag%' < 115\"?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is replaced with the tag name of the point"
+      },
+      {
+        "id": "b",
+        "text": "It is a wildcard matching any tag"
+      },
+      {
+        "id": "c",
+        "text": "It means the percentage of good values"
+      },
+      {
+        "id": "d",
+        "text": "It refers to the previous value"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PIconnect replaces %tag% with the point's tag name, so the filter applies to the point's own values.",
+    "sources": [
+      "dev2-piconnect-recorded"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-12",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the steps of AVEVA's Python read-then-write pattern in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Create HTTPBasicAuth or HTTPKerberosAuth"
+      },
+      {
+        "id": "b",
+        "text": "GET /attributes?path=... for the attribute"
+      },
+      {
+        "id": "c",
+        "text": "Read WebId from the response JSON"
+      },
+      {
+        "id": "d",
+        "text": "GET /streams/{WebId}/recorded?startTime=*-2d"
+      },
+      {
+        "id": "e",
+        "text": "POST /streams/{WebId}/value with X-Requested-With"
+      }
+    ],
+    "explanation": "Create the auth object, GET the attribute by path, take its WebId from the JSON, GET recorded values with that WebId, then POST a value with the X-Requested-With header.",
+    "sources": [
+      "int-gh-read-attributes-py",
+      "int-gh-write-attributes-py"
+    ],
+    "lessonId": "scripting-python-powershell"
+  },
+  {
+    "id": "q-scripting-13",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.scripting"
+    ],
+    "difficulty": 3,
+    "prompt": "Why does AVEVA's transfer-verification PowerShell sample read values with -Count instead of an end time?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To avoid differences caused by snapshot data"
+      },
+      {
+        "id": "b",
+        "text": "Because -EndTime is not supported by Get-PIValue"
+      },
+      {
+        "id": "c",
+        "text": "Because counts are faster than time ranges on every server"
+      },
+      {
+        "id": "d",
+        "text": "To bypass compression"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The sample uses -Count rather than an end time \"to avoid differences due to snapshot data\": the snapshot can change while the comparison runs.",
+    "sources": [
+      "dev2-gh-aveva-ps-verify"
+    ],
+    "lessonId": "scripting-python-powershell"
+  }
+]

@@ -1,0 +1,224 @@
+[
+  {
+    "id": "q-attr-defaults",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "Match each point attribute to its sourced default.",
+    "pairs": [
+      { "left": "Zero", "right": "0" },
+      { "left": "Span", "right": "100" },
+      { "left": "ExcMin", "right": "0 seconds" },
+      { "left": "CompMax", "right": "28800 seconds" },
+      { "left": "ExcMax", "right": "600 seconds" }
+    ],
+    "explanation": "The training gives Zero 0, Span 100, ExcMax 600 s and CompMax 28800 s; PI Square threads give ExcMin and CompMin as 0.",
+    "lessonId": "point-attributes",
+    "tags": ["defaults"],
+    "sources": ["da-admin-workbook-2017r2", "da-ps-compmin-thread"]
+  },
+  {
+    "id": "q-attr-instrumenttag-case",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "scenario": "A new OPC point shows no data. The OPC server's ItemID is Channel1.Device1.Level. The point's InstrumentTag is channel1.device1.level. PointSource, Location1 and Scan are correct.",
+    "prompt": "What is the most likely cause?",
+    "options": [
+      { "id": "a", "text": "InstrumentTag must match the source address exactly and is often case-sensitive" },
+      { "id": "b", "text": "CompDev is too small" },
+      { "id": "c", "text": "The Descriptor is empty" },
+      { "id": "d", "text": "DisplayDigits is set to 2" }
+    ],
+    "answer": "a",
+    "explanation": "InstrumentTag holds the source address (for example the OPC ItemID); it must match exactly and mismatches are case-sensitive, so the point receives no data. CompDev, Descriptor and DisplayDigits do not stop data arriving.",
+    "lessonId": "point-attributes",
+    "tags": ["troubleshooting", "scenario"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-attr-compdevpercent",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "A point has Span 500. You set CompDevPercent to 0.4. What is CompDev?",
+    "options": [
+      { "id": "a", "text": "2" },
+      { "id": "b", "text": "0.4" },
+      { "id": "c", "text": "200" },
+      { "id": "d", "text": "1.25" }
+    ],
+    "answer": "a",
+    "explanation": "CompDev = CompDevPercent x Span / 100 = 0.4 x 500 / 100 = 2 engineering units. Setting one recalculates the other.",
+    "lessonId": "point-attributes",
+    "tags": ["calculation"],
+    "sources": ["da-tibco-tagdef", "da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-attr-both-sent",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 3,
+    "prompt": "A bulk edit sends both CompDev and CompDevPercent for the same point in one change. Which value wins?",
+    "options": [
+      { "id": "a", "text": "CompDevPercent overrides CompDev" },
+      { "id": "b", "text": "CompDev overrides CompDevPercent" },
+      { "id": "c", "text": "The edit is rejected" },
+      { "id": "d", "text": "The smaller of the two" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's 2023 session states that if CompDev and CompDevPercent are both sent in the same edit, CompDevPercent overrides CompDev.",
+    "lessonId": "point-attributes",
+    "tags": ["pitfall"],
+    "sources": ["da-uc23-exc-comp"]
+  },
+  {
+    "id": "q-attr-location-match",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "Match each attribute to what it typically holds for an interface point.",
+    "pairs": [
+      { "left": "PointSource", "right": "Identifies the interface that collects the point" },
+      { "left": "Location1", "right": "Interface instance ID" },
+      { "left": "Location4", "right": "Scan class number" },
+      { "left": "InstrumentTag", "right": "Address in the source system, such as the OPC ItemID" }
+    ],
+    "explanation": "The training: PointSource usually identifies the interface; PointSource plus the interface ID in Location1 links to one instance; Location4 is typically the scan class; InstrumentTag is the source address.",
+    "lessonId": "point-attributes",
+    "tags": ["interfaces"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-attr-opc-location3",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 3,
+    "prompt": "For the PI OPC DA interface, what does Location3 = 1 mean?",
+    "options": [
+      { "id": "a", "text": "Advise" },
+      { "id": "b", "text": "Polled or event" },
+      { "id": "c", "text": "Output" },
+      { "id": "d", "text": "Disabled" }
+    ],
+    "answer": "a",
+    "explanation": "For the OPC DA interface, Location3 is 0 for polled or event, 1 for advise and 2 for output. Only Advise points can go into scan class 1.",
+    "lessonId": "point-attributes",
+    "tags": ["opc"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-attr-security-pair",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes", "da.security"],
+    "difficulty": 2,
+    "prompt": "Match each security attribute to what it controls.",
+    "pairs": [
+      { "left": "PtSecurity", "right": "Viewing and editing the point's configuration" },
+      { "left": "DataSecurity", "right": "Reading and writing the point's values" },
+      { "left": "ptowner, ptgroup, ptaccess", "right": "Legacy owner/group/world point security" }
+    ],
+    "explanation": "PtSecurity governs point configuration and DataSecurity governs values. ptowner, ptgroup and ptaccess are legacy owner/group/world attributes still listed alongside them.",
+    "lessonId": "point-attributes",
+    "tags": ["security"],
+    "sources": ["da-uc23-security", "da-rockwell-ftse-attrs"]
+  },
+  {
+    "id": "q-attr-digitalset-fix",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes", "da.digital-sets"],
+    "difficulty": 3,
+    "scenario": "A valve point was created with the wrong DigitalSet and has run for six months. An engineer changes DigitalSet to the correct set and expects the six months of history to display with the new state names.",
+    "prompt": "What actually happens?",
+    "options": [
+      { "id": "a", "text": "Existing archived values keep the old set's interpretation, because the set ID is stored in archive record headers; offline reprocessing is needed" },
+      { "id": "b", "text": "All history is instantly re-labelled with the new set" },
+      { "id": "c", "text": "The point is deleted and recreated" },
+      { "id": "d", "text": "The archive refuses the change" }
+    ],
+    "answer": "a",
+    "explanation": "The archive record header stores the digital state set ID, so changing DigitalSet does not change how existing archived values are interpreted until archives are reprocessed. An option for offline reprocessing to honour archived digital state values came in PI Server 2018 SP3 Patch 3.",
+    "lessonId": "point-attributes",
+    "tags": ["digital", "pitfall", "scenario"],
+    "sources": ["da-fb-pisrv-1351", "da-fb-pida-1142"]
+  },
+  {
+    "id": "q-attr-units",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "Which of these attributes are measured in seconds? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "ExcMin" },
+      { "id": "b", "text": "ExcMax" },
+      { "id": "c", "text": "CompMin" },
+      { "id": "d", "text": "CompMax" },
+      { "id": "e", "text": "CompDev" },
+      { "id": "f", "text": "ExcDevPercent" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "ExcMin, ExcMax, CompMin and CompMax are in seconds. ExcDev and CompDev are in engineering units, and the Percent variants are a percentage of span.",
+    "lessonId": "point-attributes",
+    "tags": ["units"],
+    "sources": ["da-ps-compdev-standard-thread"]
+  },
+  {
+    "id": "q-attr-percent-digital",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 2,
+    "prompt": "True or false: ExcDevPercent and CompDevPercent are applied to digital, string and BLOB points just as to numeric points.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "ExcDevPercent and CompDevPercent are ignored (shown as zero) for digital, string and BLOB tags. For digital points, CompDev and ExcDev have no effect.",
+    "lessonId": "point-attributes",
+    "tags": ["true-false", "digital"],
+    "sources": ["da-rockwell-studio5000-params", "da-ps-compdev-standard-thread"]
+  },
+  {
+    "id": "q-attr-span-top",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 1,
+    "prompt": "A point has Zero = 50 and Span = 300. What is the highest value in its range?",
+    "accepted": ["350"],
+    "explanation": "Span is the range between minimum and maximum, so Zero + Span = 50 + 300 = 350 is the top of the range.",
+    "lessonId": "point-attributes",
+    "tags": ["calculation"],
+    "sources": ["da-tibco-tagdef"]
+  },
+  {
+    "id": "q-attr-connector-managed",
+    "type": "multi",
+    "domain": "data-archive",
+    "coverage": ["da.point-attributes"],
+    "difficulty": 3,
+    "prompt": "Which attributes does the OPC UA connector manage (and overwrite) on the points it creates? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Tagname" },
+      { "id": "b", "text": "Description" },
+      { "id": "c", "text": "EngUnit" },
+      { "id": "d", "text": "CompDev" },
+      { "id": "e", "text": "PtSecurity" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "Per PI Square, the OPC UA connector manages only Tagname, Description and EngUnit and overwrites manual edits to Description and EngUnit; other attributes can be edited freely.",
+    "lessonId": "point-attributes",
+    "tags": ["connectors"],
+    "sources": ["da-ps-pointsource-thread"]
+  }
+]

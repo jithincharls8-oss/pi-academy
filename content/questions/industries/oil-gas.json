@@ -1,0 +1,450 @@
+[
+  {
+    "id": "q-oil-gas-segments",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 1,
+    "prompt": "In OSIsoft's 2015 oil and gas deck, which use case is listed under Midstream?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Gas compression, storage and quality"
+      },
+      {
+        "id": "b",
+        "text": "Crude blending control"
+      },
+      {
+        "id": "c",
+        "text": "Drilling and completions optimisation"
+      },
+      {
+        "id": "d",
+        "text": "Column dashboards"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The deck lists gas compression, storage and quality, and natural gas capacity, under Midstream. Crude blending control and column dashboards are HPI (downstream) use cases; drilling and completions optimisation is upstream.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-spider-web",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 2,
+    "prompt": "What remedy does the source cite for this situation?",
+    "scenario": "An offshore operator has 3+ million tags with diverse naming coming from 29 offshore DCS historians, covering 650 assets. Every new analytics or visualisation project turns into a long integration job.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rename every tag to one global standard and keep building tag-based displays"
+      },
+      {
+        "id": "b",
+        "text": "Move analytics, visualisation and collaboration onto a PI AF asset data object model"
+      },
+      {
+        "id": "c",
+        "text": "Add a 30th historian dedicated to analytics"
+      },
+      {
+        "id": "d",
+        "text": "Export all tags nightly to spreadsheets for engineers"
+      }
+    ],
+    "answer": "b",
+    "explanation": "OSIsoft's 2015 deck describes exactly this Gulf of Mexico operator. The tag-based 'spider web' made integration hard, and it moved all analytics, visualisation and collaboration onto a PI AF asset data object model. Renaming tags alone keeps the tag-centric problem; extra historians or spreadsheets add more silos.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "architecture"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-htha-inputs",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 2,
+    "prompt": "A refinery built a PI AF template for High Temperature Hydrogen Attack (HTHA). Which inputs does the source name? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Metallurgy"
+      },
+      {
+        "id": "b",
+        "text": "Temperature"
+      },
+      {
+        "id": "c",
+        "text": "Hydrogen partial pressure"
+      },
+      {
+        "id": "d",
+        "text": "Exposure length"
+      },
+      {
+        "id": "e",
+        "text": "Vibration amplitude"
+      },
+      {
+        "id": "f",
+        "text": "Crude API gravity"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The template's inputs are metallurgy, temperature, hydrogen partial pressure and exposure length. It generates alerts, notifications and event frames on temperature/exposure limits. Vibration and crude gravity are not HTHA inputs in the source.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "templates"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-htha-rollout",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 2,
+    "prompt": "The HTHA template was \"tested and rolled out in ___ units in under 1 week\". Fill in the number.",
+    "accepted": [
+      "6",
+      "six"
+    ],
+    "caseSensitive": false,
+    "explanation": "OSIsoft's 2015 deck says the HTHA template was \"tested and rolled out in 6 units in under 1 week\". Templates make this possible: build once, create one element per unit.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-noble-aseng",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Noble Energy reported that using PI during the Aseng FPSO startup helped engineers increase production by an estimated ______ barrels of oil per day.",
+    "accepted": [
+      "10,000",
+      "10000",
+      "10 000"
+    ],
+    "caseSensitive": false,
+    "explanation": "Noble Energy reported an estimated 10,000 barrels of oil per day, in its own OSIsoft seminar presentation. The word 'estimated' matters: it is the company's estimate, not an audited result.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-pres-noble-2015"
+    ]
+  },
+  {
+    "id": "q-oil-gas-pertamina-reporter",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Pertamina's integrated downstream dashboard reported critical depot stock-outs reduced by 60% and demurrage reduced by 40%. Who reported these figures?",
+    "options": [
+      {
+        "id": "a",
+        "text": "An AVEVA success-story web page"
+      },
+      {
+        "id": "b",
+        "text": "OSIsoft, in a 2014 regional seminar in São Paulo"
+      },
+      {
+        "id": "c",
+        "text": "Pertamina speakers at AVEVA World 2023"
+      },
+      {
+        "id": "d",
+        "text": "An independent auditor's report"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The figures come from an OSIsoft presentation (Graves) at the 2014 São Paulo regional seminar. Pertamina's AVEVA World 2023 abstract is a different source and gives no figures.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "reported-by"
+    ],
+    "sources": [
+      "ind-pres-graves-2014"
+    ]
+  },
+  {
+    "id": "q-oil-gas-terms",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each oil and gas term to its meaning.",
+    "pairs": [
+      {
+        "left": "BOED",
+        "right": "Barrels of oil equivalent per day"
+      },
+      {
+        "left": "Linepack",
+        "right": "Gas volume stored inside a pipeline"
+      },
+      {
+        "left": "Demurrage",
+        "right": "Charges for delayed loading or unloading of vessels"
+      },
+      {
+        "left": "HTHA",
+        "right": "A refinery corrosion mechanism"
+      },
+      {
+        "left": "ESP (upstream)",
+        "right": "Electrical submersible pump used for artificial lift"
+      }
+    ],
+    "explanation": "BOED appears in cost-per-BOED KPIs; linepack is forecast at TC Energy; demurrage fell 40% at Pertamina downstream; HTHA was modelled in an AF template; ESP optimisation was a BPX Energy use case.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-uc15-og-chem",
+      "ind-ss-tc-energy",
+      "ind-pres-graves-2014",
+      "ind-pres-bpx-2023"
+    ]
+  },
+  {
+    "id": "q-oil-gas-eni-25m",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: the \"$25M\" figure shown on the Eni success-story page is an Eni outcome.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The research notes that the Eni page also shows a DCP Midstream \"$25M\" figure, which belongs to DCP (\"$25M saved in fiscal year 2017 from improved plant operations\"). The Eni story itself gives no Eni-specific figures.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "pitfall",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-eni",
+      "ind-ss-dcp"
+    ]
+  },
+  {
+    "id": "q-oil-gas-offshore-link",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 2,
+    "prompt": "Which approach matches what Eni Global E&P did?",
+    "scenario": "A global exploration and production company wants every major production asset's data available centrally. Its engineers worry about the security, performance and reliability of moving data from offshore sites.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Let central users query each offshore DCS directly"
+      },
+      {
+        "id": "b",
+        "text": "Use PI AF collectives on the major production assets and PI-to-PI for data quality and security"
+      },
+      {
+        "id": "c",
+        "text": "Email daily CSV exports from each platform"
+      },
+      {
+        "id": "d",
+        "text": "Skip offshore assets until satellite links improve"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Eni deployed PI AF collectives on all major production assets, used PI-to-PI for data quality and security, and built a global E&P AF data object model with extensive templates. Direct queries into control systems and emailed files both weaken security and data quality.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "practitioner",
+      "architecture"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-enbridge",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas",
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "When Enbridge consolidated 37 proprietary SCADA systems onto AVEVA Enterprise SCADA, how many tags did it integrate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "About 70,000"
+      },
+      {
+        "id": "b",
+        "text": "More than 350,000"
+      },
+      {
+        "id": "c",
+        "text": "3+ million"
+      },
+      {
+        "id": "d",
+        "text": "130 billion"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The AVEVA story says Enbridge integrated \"more than 350,000 tags\". About 70,000 is Cameron LNG's PI Server; 3+ million is the Gulf of Mexico operator in OSIsoft's 2015 deck; 130 billion events is Genentech's migration.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "beginner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-enbridge"
+    ]
+  },
+  {
+    "id": "q-oil-gas-benchmark",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 3,
+    "prompt": "OSIsoft's 2015 deck cites benchmark targets drawn from \"500+ customer use cases\". Which target does it give for HPI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Controllable margin improved 1-5% YOY"
+      },
+      {
+        "id": "b",
+        "text": "Cost per BOED reduced 2-5% YOY"
+      },
+      {
+        "id": "c",
+        "text": "Controllable margin improved 2-5% YOY"
+      },
+      {
+        "id": "d",
+        "text": "EBITDA improvement $500M-550M"
+      }
+    ],
+    "answer": "a",
+    "explanation": "HPI controllable margin improved 1-5% YOY. Cost per BOED reduced 2-5% YOY is the E&P target, and controllable margin 2-5% YOY is the logistics target. $500M-550M is MOL's reported EBITDA improvement, not a benchmark.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-oil-gas-enterprise-agreement",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.oil-gas"
+    ],
+    "difficulty": 3,
+    "prompt": "Based on Noble Energy's lessons, what should the champion secure first?",
+    "scenario": "An upstream company has piloted PI at one basin and wants an enterprise agreement for all regions. Data-collection coverage is still very uneven between regions.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sign the enterprise agreement immediately and collect all data before defining any use cases"
+      },
+      {
+        "id": "b",
+        "text": "Champions, defined business use cases and proven ROI, then scale region by region"
+      },
+      {
+        "id": "c",
+        "text": "Wait until every region has 100% data coverage before using PI at all"
+      },
+      {
+        "id": "d",
+        "text": "Replace PI AF with a tag naming standard to save cost"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Noble Energy's talk says enterprise agreements need champions, defined business use cases and proven ROI before the rollout scales. Its own coverage was phased by asset (Marcellus 85%, DJ Basin under 1%), so waiting for full coverage is not what it did.",
+    "lessonId": "pi-in-oil-gas",
+    "tags": [
+      "expert",
+      "rollout"
+    ],
+    "sources": [
+      "ind-pres-noble-2015"
+    ]
+  }
+]

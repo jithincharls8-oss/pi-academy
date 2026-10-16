@@ -1,0 +1,438 @@
+[
+  {
+    "id": "q-sizing-workload",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 1,
+    "prompt": "According to OSIsoft, what should hardware sizing be based on?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Workload"
+      },
+      {
+        "id": "b",
+        "text": "AF object count"
+      },
+      {
+        "id": "c",
+        "text": "Number of PI Vision displays"
+      },
+      {
+        "id": "d",
+        "text": "Number of interface nodes"
+      }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft said \"hardware sizing should be based upon workload, not AF object count, because they do not correlate\". The other measures are not what AVEVA sizes on.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "principle"
+    ],
+    "sources": [
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-archive-calc",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 3,
+    "prompt": "What archive size does that rule give?",
+    "options": [
+      {
+        "id": "a",
+        "text": "1,024 MB"
+      },
+      {
+        "id": "b",
+        "text": "2,048 MB"
+      },
+      {
+        "id": "c",
+        "text": "10,240 MB"
+      },
+      {
+        "id": "d",
+        "text": "1,758 MB"
+      }
+    ],
+    "scenario": "A Data Archive has 600,000 licensed points and 32 GB (32,768 MB) of RAM. You apply the 2017 R2 IT course rule: the smaller of (memory MB / 3) and (3 x points / 1024 MB), rounded down to a power of 2, between 256 MB and 10,240 MB.",
+    "answer": "a",
+    "explanation": "3 x 600,000 / 1024 is about 1,758 MB, which rounds down to 1,024 MB. Memory / 3 is about 10,922 MB. The smaller is 1,024 MB. 1,758 MB is not a power of 2, and 2,048 MB is what the 2024 course table gives for the same point count.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "calculation"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-eventq-drive",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "Where does AVEVA recommend putting the event queue?",
+    "options": [
+      {
+        "id": "a",
+        "text": "On a different physical drive from the archives, typically the second-largest drive"
+      },
+      {
+        "id": "b",
+        "text": "In the same folder as the primary archive so it can be backed up together"
+      },
+      {
+        "id": "c",
+        "text": "On the system drive with the Windows page file"
+      },
+      {
+        "id": "d",
+        "text": "On a network share for easy access"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2024 course says place archives on the largest drive and event queues on the second-largest, and that the event queue should be on a different physical drive from the archives.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "storage"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-latency",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AVEVA says lower-latency storage has a greater impact on query performance than more IOPS.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "a",
+    "explanation": "True. The UC23 performance deck states \"Lower latency storage has a greater impact on performance queries than having more IOPS.\"",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "storage",
+      "true-false"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-cache",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "The 2024 course says to select an archive size so that what fits in the Windows file system cache?",
+    "options": [
+      {
+        "id": "a",
+        "text": "At least 2 archive files"
+      },
+      {
+        "id": "b",
+        "text": "Exactly one archive file"
+      },
+      {
+        "id": "c",
+        "text": "All archive files ever created"
+      },
+      {
+        "id": "d",
+        "text": "Only the event queue"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"Select a size so that at least 2 archive files can fit in the Windows File System Cache.\" The UC23 deck suggests enough RAM for three archives.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "memory"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-points-table",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each licensed point count to the archive size in the 2024 course table.",
+    "pairs": [
+      {
+        "left": "50,000 points",
+        "right": "256 MB"
+      },
+      {
+        "left": "150,000 points",
+        "right": "512 MB"
+      },
+      {
+        "left": "500,000 points",
+        "right": "2,048 MB"
+      },
+      {
+        "left": "3,000,000 points",
+        "right": "10,240 MB"
+      }
+    ],
+    "explanation": "The table: 0-87,381 gives 256 MB; 87,382-174,762 gives 512 MB; 349,526-699,050 gives 2,048 MB; 2,796,203 or more gives 10,240 MB.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "calculation"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-interface-tool",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: OSIsoft provides a hardware sizing tool for interface machines.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. OSIsoft's implementation guidance states \"There is no hardware sizing tool for interface machines.\"",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "interfaces",
+      "true-false"
+    ],
+    "sources": [
+      "adm-implementation-adoption"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-fixed-dynamic",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the intended use of dynamic archives?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Troubleshooting and reprocessing only"
+      },
+      {
+        "id": "b",
+        "text": "All production archives"
+      },
+      {
+        "id": "c",
+        "text": "Systems with more than 1 million points"
+      },
+      {
+        "id": "d",
+        "text": "Storing future data only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Archives are fixed size by default, and dynamic archives are for troubleshooting and reprocessing. Future archives do grow dynamically, but that is a separate feature.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "archives"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-separate-af",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "In which cases does the 2024 course recommend separate PI AF and PI Data Archive computers? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF uses data from multiple PI Servers"
+      },
+      {
+        "id": "b",
+        "text": "AF is configured for high availability"
+      },
+      {
+        "id": "c",
+        "text": "The site has fewer than 1,000 points"
+      },
+      {
+        "id": "d",
+        "text": "The Data Archive uses fixed-size archives"
+      }
+    ],
+    "answers": [
+      "a",
+      "b"
+    ],
+    "explanation": "Separate computers are recommended when AF uses data from multiple PI Servers or is configured for high availability. Small point counts and fixed archives are not reasons in the source.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "topology"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-future-archive",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "A future archive starts at what size in MB?",
+    "accepted": [
+      "1",
+      "1 MB",
+      "1MB"
+    ],
+    "caseSensitive": false,
+    "explanation": "Future archives start at 1 MB with a one-calendar-month span and grow dynamically beyond 1 MB.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "archives"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024",
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-shift-full",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 2,
+    "prompt": "At about what fill level is a new historic archive created?",
+    "options": [
+      {
+        "id": "a",
+        "text": "98%"
+      },
+      {
+        "id": "b",
+        "text": "50%"
+      },
+      {
+        "id": "c",
+        "text": "75%"
+      },
+      {
+        "id": "d",
+        "text": "100%, after writes start to fail"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2017 R2 course says a new historic archive is created when the current one is about 98% full.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "archives"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-sizing-2012-test",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.sizing"
+    ],
+    "difficulty": 3,
+    "prompt": "In OSIsoft's 2012 lab test on identical 6 vCPU / 12 GB VMs, what write rate did PI Server 2012 sustain?",
+    "options": [
+      {
+        "id": "a",
+        "text": "600K events/s"
+      },
+      {
+        "id": "b",
+        "text": "150K events/s"
+      },
+      {
+        "id": "c",
+        "text": "50K events/s"
+      },
+      {
+        "id": "d",
+        "text": "10M events/s"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Server 2012 sustained 600K EPS (10K points at 60 Hz) against 150K EPS for PI Server 2010. 10M events/s is the 2017 deck's figure for data out of the archive, not writes.",
+    "lessonId": "pi-system-sizing",
+    "tags": [
+      "history"
+    ],
+    "sources": [
+      "adm-vcl12-pi-server-2012-keynote",
+      "adm-pi-system-basics-2017"
+    ],
+    "verify": false
+  }
+]

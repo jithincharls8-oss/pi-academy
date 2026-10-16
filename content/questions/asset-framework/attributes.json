@@ -1,0 +1,393 @@
+[
+  {
+    "id": "q-attributes-display-digits",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "An attribute's value is 23.45. Display Digits is set to 1. What does the client show?",
+    "options": [
+      {
+        "id": "a",
+        "text": "23.5"
+      },
+      {
+        "id": "b",
+        "text": "23.450"
+      },
+      {
+        "id": "c",
+        "text": "2E+001"
+      },
+      {
+        "id": "d",
+        "text": "23"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Zero or a positive Display Digits sets decimal places, so 1 gives 23.5. 3 gives 23.450, -1 (one significant digit) gives 2E+001, and the default -5 gives 23.45.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-display-digits-match",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each Display Digits setting to how 23.45 is shown.",
+    "pairs": [
+      {
+        "left": "3",
+        "right": "23.450"
+      },
+      {
+        "left": "1",
+        "right": "23.5"
+      },
+      {
+        "left": "-1",
+        "right": "2E+001"
+      },
+      {
+        "left": "-5 (default)",
+        "right": "23.45"
+      }
+    ],
+    "explanation": "Positive values are decimal places; negative values are significant digits. These are the exact examples from AVEVA's building-assets workbook.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-uom-rule",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 1,
+    "prompt": "What does AVEVA training say about an attribute's Default UOM?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Leave it undefined unless you need conversion"
+      },
+      {
+        "id": "b",
+        "text": "Always assign a unit of measure; do not leave it undefined"
+      },
+      {
+        "id": "c",
+        "text": "Only set it on PI Point attributes"
+      },
+      {
+        "id": "d",
+        "text": "Set it to the display group"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The workbook says \"Always assign a unit of measurement! Do not leave this undefined.\" Without a default UOM, AF cannot convert units for that attribute.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-trait-types",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these are attribute trait types? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Limit"
+      },
+      {
+        "id": "b",
+        "text": "Forecast"
+      },
+      {
+        "id": "c",
+        "text": "Location"
+      },
+      {
+        "id": "d",
+        "text": "Category"
+      },
+      {
+        "id": "e",
+        "text": "Health"
+      },
+      {
+        "id": "f",
+        "text": "Template"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "e"
+    ],
+    "explanation": "Trait types are Limit, Forecast, Location, Reason, Analysis start-trigger and Health. Category and Template are separate AF concepts, not traits.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-limit-order",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "Order these limit traits from lowest to highest value on a typical process attribute.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Minimum"
+      },
+      {
+        "id": "b",
+        "text": "LoLo"
+      },
+      {
+        "id": "c",
+        "text": "Lo"
+      },
+      {
+        "id": "d",
+        "text": "Target"
+      },
+      {
+        "id": "e",
+        "text": "Hi"
+      },
+      {
+        "id": "f",
+        "text": "HiHi"
+      },
+      {
+        "id": "g",
+        "text": "Maximum"
+      }
+    ],
+    "explanation": "The limit traits are Minimum, Maximum, LoLo, HiHi, Lo, Hi and Target. Ordered by value: Minimum, LoLo, Lo, Target, Hi, HiHi, Maximum. Severity-based event frames in AVEVA's deck use Hi (Minor), HiHi (Major) and Maximum (Critical).",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-murdock-event-frames-2019"
+    ],
+    "verify": true,
+    "verifyNote": "The relative order of Target between Lo and Hi is assumed for a typical attribute; the source lists the traits but not an ordering."
+  },
+  {
+    "id": "q-attributes-child-syntax",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "In an analysis expression, how do you reference the child attribute 'Efficiency Target' under 'Production Efficiency'? Type the reference including quotes.",
+    "accepted": [
+      "'Production Efficiency|Efficiency Target'"
+    ],
+    "caseSensitive": false,
+    "explanation": "Child attributes use the pipe syntax: 'Production Efficiency|Efficiency Target'. The PI World 2019 lab uses this form, and 'Polynomial Coefficients|C0' is another example.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-attributes-static-none",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: an attribute with data reference <None> holds a static value.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. With no data reference the attribute simply stores a value, such as a configuration setting or a nameplate rating.",
+    "lessonId": "attributes-and-traits",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-config-item",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 1,
+    "prompt": "Which attribute is the best candidate for the Configuration Item flag?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Outlet Temperature from a PI tag"
+      },
+      {
+        "id": "b",
+        "text": "Product, with default HC1500"
+      },
+      {
+        "id": "c",
+        "text": "Flow totalised by an analysis"
+      },
+      {
+        "id": "d",
+        "text": "Running Hours from a PI tag"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Configuration Item marks static set-up data rather than process data. The workbook's example is a Product attribute template with default HC1500.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-attributes-index",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 3,
+    "prompt": "What should the team do?",
+    "scenario": "Users search event frames by 'Batch ID' and 'Product' many times a day, and these searches are slow. The attributes hold stored values on the event frames.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Convert the attributes to Formula data references"
+      },
+      {
+        "id": "b",
+        "text": "Mark the frequently searched attributes as indexed"
+      },
+      {
+        "id": "c",
+        "text": "Move the attributes to the Configuration database"
+      },
+      {
+        "id": "d",
+        "text": "Set Display Digits to 0"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Indexing an attribute improves event frame search performance with stored attribute values. AVEVA's advice is to index the attributes users search often.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-murdock-event-frames-2019"
+    ]
+  },
+  {
+    "id": "q-attributes-digital-import",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 2,
+    "prompt": "From AF 2018 SP2, what happens when you map a digital PI tag to an attribute and the digital state set is missing in AF?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The mapping fails silently"
+      },
+      {
+        "id": "b",
+        "text": "PSE prompts you to import the needed digital state set"
+      },
+      {
+        "id": "c",
+        "text": "AF creates a Formula reference"
+      },
+      {
+        "id": "d",
+        "text": "The tag is converted to Float32"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AF 2018 SP2 prompts you to import the digital state set when you map a digital tag, and can bulk-import digital state sets from a Data Archive.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights"
+    ]
+  },
+  {
+    "id": "q-attributes-value-type",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.attributes"
+    ],
+    "difficulty": 1,
+    "prompt": "Which value type does AVEVA training recommend for most numeric attributes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "String"
+      },
+      {
+        "id": "b",
+        "text": "Int16"
+      },
+      {
+        "id": "c",
+        "text": "Double"
+      },
+      {
+        "id": "d",
+        "text": "Boolean"
+      }
+    ],
+    "answer": "c",
+    "explanation": "Double is the suggested value type for most numeric values, String for text and Boolean for 0/1. Int16 appears in a lab for an integer target, but Double is the general choice.",
+    "lessonId": "attributes-and-traits",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  }
+]

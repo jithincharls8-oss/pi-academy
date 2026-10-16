@@ -1,0 +1,296 @@
+[
+  {
+    "id": "q-library-versioning-library-contents",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 1,
+    "prompt": "Which of these live in the AF Library? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Element templates"
+      },
+      {
+        "id": "b",
+        "text": "Event frame templates"
+      },
+      {
+        "id": "c",
+        "text": "Categories"
+      },
+      {
+        "id": "d",
+        "text": "Enumeration sets"
+      },
+      {
+        "id": "e",
+        "text": "Tables"
+      },
+      {
+        "id": "f",
+        "text": "Event frames"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "explanation": "The Library holds element templates, event frame templates, categories, enumeration sets and tables. Event frames themselves are in the Event Frames section.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-library-versioning-uom-included",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AF Libraries automatically include the UOM database.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. An AF team developer confirmed that libraries automatically include the UOM database.",
+    "lessonId": "library-and-change-management",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-uom-db-scope"
+    ]
+  },
+  {
+    "id": "q-library-versioning-referenced",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 1,
+    "prompt": "Which export option also exports the templates, tables and UOMs needed to rebuild a structure?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Include All Referenced Objects"
+      },
+      {
+        "id": "b",
+        "text": "Flat export"
+      },
+      {
+        "id": "c",
+        "text": "Export Values"
+      },
+      {
+        "id": "d",
+        "text": "Compact XML"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"Include All Referenced Objects\" exports what is needed to rebuild the structure on another server.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-library-versioning-sdk-flags",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each AF SDK XML flag to its family.",
+    "pairs": [
+      {
+        "left": "NoUniqueID",
+        "right": "PIExportMode"
+      },
+      {
+        "left": "AutoCheckIn",
+        "right": "PIImportMode"
+      },
+      {
+        "left": "ExportXml",
+        "right": "PISystem method that writes XML"
+      }
+    ],
+    "explanation": "PISystem.ExportXml(obj, PIExportMode.NoUniqueID | PIExportMode.Flat, ...) and PISystem.ImportXml(db, PIImportMode.AutoCheckIn, ...) are the SDK calls.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020"
+    ]
+  },
+  {
+    "id": "q-library-versioning-import-disabled",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 2,
+    "prompt": "Which AF 2018 SP2 feature helps here?",
+    "scenario": "A team promotes a template library with 40 analyses and 10 notification rules from test to production. They want to review everything before anything starts running.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Import analyses and notification rules in a disabled state"
+      },
+      {
+        "id": "b",
+        "text": "Use PI Builder to import notification rules"
+      },
+      {
+        "id": "c",
+        "text": "Import with Undo all changes"
+      },
+      {
+        "id": "d",
+        "text": "Disable PI Analysis Service permanently"
+      }
+    ],
+    "answer": "a",
+    "explanation": "From AF 2018 SP2, analyses and notification rules can be imported disabled for review. PI Builder cannot manage notification rules.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-pisquare-af2018sp2-highlights",
+      "af-pisquare-pibuilder-notifications"
+    ]
+  },
+  {
+    "id": "q-library-versioning-promote",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 2,
+    "prompt": "Order a safe test-to-production promotion of an AF model.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Export from test with Include All Referenced Objects"
+      },
+      {
+        "id": "b",
+        "text": "Import into production with analyses and rules disabled"
+      },
+      {
+        "id": "c",
+        "text": "Review and test the imported analyses"
+      },
+      {
+        "id": "d",
+        "text": "Enable the analyses and notification rules"
+      },
+      {
+        "id": "e",
+        "text": "Check In"
+      }
+    ],
+    "explanation": "Export with referenced objects so dependencies travel, import disabled (AF 2018 SP2), review, enable, then commit.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-pisquare-af2018sp2-highlights"
+    ],
+    "verify": true,
+    "verifyNote": "This sequence combines sourced features into a suggested process; it is not a documented AVEVA procedure."
+  },
+  {
+    "id": "q-library-versioning-sample",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 1,
+    "prompt": "How does the AF SDK getting-started sample deliver its practice database?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As an XML file you import in PSE"
+      },
+      {
+        "id": "b",
+        "text": "As a SQL backup"
+      },
+      {
+        "id": "c",
+        "text": "As a PI Builder workbook"
+      },
+      {
+        "id": "d",
+        "text": "It downloads from PI Web API"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The sample ships its database as AF Database - Green Power Company.xml, imported in PSE.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-github-afsdk-getting-started"
+    ]
+  },
+  {
+    "id": "q-library-versioning-afexport",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.library-versioning"
+    ],
+    "difficulty": 3,
+    "prompt": "Which statement about AFExport/AFImport command-line utilities is supported by readable sources in this course?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Their existence and options were not confirmed; check the AF documentation"
+      },
+      {
+        "id": "b",
+        "text": "They are the only supported way to export"
+      },
+      {
+        "id": "c",
+        "text": "They were removed in AF 2018"
+      },
+      {
+        "id": "d",
+        "text": "They import PI tags only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AFExport.exe and AFImport.exe appear only in training knowledge, not in a readable source, so they are flagged for verification. PSE and the SDK export paths are sourced.",
+    "lessonId": "library-and-change-management",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "AFExport/AFImport utilities are unverified training knowledge; confirm in %PIHOME%\\AF and the docs."
+  }
+]

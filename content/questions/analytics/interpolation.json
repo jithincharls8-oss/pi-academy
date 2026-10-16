@@ -1,0 +1,299 @@
+[
+  {
+    "id": "q-interpolation-continuous",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 1,
+    "prompt": "For a continuous (non-step) tag, how does PI compute a value at a time between two archived events?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It repeats the earlier value"
+      },
+      {
+        "id": "b",
+        "text": "It interpolates using the next archived event (a straight line)"
+      },
+      {
+        "id": "c",
+        "text": "It returns No Data"
+      },
+      {
+        "id": "d",
+        "text": "It averages all events that day"
+      }
+    ],
+    "answer": "b",
+    "explanation": "For a continuous tag, PI uses the next archived event to interpolate, which is why moving averages ramp.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "af-pisquare-moving-average"
+    ]
+  },
+  {
+    "id": "q-interpolation-step",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 1,
+    "prompt": "For a step tag, what does interpolation return between events?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The last recorded value"
+      },
+      {
+        "id": "b",
+        "text": "A straight line to the next value"
+      },
+      {
+        "id": "c",
+        "text": "Zero"
+      },
+      {
+        "id": "d",
+        "text": "The average of both neighbours"
+      }
+    ],
+    "answer": "a",
+    "explanation": "For a step tag, interpolation always uses the last recorded value: the value holds until the next event.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "af-pisquare-moving-average"
+    ]
+  },
+  {
+    "id": "q-interpolation-datalink",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each PI DataLink function to what it returns.",
+    "pairs": [
+      {
+        "left": "Compressed Data",
+        "right": "All the recorded values of a data item for a period"
+      },
+      {
+        "left": "Sampled Data",
+        "right": "Evenly spaced, interpolated values over a regular interval"
+      },
+      {
+        "left": "Timed Data",
+        "right": "Actual or interpolated values at specified time stamps"
+      }
+    ],
+    "explanation": "These are the definitions in AVEVA's Visualizing PI Data course.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "af-visualizing-pi-data"
+    ]
+  },
+  {
+    "id": "q-interpolation-exact-event",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Value-style retrieval at a time interpolates even when an archived event exists exactly at that time.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. It interpolates at a time unless an archived event exists at that time, in which case the event is returned.",
+    "lessonId": "interpolation-and-step",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-pisquare-prevevent-prevval"
+    ]
+  },
+  {
+    "id": "q-interpolation-calcatintervals",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 3,
+    "prompt": "AFCalculation.CalculateAtIntervals evaluates PrevVal('sinusoid','*') hourly. Which timestamps come back?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The timestamps of the underlying recorded events"
+      },
+      {
+        "id": "b",
+        "text": "The interval timestamps"
+      },
+      {
+        "id": "c",
+        "text": "UTC midnight only"
+      },
+      {
+        "id": "d",
+        "text": "The snapshot time"
+      }
+    ],
+    "answer": "b",
+    "explanation": "CalculateAtIntervals returns interval timestamps, not the timestamps of the recorded events behind the values.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "af-pisquare-last-recorded-value"
+    ]
+  },
+  {
+    "id": "q-interpolation-boundary",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each AFBoundaryType to its behaviour at the ends of a range.",
+    "pairs": [
+      {
+        "left": "Inside",
+        "right": "Returns recorded values inside the range as first and last values"
+      },
+      {
+        "left": "Outside",
+        "right": "Returns the recorded values just outside the range"
+      },
+      {
+        "left": "Interpolated",
+        "right": "Creates interpolated end-point values when no recorded value exists there"
+      }
+    ],
+    "explanation": "AFBoundaryType values are Inside=0, Outside=1, Interpolated=2. Interpolated is not supported for sync times.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "fn-piwebapi-boundary-type",
+      "fn-gh-piconnect-af-data"
+    ]
+  },
+  {
+    "id": "q-interpolation-preview-diff",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 2,
+    "prompt": "What best explains the difference?",
+    "scenario": "An analyst's Preview Results show slightly different values from what the running analysis wrote for the same hours.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Preview uses compressed archive data while the running service uses snapshot data"
+      },
+      {
+        "id": "b",
+        "text": "Preview is always time-weighted"
+      },
+      {
+        "id": "c",
+        "text": "The service skips interpolation"
+      },
+      {
+        "id": "d",
+        "text": "Preview uses the Configuration database"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Evaluate and Preview use compressed archive data on the client, while the running service uses snapshot data; interpolating from different event sets gives different results.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-interpolation-retrieval-modes",
+    "type": "multi",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 2,
+    "prompt": "Which are 'By Time' value retrieval modes for PI Point and Formula data references? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "At or Before"
+      },
+      {
+        "id": "b",
+        "text": "Interpolated"
+      },
+      {
+        "id": "c",
+        "text": "Exact Time"
+      },
+      {
+        "id": "d",
+        "text": "Automatic"
+      },
+      {
+        "id": "e",
+        "text": "Swinging Door"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "By Time modes are After, At or Before, At or After, Automatic, Before, Exact Time and Interpolated. Swinging door is the compression algorithm. Exact with no value returns a No Data error.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-interpolation-exact-error",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.interpolation"
+    ],
+    "difficulty": 2,
+    "prompt": "What error does an Exact retrieval return when no value exists at that time? (Two words.)",
+    "accepted": [
+      "No Data"
+    ],
+    "caseSensitive": false,
+    "explanation": "\"Exact -2h\" returns a \"No Data\" error if no value exists then.",
+    "lessonId": "interpolation-and-step",
+    "tags": [],
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-building-assets-workbook"
+    ]
+  }
+]

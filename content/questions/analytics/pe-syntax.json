@@ -1,0 +1,403 @@
+[
+  {
+    "id": "q-pe-syntax-quotes",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each item to how it is written in a PE expression.",
+    "pairs": [
+      {
+        "left": "Attribute or tag name",
+        "right": "Single quotes, e.g. 'CDT158'"
+      },
+      {
+        "left": "Time expression",
+        "right": "Single quotes, e.g. '*-1h'"
+      },
+      {
+        "left": "String or digital state",
+        "right": "Double quotes, e.g. \"Running\""
+      },
+      {
+        "left": "Function name or operator",
+        "right": "No quotes, e.g. TagTot( or +"
+      }
+    ],
+    "explanation": "Attributes, tags and time expressions take single quotes; strings and digital states take double quotes; operators and function names have no quotes.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-calc-asset-analytics-2022"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-variable-ref",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 1,
+    "prompt": "In row 3 of an expression analysis you want to use the variable Efficiency defined in row 1. How do you write it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "'Efficiency'"
+      },
+      {
+        "id": "b",
+        "text": "Efficiency"
+      },
+      {
+        "id": "c",
+        "text": "\"Efficiency\""
+      },
+      {
+        "id": "d",
+        "text": "%Efficiency%"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Variables from earlier rows are referenced without quotes. 'Efficiency' in single quotes would be read as an attribute.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-time-abbrev",
+    "type": "matching",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each time expression to its meaning.",
+    "pairs": [
+      {
+        "left": "*",
+        "right": "Now"
+      },
+      {
+        "left": "t",
+        "right": "Today at 00:00:00"
+      },
+      {
+        "left": "y",
+        "right": "Yesterday at 00:00:00"
+      },
+      {
+        "left": "t+8h",
+        "right": "08:00 today"
+      }
+    ],
+    "explanation": "* is the current time, t is today at midnight, y is yesterday at midnight, and offsets such as +8h move from there.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-visualizing-pi-data"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-y-minus",
+    "type": "fill",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 2,
+    "prompt": "What clock time does y-8h give? Answer as HH:MM.",
+    "accepted": [
+      "16:00"
+    ],
+    "caseSensitive": false,
+    "explanation": "y is yesterday at 00:00; minus 8 hours is 16:00 on the day before yesterday.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-visualizing-pi-data"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-one-offset",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 2,
+    "prompt": "Why should you avoid a time expression such as *-1d+2h?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is always rejected"
+      },
+      {
+        "id": "b",
+        "text": "Using more than one offset can lead to unpredictable results"
+      },
+      {
+        "id": "c",
+        "text": "+ is not allowed in PE"
+      },
+      {
+        "id": "d",
+        "text": "Days cannot be combined with *"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA training says to use only one time offset per expression, because \"Including multiple offsets can lead to unpredictable results\".",
+    "lessonId": "pe-syntax",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-visualizing-pi-data",
+      "fn-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-fraction",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: *-1.5d is a valid way to write 36 hours ago.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. Fractional offsets are allowed only for seconds, minutes and hours. Write *-36h instead.",
+    "lessonId": "pe-syntax",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-visualizing-pi-data",
+      "fn-piwebapi-time-strings"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-if-states",
+    "type": "code",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 2,
+    "prompt": "Write a PE IF expression that returns \"Green\" when 'tag' <= 680, \"Red\" when 'tag' > 700, and \"White\" otherwise.",
+    "language": "pe",
+    "accepted": [
+      "IF 'tag' <= 680 THEN \"Green\" ELSE IF 'tag' > 700 THEN \"Red\" ELSE \"White\""
+    ],
+    "requiredPatterns": [
+      "^if\\s+'tag'\\s*<=\\s*680\\s+then\\s+\\\"green\\\"",
+      "else\\s+if\\s+'tag'\\s*>\\s*700\\s+then\\s+\\\"red\\\"",
+      "else\\s+\\\"white\\\"$"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "IF ... THEN ... ELSE can be chained with ELSE IF, and can return digital state names in double quotes. This is the example from a PI Square thread.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-pisquare-pe-digital-states",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-not-equal",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 1,
+    "prompt": "Which operator means 'not equal' in PE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "!="
+      },
+      {
+        "id": "b",
+        "text": "<>"
+      },
+      {
+        "id": "c",
+        "text": "=/="
+      },
+      {
+        "id": "d",
+        "text": "NE"
+      }
+    ],
+    "answer": "b",
+    "explanation": "<> is not equal, as in 'Status' <> \"Stop\". AND, OR and NOT combine conditions.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-analyzing-pi-data-2018"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-equals",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 3,
+    "prompt": "In OSIsoft lab expressions such as 'Status' = \"Run\", what does a single = mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Assignment"
+      },
+      {
+        "id": "b",
+        "text": "Comparison (equality)"
+      },
+      {
+        "id": "c",
+        "text": "String concatenation"
+      },
+      {
+        "id": "d",
+        "text": "It is a syntax error"
+      }
+    ],
+    "answer": "b",
+    "explanation": "OSIsoft labs use a single = for comparison. One PI Square answer claims == is equality, but lab expressions use =; treat = as comparison.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019",
+      "af-pisquare-filter-expression"
+    ],
+    "verify": true,
+    "verifyNote": "Whether == is also accepted is not documented in readable sources."
+  },
+  {
+    "id": "q-pe-syntax-12301",
+    "type": "scenario",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the most likely cause?",
+    "scenario": "After moving PE tags to a new PI Server, one PE tag shows '[-12301] Performance Equation parsing error'. The expression looks correct and parsed on the old server.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The expression references a tag that was not migrated to the new server"
+      },
+      {
+        "id": "b",
+        "text": "PE tags cannot run on a new server"
+      },
+      {
+        "id": "c",
+        "text": "CompDev is set to 0"
+      },
+      {
+        "id": "d",
+        "text": "The tag's point source is C"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Error -12301 can be caused by referencing a tag that does not exist. The message log gives the position as \"Offset x\", and pipetest can test PE syntax.",
+    "lessonId": "pe-syntax",
+    "tags": [
+      "troubleshooting"
+    ],
+    "sources": [
+      "af-pisquare-pe-12301"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-smart-quotes",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 1,
+    "prompt": "An expression copied from a Word document fails to parse. What is a likely cause?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Smart (typographic) quotes or backticks instead of straight single quotes"
+      },
+      {
+        "id": "b",
+        "text": "Too many spaces"
+      },
+      {
+        "id": "c",
+        "text": "Upper-case function names"
+      },
+      {
+        "id": "d",
+        "text": "Using //"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Use straight single quotes ('). Smart quotes or backticks cause parse errors.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-software-athlete-calc-syntax",
+      "af-pisquare-pe-12301"
+    ]
+  },
+  {
+    "id": "q-pe-syntax-parsetime",
+    "type": "mcq",
+    "domain": "analytics",
+    "coverage": [
+      "an.pe-syntax"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the difference between '*' and ParseTime(\"*\") in an expression?",
+    "options": [
+      {
+        "id": "a",
+        "text": "None"
+      },
+      {
+        "id": "b",
+        "text": "A quoted time is evaluated when the expression is parsed; ParseTime evaluates its string argument at run time"
+      },
+      {
+        "id": "c",
+        "text": "ParseTime returns UTC seconds"
+      },
+      {
+        "id": "d",
+        "text": "'*' is local time and ParseTime is UTC"
+      }
+    ],
+    "answer": "b",
+    "explanation": "A quoted time expression is evaluated at parse (compile) time, while ParseTime() evaluates its string. The idiom Int(ParseTime(\"*\") - PrevEvent('Input Tag', ParseTime(\"*\"))) gives seconds since the last event.",
+    "lessonId": "pe-syntax",
+    "tags": [],
+    "sources": [
+      "af-pisquare-timestamp-diff"
+    ]
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "q-history-founded",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 1,
+    "prompt": "Who founded the company that created the PI System, and in which year?",
+    "options": [
+      { "id": "a", "text": "Dr. J. Patrick Kennedy, in 1980" },
+      { "id": "b", "text": "Schneider Electric, in 1985" },
+      { "id": "c", "text": "AVEVA, in 2021" },
+      { "id": "d", "text": "Dr. J. Patrick Kennedy, in 1995" }
+    ],
+    "answer": "a",
+    "explanation": "Pat Kennedy founded the company in 1980 as Oil Systems Inc., later renamed OSIsoft. 1985 is when the PI System itself was introduced, and 2021 is when AVEVA completed its acquisition.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history"],
+    "sources": ["da-wiki-osisoft", "da-lns-2020"]
+  },
+  {
+    "id": "q-history-original-name",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 1,
+    "prompt": "OSIsoft was originally founded under what company name?",
+    "accepted": ["Oil Systems Inc.", "Oil Systems Inc", "Oil Systems", "Oil Systems Incorporated"],
+    "explanation": "Kennedy founded the company as Oil Systems Inc.; it was later renamed OSIsoft LLC.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history"],
+    "sources": ["da-lns-2020"]
+  },
+  {
+    "id": "q-history-schneider",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 2,
+    "prompt": "Which statement best describes how OSIsoft became part of Schneider Electric?",
+    "options": [
+      { "id": "a", "text": "Schneider Electric bought OSIsoft directly in 2018" },
+      { "id": "b", "text": "AVEVA bought OSIsoft (completed March 2021) while Schneider was AVEVA's majority shareholder; Schneider then took full ownership of AVEVA in January 2023" },
+      { "id": "c", "text": "OSIsoft bought AVEVA and then merged with Schneider Electric" },
+      { "id": "d", "text": "Schneider Electric and AVEVA each bought half of OSIsoft in 2020" }
+    ],
+    "answer": "b",
+    "explanation": "AVEVA acquired OSIsoft; Schneider held about 60% of AVEVA at the time. On 18 January 2023 AVEVA announced it was wholly owned by Schneider Electric. 2018 is when Schneider merged its industrial software into AVEVA, not a purchase of OSIsoft.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "pitfall"],
+    "sources": ["da-schnitger-2020", "da-aveva-schneider-2023", "da-arc-avevaworld-2025"]
+  },
+  {
+    "id": "q-history-ocs-rename",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.history", "fnd.connect"],
+    "difficulty": 2,
+    "prompt": "Put the names of AVEVA's cloud data service in the order they were used, oldest first.",
+    "items": [
+      { "id": "a", "text": "OSIsoft Cloud Services (OCS)" },
+      { "id": "b", "text": "AVEVA Data Hub" },
+      { "id": "c", "text": "CONNECT data services" }
+    ],
+    "explanation": "OCS was OSIsoft's SaaS platform. As of 9 February 2022 it was officially named AVEVA Data Hub. In July 2024 AVEVA announced that AVEVA Data Hub was becoming CONNECT data services.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "cloud"],
+    "sources": ["da-aveva-ocs-2021", "da-aveva-cds-blog-2024", "ops2-aveva-dh-to-cds-blog"]
+  },
+  {
+    "id": "q-history-timeline",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 2,
+    "prompt": "Put these events in date order, oldest first.",
+    "items": [
+      { "id": "a", "text": "PI System introduced" },
+      { "id": "b", "text": "AVEVA announces intent to acquire OSIsoft" },
+      { "id": "c", "text": "Acquisition of OSIsoft completed" },
+      { "id": "d", "text": "AVEVA Data Hub announced at PI World" },
+      { "id": "e", "text": "Schneider Electric completes acquisition of AVEVA" }
+    ],
+    "explanation": "1985 PI System; 25 August 2020 announcement; 19 March 2021 completion; 19 October 2021 AVEVA Data Hub announced; 18 January 2023 AVEVA wholly owned by Schneider Electric.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history"],
+    "sources": ["da-lns-2020", "da-automationworld-2020", "da-arc-completion-2021", "da-arc-datahub-2021", "da-aveva-schneider-2023"]
+  },
+  {
+    "id": "q-history-final-price",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 3,
+    "prompt": "A report says AVEVA paid exactly USD 5 billion for OSIsoft. What is the more precise statement?",
+    "options": [
+      { "id": "a", "text": "USD 5 billion was the headline value at announcement (USD 4.4 billion cash plus USD 0.6 billion in shares); the final consideration reported at completion was GBP 3,831.4 million" },
+      { "id": "b", "text": "The price was USD 5 billion paid entirely in cash" },
+      { "id": "c", "text": "The price was USD 488.5 million" },
+      { "id": "d", "text": "The price was USD 135 million" }
+    ],
+    "answer": "a",
+    "explanation": "The announced deal was USD 4.4 billion cash plus USD 0.6 billion in AVEVA shares. Completion reported a final consideration of GBP 3,831.4 million. USD 488.5 million was OSIsoft's revenue in the 12 months to June 2020, and USD 135 million was the 2011 minority investment.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "pitfall"],
+    "sources": ["da-schnitger-2020", "da-lns-2020", "da-wiki-osisoft", "da-arc-completion-2021"]
+  },
+  {
+    "id": "q-history-renames-match",
+    "type": "matching",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 2,
+    "prompt": "Match each older name to its newer name.",
+    "pairs": [
+      { "left": "PI Coresight", "right": "PI Vision" },
+      { "left": "OSIsoft Cloud Services", "right": "AVEVA Data Hub" },
+      { "left": "AVEVA Data Hub", "right": "CONNECT data services" },
+      { "left": "PI Server", "right": "AVEVA PI Server" }
+    ],
+    "explanation": "PI Coresight was the predecessor of PI Vision. OCS was renamed AVEVA Data Hub in February 2022, which in turn is becoming CONNECT data services. AVEVA product pages now use AVEVA-prefixed names such as AVEVA PI Server.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "naming"],
+    "sources": ["da-pi101-2017-basics", "da-aveva-ocs-2021", "da-aveva-cds-blog-2024", "da-aveva-pi-system-page"]
+  },
+  {
+    "id": "q-history-kennedy-role",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 1,
+    "prompt": "What role did Pat Kennedy take at AVEVA after the acquisition?",
+    "options": [
+      { "id": "a", "text": "Chief Executive Officer" },
+      { "id": "b", "text": "Chairman Emeritus, a newly created role" },
+      { "id": "c", "text": "Chief Technology Officer" },
+      { "id": "d", "text": "He left with no role" }
+    ],
+    "answer": "b",
+    "explanation": "After the deal Kennedy took a newly created role as Chairman Emeritus.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history"],
+    "sources": ["da-automationworld-2020", "da-lns-2020"]
+  },
+  {
+    "id": "q-history-install-base",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 2,
+    "prompt": "Which of these figures were reported about the PI System when the AVEVA deal was announced in 2020? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Used at about 14,000 sites" },
+      { "id": "b", "text": "Used in 127 countries" },
+      { "id": "c", "text": "Used by 38 of the Global Fortune Top 40 oil and gas companies" },
+      { "id": "d", "text": "Used by every power utility in the world" },
+      { "id": "e", "text": "Installed on 1 million servers" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "At announcement the PI System was used at about 14,000 sites in 127 countries, including more than 1,000 power and utility companies and 38 of the Global Fortune Top 40 oil and gas companies. The other two claims do not appear in the sources.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history"],
+    "sources": ["da-automationworld-2020"]
+  },
+  {
+    "id": "q-history-tf-headquarters",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 1,
+    "prompt": "True or false: OSIsoft was headquartered in San Leandro, California.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "t",
+    "explanation": "OSIsoft was headquartered in San Leandro, California, USA.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "true-false"],
+    "sources": ["da-wiki-osisoft"]
+  },
+  {
+    "id": "q-history-version-scenario",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.history"],
+    "difficulty": 3,
+    "scenario": "An auditor asks which PI Server line is the long-lived, feature-stable branch that keeps getting fixes as patches, and which release was the first 'hybrid' release integrating with AVEVA Data Hub.",
+    "prompt": "Which answer is correct?",
+    "options": [
+      { "id": "a", "text": "PI Server 2018 SP3 is the feature-stable patch branch; PI Server 2023 was the first hybrid release" },
+      { "id": "b", "text": "PI Server 2012 is the feature-stable branch; PI Server 2018 was the first hybrid release" },
+      { "id": "c", "text": "PI Server 2023 is the feature-stable branch; PI Server 2024 was the first hybrid release" },
+      { "id": "d", "text": "There is no patch branch; every fix needs a full new release" }
+    ],
+    "answer": "a",
+    "explanation": "PI Server 2018 SP3 is the feature-stable branch that receives fixes as patches (Patch 5 was current in 2023). PI Server 2023 was the first hybrid release, integrating with AVEVA Data Hub and adding OIDC authentication.",
+    "lessonId": "osisoft-to-aveva-history",
+    "tags": ["history", "versions"],
+    "sources": ["da-uc23-security", "da-arch-workbook"]
+  }
+]

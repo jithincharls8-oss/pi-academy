@@ -1,0 +1,202 @@
+[
+  {
+    "id": "q-opc-one-server",
+    "type": "scenario",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 1,
+    "scenario": "A site has three OPC DA servers on three different control-system nodes. A new admin plans to add all three servers to a single PI Interface for OPC DA instance.",
+    "prompt": "What should the admin do instead?",
+    "options": [
+      { "id": "a", "text": "Configure one interface instance per OPC server, because each instance connects to a single OPC server" },
+      { "id": "b", "text": "List all three servers in /SERVER separated by commas" },
+      { "id": "c", "text": "Use three scan classes, one per server" },
+      { "id": "d", "text": "Install the interface on the PI home node so it can see all servers" }
+    ],
+    "answer": "a",
+    "explanation": "Each PI Interface for OPC DA instance connects to a single OPC server, so three servers need three instances. Scan classes control timing, not which server is read, and the home node gains nothing (an interface node is preferred because it supports buffering).",
+    "lessonId": "opc-data-collection",
+    "tags": ["opc-da"],
+    "sources": ["dcv-techsupport-opcda"]
+  },
+  {
+    "id": "q-opc-location3",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "Match each OPC DA Location3 value to the point type it selects.",
+    "pairs": [
+      { "left": "0", "right": "Polled or event point" },
+      { "left": "1", "right": "Advise point" },
+      { "left": "2", "right": "Output point" },
+      { "left": "3 or 4", "right": "Watchdog point used for failover" }
+    ],
+    "explanation": "For the PI Interface for OPC DA, Location3 is 0 for polled/event, 1 for advise, 2 for output, and 3 or 4 for watchdog points used in server-level failover.",
+    "lessonId": "opc-data-collection",
+    "tags": ["point-attributes"],
+    "sources": ["dcv-rovisys-opc90"]
+  },
+  {
+    "id": "q-opc-instrumenttag",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 1,
+    "prompt": "Which PI point attribute holds the OPC ItemID (for example CIU-A.Import.AIL_point.OUT) that the OPC DA interface reads?",
+    "options": [
+      { "id": "a", "text": "InstrumentTag" },
+      { "id": "b", "text": "ExDesc" },
+      { "id": "c", "text": "Descriptor" },
+      { "id": "d", "text": "Location2" }
+    ],
+    "answer": "a",
+    "explanation": "InstrumentTag holds the OPC ItemID. Descriptor is a free-text description, and Location2 controls special handling of data types (usually 0).",
+    "lessonId": "opc-data-collection",
+    "tags": ["point-attributes"],
+    "sources": ["dcv-rovisys-opc90"]
+  },
+  {
+    "id": "q-opc-server-format",
+    "type": "fill",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "In the OPC DA /SERVER parameter, which two characters separate the node name from the OPC server name? (/SERVER=<node>__<name>)",
+    "accepted": ["::"],
+    "caseSensitive": false,
+    "explanation": "The format is /SERVER=<node>::<name>, giving the machine and the OPC server name.",
+    "lessonId": "opc-data-collection",
+    "tags": ["parameters"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-opc-tools",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "Match each OPC DA tool to its purpose.",
+    "pairs": [
+      { "left": "PIOPCTool", "right": "Install and verify the connection to the OPC server" },
+      { "left": "PI_OPCClient", "right": "A test OPC client" },
+      { "left": "OPC Tag Configurator", "right": "Create PI points from OPC server tags" },
+      { "left": "PI ICU", "right": "Edit the interface's startup parameters" }
+    ],
+    "explanation": "PIOPCTool is installed with the interface for installing and verifying the connection, PI_OPCClient is a test client, OPC Tag Configurator creates PI points from server tags, and PI ICU edits the startup batch file.",
+    "lessonId": "opc-data-collection",
+    "tags": ["tools"],
+    "sources": ["dcv-techsupport-opcda", "dcv-arch-workbook"]
+  },
+  {
+    "id": "q-opc-failover-versions",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.opc", "dc.failover"],
+    "difficulty": 3,
+    "prompt": "From which version does the PI Interface for OPC DA support UniInt Phase 2 failover?",
+    "options": [
+      { "id": "a", "text": "2.3.2.0" },
+      { "id": "b", "text": "2.3.10.0" },
+      { "id": "c", "text": "1.3.1.0" },
+      { "id": "d", "text": "It does not support Phase 2" }
+    ],
+    "answer": "b",
+    "explanation": "OPC DA supports UniInt Phase 1 from 2.3.2.0 and Phase 2 from 2.3.10.0, as well as server-level failover.",
+    "lessonId": "opc-data-collection",
+    "tags": ["failover"],
+    "sources": ["dcv-techsupport-opcda"]
+  },
+  {
+    "id": "q-opc-shutdown-status",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 3,
+    "prompt": "You want the OPC DA interface to write a status to its points on shutdown. Where do you set this?",
+    "options": [
+      { "id": "a", "text": "In the UniInt tab: \"Write Status to Tags on Shutdown\"" },
+      { "id": "b", "text": "With /OPCSTOPSTAT in the OPCInt plug-in, because the UniInt setting is ignored for OPC DA" },
+      { "id": "c", "text": "With /stopstat in the failover configuration" },
+      { "id": "d", "text": "In the OPC server's own configuration only" }
+    ],
+    "answer": "b",
+    "explanation": "The UniInt \"Write Status to Tags on Shutdown\" option is ignored for OPC DA; it is set in the OPCInt plug-in with /OPCSTOPSTAT (for example /OPCSTOPSTAT=IntfShut).",
+    "lessonId": "opc-data-collection",
+    "tags": ["parameters"],
+    "sources": ["dcv-arch-workbook"]
+  },
+  {
+    "id": "q-opc-interface-node",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 1,
+    "prompt": "Why is a separate interface node preferred over the PI home node for the OPC DA interface?",
+    "options": [
+      { "id": "a", "text": "It supports buffering" },
+      { "id": "b", "text": "The interface cannot be installed on the home node" },
+      { "id": "c", "text": "It removes the need for scan classes" },
+      { "id": "d", "text": "OPC DA only works over the internet" }
+    ],
+    "answer": "a",
+    "explanation": "The interface can run on the PI home node or an interface node, but an interface node is preferred because it supports buffering.",
+    "lessonId": "opc-data-collection",
+    "tags": ["architecture"],
+    "sources": ["dcv-techsupport-opcda"]
+  },
+  {
+    "id": "q-opc-ua-connector-features",
+    "type": "multi",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "Which features are listed for the PI Connector for OPC UA? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Auto-discovery of endpoints" },
+      { "id": "b", "text": "Automatic creation of PI points and AF elements" },
+      { "id": "c", "text": "Support for \"Tag Only\" mode (v1.3.x.x)" },
+      { "id": "d", "text": "Support for sending engineering units (v1.3.x.x)" },
+      { "id": "e", "text": "Reading from OPC DA servers" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The 2016 connector auto-discovered endpoints and auto-created PI points and AF elements; version 1.3.x.x added Tag Only mode and engineering units and was certified by the OPC Foundation. OPC DA servers are read by the PI Interface for OPC DA.",
+    "lessonId": "opc-data-collection",
+    "tags": ["opc-ua"],
+    "sources": ["dcv-iuliano-ems-2016", "dcv-saboowala-connectivity-2019"]
+  },
+  {
+    "id": "q-opc-three-paths",
+    "type": "matching",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "Match each OPC product to where it sends data.",
+    "pairs": [
+      { "left": "PI Interface for OPC DA", "right": "PI Data Archive, through the PI Buffer Subsystem" },
+      { "left": "PI Connector for OPC UA", "right": "PI Data Archive and AF (2nd-generation connectors go via the Relay)" },
+      { "left": "AVEVA Adapter for OPC UA", "right": "OMF endpoints such as PI Web API, Edge Data Store or Data Hub" }
+    ],
+    "explanation": "Interfaces send to the Data Archive and are buffered by PIBufss. PI Connectors send data and structure to the Data Archive and AF (2nd gen through the PI Connector Relay). Adapters send OMF to endpoints such as PI Web API, EDS and AVEVA Data Hub.",
+    "lessonId": "opc-data-collection",
+    "tags": ["architecture"],
+    "sources": ["dcv-arch-workbook", "dcv-felts-connectivity-2023"]
+  },
+  {
+    "id": "q-opc-cluster",
+    "type": "mcq",
+    "domain": "data-collection",
+    "coverage": ["dc.opc"],
+    "difficulty": 2,
+    "prompt": "True or false: Microsoft Cluster failover is the recommended way to make the PI Interface for OPC DA highly available.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "False. AVEVA's tech-support page lists Microsoft Cluster failover as \"Not recommended\". Use UniInt Phase 1 or Phase 2 failover, or server-level failover.",
+    "lessonId": "opc-data-collection",
+    "tags": ["true-false", "failover"],
+    "sources": ["dcv-techsupport-opcda"]
+  }
+]

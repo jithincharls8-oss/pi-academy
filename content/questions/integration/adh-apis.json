@@ -1,0 +1,475 @@
+[
+  {
+    "id": "q-adh-apis-01",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 1,
+    "prompt": "Which is the correct shape of a CONNECT data services REST base URL?",
+    "options": [
+      {
+        "id": "a",
+        "text": "{resource}/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}"
+      },
+      {
+        "id": "b",
+        "text": "{resource}/Namespaces/{namespaceId}/Tenants/{tenantId}/api"
+      },
+      {
+        "id": "c",
+        "text": "{resource}/piwebapi/tenants/{tenantId}"
+      },
+      {
+        "id": "d",
+        "text": "{resource}/api/Tenants/{tenantId}/{version}"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's library builds {resource}/api/{version}/Tenants/{tenantId}/Namespaces/{namespaceId}. Namespaces sit inside tenants, and the API version comes after /api.",
+    "sources": [
+      "int-gh-adh-lib-baseclient"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-02",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "A script reads a stream window from CONNECT but always gets fewer values than expected. What is the most likely mistake?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It ignores the continuationToken and reads only the first page"
+      },
+      {
+        "id": "b",
+        "text": "It sends Accept: application/json"
+      },
+      {
+        "id": "c",
+        "text": "It uses a client-credentials token"
+      },
+      {
+        "id": "d",
+        "text": "It uses startIndex and endIndex"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Paged window reads return a continuationToken; the client must repeat the call with it until it is null. Ignoring it means only the first page is read.",
+    "sources": [
+      "int-gh-adh-lib-streams",
+      "int-gh-adh-transfer-verification-getdata"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-03",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 1,
+    "prompt": "A background service with no user present must call CONNECT data services. Which authentication flow fits?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Client Credentials"
+      },
+      {
+        "id": "b",
+        "text": "Authorization Code + PKCE"
+      },
+      {
+        "id": "c",
+        "text": "Hybrid"
+      },
+      {
+        "id": "d",
+        "text": "Kerberos"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Client Credentials is the machine-to-machine flow: tenant ID, client ID and client secret, no refresh token. Authorization Code + PKCE is for single-page and native apps; Hybrid is for thick apps with a server component.",
+    "sources": [
+      "int-gh-cloudops-auth"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-04",
+    "type": "matching",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each CONNECT authentication flow to the tokens it gives.",
+    "pairs": [
+      {
+        "left": "Client Credentials",
+        "right": "Access token, no refresh token (machine-to-machine)"
+      },
+      {
+        "left": "Authorization Code + PKCE",
+        "right": "Silent refresh, no refresh token (SPA or native)"
+      },
+      {
+        "left": "Hybrid",
+        "right": "Access and refresh tokens (thick app with server)"
+      }
+    ],
+    "explanation": "Client Credentials gives an access token with no refresh token. Authorization Code + PKCE uses silent refresh and no refresh token. Hybrid gives access and refresh tokens.",
+    "sources": [
+      "int-gh-cloudops-auth"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-05",
+    "type": "fill",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "Streams written by the PI to Data Hub transfer have IDs of the form ___<DataArchiveName>_<PointId>. What is the prefix?",
+    "accepted": [
+      "PI_",
+      "PI"
+    ],
+    "explanation": "PI-transferred streams are read-only and have IDs PI_<DataArchiveName or alias>_<PointId>, so a search like ID:PI_PISRV01_* AND Name:sinusoid finds one.",
+    "sources": [
+      "int-gh-adh-pi-readonly-py",
+      "int-gh-adh-transfer-verification-getdata"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-06",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "How does AVEVA's CONNECT sample library treat an HTTP 207 response to a collection call?",
+    "options": [
+      {
+        "id": "a",
+        "text": "As an error, because some items failed"
+      },
+      {
+        "id": "b",
+        "text": "As full success"
+      },
+      {
+        "id": "c",
+        "text": "As a redirect to follow"
+      },
+      {
+        "id": "d",
+        "text": "As a signal to refresh the token"
+      }
+    ],
+    "answer": "a",
+    "explanation": "207 means partial success: some items failed. AVEVA's library treats it as an error, and treating it as success is a listed mistake.",
+    "sources": [
+      "int-gh-adh-lib-baseclient"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-07",
+    "type": "multi",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 3,
+    "prompt": "Which statements about sending OMF to CONNECT data services are true? Choose all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only the Dynamic type classification is accepted"
+      },
+      {
+        "id": "b",
+        "text": "Link type data is not accepted"
+      },
+      {
+        "id": "c",
+        "text": "An OMF connection is configured in the portal"
+      },
+      {
+        "id": "d",
+        "text": "OMF is posted to {piwebapi}/omf on the cloud"
+      },
+      {
+        "id": "e",
+        "text": "Static types are required for every container"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "CONNECT accepts OMF at {resource}/api/{version}/tenants/{tenantId}/namespaces/{namespaceId}/omf, using a client-credentials client and an OMF connection configured in the portal. It accepts only the Dynamic type classification and no Link type data.",
+    "sources": [
+      "int-gh-omf-complexdynamic-program",
+      "int-gh-aveva-samples-omf"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-08",
+    "type": "ordering",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the client-credentials token steps used in AVEVA's samples in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "GET {resource}/identity/.well-known/openid-configuration"
+      },
+      {
+        "id": "b",
+        "text": "Read token_endpoint from the discovery document"
+      },
+      {
+        "id": "c",
+        "text": "POST client_id, client_secret and grant_type=client_credentials"
+      },
+      {
+        "id": "d",
+        "text": "Read access_token and expires_in"
+      },
+      {
+        "id": "e",
+        "text": "Send Authorization: Bearer <token> on API calls"
+      }
+    ],
+    "explanation": "GET the discovery document at {resource}/identity/.well-known/openid-configuration, read token_endpoint, POST client_id, client_secret and grant_type=client_credentials, then read access_token and expires_in and send it as Authorization: Bearer.",
+    "sources": [
+      "int-gh-omf-complexdynamic-auth",
+      "int-gh-adh-lib-baseclient"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-09",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "What does the optional Accept-Verbosity header control in CONNECT data responses?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Whether default-valued fields are returned"
+      },
+      {
+        "id": "b",
+        "text": "How many log lines the server writes"
+      },
+      {
+        "id": "c",
+        "text": "Whether errors include stack traces"
+      },
+      {
+        "id": "d",
+        "text": "The compression level of the response"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Accept-Verbosity (verbose or non-verbose) controls whether default-valued fields are returned in data responses.",
+    "sources": [
+      "int-gh-adh-lib-baseclient",
+      "int-gh-adh-pi-readonly-py"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-10",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 3,
+    "prompt": "How does a client get the next page of a CONNECT data view's results?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Follow the next-page link in the HTTP Link header"
+      },
+      {
+        "id": "b",
+        "text": "Increase skip by 100 on /data/interpolated"
+      },
+      {
+        "id": "c",
+        "text": "Send the LatestMarker from the previous call"
+      },
+      {
+        "id": "d",
+        "text": "Use a PI Web API batch"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Data view paging follows next/first page links returned in the HTTP Link header. Stream data windows, by contrast, use continuationToken.",
+    "sources": [
+      "int-gh-adh-lib-dataviews"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-11",
+    "type": "scenario",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "Why the cloud copy has fewer events than PI's snapshot history.",
+    "scenario": "An engineer compares a compressed PI point with its CONNECT stream. The PI snapshot showed many more events during the day than the cloud stream now holds, but the cloud matches PI's archived values exactly.\n\nWhat explains the difference?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only archived data are sent for compressed points, so discarded snapshot events never reach the cloud"
+      },
+      {
+        "id": "b",
+        "text": "The cloud stream applies its own compression"
+      },
+      {
+        "id": "c",
+        "text": "The continuationToken was ignored"
+      },
+      {
+        "id": "d",
+        "text": "Accept-Verbosity was set to non-verbose"
+      }
+    ],
+    "answer": "a",
+    "explanation": "For compressed PI points, only archived data are sent by the PI to Data Hub agent, so comparisons cover archived values only. Snapshot events that compression discarded never reach the cloud.",
+    "sources": [
+      "int-gh-adh-transfer-verification-ps"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-12",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 3,
+    "prompt": "Which SDS data call replaces existing events without creating new ones?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PUT /Streams/{id}/Data?allowCreate=false"
+      },
+      {
+        "id": "b",
+        "text": "POST /Streams/{id}/Data"
+      },
+      {
+        "id": "c",
+        "text": "DELETE /Streams/{id}/Data"
+      },
+      {
+        "id": "d",
+        "text": "GET /Streams/{id}/Data/Last"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PUT /Streams/{id}/Data?allowCreate=false is the replace form. Plain PUT updates, POST inserts and DELETE removes events by index or window.",
+    "sources": [
+      "int-gh-adh-lib-streams"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-13",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 2,
+    "prompt": "A reporting script only reads one stream. Which access does AVEVA's verification sample suggest is enough?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Read-only access to the stream, or Tenant Member"
+      },
+      {
+        "id": "b",
+        "text": "Tenant Administrator"
+      },
+      {
+        "id": "c",
+        "text": "Owner of every namespace"
+      },
+      {
+        "id": "d",
+        "text": "A shared user account with a password in the script"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Read-only access to the stream, or the Tenant Member role, is enough for reads. Granting broader roles than needed is a listed mistake.",
+    "sources": [
+      "int-gh-adh-transfer-verification-ps"
+    ],
+    "lessonId": "connect-data-services-apis"
+  },
+  {
+    "id": "q-adh-apis-14",
+    "type": "mcq",
+    "domain": "integration",
+    "coverage": [
+      "int.adh-apis"
+    ],
+    "difficulty": 1,
+    "prompt": "In an SdsType for time-series data, which property is flagged IsKey?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A DateTime timestamp property"
+      },
+      {
+        "id": "b",
+        "text": "The value property"
+      },
+      {
+        "id": "c",
+        "text": "The stream ID"
+      },
+      {
+        "id": "d",
+        "text": "The namespace ID"
+      }
+    ],
+    "answer": "a",
+    "explanation": "SDS types flag the index property with IsKey; for time series it is a DateTime property. Value properties have IsKey false.",
+    "sources": [
+      "int-gh-adh-time-series-program"
+    ],
+    "lessonId": "connect-data-services-apis"
+  }
+]

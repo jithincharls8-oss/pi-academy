@@ -1,0 +1,217 @@
+[
+  {
+    "id": "q-lic-msf-machine",
+    "type": "scenario",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 2,
+    "scenario": "To save time, an administrator runs the install kit's machine-signature generator on her own laptop, gets a licence file from the Customer Portal and copies it to the new production server PISRV01.",
+    "prompt": "What will happen?",
+    "options": [
+      { "id": "a", "text": "The licence will not work, because the Machine Signature File must be generated on the target server" },
+      { "id": "b", "text": "It works, because licences are tied to the customer account, not the machine" },
+      { "id": "c", "text": "It works for 90 days, then expires" },
+      { "id": "d", "text": "It works if she renames the file to match the server name" }
+    ],
+    "answer": "a",
+    "explanation": "The Machine Signature File is created by the install kit on the target server or VM; a file generated on another machine produces an unusable licence. The 90-day figure relates to the PI Test Server's data retrieval limit, not licence expiry.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing", "pitfall"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-lic-before-install",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 1,
+    "prompt": "Put the PI Data Archive licensing steps in order.",
+    "items": [
+      { "id": "a", "text": "Run the machine-signature generator on the target server" },
+      { "id": "b", "text": "Upload the Machine Signature File to the Customer Portal" },
+      { "id": "c", "text": "Download the licence file" },
+      { "id": "d", "text": "Install the PI Server; setup copies the licence to %PISERVER%\\dat" }
+    ],
+    "explanation": "The licence file must be generated before the Data Archive is installed. Setup then copies it to %PISERVER%\\dat.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing", "install"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-lic-pi-to-pi",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 2,
+    "prompt": "Under the 2026 PI System Software Schedule, how many PI to PI licences does two-way transfer between a site and head office need?",
+    "options": [
+      { "id": "a", "text": "One, because PI to PI is bidirectional" },
+      { "id": "b", "text": "Two, because each PI to PI connection is unidirectional" },
+      { "id": "c", "text": "None; PI to PI is included with every PI Server" },
+      { "id": "d", "text": "One per tag transferred" }
+    ],
+    "answer": "b",
+    "explanation": "The schedule states each PI to PI connection is unidirectional, so two licences are needed for bidirectional transfer.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-lic-manager",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing", "da.subsystems"],
+    "difficulty": 1,
+    "prompt": "Which Data Archive subsystem maintains licence information for the Data Archive and connected applications?",
+    "accepted": ["PI License Manager", "License Manager", "pilicmgr", "PI Licence Manager"],
+    "explanation": "The PI License Manager (process pilicmgr) maintains licence information for the Data Archive and connected applications.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["subsystems"],
+    "sources": ["da-admin-workbook-2017r2", "da-ps-msglog-blog"]
+  },
+  {
+    "id": "q-lic-flex-steps",
+    "type": "ordering",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 2,
+    "prompt": "Order the steps for using AVEVA Flex.",
+    "items": [
+      { "id": "a", "text": "Subscribe to AVEVA Flex" },
+      { "id": "b", "text": "Buy AVEVA Flex Credits for an AVEVA Connect account" },
+      { "id": "c", "text": "Consume software against AVEVA Flex Product Rate Plans" }
+    ],
+    "explanation": "AVEVA's Flex document: subscribe, buy Flex Credits for an AVEVA Connect account, then consume software against Flex Product Rate Plans at daily, monthly or annual burn-down rates.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["flex"],
+    "sources": ["da-flex-pdf"]
+  },
+  {
+    "id": "q-lic-flex-metrics",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 2,
+    "prompt": "Which metrics does AVEVA list for Flex credit burn-down? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Monthly active users" },
+      { "id": "b", "text": "Concurrent users" },
+      { "id": "c", "text": "Terabytes" },
+      { "id": "d", "text": "Data streams" },
+      { "id": "e", "text": "CPU clock speed of the server" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The Flex document lists monthly active users, daily active users, concurrent users, terabytes, data streams and diagrams. CPU speed is not a listed metric.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["flex"],
+    "sources": ["da-flex-pdf"]
+  },
+  {
+    "id": "q-lic-test-server",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 2,
+    "prompt": "Which statement about a licensed PI Test Server is correct according to the 2026 schedule?",
+    "options": [
+      { "id": "a", "text": "It can be used in production at night" },
+      { "id": "b", "text": "It has a 90-day data retrieval limit, matches the production tag count up to one million tags, and cannot be used in production" },
+      { "id": "c", "text": "It is limited to 1,000 tags" },
+      { "id": "d", "text": "It may be used as a hot standby for production" }
+    ],
+    "answer": "b",
+    "explanation": "The schedule describes the PI Test Server as matching production tag count up to one million tags with a ninety-day data retrieval limit, and states it cannot be used in a production environment.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-lic-backup-standby",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing", "da.backup"],
+    "difficulty": 2,
+    "prompt": "True or false: under the schedule, a backup copy of a PI Server may run as a hot standby without its own licence.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "Backup copies may not be used for testing or training, as a hot standby or as a caching server. High availability uses licensed HA PI Servers that form a collective with the primary.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["true-false", "licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-lic-aggregate-agent",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing", "fnd.connect"],
+    "difficulty": 3,
+    "prompt": "In the Aggregate Tag licence model, what must be installed and configured on each PI Server?",
+    "options": [
+      { "id": "a", "text": "The PI to CONNECT Agent, which reports tag usage" },
+      { "id": "b", "text": "PI Vision" },
+      { "id": "c", "text": "A second SQL Server" },
+      { "id": "d", "text": "The legacy API Buffer Server (bufserv)" }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA's service description says each PI Server in the aggregate tag model requires the PI to CONNECT Agent, which reports tag usage and can optionally send process data to CONNECT data services.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing", "connect"],
+    "sources": ["ops2-pidi-service-description"]
+  },
+  {
+    "id": "q-lic-aggregate-rules",
+    "type": "multi",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "Which rules apply to Aggregate Tag tiers in the 2026 schedule? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "The customer commits to a minimum tag tier" },
+      { "id": "b", "text": "The tier can be spread across all PI Servers" },
+      { "id": "c", "text": "Overage is paid at a daily rate" },
+      { "id": "d", "text": "The tier can be reduced at any time during the term" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "The customer commits to a minimum tier spread across all PI Servers, overage is paid at a daily rate, and reductions during the term are not allowed.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-lic-named-user",
+    "type": "fill",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "Under the schedule, a named user licence can be reassigned no sooner than how many days after the last reassignment?",
+    "accepted": ["90", "90 days", "ninety"],
+    "explanation": "A named user is one person and their login account, and can be reassigned no sooner than 90 days after the last reassignment.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["licensing"],
+    "sources": ["ops2-sw-schedule-pi-2026"]
+  },
+  {
+    "id": "q-lic-flex-estimate",
+    "type": "mcq",
+    "domain": "foundations",
+    "coverage": ["fnd.licensing"],
+    "difficulty": 3,
+    "prompt": "A blog says a PI Server costs about 20 Flex credits per day. How should you treat that figure?",
+    "options": [
+      { "id": "a", "text": "As an official AVEVA list rate" },
+      { "id": "b", "text": "As a third-party estimate that must be checked with AVEVA" },
+      { "id": "c", "text": "As the PI Test Server rate" },
+      { "id": "d", "text": "As the PI Vision named-user rate" }
+    ],
+    "answer": "b",
+    "explanation": "The 20 credits per day figure comes from a third-party reseller, not AVEVA. Official rate-plan figures were not found in a readable source.",
+    "lessonId": "licensing-and-editions",
+    "tags": ["flex"],
+    "sources": ["da-flow-software-2025"],
+    "verify": true,
+    "verifyNote": "Official AVEVA Flex rate-plan figures for PI Server were not found; confirm with AVEVA."
+  }
+]

@@ -1,0 +1,375 @@
+[
+  {
+    "id": "q-vis-datalink-volatile",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI DataLink function is volatile by default?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Current Value"
+      },
+      {
+        "id": "b",
+        "text": "Compressed Data"
+      },
+      {
+        "id": "c",
+        "text": "Calculated Data"
+      },
+      {
+        "id": "d",
+        "text": "Explore Events"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"The only PI DataLink function that is volatile by default is Current Value.\" Volatile functions recalculate whenever Excel recalculates.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "updating"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-conversion",
+    "type": "fill",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "prompt": "A flow tag is in units per minute. In Calculated Data, which conversion factor gives a correct total over one day?",
+    "accepted": [
+      "1440"
+    ],
+    "caseSensitive": false,
+    "explanation": "A day has 1,440 minutes, and the DataLink lab uses a conversion factor of 1440 for the total of a per-minute rate.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "calculated-data"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-explore-compare",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "prompt": "You need event frames that share a template returned hierarchically, including child events, in PI DataLink. Which retrieval method fits?",
+    "explanation": "Explore Events is hierarchical, suits events sharing a template and has a setting for the number of child event levels. Compare Events is flat, with child attributes on the parent row. Compressed and Calculated Data return time-series values, not events.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "events"
+    ],
+    "sources": [
+      "dcv-analyzing-workbook-2018"
+    ],
+    "options": [
+      {
+        "id": "a",
+        "text": "Explore Events"
+      },
+      {
+        "id": "b",
+        "text": "Compare Events"
+      },
+      {
+        "id": "c",
+        "text": "Compressed Data"
+      },
+      {
+        "id": "d",
+        "text": "Calculated Data"
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": "q-vis-datalink-function-map",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each PI DataLink item to the correct fact.",
+    "pairs": [
+      {
+        "left": "Calculated Data",
+        "right": "Writes the PIAdvCalcVal function"
+      },
+      {
+        "left": "Compressed Data",
+        "right": "Writes the PICompDat function"
+      },
+      {
+        "left": "Current Value",
+        "right": "The only function volatile by default"
+      }
+    ],
+    "explanation": "The DataLink lab maps Calculated Data to PIAdvCalcVal and Compressed Data to PICompDat, and states that Current Value is the only function volatile by default.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "functions"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-ranges",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "scenario": "A daily report has 500 separate single-cell DataLink formulas, one per tag, and takes several minutes to refresh.",
+    "prompt": "What change does the DataLink lab show cuts call counts by an order of magnitude?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Convert the single-cell formulas into contiguous ranges"
+      },
+      {
+        "id": "b",
+        "text": "Make every formula volatile"
+      },
+      {
+        "id": "c",
+        "text": "Set Automatic Update to a 0 s interval"
+      },
+      {
+        "id": "d",
+        "text": "Switch to Excel 2003"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Converting single-cell formulas into contiguous ranges cut call counts by an order of magnitude. Making formulas volatile or auto-updating adds load, and DataLink 2012 dropped Excel 2003.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020",
+      "dcv-datalink-2012-uc"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-spill",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 2,
+    "prompt": "A DataLink dynamic-array result shows #SPILL in a modern version of Excel. What does it mean?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cells in the spill range are blocked by other content"
+      },
+      {
+        "id": "b",
+        "text": "The PI server is unreachable"
+      },
+      {
+        "id": "c",
+        "text": "The tag name is misspelled"
+      },
+      {
+        "id": "d",
+        "text": "The add-in is not installed"
+      }
+    ],
+    "answer": "a",
+    "explanation": "With dynamic arrays a blocked spill range shows #SPILL; older Excel shows #NAME?. Only the top-left cell is editable.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "excel"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-1000",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 3,
+    "prompt": "An event search in DataLink should return about 4,000 event frames, but the preview stops at 1,000. What does the course say to do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Change the preview limit in Settings to 10,000"
+      },
+      {
+        "id": "b",
+        "text": "Split the search into four Excel workbooks"
+      },
+      {
+        "id": "c",
+        "text": "Use Current Value instead"
+      },
+      {
+        "id": "d",
+        "text": "Nothing; DataLink can never return more than 1,000 events"
+      }
+    ],
+    "answer": "a",
+    "explanation": "To preview more than 1,000 event frames, change Settings to 10,000.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "events"
+    ],
+    "sources": [
+      "dcv-analyzing-workbook-2018"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-groups",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 1,
+    "prompt": "Which are PI DataLink function groups? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Single-value"
+      },
+      {
+        "id": "b",
+        "text": "Multiple-value"
+      },
+      {
+        "id": "c",
+        "text": "Calculation"
+      },
+      {
+        "id": "d",
+        "text": "Events"
+      },
+      {
+        "id": "e",
+        "text": "Display migration"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The groups are Single-value, Multiple-value, Calculation, Events, Search and Properties. Display migration is done by the ProcessBook Migration Utility.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "functions"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-2012",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 3,
+    "prompt": "What did PI DataLink 2012 introduce or change? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF integration, including attributes and asset-relative use"
+      },
+      {
+        "id": "b",
+        "text": "Search"
+      },
+      {
+        "id": "c",
+        "text": "Excel 2010 64-bit support"
+      },
+      {
+        "id": "d",
+        "text": "Dropped Excel 2003 support"
+      },
+      {
+        "id": "e",
+        "text": "Writing to Notifications"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "DataLink 2012 added AF integration, search and Excel 2010 64-bit support, and dropped Excel 2003. Notifications support in DataLink is read-only.",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "history"
+    ],
+    "sources": [
+      "dcv-datalink-2012-uc",
+      "dcv-kwan-roadmap-2016"
+    ]
+  },
+  {
+    "id": "q-vis-datalink-picompdat-times",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": [
+      "vis.datalink"
+    ],
+    "difficulty": 1,
+    "prompt": "In PICompDat(\"cdm158\",\"y\",\"t\",1,\"\",\"inside\"), what time range is requested?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From yesterday (y) to today (t)"
+      },
+      {
+        "id": "b",
+        "text": "The last 1 hour"
+      },
+      {
+        "id": "c",
+        "text": "From now to tomorrow"
+      },
+      {
+        "id": "d",
+        "text": "From midnight to now on cdm158's archive"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The second and third arguments are the start and end times as PI time expressions: y is yesterday and t is today (both at midnight).",
+    "lessonId": "pi-datalink",
+    "tags": [
+      "functions",
+      "pi-time"
+    ],
+    "sources": [
+      "dcv-datalink-lab-2020",
+      "dcv-visualizing-workbook-2024"
+    ]
+  }
+]

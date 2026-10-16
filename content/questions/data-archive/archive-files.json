@@ -1,0 +1,216 @@
+[
+  {
+    "id": "q-arcfiles-sizing-calc",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 3,
+    "scenario": "A Data Archive server has 16 GB (16,384 MB) of RAM and 200,000 licensed points. You use the 2017 R2 course rule: the smaller of (RAM in MB / 3) and (3 x licensed points / 1024) MB, rounded down to a power of 2, minimum 256 MB, maximum 10,240 MB.",
+    "prompt": "What archive size does the rule give?",
+    "options": [
+      { "id": "a", "text": "512 MB" },
+      { "id": "b", "text": "586 MB" },
+      { "id": "c", "text": "4,096 MB" },
+      { "id": "d", "text": "5,461 MB" }
+    ],
+    "answer": "a",
+    "explanation": "RAM / 3 = 5,461 MB; 3 x 200,000 / 1024 = 586 MB. The smaller is 586 MB, which rounds down to the power of 2 = 512 MB. 586 is not rounded, 5,461 is the larger value, and 4,096 is 5,461 rounded down.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["sizing", "calculation"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arcfiles-shift-98",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 1,
+    "prompt": "What is the name for initialising a new primary archive when the current primary is about 98% full?",
+    "accepted": ["archive shift", "shift", "shifting", "an archive shift"],
+    "explanation": "A new archive is initialised when the primary is about 98% full; initialising a new primary archive is called shifting.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["archives"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arcfiles-autoroot-cleared",
+    "type": "scenario",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files", "da.tuning"],
+    "difficulty": 3,
+    "scenario": "To stop archives filling a disk, an admin cleared Archive_AutoArchiveFileRoot. No empty historic archives are registered. The primary archive is now 97% full.",
+    "prompt": "What will happen at the next shift?",
+    "options": [
+      { "id": "a", "text": "The oldest archive is overwritten" },
+      { "id": "b", "text": "A new archive is created on the system drive" },
+      { "id": "c", "text": "The server stops archiving but keeps all data in the event queue forever" },
+      { "id": "d", "text": "The primary archive grows dynamically" }
+    ],
+    "answer": "a",
+    "explanation": "Clearing Archive_AutoArchiveFileRoot disables auto-creation. A shift then promotes an empty historic archive, or overwrites the oldest archive if none is empty. Keep 2 empty historic archives.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["archives", "pitfall", "scenario"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arcfiles-fixed-vs-dynamic",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 2,
+    "prompt": "Match each archive type to its description.",
+    "pairs": [
+      { "left": "Fixed-size archive", "right": "Space allocated at creation; required for automatic archive creation" },
+      { "left": "Dynamic archive", "right": "Grows as it fills; for troubleshooting, reprocessing and backfilling" },
+      { "left": "Future archive", "right": "Created on demand per calendar month, starting at 1 MB" },
+      { "left": "Primary archive", "right": "Receives current data and has no end time" }
+    ],
+    "explanation": "Historic archives are fixed-size by default and fixed size is required for auto-creation. Dynamic archives are for backfill and reprocessing. Future archives are monthly 1 MB files that grow. The primary receives current data.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["archives"],
+    "sources": ["da-admin-workbook-2017r2", "da-vcampus-2010-tuning", "da-rs2015-future-data"]
+  },
+  {
+    "id": "q-arcfiles-empty-count",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 1,
+    "prompt": "How many empty historic archive files does OSIsoft recommend keeping?",
+    "options": [
+      { "id": "a", "text": "2" },
+      { "id": "b", "text": "0" },
+      { "id": "c", "text": "10" },
+      { "id": "d", "text": "One per month" }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft recommends keeping 2 empty historic archive files, so a shift never has to overwrite the oldest archive.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["archives"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arcfiles-table",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 2,
+    "prompt": "Using the architecture course's sizing table, what default archive size goes with 500,000 licensed points?",
+    "options": [
+      { "id": "a", "text": "2,048 MB" },
+      { "id": "b", "text": "1,024 MB" },
+      { "id": "c", "text": "4,096 MB" },
+      { "id": "d", "text": "10,240 MB" }
+    ],
+    "answer": "a",
+    "explanation": "The table maps 349,526 - 699,050 licensed points to 2,048 MB. 1,024 MB is for 174,763 - 349,525 and 4,096 MB for 699,051 - 1,398,101. 10,240 MB is the cap for 2,796,203 or more.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["sizing"],
+    "sources": ["da-arch-workbook"]
+  },
+  {
+    "id": "q-arcfiles-disks",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 2,
+    "prompt": "How should archives and event queues be placed on disk?",
+    "options": [
+      { "id": "a", "text": "On separate local volumes: archives on the largest drive, event queues on the second largest" },
+      { "id": "b", "text": "Both on the system drive with the Windows page file" },
+      { "id": "c", "text": "Event queue on the largest drive, archives on a USB disk" },
+      { "id": "d", "text": "In the same folder so they can be backed up together" }
+    ],
+    "answer": "a",
+    "explanation": "Separate local volumes let reads and writes run at the same time. The training puts archives on the largest drive and event queues on the second largest.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["storage"],
+    "sources": ["da-admin-workbook-2017r2", "da-arch-workbook"]
+  },
+  {
+    "id": "q-arcfiles-ram-third",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files", "da.tuning"],
+    "difficulty": 2,
+    "prompt": "AVEVA's 2023 performance guidance limits archive file size relative to RAM. What is the limit?",
+    "options": [
+      { "id": "a", "text": "No more than one third of system RAM, so three archives fit in memory" },
+      { "id": "b", "text": "At least twice the system RAM" },
+      { "id": "c", "text": "Exactly equal to system RAM" },
+      { "id": "d", "text": "There is no relation to RAM" }
+    ],
+    "answer": "a",
+    "explanation": "The 2023 session says archive files should be no more than one third of system RAM so three archives fit in memory. A 2012 OSIsoft slide similarly recommended enough RAM to fit 2 full archives.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["sizing", "performance"],
+    "sources": ["da-uc23-da-performance", "ops2-rs2012-bryant-arch"]
+  },
+  {
+    "id": "q-arcfiles-read-direct",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files"],
+    "difficulty": 2,
+    "prompt": "True or false: reading .arc files directly with your own program is a supported way to get old data.",
+    "options": [
+      { "id": "t", "text": "True" },
+      { "id": "f", "text": "False" }
+    ],
+    "answer": "f",
+    "explanation": "Reading archive files directly is unsupported. Restore a backup on a licensed server or export the data. Archive files also store PointIDs rather than tag names.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["true-false", "archives"],
+    "sources": ["da-ps-piarch-thread"]
+  },
+  {
+    "id": "q-arcfiles-tools",
+    "type": "matching",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files", "da.tools"],
+    "difficulty": 2,
+    "prompt": "Match each tool to the archive task it performs.",
+    "pairs": [
+      { "left": "piartool -al", "right": "List archives and show shift progress" },
+      { "left": "pidiag -archk", "right": "Check an archive file and show its storage map" },
+      { "left": "SMT Operation > Archives", "right": "Register, unregister, create archives and force a shift" },
+      { "left": "Offline Archive Utility", "right": "Reprocess archives to repair errors and rearrange records" }
+    ],
+    "explanation": "piartool -al lists archives; pidiag -archk checks a file and shows the PointIDs it contains; SMT Archives has Historic and Future tabs for registration, creation and forced shifts; offline reprocessing repairs and reorganises archives.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["tools"],
+    "sources": ["da-admin-workbook-2017r2", "da-vcampus-2010-tuning", "da-uc2011-tips-trenches"]
+  },
+  {
+    "id": "q-arcfiles-future-ahead",
+    "type": "mcq",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files", "da.backfill"],
+    "difficulty": 2,
+    "prompt": "Which archives accept data timestamped more than 10 minutes in the future?",
+    "options": [
+      { "id": "a", "text": "Only future archives" },
+      { "id": "b", "text": "Only the primary historic archive" },
+      { "id": "c", "text": "Any dynamic archive" },
+      { "id": "d", "text": "All registered archives" }
+    ],
+    "answer": "a",
+    "explanation": "Historic archives hold data for non-future points; only future archives accept data more than 10 minutes ahead. The two are never mixed.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["future-data"],
+    "sources": ["da-admin-workbook-2017r2"]
+  },
+  {
+    "id": "q-arcfiles-reprocess-threads",
+    "type": "fill",
+    "domain": "data-archive",
+    "coverage": ["da.archive-files", "da.tuning"],
+    "difficulty": 3,
+    "prompt": "According to AVEVA's 2023 guidance, what value should Archive_ReprocessThreadCount have on PI Data Archive 2018 SP2 and later?",
+    "accepted": ["1", "one"],
+    "explanation": "The 2023 performance session says Archive_ReprocessThreadCount should be 1 for PI Data Archive 2018 SP2 and later.",
+    "lessonId": "archive-files-and-shifts",
+    "tags": ["tuning"],
+    "sources": ["da-uc23-da-performance"]
+  }
+]

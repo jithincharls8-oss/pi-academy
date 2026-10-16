@@ -1,0 +1,389 @@
+[
+  {
+    "id": "q-chemicals-kpis",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "difficulty": 1,
+    "prompt": "Which KPIs does OSIsoft's oil and gas/chemicals deck list for chemicals? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yield"
+      },
+      {
+        "id": "b",
+        "text": "Energy (6-tier breakdown)"
+      },
+      {
+        "id": "c",
+        "text": "Material balance"
+      },
+      {
+        "id": "d",
+        "text": "Controllable margin"
+      },
+      {
+        "id": "e",
+        "text": "OEE"
+      },
+      {
+        "id": "f",
+        "text": "PUE"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "explanation": "The deck lists yield, energy (6-tier breakdown), material balance, controllable margin and OEE. PUE is a data-centre KPI.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-chemicals-central-local",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which approach did Syensqo use for this problem?",
+    "scenario": "A chemical company has about 30 polymer plants making different products. Head office wants to replicate good PI solutions quickly, but site teams insist on keeping control of their own solutions.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Copy one site's complete solution to every other site"
+      },
+      {
+        "id": "b",
+        "text": "Central data managers own standard AF templates and hierarchies; local teams build solutions on them"
+      },
+      {
+        "id": "c",
+        "text": "Let every site design its own templates from scratch"
+      },
+      {
+        "id": "d",
+        "text": "Move all analytics to a single spreadsheet at head office"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Syensqo's central-to-local model keeps templates and hierarchies central and solutions local. Copying whole solutions fails when sites make different products; fully local templates prevent comparison.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner",
+      "governance"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "q-chemicals-covestro",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What does the AVEVA success story report for Covestro?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Energy consumption reduced by 30% and CO2 emissions reduced by 39% per ton of product"
+      },
+      {
+        "id": "b",
+        "text": "Energy consumption reduced by 39% and CO2 reduced by 30%"
+      },
+      {
+        "id": "c",
+        "text": "CO2 emissions reduced by 50% per ton of product"
+      },
+      {
+        "id": "d",
+        "text": "Yield increase 5% and HC loss -30%"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA reports energy consumption reduced by 30% and CO2 emissions reduced by 39% per ton of product. 50% by 2030 is a target. Yield +5% and HC loss -30% are MOL figures from a 2015 OSIsoft deck.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-covestro"
+    ]
+  },
+  {
+    "id": "q-chemicals-syensqo-oee-weeks",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Syensqo reported that rolling out its OEE tracking solution went from 26 weeks to ___ weeks.",
+    "accepted": [
+      "5",
+      "five"
+    ],
+    "caseSensitive": false,
+    "explanation": "Syensqo reported OEE tracking from 26 weeks to 5 weeks, and batch watcher from 11 weeks to 4 weeks (AVEVA success story).",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "q-chemicals-hc-loss",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "difficulty": 1,
+    "prompt": "In chemicals and refining KPIs, what is HC loss?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Hydrocarbon loss: material unaccounted for in the material balance"
+      },
+      {
+        "id": "b",
+        "text": "Heat capacity loss in exchangers"
+      },
+      {
+        "id": "c",
+        "text": "Hours of calibration lost"
+      },
+      {
+        "id": "d",
+        "text": "Hydrogen corrosion loss"
+      }
+    ],
+    "answer": "a",
+    "explanation": "HC loss is hydrocarbon loss, the unaccounted material from the material balance. MOL reported HC loss -30% in OSIsoft's 2015 deck.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-uc15-og-chem"
+    ]
+  },
+  {
+    "id": "q-chemicals-mol-merge",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: MOL's \"EBITDA improvement $500M-550M\" and \"$1 billion in EBITA since 2010\" are the same claim, so you can quote either.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The first comes from OSIsoft's 2015 EMEA deck; the second from OSIsoft's 2023 company overview. They are different figures from different sources and years. Keep both, attributed, and never merge them.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "expert",
+      "case-study",
+      "pitfall",
+      "true-false"
+    ],
+    "sources": [
+      "ind-uc15-og-chem",
+      "ind-osisoft-overview"
+    ]
+  },
+  {
+    "id": "q-chemicals-rollup",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals"
+    ],
+    "difficulty": 3,
+    "prompt": "What is the correct site-level specific energy?",
+    "scenario": "Plant A used 1,200 MWh to make 400 t of product. Plant B used 300 MWh to make 50 t. You need site-level energy per tonne in an AF rollup.",
+    "options": [
+      {
+        "id": "a",
+        "text": "3.33 MWh/t, from total energy divided by total product"
+      },
+      {
+        "id": "b",
+        "text": "4.5 MWh/t, the average of the two plant ratios"
+      },
+      {
+        "id": "c",
+        "text": "9.0 MWh/t, the sum of the two ratios"
+      },
+      {
+        "id": "d",
+        "text": "6.0 MWh/t, the worst plant"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Roll up totals first: (1,200 + 300) / (400 + 50) = 3.33 MWh/t. Averaging the ratios (3.0 and 6.0) gives 4.5 and over-weights the small plant.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "expert",
+      "calculation"
+    ],
+    "sources": [
+      "ind-ss-covestro"
+    ],
+    "verify": true,
+    "verifyNote": "The specific-energy KPI is an inferred analogy to Covestro's CO2-per-ton KPI; the arithmetic is general, not from a PI source."
+  },
+  {
+    "id": "q-chemicals-syensqo-scale",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "How did Syensqo's specialty polymer division grow in one year?",
+    "options": [
+      {
+        "id": "a",
+        "text": "From 200 to more than 4,000 AF elements, with 600 templates and 60,000 data points"
+      },
+      {
+        "id": "b",
+        "text": "From 4,000 to 200 AF elements"
+      },
+      {
+        "id": "c",
+        "text": "To more than one million real-time data streams"
+      },
+      {
+        "id": "d",
+        "text": "To 3,500 users on an Operations Data Layer"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Syensqo grew from 200 to more than 4,000 AF elements, with 600 templates and 60,000 data points. One million streams is Covestro; 3,500 users is dsm-firmenich's ODL.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "q-chemicals-companies",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each chemical company to what it built on PI.",
+    "pairs": [
+      {
+        "left": "dsm-firmenich",
+        "right": "A global Operations Data Layer supporting 3,500 users"
+      },
+      {
+        "left": "Nutrien",
+        "right": "A central monitoring centre for nitrogen production with AVEVA Unified Operations Center"
+      },
+      {
+        "left": "Covestro",
+        "right": "A monitoring platform unifying more than one million data streams"
+      },
+      {
+        "left": "Syensqo",
+        "right": "Central AF templates with local site solutions"
+      }
+    ],
+    "explanation": "Each pairing comes from the company's AVEVA story or AVEVA World abstract.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-pres-dsm-firmenich-2024",
+      "ind-ss-nutrien",
+      "ind-ss-covestro",
+      "ind-ss-syensqo"
+    ]
+  },
+  {
+    "id": "q-chemicals-covestro-before",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.chemicals",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What problem did Covestro have before adding AI anomaly detection to PI?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Overlooked notifications and unplanned shutdowns caused significant losses"
+      },
+      {
+        "id": "b",
+        "text": "It had no historian at all"
+      },
+      {
+        "id": "c",
+        "text": "Its AF server ran out of elements"
+      },
+      {
+        "id": "d",
+        "text": "It could not license more than 60,000 tags"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The AVEVA story says overlooked notifications and unplanned shutdowns caused significant losses at Covestro before anomaly detection was added.",
+    "lessonId": "pi-in-chemicals",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-covestro"
+    ]
+  }
+]

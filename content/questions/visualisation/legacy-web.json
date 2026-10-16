@@ -1,0 +1,177 @@
+[
+  {
+    "id": "q-vis-legacy-renamed",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 1,
+    "prompt": "In which year was PI Coresight renamed PI Vision?",
+    "options": [
+      { "id": "a", "text": "2017" },
+      { "id": "b", "text": "2011" },
+      { "id": "c", "text": "2019" },
+      { "id": "d", "text": "2021" }
+    ],
+    "answer": "a",
+    "explanation": "OSIsoft states: \"PI Coresight was renamed PI Vision in 2017\". 2011 is when Coresight was first released.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["history"],
+    "sources": ["ops2-osisoft-coresight-renamed"]
+  },
+  {
+    "id": "q-vis-legacy-webparts-sharepoint",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 1,
+    "prompt": "PI WebParts were used to build PI composite applications in which platform?",
+    "options": [
+      { "id": "a", "text": "Microsoft SharePoint" },
+      { "id": "b", "text": "Microsoft Excel" },
+      { "id": "c", "text": "Microsoft Power BI" },
+      { "id": "d", "text": "AVEVA CONNECT" }
+    ],
+    "answer": "a",
+    "explanation": "PI WebParts were OSIsoft web parts for building PI composite applications in Microsoft SharePoint. Excel is PI DataLink's host.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["webparts"],
+    "sources": ["ops2-rs2011-coresight"]
+  },
+  {
+    "id": "q-vis-legacy-ml-sql",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 2,
+    "prompt": "Where does PI Manual Logger store settings and entered data before it is sent to the PI Data Archive?",
+    "options": [
+      { "id": "a", "text": "In SQL Server" },
+      { "id": "b", "text": "In the PI Buffer Subsystem queue" },
+      { "id": "c", "text": "In Excel workbooks" },
+      { "id": "d", "text": "In the PI Vision database" }
+    ],
+    "answer": "a",
+    "explanation": "PI Manual Logger stores settings and data in SQL Server \"before it gets sent to PI Data Archive\", so that database needs backing up.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["manual-logger"],
+    "sources": ["ops2-uc15-manual-logger"]
+  },
+  {
+    "id": "q-vis-legacy-silverlight",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 2,
+    "prompt": "Which browser technology did early PI Coresight clients use?",
+    "options": [
+      { "id": "a", "text": "Microsoft Silverlight" },
+      { "id": "b", "text": "Java applets" },
+      { "id": "c", "text": "Adobe Flash" },
+      { "id": "d", "text": "ActiveX ProcessBook controls" }
+    ],
+    "answer": "a",
+    "explanation": "The 2011 material says \"Silverlight Available from PI Coresight server, no internet access\".",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["history"],
+    "sources": ["ops2-rs2011-coresight"]
+  },
+  {
+    "id": "q-vis-legacy-suite",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 2,
+    "prompt": "Which products did OSIsoft list in the PI Visualization Suite in 2017? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "PI Vision" },
+      { "id": "b", "text": "PI ProcessBook" },
+      { "id": "c", "text": "PI DataLink" },
+      { "id": "d", "text": "PI WebParts" },
+      { "id": "e", "text": "PI Manual Logger" }
+    ],
+    "answers": ["a", "b", "c", "d"],
+    "explanation": "The 2017 PI 101 deck lists PI Vision, PI ProcessBook, PI DataLink and PI WebParts in the suite. PI Manual Logger appears under PI Interfaces and PI Connectors.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["suite"],
+    "sources": ["dcv-collins-pi101-2017"]
+  },
+  {
+    "id": "q-vis-legacy-coresight-new-product",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 2,
+    "prompt": "How was PI Coresight positioned when it was announced in 2011?",
+    "options": [
+      { "id": "a", "text": "As a new product for ad hoc analysis and collaboration that did not replace any existing product" },
+      { "id": "b", "text": "As the immediate replacement for PI ProcessBook" },
+      { "id": "c", "text": "As a replacement for PI DataLink" },
+      { "id": "d", "text": "As a data collection interface" }
+    ],
+    "answer": "a",
+    "explanation": "The 2011 slide calls it a \"New Product – does not replace any existing PI System product\", positioned for ad hoc analysis and collaboration alongside ProcessBook and WebParts.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["history"],
+    "sources": ["ops2-rs2011-coresight"]
+  },
+  {
+    "id": "q-vis-legacy-coresight-2016",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 3,
+    "prompt": "What did PI Coresight 2016 add, according to the 2016 roadmap? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "A new Display Editor" },
+      { "id": "b", "text": "Mobile support" },
+      { "id": "c", "text": "Event Comparison" },
+      { "id": "d", "text": "OpenID Connect sign-in" }
+    ],
+    "answers": ["a", "b", "c"],
+    "explanation": "PI Coresight 2016 added a new Display Editor, mobile support and Event Comparison. OpenID Connect came with PI Vision in the 2023 era.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["history"],
+    "sources": ["dcv-kwan-roadmap-2016", "ops2-uc23-vision-swartzentruber"]
+  },
+  {
+    "id": "q-vis-legacy-ml-versions",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 3,
+    "prompt": "Which PI Manual Logger clients were current in 2015?",
+    "options": [
+      { "id": "a", "text": "PI ML Web 2014 / 2014 R2 and PI ML Mobile 2012" },
+      { "id": "b", "text": "PI ML Silverlight 2011 only" },
+      { "id": "c", "text": "PI ML for SharePoint 2019" },
+      { "id": "d", "text": "PI ML Vision 2024" }
+    ],
+    "answer": "a",
+    "explanation": "The 2015 user-conference session lists PI ML Web 2014 / 2014 R2 and PI ML Mobile 2012.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["manual-logger"],
+    "sources": ["ops2-uc15-manual-logger"]
+  },
+  {
+    "id": "q-vis-legacy-webparts-status",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.legacy-web"],
+    "difficulty": 2,
+    "scenario": "A site's SharePoint intranet shows PI dashboards built with PI WebParts. The IT team wants to know whether to invest in them for the next five years.",
+    "prompt": "What do the sources suggest?",
+    "options": [
+      { "id": "a", "text": "WebParts appears among deprecated products no longer sold, so plan to rebuild in PI Vision and confirm status with AVEVA" },
+      { "id": "b", "text": "WebParts is AVEVA's strategic dashboard product" },
+      { "id": "c", "text": "WebParts was renamed PI Vision in 2017" },
+      { "id": "d", "text": "WebParts is part of CONNECT data services" }
+    ],
+    "answer": "a",
+    "explanation": "A 2022 feedback post lists PI WebParts among deprecated products \"not being sold anymore\", and a 2015 roadmap put dashboards in the future column. No official end date was found, so confirm with AVEVA. It was Coresight, not WebParts, that became PI Vision.",
+    "lessonId": "coresight-webparts-manual-logger",
+    "tags": ["webparts"],
+    "sources": ["ops2-feedback-picust-192", "ops2-uc15-roadmap-hughes"],
+    "verify": true,
+    "verifyNote": "Deprecated status comes from a user-written feedback post; no official AVEVA lifecycle statement was read."
+  }
+]

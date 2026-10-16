@@ -1,0 +1,1847 @@
+[
+  {
+    "id": "pe-tagavg",
+    "name": "TagAvg",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "TagAvg(tag, starttime, endtime)",
+    "description": "Time-weighted average of a tag or attribute over a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagAvg('CaseTemp','*-1h','*')",
+    "notes": "Because it is time-weighted, re-evaluating it with no new data still changes the result as time advances. Use TagMean for an event-weighted mean. An optional minimum percent-good argument is mentioned in some material but is not confirmed here.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-analyzing-pi-data-2018",
+      "af-pisquare-time-vs-event-weighted",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-tagtot",
+    "name": "TagTot",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "TagTot(tag, starttime, endtime)",
+    "description": "Time integral (totalizer) of a rate over a time range. It assumes the input is in units per day and has no knowledge of the tag's actual units.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagTot('PowerDraw','*-1h','*') * 24",
+    "notes": "Multiply by 24 for a per-hour rate. Forgetting the per-day assumption gives totals 24 times too small for per-hour rates.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-analyzing-pi-data-2018",
+      "af-pisquare-tagtot-units",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-tagmean",
+    "name": "TagMean",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "TagMean(tag, starttime, endtime)",
+    "description": "Event-weighted (arithmetic) mean of the recorded events in a range. Most PI summary functions are time-weighted; TagMean is the exception.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagMean('prod', Bom('*'), '*') * EventCount('prod', Bom('*'), '*')",
+    "notes": "The example multiplies by EventCount to get an event-weighted sum, month to date.",
+    "sources": [
+      "af-pisquare-time-vs-event-weighted",
+      "af-pisquare-tagtot-units",
+      "af-pisquare-sum-values",
+      "fn-gh-picatalog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-tagmax",
+    "name": "TagMax",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "TagMax(tag, starttime, endtime)",
+    "description": "Maximum value of a tag or attribute over a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagMax('tag1','-1h','*')",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-building-assets-workbook",
+      "af-software-athlete-calc-functions",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-tagmin",
+    "name": "TagMin",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "TagMin(tag, starttime, endtime)",
+    "description": "Minimum value of a tag or attribute over a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagMin('tag','t','*')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-pctgood",
+    "name": "PctGood",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "PctGood(tag, starttime, endtime)",
+    "description": "Percentage of the time range during which the tag had good values. Often used as a data-quality guard before computing a total.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number from 0 to 100",
+    "example": "IF PctGood('PowerDraw','*-1h','*') > 50 THEN TagTot('PowerDraw','*-1h','*') * 24 ELSE NoOutput()",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-rs2012-oceania-calcs",
+      "fn-analyzing-pi-data-2018",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-eventcount",
+    "name": "EventCount",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "EventCount(tag, starttime, endtime)",
+    "description": "Number of recorded (archived) events in a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Integer",
+    "example": "EventCount('prod', Bom('*'), '*')",
+    "notes": "AF Analytics has no built-in count-of-a-value function; one workaround writes 1 or NoOutput() from an intermediate analysis and then uses EventCount.",
+    "sources": [
+      "af-pisquare-tagtot-units",
+      "af-pisquare-sum-values",
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-numofchanges",
+    "name": "NumOfChanges",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "NumOfChanges(tag, starttime, endtime)",
+    "description": "Counts the value or state changes of a tag in a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Integer",
+    "example": "NumOfChanges('Pump State','t','*')",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-range",
+    "name": "Range",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "Range(tag, starttime, endtime)",
+    "description": "Difference between the maximum and minimum of a tag over a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "Range('Temp','*-1d','*')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred and the exact name (Range or TagRange) is unconfirmed; check the PE reference."
+  },
+  {
+    "id": "pe-stdev",
+    "name": "StDev",
+    "kind": "pe",
+    "category": "Archive value statistics",
+    "signature": "StDev(tag, starttime, endtime)",
+    "description": "Time-weighted standard deviation of a tag over a time range.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "StDev('Temp','*-1d','*')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred and the exact name (StDev or TagStD) is unconfirmed; check the PE reference."
+  },
+  {
+    "id": "pe-tagval",
+    "name": "TagVal",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TagVal(tag [, time])",
+    "description": "Value of a tag or attribute at a time. With no time argument the evaluation time is used. For continuous tags with no event at that time, the value is interpolated.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "optional time expression; defaults to the evaluation time"
+      }
+    ],
+    "returns": "Value of the tag's type",
+    "example": "TagVal('Active Power','*')",
+    "notes": "The interpolation behaviour was inferred from the ACE Value method in the source thread.",
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "af-using-af-analyze-asset-2019",
+      "af-pisquare-prevevent-prevval"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-prevval",
+    "name": "PrevVal",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "PrevVal(tag, time)",
+    "description": "Value of the last recorded event before a time.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Value of the tag's type",
+    "example": "PrevVal('tag','*')",
+    "sources": [
+      "af-pisquare-prevevent-prevval",
+      "af-pisquare-last-recorded-value",
+      "fn-gh-picatalog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-nextval",
+    "name": "NextVal",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "NextVal(tag, time)",
+    "description": "Value of the first recorded event after a time.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Value of the tag's type",
+    "example": "NextVal('tag','y')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-gh-calculations-md",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-prevevent",
+    "name": "PrevEvent",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "PrevEvent(tag, time)",
+    "description": "Timestamp of the previous recorded event before a time.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Time",
+    "example": "PrevEvent('tag','*+1s')",
+    "notes": "'*+1s' is used so that an event at the current timestamp is included.",
+    "sources": [
+      "af-pisquare-prevevent-prevval",
+      "af-pisquare-pse-write-trigger",
+      "fn-gh-picatalog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-nextevent",
+    "name": "NextEvent",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "NextEvent(tag, time)",
+    "description": "Timestamp of the next recorded event after a time.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Time",
+    "example": "NextEvent('tag','t')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-findeq",
+    "name": "FindEq",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindEq(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag equals the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindEq('Best Operating State','*','-7d',\"Regenerating\")",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-data-exploration-notification-2020",
+      "af-pisquare-number-occurrences"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-findne",
+    "name": "FindNE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindNE(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag is not equal to the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindNE('tag1','-1d','*',50)",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "The Find* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-findgt",
+    "name": "FindGT",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindGT(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag is greater than the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindGT('tag1','-1d','*',50)",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "The Find* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-findge",
+    "name": "FindGE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindGE(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag is greater than or equal to the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindGE('tag1','-1d','*',50)",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-findlt",
+    "name": "FindLT",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindLT(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag is less than the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindLT('tag1','-1d','*',50)",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "The Find* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-findle",
+    "name": "FindLE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "FindLE(tag, starttime, endtime, value)",
+    "description": "Timestamp of the first time in the range at which the tag is less than or equal to the value. A start time later than the end time searches backwards.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "FindLE('tag1','-1d','*',50)",
+    "notes": "Backward search is inferred from an OSIsoft lab example with a start later than the end.",
+    "sources": [
+      "fn-building-assets-workbook",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "The Find* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-timeeq",
+    "name": "TimeEq",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeEq(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag equals the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeEq('Press Status','t','*',\"Running\")",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-number-occurrences"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-timene",
+    "name": "TimeNE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeNE(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag is not equal to the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeNE('tag','*-1d','*',50)",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": true,
+    "verifyNote": "The Time* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-timegt",
+    "name": "TimeGT",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeGT(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag is greater than the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeGT('tag','*-1d','*',50)",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-number-occurrences"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-timege",
+    "name": "TimeGE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeGE(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag is greater than or equal to the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeGE('PowerDraw','*-24h','*',20) / 3600",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-number-occurrences"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-timelt",
+    "name": "TimeLT",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeLT(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag is less than the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeLT('tag','*-1d','*',50)",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": true,
+    "verifyNote": "The Time* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-timele",
+    "name": "TimeLE",
+    "kind": "pe",
+    "category": "Search and retrieval",
+    "signature": "TimeLE(tag, starttime, endtime, value)",
+    "description": "Total time, in seconds, during the range in which the tag is less than or equal to the value.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      },
+      {
+        "name": "value",
+        "description": "number, or a digital state name in double quotes"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "TimeLE('tag','*-1d','*',50)",
+    "notes": "Divide by 3600 for hours. It must read every event in the window, so its cost grows with the event count.",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": true,
+    "verifyNote": "The Time* family is named as a group in the sources; this variant's own example was not read. Check it in the PE reference."
+  },
+  {
+    "id": "pe-abs",
+    "name": "Abs",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Abs(x)",
+    "description": "Absolute value of a number.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number or expression"
+      }
+    ],
+    "returns": "Number",
+    "example": "Abs(DeltaTemp/2)",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-sqr",
+    "name": "Sqr",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Sqr(x)",
+    "description": "Square root (PE spells it Sqr).",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number",
+    "example": "Sqr(16)",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog",
+      "fn-building-assets-workbook"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred. An AF workbook slide writes 'sqrt'; whether Sqrt is also accepted is unverified."
+  },
+  {
+    "id": "pe-exp",
+    "name": "Exp",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Exp(x)",
+    "description": "Exponential, e to the power x.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number",
+    "example": "Exp(1)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-log",
+    "name": "Log",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Log(x)",
+    "description": "Natural logarithm.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number",
+    "example": "Log(10)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'. 'Ln' appears only in a third-party PI Vision list."
+  },
+  {
+    "id": "pe-log10",
+    "name": "Log10",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Log10(x)",
+    "description": "Base-10 logarithm.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number",
+    "example": "Log10(1000)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-trig",
+    "name": "Sin / Cos / Tan and inverse and hyperbolic forms",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Sin(x), Cos(x), Tan(x), Asin(x), Acos(x), Atn(x), Sinh(x), Cosh(x), Tanh(x)",
+    "description": "Trigonometric functions working in radians, with inverse (Asin, Acos, Atn) and hyperbolic (Sinh, Cosh, Tanh) forms.",
+    "params": [
+      {
+        "name": "x",
+        "description": "angle in radians, or a ratio for the inverse functions"
+      }
+    ],
+    "returns": "Number",
+    "example": "Sin(3.14159/2)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-building-assets-workbook",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-atn2",
+    "name": "Atn2",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Atn2(y, x)",
+    "description": "Two-argument arctangent.",
+    "params": [
+      {
+        "name": "y",
+        "description": "number"
+      },
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number (radians)",
+    "example": "Atn2(1,1)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred and the argument order is unconfirmed; check the PE reference."
+  },
+  {
+    "id": "pe-int",
+    "name": "Int",
+    "kind": "pe",
+    "category": "Math / conversion",
+    "signature": "Int(x)",
+    "description": "Integer part of a number. Int() of a timestamp returns UTC seconds, and Int() of a time span returned seconds in testing.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number, time or time span"
+      }
+    ],
+    "returns": "Number",
+    "example": "Int(ParseTime(\"*\") - PrevEvent('tag','*'))",
+    "sources": [
+      "fn-gh-picatalog",
+      "af-pisquare-timestamp-diff"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-frac",
+    "name": "Frac",
+    "kind": "pe",
+    "category": "Math / conversion",
+    "signature": "Frac(x)",
+    "description": "Fractional part of a number.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Number",
+    "example": "Frac(2.75)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-float",
+    "name": "Float",
+    "kind": "pe",
+    "category": "Math / conversion",
+    "signature": "Float(x)",
+    "description": "Converts a value to a floating-point number.",
+    "params": [
+      {
+        "name": "x",
+        "description": "value"
+      }
+    ],
+    "returns": "Number",
+    "example": "Float(\"3.5\")",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-mod",
+    "name": "Mod",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Mod(x, y)",
+    "description": "Remainder of x divided by y.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      },
+      {
+        "name": "y",
+        "description": "divisor"
+      }
+    ],
+    "returns": "Number",
+    "example": "Mod(7,3)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-round",
+    "name": "Round",
+    "kind": "pe",
+    "category": "Math / time",
+    "signature": "Round(x [, unit])",
+    "description": "Rounds a number or time to a unit.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number or time"
+      },
+      {
+        "name": "unit",
+        "description": "optional rounding unit"
+      }
+    ],
+    "returns": "Number or time",
+    "example": "Round('tag1',2)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-software-athlete-functions",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred and the unit semantics are unconfirmed; check the PE reference."
+  },
+  {
+    "id": "pe-trunc",
+    "name": "Trunc",
+    "kind": "pe",
+    "category": "Math / time",
+    "signature": "Trunc(x [, unit])",
+    "description": "Truncates a number or time to a unit.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number or time"
+      },
+      {
+        "name": "unit",
+        "description": "optional unit"
+      }
+    ],
+    "returns": "Number or time",
+    "example": "Trunc(28.75,10)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-software-athlete-functions",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred and the unit semantics are unconfirmed; check the PE reference."
+  },
+  {
+    "id": "pe-sgn",
+    "name": "Sgn",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Sgn(x)",
+    "description": "Sign of a number: -1, 0 or 1.",
+    "params": [
+      {
+        "name": "x",
+        "description": "number"
+      }
+    ],
+    "returns": "Integer",
+    "example": "Sgn(-5)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-poly",
+    "name": "Poly",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Poly(x, c0, c1, ..., cn)",
+    "description": "Evaluates a polynomial in x from numeric coefficients.",
+    "params": [
+      {
+        "name": "x",
+        "description": "input value"
+      },
+      {
+        "name": "c0..cn",
+        "description": "numeric coefficients"
+      }
+    ],
+    "returns": "Number",
+    "example": "Poly('Speed', 1, 0.5, 0.01)",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "af-calc-asset-analytics-2022"
+    ],
+    "verify": true,
+    "verifyNote": "The coefficient order (c0 first) is inferred; check the PE reference."
+  },
+  {
+    "id": "pe-curve",
+    "name": "Curve",
+    "kind": "pe",
+    "category": "Math",
+    "signature": "Curve(x, (x1,y1) (x2,y2) ... (xn,yn))",
+    "description": "Best-fit (linearly interpolated) lookup of x against a set of (x,y) points. The pairs are separated by spaces, not commas.",
+    "params": [
+      {
+        "name": "x",
+        "description": "input value"
+      },
+      {
+        "name": "(xi,yi)",
+        "description": "points, separated by spaces"
+      }
+    ],
+    "returns": "Number",
+    "example": "Curve('Adjusted Wind Speed', (0,0) (4,78) (16,3000))",
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-avg",
+    "name": "Avg",
+    "kind": "pe",
+    "category": "Statistical (argument lists)",
+    "signature": "Avg(a, b, ...)",
+    "description": "Average of its arguments (and of arrays in AF).",
+    "params": [
+      {
+        "name": "a, b, ...",
+        "description": "values, tags or attributes"
+      }
+    ],
+    "returns": "Number",
+    "example": "Avg('Exhaust Gas Temperature - #1 Probe','Exhaust Gas Temperature - #2 Probe')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-max-min-median",
+    "name": "Max / Min / Median",
+    "kind": "pe",
+    "category": "Statistical (argument lists)",
+    "signature": "Max(a, b, ...), Min(a, b, ...), Median(a, b, ...)",
+    "description": "Maximum, minimum or median of the arguments.",
+    "params": [
+      {
+        "name": "a, b, ...",
+        "description": "values, tags or attributes"
+      }
+    ],
+    "returns": "Number",
+    "example": "Max('T1','T2','T3')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-total",
+    "name": "Total",
+    "kind": "pe",
+    "category": "Statistical (argument lists)",
+    "signature": "Total(a, b, ...)",
+    "description": "Sum of the arguments. In AF analyses Total(array) sums an array.",
+    "params": [
+      {
+        "name": "a, b, ...",
+        "description": "values or an array"
+      }
+    ],
+    "returns": "Number",
+    "example": "Total('Line1','Line2')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-pstdev-sstdev",
+    "name": "PStDev / SStDev",
+    "kind": "pe",
+    "category": "Statistical (argument lists)",
+    "signature": "PStDev(a, b, ...), SStDev(a, b, ...)",
+    "description": "Population or sample standard deviation of the arguments.",
+    "params": [
+      {
+        "name": "a, b, ...",
+        "description": "values"
+      }
+    ],
+    "returns": "Number",
+    "example": "SStDev(1,2,3)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-rand",
+    "name": "Rand",
+    "kind": "pe",
+    "category": "Statistical",
+    "signature": "Rand()",
+    "description": "Random number between 0 and 1.",
+    "params": [],
+    "returns": "Number",
+    "example": "Rand()",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-bom",
+    "name": "Bom",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "Bom(time)",
+    "description": "Beginning of the month containing the time.",
+    "params": [
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Time",
+    "example": "EventCount('prod', Bom('*'), '*')",
+    "sources": [
+      "fn-gh-picatalog",
+      "af-pisquare-sum-values",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-bod-bonm-noon",
+    "name": "Bod / Bonm / Noon",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "Bod(time), Bonm(time), Noon(time)",
+    "description": "Beginning of the day, beginning of the next month, and noon of the day containing the time.",
+    "params": [
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Time",
+    "example": "Bod('*')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-time-components",
+    "name": "Hour / Day / Month / Year / Weekday / Yearday / Minute / Second",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "Hour(time), Day(time), Month(time), Year(time), Weekday(time), Yearday(time), Minute(time), Second(time)",
+    "description": "Returns one component of a time.",
+    "params": [
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Integer",
+    "example": "Weekday('*')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": true,
+    "verifyNote": "Signatures read only in a third-party list; Minute and Second are catalogue names only. Check the PE reference."
+  },
+  {
+    "id": "pe-daysec",
+    "name": "DaySec",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "DaySec(time)",
+    "description": "Seconds from midnight to the time. It fails for spans longer than a day.",
+    "params": [
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Number of seconds",
+    "example": "DaySec('*')",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-timestamp-diff"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-parsetime",
+    "name": "ParseTime",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "ParseTime(string)",
+    "description": "Evaluates a time string when the expression runs. A quoted time expression on its own is evaluated when the expression is parsed.",
+    "params": [
+      {
+        "name": "string",
+        "description": "time string in double quotes"
+      }
+    ],
+    "returns": "Time",
+    "example": "ParseTime(\"*\")",
+    "sources": [
+      "fn-gh-picatalog",
+      "af-pisquare-timestamp-diff"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-isdst",
+    "name": "IsDST",
+    "kind": "pe",
+    "category": "Date and time",
+    "signature": "IsDST(time)",
+    "description": "Daylight-saving flag for a time.",
+    "params": [
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "IsDST('*')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-digstate",
+    "name": "DigState",
+    "kind": "pe",
+    "category": "Digital states",
+    "signature": "DigState(string)",
+    "description": "Digital state from its name.",
+    "params": [
+      {
+        "name": "string",
+        "description": "state name in double quotes"
+      }
+    ],
+    "returns": "Digital state",
+    "example": "DigState(\"Running\")",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-digtext",
+    "name": "DigText",
+    "kind": "pe",
+    "category": "Digital states",
+    "signature": "DigText(digital)",
+    "description": "Name of a digital state as text.",
+    "params": [
+      {
+        "name": "digital",
+        "description": "digital value or tag"
+      }
+    ],
+    "returns": "String",
+    "example": "DigText('Pump State')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-stateno",
+    "name": "StateNo",
+    "kind": "pe",
+    "category": "Digital states",
+    "signature": "StateNo(digital)",
+    "description": "Code (offset) of a digital state.",
+    "params": [
+      {
+        "name": "digital",
+        "description": "digital value or tag"
+      }
+    ],
+    "returns": "Integer",
+    "example": "StateNo('Pump State')",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-badval",
+    "name": "BadVal",
+    "kind": "pe",
+    "category": "Status",
+    "signature": "BadVal(x)",
+    "description": "True when the value is bad, that is, a system digital state.",
+    "params": [
+      {
+        "name": "x",
+        "description": "value, tag or attribute"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "IF BadVal('Flow') THEN 0 ELSE 'Flow'",
+    "notes": "AF Analytics has no PrevGoodVal; the workaround combines BadVal, PrevVal and PrevEvent.",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-pe-to-analytics-migration",
+      "af-software-athlete-calc-syntax"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-isset",
+    "name": "IsSet",
+    "kind": "pe",
+    "category": "Status",
+    "signature": "IsSet(digital, ...)",
+    "description": "Digital-state test.",
+    "params": [
+      {
+        "name": "digital",
+        "description": "digital value"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "IsSet('State', 1)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature and semantics are not read in any source; check the PE reference before use."
+  },
+  {
+    "id": "pe-tagbad",
+    "name": "TagBad",
+    "kind": "pe",
+    "category": "Status",
+    "signature": "TagBad(tag [, time])",
+    "description": "True if the tag's value is bad at the time.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "optional time expression"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "TagBad('Flow','*')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-nooutput",
+    "name": "NoOutput",
+    "kind": "pe",
+    "category": "Status",
+    "signature": "NoOutput()",
+    "description": "Writes nothing for this evaluation (suppresses the result).",
+    "params": [],
+    "returns": "No value",
+    "example": "IF PctGood('PowerDraw','*-1h','*') > 50 THEN TagTot('PowerDraw','*-1h','*') * 24 ELSE NoOutput()",
+    "sources": [
+      "fn-rs2012-asia-calcs",
+      "fn-rs2012-oceania-calcs",
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-calculations-md"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-tagnum",
+    "name": "TagNum",
+    "kind": "pe",
+    "category": "Point attributes",
+    "signature": "TagNum(tag)",
+    "description": "Looks up the PI Point ID of a tag.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      }
+    ],
+    "returns": "Integer",
+    "example": "TagNum('sinusoid')",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-tag-attribute-functions",
+    "name": "TagDesc / TagEU / TagExDesc / TagName / TagSource / TagType / TagTypVal / TagZero / TagSpan",
+    "kind": "pe",
+    "category": "Point attributes",
+    "signature": "TagEU(tag), TagSpan(tag), TagType(tag) and similar",
+    "description": "Return point attribute values such as descriptor, engineering units, extended descriptor, point source, type, typical value, zero and span.",
+    "params": [
+      {
+        "name": "tag",
+        "description": "tag or attribute name in single quotes"
+      }
+    ],
+    "returns": "String or number",
+    "example": "TagSpan('tag')",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-concat",
+    "name": "Concat",
+    "kind": "pe",
+    "category": "String",
+    "signature": "Concat(s1, s2, ...)",
+    "description": "Joins strings.",
+    "params": [
+      {
+        "name": "s1, s2, ...",
+        "description": "strings"
+      }
+    ],
+    "returns": "String",
+    "example": "Concat(\"Pump \", DigText('State'))",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-text",
+    "name": "Text",
+    "kind": "pe",
+    "category": "String",
+    "signature": "Text(v1, v2, ...)",
+    "description": "Joins values as text.",
+    "params": [
+      {
+        "name": "v1, v2, ...",
+        "description": "values or strings"
+      }
+    ],
+    "returns": "String",
+    "example": "Text(Round('sinusoid',1),\" is the value\")",
+    "notes": "Signature read in a third-party list only.",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-software-athlete-functions",
+      "af-software-athlete-calc-functions"
+    ],
+    "verify": false
+  },
+  {
+    "id": "pe-string-functions",
+    "name": "Len / Left / Right / Mid / InStr / LCase / UCase / Trim",
+    "kind": "pe",
+    "category": "String",
+    "signature": "Len(s), Left(s, n), Right(s, n), Mid(s, start [, len]), InStr([start,] s1, s2), LCase(s), UCase(s), Trim(s), LTrim(s), RTrim(s)",
+    "description": "String length, substrings, search, case conversion and trimming.",
+    "params": [
+      {
+        "name": "s",
+        "description": "string"
+      },
+      {
+        "name": "n",
+        "description": "number of characters"
+      }
+    ],
+    "returns": "String or integer",
+    "example": "Left(\"ABCDE\",2)",
+    "sources": [
+      "fn-analyzing-pi-data-2018",
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-char",
+    "name": "Char",
+    "kind": "pe",
+    "category": "String",
+    "signature": "Char(n)",
+    "description": "Character from its code; Char(10) puts a line break in a string result.",
+    "params": [
+      {
+        "name": "n",
+        "description": "character code"
+      }
+    ],
+    "returns": "String",
+    "example": "Concat(\"Line 1\", Char(10), \"Line 2\")",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-gh-picatalog"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-ascii-compare-format-string",
+    "name": "Ascii / Compare / Format / String",
+    "kind": "pe",
+    "category": "String",
+    "signature": "Ascii(s), Compare(s1, s2), Format(x, fmt), String(x)",
+    "description": "Character codes, string comparison, formatting and conversion to string.",
+    "params": [
+      {
+        "name": "s, x",
+        "description": "input value"
+      },
+      {
+        "name": "fmt",
+        "description": "format string"
+      }
+    ],
+    "returns": "String or integer",
+    "example": "String(42)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signature is from training knowledge, not read in a readable source; check it against the AVEVA 'Alphabetical reference for PE functions'."
+  },
+  {
+    "id": "pe-filter-functions",
+    "name": "Arma / Delay / Impulse / MedianFilt",
+    "kind": "pe",
+    "category": "Filters (PE tags)",
+    "signature": "MedianFilt(...) and others (arguments not read)",
+    "description": "Filters that use the PE tag's own history. MedianFilt returns the median of the last values of a series.",
+    "params": [],
+    "returns": "Number",
+    "example": "(not read in a source)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-gh-calculations-md",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signatures and argument order were not read; do not use until checked in the PE reference."
+  },
+  {
+    "id": "pe-alarm-functions",
+    "name": "AlmAckStat / AlmCondition / AlmCondText / AlmPriority",
+    "kind": "pe",
+    "category": "Alarm (PI Alarm subsystem)",
+    "signature": "AlmCondition(alarmtag) and others",
+    "description": "Query the state of PI Alarm subsystem alarms.",
+    "params": [
+      {
+        "name": "alarmtag",
+        "description": "alarm point"
+      }
+    ],
+    "returns": "Varies",
+    "example": "(not read in a source)",
+    "sources": [
+      "fn-gh-picatalog",
+      "fn-gh-calculations-md",
+      "fn-docs-pe-alpha-ref"
+    ],
+    "verify": true,
+    "verifyNote": "Signatures were not read; check the PE reference."
+  }
+]

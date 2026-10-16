@@ -1,0 +1,429 @@
+[
+  {
+    "id": "q-dr-migration-not-dr",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: according to OSIsoft, a PI Data Archive collective with daily PI Backups is a complete disaster recovery solution.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. OSIsoft states \"PI Backups, Redundant Interfaces and High Availability are NOT stand-alone Disaster Recovery solutions\", and recommends a DR simulation at least once a year.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "dr",
+      "true-false"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-move-archive",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the steps for moving an archive file to a new disk in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Force an archive shift"
+      },
+      {
+        "id": "b",
+        "text": "Unregister the archive"
+      },
+      {
+        "id": "c",
+        "text": "Move the .arc and .ann files together"
+      },
+      {
+        "id": "d",
+        "text": "Re-register the archive"
+      }
+    ],
+    "explanation": "The 2017 R2 course: force a shift, unregister, move the .arc and .ann files, then re-register. The .ann file must stay in the same directory as its archive.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "archives"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-piartool-host",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "Why can users on the secondary not see the restored period?",
+    "options": [
+      {
+        "id": "a",
+        "text": "piartool changes archive registration only on the host it runs on, and archives are independent on each member"
+      },
+      {
+        "id": "b",
+        "text": "Secondaries never store archives"
+      },
+      {
+        "id": "c",
+        "text": "The archive must be registered in AF first"
+      },
+      {
+        "id": "d",
+        "text": "The secondary needs a reboot to replicate it"
+      }
+    ],
+    "scenario": "On a two-member collective, an admin runs piartool on the primary to register a restored archive. Users querying the secondary still cannot see that period.",
+    "answer": "a",
+    "explanation": "\"You need to run piartool on the PI Data Archive host which you want to modify the archive registration on.\" Archives are independent per member; only some configuration replicates.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "collective"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-vss",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "How can PI Backup back up archive files that are in use without stopping the Data Archive?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uses Windows Volume Shadow Copy Service (VSS)"
+      },
+      {
+        "id": "b",
+        "text": "It pauses the snapshot subsystem for an hour"
+      },
+      {
+        "id": "c",
+        "text": "It reads only the event queue"
+      },
+      {
+        "id": "d",
+        "text": "It copies files from a secondary instead"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI Backup uses VSS, so it can back up files in use without downtime.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "backup"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-two-phase",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "What backup approach does AVEVA's UC23 security deck recommend for ransomware recovery?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Daily off-peak backup locally, then copy it to a separate server or network drive"
+      },
+      {
+        "id": "b",
+        "text": "Weekly backup to the same disk as the archives"
+      },
+      {
+        "id": "c",
+        "text": "Rely on the collective secondary instead of backups"
+      },
+      {
+        "id": "d",
+        "text": "Back up only the license file"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Schedule daily off-peak backups with Task Scheduler, back up locally, then copy to a separate server or network drive. Leaving backups only on the same server is a listed pitfall.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "backup"
+    ],
+    "sources": [
+      "adm-uc23-security-biggins"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-uptime",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "99.9% uptime allows about how many hours of downtime per year?",
+    "accepted": [
+      "8.76",
+      "8.76 hours",
+      "8.8"
+    ],
+    "caseSensitive": false,
+    "explanation": "99.9% uptime allows about 43.8 minutes per month, or 8.76 hours per year.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "availability"
+    ],
+    "sources": [
+      "adm-uc19-architecting-zhimanov"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-collective-build",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "How does PI Collective Manager synchronise a new secondary?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It takes a PI Backup of the primary, copies it and registers it on the secondary"
+      },
+      {
+        "id": "b",
+        "text": "It streams every event from the primary since install"
+      },
+      {
+        "id": "c",
+        "text": "It copies only the license file"
+      },
+      {
+        "id": "d",
+        "text": "It rebuilds archives from the interface buffers"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Collective Manager synchronises a secondary by taking a PI Backup of the primary, copying it and registering it.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "collective"
+    ],
+    "sources": [
+      "adm-pisquare-piartool-collectives"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-new-hw",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 3,
+    "prompt": "Per a 2025 AVEVA feedback idea, what does moving a PI Data Archive to a new server currently require?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Installing the same software version and restoring from a backup of the old server"
+      },
+      {
+        "id": "b",
+        "text": "Copying the PI folder to the new server and starting services"
+      },
+      {
+        "id": "c",
+        "text": "A built-in live migration wizard"
+      },
+      {
+        "id": "d",
+        "text": "Exporting all points with AFExport"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The feedback idea says the move requires installing the same version, then restoring from a backup. There is no live migration wizard, and AFExport is for AF databases.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "migration"
+    ],
+    "sources": [
+      "adm-feedback-pida-i-1108"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-empty-archives",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 1,
+    "prompt": "The course says to keep at least how many empty historic archive files?",
+    "accepted": [
+      "2",
+      "two"
+    ],
+    "caseSensitive": false,
+    "explanation": "Keep at least 2 empty historic archive files so archive shifts always have somewhere to go.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "archives"
+    ],
+    "sources": [
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-licence",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 3,
+    "prompt": "Which uses of backup copies does the 2026 PI System Software Schedule forbid? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Testing or training"
+      },
+      {
+        "id": "b",
+        "text": "A hot standby"
+      },
+      {
+        "id": "c",
+        "text": "A caching server"
+      },
+      {
+        "id": "d",
+        "text": "Restoring after a failure"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Backup copies may not be used for testing or training, \"as a hot standby\" or \"as a caching server\". Restoring is what a backup is for.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "licensing"
+    ],
+    "sources": [
+      "ops2-sw-schedule-pi-2026"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-af-env",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the main step to repoint the data references to the production Data Archive after import?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Change the one Data Archive Name attribute to the production server"
+      },
+      {
+        "id": "b",
+        "text": "Edit each data reference individually"
+      },
+      {
+        "id": "c",
+        "text": "Rename the production server to match test"
+      },
+      {
+        "id": "d",
+        "text": "Re-run AFImport with /Security"
+      }
+    ],
+    "scenario": "You are promoting an AF database from a test environment to production. In test, all PI Point data references use the server path %@\\Data Archive|Name%.",
+    "answer": "a",
+    "explanation": "With substitution parameters, editing one Data Archive Name attribute repoints all linked attributes during a migration.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "af"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-dr-migration-azure-snap",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.dr-migration"
+    ],
+    "difficulty": 3,
+    "prompt": "What trade-off did OSIsoft note for restoring Azure PI VMs from disk snapshots?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Much faster than redeploying, but snapshots are large, not portable and must restore to the same environment"
+      },
+      {
+        "id": "b",
+        "text": "Slower than redeploying but portable to AWS"
+      },
+      {
+        "id": "c",
+        "text": "Free and unlimited"
+      },
+      {
+        "id": "d",
+        "text": "Only works for the domain controller"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The Azure deployment deck says restoring from disk snapshots is much faster than redeploying, but snapshots are large, not portable and must restore to the same environment.",
+    "lessonId": "dr-and-migration",
+    "tags": [
+      "cloud"
+    ],
+    "sources": [
+      "adm-uc19-azure-deploy-pdf"
+    ],
+    "verify": false
+  }
+]

@@ -1,0 +1,533 @@
+[
+  {
+    "id": "q-library-who-reports",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "Who reports the outcome figures on an AVEVA success-story page?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AVEVA, the vendor; they are not independently audited"
+      },
+      {
+        "id": "b",
+        "text": "An independent auditor"
+      },
+      {
+        "id": "c",
+        "text": "The regulator"
+      },
+      {
+        "id": "d",
+        "text": "PI Academy"
+      }
+    ],
+    "answer": "a",
+    "explanation": "A success story is a vendor-published customer case. Its outcomes are as reported by AVEVA and are not independently audited.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-aveva-ss-index"
+    ]
+  },
+  {
+    "id": "q-library-estimate-vs-result",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "How should this figure be described?",
+    "scenario": "A 2015 OSIsoft seminar deck says DONG Energy could \"cut OPEX by up to about €20M per year (NPV)\" with condition-based and predictive monitoring of 1,800 offshore turbines.",
+    "options": [
+      {
+        "id": "a",
+        "text": "As an expectation, reported by OSIsoft, not a measured result"
+      },
+      {
+        "id": "b",
+        "text": "As a measured €20M annual saving"
+      },
+      {
+        "id": "c",
+        "text": "As €20M saved per turbine"
+      },
+      {
+        "id": "d",
+        "text": "As a figure DONG Energy's auditors confirmed"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"could\" and \"up to about\" mark an expectation. The research notes it is an expectation, not a measured result, reported in an OSIsoft deck.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015"
+    ]
+  },
+  {
+    "id": "q-library-not-pi-check",
+    "type": "multi",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these AVEVA stories were checked and found NOT to use the PI System? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nestlé Waverly"
+      },
+      {
+        "id": "b",
+        "text": "Henkel"
+      },
+      {
+        "id": "c",
+        "text": "City of Bremen"
+      },
+      {
+        "id": "d",
+        "text": "Covestro"
+      },
+      {
+        "id": "e",
+        "text": "Illovo Sugar Africa"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Nestlé Waverly (AVEVA Historian, CONNECT), Henkel (MES, System Platform) and City of Bremen (InTouch, Historian) are not PI System stories. Covestro and Illovo are.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-nestle",
+      "ind-ss-henkel",
+      "ind-ss-bremen",
+      "ind-ss-covestro",
+      "ind-ss-illovo"
+    ]
+  },
+  {
+    "id": "q-library-publish-date",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: The 2026 \"last published\" date on an AVEVA success-story page tells you the project year.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. AVEVA success-story pages show only a 2026 \"last published\" date, which is not the project year. Treat the year as not stated unless the text gives one.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-aveva-ss-index"
+    ]
+  },
+  {
+    "id": "q-library-reporter",
+    "type": "matching",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each case-study figure to who reported it.",
+    "pairs": [
+      {
+        "left": "Luminant: $160K saved on its latest combined-cycle unit",
+        "right": "The company, at a 2017 OSIsoft regional seminar"
+      },
+      {
+        "left": "Longannet: availability up 12.4%",
+        "right": "Capula Ltd, in an OSIsoft EMEA 2014 presentation"
+      },
+      {
+        "left": "Ok Tedi: copper recovery +2.4%",
+        "right": "Mipac, an integrator, in a 2025 article"
+      },
+      {
+        "left": "Covestro: energy consumption reduced by 30%",
+        "right": "AVEVA, in a success story"
+      },
+      {
+        "left": "Pertamina 2014: demurrage reduced by 40%",
+        "right": "OSIsoft, at a 2014 São Paulo regional seminar"
+      }
+    ],
+    "explanation": "Each figure's reporter comes from the cs.library entry. Who reports a figure affects how much weight to give it.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner",
+      "reported-by"
+    ],
+    "sources": [
+      "ind-pres-luminant-2017",
+      "ind-pres-longannet-2014",
+      "ind-mipac-oktedi",
+      "ind-ss-covestro",
+      "ind-pres-graves-2014"
+    ]
+  },
+  {
+    "id": "q-library-hedge-words",
+    "type": "multi",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "Which words in a case study signal that a figure is NOT a measured result? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Expected"
+      },
+      {
+        "id": "b",
+        "text": "Projected"
+      },
+      {
+        "id": "c",
+        "text": "Roughly estimated"
+      },
+      {
+        "id": "d",
+        "text": "On track for"
+      },
+      {
+        "id": "e",
+        "text": "Reduced"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "\"Expected\" (Detroit, UC Davis), \"Projected\" (UC Davis), \"roughly estimated\" (Xcel) and \"on track for\" (Covestro) all mark forecasts, estimates or targets. \"Reduced\" usually reports a result.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-pres-water-2015",
+      "ind-ss-uc-davis",
+      "ind-ss-xcel",
+      "ind-ss-covestro"
+    ]
+  },
+  {
+    "id": "q-library-honest-sentence",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which sentence is the honest rewrite?",
+    "scenario": "A slide says \"PI saved Xcel $46M.\" The AVEVA story quotes Kasen Huwa of Xcel Energy: \"Savings and efficiencies are roughly estimated over the last six years at $46 million\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "Xcel Energy estimates savings and efficiencies of roughly $46 million over six years (Kasen Huwa, Xcel Energy, in an AVEVA success story)"
+      },
+      {
+        "id": "b",
+        "text": "PI saved Xcel about $50M"
+      },
+      {
+        "id": "c",
+        "text": "PI saves Xcel $7.67M every year"
+      },
+      {
+        "id": "d",
+        "text": "Xcel Energy saved $46M in one year"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Keep the hedge (roughly estimated), the period (six years), the scope (savings and efficiencies) and the reporter. Rounding, annualising or shortening the period all change the claim.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-xcel"
+    ]
+  },
+  {
+    "id": "q-library-third-party",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Why is CSL Group's \"8,233 mt CO2e avoided across 11 vessels in a year\" stronger evidence than most success-story figures?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The source says it was third-party verified"
+      },
+      {
+        "id": "b",
+        "text": "It is the largest figure in the library"
+      },
+      {
+        "id": "c",
+        "text": "It comes from a regulator"
+      },
+      {
+        "id": "d",
+        "text": "It was measured on every vessel in the fleet"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The research notes the CSL CO2e figure is third-party verified. Most success-story outcomes are reported by AVEVA without independent checks. It covers 11 vessels, not CSL's whole fleet of over 40.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-ss-csl"
+    ]
+  },
+  {
+    "id": "q-library-noble-qualifiers",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which qualifiers must you keep when quoting this?",
+    "scenario": "Noble Energy said in its own OSIsoft seminar presentation that using PI during the Aseng FPSO startup helped engineers increase production by an estimated 10,000 barrels of oil per day.",
+    "options": [
+      {
+        "id": "a",
+        "text": "\"Estimated\" and \"reported by Noble Energy\""
+      },
+      {
+        "id": "b",
+        "text": "None; it is a precise figure"
+      },
+      {
+        "id": "c",
+        "text": "Only the year"
+      },
+      {
+        "id": "d",
+        "text": "Convert it to barrels per year for clarity"
+      }
+    ],
+    "answer": "a",
+    "explanation": "It is the company's own estimate, presented at a vendor seminar. Keep both qualifiers. Do not convert units.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-noble-2015"
+    ]
+  },
+  {
+    "id": "q-library-library-size",
+    "type": "fill",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "PI Academy's case-study library holds ___ PI System case studies, all with readable sources.",
+    "accepted": [
+      "83"
+    ],
+    "caseSensitive": false,
+    "explanation": "The research built 83 PI System case blocks, all with readable sources, and separately listed AVEVA stories that do not use PI.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-aveva-ss-index"
+    ]
+  },
+  {
+    "id": "q-library-pi-world",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "Who usually presents a case at PI World or AVEVA World, and so reports its figures?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The customer company or its integrator, sometimes OSIsoft/AVEVA staff"
+      },
+      {
+        "id": "b",
+        "text": "Only AVEVA marketing"
+      },
+      {
+        "id": "c",
+        "text": "An independent standards body"
+      },
+      {
+        "id": "d",
+        "text": "The national regulator"
+      }
+    ],
+    "answer": "a",
+    "explanation": "PI World / AVEVA World is the user conference where customers present their PI deployments; some decks are given by OSIsoft staff (for example the 2014 Pertamina figures).",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-pres-ls-2019",
+      "ind-pres-graves-2014"
+    ]
+  },
+  {
+    "id": "q-library-osisoft-claims",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "True or false: OSIsoft's claim that PI is used by \"95% of the Global Fortune Top 40 oil and gas companies\" is an independently verified market statistic.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. It comes from OSIsoft's own 2023 company overview, and the research notes the page's labels were scrambled, so even the pairing of figure and industry is a best interpretation.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "expert",
+      "true-false"
+    ],
+    "sources": [
+      "ind-osisoft-overview"
+    ]
+  },
+  {
+    "id": "q-library-no-figures",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Some case studies, such as Nutrien, LADWP and Cargill, state no outcome figures. What should you do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Describe what they built and say no figures are stated"
+      },
+      {
+        "id": "b",
+        "text": "Borrow a typical figure from a similar company"
+      },
+      {
+        "id": "c",
+        "text": "Estimate a figure from the tag count"
+      },
+      {
+        "id": "d",
+        "text": "Leave them out of all training"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Qualitative stories are still useful for architecture and use cases. Never invent or borrow figures; say that none are stated.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-nutrien",
+      "ind-ss-ladwp",
+      "ind-ss-cargill"
+    ]
+  },
+  {
+    "id": "q-library-check-steps",
+    "type": "ordering",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the checks to make before reusing a case-study figure.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Confirm the story uses the PI System"
+      },
+      {
+        "id": "b",
+        "text": "Find the exact wording in the source"
+      },
+      {
+        "id": "c",
+        "text": "Identify who reported it"
+      },
+      {
+        "id": "d",
+        "text": "Identify whether it is a result, estimate, expectation or target"
+      },
+      {
+        "id": "e",
+        "text": "Quote it exactly with its reporter"
+      }
+    ],
+    "explanation": "Start by checking it is a PI story at all, then read the exact words, note the reporter and the kind of figure, and finally quote it exactly with attribution.",
+    "lessonId": "reading-case-studies-critically",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-aveva-ss-index",
+      "ind-ss-nestle"
+    ]
+  }
+]

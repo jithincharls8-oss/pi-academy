@@ -1,0 +1,379 @@
+[
+  {
+    "id": "q-pse-navigator",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 1,
+    "prompt": "Which sections appear in the PSE Navigator? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Elements"
+      },
+      {
+        "id": "b",
+        "text": "Event Frames"
+      },
+      {
+        "id": "c",
+        "text": "Library"
+      },
+      {
+        "id": "d",
+        "text": "Unit of Measure"
+      },
+      {
+        "id": "e",
+        "text": "Management"
+      },
+      {
+        "id": "f",
+        "text": "Point Builder"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "explanation": "The Navigator lists Elements, Event Frames, Library, Unit of Measure and Management. Point Builder is a separate PI SMT tool, not a PSE section.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-data-exploration-notification-2020"
+    ]
+  },
+  {
+    "id": "q-pse-panes",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each PSE pane to its job.",
+    "pairs": [
+      {
+        "left": "Navigator",
+        "right": "Lists the sections, in the lower left"
+      },
+      {
+        "left": "Browser",
+        "right": "Lists the objects of the selected section"
+      },
+      {
+        "left": "Viewer",
+        "right": "The main work area"
+      },
+      {
+        "left": "Configuration Panel",
+        "right": "Shows attribute properties"
+      }
+    ],
+    "explanation": "These are the PSE UI parts described in AVEVA's building-assets workbook.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pse-sandbox",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: edits you make in PSE are visible to other users as soon as you type them.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. \"The AF Server uses a sandbox concept for modifications.\" Changes are visible to others only after Check In, and checked-out objects cannot be edited by others until then.",
+    "lessonId": "pi-system-explorer",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pse-checkin-key",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 1,
+    "prompt": "Which keyboard shortcut checks in changes in PSE?",
+    "accepted": [
+      "Ctrl+S",
+      "Ctrl + S",
+      "Ctrl-S"
+    ],
+    "caseSensitive": false,
+    "explanation": "Check In is Ctrl+S. Ctrl+1, Ctrl+2 and Ctrl+3 jump to Elements, Event Frames and Library.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-pse-shortcuts",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each shortcut to the PSE section it opens.",
+    "pairs": [
+      {
+        "left": "Ctrl+1",
+        "right": "Elements"
+      },
+      {
+        "left": "Ctrl+2",
+        "right": "Event Frames"
+      },
+      {
+        "left": "Ctrl+3",
+        "right": "Library"
+      }
+    ],
+    "explanation": "These shortcuts appear in the PI World 2019 lab.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-pse-undo",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "You made many unwanted edits but have not checked in. What resets your sandbox?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Undo all changes to the Database"
+      },
+      {
+        "id": "b",
+        "text": "Reset to Template"
+      },
+      {
+        "id": "c",
+        "text": "Delete the database"
+      },
+      {
+        "id": "d",
+        "text": "Refresh (F5)"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"Undo all changes to the Database\" resets the sandbox. Reset to Template only removes attribute overrides on an element.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pse-export",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "What went wrong?",
+    "scenario": "An engineer exports one element to XML from the test server and imports it on production. The import fails because templates and tables it needs are missing.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The export was not done in Excel"
+      },
+      {
+        "id": "b",
+        "text": "The export was made without Include All Referenced Objects"
+      },
+      {
+        "id": "c",
+        "text": "XML import is not supported between servers"
+      },
+      {
+        "id": "d",
+        "text": "Production uses a different SQL edition"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Include All Referenced Objects also exports the templates, tables and UOMs needed to rebuild the structure. Without it, the target server lacks dependencies.",
+    "lessonId": "pi-system-explorer",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pse-management",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "Where in PSE do you enable, disable, backfill and recalculate analyses in bulk?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Management plug-in"
+      },
+      {
+        "id": "b",
+        "text": "Library > Templates"
+      },
+      {
+        "id": "c",
+        "text": "Tools > Options"
+      },
+      {
+        "id": "d",
+        "text": "Unit of Measure"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The Management plug-in is where analyses are searched, enabled, disabled, backfilled and recalculated in bulk.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  },
+  {
+    "id": "q-pse-uom-group",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 1,
+    "prompt": "Where do you set the Display UOM Group in PSE?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tools > Options"
+      },
+      {
+        "id": "b",
+        "text": "File > Export"
+      },
+      {
+        "id": "c",
+        "text": "Library > Categories"
+      },
+      {
+        "id": "d",
+        "text": "The Status Bar"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The Display UOM Group is set under Tools > Options.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-pse-legacy-notif",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "On a newer PSE you cannot find the old Notifications section in the Navigator. Where are notification rules now?",
+    "options": [
+      {
+        "id": "a",
+        "text": "They were removed from AF"
+      },
+      {
+        "id": "b",
+        "text": "With elements and templates"
+      },
+      {
+        "id": "c",
+        "text": "In PI Vision only"
+      },
+      {
+        "id": "d",
+        "text": "In the Configuration database"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The legacy (2012) Notifications Navigator section was removed in newer PSE. Notification rules live with elements and templates.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-pisquare-notif-migration"
+    ]
+  },
+  {
+    "id": "q-pse-ef-search",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.pse"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the steps to create a saved event frame search in PSE, as in the PI World 2019 lab.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Go to the Event Frames section"
+      },
+      {
+        "id": "b",
+        "text": "Right-click and choose New Search"
+      },
+      {
+        "id": "c",
+        "text": "Choose the event frame template"
+      },
+      {
+        "id": "d",
+        "text": "Rename the search"
+      }
+    ],
+    "explanation": "The lab creates Event Frame Searches by right-click > New Search, choosing a template and renaming the search.",
+    "lessonId": "pi-system-explorer",
+    "tags": [],
+    "sources": [
+      "af-using-af-analyze-asset-2019"
+    ]
+  }
+]

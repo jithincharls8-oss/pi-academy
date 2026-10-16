@@ -1,0 +1,418 @@
+[
+  {
+    "id": "q-server-databases-pifd",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the default name of the SQL Server database that stores an AF server's configuration?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PIFD"
+      },
+      {
+        "id": "b",
+        "text": "PIARCHIVE"
+      },
+      {
+        "id": "c",
+        "text": "AFCONFIG"
+      },
+      {
+        "id": "d",
+        "text": "PIAFDB"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF keeps its configuration in Microsoft SQL Server, and the default database name is PIFD. The other names sound plausible but are not the AF default.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-sql-same-machine",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: the SQL Server instance used by AF must run on the same machine as the AF Server.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. AVEVA training says the SQL Server instance can be on the same machine as the AF Server or on another machine. In production, AF Server is typically on a dedicated Windows server.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-config-db",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 1,
+    "prompt": "A new engineer wants to build the plant hierarchy inside the built-in Configuration database because it already exists. What should you tell them?",
+    "options": [
+      {
+        "id": "a",
+        "text": "That is fine; Configuration is the default asset database"
+      },
+      {
+        "id": "b",
+        "text": "Do not use it for assets; it holds PI System software configuration, so create a new AF database"
+      },
+      {
+        "id": "c",
+        "text": "Only use it if SQL Express is installed"
+      },
+      {
+        "id": "d",
+        "text": "Use it, but only for event frames"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The Configuration database holds PI System software configuration. AVEVA training explicitly says not to use it to organise your assets. Create your own AF database instead.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-shared-objects",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these are shared by all AF databases on one AF server? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Units of measure (the UOM database)"
+      },
+      {
+        "id": "b",
+        "text": "Contacts"
+      },
+      {
+        "id": "c",
+        "text": "Element templates"
+      },
+      {
+        "id": "d",
+        "text": "Event frames"
+      },
+      {
+        "id": "e",
+        "text": "Plug-ins"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "e"
+    ],
+    "explanation": "An AF team developer confirmed that UOMs, Contacts, Plugins and Libraries are shared across all AF databases on a server. Element templates and event frames belong to a single AF database.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-pisquare-uom-db-scope",
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-cross-db-references",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: an element in one AF database can reference an element in another AF database on the same server.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. AF references work only within one AF database, and elements and values cannot be compared across databases. Plan database boundaries with this in mind.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-building-assets-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-connectstring",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 3,
+    "prompt": "Where is the PI AF Application Service's SQL connection string stored?",
+    "options": [
+      {
+        "id": "a",
+        "text": "In the AFSystemID table of PIFD"
+      },
+      {
+        "id": "b",
+        "text": "In the connectString key of the appSettings section of AFService.exe.config"
+      },
+      {
+        "id": "c",
+        "text": "In the Windows registry under PIHOME"
+      },
+      {
+        "id": "d",
+        "text": "In the PI Data Archive's piconfig tables"
+      }
+    ],
+    "answer": "b",
+    "explanation": "A PI Square thread shows the connection string is the connectString key in the <appSettings> section of AFService.exe.config. The AFSystemID table records schema version, data store name and ID, not the connection string.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-pisquare-orphaned-pifd"
+    ]
+  },
+  {
+    "id": "q-server-databases-match-facts",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each item to the fact about it.",
+    "pairs": [
+      {
+        "left": "AFSystemID table",
+        "right": "Holds exactly one row with the schema version, data store name and ID"
+      },
+      {
+        "left": "SQL Server Express",
+        "right": "Free, but limited; suited to small to medium installations"
+      },
+      {
+        "left": "PI AF Services setup kit",
+        "right": "Bundles AF Server, Analysis Service and Notifications Service"
+      },
+      {
+        "left": "%PIHOME64%\\PIPC\\AF",
+        "right": "Install folder for AF .exe, .dll and SQL script files"
+      }
+    ],
+    "explanation": "AFSystemID has one row; SQL Express is free but limited (the workbook says one physical CPU and 1 GB RAM); the PI AF Services kit (2016 R2+) bundles the three services; and AF files install under %PIHOME64%\\PIPC\\AF.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-pisquare-orphaned-pifd",
+      "af-architecture-workbook",
+      "af-pisquare-af-services-2017"
+    ]
+  },
+  {
+    "id": "q-server-databases-ha-sql-edition",
+    "type": "scenario",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 3,
+    "prompt": "Which SQL Server edition choice fits this plan?",
+    "scenario": "A utility is designing a highly available AF deployment. To save licence cost, the project lead suggests using SQL Server Express on the primary SQL member.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Express is fine because PI AF supports all SQL Server editions"
+      },
+      {
+        "id": "b",
+        "text": "Use Standard, Business Intelligence, Enterprise or Datacenter on the primary SQL member, not Express"
+      },
+      {
+        "id": "c",
+        "text": "Use Express, but install it on the AF Server machine"
+      },
+      {
+        "id": "d",
+        "text": "HA does not depend on the SQL edition"
+      }
+    ],
+    "answer": "b",
+    "explanation": "PI AF supports all SQL editions in general, but the building-assets workbook says an AF HA setup needs Standard, Business Intelligence, Enterprise or Datacenter edition on the primary SQL member, not Express.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "architecture"
+    ],
+    "sources": [
+      "af-building-assets-workbook",
+      "af-architecture-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-separate-machines",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "When does AVEVA's architecture course say PI AF Server and PI Data Archive should be on separate computers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Always, in every installation"
+      },
+      {
+        "id": "b",
+        "text": "When AF uses data from several PI Servers or AF is highly available"
+      },
+      {
+        "id": "c",
+        "text": "Only when SQL Express is used"
+      },
+      {
+        "id": "d",
+        "text": "Never; they must share a machine"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The architecture workbook recommends separate computers when AF uses data from several PI Servers or when AF is highly available. It also notes AF Server is no longer a required prerequisite for installing PI Data Archive.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-architecture-workbook"
+    ]
+  },
+  {
+    "id": "q-server-databases-programs-list",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "After installing a 2017 R2 or later PI Server, an admin cannot find \"PI Analysis Service\" in Programs and Features. What is the likely explanation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Analysis Service failed to install"
+      },
+      {
+        "id": "b",
+        "text": "From 2017 R2 only \"PI AF Services\" is listed; Analysis and Notifications are bundled in it"
+      },
+      {
+        "id": "c",
+        "text": "Analysis Service is installed with PI Vision"
+      },
+      {
+        "id": "d",
+        "text": "It is listed under PI Data Archive"
+      }
+    ],
+    "answer": "b",
+    "explanation": "From 2017 R2, separate Add/Remove Programs entries for PI Analysis Service and PI Notifications Service no longer appear; only \"PI AF Services\" is listed.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-pisquare-af-services-2017"
+    ]
+  },
+  {
+    "id": "q-server-databases-sdk-name",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 2,
+    "prompt": "In the AF SDK, an AF Server is represented by the class named ____ (the Data Archive is a PIServer).",
+    "accepted": [
+      "PISystem"
+    ],
+    "caseSensitive": false,
+    "explanation": "The AF SDK calls the AF Server a PISystem and the Data Archive a PIServer, keeping older product names for backward compatibility.",
+    "lessonId": "af-server-and-databases",
+    "tags": [],
+    "sources": [
+      "af-intro-dev-tech-2020"
+    ]
+  },
+  {
+    "id": "q-server-databases-port-5457",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.server-databases"
+    ],
+    "difficulty": 3,
+    "prompt": "A third-party integration guide says which port must be open from the AF server to AF clients?",
+    "options": [
+      {
+        "id": "a",
+        "text": "5450"
+      },
+      {
+        "id": "b",
+        "text": "5457"
+      },
+      {
+        "id": "c",
+        "text": "5463"
+      },
+      {
+        "id": "d",
+        "text": "443"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The Sartorius SimApi guide states port 5457 must be open from the AF server to AF clients, and TCP 5450 is for PI Data Archive traffic. 5463 is cited for PI Analysis Service in an AVEVA course. This is a third-party statement, so check AVEVA's port list.",
+    "lessonId": "af-server-and-databases",
+    "tags": [
+      "ports"
+    ],
+    "sources": [
+      "af-sartorius-simapi-guide",
+      "af-learning-configuring-analytics-course"
+    ],
+    "verify": true,
+    "verifyNote": "Only a third-party guide states 5457 for AF; confirm against AVEVA's official port list."
+  }
+]

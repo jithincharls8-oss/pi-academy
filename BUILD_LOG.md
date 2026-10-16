@@ -81,3 +81,12 @@ Running log of what was done at each step and which capability was used. Newest 
 |---|---|---|
 | 7.1 | Content import/export core: JSON content packs validated per item, CSV export for any type, RFC 4180 CSV parser and glossary CSV import, verification queue (6 tests) | Vitest (TDD) |
 | 7.2 | Admin page: JSON editor per content type validated against the schema before saving, origin badges, revert to bundled, delete; import preview with per-item errors before anything is written; live coverage table per syllabus item; verification queue with deep links to the editor | React, Playwright |
+
+## Phase 8: Content fill (2026-10-16)
+
+| Step | What | Capability used |
+|---|---|---|
+| 8.1 | Six content groups written in parallel from the research files: foundations + Data Archive, data collection + visualisation, AF + analytics, administration + security, integration + reference data, industries | Agent x6 |
+| 8.2 | Totals: 95 lessons, 1,057 questions, 623 glossary terms, 83 case studies, 12 industry hubs; reference data of 70 PE functions, 22 AF functions, 65 PI Web API and 31 CONNECT endpoints, 74 commands, 77 error codes, 10 decision trees | content validator |
+| 8.3 | Cross-group clean-up: duplicate glossary ids resolved to one owner, colliding question ids renamed, every lesson's key terms, knowledge checks and related lessons resolve | content validator (0 errors) |
+| 8.4 | 98 items flagged verify where sources were thin or conflicting; facts marked inferred in the research carry a VERIFY callout. Every one of the 94 coverage items has lessons, questions and terms; all are "drafted" (not yet independently reviewed) | coverage script |

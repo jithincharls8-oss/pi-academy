@@ -1,0 +1,451 @@
+[
+  {
+    "id": "q-troubleshooting-heavy-hitters",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each \"heavy hitter\" message code to its meaning.",
+    "pairs": [
+      {
+        "left": "-11091",
+        "right": "Event collection limit exceeded"
+      },
+      {
+        "left": "-11140",
+        "right": "Query exceeded maximum execution time"
+      },
+      {
+        "left": "-10767",
+        "right": "Client exceeded concurrent queries in the RPC thread pool"
+      }
+    ],
+    "explanation": "The UC23 performance deck lists these three heavy hitters. -11091 relates to ArcMaxCollect, -11140 to Archive_MaxQueryExecutionSec, and -10767 to the RPC thread pool limit.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "error-codes"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick",
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-tag-playbook",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the first steps of the \"tag not updating\" playbook in order, working from the source.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Check the source is providing data"
+      },
+      {
+        "id": "b",
+        "text": "Check interface health (IO Rate, Device Status)"
+      },
+      {
+        "id": "c",
+        "text": "Check point attributes (Instrument Tag, Point Source, Location1, Location4)"
+      },
+      {
+        "id": "d",
+        "text": "Check buffering with pibufss -cfg and -qs"
+      }
+    ],
+    "explanation": "The playbook works from the source forward: source, interface health, point attributes, then buffering, before permissions, clocks and the Data Archive itself.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "playbook"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2",
+      "adm-it-pros-workbook-2017r2"
+    ],
+    "verify": true,
+    "verifyNote": "The playbook order is assembled by the research from several AVEVA training sources, not given as one official sequence."
+  },
+  {
+    "id": "q-troubleshooting-10401",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "What does -10401 mean, and what should you check?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No write access: check the Analysis Service identity's mapping and the point's DataSecurity"
+      },
+      {
+        "id": "b",
+        "text": "Tag not found: create the point"
+      },
+      {
+        "id": "c",
+        "text": "Archive offline: register the archive"
+      },
+      {
+        "id": "d",
+        "text": "Network timeout: open port 5450"
+      }
+    ],
+    "scenario": "A new analysis writes to an output PI Point, but nothing is stored. The message log shows error -10401 for the Analysis Service connection.",
+    "answer": "a",
+    "explanation": "-10401 is PI_XS_NOWRITE, no write access. Check the identity in Network Manager Statistics, its mapping, and the output point's DataSecurity. Tag not found is -5, and timeouts are -10722 or -10010.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "security"
+    ],
+    "sources": [
+      "adm-pistatus-h",
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-common-cause",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the most common cause of new PI Points not receiving data, according to AVEVA training?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Incorrect configuration of the PI Point attributes"
+      },
+      {
+        "id": "b",
+        "text": "A full archive disk"
+      },
+      {
+        "id": "c",
+        "text": "An expired license"
+      },
+      {
+        "id": "d",
+        "text": "A PI Vision cache problem"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The 2018 SP2 admin course says \"The most common cause of new PI Points not receiving data is an incorrect configuration of the PI Point attributes\".",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "points"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-arcmaxcollect",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "ArcMaxCollect limits the compressed events per query. What is its default, in millions?",
+    "accepted": [
+      "1.5",
+      "1.5 million",
+      "1500000",
+      "1,500,000"
+    ],
+    "caseSensitive": false,
+    "explanation": "ArcMaxCollect defaults to 1.5 million events. Exceeding it gives -11091. Archive_MaxQueryExecutionSec (default 260 s) limits run time.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "tuning"
+    ],
+    "sources": [
+      "adm-uc23-da-performance-sick"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-pigetmsg",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 1,
+    "prompt": "Which command follows the PI Message Log as new messages arrive?",
+    "options": [
+      {
+        "id": "a",
+        "text": "pigetmsg -f"
+      },
+      {
+        "id": "b",
+        "text": "piartool -ss"
+      },
+      {
+        "id": "c",
+        "text": "pidiag -tz"
+      },
+      {
+        "id": "d",
+        "text": "apisnap -f"
+      }
+    ],
+    "answer": "a",
+    "explanation": "pigetmsg -f follows the message log. piartool -ss shows snapshot statistics, pidiag -tz checks DST rules and apisnap tests PI API connectivity.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "tools"
+    ],
+    "sources": [
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-11414",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 3,
+    "prompt": "A script writing with piputval gets [-11414] \"Buffered point does not accept new events\". What is the cause?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A buffering service holds an exclusive lock on the point"
+      },
+      {
+        "id": "b",
+        "text": "The point has been deleted"
+      },
+      {
+        "id": "c",
+        "text": "The archive is full"
+      },
+      {
+        "id": "d",
+        "text": "The tag name is longer than 12 characters"
+      }
+    ],
+    "answer": "a",
+    "explanation": "-11414 occurs when a buffering service holds an exclusive lock on the point, which is common on interface nodes and in collectives.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "buffering"
+    ],
+    "sources": [
+      "adm-pisquare-piputval-11414"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-clock",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "What happens?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The interface will not run, because it is more than 30 minutes off the server clock"
+      },
+      {
+        "id": "b",
+        "text": "Data is stored with a 45-minute offset"
+      },
+      {
+        "id": "c",
+        "text": "Data goes to the future archive"
+      },
+      {
+        "id": "d",
+        "text": "Only compression is affected"
+      }
+    ],
+    "scenario": "An interface node's clock is 45 minutes ahead of the Data Archive. Its points have the Future attribute set to 0.",
+    "answer": "a",
+    "explanation": "A PI Interface more than 30 minutes off the server clock will not run, and points with Future = 0 reject data more than 10 minutes in the future. Future archives hold data only for points configured for future data.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "time"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-pointsource-zero",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "An interface starts and logs \"Total Number of points matching pointsource 'OPC-PIINT01' is 0\". What does this tell you?",
+    "options": [
+      {
+        "id": "a",
+        "text": "No points have a Point Source (and location settings) that match this interface"
+      },
+      {
+        "id": "b",
+        "text": "The OPC server is offline"
+      },
+      {
+        "id": "c",
+        "text": "The license is exhausted"
+      },
+      {
+        "id": "d",
+        "text": "The buffer queue is full"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The message means no points match the interface. Check Point Source, Location1 (interface ID) and Location4 (scan class).",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "points"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2",
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-delete",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: deleting a PI Point and recreating it with the same name restores access to its archived data.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. There is no undelete, and archived data becomes inaccessible; set SCAN off instead of deleting.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "pitfall",
+      "true-false"
+    ],
+    "sources": [
+      "adm-arch-planning-workbook-2024"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-ranges",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 3,
+    "prompt": "Match each pistatus.h error code range to its group.",
+    "pairs": [
+      {
+        "left": "-10400 to -10419",
+        "right": "Security"
+      },
+      {
+        "left": "-10720 to -10768",
+        "right": "Network"
+      },
+      {
+        "left": "-11001 to -11138",
+        "right": "Archive"
+      },
+      {
+        "left": "-30000 and below",
+        "right": "Warnings"
+      }
+    ],
+    "explanation": "The header groups codes by range: security, network, archive and warnings, among others (point database -10550 to -10595, redirector -11200 to -11209).",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "error-codes"
+    ],
+    "sources": [
+      "adm-pistatus-h"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-troubleshooting-connect-tools",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.troubleshooting"
+    ],
+    "difficulty": 2,
+    "prompt": "A client cannot connect to the Data Archive. Which checks belong in the \"cannot connect\" playbook? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Test TCP 5450 with Test-NetConnection or the tcpclient one-liner"
+      },
+      {
+        "id": "b",
+        "text": "Run apisnap <server> or AboutPI-SDK"
+      },
+      {
+        "id": "c",
+        "text": "Check mappings and failed logins in the message log"
+      },
+      {
+        "id": "d",
+        "text": "Run pidiag -tls --verify"
+      },
+      {
+        "id": "e",
+        "text": "Increase ArcMaxCollect"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "The playbook tests the network (5450), the client stack (apisnap, AboutPI-SDK), authentication (log, mappings, Kerberos) and TLS. ArcMaxCollect is a query limit, unrelated to connecting.",
+    "lessonId": "troubleshooting-logs-errors",
+    "tags": [
+      "playbook"
+    ],
+    "sources": [
+      "adm-pdfcoffee-pi-sys-admin-2018sp2",
+      "adm-it-pros-workbook-2017r2",
+      "adm-pisquare-pivision-collective-tls",
+      "adm-tdengine-pi-prereqs"
+    ],
+    "verify": false
+  }
+]

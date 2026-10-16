@@ -1,0 +1,399 @@
+[
+  {
+    "id": "q-sdk-what",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 1,
+    "prompt": "What is the AF SDK?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A REST API hosted by IIS"
+      },
+      {
+        "id": "b",
+        "text": "A Microsoft .NET library for VB.NET, C# and Managed C++, shipped in the PI AF Client"
+      },
+      {
+        "id": "c",
+        "text": "A Python package"
+      },
+      {
+        "id": "d",
+        "text": "A PI Vision plug-in"
+      }
+    ],
+    "answer": "b",
+    "explanation": "AF SDK is \"a Microsoft .NET based programmatic library\" for Visual Basic .NET, C# and Managed C++, shipped in the PI AF Client (includes AF SDK). PI Web API is the REST option.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-intro-dev-tech-2020"
+    ]
+  },
+  {
+    "id": "q-sdk-objects",
+    "type": "matching",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 1,
+    "prompt": "Match each AF SDK class to what it represents.",
+    "pairs": [
+      {
+        "left": "PISystems",
+        "right": "The collection of AF servers known to the client"
+      },
+      {
+        "left": "PISystem",
+        "right": "One AF server"
+      },
+      {
+        "left": "AFDatabase",
+        "right": "One database on an AF server"
+      },
+      {
+        "left": "PIServer",
+        "right": "One PI Data Archive"
+      }
+    ],
+    "explanation": "PISystems is IList<PISystem>; a PISystem is a single logical AF data store; AFDatabase is one database; and PIServer is the Data Archive, keeping older product names.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020",
+      "af-intro-dev-tech-2020",
+      "dev2-gh-afsdk-course-ex5"
+    ]
+  },
+  {
+    "id": "q-sdk-connect-order",
+    "type": "ordering",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 2,
+    "prompt": "Order the steps of a simple AF SDK program that reads an attribute.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Create PISystems and pick the PISystem"
+      },
+      {
+        "id": "b",
+        "text": "Call Connect() and check ConnectionInfo.IsConnected"
+      },
+      {
+        "id": "c",
+        "text": "Open the AFDatabase"
+      },
+      {
+        "id": "d",
+        "text": "Find the attribute, for example with AFAttribute.FindAttribute"
+      },
+      {
+        "id": "e",
+        "text": "Call GetValue()"
+      }
+    ],
+    "explanation": "Connect to the PISystem, confirm the connection, open the database, find the attribute by path (element path | attribute name) and read it.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020",
+      "dev2-gh-afsdk-ex3",
+      "af-intro-dev-tech-2020"
+    ]
+  },
+  {
+    "id": "q-sdk-checkin",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 1,
+    "prompt": "Your code adds elements but colleagues cannot see them in PSE. What is missing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AFDatabase.CheckIn()"
+      },
+      {
+        "id": "b",
+        "text": "PISystem.Disconnect()"
+      },
+      {
+        "id": "c",
+        "text": "A restart of AF Server"
+      },
+      {
+        "id": "d",
+        "text": "An XML export"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Changes made through the SDK are pending until AFDatabase.CheckIn() commits them. The sample guards with if (database.IsDirty) database.CheckIn();.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-afsdk-pm-best-practices-2020",
+      "dev2-gh-afsdk-ex4"
+    ]
+  },
+  {
+    "id": "q-sdk-linq-safe",
+    "type": "multi",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 3,
+    "prompt": "With an AFSearch result enumeration, which LINQ calls does AVEVA describe as always safe? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "First()"
+      },
+      {
+        "id": "b",
+        "text": "FirstOrDefault()"
+      },
+      {
+        "id": "c",
+        "text": "Skip()"
+      },
+      {
+        "id": "d",
+        "text": "Count()"
+      },
+      {
+        "id": "e",
+        "text": "Where()"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "First(), FirstOrDefault() and Skip() are always safe; Take() is usually safe for small counts; most others, such as Count(), Select() and Where(), are not, because they pull everything. Use GetTotalCount() for a count.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-sdk-count",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 2,
+    "prompt": "What should you call instead of .Count() to get the number of matches from an AFSearch?",
+    "options": [
+      {
+        "id": "a",
+        "text": "GetTotalCount()"
+      },
+      {
+        "id": "b",
+        "text": "FindObjectIds().Length"
+      },
+      {
+        "id": "c",
+        "text": "CacheTimeout"
+      },
+      {
+        "id": "d",
+        "text": "ToList().Count"
+      }
+    ],
+    "answer": "a",
+    "explanation": "GetTotalCount() returns the count of items to be sent from server to client without pulling every object. Calling .Count() enumerates everything.",
+    "lessonId": "af-sdk-basics",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-sdk-cachetimeout",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 2,
+    "prompt": "Write the C# statement that opts an AFSearch object named search into 10 minutes of server-side caching.",
+    "language": "af",
+    "accepted": [
+      "search.CacheTimeout = TimeSpan.FromMinutes(10);",
+      "search.CacheTimeout = TimeSpan.FromMinutes(10)"
+    ],
+    "requiredPatterns": [
+      "search\\.cachetimeout\\s*=\\s*timespan\\.fromminutes\\(\\s*10\\s*\\)"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "CacheTimeout opts in to server-side caching for paging. AVEVA's deck says 10 minutes is more than generous for most applications.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-pisquare-afeventframesearch-blog",
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-sdk-pagesize",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 2,
+    "prompt": "What does AVEVA's AFSearch deck say about setting pageSize to int.MaxValue?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Recommended for small databases"
+      },
+      {
+        "id": "b",
+        "text": "\"Recommend: Never!\""
+      },
+      {
+        "id": "c",
+        "text": "Required for event frames"
+      },
+      {
+        "id": "d",
+        "text": "Only allowed with CacheTimeout"
+      }
+    ],
+    "answer": "b",
+    "explanation": "Page through results, for example FindEventFrames(startIndex: 0, fullLoad: false, pageSize: 1000). Setting pageSize to int.MaxValue is \"Recommend: Never!\".",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-pisquare-afeventframesearch-blog",
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-sdk-attr-filter",
+    "type": "code",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 3,
+    "prompt": "Write the AFSearch query fragment that filters event frames where the attribute Tank Level is at least 75.",
+    "language": "af",
+    "accepted": [
+      "'|Tank Level':>=75"
+    ],
+    "requiredPatterns": [
+      "'\\|tank level'\\s*:\\s*>=\\s*75"
+    ],
+    "forbiddenPatterns": [],
+    "explanation": "Attribute value filters use a leading pipe and put the operator after the colon: '|Tank Level':>=75. Without the pipe the name would not be read as an attribute.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-pisquare-afeventframesearch-blog"
+    ]
+  },
+  {
+    "id": "q-sdk-braces",
+    "type": "fill",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 3,
+    "prompt": "Inside a C# interpolated string, how must the literal braces of a nested AFSearch query be written? (Give the opening form.)",
+    "accepted": [
+      "{{"
+    ],
+    "caseSensitive": false,
+    "explanation": "In a C# interpolated string, literal braces must be doubled ({{ and }}), otherwise C# treats them as interpolation holes.",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-pisquare-afsearch-2017r2-blog"
+    ]
+  },
+  {
+    "id": "q-sdk-versions",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 3,
+    "prompt": "In which AF release were the new AFSearch classes for elements and event frames introduced?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF 2014"
+      },
+      {
+        "id": "b",
+        "text": "AF 2016 (SDK 2.8.0)"
+      },
+      {
+        "id": "c",
+        "text": "AF 2017 R2 (SDK 2.9.5)"
+      },
+      {
+        "id": "d",
+        "text": "AF 2018 SP2"
+      }
+    ],
+    "answer": "b",
+    "explanation": "The AFSearch classes arrived in AF 2016 (SDK 2.8.0) for elements, event frames, notification rules and templates. AFAttributeSearch and nested queries came in AF 2017 R2 (SDK 2.9.5).",
+    "lessonId": "af-sdk-basics",
+    "tags": [],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  },
+  {
+    "id": "q-sdk-dispose",
+    "type": "mcq",
+    "domain": "asset-framework",
+    "coverage": [
+      "af.sdk"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AFSearch objects should be disposed, for example with a using block or Close().",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "t",
+    "explanation": "True. Forgetting to dispose the search is a listed pitfall; wrap it in using or call Close().",
+    "lessonId": "af-sdk-basics",
+    "tags": [
+      "true-false"
+    ],
+    "sources": [
+      "af-afsearch-2018-deck"
+    ]
+  }
+]

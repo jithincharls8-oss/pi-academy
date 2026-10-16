@@ -1,0 +1,374 @@
+[
+  {
+    "id": "q-mining-oms-levels",
+    "type": "ordering",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Order AMMC's Operations Management System levels from the top (management) to the bottom (operators).",
+    "items": [
+      {
+        "id": "a",
+        "text": "Level 3: overall mine view for management"
+      },
+      {
+        "id": "b",
+        "text": "Level 2: value driver tree per process"
+      },
+      {
+        "id": "c",
+        "text": "Level 1: equipment dashboards for operators"
+      }
+    ],
+    "explanation": "AMMC's 3-level OMS: Level 3 is the overall mine view, Level 2 a value driver tree per process (drilling, loading, hauling), and Level 1 equipment dashboards for operators.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "q-mining-soft-sensor",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which design matches Hindustan Zinc's P80 soft sensor?",
+    "scenario": "A concentrator wants a continuous estimate of grind size (P80). Online particle size analysers are expensive to run, and lab results arrive hours later.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Train a model on historical PI data, feed it live PI data, and publish predictions every 5 minutes to PI and then the DCS"
+      },
+      {
+        "id": "b",
+        "text": "Raise CompDev on the analyser tags so fewer values are stored"
+      },
+      {
+        "id": "c",
+        "text": "Enter lab results by hand into PI Manual Logger once a week"
+      },
+      {
+        "id": "d",
+        "text": "Average the last month of lab P80 values and hold it constant"
+      }
+    ],
+    "answer": "a",
+    "explanation": "HZL trains a model in Jupyter on historical PI data, feeds it live PI data and publishes predictions every 5 minutes to PI and then to the DCS. It reported about 95% accuracy and eliminated 6 online particle size analysers.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner",
+      "data-science"
+    ],
+    "sources": [
+      "ind-pres-hzl-2021-pdf"
+    ]
+  },
+  {
+    "id": "q-mining-300-percent",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "How should you treat this figure in training material?",
+    "scenario": "An AMMC presentation states that concentrator slowdowns from low crusher feed were \"reduced by 300%\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quote it as a 300% reduction; it was presented at PI World"
+      },
+      {
+        "id": "b",
+        "text": "Convert it to a 75% reduction"
+      },
+      {
+        "id": "c",
+        "text": "Flag it as mathematically unclear and verify it with the author before teaching it"
+      },
+      {
+        "id": "d",
+        "text": "Replace it with Newcrest's 50% downtime figure"
+      }
+    ],
+    "answer": "c",
+    "explanation": "A reduction cannot exceed 100% of the original amount, so \"300%\" is mathematically unclear. The research says to verify such figures with the author before teaching them. Never convert or substitute figures.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "expert",
+      "critical-reading"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "q-mining-p80-define",
+    "type": "fill",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "difficulty": 1,
+    "prompt": "P80 is the particle size that __ % of material passes.",
+    "accepted": [
+      "80"
+    ],
+    "caseSensitive": false,
+    "explanation": "P80 is the particle size that 80% of material passes, the key grinding performance indicator.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-pres-hzl-2021-pdf"
+    ]
+  },
+  {
+    "id": "q-mining-newcrest",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What did AVEVA report for Newcrest's Cadia mine?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Throughput up 650,000 tons in the first six months and crushing-circuit downtime down 50%"
+      },
+      {
+        "id": "b",
+        "text": "Copper recovery +2.4% and gold recovery +7.4%"
+      },
+      {
+        "id": "c",
+        "text": "20% decrease in unplanned downtime"
+      },
+      {
+        "id": "d",
+        "text": "Iron ore production up 10 million tons per year"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Newcrest: throughput up 650,000 tons in the first six months, crushing-circuit downtime down 50%. Copper and gold recovery are Ok Tedi (Mipac); 20% unplanned downtime is Alcoa; 10 million tons is ArcelorMittal in OSIsoft's overview.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner",
+      "case-study"
+    ],
+    "sources": [
+      "ind-ss-newcrest"
+    ]
+  },
+  {
+    "id": "q-mining-kpis",
+    "type": "matching",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each mining term to its meaning.",
+    "pairs": [
+      {
+        "left": "Mine plan conformity",
+        "right": "Actual vs planned extraction by material and shovel face"
+      },
+      {
+        "left": "Match factor",
+        "right": "Ratio used to judge truck-to-shovel fleet balance"
+      },
+      {
+        "left": "Value driver tree",
+        "right": "KPI breakdown from top-level output to process drivers"
+      },
+      {
+        "left": "MTPA",
+        "right": "Million tonnes per annum"
+      }
+    ],
+    "explanation": "These are the definitions used in AMMC's PI World 2019 presentation.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "beginner",
+      "terms"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "q-mining-ok-tedi-reporter",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Who reported Ok Tedi's copper recovery +2.4% and gold recovery +7.4%?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mipac, the integrator, in a 2025 article"
+      },
+      {
+        "id": "b",
+        "text": "AVEVA in a success story"
+      },
+      {
+        "id": "c",
+        "text": "Ok Tedi in an audited annual report"
+      },
+      {
+        "id": "d",
+        "text": "OSIsoft's company overview"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The Ok Tedi figures come from an integrator article by Mipac (2025) on a talk by Daniel Qiao. Integrator pages are also marketing material, so they are not independent audits.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner",
+      "reported-by"
+    ],
+    "sources": [
+      "ind-mipac-oktedi"
+    ]
+  },
+  {
+    "id": "q-mining-vale",
+    "type": "multi",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "Which outcomes does the Vale success story report? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Air quality reporting from 5h20 to two minutes"
+      },
+      {
+        "id": "b",
+        "text": "Data updates from seven days to five minutes"
+      },
+      {
+        "id": "c",
+        "text": "Station integration from one month to three days"
+      },
+      {
+        "id": "d",
+        "text": "Field trips from 600km to 200km average per month"
+      },
+      {
+        "id": "e",
+        "text": "Analysis reporting from three weeks to fifteen minutes"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "explanation": "Vale reports all of the first four. \"Three weeks to fifteen minutes\" is Colorado Springs Utilities.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "expert",
+      "case-study",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-vale"
+    ]
+  },
+  {
+    "id": "q-mining-rio-tinto",
+    "type": "mcq",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: The \"100% availability / 80% utilization\" numbers on the Rio Tinto page are results achieved with PI.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The research notes these are illustrative quotes on the page, not results. The Rio Tinto story gives no outcome figures.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner",
+      "critical-reading",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-rio-tinto"
+    ]
+  },
+  {
+    "id": "q-mining-barrick",
+    "type": "scenario",
+    "domain": "industries",
+    "coverage": [
+      "ind.mining",
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which PI approach did Barrick Goldstrike use?",
+    "scenario": "A gold mine must report air quality under three operating permits. Today field staff log readings by hand into interdependent spreadsheets, and errors are common.",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI AF and Analytics compute the maximum or minimum hourly averages the permits require"
+      },
+      {
+        "id": "b",
+        "text": "Increase the scan rate of every stack monitor to 1 second"
+      },
+      {
+        "id": "c",
+        "text": "Email photos of the field logs to the regulator"
+      },
+      {
+        "id": "d",
+        "text": "Store the spreadsheets in the PI Data Archive"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Barrick used PI AF and Analytics to automate air-quality permit compliance reporting; the AF model returns the maximum or minimum hourly average. The interim spreadsheets were removed.",
+    "lessonId": "pi-in-mining",
+    "tags": [
+      "practitioner",
+      "compliance"
+    ],
+    "sources": [
+      "ind-ss-barrick"
+    ]
+  }
+]

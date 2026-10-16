@@ -1,0 +1,519 @@
+[
+  {
+    "id": "af-convert",
+    "name": "Convert",
+    "kind": "af",
+    "category": "Conversion / UOM",
+    "signature": "Convert(expr, \"uom\")",
+    "description": "Converts or assigns a unit of measure to an expression result before it is written to the output.",
+    "params": [
+      {
+        "name": "expr",
+        "description": "expression"
+      },
+      {
+        "name": "uom",
+        "description": "unit abbreviation in double quotes"
+      }
+    ],
+    "returns": "Number with a UOM",
+    "example": "Convert(Curve('Adjusted Wind Speed', (0,0) (3.99,0) (4,78) (5,193) (25,3000) (25.01,0) (100,0)),\"kW\")",
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "fn-calc-asset-analytics-2022",
+      "af-using-af-analyze-asset-2019"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-nooutput",
+    "name": "NoOutput",
+    "kind": "af",
+    "category": "Status",
+    "signature": "NoOutput()",
+    "description": "Produces no output for this evaluation.",
+    "params": [],
+    "returns": "No value",
+    "example": "IF x = 0 THEN NoOutput() ELSE x",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-rs2012-oceania-calcs"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-exit",
+    "name": "Exit",
+    "kind": "af",
+    "category": "Status",
+    "signature": "Exit()",
+    "description": "Ends the analysis evaluation; later rows are skipped. Added in AF 2018 SP2.",
+    "params": [],
+    "returns": "No value",
+    "example": "IF BadVal('In') THEN Exit() ELSE 'In'",
+    "sources": [
+      "fn-pisquare-af2018sp2",
+      "af-optimizing-analytics-2020"
+    ],
+    "verify": true,
+    "verifyNote": "That Exit takes no arguments is inferred; check the AF expression functions reference."
+  },
+  {
+    "id": "af-badval",
+    "name": "BadVal",
+    "kind": "af",
+    "category": "Status",
+    "signature": "BadVal(x)",
+    "description": "True when the value is bad (a system digital state).",
+    "params": [
+      {
+        "name": "x",
+        "description": "value or attribute"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "BadVal('Flow')",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "af-pisquare-pe-to-analytics-migration"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-haschanged",
+    "name": "HasChanged",
+    "kind": "af",
+    "category": "Status",
+    "signature": "HasChanged(attribute, time)",
+    "description": "Checks whether an attribute changed, used to throttle expensive work.",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "attribute in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      }
+    ],
+    "returns": "Boolean",
+    "example": "HasChanged('Setpoint','*')",
+    "sources": [
+      "af-optimizing-analytics-2020",
+      "fn-docs-af-expr-functions"
+    ],
+    "verify": true,
+    "verifyNote": "The exact name (HasChanged or HasValueChanged) is not confirmed; check the AF reference."
+  },
+  {
+    "id": "af-eventframe",
+    "name": "EventFrame",
+    "kind": "af",
+    "category": "Event frame",
+    "signature": "EventFrame(\"StartTime\" | \"EndTime\" | \"Duration\")",
+    "description": "Returns a property of the current event frame in Event Frame Generation analyses.",
+    "params": [
+      {
+        "name": "property",
+        "description": "StartTime, EndTime or Duration"
+      }
+    ],
+    "returns": "Time or time span",
+    "example": "EventFrame(\"StartTime\")",
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-analyzing-pi-data-2018"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-recordedvalues",
+    "name": "RecordedValues",
+    "kind": "af",
+    "category": "Array",
+    "signature": "RecordedValues(attribute, starttime, endtime)",
+    "description": "Array of recorded values in a range (AF 2018 and later).",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Array",
+    "example": "RecordedValues('Temp','*-1h','*')",
+    "sources": [
+      "fn-feedback-pida-850",
+      "fn-feedback-pida-855"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-recordedvaluesbycount",
+    "name": "RecordedValuesByCount",
+    "kind": "af",
+    "category": "Array",
+    "signature": "RecordedValuesByCount(attribute, time, n)",
+    "description": "Array of the last n recorded values before a time.",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "time expression, for example '*'"
+      },
+      {
+        "name": "n",
+        "description": "number of values"
+      }
+    ],
+    "returns": "Array",
+    "example": "RecordedValuesByCount('Best Operating State','*',10)",
+    "sources": [
+      "af-data-exploration-notification-2020"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-filterdata",
+    "name": "FilterData",
+    "kind": "af",
+    "category": "Array",
+    "signature": "FilterData(array, predicate)",
+    "description": "Returns the array elements for which the predicate is true; $val refers to each element's value.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      },
+      {
+        "name": "predicate",
+        "description": "condition using $val"
+      }
+    ],
+    "returns": "Array",
+    "example": "FilterData(PastTenStates, $val = \"Drying\")",
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "fn-feedback-pida-850"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-mapdata",
+    "name": "MapData",
+    "kind": "af",
+    "category": "Array",
+    "signature": "MapData(array, expression)",
+    "description": "Applies an expression to every element of an array.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      },
+      {
+        "name": "expression",
+        "description": "expression using $val"
+      }
+    ],
+    "returns": "Array",
+    "example": "MapData(A, $val * 2)",
+    "sources": [
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-arraylength",
+    "name": "ArrayLength",
+    "kind": "af",
+    "category": "Array",
+    "signature": "ArrayLength(array)",
+    "description": "Number of elements in an array.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      }
+    ],
+    "returns": "Integer",
+    "example": "ArrayLength(A)",
+    "sources": [
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-count",
+    "name": "Count",
+    "kind": "af",
+    "category": "Array",
+    "signature": "Count(array)",
+    "description": "Number of elements in an array; with FilterData it builds a count-if.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      }
+    ],
+    "returns": "Integer",
+    "example": "Count(FilterData(RecordedValues('Valve','t','*'), $val = 1))",
+    "sources": [
+      "fn-feedback-pida-855"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'. The count-if composition is also inferred."
+  },
+  {
+    "id": "af-timestamp",
+    "name": "TimeStamp",
+    "kind": "af",
+    "category": "Array / time",
+    "signature": "TimeStamp(array[i]) or TimeStamp(attribute)",
+    "description": "Timestamp of an array element (arrays are 1-based in the OSIsoft lab) or of an attribute's value. In a scheduled analysis TimeStamp('attr') returned the evaluation time.",
+    "params": [
+      {
+        "name": "value",
+        "description": "array element or attribute"
+      }
+    ],
+    "returns": "Time",
+    "example": "TimeStamp(PastDryingStates[1])",
+    "notes": "The 1-based indexing rule was seen in only one lab.",
+    "sources": [
+      "af-data-exploration-notification-2020",
+      "af-pisquare-timestamp-diff"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-total-array",
+    "name": "Total (array)",
+    "kind": "af",
+    "category": "Data summary (arrays)",
+    "signature": "Total(array)",
+    "description": "Sums an array. AF 2018 SP2 gave data summary functions, formerly event-weighted only, a time-weighted option for arrays.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      }
+    ],
+    "returns": "Number",
+    "example": "Total(A1)",
+    "notes": "The syntax of the weighting option was not read.",
+    "sources": [
+      "fn-feedback-pida-850",
+      "fn-pisquare-af2018sp2"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-array-summaries",
+    "name": "Avg / Min / Max / Median / StDev (arrays)",
+    "kind": "af",
+    "category": "Data summary (arrays)",
+    "signature": "Avg(array), Min(array), Max(array), Median(array), StDev(array)",
+    "description": "Summaries over an array value.",
+    "params": [
+      {
+        "name": "array",
+        "description": "array value"
+      }
+    ],
+    "returns": "Number",
+    "example": "Avg(RecordedValues('Temp','*-1h','*'))",
+    "sources": [
+      "fn-pisquare-af2018sp2",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-split",
+    "name": "Split",
+    "kind": "af",
+    "category": "String / array",
+    "signature": "Split(string, delimiter)",
+    "description": "Turns a delimited string into a string array (AF 2018 SP2).",
+    "params": [
+      {
+        "name": "string",
+        "description": "input string"
+      },
+      {
+        "name": "delimiter",
+        "description": "delimiter string"
+      }
+    ],
+    "returns": "String array",
+    "example": "Parts = Split('Batch Info', \"|\")",
+    "notes": "Indexing the result inline, as in Split(s, \"|\")[2], was reported not to work; assign it to a variable first (workaround inferred). No client is known to display array attributes meaningfully.",
+    "sources": [
+      "fn-pisquare-af2018sp2",
+      "fn-pisquare-help-with-arrays"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-newline",
+    "name": "NewLine",
+    "kind": "af",
+    "category": "String",
+    "signature": "NewLine()",
+    "description": "Line break for multi-line strings (AF 2018 SP2).",
+    "params": [],
+    "returns": "String",
+    "example": "Concat(\"L1\", NewLine(), \"L2\")",
+    "sources": [
+      "fn-pisquare-af2018sp2"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-concat",
+    "name": "Concat",
+    "kind": "af",
+    "category": "String",
+    "signature": "Concat(s1, s2, ...)",
+    "description": "Joins strings.",
+    "params": [
+      {
+        "name": "s1, s2, ...",
+        "description": "strings"
+      }
+    ],
+    "returns": "String",
+    "example": "Concat(\"A\",\"B\")",
+    "sources": [
+      "fn-calc-asset-analytics-2022",
+      "fn-feedback-pida-850"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  },
+  {
+    "id": "af-tagval",
+    "name": "TagVal",
+    "kind": "af",
+    "category": "Search and retrieval",
+    "signature": "TagVal(attribute [, time])",
+    "description": "Value of an attribute at a time; with no time the evaluation time is used. Both forms appear in OSIsoft labs.",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "time",
+        "description": "optional time expression"
+      }
+    ],
+    "returns": "Value",
+    "example": "TagVal('Adjusted Wind Speed')",
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "af-using-af-analyze-asset-2019"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-tagtot",
+    "name": "TagTot",
+    "kind": "af",
+    "category": "Archive value statistics",
+    "signature": "TagTot(attribute, starttime, endtime)",
+    "description": "Time integral that assumes a per-day rate. Since AF 2018 SP2 all tag summary functions (TagTot, TagAvg and others) also accept an event-weighted option.",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Number",
+    "example": "TagTot('filtredFlow', BOM('*'), '*') * 24",
+    "notes": "The syntax of the SP2 event-weighted option was not read.",
+    "sources": [
+      "fn-pisquare-af2018sp2",
+      "af-pisquare-tagtot-units",
+      "af-pisquare-tagtot-condition"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-curve",
+    "name": "Curve",
+    "kind": "af",
+    "category": "Math",
+    "signature": "Curve(x, (x1,y1) (x2,y2) ... (xn,yn))",
+    "description": "Piecewise-linear lookup; pairs are separated by spaces.",
+    "params": [
+      {
+        "name": "x",
+        "description": "input"
+      },
+      {
+        "name": "(xi,yi)",
+        "description": "points"
+      }
+    ],
+    "returns": "Number",
+    "example": "Curve('Adjusted Wind Speed',(0,0) (4,78) (16,3000))",
+    "sources": [
+      "fn-using-af-analyze-2019",
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": false
+  },
+  {
+    "id": "af-numofchanges",
+    "name": "NumOfChanges",
+    "kind": "af",
+    "category": "Statistics",
+    "signature": "NumOfChanges(attribute, starttime, endtime)",
+    "description": "Counts value or state changes in a range.",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "tag or attribute name in single quotes"
+      },
+      {
+        "name": "starttime",
+        "description": "start time expression, for example '*-1h'"
+      },
+      {
+        "name": "endtime",
+        "description": "end time expression, for example '*'"
+      }
+    ],
+    "returns": "Integer",
+    "example": "NumOfChanges('Pump','t','*')",
+    "sources": [
+      "fn-calc-asset-analytics-2022"
+    ],
+    "verify": true,
+    "verifyNote": "Signature inferred from function names in AVEVA Feedback; check the AVEVA 'List of expression functions reference'."
+  }
+]

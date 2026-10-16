@@ -1,0 +1,176 @@
+[
+  {
+    "id": "q-vis-ext-file-names",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Which files are REQUIRED for a PI Vision custom symbol called Gauge2? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "sym-Gauge2.js" },
+      { "id": "b", "text": "sym-Gauge2-template.html" },
+      { "id": "c", "text": "sym-Gauge2-config.html" },
+      { "id": "d", "text": "sym-Gauge2.css" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "The implementation (sym-<Name>.js) and presentation (sym-<Name>-template.html) are required. The configuration pane and CSS files are optional.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-register",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Which call registers a custom symbol with PI Vision?",
+    "options": [
+      { "id": "a", "text": "PV.symbolCatalog.register(definition)" },
+      { "id": "b", "text": "PV.toolCatalog.register(definition)" },
+      { "id": "c", "text": "PIVision.addSymbol(definition)" },
+      { "id": "d", "text": "window.registerSymbol(definition)" }
+    ],
+    "answer": "a",
+    "explanation": "Symbols register with PV.symbolCatalog.register; PV.toolCatalog.register is for tool panes. The other two are not part of the framework.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-minify",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "scenario": "A custom symbol works on a developer's test server in debug mode but breaks in production. The developer used modern JavaScript syntax throughout.",
+    "prompt": "What is the most likely cause, and a documented way around it?",
+    "options": [
+      { "id": "a", "text": "The built-in minifier broke the code; add the appSetting DisableExtensibilityJSMinification = true" },
+      { "id": "b", "text": "Production PI Vision does not load the ext folder" },
+      { "id": "c", "text": "Custom symbols only run for Publisher users" },
+      { "id": "d", "text": "The symbol must be renamed to *.min.js" }
+    ],
+    "answer": "a",
+    "explanation": "JS in ext is always minified, and the guide warns modern syntax can be broken by it. DisableExtensibilityJSMinification = true stops minification. A *.min.js file is only used when debug is off, so renaming does not fix broken syntax.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["debugging"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-datashape",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Which values can DataShape take in a custom symbol's default configuration? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "Value" },
+      { "id": "b", "text": "Trend" },
+      { "id": "c", "text": "Table" },
+      { "id": "d", "text": "TimeSeries" },
+      { "id": "e", "text": "Gauge" },
+      { "id": "f", "text": "EventFrame" }
+    ],
+    "answers": ["a", "b", "c", "d", "e"],
+    "explanation": "The guide lists Value, Gauge, Trend, Table and TimeSeries. EventFrame is not a listed DataShape.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-datasource-none",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "What does datasourceBehavior None (0) mean for a custom symbol?",
+    "options": [
+      { "id": "a", "text": "A static symbol that takes no data and is not shown in the symbol selector" },
+      { "id": "b", "text": "The symbol accepts any number of data items" },
+      { "id": "c", "text": "The symbol reads data directly from SQL Server" },
+      { "id": "d", "text": "The symbol is disabled" }
+    ],
+    "answer": "a",
+    "explanation": "datasourceBehavior is None 0, Single 1 or Multiple 2; None means a static symbol not shown in the selector. Multiple is the one for many data items.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-callbacks",
+    "type": "matching",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Match each custom symbol callback to when it runs.",
+    "pairs": [
+      { "left": "onDataUpdate(data)", "right": "New data arrives for the symbol" },
+      { "left": "onResize(width, height)", "right": "The symbol is resized" },
+      { "left": "onConfigChange(newConfig, oldConfig)", "right": "The symbol's configuration changes" },
+      { "left": "onDestroy", "right": "The symbol is removed" }
+    ],
+    "explanation": "These callbacks are set up from init(scope, element) as described in the PI Vision Extensibility Guide.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  },
+  {
+    "id": "q-vis-ext-libraries",
+    "type": "mcq",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 2,
+    "prompt": "Where should a custom symbol's external JavaScript libraries go?",
+    "options": [
+      { "id": "a", "text": "In the ext\\libraries folder" },
+      { "id": "b", "text": "Linked by editing Views\\Home\\index.cshtml" },
+      { "id": "c", "text": "In the PI Vision SQL database" },
+      { "id": "d", "text": "In the IIS root folder" }
+    ],
+    "answer": "a",
+    "explanation": "The guide gives ext\\libraries for external libraries. Editing index.cshtml is described in community material as an \"unrecommended\" route.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide", "ops2-gh-leniel-vision-ext"]
+  },
+  {
+    "id": "q-vis-ext-auth-prompt",
+    "type": "scenario",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "scenario": "A custom symbol fetches extra data from PI Web API. Every user who opens the display gets a Windows credentials prompt.",
+    "prompt": "Where should the admin look first?",
+    "options": [
+      { "id": "a", "text": "Kerberos delegation: the SPN, delegation and service account settings" },
+      { "id": "b", "text": "The symbol's CSS file" },
+      { "id": "c", "text": "The DataShape value" },
+      { "id": "d", "text": "The display's time bar" }
+    ],
+    "answer": "a",
+    "explanation": "A PI Square thread traced credential prompts from a custom symbol calling PI Web API to wrong Kerberos delegation settings (SPN, delegation or service account).",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["kerberos", "troubleshooting"],
+    "sources": ["ops2-pisquare-webapi-custom-symbol-auth"]
+  },
+  {
+    "id": "q-vis-ext-required-props",
+    "type": "multi",
+    "domain": "visualisation",
+    "coverage": ["vis.vision-admin"],
+    "difficulty": 3,
+    "prompt": "Which symbol definition properties does the guide mark as required? Select all that apply.",
+    "options": [
+      { "id": "a", "text": "typeName" },
+      { "id": "b", "text": "visObjectType" },
+      { "id": "c", "text": "supportsCollections" },
+      { "id": "d", "text": "iconUrl" }
+    ],
+    "answers": ["a", "b"],
+    "explanation": "typeName (a unique name) and visObjectType are required. supportsCollections defaults to false and iconUrl is optional.",
+    "lessonId": "pi-vision-custom-symbols",
+    "tags": ["extensibility"],
+    "sources": ["ops2-gh-vision-ext-guide"]
+  }
+]

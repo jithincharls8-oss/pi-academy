@@ -1,0 +1,448 @@
+[
+  {
+    "id": "q-af-patterns-templates",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 1,
+    "prompt": "What is OSIsoft's first AF commandment?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Thou shalt use Templates"
+      },
+      {
+        "id": "b",
+        "text": "Thou shalt use the default %Server%"
+      },
+      {
+        "id": "c",
+        "text": "Thou shalt model everything at once"
+      },
+      {
+        "id": "d",
+        "text": "Thou shalt store relational data in AF attributes"
+      }
+    ],
+    "answer": "a",
+    "explanation": "\"Thou shalt use Templates\": build every element from a template, even an empty one. The default %Server% and storing relational data in AF are things OSIsoft advises against.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "templates"
+    ],
+    "sources": [
+      "adm-us19-af-rollout-kwan",
+      "adm-uc15-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-substitution",
+    "type": "scenario",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Which design lets you repoint all of them by editing one value?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Server path set to %@\\Data Archive|Name% and tag name to %@.|TagName%, so one Data Archive Name attribute drives them"
+      },
+      {
+        "id": "b",
+        "text": "Keep the default %Server% and rename PRODPI01 to DEVPI01"
+      },
+      {
+        "id": "c",
+        "text": "Edit each attribute by hand after the move"
+      },
+      {
+        "id": "d",
+        "text": "Use Allow Extensions on every element"
+      }
+    ],
+    "scenario": "Your AF database has 4,000 PI Point attributes pointing at the development Data Archive DEVPI01. Next month it moves to production server PRODPI01.",
+    "answer": "a",
+    "explanation": "AVEVA's easy wins recommend substitution parameters pointing at an explicit configuration attribute; editing one Data Archive Name attribute repoints all linked attributes. Relying on the default %Server% is specifically discouraged.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "migration"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-uc15-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-vrm",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "A PI Vision display shows a 90-day average using a PI Point data reference Value Retrieval Method, and it is slow. What does AVEVA recommend?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Move the calculation to Asset Analytics and store the result in a PI Point"
+      },
+      {
+        "id": "b",
+        "text": "Increase ArcMaxCollect"
+      },
+      {
+        "id": "c",
+        "text": "Convert it to a Formula data reference"
+      },
+      {
+        "id": "d",
+        "text": "Enable Allow Extensions"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Value Retrieval Methods are computed on the fly by the Data Archive each time they are read; move them to Asset Analytics. Formula chains have the same problem, so converting to a Formula does not help.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "performance"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-derived",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Some pumps need three extra attributes. What is the recommended approach?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A derived template that adds the attributes, with Allow Extensions disabled on the base template"
+      },
+      {
+        "id": "b",
+        "text": "Turn on Allow Extensions on the base template and add attributes per element"
+      },
+      {
+        "id": "c",
+        "text": "Build those pumps without a template"
+      },
+      {
+        "id": "d",
+        "text": "Add the attributes to the Configuration database"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Prefer derived templates for subsets of assets and disable Allow Extensions on base templates, because extensions \"will no longer guarantee all elements have the same set of attributes.\"",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "templates"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-table-rows",
+    "type": "fill",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "As a rule of thumb, import no more than about how many rows into a (non-external) AF table?",
+    "accepted": [
+      "10000",
+      "10,000",
+      "10k",
+      "10 000"
+    ],
+    "caseSensitive": false,
+    "explanation": "The rule of thumb is about 10,000 rows, because non-external tables are loaded entirely into client memory. Use parameterised queries on external tables for more.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "tables"
+    ],
+    "sources": [
+      "adm-easy-wins-af",
+      "adm-pisquare-af-table-lookup-10k"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-backfill-count",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 3,
+    "prompt": "Backfilling 6 months with a 1-minute trigger gives about how many evaluations, compared with 180 for a daily trigger?",
+    "options": [
+      {
+        "id": "a",
+        "text": "259,200"
+      },
+      {
+        "id": "b",
+        "text": "4,320"
+      },
+      {
+        "id": "c",
+        "text": "25,920"
+      },
+      {
+        "id": "d",
+        "text": "1,000,000"
+      }
+    ],
+    "answer": "a",
+    "explanation": "180 days x 1,440 minutes = 259,200 evaluations. AVEVA uses this example to argue for scheduling by need.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "scheduling"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-retry",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Why should you disable analyses that are in Warning or Error state?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PI Analysis Service retries them every 15 minutes"
+      },
+      {
+        "id": "b",
+        "text": "They delete their output tags"
+      },
+      {
+        "id": "c",
+        "text": "They lock the AF database"
+      },
+      {
+        "id": "d",
+        "text": "They block check-in"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Analyses enabled before they are configured correctly are retried by PI Analysis Service every 15 minutes, which wastes resources.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "analytics"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-anti",
+    "type": "multi",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Which of these are AF anti-patterns according to OSIsoft and AVEVA? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Free-text values where an enumeration set would control them"
+      },
+      {
+        "id": "b",
+        "text": "Copy-paste data references that point at another element's tag"
+      },
+      {
+        "id": "c",
+        "text": "A Formula with a hard-coded unit count for an aggregate"
+      },
+      {
+        "id": "d",
+        "text": "Using a Rollup analysis for aggregates"
+      },
+      {
+        "id": "e",
+        "text": "Hiding helper attributes such as TagName"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Free-text typos caused NoData, copy-paste references pointed at FFS03's point, and hard-coded formulas fail when an element is deleted. Rollup analyses and hiding helper attributes are recommended practices.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "pitfall"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-imports-delete",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: AFImport from a master AF database propagates deletions to the site databases.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "answer": "b",
+    "explanation": "False. Imports do not propagate deletions; to match, you delete everything and recreate it (then update data references), or use the AF SDK.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "deployment",
+      "true-false"
+    ],
+    "sources": [
+      "adm-us19-af-rollout-kwan",
+      "adm-uc19-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-databases",
+    "type": "mcq",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 3,
+    "prompt": "Why does the AF course recommend fewer, larger AF databases organised by business unit rather than by plant?",
+    "options": [
+      {
+        "id": "a",
+        "text": "AF references only work within one database"
+      },
+      {
+        "id": "b",
+        "text": "Each AF database needs its own SQL Server"
+      },
+      {
+        "id": "c",
+        "text": "PI Vision can open only one database"
+      },
+      {
+        "id": "d",
+        "text": "Smaller databases cannot use templates"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AF references only work within one database, so splitting by plant breaks cross-plant references. The course also says not to organise assets in the Configuration database.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "design"
+    ],
+    "sources": [
+      "adm-building-assets-workbook"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-order",
+    "type": "ordering",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Put the AF design approach the course recommends in order.",
+    "items": [
+      {
+        "id": "a",
+        "text": "Design the hierarchy top-down"
+      },
+      {
+        "id": "b",
+        "text": "Build the model bottom-up"
+      },
+      {
+        "id": "c",
+        "text": "Add extra views with element references for other audiences"
+      }
+    ],
+    "explanation": "Design top-down, then build bottom-up; bottom-up alone \"lacks vision\" and top-down alone can \"drift away from reality\". Extra views come from element references once the main hierarchy exists.",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "design"
+    ],
+    "sources": [
+      "adm-building-assets-workbook",
+      "adm-uc15-af-batke"
+    ],
+    "verify": false
+  },
+  {
+    "id": "q-af-patterns-easy-wins",
+    "type": "matching",
+    "domain": "administration",
+    "coverage": [
+      "adm.af-patterns"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each AF problem to AVEVA's recommended fix.",
+    "pairs": [
+      {
+        "left": "Copy-paste data reference pointing at the wrong element",
+        "right": "Reset to Template"
+      },
+      {
+        "left": "Typos in free-text values",
+        "right": "Enumeration set"
+      },
+      {
+        "left": "Whole external table loaded for each lookup",
+        "right": "Parameterised query"
+      },
+      {
+        "left": "Repeated sub-calculation in an expression",
+        "right": "Expression variable"
+      }
+    ],
+    "explanation": "These are the easy wins: Reset to Template fixes copied references; enumeration sets control values; parameterised queries select on the server; expression variables avoid repeated calculations (1.6 ms to 0.6 ms in the example).",
+    "lessonId": "af-patterns-anti-patterns",
+    "tags": [
+      "fixes"
+    ],
+    "sources": [
+      "adm-easy-wins-af"
+    ],
+    "verify": false
+  }
+]

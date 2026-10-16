@@ -1,0 +1,441 @@
+[
+  {
+    "id": "q-library-conflict-handling",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "What is the right way to handle this?",
+    "scenario": "The Tyson Foods story reports a 0.1% yield improvement that paid back within six months. The page metadata says \".01%\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quote the body figure (0.1%), attributed to AVEVA, and note the conflicting metadata"
+      },
+      {
+        "id": "b",
+        "text": "Use .01% because metadata is more precise"
+      },
+      {
+        "id": "c",
+        "text": "Average them to 0.055%"
+      },
+      {
+        "id": "d",
+        "text": "Drop the figure and say Tyson saw no improvement"
+      }
+    ],
+    "answer": "a",
+    "explanation": "When a page contradicts itself, quote exactly, attribute and note the inconsistency. Never average or pick silently.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-tyson"
+    ]
+  },
+  {
+    "id": "q-library-wrong-company",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 1,
+    "prompt": "True or false: The \"$25M\" figure on the Eni success-story page should be credited to Eni.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. It belongs to DCP Midstream: \"$25M saved in fiscal year 2017 from improved plant operations\". The Eni story gives no Eni figures.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "beginner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-eni",
+      "ind-ss-dcp"
+    ]
+  },
+  {
+    "id": "q-library-never-merge",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "How should the deck present MOL?",
+    "scenario": "A deck on refinery value says \"MOL gained $1.5 billion\", adding the 2015 deck's \"EBITDA improvement $500M-550M\" to the 2023 overview's \"$1 billion in EBITA since 2010\".",
+    "options": [
+      {
+        "id": "a",
+        "text": "List both claims separately with their sources and years; never add them"
+      },
+      {
+        "id": "b",
+        "text": "Keep $1.5 billion; it is the total"
+      },
+      {
+        "id": "c",
+        "text": "Use only the larger figure"
+      },
+      {
+        "id": "d",
+        "text": "Average them to about $775M"
+      }
+    ],
+    "answer": "a",
+    "explanation": "These are different figures from different sources and years (and even EBITDA vs EBITA). Keep both, attributed, and never merge them.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-uc15-og-chem",
+      "ind-osisoft-overview"
+    ]
+  },
+  {
+    "id": "q-library-ammc-300",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "AMMC stated concentrator slowdowns were \"reduced by 300%\". What is the problem?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A reduction cannot exceed 100%, so the figure is mathematically unclear"
+      },
+      {
+        "id": "b",
+        "text": "300% is too small to matter"
+      },
+      {
+        "id": "c",
+        "text": "It should be quoted as 3x more slowdowns"
+      },
+      {
+        "id": "d",
+        "text": "Nothing; it can be quoted as it is without comment"
+      }
+    ],
+    "answer": "a",
+    "explanation": "A reduction of more than 100% is mathematically unclear. Flag it and verify with the author before teaching it.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-pres-ammc-2019"
+    ]
+  },
+  {
+    "id": "q-library-problem-types",
+    "type": "matching",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Match each case to the kind of figure problem it shows.",
+    "pairs": [
+      {
+        "left": "Ence: \"1,500 MWs per hour per year\"",
+        "right": "Garbled unit on the page"
+      },
+      {
+        "left": "Rio Tinto: \"100% availability / 80% utilization\"",
+        "right": "Illustrative quote, not a result"
+      },
+      {
+        "left": "Eni page showing \"$25M\"",
+        "right": "Figure belonging to another company"
+      },
+      {
+        "left": "MOL: $500M-550M vs $1 billion",
+        "right": "Different sources and years"
+      },
+      {
+        "left": "University of Maryland: \"up to 30%\" vs 30% of HVAC",
+        "right": "Headline differs from results"
+      }
+    ],
+    "explanation": "Each problem needs a different response, but the rule is the same: quote exactly, attribute, and never alter the figure.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-ence",
+      "ind-ss-rio-tinto",
+      "ind-ss-eni",
+      "ind-uc15-og-chem",
+      "ind-ss-umd"
+    ]
+  },
+  {
+    "id": "q-library-halifax-37-38",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "What should you write?",
+    "scenario": "Halifax Water's GM reported system inputs falling from 168 MLD (2000) to 131 MLD (2012). OSIsoft's 2023 overview says \"38 million litres of water a day saved\". 168 minus 131 is 37.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quote both, each with its source and year, without correcting either"
+      },
+      {
+        "id": "b",
+        "text": "Correct the overview to 37 MLD"
+      },
+      {
+        "id": "c",
+        "text": "Correct the GM's figures so the difference is 38"
+      },
+      {
+        "id": "d",
+        "text": "Average to 37.5 MLD"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The figures come from different sources, years and possibly baselines. Do not \"fix\" or average them; quote each with attribution.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-pres-halifax-2013",
+      "ind-osisoft-overview"
+    ]
+  },
+  {
+    "id": "q-library-abbott",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "The Abbott Nutrition outcome says \"Increased filling speed by ten percent\". What does the body text say?",
+    "options": [
+      {
+        "id": "a",
+        "text": "There was an \"opportunity to increase the speed of the filler by more than ten percent\""
+      },
+      {
+        "id": "b",
+        "text": "Filling speed rose by two percent"
+      },
+      {
+        "id": "c",
+        "text": "Filling speed rose by 50%"
+      },
+      {
+        "id": "d",
+        "text": "Filling speed was unchanged"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The body describes an opportunity of more than ten percent, which is not quite the same as the headline result. Quote whichever you use exactly and note the difference. OEE rose by two percent.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-ss-abbott"
+    ]
+  },
+  {
+    "id": "q-library-bruce-credit",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "True or false: Bruce Power's outcomes, such as 1000 employee hours saved, should be credited mainly to the PI System alone.",
+    "options": [
+      {
+        "id": "t",
+        "text": "True"
+      },
+      {
+        "id": "f",
+        "text": "False"
+      }
+    ],
+    "answer": "f",
+    "explanation": "False. The research notes these outcomes are mostly attributable to AIM and engineering tools rather than PI alone. Bruce Power consolidated 40,000 PI tags into AVEVA Asset Information Management.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "practitioner",
+      "true-false"
+    ],
+    "sources": [
+      "ind-ss-bruce-power"
+    ]
+  },
+  {
+    "id": "q-library-paypal-days",
+    "type": "fill",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "On the PayPal page, one version says executive reporting now happens \"in seconds instead of weeks\"; a quote elsewhere says \"instead of __ days later\".",
+    "accepted": [
+      "40",
+      "forty"
+    ],
+    "caseSensitive": false,
+    "explanation": "The page carries both \"instead of weeks\" and \"instead of 40 days later\". Quote one exactly and note the other.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "expert"
+    ],
+    "sources": [
+      "ind-ss-paypal"
+    ]
+  },
+  {
+    "id": "q-library-allowed-actions",
+    "type": "multi",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "Which actions are allowed when you reuse a case-study figure? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quote it exactly as the source states it"
+      },
+      {
+        "id": "b",
+        "text": "Say who reported it"
+      },
+      {
+        "id": "c",
+        "text": "Note an inconsistency on the page"
+      },
+      {
+        "id": "d",
+        "text": "Round it to a neater number"
+      },
+      {
+        "id": "e",
+        "text": "Convert it to another currency"
+      }
+    ],
+    "answers": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "PI Academy's rule: case-study figures are copied exactly and every outcome says who reported it. Never round, convert or combine figures.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "beginner"
+    ],
+    "sources": [
+      "ind-aveva-ss-index"
+    ]
+  },
+  {
+    "id": "q-library-petronas",
+    "type": "mcq",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 3,
+    "prompt": "How does the PETRONAS success story state its headline saving?",
+    "options": [
+      {
+        "id": "a",
+        "text": "$33 million saved from reduced unplanned downtime, based on 51 warnings including 12 high-risk ones (stated as 20x ROI)"
+      },
+      {
+        "id": "b",
+        "text": "$33 million per warning"
+      },
+      {
+        "id": "c",
+        "text": "$51 million from 12 warnings"
+      },
+      {
+        "id": "d",
+        "text": "20x ROI on $33 million invested"
+      }
+    ],
+    "answer": "a",
+    "explanation": "AVEVA reports $33 million saved based on 51 warnings including 12 high-risk ones, stated as 20x ROI. Rearranging the numbers changes the claim.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "expert",
+      "exact-figures"
+    ],
+    "sources": [
+      "ind-ss-petronas"
+    ]
+  },
+  {
+    "id": "q-library-tnb-figures",
+    "type": "scenario",
+    "domain": "case-studies",
+    "coverage": [
+      "cs.library"
+    ],
+    "difficulty": 2,
+    "prompt": "How should these two Tenaga Nasional Berhad figures be presented?",
+    "scenario": "An OSIsoft 2015 seminar deck reports over USD 7 million savings from in-house implementation and over USD 10 million tangible savings from plant analysis and optimisation at TNB.",
+    "options": [
+      {
+        "id": "a",
+        "text": "As two separate figures, each \"over\", reported by OSIsoft"
+      },
+      {
+        "id": "b",
+        "text": "As USD 17 million total savings"
+      },
+      {
+        "id": "c",
+        "text": "As USD 7-10 million"
+      },
+      {
+        "id": "d",
+        "text": "As savings audited by TNB"
+      }
+    ],
+    "answer": "a",
+    "explanation": "The two figures describe different things. Keep them separate, keep \"over\", and credit OSIsoft as the reporter.",
+    "lessonId": "case-study-figures-and-inconsistencies",
+    "tags": [
+      "practitioner"
+    ],
+    "sources": [
+      "ind-pres-power-trends-2015"
+    ]
+  }
+]

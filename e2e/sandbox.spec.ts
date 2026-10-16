@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const [path, title] of [
-  ['/#/sandbox/explorer', /PI System Explorer/],
+  ['/#/sandbox/explorer', /AF Explorer/],
   ['/#/sandbox/smt', /System Management Tools|PI SMT/],
   ['/#/sandbox/webapi', /PI Web API/],
   ['/#/sandbox/compression', /[Cc]ompression/],

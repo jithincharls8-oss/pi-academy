@@ -611,11 +611,11 @@ function FeedbackSheet({
     <div
       role="status"
       className={cn(
-        'animate-pop sticky bottom-3 z-20 mt-6 max-h-[min(60vh,40rem)] overflow-y-auto rounded-xl p-4 shadow-raised ring-1 sm:p-5',
+        'animate-pop mt-6 rounded-xl p-4 ring-1 sm:p-5',
         ok ? 'bg-success-soft ring-success/40' : 'bg-danger-soft ring-danger/40',
       )}
     >
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <Pip mood={mood} size={64} />
         <div className="min-w-0 flex-1">
           <p
@@ -642,6 +642,19 @@ function FeedbackSheet({
           ) : null}
           {result.detail ? <p className="mt-1 text-sm">{result.detail}</p> : null}
         </div>
+        {onContinue ? (
+          // Verdict left, Continue right (Duolingo layout), so the sheet sits under the choices
+          // without covering them and the next step is where the eye lands.
+          <Button
+            ref={continueRef}
+            size="lg"
+            variant={ok ? 'success' : 'danger'}
+            className="w-full sm:w-auto sm:min-w-40"
+            onClick={onContinue}
+          >
+            {continueLabel}
+          </Button>
+        ) : null}
       </div>
 
       {answerText ? (
@@ -668,18 +681,6 @@ function FeedbackSheet({
         ) : null}
         <SourceList ids={q.sources} compact />
       </div>
-
-      {onContinue ? (
-        <Button
-          ref={continueRef}
-          size="lg"
-          variant={ok ? 'success' : 'danger'}
-          className="mt-4 w-full"
-          onClick={onContinue}
-        >
-          {continueLabel}
-        </Button>
-      ) : null}
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { DOMAIN_LABELS, type Domain, type Question } from '@/core/schemas';
 import type { AnswerRecord, HeatCell, SessionSummary } from '@/core/exam/session';
 import { QuestionCard } from '@/components/questions/QuestionCard';
 import { Progress } from '@/components/ui/misc';
+import { Pip, type PipMood } from '@/components/ui/pip';
+import { XP_RULES } from '@/core/progress/learner';
 import { cn } from '@/lib/cn';
 
 const HEAT_CLASS: Record<HeatCell['level'], string> = {
@@ -87,55 +89,97 @@ export function DomainBars({
   );
 }
 
+function resultMood(s: SessionSummary): { mood: PipMood; headline: string } {
+  if (s.answered === 0)
+    return {
+      mood: 'think',
+      headline: 'No answers this time. Give it another go when you are ready.',
+    };
+  if (s.percent >= 90) return { mood: 'cheer', headline: 'Outstanding! You really know this.' };
+  if (s.percent >= 80) return { mood: 'cheer', headline: 'Brilliant work!' };
+  if (s.percent >= 60) return { mood: 'happy', headline: 'Good effort, you are nearly there.' };
+  if (s.percent > 0)
+    return { mood: 'think', headline: 'Every miss is a lesson. The explanations below show why.' };
+  return { mood: 'sad', headline: 'A tough one. Review the answers below and try again.' };
+}
+
 /** End-of-session results with a per-question review. */
 export function ExamResults({
   summary,
   questions,
   records,
   title = 'Results',
+  bonusXp = 0,
 }: {
   summary: SessionSummary;
   questions: readonly Question[];
   records: ReadonlyMap<string, AnswerRecord>;
   title?: string;
+  /** extra XP this session earned on top of correct answers (the daily exam bonus) */
+  bonusXp?: number;
 }) {
   const tone =
     summary.percent >= 80 ? 'text-success' : summary.percent >= 60 ? 'text-warning' : 'text-danger';
+  const { mood, headline } = resultMood(summary);
+  const xp = summary.correct * XP_RULES.correctAnswer + bonusXp;
   return (
     <section aria-labelledby="results-title" className="space-y-6">
-      <div className="rounded-lg border border-border bg-surface p-6">
-        <h2 id="results-title" className="text-lg font-semibold">
-          {title}
-        </h2>
-        <div className="mt-3 flex flex-wrap items-end gap-8">
-          <div>
-            <div className={cn('text-4xl font-semibold tabular-nums', tone)}>
-              {summary.percent}%
-            </div>
-            <div className="text-sm text-fg-muted">
-              {summary.correct} correct of {summary.total}
-              {summary.answered < summary.total
-                ? ` (${summary.total - summary.answered} unanswered)`
-                : ''}
-            </div>
+      <div className="animate-pop rounded-xl bg-surface p-6 shadow-card ring-1 ring-border/70 sm:p-8 dark:ring-border">
+        <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+          <Pip mood={mood} size={112} animate />
+          <div className="min-w-0 flex-1">
+            <h2 id="results-title" className="text-[13px] font-semibold text-fg-muted">
+              {title}
+            </h2>
+            <p className="mt-1 text-[26px] leading-tight font-bold tracking-[-0.025em]">
+              {headline}
+            </p>
+            <dl className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
+              <div className="rounded-xl bg-surface-2 px-4 py-2.5">
+                <dt className="text-xs font-medium text-fg-muted">Score</dt>
+                <dd className={cn('tabular text-[26px] leading-tight font-bold', tone)}>
+                  {summary.percent}%
+                </dd>
+              </div>
+              <div className="rounded-xl bg-surface-2 px-4 py-2.5">
+                <dt className="text-xs font-medium text-fg-muted">Correct</dt>
+                <dd className="tabular text-[26px] leading-tight font-bold">
+                  {summary.correct}
+                  <span className="text-base font-semibold text-fg-muted"> / {summary.total}</span>
+                </dd>
+              </div>
+              {xp > 0 ? (
+                <div className="rounded-xl bg-surface-2 px-4 py-2.5">
+                  <dt className="text-xs font-medium text-fg-muted">XP earned</dt>
+                  <dd className="tabular text-[26px] leading-tight font-bold text-xp-text">
+                    +{xp}
+                  </dd>
+                </div>
+              ) : null}
+            </dl>
+            {summary.answered < summary.total ? (
+              <p className="mt-2 text-sm text-fg-muted">
+                {summary.total - summary.answered} unanswered
+              </p>
+            ) : null}
           </div>
-          {summary.byDomain.length > 1 ? (
-            <div className="min-w-64 flex-1">
-              <h3 className="mb-2 text-sm font-medium">By domain, weakest first</h3>
-              <DomainBars
-                rows={summary.byDomain.map((d) => ({
-                  domain: d.domain,
-                  percent: d.percent,
-                  hint: `${d.total} q`,
-                }))}
-              />
-            </div>
-          ) : null}
         </div>
+        {summary.byDomain.length > 1 ? (
+          <div className="mt-6 border-t border-border pt-5">
+            <h3 className="mb-3 text-[15px] font-semibold">By domain, weakest first</h3>
+            <DomainBars
+              rows={summary.byDomain.map((d) => ({
+                domain: d.domain,
+                percent: d.percent,
+                hint: `${d.total} q`,
+              }))}
+            />
+          </div>
+        ) : null}
       </div>
 
       <div>
-        <h3 className="mb-3 font-medium">Review your answers</h3>
+        <h3 className="mb-3 text-[17px] font-semibold tracking-[-0.02em]">Review your answers</h3>
         <ol className="space-y-2">
           {questions.map((q, i) => {
             const r = records.get(q.id);
@@ -148,10 +192,10 @@ export function ExamResults({
             const status = !r ? 'Unanswered' : r.result.correct ? 'Correct' : 'Incorrect';
             return (
               <li key={q.id}>
-                <details className="group rounded-md border border-border bg-surface">
-                  <summary className="flex cursor-pointer items-start gap-3 p-3">
-                    <Icon className={cn('mt-0.5 size-4 shrink-0', iconTone)} aria-label={status} />
-                    <span className="text-sm">
+                <details className="group rounded-xl bg-surface ring-1 ring-border/70 dark:ring-border">
+                  <summary className="flex cursor-pointer items-start gap-3 rounded-xl px-4 py-3 hover:bg-surface-2">
+                    <Icon className={cn('mt-0.5 size-5 shrink-0', iconTone)} aria-label={status} />
+                    <span className="text-[15px]">
                       <span className="text-fg-muted">{i + 1}. </span>
                       {q.prompt}
                     </span>

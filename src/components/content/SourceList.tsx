@@ -23,7 +23,7 @@ export function SourceList({ ids, compact = false }: { ids: readonly string[]; c
             )}
             <span className="text-fg-muted">({s.publisher})</span>
             {!s.readable ? (
-              <Badge tone="warning" title="This page could only be located, not read, when the content was written.">
+              <Badge tone="outline" title="This page could only be located, not read, when the content was written.">
                 located only
               </Badge>
             ) : null}

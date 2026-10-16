@@ -13,6 +13,7 @@ import { Label, Select } from '@/components/ui/input';
 import { EmptyState, PageHeader, Stat } from '@/components/ui/misc';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { Pip } from '@/components/ui/pip';
 import { localDate, newId } from '@/lib/id';
 import { DomainBars } from './components';
 import { startSession } from './sessions';
@@ -61,35 +62,127 @@ export function PracticePage() {
         title="Practice & Mock"
         description="Quiz yourself by topic, sit a timed mock exam, work through your review queue and track readiness per domain."
       />
-      <Tabs value={tab} onValueChange={(v) => setParams({ tab: v }, { replace: true })}>
-        <TabsList>
-          <TabsTrigger value="quiz" className="flex items-center gap-1.5">
-            <Target className="size-4" aria-hidden /> Topic quiz
-          </TabsTrigger>
-          <TabsTrigger value="mock" className="flex items-center gap-1.5">
-            <Timer className="size-4" aria-hidden /> Mock exam
-          </TabsTrigger>
-          <TabsTrigger value="review" className="flex items-center gap-1.5">
-            <Repeat className="size-4" aria-hidden /> Review queue
-          </TabsTrigger>
-          <TabsTrigger value="progress" className="flex items-center gap-1.5">
-            <TrendingUp className="size-4" aria-hidden /> Progress
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="quiz">
-          <QuizTab onStart={(qs) => begin('quiz', qs, null)} />
-        </TabsContent>
-        <TabsContent value="mock">
-          <MockTab onStart={(qs, limit) => begin('mock', qs, limit)} />
-        </TabsContent>
-        <TabsContent value="review">
-          <ReviewTab rev={rev} onStart={(qs) => begin('review', qs, null)} />
-        </TabsContent>
-        <TabsContent value="progress">
-          <ProgressTab rev={rev} onQuiz={(qs) => begin('quiz', qs, null)} />
-        </TabsContent>
-      </Tabs>
+      <div
+        className={tab === 'progress' ? undefined : 'grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]'}
+      >
+        <Tabs
+          value={tab}
+          onValueChange={(v) => setParams({ tab: v }, { replace: true })}
+          className="min-w-0"
+        >
+          <TabsList>
+            <TabsTrigger value="quiz" className="flex items-center gap-1.5">
+              <Target className="size-4" aria-hidden /> Topic quiz
+            </TabsTrigger>
+            <TabsTrigger value="mock" className="flex items-center gap-1.5">
+              <Timer className="size-4" aria-hidden /> Mock exam
+            </TabsTrigger>
+            <TabsTrigger value="review" className="flex items-center gap-1.5">
+              <Repeat className="size-4" aria-hidden /> Review queue
+            </TabsTrigger>
+            <TabsTrigger value="progress" className="flex items-center gap-1.5">
+              <TrendingUp className="size-4" aria-hidden /> Progress
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="quiz">
+            <QuizTab onStart={(qs) => begin('quiz', qs, null)} />
+          </TabsContent>
+          <TabsContent value="mock">
+            <MockTab onStart={(qs, limit) => begin('mock', qs, limit)} />
+          </TabsContent>
+          <TabsContent value="review">
+            <ReviewTab rev={rev} onStart={(qs) => begin('review', qs, null)} />
+          </TabsContent>
+          <TabsContent value="progress">
+            <ProgressTab rev={rev} onQuiz={(qs) => begin('quiz', qs, null)} />
+          </TabsContent>
+        </Tabs>
+        {tab === 'progress' ? null : <GlanceAside rev={rev} />}
+      </div>
     </div>
+  );
+}
+
+/** Readiness and recent sessions beside the quiz forms, so wide screens show progress too. */
+function GlanceAside({ rev }: { rev: number }) {
+  const app = useApp();
+  const data = useMemo(() => {
+    void rev;
+    return { attempts: app.user.attempts(), sessions: app.user.sessions() };
+  }, [app.user, rev]);
+  const perDomain = readinessByDomain(data.attempts);
+  const overall = overallReadiness(perDomain, MOCK_BLUEPRINT);
+  const practised = DOMAINS.filter((d) => perDomain[d].attempts > 0)
+    .sort((a, b) => perDomain[a].score - perDomain[b].score)
+    .slice(0, 4);
+  const recent = data.sessions.slice(0, 4);
+
+  return (
+    <aside className="space-y-4 xl:pt-[3.125rem]" aria-label="Your progress">
+      <Card>
+        <CardHeader>
+          <CardTitle>Readiness</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {data.attempts.length ? (
+            <div className="space-y-4">
+              <div className="flex items-baseline gap-2">
+                <span className="tabular text-[32px] leading-none font-bold tracking-[-0.03em]">
+                  {overall}%
+                </span>
+                <span className="text-sm text-fg-muted">mock-weighted</span>
+              </div>
+              {practised.length ? (
+                <DomainBars
+                  rows={practised.map((d) => ({ domain: d, percent: perDomain[d].score }))}
+                />
+              ) : null}
+              <Link
+                className="inline-block text-sm font-medium text-primary underline"
+                to="/practice?tab=progress"
+              >
+                See all progress
+              </Link>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <Pip mood="think" size={56} />
+              <p className="text-sm leading-relaxed text-fg-muted">
+                Your readiness per domain shows up here after your first few answers.
+              </p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+      {recent.length ? (
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent sessions</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="divide-y divide-border">
+              {recent.map((s) => (
+                <li key={s.id} className="flex items-center gap-3 py-2 text-sm">
+                  <div className="min-w-0 flex-1">
+                    <div className="font-medium">{MODE_LABELS[s.mode]}</div>
+                    <div className="text-xs text-fg-muted">
+                      {s.started_at.slice(0, 10)} · {countIds(s.question_ids)} questions
+                    </div>
+                  </div>
+                  <Link
+                    className="text-primary underline"
+                    to={`/practice/session/${s.id}`}
+                    aria-label={`${s.score === null ? 'Resume' : 'Review'} ${MODE_LABELS[s.mode]} from ${s.started_at.slice(0, 10)}`}
+                  >
+                    {s.score === null ? 'Resume' : `${Math.round(s.score)}%`}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      ) : null}
+    </aside>
   );
 }
 
@@ -133,7 +226,7 @@ function QuizTab({ onStart }: { onStart: (qs: Question[]) => void }) {
           Pick a domain or a single topic. You see the answer after each question.
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <CardContent className="grid gap-4 sm:grid-cols-2">
         <div>
           <Label htmlFor="quiz-domain">Domain</Label>
           <Select
@@ -190,8 +283,9 @@ function QuizTab({ onStart }: { onStart: (qs: Question[]) => void }) {
             ))}
           </Select>
         </div>
-        <div className="flex flex-wrap items-center gap-3 sm:col-span-2 lg:col-span-4">
+        <div className="flex flex-wrap items-center gap-3 sm:col-span-2">
           <Button
+            size="lg"
             disabled={available === 0}
             onClick={() => onStart(selectQuiz(library.question, opts))}
           >
@@ -322,21 +416,31 @@ function ReviewTab({ rev, onStart }: { rev: number; onStart: (qs: Question[]) =>
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-3 gap-3">
-          <Stat label="Due now" value={due.length} />
-          <Stat label="Scheduled later" value={upcoming} />
-          <Stat label="Cards in total" value={cards.length} />
-        </div>
-        {due.length ? (
-          <Button onClick={() => onStart(dueQuestions)}>
-            Review {dueQuestions.length} due question{dueQuestions.length === 1 ? '' : 's'}
-          </Button>
+        {cards.length === 0 ? (
+          <EmptyState title="Your review queue starts with your first answer" mood="wave">
+            Answer questions in the daily exam, a quiz or a lesson. Each one comes back here at the
+            right time to make it stick.
+          </EmptyState>
         ) : (
-          <p className="text-sm text-fg-muted">
-            {cards.length
-              ? 'Nothing is due. Come back tomorrow, or take a topic quiz.'
-              : 'Answer some questions in the daily exam, a quiz or a lesson and they appear here.'}
-          </p>
+          <>
+            <div className="grid grid-cols-3 gap-3">
+              <Stat label="Due now" value={due.length} />
+              <Stat label="Scheduled later" value={upcoming} />
+              <Stat label="Cards in total" value={cards.length} />
+            </div>
+            {due.length ? (
+              <Button size="lg" onClick={() => onStart(dueQuestions)}>
+                Review {dueQuestions.length} due question{dueQuestions.length === 1 ? '' : 's'}
+              </Button>
+            ) : (
+              <div className="flex items-center gap-3">
+                <Pip mood="cheer" size={48} />
+                <p className="text-sm text-fg-muted">
+                  All caught up. Come back tomorrow, or take a topic quiz.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </CardContent>
     </Card>
@@ -377,11 +481,13 @@ function ProgressTab({ rev, onQuiz }: { rev: number; onQuiz: (qs: Question[]) =>
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Stat
-            label="Overall (mock-weighted)"
-            value={`${overall}%`}
-            hint={`${data.attempts.length} answers`}
-          />
+          {data.attempts.length ? (
+            <Stat
+              label="Overall (mock-weighted)"
+              value={`${overall}%`}
+              hint={`${data.attempts.length} answers`}
+            />
+          ) : null}
           {practised.length ? (
             <DomainBars
               rows={practised.map((d) => ({
@@ -391,7 +497,12 @@ function ProgressTab({ rev, onQuiz }: { rev: number; onQuiz: (qs: Question[]) =>
               }))}
             />
           ) : (
-            <p className="text-sm text-fg-muted">Answer a few questions to see readiness.</p>
+            <div className="flex items-center gap-3">
+              <Pip mood="think" size={56} />
+              <p className="text-sm text-fg-muted">
+                Answer a few questions and your readiness per domain appears here.
+              </p>
+            </div>
           )}
         </CardContent>
       </Card>
@@ -468,7 +579,9 @@ function ProgressTab({ rev, onQuiz }: { rev: number; onQuiz: (qs: Question[]) =>
               </tbody>
             </table>
           ) : (
-            <p className="text-sm text-fg-muted">No sessions yet.</p>
+            <p className="text-sm text-fg-muted">
+              No sessions yet. Your quizzes and mock exams are listed here so you can review them.
+            </p>
           )}
         </CardContent>
       </Card>

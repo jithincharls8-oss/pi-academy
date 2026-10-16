@@ -21,6 +21,7 @@ export function SessionPage() {
     return (
       <EmptyState
         title="That session was not found."
+        mood="think"
         action={
           <Link className="text-primary underline" to="/practice">
             Back to practice
@@ -35,6 +36,36 @@ export function SessionPage() {
     return <Navigate to="/exam/daily" replace />;
   }
 
+  const missingNote = loaded.missing.length ? (
+    <p className="mb-4 rounded-xl bg-warning-soft px-4 py-3 text-sm text-warning" role="note">
+      {loaded.missing.length} question{loaded.missing.length === 1 ? ' was' : 's were'} removed from
+      the library since this session started and {loaded.missing.length === 1 ? 'is' : 'are'} left
+      out.
+    </p>
+  ) : null;
+
+  if (loaded.questions.length && !summary) {
+    // Focus mode while answering: the question flow only, with a quiet title.
+    return (
+      <div>
+        <div className="mx-auto mb-4 flex max-w-3xl items-baseline justify-between gap-4">
+          <h1 className="text-[22px] font-bold tracking-[-0.02em]">{TITLES[session.mode]}</h1>
+          <Link className="text-sm text-primary underline" to="/practice?tab=progress">
+            All sessions
+          </Link>
+        </div>
+        <div className="mx-auto max-w-3xl">{missingNote}</div>
+        <ExamRunner
+          loaded={loaded}
+          onChange={setLoaded}
+          onFinish={finish}
+          feedback={session.mode === 'mock' ? 'end' : 'immediate'}
+          exitTo="/practice"
+        />
+      </div>
+    );
+  }
+
   return (
     <div>
       <PageHeader
@@ -46,25 +77,12 @@ export function SessionPage() {
           </Link>
         }
       />
-      {loaded.missing.length ? (
-        <p className="mb-4 text-sm text-warning" role="note">
-          {loaded.missing.length} question{loaded.missing.length === 1 ? ' was' : 's were'} removed
-          from the library since this session started and{' '}
-          {loaded.missing.length === 1 ? 'is' : 'are'} left out.
-        </p>
-      ) : null}
+      {missingNote}
       {loaded.questions.length === 0 ? (
-        <EmptyState title="None of this session's questions exist any more." />
+        <EmptyState title="None of this session's questions exist any more." mood="think" />
       ) : summary ? (
         <ExamResults summary={summary} questions={loaded.questions} records={loaded.records} />
-      ) : (
-        <ExamRunner
-          loaded={loaded}
-          onChange={setLoaded}
-          onFinish={finish}
-          feedback={session.mode === 'mock' ? 'end' : 'immediate'}
-        />
-      )}
+      ) : null}
     </div>
   );
 }

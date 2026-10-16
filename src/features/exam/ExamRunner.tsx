@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Clock, Flag } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, Clock, Flag, Flame, X } from 'lucide-react';
 import type { Question } from '@/core/schemas';
 import type { Answer, GradeResult } from '@/core/exam/grade';
 import { formatClock, secondsLeft } from '@/core/exam/session';
 import { QuestionCard } from '@/components/questions/QuestionCard';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Progress } from '@/components/ui/misc';
 import { useApp } from '@/app/AppContext';
 import { cn } from '@/lib/cn';
@@ -19,6 +20,8 @@ export interface ExamRunnerProps {
   onFinish: () => void;
   /** 'end' hides right/wrong until the session is finished (mock exams) */
   feedback: 'immediate' | 'end';
+  /** where the quiet close control leads; answers are saved, so the session can be resumed */
+  exitTo?: string;
 }
 
 function useCountdown(startedAt: string, limit: number | null): number | null {
@@ -31,22 +34,47 @@ function useCountdown(startedAt: string, limit: number | null): number | null {
   return left;
 }
 
-export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerProps) {
+/** Correct answers in a row, counted along the session's question order. */
+function trailingRun(questions: readonly Question[], records: LoadedSession['records']): number {
+  let run = 0;
+  for (const q of questions) {
+    const r = records.get(q.id);
+    if (r) run = r.result.correct ? run + 1 : 0;
+  }
+  return run;
+}
+
+export function ExamRunner({
+  loaded,
+  onChange,
+  onFinish,
+  feedback,
+  exitTo = '/practice',
+}: ExamRunnerProps) {
   const app = useApp();
   const { questions, records, session } = loaded;
   const firstOpen = questions.findIndex((q) => !records.has(q.id));
   const [index, setIndex] = useState(firstOpen === -1 ? 0 : firstOpen);
   const [confirming, setConfirming] = useState(false);
   const [flagged, setFlagged] = useState<Set<string>>(() => new Set());
+  const [combo, setCombo] = useState(() => trailingRun(questions, records));
   const shownAt = useRef(0);
+  const root = useRef<HTMLDivElement>(null);
+  const navigated = useRef(false);
   const left = useCountdown(session.started_at, session.time_limit_s);
 
   const q: Question | undefined = questions[index];
   const answered = records.size;
   const unanswered = questions.length - answered;
+  const immediate = feedback === 'immediate';
 
   useEffect(() => {
     shownAt.current = Date.now();
+    // After moving on, put focus on the new question so keyboard and screen-reader users follow.
+    if (navigated.current) {
+      navigated.current = false;
+      root.current?.querySelector<HTMLElement>('[data-question-start]')?.focus();
+    }
   }, [index]);
 
   const finish = useCallback(() => {
@@ -63,6 +91,7 @@ export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerP
 
   const onAnswered = (result: GradeResult, answer: Answer): void => {
     const fast = (Date.now() - shownAt.current) / 1000 < FAST_SECONDS;
+    setCombo((c) => (result.correct ? c + 1 : 0));
     onChange(answerInSession(app, loaded, q, answer, result, fast));
   };
 
@@ -73,31 +102,72 @@ export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerP
 
   const go = (i: number): void => {
     setConfirming(false);
+    navigated.current = true;
     setIndex(Math.max(0, Math.min(questions.length - 1, i)));
   };
 
+  /** The next unanswered question after this one (wrapping), or -1 when none is left. */
+  const nextOpen = (): number => {
+    const n = questions.length;
+    for (let k = 1; k < n; k++) {
+      const j = (index + k) % n;
+      if (!records.has(questions[j]!.id)) return j;
+    }
+    return -1;
+  };
+
   const isLast = index === questions.length - 1;
+  const open = nextOpen();
+  const hasCurrent = records.has(q.id);
+
+  const advance = (): void => {
+    if (open !== -1) go(open);
+    else finish();
+  };
+
+  const continueProps = immediate
+    ? {
+        onContinue: advance,
+        continueLabel: open === -1 ? 'See results' : 'Continue',
+      }
+    : !isLast
+      ? { onContinue: () => go(index + 1), continueLabel: 'Next question' }
+      : {};
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-surface p-4">
-        <div className="min-w-48 flex-1">
-          <div className="mb-1 flex justify-between text-sm">
-            <span>
-              Question {index + 1} of {questions.length}
-            </span>
-            <span className="text-fg-muted">{answered} answered</span>
-          </div>
-          <Progress
-            value={(answered / Math.max(1, questions.length)) * 100}
-            label={`${answered} of ${questions.length} answered`}
-          />
-        </div>
+    <div ref={root} className="mx-auto max-w-3xl space-y-5">
+      <div className="flex items-center gap-3 sm:gap-4">
+        <Link
+          to={exitTo}
+          aria-label="Exit. Your answers are saved."
+          title="Exit (your answers are saved)"
+          className={cn(
+            buttonVariants({ variant: 'ghost', size: 'icon' }),
+            'shrink-0 text-fg-muted hover:text-fg',
+          )}
+        >
+          <X className="size-5" aria-hidden />
+        </Link>
+        <Progress
+          className="h-4 flex-1"
+          tone="success"
+          value={(answered / Math.max(1, questions.length)) * 100}
+          label={`${answered} of ${questions.length} answered`}
+        />
+        {immediate && combo >= 2 ? (
+          <span
+            key={combo}
+            className="animate-pop flex shrink-0 items-center gap-1 rounded-full bg-warning-soft px-3 py-1 text-sm font-bold whitespace-nowrap text-flame-text"
+          >
+            <Flame className="size-4 fill-current" aria-hidden />
+            {combo} in a row
+          </span>
+        ) : null}
         {left !== null ? (
           <div
             className={cn(
-              'flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-sm tabular-nums',
-              left < 300 ? 'bg-danger-soft text-danger' : 'bg-surface-2',
+              'flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1 font-mono text-sm tabular-nums',
+              left < 300 ? 'bg-danger-soft text-danger' : 'bg-surface-3 text-fg',
             )}
             role="timer"
             aria-label={`Time left ${formatClock(left)}`}
@@ -108,58 +178,31 @@ export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerP
         ) : null}
       </div>
 
-      <nav aria-label="Questions" className="flex flex-wrap gap-1.5">
-        {questions.map((qq, i) => {
-          const r = records.get(qq.id);
-          const state = !r
-            ? 'border-border bg-surface'
-            : feedback === 'end'
-              ? 'border-primary bg-primary-soft'
-              : r.result.correct
-                ? 'border-success bg-success-soft'
-                : 'border-danger bg-danger-soft';
-          return (
-            <button
-              key={qq.id}
-              onClick={() => go(i)}
-              aria-current={i === index ? 'step' : undefined}
-              aria-label={`Question ${i + 1}${r ? ', answered' : ''}`}
-              className={cn(
-                'relative size-8 rounded-md border text-xs tabular-nums',
-                state,
-                i === index && 'ring-2 ring-ring ring-offset-1 ring-offset-bg',
-              )}
-            >
-              {i + 1}
-              {flagged.has(qq.id) ? (
-                <Flag className="absolute -right-1 -top-1 size-3 text-warning" aria-hidden />
-              ) : null}
-            </button>
-          );
-        })}
-      </nav>
-
       <QuestionCard
         key={`${session.id}|${q.id}`}
         question={q}
-        label={`${index + 1} of ${questions.length}`}
-        showFeedback={feedback === 'immediate'}
+        label={`Question ${index + 1} of ${questions.length}`}
+        showFeedback={immediate}
         initial={records.get(q.id)}
         onAnswered={onAnswered}
         onFlag={flagged.has(q.id) ? undefined : flag}
+        onSkip={!hasCurrent && open !== -1 ? () => go(open) : undefined}
+        keyboard
+        {...continueProps}
       />
 
       <div className="flex flex-wrap items-center gap-2">
-        <Button variant="secondary" onClick={() => go(index - 1)} disabled={index === 0}>
-          <ArrowLeft className="size-4" aria-hidden /> Previous
-        </Button>
-        {!isLast ? (
-          <Button
-            variant={records.has(q.id) ? 'primary' : 'secondary'}
-            onClick={() => go(index + 1)}
-          >
-            Next <ArrowRight className="size-4" aria-hidden />
-          </Button>
+        {!immediate ? (
+          <>
+            <Button variant="secondary" onClick={() => go(index - 1)} disabled={index === 0}>
+              <ArrowLeft className="size-4" aria-hidden /> Previous
+            </Button>
+            {!isLast ? (
+              <Button variant="secondary" onClick={() => go(index + 1)}>
+                Next <ArrowRight className="size-4" aria-hidden />
+              </Button>
+            ) : null}
+          </>
         ) : null}
         <div className="ml-auto flex flex-wrap items-center gap-2">
           {confirming ? (
@@ -175,7 +218,8 @@ export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerP
             </>
           ) : (
             <Button
-              variant={unanswered === 0 ? 'primary' : 'secondary'}
+              variant={unanswered === 0 ? 'primary' : 'ghost'}
+              className={unanswered === 0 ? undefined : 'text-fg-muted hover:text-fg'}
               onClick={() => (unanswered === 0 ? finish() : setConfirming(true))}
             >
               Finish {session.mode === 'mock' ? 'exam' : 'session'}
@@ -183,6 +227,37 @@ export function ExamRunner({ loaded, onChange, onFinish, feedback }: ExamRunnerP
           )}
         </div>
       </div>
+
+      {!immediate ? (
+        <details className="group rounded-xl bg-surface ring-1 ring-border/70 dark:ring-border">
+          <summary className="cursor-pointer rounded-xl px-4 py-3 text-sm font-medium">
+            Jump to a question
+          </summary>
+          <nav aria-label="Questions" className="flex flex-wrap gap-1.5 px-4 pb-4">
+            {questions.map((qq, i) => {
+              const r = records.get(qq.id);
+              return (
+                <button
+                  key={qq.id}
+                  onClick={() => go(i)}
+                  aria-current={i === index ? 'step' : undefined}
+                  aria-label={`Question ${i + 1}${r ? ', answered' : ''}${flagged.has(qq.id) ? ', flagged' : ''}`}
+                  className={cn(
+                    'relative size-9 rounded-lg text-xs font-semibold tabular-nums',
+                    r ? 'bg-primary-soft text-primary' : 'bg-surface ring-1 ring-border-strong',
+                    i === index && 'ring-2 ring-ring ring-offset-1 ring-offset-surface',
+                  )}
+                >
+                  {i + 1}
+                  {flagged.has(qq.id) ? (
+                    <Flag className="absolute -top-1 -right-1 size-3 text-warning" aria-hidden />
+                  ) : null}
+                </button>
+              );
+            })}
+          </nav>
+        </details>
+      ) : null}
     </div>
   );
 }

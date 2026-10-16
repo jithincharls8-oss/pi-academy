@@ -95,66 +95,71 @@ export function LearnPage() {
           Try a higher level or “All roles”.
         </EmptyState>
       ) : (
-        DOMAINS.map((d) => {
-          const lessons = path.filter((l) => l.domain === d);
-          if (lessons.length === 0) return null;
-          const dDone = lessons.filter((l) => completed.has(l.id)).length;
-          return (
-            <Card key={d} className="overflow-hidden">
-              <CardHeader className="flex-row items-center justify-between gap-4 pb-2">
-                <CardTitle>{DOMAIN_LABELS[d]}</CardTitle>
-                <span className="tabular text-sm text-fg-muted">
-                  {dDone} of {lessons.length}
-                </span>
-              </CardHeader>
-              <Progress
-                className="mx-5 mb-2 h-1.5 w-auto"
-                tone="success"
-                value={(dDone / lessons.length) * 100}
-                label={`${DOMAIN_LABELS[d]} progress`}
-              />
-              <CardContent className="px-0 pb-2">
-                <ul className="divide-y divide-border">
-                  {lessons.map((l) => (
-                    <li key={l.id}>
-                      <Link
-                        to={`/learn/${l.id}`}
-                        className="group flex cursor-pointer items-center gap-3 px-5 py-3 transition-colors hover:bg-surface-2"
-                      >
-                        {completed.has(l.id) ? (
-                          <CheckCircle2
-                            className="size-5 shrink-0 text-success"
-                            aria-label="Completed"
-                          />
-                        ) : (
-                          <Circle
-                            className={cn(
-                              'size-5 shrink-0',
-                              started.has(l.id) ? 'text-primary' : 'text-fg-subtle',
-                            )}
-                            aria-label={started.has(l.id) ? 'Started' : 'Not started'}
-                          />
-                        )}
-                        <span className="min-w-0 flex-1">
-                          <span className="block font-medium group-hover:text-primary">
-                            {l.title}
-                          </span>
-                          <span className="block truncate text-sm text-fg-muted">{l.summary}</span>
-                        </span>
-                        <Badge className="hidden capitalize sm:inline-flex">{l.level}</Badge>
-                        <span className="hidden items-center gap-1 text-xs text-fg-muted sm:flex">
-                          <Clock className="size-3.5" aria-hidden /> {l.minutes} min
-                        </span>
-                        <ChevronRight className="size-4 shrink-0 text-fg-subtle" aria-hidden />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          );
-        })
+        <h2 className="text-[22px] font-bold tracking-[-0.02em]">Units</h2>
       )}
+      {path.length === 0
+        ? null
+        : DOMAINS.map((d) => {
+            const lessons = path.filter((l) => l.domain === d);
+            if (lessons.length === 0) return null;
+            const dDone = lessons.filter((l) => completed.has(l.id)).length;
+            return (
+              <Card key={d} className="overflow-hidden">
+                <CardHeader className="flex-row items-center justify-between gap-4 pb-2">
+                  <CardTitle>{DOMAIN_LABELS[d]}</CardTitle>
+                  <span className="tabular text-sm text-fg-muted">
+                    {dDone} of {lessons.length}
+                  </span>
+                </CardHeader>
+                <Progress
+                  className="mx-5 mb-2 h-1.5 w-auto"
+                  tone="success"
+                  value={(dDone / lessons.length) * 100}
+                  label={`${DOMAIN_LABELS[d]} progress`}
+                />
+                <CardContent className="px-0 pb-2">
+                  <ul className="divide-y divide-border">
+                    {lessons.map((l) => (
+                      <li key={l.id}>
+                        <Link
+                          to={`/learn/${l.id}`}
+                          className="group flex cursor-pointer items-center gap-3 px-5 py-3 transition-colors hover:bg-surface-2"
+                        >
+                          {completed.has(l.id) ? (
+                            <CheckCircle2
+                              className="size-5 shrink-0 text-success"
+                              aria-label="Completed"
+                            />
+                          ) : (
+                            <Circle
+                              className={cn(
+                                'size-5 shrink-0',
+                                started.has(l.id) ? 'text-primary' : 'text-fg-subtle',
+                              )}
+                              aria-label={started.has(l.id) ? 'Started' : 'Not started'}
+                            />
+                          )}
+                          <span className="min-w-0 flex-1">
+                            <span className="block font-medium group-hover:text-primary">
+                              {l.title}
+                            </span>
+                            <span className="block truncate text-sm text-fg-muted">
+                              {l.summary}
+                            </span>
+                          </span>
+                          <Badge className="hidden capitalize sm:inline-flex">{l.level}</Badge>
+                          <span className="hidden items-center gap-1 text-xs text-fg-muted sm:flex">
+                            <Clock className="size-3.5" aria-hidden /> {l.minutes} min
+                          </span>
+                          <ChevronRight className="size-4 shrink-0 text-fg-subtle" aria-hidden />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            );
+          })}
     </div>
   );
 }

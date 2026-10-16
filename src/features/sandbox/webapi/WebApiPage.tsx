@@ -99,7 +99,8 @@ const isHistory = (v: unknown): v is HistoryEntry[] =>
       !!e &&
       typeof e === 'object' &&
       typeof (e as HistoryEntry).url === 'string' &&
-      METHODS.includes((e as HistoryEntry).method),
+      METHODS.includes((e as HistoryEntry).method) &&
+      ((e as HistoryEntry).body === undefined || typeof (e as HistoryEntry).body === 'string'),
   );
 const isStrings = (v: unknown): v is string[] =>
   Array.isArray(v) && v.every((x) => typeof x === 'string');

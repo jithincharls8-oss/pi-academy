@@ -412,7 +412,9 @@ const PICompDat: SheetFunction = (args, { now }) => {
   const outcode = optNumber(args, 3, 0);
   server(args, 4);
   const mode = boundary(text(args, 5));
-  return compressedOutput(p, compressedEvents(p, start, end, mode, now), outcode);
+  const events = compressedEvents(p, start, end, mode, now);
+  if (events.length > 5000) fail('#VALUE!', 'More than 5000 values: use a shorter time range');
+  return compressedOutput(p, events, outcode);
 };
 
 const PINCompDat: SheetFunction = (args, { now }) => {

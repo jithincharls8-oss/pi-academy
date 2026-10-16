@@ -231,7 +231,9 @@ export const DERIVED_ATTRIBUTES = ['compdevpercent', 'excdevpercent'] as const;
 
 export function isKnownAttribute(name: string): boolean {
   const n = name.toLowerCase();
-  return n in PIPOINT_ATTRIBUTES || (DERIVED_ATTRIBUTES as readonly string[]).includes(n);
+  return (
+    Object.hasOwn(PIPOINT_ATTRIBUTES, n) || (DERIVED_ATTRIBUTES as readonly string[]).includes(n)
+  );
 }
 
 function round(n: number, digits = 6): number {
@@ -250,7 +252,7 @@ export function getAttribute(p: SandboxPoint, name: string): string {
     return isDiscrete(p) || p.span <= 0 ? '0' : String(round((p.compdev * 100) / p.span));
   if (n === 'excdevpercent')
     return isDiscrete(p) || p.span <= 0 ? '0' : String(round((p.excdev * 100) / p.span));
-  const def = PIPOINT_ATTRIBUTES[n];
+  const def = Object.hasOwn(PIPOINT_ATTRIBUTES, n) ? PIPOINT_ATTRIBUTES[n] : undefined;
   if (!def) throw new Error(`Unknown attribute "${name}"`);
   const v = p[def.key];
   if (typeof v === 'boolean') return v ? '1' : '0';
@@ -281,7 +283,7 @@ export function setAttribute(p: SandboxPoint, name: string, raw: string): SetRes
       point: n === 'compdevpercent' ? { ...p, compdev: dev } : { ...p, excdev: dev },
     };
   }
-  const def = PIPOINT_ATTRIBUTES[n];
+  const def = Object.hasOwn(PIPOINT_ATTRIBUTES, n) ? PIPOINT_ATTRIBUTES[n] : undefined;
   if (!def) return { ok: false, error: `Unknown attribute "${name}"` };
   if (def.readonly) return { ok: false, error: `${name} is read-only` };
   switch (def.kind) {

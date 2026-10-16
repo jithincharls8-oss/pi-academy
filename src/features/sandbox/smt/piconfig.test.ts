@@ -249,3 +249,13 @@ describe('session handling', () => {
     expect(r.output[0]).toMatch(/list mode only/);
   });
 });
+
+describe('names inherited from Object are not attributes or commands', () => {
+  it('rejects constructor and __proto__ instead of crashing', () => {
+    expect(resolveCommand('constructor')).toBeNull();
+    for (const attr of ['constructor', '__proto__']) {
+      const r = run(`@table pipoint\n@mode edit\n@istr tag,${attr}\nRB.SITE.AMBIENT.TEMP,1`);
+      expect(r.output.join('\n')).toMatch(/Error/);
+    }
+  });
+});

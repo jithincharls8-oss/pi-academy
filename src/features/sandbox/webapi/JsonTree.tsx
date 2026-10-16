@@ -95,7 +95,9 @@ function Node({
   onNavigate,
   onDecode,
   last,
+  inArray = false,
 }: {
+  inArray?: boolean;
   name: string | null;
   value: unknown;
   depth: number;
@@ -113,9 +115,7 @@ function Node({
   const [open, setOpen] = useState(depth < 3 && entries.length <= 60);
   const comma = last ? '' : ',';
   const label =
-    name !== null && !/^\d+$/.test(name) ? (
-      <span className="text-fg">&quot;{name}&quot;: </span>
-    ) : null;
+    name !== null && !inArray ? <span className="text-fg">&quot;{name}&quot;: </span> : null;
   const pad = { paddingLeft: `${depth * 14}px` };
 
   if (!isObj) {
@@ -172,6 +172,7 @@ function Node({
             <Node
               key={k}
               name={k}
+              inArray={isArr}
               value={v}
               depth={depth + 1}
               onNavigate={onNavigate}

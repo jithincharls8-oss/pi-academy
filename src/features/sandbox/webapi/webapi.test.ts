@@ -255,3 +255,16 @@ describe('challenges', () => {
     expect(challenge('selected-fields').check(allFields, run(allFields), NOW)).toBe(false);
   });
 });
+
+describe('batch ids that match Object properties', () => {
+  it('treats toString, __proto__ and hasOwnProperty as plain ids', () => {
+    const sys = '{"Method":"GET","Resource":"https://your-server/piwebapi/system"}';
+    // Written as text: an object literal's __proto__ would set the prototype, not a key.
+    const body = `{"toString":${sys},"__proto__":${sys},"child":{"Method":"GET","Resource":"https://your-server/piwebapi/system","ParentIds":["hasOwnProperty"]}}`;
+    const r = send({ method: 'POST', url: '/piwebapi/batch', body }, NOW);
+    const out = r.body as Record<string, { Status: number }>;
+    expect(Object.keys(out).sort()).toEqual(['__proto__', 'child', 'toString'].sort());
+    expect(out['toString']?.Status).toBe(200);
+    expect(out['child']?.Status).toBe(409);
+  });
+});

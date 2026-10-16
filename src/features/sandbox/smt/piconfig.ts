@@ -106,7 +106,7 @@ export function resolveCommand(word: string): Command | null {
     ends: 'endsection',
     sele: 'select',
   };
-  if (aliases[w]) return aliases[w];
+  if (Object.hasOwn(aliases, w)) return aliases[w] ?? null;
   for (const c of COMMANDS) {
     if (c === w) return c;
     if (w.length >= 4 && c.startsWith(w)) return c;
@@ -174,6 +174,26 @@ function listRow(p: SandboxPoint, s: PiconfigSession): string {
 
 /** Run one line of piconfig input. */
 export function executeLine(
+  session: PiconfigSession,
+  rawLine: string,
+  points: readonly SandboxPoint[],
+  ctx: PiconfigContext,
+): PiconfigResult {
+  try {
+    return executeLineUnsafe(session, rawLine, points, ctx);
+  } catch (e) {
+    // Never lose a typed line to an unexpected input: report it like piconfig would.
+    return {
+      session,
+      points: [...points],
+      output: [`Error: ${e instanceof Error ? e.message : String(e)}`],
+      changes: [],
+      exit: false,
+    };
+  }
+}
+
+function executeLineUnsafe(
   session: PiconfigSession,
   rawLine: string,
   points: readonly SandboxPoint[],

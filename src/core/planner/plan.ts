@@ -170,7 +170,9 @@ function diagram(servers: ServerRole[], i: PlannerInput): string {
     const y = ids.get(b);
     if (x && y) lines.push(`  ${x} -->|${lbl(label)}| ${y}`);
   };
-  const siteDa = servers.find((s) => s.name.includes('Data Archive') && s.zone === 'control')?.name;
+  const siteDa = servers.find(
+    (s) => s.zone === 'control' && (s.name.includes('Data Archive') || s.name === 'PI Server'),
+  )?.name;
   const replica = servers.find(
     (s) => s.name.includes('Data Archive') && s.zone !== 'control',
   )?.name;
@@ -439,9 +441,6 @@ export function makePlan(i: PlannerInput): Plan {
         S.basics,
       ),
     );
-  }
-  if (tier === 'single-node' && perSite >= 25_000) {
-    warnings.push(stated('At 25,000 tags or more, separate PI and SQL onto two nodes.', S.vining));
   }
 
   const security: Claim[] = [];

@@ -201,7 +201,7 @@ function batch(body: string, now: number): ApiResponse {
   const entries = Object.entries(parsed as Record<string, unknown>);
   if (entries.length === 0) return bad(400, 'Bad Request', 'The batch has no sub-requests.');
   const reqs = new Map<string, SubRequest | string>(entries.map(([k, v]) => [k, asSubRequest(v)]));
-  const done: Record<string, SubResponse> = {};
+  const done = new Map<string, SubResponse>();
   const visiting = new Set<string>();
   const error = (status: number, message: string): SubResponse => ({
     Status: status,
@@ -209,30 +209,40 @@ function batch(body: string, now: number): ApiResponse {
     Content: { Errors: [message] },
   });
 
+  const remember = (id: string, r: SubResponse): SubResponse => {
+    done.set(id, r);
+    return r;
+  };
+
   const runOne = (id: string): SubResponse => {
-    const hit = done[id];
+    const hit = done.get(id);
     if (hit) return hit;
     const r = reqs.get(id);
     if (r === undefined)
       return error(400, `ParentIds refers to "${id}", which is not in the batch.`);
-    if (typeof r === 'string') return (done[id] = error(400, r));
-    if (visiting.has(id)) return (done[id] = error(400, `Circular ParentIds involving "${id}".`));
+    if (typeof r === 'string') return remember(id, error(400, r));
+    if (visiting.has(id)) return remember(id, error(400, `Circular ParentIds involving "${id}".`));
     visiting.add(id);
     for (const p of r.ParentIds ?? []) {
       const pr = runOne(p);
       if (pr.Status >= 400) {
         visiting.delete(id);
-        return (done[id] = error(409, `Parent request "${p}" failed (status ${pr.Status}).`));
+        return remember(id, error(409, `Parent request "${p}" failed (status ${pr.Status}).`));
       }
     }
     visiting.delete(id);
-    const values = (r.Parameters ?? []).map((expr) => jsonPath(done, expr));
+    const values = (r.Parameters ?? []).map((expr) =>
+      jsonPath(Object.assign(Object.create(null) as object, Object.fromEntries(done)), expr),
+    );
     const missing = values.findIndex((v) => v.length === 0);
     if (missing !== -1) {
-      return (done[id] = error(
-        400,
-        `Parameter "${r.Parameters?.[missing]}" matched nothing. Did you list the parent in ParentIds?`,
-      ));
+      return remember(
+        id,
+        error(
+          400,
+          `Parameter "${r.Parameters?.[missing]}" matched nothing. Did you list the parent in ParentIds?`,
+        ),
+      );
     }
     const fill = (template: string, pick: (vals: unknown[]) => unknown): string =>
       values.reduce<string>(
@@ -252,22 +262,26 @@ function batch(body: string, now: number): ApiResponse {
         );
       }
       const allOk = items.every((x) => x.Status < 400);
-      return (done[id] = {
+      return remember(id, {
         Status: allOk ? 200 : 207,
         Headers: JSON_HEADERS,
         Content: { Items: items },
       });
     }
     if (values.some((v) => v.length > 1)) {
-      return (done[id] = error(
-        400,
-        'A parameter matched several values; use a RequestTemplate to repeat the request for each.',
-      ));
+      return remember(
+        id,
+        error(
+          400,
+          'A parameter matched several values; use a RequestTemplate to repeat the request for each.',
+        ),
+      );
     }
-    return (done[id] = exec(fill(r.Resource, (vals) => vals[0])));
+    return remember(id, exec(fill(r.Resource, (vals) => vals[0])));
   };
 
-  const out: Record<string, SubResponse> = {};
+  // A null-prototype object keeps ids such as "__proto__" or "toString" as ordinary keys.
+  const out = Object.create(null) as Record<string, SubResponse>;
   for (const [id] of entries) out[id] = runOne(id);
   return { status: 207, statusText: 'Multi-Status', body: out };
 }

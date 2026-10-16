@@ -52,6 +52,12 @@ describe('deployment planner', () => {
     expect(p.tags.siteArchiveMb).toBe(256);
   });
 
+  it('links the single PI Server node in the diagram', () => {
+    const p = makePlan(input('small'));
+    expect(p.diagram).toMatch(/control\d+ -->\|buffered\| control\d+/);
+    expect(p.diagram).toContain('PI to PI');
+  });
+
   it('splits servers once a site passes 25,000 tags', () => {
     expect(makePlan(input('small', { tagsPerSite: 30_000 })).tier).toBe('separated');
   });

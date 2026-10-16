@@ -217,7 +217,9 @@ export const displaySchema = z.object({
   showGrid: z.boolean(),
   width: z.number().min(200).max(4000),
   height: z.number().min(200).max(4000),
-  symbols: z.array(symbolSchema),
+  symbols: z
+    .array(symbolSchema)
+    .refine((s) => new Set(s.map((x) => x.id)).size === s.length, 'symbol ids must be unique'),
 });
 
 export type MultiState = z.infer<typeof multiStateSchema>;

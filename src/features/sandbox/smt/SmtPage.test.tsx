@@ -93,7 +93,8 @@ describe('SmtPage', () => {
     await user.type(screen.getByLabelText('Value'), '123.5');
     await user.type(screen.getByLabelText('Annotation'), 'Lab check');
     await user.click(screen.getByRole('button', { name: 'Add' }));
-    expect(screen.getAllByText('Added (sandbox)').length).toBe(1);
+    // The default time can land on an archived event's timestamp, which shows as a replace.
+    expect(screen.getAllByText(/^(Added|Replaced) \(sandbox\)$/).length).toBe(1);
     expect(screen.getAllByText('Lab check').length).toBeGreaterThan(0);
 
     await user.click(screen.getByRole('button', { name: 'Tuning Parameters' }));

@@ -89,13 +89,23 @@ describe('SmtPage', () => {
     const user = userEvent.setup();
     render(<SmtPage />);
     await user.click(screen.getByRole('button', { name: 'Archive Editor' }));
-    await user.click(screen.getByRole('button', { name: /Add value/ }));
-    await user.type(screen.getByLabelText('Value'), '123.5');
-    await user.type(screen.getByLabelText('Annotation'), 'Lab check');
-    await user.click(screen.getByRole('button', { name: 'Add' }));
-    // The default time can land on an archived event's timestamp, which shows as a replace.
-    expect(screen.getAllByText(/^(Added|Replaced) \(sandbox\)$/).length).toBe(1);
-    expect(screen.getAllByText('Lab check').length).toBeGreaterThan(0);
+    const value = screen.getByLabelText('New value');
+    await user.type(value, '123.5');
+    const time = screen.getByLabelText('New event time');
+    await user.clear(time);
+    await user.type(time, '*-30m');
+    await user.click(screen.getByRole('button', { name: 'Add row' }));
+    expect(screen.getByText('1 unsaved')).toBeInTheDocument();
+    expect(screen.getByText('123.5')).toBeInTheDocument();
+
+    // annotate the new (selected) event, then save both changes
+    await user.click(screen.getByRole('button', { name: 'Annotate the selected event' }));
+    await user.type(screen.getByLabelText(/Annotation for/), 'Lab check');
+    await user.click(screen.getByRole('button', { name: 'OK' }));
+    expect(screen.getByText('2 unsaved')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Save changes' }));
+    expect(screen.getByRole('status')).toHaveTextContent('Saved 2 changes');
+    expect(screen.getAllByRole('checkbox', { name: 'Annotated', checked: true }).length).toBe(1);
 
     await user.click(screen.getByRole('button', { name: 'Tuning Parameters' }));
     const field = screen.getByLabelText('ArcMaxCollect');
@@ -104,7 +114,7 @@ describe('SmtPage', () => {
     expect(screen.getByText(/Restart required/)).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /Restart PI Archive Subsystem/ }));
     expect(screen.queryByText(/Restart required/)).toBeNull();
-  });
+  }, 20_000);
 
   it('disconnects the tools when the server is unticked', async () => {
     const user = userEvent.setup();

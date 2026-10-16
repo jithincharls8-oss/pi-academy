@@ -316,3 +316,26 @@ export function outOfOrderCount(edits: Readonly<Record<string, ArchiveEdit[]>>):
     0,
   );
 }
+
+/**
+ * The point's current snapshot: the newest value that passed the exception test. A recorded
+ * values read (and so the Archive Editor) returns it after the archived events, although it is
+ * not in an archive file yet. Compression decides only when the next value arrives.
+ */
+const snapCache = new Map<string, TimedValue | null>();
+
+export function currentSnapshot(p: SandboxPoint, now: number): TimedValue | null {
+  if (!p.scanflag) return null;
+  const key = [p.tag, now, p.excdev, p.excmin, p.excmax, p.pointtype, p.zero, p.span].join('|');
+  if (snapCache.has(key)) return snapCache.get(key) ?? null;
+  const span = Math.max(p.excmax, 60) * 2000;
+  const events = applyException(scans(p, now - span, now), {
+    excDev: p.excdev,
+    excMin: p.excmin,
+    excMax: p.excmax,
+  });
+  const snap = events.at(-1) ?? null;
+  if (snapCache.size > 200) snapCache.clear();
+  snapCache.set(key, snap);
+  return snap;
+}

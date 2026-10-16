@@ -165,6 +165,8 @@ export function validateBundle(b: Bundleish, opts: ValidateOptions): ValidationR
 
 export function coverageGaps(item: CoverageItem): string[] {
   const gaps: string[] = [];
+  // The glossary section (glo.*) is a term-count target, not a topic: it is measured on terms only.
+  if (item.id.startsWith('glo.')) return item.terms === 0 ? ['glossary terms'] : [];
   if (item.lessons === 0) gaps.push('lessons');
   if (item.questions === 0) gaps.push('questions');
   if (item.terms === 0) gaps.push('glossary terms');

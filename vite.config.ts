@@ -42,12 +42,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (
-            id.includes('node_modules/mermaid') ||
-            id.includes('node_modules/cytoscape') ||
-            id.includes('node_modules/katex')
-          )
-            return 'mermaid';
           if (id.includes('node_modules/recharts') || id.includes('node_modules/d3-'))
             return 'charts';
           return undefined;

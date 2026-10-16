@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { countCoverage, normaliseForDuplicate, validateBundle } from './validate';
+import { countCoverage, coverageGaps, normaliseForDuplicate, validateBundle } from './validate';
 import type { ContentBundle, Question } from '../schemas';
 
 type B = Omit<ContentBundle, 'version' | 'generatedAt'>;
@@ -87,5 +87,16 @@ describe('countCoverage', () => {
 describe('normaliseForDuplicate', () => {
   it('strips punctuation and whitespace', () => {
     expect(normaliseForDuplicate('  What  is `CompDev`?  ')).toBe('what is compdev');
+  });
+});
+
+describe('coverageGaps', () => {
+  const item = { id: 'da.points', domain: 'data-archive', title: 'Points', status: 'drafted', lessons: 0, questions: 3, terms: 2 } as const;
+  it('needs lessons, questions and terms for a topic', () => {
+    expect(coverageGaps({ ...item })).toEqual(['lessons']);
+  });
+  it('measures the glossary target on terms only', () => {
+    expect(coverageGaps({ ...item, id: 'glo.terms', questions: 0 })).toEqual([]);
+    expect(coverageGaps({ ...item, id: 'glo.terms', terms: 0 })).toEqual(['glossary terms']);
   });
 });

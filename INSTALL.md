@@ -27,7 +27,7 @@ The installers are **not code-signed** yet, so the first launch shows a warning:
   `.deb` with `sudo apt install ./pi-academy_*.deb`.
 
 Your data lives in the app data folder (for example `%APPDATA%\com.piacademy.app` on Windows) and
-survives updates. Back it up from **Settings → Your data**.
+survives updates. Back it up from **Settings → Backup and restore**.
 
 ## Web app (PWA)
 

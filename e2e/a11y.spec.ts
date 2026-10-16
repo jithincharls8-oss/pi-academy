@@ -22,6 +22,7 @@ const PAGES = [
   '/admin',
   '/search',
   '/settings',
+  '/styleguide',
 ];
 
 for (const scheme of ['light', 'dark'] as const)

@@ -1,6 +1,9 @@
 import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+import '@fontsource-variable/inter/index.css';
+import '@fontsource/jetbrains-mono/latin-400.css';
+import '@fontsource/jetbrains-mono/latin-500.css';
 import './styles/index.css';
 import { bootstrap, type Services } from './app/bootstrap';
 import { AppProvider } from './app/AppContext';

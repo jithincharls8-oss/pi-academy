@@ -135,6 +135,10 @@ export const FEATURE_ROUTES: RouteObject[] = [
   { path: 'admin', element: page(() => lz(import('@/features/admin/AdminPage'), 'AdminPage')) },
   { path: 'search', element: page(() => lz(import('@/features/search/SearchPage'), 'SearchPage')) },
   {
+    path: 'styleguide',
+    element: page(() => lz(import('@/features/styleguide/StyleGuidePage'), 'StyleGuidePage')),
+  },
+  {
     path: 'settings',
     element: page(() => lz(import('@/features/settings/SettingsPage'), 'SettingsPage')),
   },
@@ -146,7 +150,7 @@ function NotFound() {
       title="That page does not exist."
       action={
         <Link className="text-primary underline" to="/">
-          Go to the dashboard
+          Go home
         </Link>
       }
     />

@@ -37,7 +37,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <div className="mt-4 flex gap-2">
           <Button onClick={() => this.setState({ error: null })}>Try again</Button>
           <Button variant="secondary" onClick={() => (window.location.hash = '#/')}>
-            Dashboard
+            Home
           </Button>
         </div>
       </div>

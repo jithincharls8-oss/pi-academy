@@ -4,7 +4,7 @@ test('app boots offline-ready and navigates', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Welcome to PI Academy' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ready for your next lesson?' })).toBeVisible();
   await page.getByRole('link', { name: 'Settings' }).click();
   await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();
   await page.getByLabel('Theme').selectOption('dark');
@@ -16,7 +16,7 @@ test('app boots offline-ready and navigates', async ({ page }) => {
 
 test('search page responds to the keyboard shortcut', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Welcome to PI Academy' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ready for your next lesson?' })).toBeVisible();
   await page.keyboard.press('Control+k');
   await expect(page.getByRole('heading', { name: 'Search' })).toBeVisible();
 });

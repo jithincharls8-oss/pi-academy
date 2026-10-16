@@ -28,6 +28,25 @@
   --color-danger-soft: var(--danger-soft);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
+  --color-primary-solid: var(--primary-solid);
+  --color-on-solid: var(--on-solid);
+  --color-success-solid: var(--success-solid);
+  --color-danger-solid: var(--danger-solid);
+  --color-material: var(--material);
+  --color-material-border: var(--material-border);
+  --color-xp: var(--xp);
+  --color-xp-fg: var(--xp-fg);
+  --color-xp-text: var(--xp-text);
+  --color-flame: var(--flame);
+  --color-flame-text: var(--flame-text);
+  --color-challenge: var(--challenge);
+  --color-challenge-text: var(--challenge-text);
+  --color-path-done: var(--path-done);
+  --color-path-current: var(--path-current);
+  --color-path-locked: var(--path-locked);
+  --color-ring-learn: var(--ring-learn);
+  --color-ring-practice: var(--ring-practice);
+  --color-ring-review: var(--ring-review);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -47,11 +66,22 @@
   --color-tool-alarm-hi: var(--tool-alarm-hi);
   --color-tool-alarm-warn: var(--tool-alarm-warn);
   --color-tool-ok: var(--tool-ok);
-  --radius-sm: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  --radius-xl: calc(var(--radius) + 8px);
+  --shadow-card:
+    0 1px 2px hsl(var(--shadow-color) / 0.06), 0 2px 8px hsl(var(--shadow-color) / 0.05);
+  --shadow-raised:
+    0 2px 6px hsl(var(--shadow-color) / 0.08), 0 12px 32px hsl(var(--shadow-color) / 0.1);
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter Variable', 'Inter',
+    'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-display:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter Variable', 'Inter',
+    'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
 }
 
 html {
@@ -60,6 +90,49 @@ html {
 body {
   @apply bg-bg text-fg antialiased;
   font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01';
+  letter-spacing: -0.011em;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+/* Apple-style translucent material for the sidebar and header */
+.material {
+  background: var(--material);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+@keyframes pip-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-pip {
+  animation: pip-bob 3.2s ease-in-out infinite;
+}
+.animate-pop {
+  animation: pop-in 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
 }
 :focus-visible {
   outline: 2px solid var(--ring);
@@ -77,12 +150,13 @@ body {
 /* Lesson / markdown typography */
 .prose-pi {
   line-height: 1.7;
+  font-size: 1.0625rem;
 }
 .prose-pi h2 {
-  @apply mt-8 mb-3 text-xl font-semibold;
+  @apply mt-10 mb-3 text-2xl font-bold;
 }
 .prose-pi h3 {
-  @apply mt-6 mb-2 text-lg font-semibold;
+  @apply mt-7 mb-2 text-lg font-semibold;
 }
 .prose-pi p {
   @apply my-3;
@@ -103,7 +177,7 @@ body {
   @apply rounded bg-surface-2 px-1 py-0.5 font-mono text-[0.9em];
 }
 .prose-pi pre {
-  @apply my-4 overflow-x-auto rounded-md border border-border bg-surface-2 p-4 text-sm;
+  @apply my-4 overflow-x-auto rounded-lg bg-surface-2 p-4 text-sm;
 }
 .prose-pi pre code {
   @apply bg-transparent p-0;
@@ -118,11 +192,11 @@ body {
   @apply border-b border-border px-3 py-2 align-top;
 }
 .prose-pi blockquote {
-  @apply my-4 border-l-4 border-primary bg-primary-soft px-4 py-2;
+  @apply my-4 rounded-lg border-l-4 border-primary bg-primary-soft px-4 py-3;
 }
 
 .prose-pi .callout {
-  @apply my-4 rounded-md border-l-4 px-4 py-3;
+  @apply my-5 rounded-xl border-l-4 px-5 py-4;
 }
 .prose-pi .callout-title {
   @apply mb-1 text-sm font-semibold uppercase tracking-wide;
@@ -162,4 +236,9 @@ body {
 }
 .prose-pi .callout p:last-child {
   @apply mb-0;
+}
+
+/* Native <select> keeps its OS behaviour (keyboard, screen readers) but gets a token-neutral chevron */
+.select-chevron {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%238e8e93' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 6.5 8 10l3.5-3.5'/%3E%3C/svg%3E");
 }

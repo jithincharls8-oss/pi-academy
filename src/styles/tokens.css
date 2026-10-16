@@ -1,52 +1,80 @@
-/*
- * PI Academy design tokens. The ONLY place colours are defined.
- * Components use the Tailwind utilities generated from @theme below (bg-surface, text-fg, ...)
- * or var(--token) in inline SVG/chart props.
- */
+/* Direction "Plant Path, Apple finish": Apple system colours (text-safe variants), hairline
+ * borders, soft materials and continuous-corner radii, with a gamified learning path on top.
+ * Every text/fill pair below was checked at WCAG AA (4.5:1) in both themes. */
 :root {
   color-scheme: light;
-  --radius: 0.5rem;
+  --radius: 0.75rem;
   --font-scale: 1;
 
-  --bg: oklch(0.985 0.003 250);
-  --surface: oklch(1 0 0);
-  --surface-2: oklch(0.965 0.006 250);
-  --surface-3: oklch(0.93 0.01 250);
-  --fg: oklch(0.22 0.02 255);
-  --fg-muted: oklch(0.46 0.02 255);
-  --fg-subtle: oklch(0.5 0.015 255);
-  --border: oklch(0.89 0.01 250);
-  --border-strong: oklch(0.8 0.015 250);
-  --ring: oklch(0.55 0.17 255);
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #f5f5f7;
+  --surface-3: #e8e8ed;
+  --fg: #1d1d1f;
+  --fg-muted: #515154;
+  --fg-subtle: #6e6e73;
+  --border: #e3e3e8;
+  --border-strong: #c7c7cc;
+  --ring: #0071e3;
+  --material: rgb(255 255 255 / 0.78);
+  --material-border: rgb(0 0 0 / 0.08);
+  --shadow-color: 220 15% 20%;
 
-  --primary: oklch(0.5 0.17 255);
-  --primary-fg: oklch(0.99 0 0);
-  --primary-soft: oklch(0.94 0.04 255);
-  --accent: oklch(0.5 0.11 190);
-  --accent-fg: oklch(0.99 0 0);
-  --accent-soft: oklch(0.94 0.04 190);
+  --primary: #0066cc;
+  --primary-fg: #ffffff;
+  --primary-soft: #eaf3ff;
+  --primary-solid: #0071e3;
+  --accent: #8944ab;
+  --accent-fg: #ffffff;
+  --accent-soft: #f3ebfa;
+  --on-solid: #ffffff;
 
-  --success: oklch(0.48 0.12 150);
-  --success-soft: oklch(0.94 0.05 150);
-  --warning: oklch(0.5 0.12 65);
-  --warning-soft: oklch(0.95 0.06 85);
-  --danger: oklch(0.53 0.19 25);
-  --danger-soft: oklch(0.95 0.04 25);
-  --info: oklch(0.52 0.12 240);
-  --info-soft: oklch(0.95 0.03 240);
+  --success: #1f7a35;
+  --success-soft: #e9f6ec;
+  --success-solid: #1f7a35;
+  --warning: #ad5a00;
+  --warning-soft: #fff4e0;
+  --danger: #d70015;
+  --danger-soft: #fdecec;
+  --danger-solid: #d70015;
+  --info: #0066cc;
+  --info-soft: #eaf3ff;
 
-  /* categorical chart palette (checked for adjacent contrast in both themes) */
-  --chart-1: oklch(0.55 0.17 255);
-  --chart-2: oklch(0.65 0.15 45);
-  --chart-3: oklch(0.58 0.13 160);
-  --chart-4: oklch(0.55 0.18 330);
-  --chart-5: oklch(0.7 0.14 95);
-  --chart-6: oklch(0.5 0.1 205);
-  --heat-0: oklch(0.95 0.01 250);
-  --heat-1: oklch(0.88 0.05 150);
-  --heat-2: oklch(0.78 0.1 150);
-  --heat-3: oklch(0.66 0.13 150);
-  --heat-4: oklch(0.52 0.13 150);
+  /* gamification: decorative fills (never text on white) plus text-safe partners */
+  --xp: #ffcc00;
+  --xp-fg: #1d1d1f;
+  --xp-text: #8a6100;
+  --flame: #ff9500;
+  --flame-text: #c93400;
+  --challenge: #af52de;
+  --challenge-text: #8944ab;
+  --path-done: #34c759;
+  --path-current: #0071e3;
+  --path-locked: #d2d2d7;
+  --ring-learn: #0a84ff;
+  --ring-practice: #30d158;
+  --ring-review: #ff9f0a;
+
+  /* mascot "Pip" */
+  --pip-body: #0a84ff;
+  --pip-body-shade: #0060c7;
+  --pip-face: #ffffff;
+  --pip-ink: #1d1d1f;
+  --pip-cheek: #ff8fa3;
+  --pip-needle: #ff9500;
+
+  /* categorical chart palette (Apple system hues) */
+  --chart-1: #0071e3;
+  --chart-2: #ff9500;
+  --chart-3: #28a745;
+  --chart-4: #af52de;
+  --chart-5: #e0a800;
+  --chart-6: #32ade6;
+  --heat-0: #ebebf0;
+  --heat-1: #c6efd0;
+  --heat-2: #8fdca3;
+  --heat-3: #4cc26a;
+  --heat-4: #1f7a35;
 
   /* PI tool mockups: a neutral "desktop client" chrome distinct from the app shell */
   --tool-chrome: oklch(0.32 0.02 250);
@@ -61,44 +89,72 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --bg: oklch(0.17 0.012 255);
-  --surface: oklch(0.21 0.014 255);
-  --surface-2: oklch(0.25 0.016 255);
-  --surface-3: oklch(0.3 0.018 255);
-  --fg: oklch(0.95 0.005 255);
-  --fg-muted: oklch(0.76 0.012 255);
-  --fg-subtle: oklch(0.64 0.012 255);
-  --border: oklch(0.33 0.016 255);
-  --border-strong: oklch(0.42 0.02 255);
-  --ring: oklch(0.72 0.14 255);
+  --bg: #000000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --surface-3: #3a3a3c;
+  --fg: #f5f5f7;
+  --fg-muted: #c7c7cc;
+  --fg-subtle: #98989d;
+  --border: #38383a;
+  --border-strong: #545458;
+  --ring: #4c9fff;
+  --material: rgb(28 28 30 / 0.78);
+  --material-border: rgb(255 255 255 / 0.1);
+  --shadow-color: 0 0% 0%;
 
-  --primary: oklch(0.72 0.14 255);
-  --primary-fg: oklch(0.17 0.02 255);
-  --primary-soft: oklch(0.3 0.06 255);
-  --accent: oklch(0.75 0.11 190);
-  --accent-fg: oklch(0.17 0.02 255);
-  --accent-soft: oklch(0.3 0.05 190);
+  --primary: #4c9fff;
+  --primary-fg: #0b1220;
+  --primary-soft: #0d2a4d;
+  --primary-solid: #0a6fe0;
+  --accent: #da8fff;
+  --accent-fg: #1c0f24;
+  --accent-soft: #33204a;
+  --on-solid: #ffffff;
 
-  --success: oklch(0.75 0.14 150);
-  --success-soft: oklch(0.3 0.05 150);
-  --warning: oklch(0.8 0.13 80);
-  --warning-soft: oklch(0.32 0.05 80);
-  --danger: oklch(0.72 0.16 25);
-  --danger-soft: oklch(0.32 0.06 25);
-  --info: oklch(0.74 0.11 240);
-  --info-soft: oklch(0.3 0.05 240);
+  --success: #30d158;
+  --success-soft: #0f3319;
+  --success-solid: #1e7a36;
+  --warning: #ffb340;
+  --warning-soft: #3d2a0a;
+  --danger: #ff6961;
+  --danger-soft: #3d1414;
+  --danger-solid: #b42318;
+  --info: #4c9fff;
+  --info-soft: #0d2a4d;
 
-  --chart-1: oklch(0.72 0.14 255);
-  --chart-2: oklch(0.76 0.13 50);
-  --chart-3: oklch(0.74 0.12 160);
-  --chart-4: oklch(0.72 0.15 330);
-  --chart-5: oklch(0.82 0.12 95);
-  --chart-6: oklch(0.72 0.09 205);
-  --heat-0: oklch(0.26 0.012 255);
-  --heat-1: oklch(0.36 0.05 150);
-  --heat-2: oklch(0.48 0.09 150);
-  --heat-3: oklch(0.6 0.12 150);
-  --heat-4: oklch(0.74 0.14 150);
+  --xp: #ffd60a;
+  --xp-fg: #1d1d1f;
+  --xp-text: #ffd60a;
+  --flame: #ff9f0a;
+  --flame-text: #ffb340;
+  --challenge: #bf5af2;
+  --challenge-text: #da8fff;
+  --path-done: #30d158;
+  --path-current: #0a84ff;
+  --path-locked: #48484a;
+  --ring-learn: #0a84ff;
+  --ring-practice: #30d158;
+  --ring-review: #ff9f0a;
+
+  --pip-body: #0a84ff;
+  --pip-body-shade: #0058b8;
+  --pip-face: #f5f5f7;
+  --pip-ink: #1d1d1f;
+  --pip-cheek: #ff8fa3;
+  --pip-needle: #ff9f0a;
+
+  --chart-1: #4c9fff;
+  --chart-2: #ffb340;
+  --chart-3: #30d158;
+  --chart-4: #da8fff;
+  --chart-5: #ffd60a;
+  --chart-6: #64d2ff;
+  --heat-0: #2c2c2e;
+  --heat-1: #0f3319;
+  --heat-2: #1e6b33;
+  --heat-3: #27a348;
+  --heat-4: #30d158;
 
   --tool-chrome: oklch(0.26 0.02 250);
   --tool-chrome-fg: oklch(0.95 0 0);

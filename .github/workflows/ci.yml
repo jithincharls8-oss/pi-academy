@@ -25,6 +25,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: No file names that differ only by case (they break Windows and macOS builds)
+        run: |
+          dups=$(git ls-files | tr '[:upper:]' '[:lower:]' | sort | uniq -d)
+          if [ -n "$dups" ]; then echo "$dups"; exit 1; fi
       - name: Content validator
         run: npm run content:validate
       - name: Lint

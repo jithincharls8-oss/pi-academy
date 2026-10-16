@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest';
-import { renderMarkdown } from './markdown';
+import { renderMarkdown } from './renderMarkdown';
 
 describe('renderMarkdown', () => {
   it('removes scripts, event handlers and javascript: links', () => {

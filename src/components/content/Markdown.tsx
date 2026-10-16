@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { renderMarkdown } from './markdown';
+import { renderMarkdown } from './renderMarkdown';
 import { Mermaid } from './Mermaid';
 import { cn } from '@/lib/cn';
 

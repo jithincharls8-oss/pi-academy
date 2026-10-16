@@ -17,6 +17,17 @@ describe('renderMarkdown', () => {
     expect(html).toContain('Do not set CompDev to 0.');
     expect(html).not.toContain('[!WARNING]');
   });
+  it('renders [!VERIFY] notes as a quiet, labelled note instead of a warning box', () => {
+    const html = renderMarkdown('> [!VERIFY]\n> The window is an example.');
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const note = doc.querySelector('[role="note"]');
+    expect(note?.classList.contains('verify-note')).toBe(true);
+    expect(note?.classList.contains('text-fg-muted')).toBe(true);
+    expect(note?.textContent).toContain('Unverified');
+    expect(note?.textContent).toContain('The window is an example.');
+    expect(html).not.toContain('callout-warning');
+    expect(html).not.toContain('[!VERIFY]');
+  });
   it('keeps mermaid source for the diagram component, escaped', () => {
     const html = renderMarkdown('```mermaid\nflowchart LR\n  A["<b>x</b>"] --> B\n```');
     expect(html).toContain('mermaid-block');

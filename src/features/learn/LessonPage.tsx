@@ -18,6 +18,7 @@ import { Textarea } from '@/components/ui/input';
 import { EmptyState } from '@/components/ui/misc';
 import { Markdown } from '@/components/content/Markdown';
 import { SourceList } from '@/components/content/SourceList';
+import { VerifyNote } from '@/components/content/VerifyNote';
 import { QuestionCard } from '@/components/questions/QuestionCard';
 import {
   DOMAIN_LABELS,
@@ -101,20 +102,17 @@ function LessonView({ id }: { id: string }) {
           <span className="flex items-center gap-1 text-fg-muted">
             <Clock className="size-4" aria-hidden /> {lesson.minutes} min
           </span>
-          {lesson.verify ? (
-            <Badge tone="warning" title={lesson.verifyNote}>
-              <AlertTriangle className="size-3" aria-hidden /> Parts need verification
-            </Badge>
-          ) : null}
         </div>
-        {lesson.verify && lesson.verifyNote ? (
-          <div className="mt-4 rounded-md border border-warning bg-warning-soft p-3 text-sm">
-            <strong>Needs verification:</strong> {lesson.verifyNote}
-          </div>
+        {lesson.verify ? (
+          <VerifyNote
+            note={lesson.verifyNote}
+            label="Parts of this lesson are unverified"
+            className="mt-3"
+          />
         ) : null}
 
         <section
-          className="mt-6 rounded-lg border border-border bg-surface p-5"
+          className="mt-6 rounded-xl bg-surface p-5 shadow-card ring-1 ring-border/70 dark:ring-border"
           aria-labelledby="objectives"
         >
           <h2 id="objectives" className="flex items-center gap-2 font-semibold">
@@ -136,10 +134,7 @@ function LessonView({ id }: { id: string }) {
           </section>
         ))}
 
-        <section
-          className="mt-8 rounded-lg border-l-4 border-danger bg-danger-soft p-5"
-          aria-labelledby="sec-mistakes"
-        >
+        <section className="mt-8 rounded-xl bg-danger-soft p-5" aria-labelledby="sec-mistakes">
           <h2
             id="sec-mistakes"
             className="flex items-center gap-2 text-lg font-semibold text-danger"
@@ -149,10 +144,7 @@ function LessonView({ id }: { id: string }) {
           <Markdown source={lesson.sections.commonMistakes} />
         </section>
 
-        <section
-          className="mt-6 rounded-lg border-l-4 border-accent bg-accent-soft p-5"
-          aria-labelledby="sec-scenario"
-        >
+        <section className="mt-6 rounded-xl bg-accent-soft p-5" aria-labelledby="sec-scenario">
           <h2
             id="sec-scenario"
             className="flex items-center gap-2 text-lg font-semibold text-accent"
@@ -168,9 +160,16 @@ function LessonView({ id }: { id: string }) {
           </h2>
           <dl className="mt-3 grid gap-3 sm:grid-cols-2">
             {terms.map((t) => (
-              <div key={t.id} className="rounded-md border border-border bg-surface p-3">
+              <div
+                key={t.id}
+                className="relative rounded-xl bg-surface p-4 shadow-card ring-1 ring-border/70 transition-[box-shadow,transform] duration-200 focus-within:shadow-raised hover:-translate-y-0.5 hover:shadow-raised dark:ring-border"
+              >
                 <dt className="font-semibold">
-                  <Link to={`/reference/glossary/${t.id}`} className="hover:underline">
+                  {/* The whole card is the link's hit area (stretched ::after). */}
+                  <Link
+                    to={`/reference/glossary/${t.id}`}
+                    className="after:absolute after:inset-0 after:rounded-xl hover:text-primary"
+                  >
                     {t.term}
                   </Link>
                 </dt>

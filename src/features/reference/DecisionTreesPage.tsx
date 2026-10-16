@@ -35,7 +35,7 @@ function TreeWalker({ tree }: { tree: DecisionTree }) {
           })}
         </ol>
       ) : null}
-      <div className="rounded-lg border border-border bg-surface-2 p-4" aria-live="polite">
+      <div className="rounded-xl bg-surface-2 p-5 ring-1 ring-border/60" aria-live="polite">
         {'question' in node ? (
           <fieldset>
             <legend className="font-semibold">{node.question}</legend>

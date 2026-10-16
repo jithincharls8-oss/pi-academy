@@ -10,7 +10,10 @@ test('deployment planner changes the architecture with company size', async ({ p
     timeout: 15000,
   });
 
-  await page.getByLabel('Company size').selectOption('large');
+  await page
+    .getByRole('radiogroup', { name: 'Company size' })
+    .getByRole('radio', { name: 'Large' })
+    .click();
   await expect(
     page.getByRole('heading', { name: 'Site PI Servers with central aggregation' }),
   ).toBeVisible();

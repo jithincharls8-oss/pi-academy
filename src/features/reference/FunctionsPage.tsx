@@ -26,7 +26,11 @@ export function FunctionsPage() {
         title="Function reference"
         description="Signatures, arguments and examples. Entries whose exact signature could not be read in a primary source are marked for verification."
       />
-      <div role="tablist" aria-label="Function family" className="mb-4 flex gap-2">
+      <div
+        role="tablist"
+        aria-label="Function family"
+        className="mb-5 inline-flex flex-wrap items-center gap-0.5 rounded-[10px] bg-surface-3/70 p-0.5"
+      >
         {(Object.keys(KINDS) as (keyof typeof KINDS)[]).map((k) => (
           <Link
             key={k}
@@ -34,10 +38,10 @@ export function FunctionsPage() {
             aria-selected={k === kind}
             to={`/reference/functions/${k}`}
             className={cn(
-              'rounded-md border px-3 py-1.5 text-sm',
+              'rounded-[8px] px-3.5 py-1.5 text-[13px] font-semibold transition-all',
               k === kind
-                ? 'border-primary bg-primary-soft text-primary'
-                : 'border-border hover:bg-surface-2',
+                ? 'bg-surface text-fg shadow-card dark:bg-surface-3'
+                : 'text-fg-muted hover:text-fg',
             )}
           >
             {KINDS[k]} ({(k === 'pe' ? library.peFunction : library.afFunction).length})

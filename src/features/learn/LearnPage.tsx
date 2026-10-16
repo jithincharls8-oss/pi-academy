@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, Circle, Clock, PlayCircle } from 'lucide-react';
+import { CheckCircle2, ChevronRight, Circle, Clock, PlayCircle } from 'lucide-react';
 import { useApp } from '@/app/AppContext';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
@@ -15,7 +15,10 @@ import {
   type Level,
   type Role,
 } from '@/core/schemas';
+import { SegmentedControl } from '@/components/ui/segmented';
 import { lessonsForPath, nextLesson } from './paths';
+
+const ALL_ROLES = 'all';
 import { cn } from '@/lib/cn';
 
 export function LearnPage() {
@@ -46,65 +49,32 @@ export function LearnPage() {
       <Card>
         <CardContent className="flex flex-wrap items-end gap-6 pt-5">
           <div>
-            <div className="mb-1 text-sm font-medium" id="level-label">
+            <div className="mb-1.5 text-sm font-medium" id="level-label">
               Level
             </div>
-            <div
-              className="inline-flex rounded-md border border-border p-1"
-              role="radiogroup"
+            <SegmentedControl
               aria-labelledby="level-label"
-            >
-              {LEVELS.map((l: Level) => (
-                <button
-                  key={l}
-                  role="radio"
-                  aria-checked={settings.level === l}
-                  onClick={() => updateSettings({ level: l })}
-                  className={cn(
-                    'rounded px-3 py-1.5 text-sm capitalize',
-                    settings.level === l ? 'bg-primary text-primary-fg' : 'hover:bg-surface-2',
-                  )}
-                >
-                  {l}
-                </button>
-              ))}
-            </div>
+              value={settings.level}
+              onValueChange={(level: Level) => updateSettings({ level })}
+              options={LEVELS.map((l) => ({
+                value: l,
+                label: <span className="capitalize">{l}</span>,
+              }))}
+            />
           </div>
           <div>
-            <div className="mb-1 text-sm font-medium" id="role-label">
+            <div className="mb-1.5 text-sm font-medium" id="role-label">
               Role path
             </div>
-            <div className="flex flex-wrap gap-1" role="radiogroup" aria-labelledby="role-label">
-              <button
-                role="radio"
-                aria-checked={settings.role === null}
-                onClick={() => updateSettings({ role: null })}
-                className={cn(
-                  'rounded-full border px-3 py-1 text-sm',
-                  settings.role === null
-                    ? 'border-primary bg-primary-soft text-primary'
-                    : 'border-border',
-                )}
-              >
-                All roles
-              </button>
-              {ROLES.map((r: Role) => (
-                <button
-                  key={r}
-                  role="radio"
-                  aria-checked={settings.role === r}
-                  onClick={() => updateSettings({ role: r })}
-                  className={cn(
-                    'rounded-full border px-3 py-1 text-sm',
-                    settings.role === r
-                      ? 'border-primary bg-primary-soft text-primary'
-                      : 'border-border',
-                  )}
-                >
-                  {ROLE_LABELS[r]}
-                </button>
-              ))}
-            </div>
+            <SegmentedControl
+              aria-labelledby="role-label"
+              value={settings.role ?? ALL_ROLES}
+              onValueChange={(r) => updateSettings({ role: r === ALL_ROLES ? null : (r as Role) })}
+              options={[
+                { value: ALL_ROLES, label: 'All roles' },
+                ...ROLES.map((r) => ({ value: r, label: ROLE_LABELS[r] })),
+              ]}
+            />
           </div>
           <div className="ml-auto min-w-56 flex-1 sm:flex-none">
             <div className="mb-1 text-sm text-fg-muted">
@@ -130,20 +100,26 @@ export function LearnPage() {
           if (lessons.length === 0) return null;
           const dDone = lessons.filter((l) => completed.has(l.id)).length;
           return (
-            <Card key={d}>
-              <CardHeader className="flex-row items-center justify-between gap-4">
+            <Card key={d} className="overflow-hidden">
+              <CardHeader className="flex-row items-center justify-between gap-4 pb-2">
                 <CardTitle>{DOMAIN_LABELS[d]}</CardTitle>
-                <span className="text-sm text-fg-muted">
-                  {dDone}/{lessons.length}
+                <span className="tabular text-sm text-fg-muted">
+                  {dDone} of {lessons.length}
                 </span>
               </CardHeader>
-              <CardContent>
+              <Progress
+                className="mx-5 mb-2 h-1.5 w-auto"
+                tone="success"
+                value={(dDone / lessons.length) * 100}
+                label={`${DOMAIN_LABELS[d]} progress`}
+              />
+              <CardContent className="px-0 pb-2">
                 <ul className="divide-y divide-border">
                   {lessons.map((l) => (
                     <li key={l.id}>
                       <Link
                         to={`/learn/${l.id}`}
-                        className="flex items-center gap-3 py-3 hover:text-primary"
+                        className="group flex cursor-pointer items-center gap-3 px-5 py-3 transition-colors hover:bg-surface-2"
                       >
                         {completed.has(l.id) ? (
                           <CheckCircle2
@@ -160,13 +136,16 @@ export function LearnPage() {
                           />
                         )}
                         <span className="min-w-0 flex-1">
-                          <span className="block font-medium">{l.title}</span>
+                          <span className="block font-medium group-hover:text-primary">
+                            {l.title}
+                          </span>
                           <span className="block truncate text-sm text-fg-muted">{l.summary}</span>
                         </span>
                         <Badge className="hidden capitalize sm:inline-flex">{l.level}</Badge>
                         <span className="hidden items-center gap-1 text-xs text-fg-muted sm:flex">
                           <Clock className="size-3.5" aria-hidden /> {l.minutes} min
                         </span>
+                        <ChevronRight className="size-4 shrink-0 text-fg-subtle" aria-hidden />
                       </Link>
                     </li>
                   ))}

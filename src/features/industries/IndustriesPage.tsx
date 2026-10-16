@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useApp } from '@/app/AppContext';
 import { PageHeader } from '@/components/ui/misc';
 import { Badge, type BadgeProps } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import { Markdown } from '@/components/content/Markdown';
 import { INDUSTRY_LABELS } from '@/core/schemas/common';
 import { OUTCOME_CATEGORIES, type CaseStudy } from '@/core/schemas/content';
@@ -29,8 +30,8 @@ export function IndustriesPage() {
           <>
             <h2 className="text-lg font-semibold">{h.title}</h2>
             <p className="mt-2">{h.summary}</p>
-            <p className="mt-2 text-sm">
-              <Link className="text-primary underline" to="/planner">
+            <p className="mt-3">
+              <Link className={buttonVariants({ variant: 'tinted', size: 'sm' })} to="/planner">
                 Plan a {INDUSTRY_LABELS[h.id]} deployment
               </Link>
             </p>

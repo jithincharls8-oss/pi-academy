@@ -7,8 +7,18 @@ const CALLOUTS: Record<string, { label: string; tone: string }> = {
   WARNING: { label: 'Warning', tone: 'warning' },
   CAUTION: { label: 'Caution', tone: 'danger' },
   IMPORTANT: { label: 'Important', tone: 'primary' },
-  VERIFY: { label: 'Needs verification', tone: 'warning' },
 };
+
+/*
+ * [!VERIFY] notes sit next to the claim they qualify, so they stay visible but quiet: muted text
+ * behind a hairline rule with a small outlined "Unverified" marker, not a loud warning box.
+ * Tailwind utilities (scanned from this file); only these exact classes survive sanitising.
+ */
+const VERIFY_BOX =
+  'verify-note my-4 border-l-2 border-border-strong pl-3 text-sm text-fg-muted [&>p]:my-1!';
+const VERIFY_BADGE =
+  'mr-1.5 inline-flex rounded-full px-2 py-px text-xs font-semibold ring-1 ring-inset ring-border-strong';
+const VERIFY_CLASSES = new Set(`${VERIFY_BOX} ${VERIFY_BADGE}`.split(' '));
 
 function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] ?? c);
@@ -31,6 +41,10 @@ const marked = new Marked({
       const body = this.parser.parse(token.tokens);
       const m = /^<p>\[!([A-Z]+)\]\s*/.exec(body);
       const kind = m?.[1];
+      if (m && kind === 'VERIFY') {
+        const rest = body.replace(m[0], `<p><span class="${VERIFY_BADGE}">Unverified</span>`);
+        return `<div class="${VERIFY_BOX}" role="note">${rest}</div>`;
+      }
       const callout = kind ? CALLOUTS[kind] : undefined;
       if (!m || !callout) return `<blockquote>${body}</blockquote>`;
       return `<div class="callout callout-${callout.tone}" role="note"><div class="callout-title">${callout.label}</div>${body.replace(m[0], '<p>')}</div>`;
@@ -68,7 +82,7 @@ function getPurifier(): ReturnType<typeof DOMPurify> {
   p.addHook('afterSanitizeAttributes', (node) => {
     const cls = node.getAttribute('class');
     if (cls !== null) {
-      const kept = cls.split(/\s+/).filter((c) => ALLOWED_CLASS.test(c));
+      const kept = cls.split(/\s+/).filter((c) => ALLOWED_CLASS.test(c) || VERIFY_CLASSES.has(c));
       if (kept.length) node.setAttribute('class', kept.join(' '));
       else node.removeAttribute('class');
     }

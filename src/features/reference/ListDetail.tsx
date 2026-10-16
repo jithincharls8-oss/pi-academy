@@ -2,9 +2,9 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { EmptyState } from '@/components/ui/misc';
 import { SourceList } from '@/components/content/SourceList';
+import { UnverifiedBadge, VerifyNote } from '@/components/content/VerifyNote';
 import { cn } from '@/lib/cn';
 
 export interface ListItem {
@@ -84,12 +84,12 @@ export function ListDetail<T extends ListItem>({
         </p>
         <nav
           aria-label={filterLabel}
-          className="max-h-[70vh] overflow-y-auto rounded-lg border border-border bg-surface"
+          className="max-h-[70vh] overflow-y-auto rounded-xl bg-surface shadow-card ring-1 ring-border/70 dark:ring-border"
         >
           {groups.map(([g, list]) => (
             <div key={g}>
               {g ? (
-                <div className="sticky top-0 bg-surface-2 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-fg-muted">
+                <div className="sticky top-0 z-[1] bg-surface-2 px-3.5 py-1 text-xs font-semibold uppercase tracking-wide text-fg-muted">
                   {g}
                 </div>
               ) : null}
@@ -100,16 +100,23 @@ export function ListDetail<T extends ListItem>({
                       to={`${basePath}/${encodeURIComponent(i.id)}`}
                       aria-current={i.id === selectedId ? 'page' : undefined}
                       className={cn(
-                        'block border-b border-border/60 px-3 py-2 text-sm hover:bg-surface-2',
-                        i.id === selectedId && 'bg-primary-soft',
+                        'block border-b border-border/60 px-3.5 py-2.5 text-sm transition-colors hover:bg-surface-2',
+                        i.id === selectedId && 'bg-primary-soft hover:bg-primary-soft',
                       )}
                     >
-                      <span className="font-medium">{i.title}</span>
-                      {i.verify ? (
-                        <Badge tone="warning" className="ml-2">
-                          verify
-                        </Badge>
-                      ) : null}
+                      <span className="flex items-center gap-2">
+                        <span
+                          className={cn(
+                            'min-w-0 truncate font-medium',
+                            i.id === selectedId && 'text-primary',
+                          )}
+                        >
+                          {i.title}
+                        </span>
+                        {i.verify ? (
+                          <UnverifiedBadge note={i.verifyNote} className="ml-auto shrink-0" />
+                        ) : null}
+                      </span>
                       {i.subtitle ? (
                         <span className="block truncate text-xs text-fg-muted">{i.subtitle}</span>
                       ) : null}
@@ -123,22 +130,13 @@ export function ListDetail<T extends ListItem>({
       </div>
       <div>
         {selected ? (
-          <article className="rounded-lg border border-border bg-surface p-6">
-            {selected.verify ? (
-              <div
-                className="mb-4 rounded-md border border-warning bg-warning-soft p-3 text-sm"
-                role="note"
-              >
-                <span className="font-semibold">Needs verification.</span>{' '}
-                {selected.verifyNote ??
-                  'This entry could not be checked against a readable primary source.'}
-              </div>
-            ) : null}
+          <article className="rounded-xl bg-surface p-6 shadow-card ring-1 ring-border/70 dark:ring-border">
             {renderDetail(selected)}
+            {selected.verify ? <VerifyNote note={selected.verifyNote} className="mt-5" /> : null}
             <SourceList ids={selected.sources} />
           </article>
         ) : (
-          <div className="rounded-lg border border-dashed border-border p-10 text-center text-fg-muted">
+          <div className="rounded-xl border border-dashed border-border-strong p-10 text-center text-fg-muted">
             Choose an entry on the left.
           </div>
         )}

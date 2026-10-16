@@ -20,7 +20,8 @@ function cspPlugin(): Plugin {
   ].join('; ');
   return {
     name: 'pi-academy-csp',
-    apply: 'build',
+    // Tauri sets its own CSP (tauri.conf.json), which also allows the IPC channel.
+    apply: (_config, env) => env.command === 'build' && !process.env.TAURI_ENV_PLATFORM,
     transformIndexHtml: (html) =>
       html.replace(
         '<head>',

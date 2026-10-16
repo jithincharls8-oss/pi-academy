@@ -15,16 +15,30 @@ export interface Services {
   seeded: boolean;
 }
 
-export async function loadBundle(fetchImpl: typeof fetch = fetch): Promise<ContentBundle> {
+async function fetchBundleJson(fetchImpl: typeof fetch): Promise<unknown> {
   const res = await fetchImpl('./content/bundle.json', { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Could not load the content bundle (HTTP ${res.status}).`);
-  const parsed = ContentBundleSchema.safeParse(await res.json());
+  return res.json();
+}
+
+export function parseBundle(raw: unknown): ContentBundle {
+  const parsed = ContentBundleSchema.safeParse(raw);
   if (!parsed.success) {
     throw new Error(
       `The content bundle is invalid: ${parsed.error.issues[0]?.path.join('.')} ${parsed.error.issues[0]?.message}`,
     );
   }
   return parsed.data;
+}
+
+export async function loadBundle(fetchImpl: typeof fetch = fetch): Promise<ContentBundle> {
+  return parseBundle(await fetchBundleJson(fetchImpl));
+}
+
+/** The bundle's version without validating the whole bundle (validation is the slow part). */
+function rawVersion(raw: unknown): string | null {
+  if (typeof raw !== 'object' || raw === null || !('version' in raw)) return null;
+  return typeof raw.version === 'string' ? raw.version : null;
 }
 
 export async function bootstrap(): Promise<Services> {
@@ -34,11 +48,15 @@ export async function bootstrap(): Promise<Services> {
     // A failed load must not fall through to an empty database: the first flush would
     // overwrite the learner's saved data. Let startup fail so "Try again" can recover.
     persistence.load(),
-    loadBundle(),
+    fetchBundleJson(fetch),
   ]);
   const db = AppDatabase.open(SQL, bytes);
   const content = new ContentRepo(db);
-  const seeded = content.seed(bundle);
+  // Validate and seed only when the bundle changed; repeat launches skip a 2 MB schema check.
+  const seeded =
+    rawVersion(bundle) !== null && rawVersion(bundle) === content.currentVersion()
+      ? false
+      : content.seed(parseBundle(bundle));
   const saver = autosave(
     (fn) => db.onChange(fn),
     () => db.export(),

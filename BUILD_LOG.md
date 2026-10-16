@@ -90,3 +90,13 @@ Running log of what was done at each step and which capability was used. Newest 
 | 8.2 | Totals: 95 lessons, 1,057 questions, 623 glossary terms, 83 case studies, 12 industry hubs; reference data of 70 PE functions, 22 AF functions, 65 PI Web API and 31 CONNECT endpoints, 74 commands, 77 error codes, 10 decision trees | content validator |
 | 8.3 | Cross-group clean-up: duplicate glossary ids resolved to one owner, colliding question ids renamed, every lesson's key terms, knowledge checks and related lessons resolve | content validator (0 errors) |
 | 8.4 | 98 items flagged verify where sources were thin or conflicting; facts marked inferred in the research carry a VERIFY callout. Every one of the 94 coverage items has lessons, questions and terms; all are "drafted" (not yet independently reviewed) | coverage script |
+
+## Phase 9: Hardening and release (2026-10-16)
+
+| Step | What | Capability used |
+|---|---|---|
+| 9.1 | Fixed the content build for the glossary coverage target (counts terms only) | Vitest |
+| 9.2 | Mermaid no longer forced into one 4.8 MB chunk; lessons load only the diagram renderer they use | Vite |
+| 9.3 | axe WCAG 2 A/AA scan of 20 pages in light and dark; five light-theme tokens darkened to reach 4.5:1 | @axe-core/playwright |
+| 9.4 | Release workflow can be started by the `build-installers` PR label; installers built for Windows, macOS and Linux | GitHub Actions, tauri-action |
+| 9.5 | FINAL_REPORT.md written; CAPABILITIES.md updated | Write |

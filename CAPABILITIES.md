@@ -12,7 +12,8 @@ Inventory taken on 2026-10-15 at the start of the build, from inside the cloud b
 | `libwebkit2gtk-4.1-dev` is **not** installable (apt has no package) | Tauri installers cannot be produced in this container. They are produced by the GitHub Actions matrix (Windows/macOS/Linux runners) |
 | Playwright 1.56 + Chromium pre-installed | E2E tests and visual checks run against the PWA build |
 | `docs.aveva.com` is a JavaScript-rendered site; direct `curl` is blocked by the proxy and WebFetch returns only the page shell | AVEVA doc pages are found through WebSearch (their URLs are recorded as sources) and read through PDFs on `cdn.osisoft.com`, PI Square, release notes and other text pages that WebFetch can read. Facts that could only be located but not read are flagged `verify` |
-| Repo `jithincharls8-oss/pi-academy` attached (clone works) but pushes are refused until the Claude GitHub App is installed on it | Commits are made locally per milestone and mirrored to `/mnt/project-files/pi-academy`; they are pushed and CI runs once access is granted |
+| Repo `jithincharls8-oss/pi-academy` attached; push access confirmed later on 2026-10-15 | Commits are pushed to `claude/build` per milestone (draft PR #1) and CI runs on each push |
+| GitHub GraphQL is blocked from the session; REST works | Labels and PR edits go through `gh api` REST calls |
 
 ## Capability table
 
@@ -68,3 +69,10 @@ Inventory taken on 2026-10-15 at the start of the build, from inside the cloud b
 | Plan Mode | Not available in a thread session | PLAN.md written and reviewed before any code |
 | Linux system WebKit for Tauri | Not installable here | GitHub Actions builds the installers |
 | Slash commands, custom subagents in `~/.claude/agents`, CLAUDE.md, project memory | None present (memory index empty) | n/a |
+
+## Used in Phase 9 (2026-10-16)
+
+| Capability | Use |
+|---|---|
+| `@axe-core/playwright` (dev dependency) | WCAG 2 A/AA scan of 20 pages in light and dark themes inside the e2e suite |
+| Release workflow + `build-installers` PR label | Installers built on GitHub's Windows, macOS and Linux runners, since this container cannot build Tauri bundles |
